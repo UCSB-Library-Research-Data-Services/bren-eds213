@@ -1,71 +1,58 @@
 ---
-title: "Installing SQLite"
+title: "Installing duckDB"
 ---
 
-SQLite (the sqlite3 command) comes already installed on Mac and Linux machines. However even with those machines some configuration of SQLite will be required for this course, see below.
 
-## Windows installation
+## Installation
 
-If not already installed, install Git for Windows. Instructions and some good default settings can be found [here](https://ucsbcarpentry.github.io/2022-07-12-ucsb-bash/#shell). Note that it is not necessary to install Git or Bash in order to run SQLite on Windows; SQLite can be run from the desktop or from the DOS command prompt. But for this course we will be using Bash.
+DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/
 
-Next, install SQLite from <https://www.sqlite.org/download.html>. Select, under "Precompiled Binaries for Windows," the download that includes "A bundle of command-line tools for managing SQLite database files." Extract the download into a directory C:\\sqlite. The SQLite command line tool will be located at a path resembling C:\\sqlite\\sqlite-tools-win32-x86-3410200\\sqlite3.exe. Instructions for further setting up to run SQLite under the DOS command prompt can be found [here](https://www.kiltandcode.com/2021/01/21/how-to-install-and-use-sqlite-on-windows/) if you're interested, but we won't be needing that.
 
-To be able to easily run SQLite from any directory, update your Bash path by editing \~/.bash_profile. If you're not familiar with Unix text editors, trying using nano from the Bash prompt:
+## Visual code integration (optional)
 
-```         
-cd ~
-nano .bash_profile
+You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:
+
+In Visual Code:
+
+- open the palette <kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>P</kbd> and search for: `Preferences: Open Keyboard Shortcuts (JSON)` ![](img/duckdb-vscode_setup.png)
+
+- enter the following text & save
+```json
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.runSelectedText"
+    }
+]
+
 ```
 
-If your sqlite3.exe is located in C:\\sqlite\\sqlite-tools-win32-x86-3410200, the equivalent Unix pathname is /c/sqlite/sqlite-tools-win32-x86-3410200. You want to add this directory (or whatever yours is called) to your PATH environment variable. To do so, add the following line to your .bash_profile:
+*Now you can hit <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!*
 
-```         
-export PATH=$PATH:/c/sqlite/sqlite-tools-win32-x86-3410200
+## Test
+
+Let's test our new installation using visual code
+
+1. open a terminal from the terminal menu -> new terminal
+
+2. In the terminal type `duckdb`, this should start duckdb
+
+2. Open a New text file: file menu -> new text file
+
+3. Copy paste the following code: 
+
+```sql
+-- Start the DB at the terminal: duckdb
+
+CREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;
+
+SHOW TABLES;
+
+FROM ducks SELECT *;
 ```
+4. Use <kbd>Shift</kbd>+<kbd>Return</kbd> to run the SQL code line by line
 
-Again, your pathname may differ depending on where sqlite3.exe is located.
+You should have something that looks like this:
 
-With that set up, after starting a new Bash session you will be able to run SQLite from any directory simply by typing:
-
-```         
-sqlite3
-```
-
-## Configuring sqlite3
-
-For this class it will be necessary to configure SQLite every time it runs. This is accomplished by created a file \~/.sqliterc. So, from Bash:
-
-```         
-cd ~
-nano .sqliterc
-```
-
-In this file put the following two lines:
-
-```         
-.mode box
-PRAGMA foreign_keys = ON;
-```
-
-The first line turns on some nice display formatting. The second line is necessary to enable certain SQL functionality this is disabled by default.
-
-## Confirming that SQLite works
-
-From any directory, you should be able to run sqlite3, issue a "PRAGMA foreign_keys" command that returns 1, and get output resembling below.
-
-```         
-bash% sqlite3
--- Loading resources from C:\Users\user\.sqliterc
-SQLite version 3.39.4 2022-09-29 15:55:41
-Enter ".help" for usage hints.
-Connected to a transient in-memory database.
-Use ".open FILENAME" to reopen on a persistent database.
-sqlite> PRAGMA foreign_keys;
-┌──────────────┐
-│ foreign_keys │
-├──────────────┤
-│ 1            │
-└──────────────┘
-sqlite> .exit
-bash%
-```
+![](img/duckdb-vscode_test.png)
