@@ -25,7 +25,14 @@
     "href": "index.html#teaching-assistant",
     "title": "Bren MEDS 213: Databases and Data Management",
     "section": "Teaching assistant",
-    "text": "Teaching assistant\n\nJamie Miller (jkmiller@ucsb.edu )"
+    "text": "Teaching assistant\n\nJamie Miller (jkmiller@ucsb.edu)"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "Bren MEDS 213: Databases and Data Management",
+    "section": "Schedule",
+    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 am (NCEAS)\nDiscussion - session 1: Thur 1-1:50PM, Bren Hall 1510\nDiscussion - session 2: Thur 2-2:50PM, Bren Hall 1510\nOffice hours: Monday 11-12 pm (NCEAS)"
   },
   {
     "objectID": "index.html#course-content",
@@ -60,14 +67,21 @@
     "href": "syllabus.html#learning-objectives",
     "title": "Course syllabus",
     "section": "Learning objectives",
-    "text": "Learning objectives\n\nUnderstand the fundamental principles of relational databases and relational data modeling, including table structures, primary and foreign keys, relationships between tables, and data normalization.\nUnderstand how to use the Unix command line and how manage SQLite databases from the command line.\nUse SQL to retrieve, manipulate, and manage data stored in a relational database.\nDemonstrate proficiency in querying, filtering, sorting, and programmatically accessing and interacting with relational databases from R and Python.\nBecome familiar with advanced database topics such as concurrency, transactions, indexing, backups, and publication.\nUnderstand the role of good data documentation and metadata standards for interoperability, effective data management, and reproducibility.\nOperationalize the FAIR principles into data management practices.\nProduce a metadata record in EML (Ecological Metadata Language) and apply metadata crosswalks to programmatically convert metadata schemas.\nUnderstand the ethics of sensitive data and how to de-identify sensitive data.\nEvaluate ethical and responsible data management practices, including bias, data privacy, sharing, ownership, and licensing issues."
+    "text": "Learning objectives\n\nUnderstand the fundamental principles of relational databases and relational data modeling, including table structures, primary and foreign keys, relationships between tables, and data normalization.\nUnderstand how to use the Unix command line and how manage DuckDB databases from the command line.\nUse SQL to retrieve, manipulate, and manage data stored in a relational database.\nDemonstrate proficiency in querying, filtering, sorting, and programmatically accessing and interacting with relational databases from R and Python.\nBecome familiar with advanced database topics such as concurrency, transactions, indexing, backups, and publication.\nUnderstand the role of good data documentation and metadata standards for interoperability, effective data management, and reproducibility.\nOperationalize the FAIR principles into data management practices.\nProduce a metadata record in EML (Ecological Metadata Language) and apply metadata crosswalks to programmatically convert metadata schemas.\nUnderstand the ethics of sensitive data and how to de-identify sensitive data.\nEvaluate ethical and responsible data management practices, including bias, data privacy, sharing, ownership, and licensing issues."
   },
   {
     "objectID": "syllabus.html#schedule",
     "href": "syllabus.html#schedule",
     "title": "Course syllabus",
-    "section": "Schedule*",
-    "text": "Schedule*\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1 (April 3-5)\nRelational databases and data modeling\n\n\n2 (April 10-12)\nEthical and responsible data management\n\n\n3 (April 17-19)\nSQLite and SQL\n\n\n4 (April 24-26)\nReproducible and FAIR data\n\n\n5 (May 1-3)\nSQLite, SQL, and Bash\n\n\n6 (May 8-10)\nMetadata standards\n\n\n7 (May 15-17)\nProgramming with databases\n\n\n8 (May 22-24)\nSensitive data\n\n\n9 (May 31)\nAdvanced database topics\n\n\n10 (June 5-6)\nData licensing and publication\n\n\n\n*Schedule subject to change."
+    "section": "Schedule",
+    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 am (NCEAS)\nDiscussion - session 1: Thur 1-1:50PM, Bren Hall 1510\nDiscussion - session 2: Thur 2-2:50PM, Bren Hall 1510\nOffice hours: Monday 11-12 pm (NCEAS)"
+  },
+  {
+    "objectID": "syllabus.html#modules",
+    "href": "syllabus.html#modules",
+    "title": "Course syllabus",
+    "section": "Modules",
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntrodutcion to SQL & DuckDB\n\n\n4\nImporting data in the database\n\n\n5\nAnalyzing the bird database using SQL\n\n\n6\nUsing R & python to query databases\n\n\n7\nDocumenting your work: metdata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication\n\n\n\n*Schedule subject to change."
   },
   {
     "objectID": "syllabus.html#course-assessment",
