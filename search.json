@@ -121,30 +121,30 @@
   {
     "objectID": "installing-duckdb.html",
     "href": "installing-duckdb.html",
-    "title": "Installing SQLite",
+    "title": "Installing duckDB",
     "section": "",
-    "text": "SQLite (the sqlite3 command) comes already installed on Mac and Linux machines. However even with those machines some configuration of SQLite will be required for this course, see below."
+    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
   },
   {
-    "objectID": "installing-duckdb.html#windows-installation",
-    "href": "installing-duckdb.html#windows-installation",
-    "title": "Installing SQLite",
-    "section": "Windows installation",
-    "text": "Windows installation\nIf not already installed, install Git for Windows. Instructions and some good default settings can be found here. Note that it is not necessary to install Git or Bash in order to run SQLite on Windows; SQLite can be run from the desktop or from the DOS command prompt. But for this course we will be using Bash.\nNext, install SQLite from https://www.sqlite.org/download.html. Select, under “Precompiled Binaries for Windows,” the download that includes “A bundle of command-line tools for managing SQLite database files.” Extract the download into a directory C:\\sqlite. The SQLite command line tool will be located at a path resembling C:\\sqlite\\sqlite-tools-win32-x86-3410200\\sqlite3.exe. Instructions for further setting up to run SQLite under the DOS command prompt can be found here if you’re interested, but we won’t be needing that.\nTo be able to easily run SQLite from any directory, update your Bash path by editing ~/.bash_profile. If you’re not familiar with Unix text editors, trying using nano from the Bash prompt:\ncd ~\nnano .bash_profile\nIf your sqlite3.exe is located in C:\\sqlite\\sqlite-tools-win32-x86-3410200, the equivalent Unix pathname is /c/sqlite/sqlite-tools-win32-x86-3410200. You want to add this directory (or whatever yours is called) to your PATH environment variable. To do so, add the following line to your .bash_profile:\nexport PATH=$PATH:/c/sqlite/sqlite-tools-win32-x86-3410200\nAgain, your pathname may differ depending on where sqlite3.exe is located.\nWith that set up, after starting a new Bash session you will be able to run SQLite from any directory simply by typing:\nsqlite3"
+    "objectID": "installing-duckdb.html#installation",
+    "href": "installing-duckdb.html#installation",
+    "title": "Installing duckDB",
+    "section": "",
+    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
   },
   {
-    "objectID": "installing-duckdb.html#configuring-sqlite3",
-    "href": "installing-duckdb.html#configuring-sqlite3",
-    "title": "Installing SQLite",
-    "section": "Configuring sqlite3",
-    "text": "Configuring sqlite3\nFor this class it will be necessary to configure SQLite every time it runs. This is accomplished by created a file ~/.sqliterc. So, from Bash:\ncd ~\nnano .sqliterc\nIn this file put the following two lines:\n.mode box\nPRAGMA foreign_keys = ON;\nThe first line turns on some nice display formatting. The second line is necessary to enable certain SQL functionality this is disabled by default."
+    "objectID": "installing-duckdb.html#visual-code-integration-optional",
+    "href": "installing-duckdb.html#visual-code-integration-optional",
+    "title": "Installing duckDB",
+    "section": "Visual code integration (optional)",
+    "text": "Visual code integration (optional)\nYou can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:\nIn Visual Code:\n\nopen the palette Shift+Cmd+P and search for: Preferences: Open Keyboard Shortcuts (JSON) \nenter the following text & save\n\n// Place your key bindings in this file to override the defaults\n[\n    {\n        \"key\": \"shift+enter\",\n        \"command\": \"workbench.action.terminal.runSelectedText\"\n    }\n]\nNow you can hit Shift+Return at then end of a line in your SQL script and it should run the command directly in the terminal!"
   },
   {
-    "objectID": "installing-duckdb.html#confirming-that-sqlite-works",
-    "href": "installing-duckdb.html#confirming-that-sqlite-works",
-    "title": "Installing SQLite",
-    "section": "Confirming that SQLite works",
-    "text": "Confirming that SQLite works\nFrom any directory, you should be able to run sqlite3, issue a “PRAGMA foreign_keys” command that returns 1, and get output resembling below.\nbash% sqlite3\n-- Loading resources from C:\\Users\\user\\.sqliterc\nSQLite version 3.39.4 2022-09-29 15:55:41\nEnter \".help\" for usage hints.\nConnected to a transient in-memory database.\nUse \".open FILENAME\" to reopen on a persistent database.\nsqlite&gt; PRAGMA foreign_keys;\n┌──────────────┐\n│ foreign_keys │\n├──────────────┤\n│ 1            │\n└──────────────┘\nsqlite&gt; .exit\nbash%"
+    "objectID": "installing-duckdb.html#test",
+    "href": "installing-duckdb.html#test",
+    "title": "Installing duckDB",
+    "section": "Test",
+    "text": "Test\nLet’s test our new installation using visual code\n\nopen a terminal from the terminal menu -&gt; new terminal\nIn the terminal type duckdb, this should start duckdb\nOpen a New text file: file menu -&gt; new text file\nCopy paste the following code:\n\n-- Start the DB at the terminal: duckdb\n\nCREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;\n\nSHOW TABLES;\n\nFROM ducks SELECT *;\n\nUse Shift+Return to run the SQL code line by line\n\nYou should have something that looks like this:"
   },
   {
     "objectID": "resources.html",

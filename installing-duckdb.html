@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Installing SQLite</title>
+<title>eds213 - Installing duckDB</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -112,9 +146,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#windows-installation" id="toc-windows-installation" class="nav-link active" data-scroll-target="#windows-installation">Windows installation</a></li>
-  <li><a href="#configuring-sqlite3" id="toc-configuring-sqlite3" class="nav-link" data-scroll-target="#configuring-sqlite3">Configuring sqlite3</a></li>
-  <li><a href="#confirming-that-sqlite-works" id="toc-confirming-that-sqlite-works" class="nav-link" data-scroll-target="#confirming-that-sqlite-works">Confirming that SQLite works</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#visual-code-integration-optional" id="toc-visual-code-integration-optional" class="nav-link" data-scroll-target="#visual-code-integration-optional">Visual code integration (optional)</a></li>
+  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
   </ul>
 </nav>
     </div>
@@ -123,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installing SQLite</h1>
+<h1 class="title">Installing duckDB</h1>
 </div>
 
 
@@ -140,47 +174,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>SQLite (the sqlite3 command) comes already installed on Mac and Linux machines. However even with those machines some configuration of SQLite will be required for this course, see below.</p>
-<section id="windows-installation" class="level2">
-<h2 class="anchored" data-anchor-id="windows-installation">Windows installation</h2>
-<p>If not already installed, install Git for Windows. Instructions and some good default settings can be found <a href="https://ucsbcarpentry.github.io/2022-07-12-ucsb-bash/#shell">here</a>. Note that it is not necessary to install Git or Bash in order to run SQLite on Windows; SQLite can be run from the desktop or from the DOS command prompt. But for this course we will be using Bash.</p>
-<p>Next, install SQLite from <a href="https://www.sqlite.org/download.html" class="uri">https://www.sqlite.org/download.html</a>. Select, under “Precompiled Binaries for Windows,” the download that includes “A bundle of command-line tools for managing SQLite database files.” Extract the download into a directory C:\sqlite. The SQLite command line tool will be located at a path resembling C:\sqlite\sqlite-tools-win32-x86-3410200\sqlite3.exe. Instructions for further setting up to run SQLite under the DOS command prompt can be found <a href="https://www.kiltandcode.com/2021/01/21/how-to-install-and-use-sqlite-on-windows/">here</a> if you’re interested, but we won’t be needing that.</p>
-<p>To be able to easily run SQLite from any directory, update your Bash path by editing ~/.bash_profile. If you’re not familiar with Unix text editors, trying using nano from the Bash prompt:</p>
-<pre><code>cd ~
-nano .bash_profile</code></pre>
-<p>If your sqlite3.exe is located in C:\sqlite\sqlite-tools-win32-x86-3410200, the equivalent Unix pathname is /c/sqlite/sqlite-tools-win32-x86-3410200. You want to add this directory (or whatever yours is called) to your PATH environment variable. To do so, add the following line to your .bash_profile:</p>
-<pre><code>export PATH=$PATH:/c/sqlite/sqlite-tools-win32-x86-3410200</code></pre>
-<p>Again, your pathname may differ depending on where sqlite3.exe is located.</p>
-<p>With that set up, after starting a new Bash session you will be able to run SQLite from any directory simply by typing:</p>
-<pre><code>sqlite3</code></pre>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/</p>
 </section>
-<section id="configuring-sqlite3" class="level2">
-<h2 class="anchored" data-anchor-id="configuring-sqlite3">Configuring sqlite3</h2>
-<p>For this class it will be necessary to configure SQLite every time it runs. This is accomplished by created a file ~/.sqliterc. So, from Bash:</p>
-<pre><code>cd ~
-nano .sqliterc</code></pre>
-<p>In this file put the following two lines:</p>
-<pre><code>.mode box
-PRAGMA foreign_keys = ON;</code></pre>
-<p>The first line turns on some nice display formatting. The second line is necessary to enable certain SQL functionality this is disabled by default.</p>
+<section id="visual-code-integration-optional" class="level2">
+<h2 class="anchored" data-anchor-id="visual-code-integration-optional">Visual code integration (optional)</h2>
+<p>You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:</p>
+<p>In Visual Code:</p>
+<ul>
+<li><p>open the palette <kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>P</kbd> and search for: <code>Preferences: Open Keyboard Shortcuts (JSON)</code> <img src="img/duckdb-vscode_setup.png" class="img-fluid"></p></li>
+<li><p>enter the following text &amp; save</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="er">//</span> <span class="er">Place</span> <span class="er">your</span> <span class="er">key</span> <span class="er">bindings</span> <span class="er">in</span> <span class="er">this</span> <span class="er">file</span> <span class="er">to</span> <span class="er">override</span> <span class="er">the</span> <span class="er">defaults</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"shift+enter"</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"workbench.action.terminal.runSelectedText"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Now you can hit <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!</em></p>
 </section>
-<section id="confirming-that-sqlite-works" class="level2">
-<h2 class="anchored" data-anchor-id="confirming-that-sqlite-works">Confirming that SQLite works</h2>
-<p>From any directory, you should be able to run sqlite3, issue a “PRAGMA foreign_keys” command that returns 1, and get output resembling below.</p>
-<pre><code>bash% sqlite3
--- Loading resources from C:\Users\user\.sqliterc
-SQLite version 3.39.4 2022-09-29 15:55:41
-Enter ".help" for usage hints.
-Connected to a transient in-memory database.
-Use ".open FILENAME" to reopen on a persistent database.
-sqlite&gt; PRAGMA foreign_keys;
-┌──────────────┐
-│ foreign_keys │
-├──────────────┤
-│ 1            │
-└──────────────┘
-sqlite&gt; .exit
-bash%</code></pre>
+<section id="test" class="level2">
+<h2 class="anchored" data-anchor-id="test">Test</h2>
+<p>Let’s test our new installation using visual code</p>
+<ol type="1">
+<li><p>open a terminal from the terminal menu -&gt; new terminal</p></li>
+<li><p>In the terminal type <code>duckdb</code>, this should start duckdb</p></li>
+<li><p>Open a New text file: file menu -&gt; new text file</p></li>
+<li><p>Copy paste the following code:</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start the DB at the terminal: duckdb</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> ducks <span class="kw">AS</span> <span class="kw">SELECT</span> <span class="dv">3</span> <span class="kw">As</span> age, <span class="st">'mandarin'</span> <span class="kw">AS</span> breed;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TABLES</span>;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ducks <span class="kw">SELECT</span> <span class="op">*</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Use <kbd>Shift</kbd>+<kbd>Return</kbd> to run the SQL code line by line</li>
+</ol>
+<p>You should have something that looks like this:</p>
+<p><img src="img/duckdb-vscode_test.png" class="img-fluid"></p>
 
 
 </section>
