@@ -10,7 +10,7 @@ This course will teach students the fundamentals of relational databases and dat
 
 -   Understand the fundamental principles of relational databases and relational data modeling, including table structures, primary and foreign keys, relationships between tables, and data normalization.
 
--   Understand how to use the Unix command line and how manage SQLite databases from the command line.
+-   Understand how to use the Unix command line and how manage DuckDB databases from the command line.
 
 -   Use SQL to retrieve, manipulate, and manage data stored in a relational database.
 
@@ -28,20 +28,28 @@ This course will teach students the fundamentals of relational databases and dat
 
 -   Evaluate ethical and responsible data management practices, including bias, data privacy, sharing, ownership, and licensing issues.
 
-## Schedule\*
+## Schedule
 
-| Week              | Topic/Content                                                          |
-|----------------------|-------------------------------------------------|
-| 1 *(April 3-5)*   | [Relational databases and data modeling](modules/week01/index-01.qmd)  |
-| 2 *(April 10-12)* | [Ethical and responsible data management](modules/week02/index-02.qmd) |
-| 3 *(April 17-19)* | [SQLite and SQL](modules/week03/index-03.qmd)                          |
-| 4 *(April 24-26)* | [Reproducible and FAIR data](modules/week04/index-04.qmd)              |
-| 5 *(May 1-3)*     | [SQLite, SQL, and Bash](modules/week05/index-05.qmd)                   |
-| 6 *(May 8-10)*    | [Metadata standards](modules/week06/index-06.qmd)                      |
-| 7 *(May 15-17)*   | [Programming with databases](modules/week07/index-07.qmd)              |
-| 8 *(May 22-24)*   | [Sensitive data](modules/week08/index-08.qmd)                          |
-| 9 *(May 31)*      | [Advanced database topics](modules/week09/index-09.qmd)                |
-| 10 *(June 5-6)*   | [Data licensing and publication](modules/week10/index-10.qmd)          |
+- Class: Monday & Wednesday 9:30-10:45 am (NCEAS)
+- Discussion - session 1: Thur 1-1:50PM, Bren Hall 1510
+- Discussion - session 2: Thur 2-2:50PM, Bren Hall 1510
+- Office hours: Monday 11-12 pm (NCEAS)
+
+
+## Modules
+
+| Week | Topic/Content                                                          |
+|------|------------------------------------------------------------------------|
+| 1    | [Relational databases and data modeling](modules/week01/index-01.qmd)  |
+| 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) |
+| 3    | [Introdutcion to SQL & DuckDB](modules/week03/index-03.qmd)            |
+| 4    | [Importing data in the database](modules/week04/index-04.qmd)          |
+| 5    | [Analyzing the bird database using SQL](modules/week05/index-05.qmd)   |
+| 6    | [Using R & python to query databases](modules/week06/index-06.qmd)     |
+| 7    | [Documenting your work: metdata & computing environment](modules/week07/index-07.qmd)|
+| 8    | [Sensitive data](modules/week08/index-08.qmd)                          |
+| 9    | [Ethical & responsible data mgnt](modules/week09/index-09.qmd)         |
+| 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |
 
 \*Schedule subject to change.
 
@@ -53,7 +61,7 @@ Your performance in this course will depend 90% on weekly homework assignments a
 
 Attendance is required. Material will be given in class that is not covered by slides or background readings.
 
-Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. Homework turned in late will be docked 25% per day.
+Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. ***Homework turned in late will be docked 25% per day.***
 
 ## Code of conduct
 

@@ -14,7 +14,6 @@ For the database portion of the course the [Arctic Shorebird Demographics Networ
 
 A class data GitHub repository, linked below, was used as the mechanism for distributing files to students. Each week a new directory of files was added to the repository and the students were asked to pull the repository to their local environment. The repository linked here includes the files for all weeks.
 
-
 ## Instructors
 
 - Julien Brun (jb160\@ucsb.edu)
@@ -24,7 +23,14 @@ A class data GitHub repository, linked below, was used as the mechanism for dist
 
 ## Teaching assistant
 
-- Jamie Miller (jkmiller\@ucsb.edu )
+- Jamie Miller (jkmiller\@ucsb.edu)
+
+## Schedule
+
+- Class: Monday & Wednesday 9:30-10:45 am (NCEAS)
+- Discussion - session 1: Thur 1-1:50PM, Bren Hall 1510
+- Discussion - session 2: Thur 2-2:50PM, Bren Hall 1510
+- Office hours: Monday 11-12 pm (NCEAS)
 
 
 ## Course content
