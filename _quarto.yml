@@ -11,9 +11,11 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: 
+      - spacelab
+      - rdsstyles.scss
     css: styles.css
     toc: true
-
+    include-after-body: footer.html
 
 

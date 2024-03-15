@@ -3,5 +3,9 @@
 .RData
 .Ruserdata
 
+# quarto 
 /.quarto/
 /_site/
+
+# mac
+.DS_Store
