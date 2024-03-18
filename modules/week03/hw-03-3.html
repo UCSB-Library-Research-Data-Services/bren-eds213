@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Course syllabus</title>
+<title>eds213 - Week 3 - SQL problem 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">eds213</span>
     </a>
   </div>
@@ -89,11 +118,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -108,28 +137,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules">Modules</a></li>
-  <li><a href="#course-assessment" id="toc-course-assessment" class="nav-link" data-scroll-target="#course-assessment">Course assessment</a></li>
-  <li><a href="#attendance-and-homework-policy" id="toc-attendance-and-homework-policy" class="nav-link" data-scroll-target="#attendance-and-homework-policy">Attendance and homework policy</a></li>
-  <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link" data-scroll-target="#code-of-conduct">Code of conduct</a></li>
-  <li><a href="#student-support" id="toc-student-support" class="nav-link" data-scroll-target="#student-support">Student support</a></li>
-  <li><a href="#disabled-students-program" id="toc-disabled-students-program" class="nav-link" data-scroll-target="#disabled-students-program">Disabled students program</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Course syllabus</h1>
+<h1 class="title">Week 3 - SQL problem 3</h1>
 </div>
 
 
@@ -146,111 +161,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This course will teach students the fundamentals of relational databases and data management. Students will learn the principles of database modeling and design and gain practical experience applying SQL (Structured Query Language) to manage and manipulate relational databases. The course also introduces the role and application of data documentation and metadata standards for interoperability and effective data management. By the end of the course, students will be equipped to make informed decisions about managing databases and data ethically and responsibly, focusing on issues such as bias, data privacy, sharing, ownership, and licensing.</p>
-</section>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
-<ul>
-<li><p>Understand the fundamental principles of relational databases and relational data modeling, including table structures, primary and foreign keys, relationships between tables, and data normalization.</p></li>
-<li><p>Understand how to use the Unix command line and how manage DuckDB databases from the command line.</p></li>
-<li><p>Use SQL to retrieve, manipulate, and manage data stored in a relational database.</p></li>
-<li><p>Demonstrate proficiency in querying, filtering, sorting, and programmatically accessing and interacting with relational databases from R and Python.</p></li>
-<li><p>Become familiar with advanced database topics such as concurrency, transactions, indexing, backups, and publication.</p></li>
-<li><p>Understand the role of good data documentation and metadata standards for interoperability, effective data management, and reproducibility.</p></li>
-<li><p>Operationalize the FAIR principles into data management practices.</p></li>
-<li><p>Produce a metadata record in EML (Ecological Metadata Language) and apply metadata crosswalks to programmatically convert metadata schemas.</p></li>
-<li><p>Understand the ethics of sensitive data and how to de-identify sensitive data.</p></li>
-<li><p>Evaluate ethical and responsible data management practices, including bias, data privacy, sharing, ownership, and licensing issues.</p></li>
-</ul>
-</section>
-<section id="schedule" class="level2">
-<h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
-<ul>
-<li>Class: Monday &amp; Wednesday 9:30-10:45 am (NCEAS)</li>
-<li>Discussion - session 1: Thur 1-1:50PM, Bren Hall 1510</li>
-<li>Discussion - session 2: Thur 2-2:50PM, Bren Hall 1510</li>
-<li>Office hours: Monday 11-12 pm (NCEAS)</li>
-</ul>
-</section>
-<section id="modules" class="level2">
-<h2 class="anchored" data-anchor-id="modules">Modules</h2>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Week</th>
-<th>Topic/Content</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td><a href="./modules/week01/index-01.html">Relational databases and data modeling</a></td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td><a href="modules/week02/index-02.qmd">Analyzing &amp; cleaning the bird dataset (from csv)</a></td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td><a href="./modules/week03/index-03.html">Introdutcion to SQL &amp; DuckDB</a></td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td><a href="modules/week04/index-04.qmd">Importing data in the database</a></td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td><a href="modules/week05/index-05.qmd">Analyzing the bird database using SQL</a></td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td><a href="modules/week06/index-06.qmd">Using R &amp; python to query databases</a></td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td><a href="modules/week07/index-07.qmd">Documenting your work: metdata &amp; computing environment</a></td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td><a href="modules/week08/index-08.qmd">Sensitive data</a></td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td><a href="modules/week09/index-09.qmd">Ethical &amp; responsible data mgnt</a></td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td><a href="modules/week10/index-10.qmd">Data licensing and publication</a></td>
-</tr>
-</tbody>
-</table>
-<p>*Schedule subject to change.</p>
-</section>
-<section id="course-assessment" class="level2">
-<h2 class="anchored" data-anchor-id="course-assessment">Course assessment</h2>
-<p>Your performance in this course will depend 90% on weekly homework assignments and quizzes and 10% on participation. There will be no graded exercises or homework the last week.</p>
-</section>
-<section id="attendance-and-homework-policy" class="level2">
-<h2 class="anchored" data-anchor-id="attendance-and-homework-policy">Attendance and homework policy</h2>
-<p>Attendance is required. Material will be given in class that is not covered by slides or background readings.</p>
-<p>Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. <strong><em>Homework turned in late will be docked 25% per day.</em></strong></p>
-</section>
-<section id="code-of-conduct" class="level2">
-<h2 class="anchored" data-anchor-id="code-of-conduct">Code of conduct</h2>
-<p>All students are expected to read and comply with the <a href="http://www.sa.ucsb.edu/regulations/student-conduct-code/student-conduct-code">UCSB Student Conduct Code</a>. We expect cooperation from all members to help ensure a welcoming and inclusive environment for everybody. We are determined to make our courses welcoming, inclusive and harassment-free for everyone regardless of gender, gender identity and expression, race, age, sexual orientation, disability, physical appearance, or religion (or lack thereof). We do not tolerate harassment of class participants, teaching assistants, or instructors in any form. Derogatory, abusive, or demeaning language or imagery will not be tolerated.</p>
-</section>
-<section id="student-support" class="level2">
-<h2 class="anchored" data-anchor-id="student-support">Student support</h2>
-<p>We understand that ongoing crises impact students differently based on experiences, identities, living situations and resources, family responsibilities, and unforeseen challenges. We encourage you to prioritize your well-being. We are here to help you reach your learning and career goals. You are always welcome to reach out to our teaching team so that we can best support you. Please see the <a href="https://www.ucsb.edu/students">UCSB Campus Resource Guide</a> for campus student support and services.</p>
-</section>
-<section id="disabled-students-program" class="level2">
-<h2 class="anchored" data-anchor-id="disabled-students-program">Disabled students program</h2>
-<p>Students with disabilities and/or alternative learning needs are encouraged to work with the <a href="https://dsp.sa.ucsb.edu/">Disabled Students Program</a> at UCSB to ensure we can best support your learning and success.</p>
+<p>Your mission, should you choose to accept it, is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:</p>
+<pre><code>┌─────────────────────────┬──────────────────┐
+│     Scientific_name     │  Max_avg_volume  │
+├─────────────────────────┼──────────────────┤
+│ Pluvialis squatarola    │ 36541.8531755592 │
+│ Pluvialis dominica      │ 33847.8550096089 │
+│ Arenaria interpres      │ 23338.620942275  │
+│ Calidris fuscicollis    │ 13277.1428014342 │
+│ Calidris alpina         │ 12196.2368406617 │
+│ Charadrius semipalmatus │ 11266.9746753467 │
+│ Phalaropus fulicarius   │ 8906.7745740725  │
+└─────────────────────────┴──────────────────┘</code></pre>
+<p>(By the way, regarding the leader in egg size above, <a href="https://birdsoftheworld.org/">Birds of the World</a> says that Pluvialis squatarola’s eggs are “Exceptionally large for size of female (ca. 16% weight of female)”.)</p>
+<p>To calculate the volume of an egg, use the simplified formula</p>
+<p><span class="math display">\[{\pi \over 6} W^2 L\]</span></p>
+<p>where <span class="math inline">\(W\)</span> is the egg width and <span class="math inline">\(L\)</span> is the egg length. You can use 3.14 for <span class="math inline">\(\pi\)</span>. (The real formula takes into account the ovoid shape of eggs, but only width and length are available to us here.)</p>
+<p>A good place to start is just to group bird eggs by nest (i.e., Nest_ID) and compute average volumes:</p>
+<pre><code>CREATE TEMP TABLE Averages AS
+    SELECT Nest_ID, AVG(...) AS Avg_volume
+        FROM ...
+        GROUP BY ...;</code></pre>
+<p>You can now join that table with Bird_nests, so that you can group by species, and also join with the Species table to pick up scientific names. To do just the first of those joins, you could say something like</p>
+<pre><code>SELECT Species, MAX(...)
+    FROM Bird_nests, Averages USING (Nest_ID)
+    GROUP BY ...;</code></pre>
+<p>That’s not the whole story, we want scientific names not species codes. Another join is needed. A couple strategies here. One, you can modify the above query to also join with the Species table (you’ll need to replace USING with ON …). Two, you can save the above as another temp table and join it to Species separately.</p>
+<p>Don’t forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.</p>
+<p>Please submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <div>

@@ -154,6 +154,20 @@
     "text": "Homework\nData modeling exercise"
   },
   {
+    "objectID": "modules/week03/hw-03-1.html",
+    "href": "modules/week03/hw-03-1.html",
+    "title": "Week 3 - SQL problem 1",
+    "section": "",
+    "text": "It’s a useful skill in life (I’m not being rhetorical, I really mean that, it’s a useful skill) to be able to construct an experiment to answer a hypothesis. Suppose you’re not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn’t have access to any documentation, or didn’t trust it. What experiment could you run to find out what happens?\nThere are two parts to this problem.\n\nPart 1\nConstruct an SQL experiment to determine the answer to the question above. Does SQL abort with some kind of error? Does it ignore NULL values? Do the NULL values somehow factor into the calculation, and if so, how?\nI would suggest you start by creating a table (in the bird database, in a new database, in a transient in-memory database, doesn’t matter) with a single column that has data type REAL (for part 2 below, it must be REAL). You can make your table a temp table or not, your choice.\nCREATE TEMP TABLE mytable... ;\nNow insert some real numbers and at least one NULL into your table.\nINSERT INTO mytable... ;\n(Hmm, can you insert multiple rows at once, or do you have to do a separate INSERT for each row?)\nOnce you have your little table constructed, try doing an AVG on the column and see what is returned. What would the average be if the function ignored NULLs? What would the average be if it somehow factored them in? What is actually returned?\nPlease submit both your SQL and your answer to the question about how AVG operates in the presence of NULL values.\n\n\nPart 2\nIf SQL didn’t have an AVG function, you could compute the average value of a column by doing something like this on your table:\nSELECT SUM(mycolumn)/COUNT(*) FROM mytable;\nSELECT SUM(mycolumn)/COUNT(mycolumn) FROM mytable;\nWhich query above is correct? Please explain why.\nNow that you’re done with your table, you can delete it if desired:\nDROP TABLE mytable;"
+  },
+  {
+    "objectID": "modules/week03/hw-03-2.html",
+    "href": "modules/week03/hw-03-2.html",
+    "title": "Week 3 - SQL problem 2",
+    "section": "",
+    "text": "If you want to know which site has the largest area, it’s tempting to say\nSELECT Site_name, MAX(Area) FROM Site;\nbut as explained in class, databases will correctly compute the maximum but will select an arbitrary row to fill in the Site_name column. No good! This misleading behavior is more apparent if we do an average instead of a maximum:\nSELECT Site_name, AVG(Area) FROM Site;\n\n┌───────────┬───────────┐\n│ Site_name │ AVG(Area) │\n├───────────┼───────────┤\n│ Barrow    │ 440.6125  │\n└───────────┴───────────┘\nfor there is no site whose area exactly equals the average, and so there is nothing you could reasonably put in Site_name, and it certainly wouldn’t be Barrow. (SQLite is special in that if you do a MIN or MAX, it will return the row (or one of the rows, if there are multiple rows) that matches the minimum or maximum. But other databases do not do that.) So, we need a plan B.\n\nPart 1\nFind the site name and area of the site having the largest area. Do so by ordering the rows in a particularly convenient order, and using LIMIT to select just the first row. Your result should look like:\n┌──────────────┬────────┐\n│  Site_name   │  Area  │\n├──────────────┼────────┤\n│ Coats Island │ 1239.1 │\n└──────────────┴────────┘\nPlease submit your SQL.\n\n\nPart 2\nDo the same, but use a nested query. First, create a query that finds the maximum area. Then, create a query that selects the site name and area of the site whose area equals the maximum. Your overall query will look something like:\nSELECT Site_name, Area FROM Site WHERE Area = (SELECT ...);"
+  },
+  {
     "objectID": "installing-duckdb.html",
     "href": "installing-duckdb.html",
     "title": "Installing duckDB",
@@ -194,6 +208,48 @@
     "title": "Resources",
     "section": "",
     "text": "Burnette. (2022). Managing environmental data: principles, techniques, and best practices. CRC Press. https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma9917095897506531\nChapman, AD, & Grafton, O. (2008). Guide to Best Practices for Generalising Sensitive Species-Occurrence Data (v1.0). https://doi.org/10.15468/doc-b02j-gt10\nCrystal-Ornelas, R., Varadharajan, C., O’Ryan, D., Ramírez-Muñoz, J., Jones, M. B., Lehnert, K. A., … & Servilla, M. (2022). Enabling FAIR data in Earth and environmental science with community-centric (meta)data reporting formats. Scientific Data, 9(1), 700. https://doi.org/10.1038/s41597-022-01606-w\nJones, M. B., O’Brien, M., Mecum, B., Boettiger, C., Schildhauer, M., Maier, M., Whiteaker, T., Earl, S., & Chong, S. (2019). Ecological Metadata Language version 2.2.0. KNB Data Repository. https://doi.org/10.5063/F11834T2\nLabastida, I., & Margoni, T. (2020). Licensing FAIR Data for Reuse. Data Intelligence, 2(1-2), 199-207. https://doi.org/10.1162/dint_a_00042\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\nRecknagel, F., & Michener, W. K. (Eds.). (2018). Ecological informatics: Data management and knowledge discovery (3rd ed.). Springer."
+  },
+  {
+    "objectID": "modules/week03/index-03.html",
+    "href": "modules/week03/index-03.html",
+    "title": "Week 3 - SQLite and SQL",
+    "section": "",
+    "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+  },
+  {
+    "objectID": "modules/week03/index-03.html#learning-objectives",
+    "href": "modules/week03/index-03.html#learning-objectives",
+    "title": "Week 3 - SQLite and SQL",
+    "section": "",
+    "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+  },
+  {
+    "objectID": "modules/week03/index-03.html#slides-and-other-materials",
+    "href": "modules/week03/index-03.html#slides-and-other-materials",
+    "title": "Week 3 - SQLite and SQL",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
+  },
+  {
+    "objectID": "modules/week03/index-03.html#resources",
+    "href": "modules/week03/index-03.html#resources",
+    "title": "Week 3 - SQLite and SQL",
+    "section": "Resources",
+    "text": "Resources\n\nhttp://swcarpentry.github.io/sql-novice-survey/\n\nGood Carpentry lesson, our lesson is drawn from this.\n\nC.J. Date and Hugh Darwen (1993). A Guide to the SQL Standard. 3rd ed. Reading, MA: Addison-Wesley.\nAccess via Library Catalog\n\nThe ANSI standard.\n\nJoe Celko (1995). Joe Celko’s SQL For Smarties: Advanced SQL Programming. San Francisco, CA: Morgan Kaufmann.\nAccess via Library Catalog\n\nThis guy is an SQL guru. Newer versions of this book are available online, check the Library catalog (a bug is preventing me from linking directly).\n\nGrant Allen and Mike Owens (2010). The Definitive Guide to SQLite. 2nd ed. Berkeley, CA: Apress.\nAccess via Library Catalog\n\nGood reference. Can access online!\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+  },
+  {
+    "objectID": "modules/week03/index-03.html#homework",
+    "href": "modules/week03/index-03.html#homework",
+    "title": "Week 3 - SQLite and SQL",
+    "section": "Homework",
+    "text": "Homework\nSQL problem 1\nSQL problem 2\nSQL problem 3"
+  },
+  {
+    "objectID": "modules/week03/hw-03-3.html",
+    "href": "modules/week03/hw-03-3.html",
+    "title": "Week 3 - SQL problem 3",
+    "section": "",
+    "text": "Your mission, should you choose to accept it, is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:\n┌─────────────────────────┬──────────────────┐\n│     Scientific_name     │  Max_avg_volume  │\n├─────────────────────────┼──────────────────┤\n│ Pluvialis squatarola    │ 36541.8531755592 │\n│ Pluvialis dominica      │ 33847.8550096089 │\n│ Arenaria interpres      │ 23338.620942275  │\n│ Calidris fuscicollis    │ 13277.1428014342 │\n│ Calidris alpina         │ 12196.2368406617 │\n│ Charadrius semipalmatus │ 11266.9746753467 │\n│ Phalaropus fulicarius   │ 8906.7745740725  │\n└─────────────────────────┴──────────────────┘\n(By the way, regarding the leader in egg size above, Birds of the World says that Pluvialis squatarola’s eggs are “Exceptionally large for size of female (ca. 16% weight of female)”.)\nTo calculate the volume of an egg, use the simplified formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length. You can use 3.14 for \\(\\pi\\). (The real formula takes into account the ovoid shape of eggs, but only width and length are available to us here.)\nA good place to start is just to group bird eggs by nest (i.e., Nest_ID) and compute average volumes:\nCREATE TEMP TABLE Averages AS\n    SELECT Nest_ID, AVG(...) AS Avg_volume\n        FROM ...\n        GROUP BY ...;\nYou can now join that table with Bird_nests, so that you can group by species, and also join with the Species table to pick up scientific names. To do just the first of those joins, you could say something like\nSELECT Species, MAX(...)\n    FROM Bird_nests, Averages USING (Nest_ID)\n    GROUP BY ...;\nThat’s not the whole story, we want scientific names not species codes. Another join is needed. A couple strategies here. One, you can modify the above query to also join with the Species table (you’ll need to replace USING with ON …). Two, you can save the above as another temp table and join it to Species separately.\nDon’t forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.\nPlease submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement."
   },
   {
     "objectID": "modules/week01/hw-01.html",
