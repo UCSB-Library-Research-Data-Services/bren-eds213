@@ -37,7 +37,7 @@ A class data GitHub repository, linked below, was used as the mechanism for dist
 
 [Syllabus](syllabus.qmd)
 
-[Installing SQLite](installing-sqlite.qmd)
+[Installing DuckDB](installing-duckdb.qmd)
 
 [Resources](resources.qmd)
 
