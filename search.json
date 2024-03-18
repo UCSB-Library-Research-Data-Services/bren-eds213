@@ -119,6 +119,41 @@
     "text": "Disabled students program\nStudents with disabilities and/or alternative learning needs are encouraged to work with the Disabled Students Program at UCSB to ensure we can best support your learning and success."
   },
   {
+    "objectID": "modules/week01/index-01.html",
+    "href": "modules/week01/index-01.html",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "",
+    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#learning-objectives",
+    "href": "modules/week01/index-01.html#learning-objectives",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "",
+    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#slides",
+    "href": "modules/week01/index-01.html#slides",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "Slides",
+    "text": "Slides\nslides-01.pptx"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#resources",
+    "href": "modules/week01/index-01.html#resources",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "Resources",
+    "text": "Resources\n\nhttps://learning.nceas.ucsb.edu/2022-04-arctic/data-modeling-essentials.html\n\nVery brief introduction to data modeling, ties into “tidy data.”\n\nChristoph Wohner, Johannes Peterseil, and Hermann Klug (2022). Designing and implementing a data model for describing environmental monitoring and research sites. Ecological Informatics 70, 101708.\nhttps://doi.org/10.1016/j.ecoinf.2022.101708\n\nGood case study.\n\nGerald A. Burnette (2022). Managing environmental data: principles, techniques, and best practices. CRC Press.\nAccess via Library Catalog\n\nComprehensive text, specific to environmental sciences.\n\nGraeme C. Simsion and Graham C. Witt (2005). Data Modeling Essentials. 3rd ed. Amsterdam: Morgan Kaufmann.\nAccess via Library Catalog\nGoogle Books\n\nComprehensive text, not specific to the environmental sciences.\n\nHartmut Hebbel (1994). Environmental data modeling. Annals of Operations Research 54, 263-278.\nhttps://doi.org/10.1007/BF02031737\n\nA broader view of data organization.\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+  },
+  {
+    "objectID": "modules/week01/index-01.html#homework",
+    "href": "modules/week01/index-01.html#homework",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "Homework",
+    "text": "Homework\nData modeling exercise"
+  },
+  {
     "objectID": "installing-duckdb.html",
     "href": "installing-duckdb.html",
     "title": "Installing duckDB",
@@ -159,6 +194,20 @@
     "title": "Resources",
     "section": "",
     "text": "Burnette. (2022). Managing environmental data: principles, techniques, and best practices. CRC Press. https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma9917095897506531\nChapman, AD, & Grafton, O. (2008). Guide to Best Practices for Generalising Sensitive Species-Occurrence Data (v1.0). https://doi.org/10.15468/doc-b02j-gt10\nCrystal-Ornelas, R., Varadharajan, C., O’Ryan, D., Ramírez-Muñoz, J., Jones, M. B., Lehnert, K. A., … & Servilla, M. (2022). Enabling FAIR data in Earth and environmental science with community-centric (meta)data reporting formats. Scientific Data, 9(1), 700. https://doi.org/10.1038/s41597-022-01606-w\nJones, M. B., O’Brien, M., Mecum, B., Boettiger, C., Schildhauer, M., Maier, M., Whiteaker, T., Earl, S., & Chong, S. (2019). Ecological Metadata Language version 2.2.0. KNB Data Repository. https://doi.org/10.5063/F11834T2\nLabastida, I., & Margoni, T. (2020). Licensing FAIR Data for Reuse. Data Intelligence, 2(1-2), 199-207. https://doi.org/10.1162/dint_a_00042\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\nRecknagel, F., & Michener, W. K. (Eds.). (2018). Ecological informatics: Data management and knowledge discovery (3rd ed.). Springer."
+  },
+  {
+    "objectID": "modules/week01/hw-01.html",
+    "href": "modules/week01/hw-01.html",
+    "title": "Week 1 - Data modeling exercise",
+    "section": "",
+    "text": "Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL’s data definition language as is possible.\nIn the class data GitHub repository, week 1 directory you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.\nPlease consider:\nYou may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.\nPlease express your table definition in SQL, but don’t worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the SQLite CREATE TABLE documentation.\nFinally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don’t write an essay! Bullet points are sufficient."
+  },
+  {
+    "objectID": "modules/week01/hw-01.html#appendix",
+    "href": "modules/week01/hw-01.html#appendix",
+    "title": "Week 1 - Data modeling exercise",
+    "section": "Appendix",
+    "text": "Appendix\nCREATE TABLE Species (\n    Code TEXT PRIMARY KEY,\n    Common_name TEXT UNIQUE NOT NULL,\n    Scientific_name TEXT,\n    Relevance TEXT\n);\n\nCREATE TABLE Site (\n    Code TEXT PRIMARY KEY,\n    Site_name TEXT UNIQUE NOT NULL,\n    Location TEXT NOT NULL,\n    Latitude REAL NOT NULL CHECK (Latitude BETWEEN -90 AND 90),\n    Longitude REAL NOT NULL CHECK (Longitude BETWEEN -180 AND 180),\n    \"Total_Study_Plot_Area_(ha)\" REAL NOT NULL\n        CHECK (\"Total_Study_Plot_Area_(ha)\" &gt; 0),\n    UNIQUE (Latitude, Longitude)\n);\n\nCREATE TABLE Color_band_code (\n    Code TEXT PRIMARY KEY,\n    Color TEXT NOT NULL UNIQUE\n);\n\nCREATE TABLE Personnel (\n    Abbreviation TEXT PRIMARY KEY,\n    Name TEXT NOT NULL UNIQUE\n);"
   },
   {
     "objectID": "about.html",
