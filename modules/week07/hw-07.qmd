@@ -1,5 +1,5 @@
 ---
-title: "Week 6 - EML record"
+title: "Week 7 - EML record"
 ---
 
 Each Capstone group should create an EML metadata record using the EML R Package for one of the analysis-ready datasets the project has generated or reused (consider a tabular dataset with 5-8 columns).
