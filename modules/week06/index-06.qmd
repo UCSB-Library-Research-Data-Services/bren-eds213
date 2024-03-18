@@ -15,9 +15,9 @@ title: "Week 6 - Programming with databases"
 
 Coding transcripts:
 
--   [transcript-06-mon.ipynb](transcript-06-mon.ipynb)
--   [transcript-06-wed-python.ipynb](transcript-06-wed-python.ipynb)
--   [transcript-06-wed-r.R](transcript-06-wed-r.R)
+-   [transcript-06-mon.ipynb](_code/transcript-06-mon.ipynb)
+-   [transcript-06-wed-python.ipynb](_code/transcript-06-wed-python.ipynb)
+-   [transcript-06-wed-r.R](_code/transcript-06-wed-r.R)
 
 ## Resources
 
