@@ -34,13 +34,13 @@ In Visual Code:
 
 Let's test our new installation using visual code
 
-1. open a terminal from the terminal menu -> new terminal
+1. open a terminal from the _terminal menu -> new terminal_
 
 2. In the terminal type `duckdb`, this should start duckdb
 
-2. Open a New text file: file menu -> new text file
+3. Open a New text file: _file menu -> new text file_
 
-3. Copy paste the following code: 
+4. Copy paste the following code: 
 
 ```sql
 -- Start the DB at the terminal: duckdb
@@ -51,7 +51,8 @@ SHOW TABLES;
 
 FROM ducks SELECT *;
 ```
-4. Use <kbd>Shift</kbd>+<kbd>Return</kbd> to run the SQL code line by line
+
+5. Use <kbd>Shift</kbd>+<kbd>Return</kbd> to run the SQL code line by line
 
 You should have something that looks like this:
 
