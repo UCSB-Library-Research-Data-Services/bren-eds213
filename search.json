@@ -205,35 +205,35 @@
   {
     "objectID": "modules/week03/index-03.html",
     "href": "modules/week03/index-03.html",
-    "title": "Week 3 - SQLite and SQL",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "",
     "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
   },
   {
     "objectID": "modules/week03/index-03.html#learning-objectives",
     "href": "modules/week03/index-03.html#learning-objectives",
-    "title": "Week 3 - SQLite and SQL",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "",
     "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
   },
   {
     "objectID": "modules/week03/index-03.html#slides-and-other-materials",
     "href": "modules/week03/index-03.html#slides-and-other-materials",
-    "title": "Week 3 - SQLite and SQL",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "Slides and other materials",
     "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
   },
   {
     "objectID": "modules/week03/index-03.html#resources",
     "href": "modules/week03/index-03.html#resources",
-    "title": "Week 3 - SQLite and SQL",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "Resources",
     "text": "Resources\n\nhttp://swcarpentry.github.io/sql-novice-survey/\n\nGood Carpentry lesson, our lesson is drawn from this.\n\nC.J. Date and Hugh Darwen (1993). A Guide to the SQL Standard. 3rd ed. Reading, MA: Addison-Wesley.\nAccess via Library Catalog\n\nThe ANSI standard.\n\nJoe Celko (1995). Joe Celko’s SQL For Smarties: Advanced SQL Programming. San Francisco, CA: Morgan Kaufmann.\nAccess via Library Catalog\n\nThis guy is an SQL guru. Newer versions of this book are available online, check the Library catalog (a bug is preventing me from linking directly).\n\nGrant Allen and Mike Owens (2010). The Definitive Guide to SQLite. 2nd ed. Berkeley, CA: Apress.\nAccess via Library Catalog\n\nGood reference. Can access online!\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
   },
   {
     "objectID": "modules/week03/index-03.html#homework",
     "href": "modules/week03/index-03.html#homework",
-    "title": "Week 3 - SQLite and SQL",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "Homework",
     "text": "Homework\nSQL problem 1\nSQL problem 2\nSQL problem 3"
   },
