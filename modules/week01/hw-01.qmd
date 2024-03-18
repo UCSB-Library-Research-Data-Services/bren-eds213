@@ -17,7 +17,7 @@ Please consider:
 
 You may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.
 
-Please express your table definition in SQL, but don't worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the [SQLite CREATE TABLE documentation](https://www.sqlite.org/lang_createtable.html).
+Please express your table definition in SQL, but don't worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the [DuckDB CREATE TABLE documentation](https://duckdb.org/docs/sql/statements/create_table).
 
 Finally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don't write an essay! Bullet points are sufficient.
 
