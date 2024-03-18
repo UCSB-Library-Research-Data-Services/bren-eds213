@@ -42,9 +42,9 @@ This course will teach students the fundamentals of relational databases and dat
 |------|------------------------------------------------------------------------|
 | 1    | [Relational databases and data modeling](modules/week01/index-01.qmd)  |
 | 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) |
-| 3    | [Introdutcion to SQL & DuckDB](modules/week03/index-03.qmd)            |
-| 4    | [Importing data in the database](modules/week04/index-04.qmd)          |
-| 5    | [Analyzing the bird database using SQL](modules/week05/index-05.qmd)   |
+| 3    | [Introdutcion to SQL & DuckDB + bash refresh](modules/week03/index-03.qmd)            |
+| 4    | [Importing data in the database + SQL part2](modules/week04/index-04.qmd)          |
+| 5    | [Analyzing the bird database using SQL + advanced topics (indexing, ...)](modules/week05/index-05.qmd)   |
 | 6    | [Using R & python to query databases](modules/week06/index-06.qmd)     |
 | 7    | [Documenting your work: metdata & computing environment](modules/week07/index-07.qmd)|
 | 8    | [Sensitive data](modules/week08/index-08.qmd)                          |
