@@ -1,5 +1,5 @@
 ---
-title: "Week 3 - SQLite and SQL"
+title: "Week 3 - Structured Query Language (SQL) & DuckDB"
 ---
 
 ## Learning objectives
