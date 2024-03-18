@@ -38,6 +38,13 @@ website:
           - modules/week08/hw-08.qmd
           - modules/week09/hw-09.qmd
       - about.qmd
+    tools:
+      - icon: github
+        menu:
+          - text: Website Code
+            url:  https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024
+          - text: Report an issue
+            url:  https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024/issues
 
 format:
   html:
