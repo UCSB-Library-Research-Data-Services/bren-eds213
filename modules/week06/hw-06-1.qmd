@@ -1,8 +1,10 @@
 ---
-title: "Week 7 - Little Bobby Tables"
+title: "Week 6 - Little Bobby Tables"
 ---
 
-View this classic XKCD cartoon: <https://xkcd.com/327/>
+View this classic XKCD cartoon: 
+
+![https://xkcd.com/327/](https://xkcd.com/327/)
 
 For the purposes of this problem you may assume that at some point the school's software performs the query
 

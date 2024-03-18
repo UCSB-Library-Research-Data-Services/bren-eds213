@@ -1,5 +1,5 @@
 ---
-title: "Week 7 - Characterizing egg variation"
+title: "Week 6 - Characterizing egg variation"
 ---
 
 You read [Egg Dimensions and Neonatal Mass of Shorebirds](https://www.jstor.org/stable/1367334) by Robert E. Ricklefs and want to see how the egg data we've been using in class compares to his results. Specifically, Ricklefs reported, "Coefficients of variation were 4 to 9% for egg volume" for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?

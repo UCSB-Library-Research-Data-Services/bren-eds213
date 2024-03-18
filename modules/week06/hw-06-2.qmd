@@ -1,5 +1,5 @@
 ---
-title: "Week 7 - Who's the culprit?"
+title: "Week 6 - Who's the culprit?"
 ---
 
 You're reading up on how eggs are aged by floating them in water [^1]:

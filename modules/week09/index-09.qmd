@@ -1,5 +1,5 @@
 ---
-title: "Week 2 - Ethical and responsible data management"
+title: "Week 9 - Ethical and responsible data management"
 ---
 
 ## Learning objectives

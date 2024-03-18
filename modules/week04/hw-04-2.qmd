@@ -1,5 +1,5 @@
 ---
-title: "Week 5 - Create a trigger"
+title: "Week 4 - Create a trigger"
 ---
 
 **For this assignment, you *must* use [week5/database.db](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2023-class-data/tree/main/week5) in the class data GitHub repository!**

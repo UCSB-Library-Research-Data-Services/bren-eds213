@@ -1,5 +1,5 @@
 ---
-title: "Week 7 - Programming with databases"
+title: "Week 6 - Programming with databases"
 ---
 
 ## Learning objectives

@@ -1,5 +1,5 @@
 ---
-title: "Week 7 - Who were the winners?"
+title: "Week 6 - Who were the winners?"
 ---
 
 At the conclusion of the ASDN project the PIs decided to hand out first, second, and third prizes to the observers who measured the most eggs. Who won? Please use R and dbplyr to answer this question, and please submit your R code. Your code should print out:

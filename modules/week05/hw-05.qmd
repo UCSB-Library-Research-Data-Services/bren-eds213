@@ -1,5 +1,5 @@
 ---
-title: Week 9 - What makes a good index?
+title: "Week 5 - What makes a good index?"
 ---
 
 Recall from class that an index I~C~ on a column C in a table T is in effect a mini-table, kept in sync with T, that contains all the values of column C in order. If there are a million rows in table T, there will be a million values in index I~C~. If the values of column C are unique, the index will hold a million unique values. If column C takes on only a few possible values, then index I~C~ will still have a million values, but many of those values will be repeated.
