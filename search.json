@@ -60,7 +60,7 @@
     "href": "index.html#modules",
     "title": "EDS 213: Databases and Data Management",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL & DuckDB\n\n\n4\nImporting data in the database\n\n\n5\nAnalyzing the bird database using SQL\n\n\n6\nUsing R & python to query databases\n\n\n7\nDocumenting your work: metdata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication"
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL part 1 & DuckDB\n\n\n4\nImporting data in the database + SQL part 2\n\n\n5\nAnalyzing the bird database using SQL + bash programming\n\n\n6\nUsing R & python to query databases\n\n\n7\nDocumenting your work: metdata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication"
   },
   {
     "objectID": "syllabus.html",
@@ -95,7 +95,7 @@
     "href": "syllabus.html#modules",
     "title": "Course syllabus",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL & DuckDB + bash refresh\n\n\n4\nImporting data in the database + SQL part2\n\n\n5\nAnalyzing the bird database using SQL + advanced topics (indexing, …)\n\n\n6\nUsing R & python to query databases\n\n\n7\nDocumenting your work: metdata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication\n\n\n\n*Schedule subject to change."
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL part 1 & DuckDB\n\n\n4\nImporting data in the database + SQL part 2\n\n\n5\nAnalyzing the bird database using SQL + bash programming\n\n\n6\nUsing R & python to query databases\n\n\n7\nDocumenting your work: metdata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication\n\n\n\n*Schedule subject to change."
   },
   {
     "objectID": "syllabus.html#course-assessment",
@@ -142,184 +142,156 @@
   {
     "objectID": "modules/week04/index-04.html",
     "href": "modules/week04/index-04.html",
-    "title": "Week 4 - SQLite, SQL, and Bash",
+    "title": "Week 4 - SQL and DuckDB",
     "section": "",
     "text": "Continued exploration of SQL concepts including joins, views, set operations, and triggers\nRead and write data from SQLite\nWrite a basic Bash script"
   },
   {
     "objectID": "modules/week04/index-04.html#learning-objectives",
     "href": "modules/week04/index-04.html#learning-objectives",
-    "title": "Week 4 - SQLite, SQL, and Bash",
+    "title": "Week 4 - SQL and DuckDB",
     "section": "",
     "text": "Continued exploration of SQL concepts including joins, views, set operations, and triggers\nRead and write data from SQLite\nWrite a basic Bash script"
   },
   {
     "objectID": "modules/week04/index-04.html#slides-and-other-materials",
     "href": "modules/week04/index-04.html#slides-and-other-materials",
-    "title": "Week 4 - SQLite, SQL, and Bash",
+    "title": "Week 4 - SQL and DuckDB",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-04-intro.pptx\nslides-04-triggers.pptx\nLecture notes:\n\nlecture-notes-04-mon.txt\nlecture-notes-04-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 5\nTen Bash Essentials"
-  },
-  {
-    "objectID": "modules/week04/index-04.html#bash-resources",
-    "href": "modules/week04/index-04.html#bash-resources",
-    "title": "Week 4 - SQLite, SQL, and Bash",
-    "section": "Bash resources",
-    "text": "Bash resources\n\nhttps://swcarpentry.github.io/shell-novice/\n\nGood Carpentry lesson, our lesson on Bash is drawn from this.\n\nhttps://www.gnu.org/software/bash/manual/\n\nThe official user manual.\n\nhttps://www.pcwdld.com/bash-cheat-sheet\n\nA cheat sheet that is better than most.\n\nhttps://www.shellcheck.net/\n\nIndispensable tool for writing scripts.\n\nhttp://mywiki.wooledge.org/BashPitfalls\n\nHow to do things the right way in Bash."
+    "text": "Slides and other materials\nslides-04-intro.pptx\nslides-04-triggers.pptx\nLecture notes:\n\nlecture-notes-04-mon.txt\nlecture-notes-04-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 4"
   },
   {
     "objectID": "modules/week04/index-04.html#homework",
     "href": "modules/week04/index-04.html#homework",
-    "title": "Week 4 - SQLite, SQL, and Bash",
+    "title": "Week 4 - SQL and DuckDB",
     "section": "Homework",
-    "text": "Homework\nProtect yourself\nCreate a trigger\nCreate a test harness\nBash scripting"
+    "text": "Homework\nProtect yourself\nCreate a test harness"
   },
   {
-    "objectID": "modules/week01/index-01.html",
-    "href": "modules/week01/index-01.html",
-    "title": "Week 1 - Relational databases and data modeling",
+    "objectID": "modules/week01/hw-01.html",
+    "href": "modules/week01/hw-01.html",
+    "title": "Week 1 - Data modeling exercise",
     "section": "",
-    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+    "text": "Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL’s data definition language as is possible.\nIn the class data GitHub repository, week 1 directory you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.\nPlease consider:\nYou may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.\nPlease express your table definition in SQL, but don’t worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the DuckDB CREATE TABLE documentation.\nFinally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don’t write an essay! Bullet points are sufficient."
   },
   {
-    "objectID": "modules/week01/index-01.html#learning-objectives",
-    "href": "modules/week01/index-01.html#learning-objectives",
-    "title": "Week 1 - Relational databases and data modeling",
+    "objectID": "modules/week01/hw-01.html#appendix",
+    "href": "modules/week01/hw-01.html#appendix",
+    "title": "Week 1 - Data modeling exercise",
+    "section": "Appendix",
+    "text": "Appendix\nCREATE TABLE Species (\n    Code TEXT PRIMARY KEY,\n    Common_name TEXT UNIQUE NOT NULL,\n    Scientific_name TEXT,\n    Relevance TEXT\n);\n\nCREATE TABLE Site (\n    Code TEXT PRIMARY KEY,\n    Site_name TEXT UNIQUE NOT NULL,\n    Location TEXT NOT NULL,\n    Latitude REAL NOT NULL CHECK (Latitude BETWEEN -90 AND 90),\n    Longitude REAL NOT NULL CHECK (Longitude BETWEEN -180 AND 180),\n    \"Total_Study_Plot_Area_(ha)\" REAL NOT NULL\n        CHECK (\"Total_Study_Plot_Area_(ha)\" &gt; 0),\n    UNIQUE (Latitude, Longitude)\n);\n\nCREATE TABLE Color_band_code (\n    Code TEXT PRIMARY KEY,\n    Color TEXT NOT NULL UNIQUE\n);\n\nCREATE TABLE Personnel (\n    Abbreviation TEXT PRIMARY KEY,\n    Name TEXT NOT NULL UNIQUE\n);"
+  },
+  {
+    "objectID": "modules/week03/bash-essentials.html",
+    "href": "modules/week03/bash-essentials.html",
+    "title": "Ten Bash Essentials",
     "section": "",
-    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+    "text": "Greg Janée &lt;gjanee@ucsb.edu&gt;\nMay 2023\nSome essential concepts to get you started writing your first Bash script."
   },
   {
-    "objectID": "modules/week01/index-01.html#slides",
-    "href": "modules/week01/index-01.html#slides",
-    "title": "Week 1 - Relational databases and data modeling",
-    "section": "Slides",
-    "text": "Slides\nslides-01.pptx"
+    "objectID": "modules/week03/bash-essentials.html#what-does-bash-or-any-shell-for-that-matter-do",
+    "href": "modules/week03/bash-essentials.html#what-does-bash-or-any-shell-for-that-matter-do",
+    "title": "Ten Bash Essentials",
+    "section": "1. What does Bash (or any shell for that matter) do?",
+    "text": "1. What does Bash (or any shell for that matter) do?\nBash is program on your machine that allows you to interactively run other programs. It:\n\nWrites a prompt, reads a line from the terminal window\nPerforms various “expansions” to arrive at a final command or command pipeline\nLocates where the program(s) requested to be run are\nRuns the requested program(s) and links their input/output/error streams to and from files and into pipelines\nWrites any output to the terminal window\nRepeat\n\nThese steps are described in more detail below."
   },
   {
-    "objectID": "modules/week01/index-01.html#resources",
-    "href": "modules/week01/index-01.html#resources",
-    "title": "Week 1 - Relational databases and data modeling",
-    "section": "Resources",
-    "text": "Resources\n\nhttps://learning.nceas.ucsb.edu/2022-04-arctic/data-modeling-essentials.html\n\nVery brief introduction to data modeling, ties into “tidy data.”\n\nChristoph Wohner, Johannes Peterseil, and Hermann Klug (2022). Designing and implementing a data model for describing environmental monitoring and research sites. Ecological Informatics 70, 101708.\nhttps://doi.org/10.1016/j.ecoinf.2022.101708\n\nGood case study.\n\nGerald A. Burnette (2022). Managing environmental data: principles, techniques, and best practices. CRC Press.\nAccess via Library Catalog\n\nComprehensive text, specific to environmental sciences.\n\nGraeme C. Simsion and Graham C. Witt (2005). Data Modeling Essentials. 3rd ed. Amsterdam: Morgan Kaufmann.\nAccess via Library Catalog\nGoogle Books\n\nComprehensive text, not specific to the environmental sciences.\n\nHartmut Hebbel (1994). Environmental data modeling. Annals of Operations Research 54, 263-278.\nhttps://doi.org/10.1007/BF02031737\n\nA broader view of data organization.\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+    "objectID": "modules/week03/bash-essentials.html#fundamentals-review",
+    "href": "modules/week03/bash-essentials.html#fundamentals-review",
+    "title": "Ten Bash Essentials",
+    "section": "2. Fundamentals review",
+    "text": "2. Fundamentals review\nFiles in Unix and Unix-like systems are organized into hierarchical directories identified by “pathnames” as in /Users/moe/somefile.txt. Here the leading / represents the root directory on the machine, Users is a directory within that, moe a directory within that directory, and so forth until we get to a final directory or file.\nAt any given time you are “in” a directory. Handy commands:\n\npwd: where am I?\ncd new_directory: change directories\nls: what files and subdirectories are in here?\nls -F: same, but nicer formatting\n\nAn “absolute” pathname begins with / and identifies a directory or file starting from the root directory as in the example above. A “relative” pathname does not begin with / and does the same, but relative to the current directory.\nSome pseudo directory names. Wherever you are:\n\n.: current directory\n..: parent directory of current directory\n~: home directory\n\nSo:\n\n/Users/shemp: absolute pathname of Shemp’s home directory\n../shemp: same, relative to /Users/moe\n~: your home directory\n~shemp: Shemp’s home directory\n\nBy convention Unix commands accept “options” followed by “arguments”. Options begin with a single (-) or double (--) hyphen. Multiple options that begin with a single hyphen can be combined for brevity.\n\nls foo: list files in directory foo\nls -A foo: same, option -A to include hidden files\nls -A -l foo: add long listing option\nls -Al foo: equivalent to above\npython --version: print Python version number\n\nBut be aware that these are only conventions, and there are idiosyncracies in how commands are run."
   },
   {
-    "objectID": "modules/week01/index-01.html#homework",
-    "href": "modules/week01/index-01.html#homework",
-    "title": "Week 1 - Relational databases and data modeling",
-    "section": "Homework",
-    "text": "Homework\nData modeling exercise"
+    "objectID": "modules/week03/bash-essentials.html#variables",
+    "href": "modules/week03/bash-essentials.html#variables",
+    "title": "Ten Bash Essentials",
+    "section": "3. Variables",
+    "text": "3. Variables\nBash supports variables, and variables are essential in writing Bash scripts. To set a variable:\nname=Moe\nNo space between the variable name and equals sign! Variables are referenced as ${name}, or as just $name if not ambiguous. Lots of other stuff can go inside the braces, such as string processing and array indexing. Refer to the Bash manual or a good cheat sheet for examples.\nNames defined as above are local to the current Bash session or script. “Environment variables” are variables that are inherited by (visible to) programs and any scripts you run. To set, add export:\nexport DEBUG_ENABLED=1\nThe two most important environment variables are HOME (your home directory) and PATH (discussed below). The use of all-caps environment variable names is just a convention."
   },
   {
-    "objectID": "modules/week03/hw-03-3.html",
-    "href": "modules/week03/hw-03-3.html",
-    "title": "Week 3 - SQL problem 3",
+    "objectID": "modules/week03/bash-essentials.html#expansions",
+    "href": "modules/week03/bash-essentials.html#expansions",
+    "title": "Ten Bash Essentials",
+    "section": "4. Expansions",
+    "text": "4. Expansions\nBefore running any commands Bash performs various kinds of expansions. The rules about what expansions it performs and when and in what order are confusing. If you feel lost, join the club.\n\nVariable substitution.\nname=Moe\necho \"Hello $name\"\nis expanded to\necho \"Hello Moe\"\nThe meaning of the above is that $name is literally replaced with Moe before the echo command is run.\nCommand alias substitution. Aliases are handy abbreviations usually defined in the ~/.bashrc Bash configuration file.\nalias ll=\"ls -l\"\nll foo\nis expanded to\nls -l foo\nWildcard expansion (“globbing”).\nwc -l *.csv\nis expanded to\nwc -l ASDN_Bird_eggs.csv species.csv ...\nAs with variable substitutions, the globbing expansion literally replaces the wildcard expression with a list of filenames before the wc command is run.\nRunning subcommands.\nnow=\"$(date)\"\nis expanded to\nnow=\"Sat May  6 19:02:07 PDT 2023\"\nThe expression placed in the $(...) can be an entire command pipeline. When done, the subcommand is replaced with any output produced.\nArithmetic.\nanswer=$(( 21 * 2 ))\nis expanded to\nanswer=42\nBash can do integer arithmetic only.\n\nTakeaway: program(s) that are run see only the finally expanded command line."
+  },
+  {
+    "objectID": "modules/week03/bash-essentials.html#quoting",
+    "href": "modules/week03/bash-essentials.html#quoting",
+    "title": "Ten Bash Essentials",
+    "section": "5. Quoting",
+    "text": "5. Quoting\nQuoting is another difficult area of Bash. It’s hard to get right.\n\nDouble quotes support variable, subcommand, and arithmetic expansions. We’ve already seen these examples:\necho \"Hello $name\"\necho \"Today is $(date)\"\nget expanded to\necho \"Hello Moe\"\necho \"Today is Sat May  6 19:02:07 PDT 2023\"\nSingle quotes don’t.\necho 'Hello $name'\njust remains\necho 'Hello $name'\n\nGenerally, arguments to programs must be quoted to prevent Bash from expanding them into multiple arguments. This is easier to appreciate when you’re passing in an explicitly quoted string as in the examples above. But it’s less obvious that quoting is required even if you’re referencing a variable. Sometimes you want to allow a referenced variable to be expanded into multiple arguments, and quotes should be left off:\nmy_fave_ls_options=\"-l -F\"\nls $my_fave_ls_options foo\ngets expanded to\nls -l -F foo\nOther times you don’t:\nquery=\"SELECT * FROM table\"\nsqlite3 db \"$query\"\ngets expanded to\nsqlite3 db \"SELECT * FROM table\"\nIf $query is not quoted in the previous example, SELECT, *, etc., will be passed as separate arguments, which is not what sqlite3 expects. Making matters worse, * will then be interpreted as a wildcard and expanded into a list of all files in the current directory!"
+  },
+  {
+    "objectID": "modules/week03/bash-essentials.html#path-determines-what-programs-are-run",
+    "href": "modules/week03/bash-essentials.html#path-determines-what-programs-are-run",
+    "title": "Ten Bash Essentials",
+    "section": "6. PATH determines what programs are run",
+    "text": "6. PATH determines what programs are run\nA few commands (cd, pwd, if, while) are Bash built-ins. All other commands are simply programs on the system, whether coming packaged along with Unix (ls, cp, mkdir, grep, etc.) or installed later (sqlite3, python, etc.).\nThe PATH environment variable is a colon-separated list of directories in which Bash looks for programs, in order. You can inspect it:\necho $PATH\nTo see where a command is coming from:\nwhich ls\nTo see all places where you have Python installed (cf. https://xkcd.com/1987/):\nwhich -a python\nYou can modify PATH to, for example, add a directory to it (recall export is used for environment variables):\nexport PATH=$PATH:/another/directory/I/want/Bash/to/look/in\nIt’s typical to set PATH in one of the Bash configuration files ~/.bash_profile or ~/.profile, so that it is automatically set upon each login."
+  },
+  {
+    "objectID": "modules/week03/bash-essentials.html#io-redirection",
+    "href": "modules/week03/bash-essentials.html#io-redirection",
+    "title": "Ten Bash Essentials",
+    "section": "7. I/O redirection",
+    "text": "7. I/O redirection\nEvery program running in a Unix or Unix-like environment has three I/O streams: one for input (stdin), one for output (stdout), and one for error messages and other out-of-band output (stderr).\nBy convention, Unix programs read from file(s) specified on the command line, but if none are given, from stdin. And also by convention, Unix programs write to stdout. In this way it is easy to construct pipelines. Ex:\nwc -l *.csv | sort -n\nHere the wc -l command, which counts the number of lines in files, is given filenames on the command line, so it counts the lines in those files. It writes its output to stdout. sort -n sorts lines in files. It was given no files to sort, so it sorts whatever lines come in via stdin. By piping these together (i.e., by hooking wc’s stdout to sort’s stdin using the pipe operator), the output from wc -l is thereby sorted.\nThere are various operators for redirecting where stdin comes from and where stdout and stderr go:\n\n&lt; file: read stdin from file\n&gt; file: write stdout to file\n2&gt; file: write stderr to file\n&gt;& file: write both stdout and stderr to file\n&gt;&gt; file: append stdout to file\n\nCaution: except for &gt;&gt;, all forms of &gt; are destructive: Bash overwrites any existing file with an empty file before the program is run.\nWant to get rid of output you don’t want to see? Use the Unix black hole: &gt;& /dev/null. (This is a cultural meme, you’ll see it on T-shirts and license plates.)\nThe above are the main redirections, but there are others."
+  },
+  {
+    "objectID": "modules/week03/bash-essentials.html#control-statements",
+    "href": "modules/week03/bash-essentials.html#control-statements",
+    "title": "Ten Bash Essentials",
+    "section": "8. Control statements",
+    "text": "8. Control statements\nThe syntax of Bash’s control statements is a little funky. A conditional statement looks like this:\nif [ sometest ]; then\n    ...\nfi\nIt can also be formatted like so:\nif [ sometest ]\nthen\n    ...\nfi\nWhat can go in inside [ ... ]? A lot of things. Believe it or not, [ is a program! Do a man [ to read about it (see section 10 for other ways to get help).\nA for loop iterates over a list of items:\nfor file in *.csv; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone\nRecall expansions from section 4. The *.csv is expanded before the loop is run, ergo the above is equivalent to listing the files explicitly:\nfor file in ASDN_Bird_eggs.csv species.csv ...; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone\nWant to do something 99 times? You can use a while loop and a variable as a counter (recall arithmetic from section 4), or you can use seq (try seq by itself to see what it outputs):\nfor i in $(seq 99); do\n    echo \"Putting $i bottles of beer on the wall\"\ndone\nThere are other control statements."
+  },
+  {
+    "objectID": "modules/week03/bash-essentials.html#scripts",
+    "href": "modules/week03/bash-essentials.html#scripts",
+    "title": "Ten Bash Essentials",
+    "section": "9. Scripts",
+    "text": "9. Scripts\nA Bash script is a text file containing the same Bash commands you might type interactively. It’s analogous to an R or Python script but written in Bash instead of one of those other languages.\nBash knows it is reading from a file instead of the terminal window, and it operates slightly differently:\n\nIt doesn’t print a prompt.\nIt doesn’t read Bash configuration files (~/.bashrc, ~/.bash_profile, ~/.profile, etc.). As a consequence, aliases and variables defined in those files are not visible to scripts. (Any environment variables set in configuration files are visible, but that’s because environment variables are inherited.)\n\nBash makes arguments passed to your script available as variables $1, $2, etc. Variable $# is the number of arguments. Ex:\nif [ $# -ne 3 ]; then\n    echo \"This script requires 3 arguments\"\n    exit 1  # terminate with error status (exit 0 = success)\nfi\nA Bash script can be run as so:\nbash myscript.sh\nTo run a script just by saying\nmyscript.sh\ni.e., to make it look more like a command, requires that two things be done:\n\nThe first line of the script file must be:\n#!/bin/bash\nThere can’t be any spaces before the #!. (You can similarly make a Python or R script directly runnable by including such a first line, but with the pathname of the R or Python interpreter to run.)\nSet the “execute” flag on the script file:\nchmod +x myscript.sh\nYou can see that the file has the execute flag set by doing a long listing and looking for the x characters in the permissions mask.\nls -l myscript.sh\n\nYou might find that you still can’t run your script just by saying\nmyscript.sh\nThis is likely due to the current directory not being included in PATH. (echo $PATH to see.) You can either qualify the script name with a directory name:\n./myscript.sh\nor you can modify PATH per section 6.\nA complete example of a script:\n#!/bin/bash\n# Add two numbers.\nif [ $# -ne 2 ]; then\n    echo \"Supply two numbers, no more, no less\"\n    exit 1\nfi\nfirst=$1\nsecond=$2\necho \"The sum of $first and $second is $(( $first + $second ))\""
+  },
+  {
+    "objectID": "modules/week03/bash-essentials.html#getting-help-and-a-couple-tips",
+    "href": "modules/week03/bash-essentials.html#getting-help-and-a-couple-tips",
+    "title": "Ten Bash Essentials",
+    "section": "10. Getting help and a couple tips",
+    "text": "10. Getting help and a couple tips\nTo get help on a command, for example ls, try one of the following:\nman ls\nls --help\nMost but not all systems support man; MacOS does not support the --help option. Failing either of those, do an internet search for “ls man page”.\nWhen writing a script, it can be invaluable to run it through https://shellcheck.net. The advice is good and the creator of that tool knows way more about Bash than you or I. Other good resources:\n\nOfficial Bash user manual: https://www.gnu.org/software/bash/manual/\nBash pitfalls, or, how to do things the right way: http://mywiki.wooledge.org/BashPitfalls\nCheat sheet that is better than most: https://www.pcwdld.com/bash-cheat-sheet\n\nAnd two tips.\n\nIf you’re about to embark on a potentially destructive operation, first try just echoing the commands to confirm they’ll do what you want:\n# rename files from .JPG to .jpg\nfor file in *.JPG; do\necho mv $file ${file/.JPG/.jpg}\ndone\nOnce you’re satisfied, remove echo and run your script for real.\nrm, particulary when paired with a wildcard, is a notoriously dangerous command: it deletes files instantly and permanently. Consider creating an alias\nalias rm=\"rm -i\"\nto confirm deletion."
+  },
+  {
+    "objectID": "modules/week03/bash-essentials.html#test-your-understanding",
+    "href": "modules/week03/bash-essentials.html#test-your-understanding",
+    "title": "Ten Bash Essentials",
+    "section": "Test your understanding",
+    "text": "Test your understanding\nBe sure to cd to the MEDS 213 git repo directory, week5 subdirectory, before answering these.\n\nCompare the output of these three commands:\nls\nls .\nls \"$(pwd)/../week5\"\nExplain why you see what you see.\nTry the following two commands:\nwc -l *.csv\ncat *.csv | wc -l\nThe first prints filenames and line counts. The second prints a bare number. Why does it print that number, and why does it not print any filenames?\nYou want to count the total number of lines in all CSV files and try this command:\ncat *.csv | wc -l species.csv\nWhat happens and why?\nYou’re given\nname=Moe\nand you’d like to print “Moe_Howard”. You try this:\necho \"$name_Howard\"\nbut that doesn’t quite work. What fix can you apply to make this command give the desired effect?\nYou create a script and run it like so:\nbash myscript.sh *.csv\nWhat are the values of variables $1 and $#? Explain why the script does not see just one argument passed to it.\nYou create a script and run it like so:\nbash myscript.sh \"$(date)\" $(date)\nIn your script, what is the value of variable $3?\nCreate a file you don’t care about (because you’re about to destroy it):\necho \"yo ho a line of text\" &gt; junk_file.txt\necho \"another line\" &gt;&gt; junk_file.txt\nYou want to sort the lines in this file, so you try:\nsort junk_file.txt\nWell that prints the lines in sorted order, but it doesn’t actually change the file. You recall section 7 and try:\nsort junk_file.txt &gt; junk_file.txt\nWhat happens and why? How can you sort the lines in your file? (Hint: it involves creating a second file and using mv.)\nYou want to delete all files ending in .csv, so you type (don’t actually try this):\nrm * .csv\nbut as can be seen, your thumb accidentally hit the space bar and you got an extra space in there. What will rm do?"
+  },
+  {
+    "objectID": "modules/week03/hw-03-1.html",
+    "href": "modules/week03/hw-03-1.html",
+    "title": "Week 3 - SQL problem 1",
     "section": "",
-    "text": "Your mission, should you choose to accept it, is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:\n┌─────────────────────────┬──────────────────┐\n│     Scientific_name     │  Max_avg_volume  │\n├─────────────────────────┼──────────────────┤\n│ Pluvialis squatarola    │ 36541.8531755592 │\n│ Pluvialis dominica      │ 33847.8550096089 │\n│ Arenaria interpres      │ 23338.620942275  │\n│ Calidris fuscicollis    │ 13277.1428014342 │\n│ Calidris alpina         │ 12196.2368406617 │\n│ Charadrius semipalmatus │ 11266.9746753467 │\n│ Phalaropus fulicarius   │ 8906.7745740725  │\n└─────────────────────────┴──────────────────┘\n(By the way, regarding the leader in egg size above, Birds of the World says that Pluvialis squatarola’s eggs are “Exceptionally large for size of female (ca. 16% weight of female)”.)\nTo calculate the volume of an egg, use the simplified formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length. You can use 3.14 for \\(\\pi\\). (The real formula takes into account the ovoid shape of eggs, but only width and length are available to us here.)\nA good place to start is just to group bird eggs by nest (i.e., Nest_ID) and compute average volumes:\nCREATE TEMP TABLE Averages AS\n    SELECT Nest_ID, AVG(...) AS Avg_volume\n        FROM ...\n        GROUP BY ...;\nYou can now join that table with Bird_nests, so that you can group by species, and also join with the Species table to pick up scientific names. To do just the first of those joins, you could say something like\nSELECT Species, MAX(...)\n    FROM Bird_nests, Averages USING (Nest_ID)\n    GROUP BY ...;\nThat’s not the whole story, we want scientific names not species codes. Another join is needed. A couple strategies here. One, you can modify the above query to also join with the Species table (you’ll need to replace USING with ON …). Two, you can save the above as another temp table and join it to Species separately.\nDon’t forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.\nPlease submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement."
+    "text": "It’s a useful skill in life (I’m not being rhetorical, I really mean that, it’s a useful skill) to be able to construct an experiment to answer a hypothesis. Suppose you’re not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn’t have access to any documentation, or didn’t trust it. What experiment could you run to find out what happens?\nThere are two parts to this problem.\n\nPart 1\nConstruct an SQL experiment to determine the answer to the question above. Does SQL abort with some kind of error? Does it ignore NULL values? Do the NULL values somehow factor into the calculation, and if so, how?\nI would suggest you start by creating a table (in the bird database, in a new database, in a transient in-memory database, doesn’t matter) with a single column that has data type REAL (for part 2 below, it must be REAL). You can make your table a temp table or not, your choice.\nCREATE TEMP TABLE mytable... ;\nNow insert some real numbers and at least one NULL into your table.\nINSERT INTO mytable... ;\n(Hmm, can you insert multiple rows at once, or do you have to do a separate INSERT for each row?)\nOnce you have your little table constructed, try doing an AVG on the column and see what is returned. What would the average be if the function ignored NULLs? What would the average be if it somehow factored them in? What is actually returned?\nPlease submit both your SQL and your answer to the question about how AVG operates in the presence of NULL values.\n\n\nPart 2\nIf SQL didn’t have an AVG function, you could compute the average value of a column by doing something like this on your table:\nSELECT SUM(mycolumn)/COUNT(*) FROM mytable;\nSELECT SUM(mycolumn)/COUNT(mycolumn) FROM mytable;\nWhich query above is correct? Please explain why.\nNow that you’re done with your table, you can delete it if desired:\nDROP TABLE mytable;"
   },
   {
-    "objectID": "modules/week03/index-03.html",
-    "href": "modules/week03/index-03.html",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "objectID": "modules/week03/hw-03-2.html",
+    "href": "modules/week03/hw-03-2.html",
+    "title": "Week 3 - SQL problem 2",
     "section": "",
-    "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+    "text": "If you want to know which site has the largest area, it’s tempting to say\nSELECT Site_name, MAX(Area) FROM Site;\nbut as explained in class, databases will correctly compute the maximum but will select an arbitrary row to fill in the Site_name column. No good! This misleading behavior is more apparent if we do an average instead of a maximum:\nSELECT Site_name, AVG(Area) FROM Site;\n\n┌───────────┬───────────┐\n│ Site_name │ AVG(Area) │\n├───────────┼───────────┤\n│ Barrow    │ 440.6125  │\n└───────────┴───────────┘\nfor there is no site whose area exactly equals the average, and so there is nothing you could reasonably put in Site_name, and it certainly wouldn’t be Barrow. (SQLite is special in that if you do a MIN or MAX, it will return the row (or one of the rows, if there are multiple rows) that matches the minimum or maximum. But other databases do not do that.) So, we need a plan B.\n\nPart 1\nFind the site name and area of the site having the largest area. Do so by ordering the rows in a particularly convenient order, and using LIMIT to select just the first row. Your result should look like:\n┌──────────────┬────────┐\n│  Site_name   │  Area  │\n├──────────────┼────────┤\n│ Coats Island │ 1239.1 │\n└──────────────┴────────┘\nPlease submit your SQL.\n\n\nPart 2\nDo the same, but use a nested query. First, create a query that finds the maximum area. Then, create a query that selects the site name and area of the site whose area equals the maximum. Your overall query will look something like:\nSELECT Site_name, Area FROM Site WHERE Area = (SELECT ...);"
   },
   {
-    "objectID": "modules/week03/index-03.html#learning-objectives",
-    "href": "modules/week03/index-03.html#learning-objectives",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "objectID": "modules/week07/hw-07.html",
+    "href": "modules/week07/hw-07.html",
+    "title": "Week 7 - EML record",
     "section": "",
-    "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+    "text": "Each Capstone group should create an EML metadata record using the EML R Package for one of the analysis-ready datasets the project has generated or reused (consider a tabular dataset with 5-8 columns).\nAll groups must include the minimum elements covered in class, plus any additional attributes and descriptions required to describe your chosen dataset fully. For example, if attributes have specific units of measure, you should incorporate them into the code.\nExplore the package documentation, the README.md file you created for Week 4, and the important resources listed on Week 6 - Metadata standards.\nSubmit two files, the R script and the XML."
   },
   {
-    "objectID": "modules/week03/index-03.html#slides-and-other-materials",
-    "href": "modules/week03/index-03.html#slides-and-other-materials",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
-  },
-  {
-    "objectID": "modules/week03/index-03.html#resources",
-    "href": "modules/week03/index-03.html#resources",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
-    "section": "Resources",
-    "text": "Resources\n\nhttp://swcarpentry.github.io/sql-novice-survey/\n\nGood Carpentry lesson, our lesson is drawn from this.\n\nC.J. Date and Hugh Darwen (1993). A Guide to the SQL Standard. 3rd ed. Reading, MA: Addison-Wesley.\nAccess via Library Catalog\n\nThe ANSI standard.\n\nJoe Celko (1995). Joe Celko’s SQL For Smarties: Advanced SQL Programming. San Francisco, CA: Morgan Kaufmann.\nAccess via Library Catalog\n\nThis guy is an SQL guru. Newer versions of this book are available online, check the Library catalog (a bug is preventing me from linking directly).\n\nGrant Allen and Mike Owens (2010). The Definitive Guide to SQLite. 2nd ed. Berkeley, CA: Apress.\nAccess via Library Catalog\n\nGood reference. Can access online!\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
-  },
-  {
-    "objectID": "modules/week03/index-03.html#homework",
-    "href": "modules/week03/index-03.html#homework",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
-    "section": "Homework",
-    "text": "Homework\nSQL problem 1\nSQL problem 2\nSQL problem 3"
-  },
-  {
-    "objectID": "modules/week07/index-07.html",
-    "href": "modules/week07/index-07.html",
-    "title": "Week 7 - Metadata standards",
+    "objectID": "modules/week05/hw-05-2.html",
+    "href": "modules/week05/hw-05-2.html",
+    "title": "Week 5 - What makes a good index?",
     "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#learning-goals",
-    "href": "modules/week07/index-07.html#learning-goals",
-    "title": "Week 7 - Metadata standards",
-    "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#slides-and-other-materials",
-    "href": "modules/week07/index-07.html#slides-and-other-materials",
-    "title": "Week 7 - Metadata standards",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#recommended-readings",
-    "href": "modules/week07/index-07.html#recommended-readings",
-    "title": "Week 7 - Metadata standards",
-    "section": "Recommended readings",
-    "text": "Recommended readings\n\nGries, C., Hanson, P. C., O’Brien, M., Servilla, M., Vanderbilt, K., & Waide, R. (2023). The Environmental Data Initiative: Connecting the past to the future through data reuse. Ecology and Evolution, 13(1), e9592. https://doi.org/10.1002/ece3.9592\nLeipzig, J., Nüst, D., Hoyt, C. T., Ram, K., & Greenberg, J. (2021). The role of metadata in reproducible computational research. Patterns, 2(9), https://doi.org/10.1016/j.patter.2021.100322"
-  },
-  {
-    "objectID": "modules/week07/index-07.html#homework",
-    "href": "modules/week07/index-07.html#homework",
-    "title": "Week 7 - Metadata standards",
-    "section": "Homework",
-    "text": "Homework\nEML record"
-  },
-  {
-    "objectID": "modules/week10/index-10.html",
-    "href": "modules/week10/index-10.html",
-    "title": "Week 10 - Data licensing and publication",
-    "section": "",
-    "text": "Become familiar with data licensing in the academic context.\nDistinguish which research deliverables can or cannot be subject to copyright and explore alternatives to that.\nGain an understanding of the Creative Commons license family and the differences in their applicability.\n\n\n\n\nslides-10-part1.pptx"
-  },
-  {
-    "objectID": "modules/week10/index-10.html#part-i---data-licensing",
-    "href": "modules/week10/index-10.html#part-i---data-licensing",
-    "title": "Week 10 - Data licensing and publication",
-    "section": "",
-    "text": "Become familiar with data licensing in the academic context.\nDistinguish which research deliverables can or cannot be subject to copyright and explore alternatives to that.\nGain an understanding of the Creative Commons license family and the differences in their applicability.\n\n\n\n\nslides-10-part1.pptx"
-  },
-  {
-    "objectID": "modules/week10/index-10.html#part-ii---data-publication",
-    "href": "modules/week10/index-10.html#part-ii---data-publication",
-    "title": "Week 10 - Data licensing and publication",
-    "section": "Part II - Data publication",
-    "text": "Part II - Data publication\n\nLearning goals\n\nUnderstand the importance of publishing research data.\nIdentify and select appropriate approaches to data publication.\nExplain the role of persistent identifiers.\n\n\n\nSlides\nslides-10-part2.pptx"
-  },
-  {
-    "objectID": "modules/week10/index-10.html#suggested-readings",
-    "href": "modules/week10/index-10.html#suggested-readings",
-    "title": "Week 10 - Data licensing and publication",
-    "section": "Suggested readings*",
-    "text": "Suggested readings*\n\nCarroll, M. W. (2015) Sharing Research Data and Intellectual Property Law: A Primer. PLoS Biol 13(8): e1002235. https://doi.org/10.1371/journal.pbio.1002235\nFay, C. (2019). Licensing R. https://thinkr-open.github.io/licensing-r\nReitz, K., & Schlusser, T. (2022). The Hitchhiker’s guide to Python: best practices for development. ” O’Reilly Media, Inc.”. https://docs.python-guide.org/writing/license\n\n*Useful links and other supporting materials are noted in the slides."
-  },
-  {
-    "objectID": "modules/week10/index-10.html#homework",
-    "href": "modules/week10/index-10.html#homework",
-    "title": "Week 10 - Data licensing and publication",
-    "section": "Homework",
-    "text": "Homework\nNo homework this week!"
+    "text": "Recall from class that an index IC on a column C in a table T is in effect a mini-table, kept in sync with T, that contains all the values of column C in order. If there are a million rows in table T, there will be a million values in index IC. If the values of column C are unique, the index will hold a million unique values. If column C takes on only a few possible values, then index IC will still have a million values, but many of those values will be repeated.\nSuppose we are given a query that includes a constraint against column C, i.e., that includes WHERE C = someval possibly among other constraints. To use index IC means that the database looks up the constraint value someval in the index to obtain a smaller number of table rows (in the ideal case, just one row in the case of a unique index) to subsequently examine and match additional constraints against. The essential purpose of an index is to reduce the number of table rows that must be examined.\nFor the purposes of this assignment we will be working with a database that has the same structure as previous class databases but in which the Bird_nests table has 1 million rows, each of which has been fattened to occupy multiple kilobytes. As a consequence, the database file is approximately 4GB. The database file can be found on taylor.bren.ucsb.edu at /courses/EDS213/database-long-wide.db. To use it you will have to copy or download it to your own space.\nWe will also be working with the following query:\nSELECT Nest_ID\n    FROM Bird_nests\n    WHERE Site = 'nome' AND\n          Species = 'ruff' AND\n          Year = 1983 AND\n          Observer = 'cbishop' AND\n          ageMethod = 'float';\nThis query returns exactly one row.\n\nPart 1\nAnswer the following questions.\n\nIs there already an index on the Bird_nests table? If so, what is that index and will SQLite use it in the above query? Why or why not?\nWill adding an index on a column not mentioned in the WHERE clause be used by the database? Why or why not?\n\n\n\nPart 2\nQuery optimization, which falls under the general heading of “database tuning,” is a complex subject, as query performance depends on the query or queries being supported, the distribution and nature of the data, the abilities and characteristics of the query planner, and the costs of creating and maintaining indexes. Still, we can make a general observation about what makes for a good index (“good” meaning improving query performance here) by examining the effects of adding different indexes on the Bird_nests table and timing the above query.\nYour task is to conduct at least 10 experiments. In each experiment perform the following steps:\n\nCreate an index on a column or columns.\nTime the above query.\nDrop the index (to avoid accumulating indexes on the table).\nAlso, determine the number of distinct values in the index, i.e., the number of distinct values in the column or number of distinct tuples if the index is over multiple columns.\n\nWhat experiments to run?\n\nRun an initial experiment with no added index. For this experiment only, record the number of distinct values as 1.\nTry adding an index on each column mentioned in the WHERE clause (e.g., Site): that’s 5 experiments right there.\nFor other experiments, try adding an index on multiple columns, e.g., Site and Observer, or even 3 or 4 columns together.\n\nWhen done, you will want your results in the form of a CSV file with three columns: label, query time, and number of distinct values.\nFor timing, you will probably want to use the Bash test harness you developed in week 5. You can run your test harness manually, and manually retrieve the number of distinct values for step 4 above. But you can also automate the whole process; some hints for doing so are below. Be careful when running your test harness, as in the end you want just one row in your CSV file per experiment.\nOnce you have your data, load it in Jupyter or RStudio and create a log-log scatter plot of the number of distinct index values (X axis) versus query time (Y axis). (Results will be difficult to see if both axes are not logarithmic.) What relationship do you observe? Please hypothesize why you see the relationship you do.\nPlease upload your Jupyter notebook or Rmarkdown document. You do not need to submit your data.\n\n\nModifying your test harness\nA few tips on modifying your test harness to make it more useful for this assignment. First, if you find it annoying to have to try different numbers of repetitions to get positive and more precise timings, you can automate your script to try different numbers of repetitions until it achieves something reasonable. Here’s one idea:\nnum_reps=1\nwhile true; do\n    start=$SECONDS\n    for _ in $(seq $num_reps); do\n        sqlite3 $db_file \"$query\" &gt;& /dev/null\n    done\n    end=$SECONDS\n    if [ $((end - start)) -gt 3 ]; then\n        break\n    fi\n    echo \"Too fast, trying again!\"\n    num_reps=$((num_reps * 10))\ndone\nThis will try 1 repetition, then 10, then 100, etc.\nSecond, you can gather the number of distinct values by adding an sqlite3 -csv $db_file \"$num_values_query\" command and saving the output in a variable, and then echoing that variable out to your CSV file along with your other variables.\nAnd third, if you make the column(s) you want to index an argument to your script, you can automate adding and dropping indexes by adding more sqlite3 commands."
   },
   {
     "objectID": "modules/week05/instructor-notes-05.html",
@@ -340,7 +312,7 @@
     "href": "modules/week05/instructor-notes-05.html#index-demonstration-and-homework",
     "title": "Week 5 - Instructor notes",
     "section": "Index demonstration and homework",
-    "text": "Index demonstration and homework\n\n\n\n\n\nFiles\n\n\n\n\n\n\nbuild-big-db.sql\n\n\n\n\ngenerate-rows\n\n\n\n\nindex-timer\n\n\n\n\nquery.sql\n\n\n\n\nsample-output.csv\n\n\n\n\n\nNo matching items\n\n\nThe above files, which can be downloaded in toto as indexes.zip, create a large SQLite database to be used for the homework assignment. The database is essentially the same as has been used throughout the course to date, but contains a Bird_nests table having 1 million rows. The rows are valid (i.e., satisfy all table constraints) but have randomly generated values. The rows are also padded so that the database size is inflated to 4GB.\nquery.sql is a query that returns exactly one row from this enlarged Bird_nests table. The design is such that placing indexes on different column(s) of the table will result in markedly different performance improvements. Furthermore, query performance can be seen to have a clear relationship to index cardinality.\nTo build the database, create a copy of the database from week 7 and then run build-big-db.sql on it as shown below. The SQL script internally invokes the generate-rows Python script.\ncp .../week7/database.db db/database-long-wide.db\nsqlite3 -init build-big-db.sql db/database-long-wide.db\nindex-timer is a Bash script that is essentially what the homework problem asks the students to use, and what the students should have developed in assignment Week 5 - Create a test harness. Running experiments as described in the homework problem should produce data resembling the following:\n\n\n\n\n\nindex\naverage_time\nnum_distinct_values\n\n\n\n\nnone\n0.700\n1\n\n\nSite\n0.090\n16\n\n\nSpecies\n0.023\n99\n\n\nYear\n0.026\n66\n\n\nObserver\n0.023\n269\n\n\nageMethod\n0.400\n3\n\n\nSite,Species\n0.022\n1584\n\n\nSite,Year\n0.022\n1056\n\n\nSite,Observer\n0.022\n4304\n\n\nSite,ageMethod\n0.040\n48\n\n\nSpecies,Year\n0.023\n6534\n\n\nSpecies,Observer\n0.022\n26631\n\n\nSpecies,ageMethod\n0.022\n297\n\n\nYear,Observer\n0.022\n17754\n\n\nYear,ageMethod\n0.022\n198\n\n\nObserver,ageMethod\n0.023\n807\n\n\n\n\n\nWhich, when plotted, reveals a clear relationship:"
+    "text": "Index demonstration and homework\n\n\n\n\n\nFiles\n\n\n\n\n\n\nhw-05-1.qmd\n\n\n\n\nbuild-big-db.sql\n\n\n\n\ngenerate-rows\n\n\n\n\nhw-05-1.html\n\n\n\n\nindex-timer\n\n\n\n\nquery.sql\n\n\n\n\nsample-output.csv\n\n\n\n\n\nNo matching items\n\n\nThe above files, which can be downloaded in toto as indexes.zip, create a large SQLite database to be used for the homework assignment. The database is essentially the same as has been used throughout the course to date, but contains a Bird_nests table having 1 million rows. The rows are valid (i.e., satisfy all table constraints) but have randomly generated values. The rows are also padded so that the database size is inflated to 4GB.\nquery.sql is a query that returns exactly one row from this enlarged Bird_nests table. The design is such that placing indexes on different column(s) of the table will result in markedly different performance improvements. Furthermore, query performance can be seen to have a clear relationship to index cardinality.\nTo build the database, create a copy of the database from week 7 and then run build-big-db.sql on it as shown below. The SQL script internally invokes the generate-rows Python script.\ncp .../week7/database.db db/database-long-wide.db\nsqlite3 -init build-big-db.sql db/database-long-wide.db\nindex-timer is a Bash script that is essentially what the homework problem asks the students to use, and what the students should have developed in assignment Week 5 - Create a test harness. Running experiments as described in the homework problem should produce data resembling the following:\n\n\n\n\n\nindex\naverage_time\nnum_distinct_values\n\n\n\n\nnone\n0.700\n1\n\n\nSite\n0.090\n16\n\n\nSpecies\n0.023\n99\n\n\nYear\n0.026\n66\n\n\nObserver\n0.023\n269\n\n\nageMethod\n0.400\n3\n\n\nSite,Species\n0.022\n1584\n\n\nSite,Year\n0.022\n1056\n\n\nSite,Observer\n0.022\n4304\n\n\nSite,ageMethod\n0.040\n48\n\n\nSpecies,Year\n0.023\n6534\n\n\nSpecies,Observer\n0.022\n26631\n\n\nSpecies,ageMethod\n0.022\n297\n\n\nYear,Observer\n0.022\n17754\n\n\nYear,ageMethod\n0.022\n198\n\n\nObserver,ageMethod\n0.023\n807\n\n\n\n\n\nWhich, when plotted, reveals a clear relationship:"
   },
   {
     "objectID": "modules/week08/index-08.html",
@@ -550,14 +522,14 @@
     "href": "modules/week06/index-06.html#slides-and-other-materials",
     "title": "Week 6 - Programming with databases",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-07.pptx\nCoding transcripts:\n\ntranscript-06-mon.ipynb\ntranscript-06-wed-python.ipynb\ntranscript-06-wed-r.R"
+    "text": "Slides and other materials\nslides-06.pptx\nCoding transcripts:\n\ntranscript-06-mon.ipynb\ntranscript-06-wed-python.ipynb\ntranscript-06-wed-r.R"
   },
   {
     "objectID": "modules/week06/index-06.html#resources",
     "href": "modules/week06/index-06.html#resources",
     "title": "Week 6 - Programming with databases",
     "section": "Resources",
-    "text": "Resources\n\nhttps://peps.python.org/pep-0249/\n\nCommon Python-RDBMS API\n\nhttps://docs.python.org/3.11/library/sqlite3.html\n\nPython SQLite module\n\nhttps://dbplyr.tidyverse.org/\n\nR dbplyr documentation"
+    "text": "Resources\n\nhttps://peps.python.org/pep-0249/\n\nCommon Python-RDBMS API\n\nhttps://duckdb.org/docs/api/python/overview\n\nPython DuckDB module\n\nhttps://dbplyr.tidyverse.org/\n\nR dbplyr documentation"
   },
   {
     "objectID": "modules/week06/index-06.html#homework",
@@ -637,179 +609,221 @@
     "text": "Footnotes\n\n\nThis dataset was purposefully adapted exclusively for instruction use.↩︎"
   },
   {
-    "objectID": "modules/week05/hw-05.html",
-    "href": "modules/week05/hw-05.html",
-    "title": "Week 5 - What makes a good index?",
+    "objectID": "modules/week05/indexes/hw-05-1.html",
+    "href": "modules/week05/indexes/hw-05-1.html",
+    "title": "Week 4 - Bash scripting",
     "section": "",
-    "text": "Recall from class that an index IC on a column C in a table T is in effect a mini-table, kept in sync with T, that contains all the values of column C in order. If there are a million rows in table T, there will be a million values in index IC. If the values of column C are unique, the index will hold a million unique values. If column C takes on only a few possible values, then index IC will still have a million values, but many of those values will be repeated.\nSuppose we are given a query that includes a constraint against column C, i.e., that includes WHERE C = someval possibly among other constraints. To use index IC means that the database looks up the constraint value someval in the index to obtain a smaller number of table rows (in the ideal case, just one row in the case of a unique index) to subsequently examine and match additional constraints against. The essential purpose of an index is to reduce the number of table rows that must be examined.\nFor the purposes of this assignment we will be working with a database that has the same structure as previous class databases but in which the Bird_nests table has 1 million rows, each of which has been fattened to occupy multiple kilobytes. As a consequence, the database file is approximately 4GB. The database file can be found on taylor.bren.ucsb.edu at /courses/EDS213/database-long-wide.db. To use it you will have to copy or download it to your own space.\nWe will also be working with the following query:\nSELECT Nest_ID\n    FROM Bird_nests\n    WHERE Site = 'nome' AND\n          Species = 'ruff' AND\n          Year = 1983 AND\n          Observer = 'cbishop' AND\n          ageMethod = 'float';\nThis query returns exactly one row.\n\nPart 1\nAnswer the following questions.\n\nIs there already an index on the Bird_nests table? If so, what is that index and will SQLite use it in the above query? Why or why not?\nWill adding an index on a column not mentioned in the WHERE clause be used by the database? Why or why not?\n\n\n\nPart 2\nQuery optimization, which falls under the general heading of “database tuning,” is a complex subject, as query performance depends on the query or queries being supported, the distribution and nature of the data, the abilities and characteristics of the query planner, and the costs of creating and maintaining indexes. Still, we can make a general observation about what makes for a good index (“good” meaning improving query performance here) by examining the effects of adding different indexes on the Bird_nests table and timing the above query.\nYour task is to conduct at least 10 experiments. In each experiment perform the following steps:\n\nCreate an index on a column or columns.\nTime the above query.\nDrop the index (to avoid accumulating indexes on the table).\nAlso, determine the number of distinct values in the index, i.e., the number of distinct values in the column or number of distinct tuples if the index is over multiple columns.\n\nWhat experiments to run?\n\nRun an initial experiment with no added index. For this experiment only, record the number of distinct values as 1.\nTry adding an index on each column mentioned in the WHERE clause (e.g., Site): that’s 5 experiments right there.\nFor other experiments, try adding an index on multiple columns, e.g., Site and Observer, or even 3 or 4 columns together.\n\nWhen done, you will want your results in the form of a CSV file with three columns: label, query time, and number of distinct values.\nFor timing, you will probably want to use the Bash test harness you developed in week 5. You can run your test harness manually, and manually retrieve the number of distinct values for step 4 above. But you can also automate the whole process; some hints for doing so are below. Be careful when running your test harness, as in the end you want just one row in your CSV file per experiment.\nOnce you have your data, load it in Jupyter or RStudio and create a log-log scatter plot of the number of distinct index values (X axis) versus query time (Y axis). (Results will be difficult to see if both axes are not logarithmic.) What relationship do you observe? Please hypothesize why you see the relationship you do.\nPlease upload your Jupyter notebook or Rmarkdown document. You do not need to submit your data.\n\n\nModifying your test harness\nA few tips on modifying your test harness to make it more useful for this assignment. First, if you find it annoying to have to try different numbers of repetitions to get positive and more precise timings, you can automate your script to try different numbers of repetitions until it achieves something reasonable. Here’s one idea:\nnum_reps=1\nwhile true; do\n    start=$SECONDS\n    for _ in $(seq $num_reps); do\n        sqlite3 $db_file \"$query\" &gt;& /dev/null\n    done\n    end=$SECONDS\n    if [ $((end - start)) -gt 3 ]; then\n        break\n    fi\n    echo \"Too fast, trying again!\"\n    num_reps=$((num_reps * 10))\ndone\nThis will try 1 repetition, then 10, then 100, etc.\nSecond, you can gather the number of distinct values by adding an sqlite3 -csv $db_file \"$num_values_query\" command and saving the output in a variable, and then echoing that variable out to your CSV file along with your other variables.\nAnd third, if you make the column(s) you want to index an argument to your script, you can automate adding and dropping indexes by adding more sqlite3 commands."
+    "text": "Read Ten Bash Essentials and answer the 8 questions at the end. Be sure you are in the week5 directory of the class data GitHub repository before answering the questions, as they rely on the files contained therein."
   },
   {
     "objectID": "modules/week05/index-05.html",
     "href": "modules/week05/index-05.html",
-    "title": "Week 5 - Advanced database topics",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
     "section": "",
-    "text": "Exposure to the concepts of:\n\nConcurrency and transactions\nBackups\nIndexes"
+    "text": "Introduction to bash to write script\nExposure to the concepts of:\n\nConcurrency and transactions\nBackups\nIndexes"
   },
   {
     "objectID": "modules/week05/index-05.html#learning-objectives",
     "href": "modules/week05/index-05.html#learning-objectives",
-    "title": "Week 5 - Advanced database topics",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
     "section": "",
-    "text": "Exposure to the concepts of:\n\nConcurrency and transactions\nBackups\nIndexes"
+    "text": "Introduction to bash to write script\nExposure to the concepts of:\n\nConcurrency and transactions\nBackups\nIndexes"
+  },
+  {
+    "objectID": "modules/week05/index-05.html#bash-programming",
+    "href": "modules/week05/index-05.html#bash-programming",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
+    "section": "Bash programming",
+    "text": "Bash programming\nTen Bash Essentials"
+  },
+  {
+    "objectID": "modules/week05/index-05.html#bash-resources",
+    "href": "modules/week05/index-05.html#bash-resources",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
+    "section": "Bash resources",
+    "text": "Bash resources\n\nhttps://swcarpentry.github.io/shell-novice/\n\nGood Carpentry lesson, our lesson on Bash is drawn from this.\n\nhttps://www.gnu.org/software/bash/manual/\n\nThe official user manual.\n\nhttps://www.pcwdld.com/bash-cheat-sheet\n\nA cheat sheet that is better than most.\n\nhttps://www.shellcheck.net/\n\nIndispensable tool for writing scripts.\n\nhttp://mywiki.wooledge.org/BashPitfalls\n\nHow to do things the right way in Bash."
+  },
+  {
+    "objectID": "modules/week05/index-05.html#advanced-topics",
+    "href": "modules/week05/index-05.html#advanced-topics",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
+    "section": "Advanced topics",
+    "text": "Advanced topics"
   },
   {
     "objectID": "modules/week05/index-05.html#slides",
     "href": "modules/week05/index-05.html#slides",
-    "title": "Week 5 - Advanced database topics",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
     "section": "Slides",
     "text": "Slides\nslides-05.pptx"
   },
   {
     "objectID": "modules/week05/index-05.html#instructor-materials",
     "href": "modules/week05/index-05.html#instructor-materials",
-    "title": "Week 5 - Advanced database topics",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
     "section": "Instructor materials",
     "text": "Instructor materials\nInstructor notes\nInstructor files:\n\nconcurrency.zip\nindexes.zip"
   },
   {
     "objectID": "modules/week05/index-05.html#resources",
     "href": "modules/week05/index-05.html#resources",
-    "title": "Week 5 - Advanced database topics",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
     "section": "Resources",
     "text": "Resources\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
   },
   {
     "objectID": "modules/week05/index-05.html#homework",
     "href": "modules/week05/index-05.html#homework",
-    "title": "Week 5 - Advanced database topics",
+    "title": "Week 5 - Bash Programming & Advanced database topics",
     "section": "Homework",
-    "text": "Homework\nWhat makes a good index?"
+    "text": "Homework\nBash scripting\nWhat makes a good index?"
   },
   {
-    "objectID": "modules/week07/hw-07.html",
-    "href": "modules/week07/hw-07.html",
-    "title": "Week 7 - EML record",
+    "objectID": "modules/week10/index-10.html",
+    "href": "modules/week10/index-10.html",
+    "title": "Week 10 - Data licensing and publication",
     "section": "",
-    "text": "Each Capstone group should create an EML metadata record using the EML R Package for one of the analysis-ready datasets the project has generated or reused (consider a tabular dataset with 5-8 columns).\nAll groups must include the minimum elements covered in class, plus any additional attributes and descriptions required to describe your chosen dataset fully. For example, if attributes have specific units of measure, you should incorporate them into the code.\nExplore the package documentation, the README.md file you created for Week 4, and the important resources listed on Week 6 - Metadata standards.\nSubmit two files, the R script and the XML."
+    "text": "Become familiar with data licensing in the academic context.\nDistinguish which research deliverables can or cannot be subject to copyright and explore alternatives to that.\nGain an understanding of the Creative Commons license family and the differences in their applicability.\n\n\n\n\nslides-10-part1.pptx"
   },
   {
-    "objectID": "modules/week03/hw-03-2.html",
-    "href": "modules/week03/hw-03-2.html",
-    "title": "Week 3 - SQL problem 2",
+    "objectID": "modules/week10/index-10.html#part-i---data-licensing",
+    "href": "modules/week10/index-10.html#part-i---data-licensing",
+    "title": "Week 10 - Data licensing and publication",
     "section": "",
-    "text": "If you want to know which site has the largest area, it’s tempting to say\nSELECT Site_name, MAX(Area) FROM Site;\nbut as explained in class, databases will correctly compute the maximum but will select an arbitrary row to fill in the Site_name column. No good! This misleading behavior is more apparent if we do an average instead of a maximum:\nSELECT Site_name, AVG(Area) FROM Site;\n\n┌───────────┬───────────┐\n│ Site_name │ AVG(Area) │\n├───────────┼───────────┤\n│ Barrow    │ 440.6125  │\n└───────────┴───────────┘\nfor there is no site whose area exactly equals the average, and so there is nothing you could reasonably put in Site_name, and it certainly wouldn’t be Barrow. (SQLite is special in that if you do a MIN or MAX, it will return the row (or one of the rows, if there are multiple rows) that matches the minimum or maximum. But other databases do not do that.) So, we need a plan B.\n\nPart 1\nFind the site name and area of the site having the largest area. Do so by ordering the rows in a particularly convenient order, and using LIMIT to select just the first row. Your result should look like:\n┌──────────────┬────────┐\n│  Site_name   │  Area  │\n├──────────────┼────────┤\n│ Coats Island │ 1239.1 │\n└──────────────┴────────┘\nPlease submit your SQL.\n\n\nPart 2\nDo the same, but use a nested query. First, create a query that finds the maximum area. Then, create a query that selects the site name and area of the site whose area equals the maximum. Your overall query will look something like:\nSELECT Site_name, Area FROM Site WHERE Area = (SELECT ...);"
+    "text": "Become familiar with data licensing in the academic context.\nDistinguish which research deliverables can or cannot be subject to copyright and explore alternatives to that.\nGain an understanding of the Creative Commons license family and the differences in their applicability.\n\n\n\n\nslides-10-part1.pptx"
   },
   {
-    "objectID": "modules/week03/hw-03-1.html",
-    "href": "modules/week03/hw-03-1.html",
-    "title": "Week 3 - SQL problem 1",
+    "objectID": "modules/week10/index-10.html#part-ii---data-publication",
+    "href": "modules/week10/index-10.html#part-ii---data-publication",
+    "title": "Week 10 - Data licensing and publication",
+    "section": "Part II - Data publication",
+    "text": "Part II - Data publication\n\nLearning goals\n\nUnderstand the importance of publishing research data.\nIdentify and select appropriate approaches to data publication.\nExplain the role of persistent identifiers.\n\n\n\nSlides\nslides-10-part2.pptx"
+  },
+  {
+    "objectID": "modules/week10/index-10.html#suggested-readings",
+    "href": "modules/week10/index-10.html#suggested-readings",
+    "title": "Week 10 - Data licensing and publication",
+    "section": "Suggested readings*",
+    "text": "Suggested readings*\n\nCarroll, M. W. (2015) Sharing Research Data and Intellectual Property Law: A Primer. PLoS Biol 13(8): e1002235. https://doi.org/10.1371/journal.pbio.1002235\nFay, C. (2019). Licensing R. https://thinkr-open.github.io/licensing-r\nReitz, K., & Schlusser, T. (2022). The Hitchhiker’s guide to Python: best practices for development. ” O’Reilly Media, Inc.”. https://docs.python-guide.org/writing/license\n\n*Useful links and other supporting materials are noted in the slides."
+  },
+  {
+    "objectID": "modules/week10/index-10.html#homework",
+    "href": "modules/week10/index-10.html#homework",
+    "title": "Week 10 - Data licensing and publication",
+    "section": "Homework",
+    "text": "Homework\nNo homework this week!"
+  },
+  {
+    "objectID": "modules/week07/index-07.html",
+    "href": "modules/week07/index-07.html",
+    "title": "Week 7 - Metadata standards",
     "section": "",
-    "text": "It’s a useful skill in life (I’m not being rhetorical, I really mean that, it’s a useful skill) to be able to construct an experiment to answer a hypothesis. Suppose you’re not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn’t have access to any documentation, or didn’t trust it. What experiment could you run to find out what happens?\nThere are two parts to this problem.\n\nPart 1\nConstruct an SQL experiment to determine the answer to the question above. Does SQL abort with some kind of error? Does it ignore NULL values? Do the NULL values somehow factor into the calculation, and if so, how?\nI would suggest you start by creating a table (in the bird database, in a new database, in a transient in-memory database, doesn’t matter) with a single column that has data type REAL (for part 2 below, it must be REAL). You can make your table a temp table or not, your choice.\nCREATE TEMP TABLE mytable... ;\nNow insert some real numbers and at least one NULL into your table.\nINSERT INTO mytable... ;\n(Hmm, can you insert multiple rows at once, or do you have to do a separate INSERT for each row?)\nOnce you have your little table constructed, try doing an AVG on the column and see what is returned. What would the average be if the function ignored NULLs? What would the average be if it somehow factored them in? What is actually returned?\nPlease submit both your SQL and your answer to the question about how AVG operates in the presence of NULL values.\n\n\nPart 2\nIf SQL didn’t have an AVG function, you could compute the average value of a column by doing something like this on your table:\nSELECT SUM(mycolumn)/COUNT(*) FROM mytable;\nSELECT SUM(mycolumn)/COUNT(mycolumn) FROM mytable;\nWhich query above is correct? Please explain why.\nNow that you’re done with your table, you can delete it if desired:\nDROP TABLE mytable;"
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
   },
   {
-    "objectID": "modules/week03/bash-essentials.html",
-    "href": "modules/week03/bash-essentials.html",
-    "title": "Ten Bash Essentials",
+    "objectID": "modules/week07/index-07.html#learning-goals",
+    "href": "modules/week07/index-07.html#learning-goals",
+    "title": "Week 7 - Metadata standards",
     "section": "",
-    "text": "Greg Janée &lt;gjanee@ucsb.edu&gt;\nMay 2023\nSome essential concepts to get you started writing your first Bash script."
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#what-does-bash-or-any-shell-for-that-matter-do",
-    "href": "modules/week03/bash-essentials.html#what-does-bash-or-any-shell-for-that-matter-do",
-    "title": "Ten Bash Essentials",
-    "section": "1. What does Bash (or any shell for that matter) do?",
-    "text": "1. What does Bash (or any shell for that matter) do?\nBash is program on your machine that allows you to interactively run other programs. It:\n\nWrites a prompt, reads a line from the terminal window\nPerforms various “expansions” to arrive at a final command or command pipeline\nLocates where the program(s) requested to be run are\nRuns the requested program(s) and links their input/output/error streams to and from files and into pipelines\nWrites any output to the terminal window\nRepeat\n\nThese steps are described in more detail below."
+    "objectID": "modules/week07/index-07.html#slides-and-other-materials",
+    "href": "modules/week07/index-07.html#slides-and-other-materials",
+    "title": "Week 7 - Metadata standards",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#fundamentals-review",
-    "href": "modules/week03/bash-essentials.html#fundamentals-review",
-    "title": "Ten Bash Essentials",
-    "section": "2. Fundamentals review",
-    "text": "2. Fundamentals review\nFiles in Unix and Unix-like systems are organized into hierarchical directories identified by “pathnames” as in /Users/moe/somefile.txt. Here the leading / represents the root directory on the machine, Users is a directory within that, moe a directory within that directory, and so forth until we get to a final directory or file.\nAt any given time you are “in” a directory. Handy commands:\n\npwd: where am I?\ncd new_directory: change directories\nls: what files and subdirectories are in here?\nls -F: same, but nicer formatting\n\nAn “absolute” pathname begins with / and identifies a directory or file starting from the root directory as in the example above. A “relative” pathname does not begin with / and does the same, but relative to the current directory.\nSome pseudo directory names. Wherever you are:\n\n.: current directory\n..: parent directory of current directory\n~: home directory\n\nSo:\n\n/Users/shemp: absolute pathname of Shemp’s home directory\n../shemp: same, relative to /Users/moe\n~: your home directory\n~shemp: Shemp’s home directory\n\nBy convention Unix commands accept “options” followed by “arguments”. Options begin with a single (-) or double (--) hyphen. Multiple options that begin with a single hyphen can be combined for brevity.\n\nls foo: list files in directory foo\nls -A foo: same, option -A to include hidden files\nls -A -l foo: add long listing option\nls -Al foo: equivalent to above\npython --version: print Python version number\n\nBut be aware that these are only conventions, and there are idiosyncracies in how commands are run."
+    "objectID": "modules/week07/index-07.html#recommended-readings",
+    "href": "modules/week07/index-07.html#recommended-readings",
+    "title": "Week 7 - Metadata standards",
+    "section": "Recommended readings",
+    "text": "Recommended readings\n\nGries, C., Hanson, P. C., O’Brien, M., Servilla, M., Vanderbilt, K., & Waide, R. (2023). The Environmental Data Initiative: Connecting the past to the future through data reuse. Ecology and Evolution, 13(1), e9592. https://doi.org/10.1002/ece3.9592\nLeipzig, J., Nüst, D., Hoyt, C. T., Ram, K., & Greenberg, J. (2021). The role of metadata in reproducible computational research. Patterns, 2(9), https://doi.org/10.1016/j.patter.2021.100322"
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#variables",
-    "href": "modules/week03/bash-essentials.html#variables",
-    "title": "Ten Bash Essentials",
-    "section": "3. Variables",
-    "text": "3. Variables\nBash supports variables, and variables are essential in writing Bash scripts. To set a variable:\nname=Moe\nNo space between the variable name and equals sign! Variables are referenced as ${name}, or as just $name if not ambiguous. Lots of other stuff can go inside the braces, such as string processing and array indexing. Refer to the Bash manual or a good cheat sheet for examples.\nNames defined as above are local to the current Bash session or script. “Environment variables” are variables that are inherited by (visible to) programs and any scripts you run. To set, add export:\nexport DEBUG_ENABLED=1\nThe two most important environment variables are HOME (your home directory) and PATH (discussed below). The use of all-caps environment variable names is just a convention."
+    "objectID": "modules/week07/index-07.html#homework",
+    "href": "modules/week07/index-07.html#homework",
+    "title": "Week 7 - Metadata standards",
+    "section": "Homework",
+    "text": "Homework\nEML record"
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#expansions",
-    "href": "modules/week03/bash-essentials.html#expansions",
-    "title": "Ten Bash Essentials",
-    "section": "4. Expansions",
-    "text": "4. Expansions\nBefore running any commands Bash performs various kinds of expansions. The rules about what expansions it performs and when and in what order are confusing. If you feel lost, join the club.\n\nVariable substitution.\nname=Moe\necho \"Hello $name\"\nis expanded to\necho \"Hello Moe\"\nThe meaning of the above is that $name is literally replaced with Moe before the echo command is run.\nCommand alias substitution. Aliases are handy abbreviations usually defined in the ~/.bashrc Bash configuration file.\nalias ll=\"ls -l\"\nll foo\nis expanded to\nls -l foo\nWildcard expansion (“globbing”).\nwc -l *.csv\nis expanded to\nwc -l ASDN_Bird_eggs.csv species.csv ...\nAs with variable substitutions, the globbing expansion literally replaces the wildcard expression with a list of filenames before the wc command is run.\nRunning subcommands.\nnow=\"$(date)\"\nis expanded to\nnow=\"Sat May  6 19:02:07 PDT 2023\"\nThe expression placed in the $(...) can be an entire command pipeline. When done, the subcommand is replaced with any output produced.\nArithmetic.\nanswer=$(( 21 * 2 ))\nis expanded to\nanswer=42\nBash can do integer arithmetic only.\n\nTakeaway: program(s) that are run see only the finally expanded command line."
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#quoting",
-    "href": "modules/week03/bash-essentials.html#quoting",
-    "title": "Ten Bash Essentials",
-    "section": "5. Quoting",
-    "text": "5. Quoting\nQuoting is another difficult area of Bash. It’s hard to get right.\n\nDouble quotes support variable, subcommand, and arithmetic expansions. We’ve already seen these examples:\necho \"Hello $name\"\necho \"Today is $(date)\"\nget expanded to\necho \"Hello Moe\"\necho \"Today is Sat May  6 19:02:07 PDT 2023\"\nSingle quotes don’t.\necho 'Hello $name'\njust remains\necho 'Hello $name'\n\nGenerally, arguments to programs must be quoted to prevent Bash from expanding them into multiple arguments. This is easier to appreciate when you’re passing in an explicitly quoted string as in the examples above. But it’s less obvious that quoting is required even if you’re referencing a variable. Sometimes you want to allow a referenced variable to be expanded into multiple arguments, and quotes should be left off:\nmy_fave_ls_options=\"-l -F\"\nls $my_fave_ls_options foo\ngets expanded to\nls -l -F foo\nOther times you don’t:\nquery=\"SELECT * FROM table\"\nsqlite3 db \"$query\"\ngets expanded to\nsqlite3 db \"SELECT * FROM table\"\nIf $query is not quoted in the previous example, SELECT, *, etc., will be passed as separate arguments, which is not what sqlite3 expects. Making matters worse, * will then be interpreted as a wildcard and expanded into a list of all files in the current directory!"
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#path-determines-what-programs-are-run",
-    "href": "modules/week03/bash-essentials.html#path-determines-what-programs-are-run",
-    "title": "Ten Bash Essentials",
-    "section": "6. PATH determines what programs are run",
-    "text": "6. PATH determines what programs are run\nA few commands (cd, pwd, if, while) are Bash built-ins. All other commands are simply programs on the system, whether coming packaged along with Unix (ls, cp, mkdir, grep, etc.) or installed later (sqlite3, python, etc.).\nThe PATH environment variable is a colon-separated list of directories in which Bash looks for programs, in order. You can inspect it:\necho $PATH\nTo see where a command is coming from:\nwhich ls\nTo see all places where you have Python installed (cf. https://xkcd.com/1987/):\nwhich -a python\nYou can modify PATH to, for example, add a directory to it (recall export is used for environment variables):\nexport PATH=$PATH:/another/directory/I/want/Bash/to/look/in\nIt’s typical to set PATH in one of the Bash configuration files ~/.bash_profile or ~/.profile, so that it is automatically set upon each login."
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#io-redirection",
-    "href": "modules/week03/bash-essentials.html#io-redirection",
-    "title": "Ten Bash Essentials",
-    "section": "7. I/O redirection",
-    "text": "7. I/O redirection\nEvery program running in a Unix or Unix-like environment has three I/O streams: one for input (stdin), one for output (stdout), and one for error messages and other out-of-band output (stderr).\nBy convention, Unix programs read from file(s) specified on the command line, but if none are given, from stdin. And also by convention, Unix programs write to stdout. In this way it is easy to construct pipelines. Ex:\nwc -l *.csv | sort -n\nHere the wc -l command, which counts the number of lines in files, is given filenames on the command line, so it counts the lines in those files. It writes its output to stdout. sort -n sorts lines in files. It was given no files to sort, so it sorts whatever lines come in via stdin. By piping these together (i.e., by hooking wc’s stdout to sort’s stdin using the pipe operator), the output from wc -l is thereby sorted.\nThere are various operators for redirecting where stdin comes from and where stdout and stderr go:\n\n&lt; file: read stdin from file\n&gt; file: write stdout to file\n2&gt; file: write stderr to file\n&gt;& file: write both stdout and stderr to file\n&gt;&gt; file: append stdout to file\n\nCaution: except for &gt;&gt;, all forms of &gt; are destructive: Bash overwrites any existing file with an empty file before the program is run.\nWant to get rid of output you don’t want to see? Use the Unix black hole: &gt;& /dev/null. (This is a cultural meme, you’ll see it on T-shirts and license plates.)\nThe above are the main redirections, but there are others."
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#control-statements",
-    "href": "modules/week03/bash-essentials.html#control-statements",
-    "title": "Ten Bash Essentials",
-    "section": "8. Control statements",
-    "text": "8. Control statements\nThe syntax of Bash’s control statements is a little funky. A conditional statement looks like this:\nif [ sometest ]; then\n    ...\nfi\nIt can also be formatted like so:\nif [ sometest ]\nthen\n    ...\nfi\nWhat can go in inside [ ... ]? A lot of things. Believe it or not, [ is a program! Do a man [ to read about it (see section 10 for other ways to get help).\nA for loop iterates over a list of items:\nfor file in *.csv; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone\nRecall expansions from section 4. The *.csv is expanded before the loop is run, ergo the above is equivalent to listing the files explicitly:\nfor file in ASDN_Bird_eggs.csv species.csv ...; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone\nWant to do something 99 times? You can use a while loop and a variable as a counter (recall arithmetic from section 4), or you can use seq (try seq by itself to see what it outputs):\nfor i in $(seq 99); do\n    echo \"Putting $i bottles of beer on the wall\"\ndone\nThere are other control statements."
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#scripts",
-    "href": "modules/week03/bash-essentials.html#scripts",
-    "title": "Ten Bash Essentials",
-    "section": "9. Scripts",
-    "text": "9. Scripts\nA Bash script is a text file containing the same Bash commands you might type interactively. It’s analogous to an R or Python script but written in Bash instead of one of those other languages.\nBash knows it is reading from a file instead of the terminal window, and it operates slightly differently:\n\nIt doesn’t print a prompt.\nIt doesn’t read Bash configuration files (~/.bashrc, ~/.bash_profile, ~/.profile, etc.). As a consequence, aliases and variables defined in those files are not visible to scripts. (Any environment variables set in configuration files are visible, but that’s because environment variables are inherited.)\n\nBash makes arguments passed to your script available as variables $1, $2, etc. Variable $# is the number of arguments. Ex:\nif [ $# -ne 3 ]; then\n    echo \"This script requires 3 arguments\"\n    exit 1  # terminate with error status (exit 0 = success)\nfi\nA Bash script can be run as so:\nbash myscript.sh\nTo run a script just by saying\nmyscript.sh\ni.e., to make it look more like a command, requires that two things be done:\n\nThe first line of the script file must be:\n#!/bin/bash\nThere can’t be any spaces before the #!. (You can similarly make a Python or R script directly runnable by including such a first line, but with the pathname of the R or Python interpreter to run.)\nSet the “execute” flag on the script file:\nchmod +x myscript.sh\nYou can see that the file has the execute flag set by doing a long listing and looking for the x characters in the permissions mask.\nls -l myscript.sh\n\nYou might find that you still can’t run your script just by saying\nmyscript.sh\nThis is likely due to the current directory not being included in PATH. (echo $PATH to see.) You can either qualify the script name with a directory name:\n./myscript.sh\nor you can modify PATH per section 6.\nA complete example of a script:\n#!/bin/bash\n# Add two numbers.\nif [ $# -ne 2 ]; then\n    echo \"Supply two numbers, no more, no less\"\n    exit 1\nfi\nfirst=$1\nsecond=$2\necho \"The sum of $first and $second is $(( $first + $second ))\""
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#getting-help-and-a-couple-tips",
-    "href": "modules/week03/bash-essentials.html#getting-help-and-a-couple-tips",
-    "title": "Ten Bash Essentials",
-    "section": "10. Getting help and a couple tips",
-    "text": "10. Getting help and a couple tips\nTo get help on a command, for example ls, try one of the following:\nman ls\nls --help\nMost but not all systems support man; MacOS does not support the --help option. Failing either of those, do an internet search for “ls man page”.\nWhen writing a script, it can be invaluable to run it through https://shellcheck.net. The advice is good and the creator of that tool knows way more about Bash than you or I. Other good resources:\n\nOfficial Bash user manual: https://www.gnu.org/software/bash/manual/\nBash pitfalls, or, how to do things the right way: http://mywiki.wooledge.org/BashPitfalls\nCheat sheet that is better than most: https://www.pcwdld.com/bash-cheat-sheet\n\nAnd two tips.\n\nIf you’re about to embark on a potentially destructive operation, first try just echoing the commands to confirm they’ll do what you want:\n# rename files from .JPG to .jpg\nfor file in *.JPG; do\necho mv $file ${file/.JPG/.jpg}\ndone\nOnce you’re satisfied, remove echo and run your script for real.\nrm, particulary when paired with a wildcard, is a notoriously dangerous command: it deletes files instantly and permanently. Consider creating an alias\nalias rm=\"rm -i\"\nto confirm deletion."
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#test-your-understanding",
-    "href": "modules/week03/bash-essentials.html#test-your-understanding",
-    "title": "Ten Bash Essentials",
-    "section": "Test your understanding",
-    "text": "Test your understanding\nBe sure to cd to the MEDS 213 git repo directory, week5 subdirectory, before answering these.\n\nCompare the output of these three commands:\nls\nls .\nls \"$(pwd)/../week5\"\nExplain why you see what you see.\nTry the following two commands:\nwc -l *.csv\ncat *.csv | wc -l\nThe first prints filenames and line counts. The second prints a bare number. Why does it print that number, and why does it not print any filenames?\nYou want to count the total number of lines in all CSV files and try this command:\ncat *.csv | wc -l species.csv\nWhat happens and why?\nYou’re given\nname=Moe\nand you’d like to print “Moe_Howard”. You try this:\necho \"$name_Howard\"\nbut that doesn’t quite work. What fix can you apply to make this command give the desired effect?\nYou create a script and run it like so:\nbash myscript.sh *.csv\nWhat are the values of variables $1 and $#? Explain why the script does not see just one argument passed to it.\nYou create a script and run it like so:\nbash myscript.sh \"$(date)\" $(date)\nIn your script, what is the value of variable $3?\nCreate a file you don’t care about (because you’re about to destroy it):\necho \"yo ho a line of text\" &gt; junk_file.txt\necho \"another line\" &gt;&gt; junk_file.txt\nYou want to sort the lines in this file, so you try:\nsort junk_file.txt\nWell that prints the lines in sorted order, but it doesn’t actually change the file. You recall section 7 and try:\nsort junk_file.txt &gt; junk_file.txt\nWhat happens and why? How can you sort the lines in your file? (Hint: it involves creating a second file and using mv.)\nYou want to delete all files ending in .csv, so you type (don’t actually try this):\nrm * .csv\nbut as can be seen, your thumb accidentally hit the space bar and you got an extra space in there. What will rm do?"
-  },
-  {
-    "objectID": "modules/week01/hw-01.html",
-    "href": "modules/week01/hw-01.html",
-    "title": "Week 1 - Data modeling exercise",
+    "objectID": "modules/week03/index-03.html",
+    "href": "modules/week03/index-03.html",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "",
-    "text": "Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL’s data definition language as is possible.\nIn the class data GitHub repository, week 1 directory you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.\nPlease consider:\nYou may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.\nPlease express your table definition in SQL, but don’t worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the DuckDB CREATE TABLE documentation.\nFinally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don’t write an essay! Bullet points are sufficient."
+    "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
   },
   {
-    "objectID": "modules/week01/hw-01.html#appendix",
-    "href": "modules/week01/hw-01.html#appendix",
-    "title": "Week 1 - Data modeling exercise",
-    "section": "Appendix",
-    "text": "Appendix\nCREATE TABLE Species (\n    Code TEXT PRIMARY KEY,\n    Common_name TEXT UNIQUE NOT NULL,\n    Scientific_name TEXT,\n    Relevance TEXT\n);\n\nCREATE TABLE Site (\n    Code TEXT PRIMARY KEY,\n    Site_name TEXT UNIQUE NOT NULL,\n    Location TEXT NOT NULL,\n    Latitude REAL NOT NULL CHECK (Latitude BETWEEN -90 AND 90),\n    Longitude REAL NOT NULL CHECK (Longitude BETWEEN -180 AND 180),\n    \"Total_Study_Plot_Area_(ha)\" REAL NOT NULL\n        CHECK (\"Total_Study_Plot_Area_(ha)\" &gt; 0),\n    UNIQUE (Latitude, Longitude)\n);\n\nCREATE TABLE Color_band_code (\n    Code TEXT PRIMARY KEY,\n    Color TEXT NOT NULL UNIQUE\n);\n\nCREATE TABLE Personnel (\n    Abbreviation TEXT PRIMARY KEY,\n    Name TEXT NOT NULL UNIQUE\n);"
-  },
-  {
-    "objectID": "modules/week04/hw-04-4.html",
-    "href": "modules/week04/hw-04-4.html",
-    "title": "Week 4 - Bash scripting",
+    "objectID": "modules/week03/index-03.html#learning-objectives",
+    "href": "modules/week03/index-03.html#learning-objectives",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "",
-    "text": "Read Ten Bash Essentials and answer the 8 questions at the end. Be sure you are in the week5 directory of the class data GitHub repository before answering the questions, as they rely on the files contained therein."
+    "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+  },
+  {
+    "objectID": "modules/week03/index-03.html#slides-and-other-materials",
+    "href": "modules/week03/index-03.html#slides-and-other-materials",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
+  },
+  {
+    "objectID": "modules/week03/index-03.html#resources",
+    "href": "modules/week03/index-03.html#resources",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "section": "Resources",
+    "text": "Resources\n\nhttp://swcarpentry.github.io/sql-novice-survey/\n\nGood Carpentry lesson, our lesson is drawn from this.\n\nC.J. Date and Hugh Darwen (1993). A Guide to the SQL Standard. 3rd ed. Reading, MA: Addison-Wesley.\nAccess via Library Catalog\n\nThe ANSI standard.\n\nJoe Celko (1995). Joe Celko’s SQL For Smarties: Advanced SQL Programming. San Francisco, CA: Morgan Kaufmann.\nAccess via Library Catalog\n\nThis guy is an SQL guru. Newer versions of this book are available online, check the Library catalog (a bug is preventing me from linking directly).\n\nGrant Allen and Mike Owens (2010). The Definitive Guide to SQLite. 2nd ed. Berkeley, CA: Apress.\nAccess via Library Catalog\n\nGood reference. Can access online!\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+  },
+  {
+    "objectID": "modules/week03/index-03.html#homework",
+    "href": "modules/week03/index-03.html#homework",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "section": "Homework",
+    "text": "Homework\nSQL problem 1\nSQL problem 2\nSQL problem 3"
+  },
+  {
+    "objectID": "modules/week03/hw-03-3.html",
+    "href": "modules/week03/hw-03-3.html",
+    "title": "Week 3 - SQL problem 3",
+    "section": "",
+    "text": "Your mission, should you choose to accept it, is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:\n┌─────────────────────────┬──────────────────┐\n│     Scientific_name     │  Max_avg_volume  │\n├─────────────────────────┼──────────────────┤\n│ Pluvialis squatarola    │ 36541.8531755592 │\n│ Pluvialis dominica      │ 33847.8550096089 │\n│ Arenaria interpres      │ 23338.620942275  │\n│ Calidris fuscicollis    │ 13277.1428014342 │\n│ Calidris alpina         │ 12196.2368406617 │\n│ Charadrius semipalmatus │ 11266.9746753467 │\n│ Phalaropus fulicarius   │ 8906.7745740725  │\n└─────────────────────────┴──────────────────┘\n(By the way, regarding the leader in egg size above, Birds of the World says that Pluvialis squatarola’s eggs are “Exceptionally large for size of female (ca. 16% weight of female)”.)\nTo calculate the volume of an egg, use the simplified formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length. You can use 3.14 for \\(\\pi\\). (The real formula takes into account the ovoid shape of eggs, but only width and length are available to us here.)\nA good place to start is just to group bird eggs by nest (i.e., Nest_ID) and compute average volumes:\nCREATE TEMP TABLE Averages AS\n    SELECT Nest_ID, AVG(...) AS Avg_volume\n        FROM ...\n        GROUP BY ...;\nYou can now join that table with Bird_nests, so that you can group by species, and also join with the Species table to pick up scientific names. To do just the first of those joins, you could say something like\nSELECT Species, MAX(...)\n    FROM Bird_nests, Averages USING (Nest_ID)\n    GROUP BY ...;\nThat’s not the whole story, we want scientific names not species codes. Another join is needed. A couple strategies here. One, you can modify the above query to also join with the Species table (you’ll need to replace USING with ON …). Two, you can save the above as another temp table and join it to Species separately.\nDon’t forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.\nPlease submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement."
+  },
+  {
+    "objectID": "modules/week01/index-01.html",
+    "href": "modules/week01/index-01.html",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "",
+    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#learning-objectives",
+    "href": "modules/week01/index-01.html#learning-objectives",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "",
+    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#slides",
+    "href": "modules/week01/index-01.html#slides",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "Slides",
+    "text": "Slides\nslides-01.pptx"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#resources",
+    "href": "modules/week01/index-01.html#resources",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "Resources",
+    "text": "Resources\n\nhttps://learning.nceas.ucsb.edu/2022-04-arctic/data-modeling-essentials.html\n\nVery brief introduction to data modeling, ties into “tidy data.”\n\nChristoph Wohner, Johannes Peterseil, and Hermann Klug (2022). Designing and implementing a data model for describing environmental monitoring and research sites. Ecological Informatics 70, 101708.\nhttps://doi.org/10.1016/j.ecoinf.2022.101708\n\nGood case study.\n\nGerald A. Burnette (2022). Managing environmental data: principles, techniques, and best practices. CRC Press.\nAccess via Library Catalog\n\nComprehensive text, specific to environmental sciences.\n\nGraeme C. Simsion and Graham C. Witt (2005). Data Modeling Essentials. 3rd ed. Amsterdam: Morgan Kaufmann.\nAccess via Library Catalog\nGoogle Books\n\nComprehensive text, not specific to the environmental sciences.\n\nHartmut Hebbel (1994). Environmental data modeling. Annals of Operations Research 54, 263-278.\nhttps://doi.org/10.1007/BF02031737\n\nA broader view of data organization.\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+  },
+  {
+    "objectID": "modules/week01/index-01.html#homework",
+    "href": "modules/week01/index-01.html#homework",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "Homework",
+    "text": "Homework\nData modeling exercise"
   },
   {
     "objectID": "modules/week04/hw-04-2.html",
