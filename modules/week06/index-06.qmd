@@ -11,7 +11,7 @@ title: "Week 6 - Programming with databases"
 
 ## Slides and other materials
 
-[slides-07.pptx](slides-07.pptx)
+[slides-06.pptx](slides-06.pptx)
 
 Coding transcripts:
 
@@ -25,9 +25,9 @@ Coding transcripts:
 
     -   *Common Python-RDBMS API*
 
-2.  <https://docs.python.org/3.11/library/sqlite3.html>
+2.  <https://duckdb.org/docs/api/python/overview>
 
-    -   *Python SQLite module*
+    -   *Python DuckDB module*
 
 3.  <https://dbplyr.tidyverse.org/>
 
