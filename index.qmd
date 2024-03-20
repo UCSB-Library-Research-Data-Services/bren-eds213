@@ -56,9 +56,9 @@ A class data GitHub repository, linked below, is used as the mechanism for distr
 |------|------------------------------------------------------------------------|
 | 1    | [Relational databases and data modeling](modules/week01/index-01.qmd)  |
 | 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) |
-| 3    | [Introduction to SQL & DuckDB](modules/week03/index-03.qmd)            |
-| 4    | [Importing data in the database](modules/week04/index-04.qmd)          |
-| 5    | [Analyzing the bird database using SQL](modules/week05/index-05.qmd)   |
+| 3    | [Introduction to SQL part 1 & DuckDB](modules/week03/index-03.qmd)            |
+| 4    | [Importing data in the database + SQL part 2](modules/week04/index-04.qmd)          |
+| 5    | [Analyzing the bird database using SQL + bash programming](modules/week05/index-05.qmd)   |
 | 6    | [Using R & python to query databases](modules/week06/index-06.qmd)     |
 | 7    | [Documenting your work: metdata & computing environment](modules/week07/index-07.qmd)|
 | 8    | [Sensitive data](modules/week08/index-08.qmd)                          |

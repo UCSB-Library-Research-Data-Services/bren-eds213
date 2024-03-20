@@ -1,14 +1,51 @@
 ---
-title: "Week 5 - Advanced database topics"
+title: "Week 5 - Bash Programming & Advanced database topics"
 ---
 
 ## Learning objectives
 
--   Exposure to the concepts of:
+- Introduction to bash to write script  
+
+- Exposure to the concepts of:
 
     -   Concurrency and transactions
     -   Backups
     -   Indexes
+
+
+## Bash programming
+
+
+[Ten Bash Essentials](bash-essentials.qmd)
+
+
+## Bash resources
+
+1.  <https://swcarpentry.github.io/shell-novice/>
+
+    -   *Good Carpentry lesson, our lesson on Bash is drawn from this.*
+
+2.  <https://www.gnu.org/software/bash/manual/>
+
+    -   *The official user manual.*
+
+3.  <https://www.pcwdld.com/bash-cheat-sheet>
+
+    -   *A cheat sheet that is better than most.*
+
+4.  <https://www.shellcheck.net/>
+
+    -   *Indispensable tool for writing scripts.*
+
+5.  <http://mywiki.wooledge.org/BashPitfalls>
+
+    -   *How to do things the right way in Bash.*
+
+
+
+
+## Advanced topics
+
 
 ## Slides
 
@@ -30,6 +67,12 @@ Instructor files:
 
     -   *Complete but theoretical introduction to relational databases, data modeling, and relational algebra.*
 
+
+
 ## Homework
 
-[What makes a good index?](hw-05.qmd)
+[Bash scripting](hw-05-1.qmd)
+
+[What makes a good index?](hw-05-2.qmd)
+
+
