@@ -1,3 +1,6 @@
 ---
-title: "Week 2:"
+title: "Week 2: Analyzing & cleaning the bird dataset (from csv)"
 ---
+
+
+
