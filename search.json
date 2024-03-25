@@ -4,28 +4,28 @@
     "href": "index.html",
     "title": "EDS 213: Databases and Data Management",
     "section": "",
-    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as triggers and indexes and accessing databases from programming environments. The data management portion tied into the students’ capstone projects in a couple places, and included analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as triggers and indexes and accessing databases from programming environments. The data management portion was tied into students’ capstone projects in a couple of places and included analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
   },
   {
     "objectID": "index.html#course-description",
     "href": "index.html#course-description",
     "title": "EDS 213: Databases and Data Management",
     "section": "",
-    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as triggers and indexes and accessing databases from programming environments. The data management portion tied into the students’ capstone projects in a couple places, and included analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as triggers and indexes and accessing databases from programming environments. The data management portion was tied into students’ capstone projects in a couple of places and included analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
   },
   {
     "objectID": "index.html#data",
     "href": "index.html#data",
     "title": "EDS 213: Databases and Data Management",
     "section": "Data",
-    "text": "Data\nFor the database portion of the course the Arctic Shorebird Demographics Network dataset, obtained from the Arctic Data Center, was used as a running example. While this dataset is not distributed as a relational database (it is packaged as a set of related CSV files), its structure is highly amenable to a relational approach and provides a realistic example of where and why one would want to use a relational database in the Earth and environmental sciences. It also provides just enough complexity to support realistic and complex queries and views. Note that the dataset used in the course, and included in this archive, is a cleaned-up subset of the full dataset. It is necessarily a subset of the full dataset to keep the size and complexity manageable for pedagogical purposes, and it had to be cleaned up because, unfortunately, the full dataset has many errors that would have precluded creating foreign keys.\nA class data GitHub repository, linked below, is used as the mechanism for distributing data files to students. Each week a new directory of files will be added to the repository and the students will be asked to pull the repository to their local environment to get the updates."
+    "text": "Data\nFor the database portion of the course, the Arctic Shorebird Demographics Network dataset, obtained from the Arctic Data Center, was used as a running example. While this dataset is not distributed as a relational database (it is packaged as a set of related CSV files), its structure is highly amenable to a relational approach and provides a realistic example of where and why one would want to use a relational database in the Earth and environmental sciences. It also provides just enough complexity to support realistic and complex queries and views. Note that the dataset used in the course, and included in this archive, is a cleaned-up subset of the full dataset. It is necessarily a subset of the full dataset to keep the size and complexity manageable for pedagogical purposes, and it had to be cleaned up because, unfortunately, the full dataset has many errors that would have precluded creating foreign keys.\nA class data GitHub repository, linked below, is used to distribute data files to students. Each week a new directory of files will be added to the repository and the students will be asked to pull the repository to their local environment to get the updates."
   },
   {
     "objectID": "index.html#database",
     "href": "index.html#database",
     "title": "EDS 213: Databases and Data Management",
     "section": "Database",
-    "text": "Database\nDuckDB is used as the database platform due to its strict implementation to data types that turned out to be a weakness when teaching with SQLlite last year. DuckDB is a fast in-process analytical personal database."
+    "text": "Database\nDuckDB is used as the database platform due to its strict implementation of data types, which turned out to be a weakness when teaching with SQLlite last year. DuckDB is a fast in-process analytical personal database."
   },
   {
     "objectID": "index.html#instructors",
@@ -38,8 +38,8 @@
     "objectID": "index.html#teaching-assistant",
     "href": "index.html#teaching-assistant",
     "title": "EDS 213: Databases and Data Management",
-    "section": "Teaching assistant",
-    "text": "Teaching assistant\n\nJamie Miller (jkmiller@ucsb.edu)"
+    "section": "Teaching Assistant",
+    "text": "Teaching Assistant\n\nJamie Miller (jkmiller@ucsb.edu)"
   },
   {
     "objectID": "index.html#schedule",
@@ -60,7 +60,7 @@
     "href": "index.html#modules",
     "title": "EDS 213: Databases and Data Management",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL part 1 & DuckDB\n\n\n4\nImporting data in the database + SQL part 2\n\n\n5\nAnalyzing the bird database using SQL + bash programming\n\n\n6\nUsing R & python to query databases\n\n\n7\nDocumenting your work: metdata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication"
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL part 1 & DuckDB\n\n\n4\nImporting data in the database + SQL part 2\n\n\n5\nAnalyzing the bird database using SQL + bash programming\n\n\n6\nUsing R & Python to query databases\n\n\n7\nDocumenting your work: metadata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication"
   },
   {
     "objectID": "syllabus.html",
