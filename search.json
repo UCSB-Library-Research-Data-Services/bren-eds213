@@ -826,6 +826,27 @@
     "text": "Homework\nData modeling exercise"
   },
   {
+    "objectID": "modules/week02/index-02.html",
+    "href": "modules/week02/index-02.html",
+    "title": "Week 2: Analyzing & cleaning the bird dataset (from csv)",
+    "section": "",
+    "text": "The original shoebird dataset has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+  },
+  {
+    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "title": "Week 2: Analyzing & cleaning the bird dataset (from csv)",
+    "section": "",
+    "text": "The original shoebird dataset has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+  },
+  {
+    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "title": "Week 2: Analyzing & cleaning the bird dataset (from csv)",
+    "section": "Analyzing the data from the csv files",
+    "text": "Analyzing the data from the csv files"
+  },
+  {
     "objectID": "modules/week04/hw-04-2.html",
     "href": "modules/week04/hw-04-2.html",
     "title": "Week 4 - Create a trigger",
