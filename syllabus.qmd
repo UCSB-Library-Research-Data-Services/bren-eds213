@@ -55,7 +55,8 @@ This course will teach students the fundamentals of relational databases and dat
 
 ## Course assessment
 
-Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week.
+Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week. We will use Canvas to manage the assignments.
+
 
 ## Attendance and homework policy
 
