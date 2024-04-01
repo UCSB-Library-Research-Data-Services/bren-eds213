@@ -55,13 +55,13 @@ This course will teach students the fundamentals of relational databases and dat
 
 ## Course assessment
 
-Your performance in this course will depend 90% on weekly homework assignments and quizzes and 10% on participation. There will be no graded exercises or homework the last week.
+Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week.
 
 ## Attendance and homework policy
 
 Attendance is required. Material will be given in class that is not covered by slides or background readings.
 
-Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. ***Homework turned in late will be docked 25% per day.***
+Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. ***Homework turned in late will be docked 20% per day.***
 
 ## Code of conduct
 
