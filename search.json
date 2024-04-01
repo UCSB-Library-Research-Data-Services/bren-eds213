@@ -102,7 +102,7 @@
     "href": "syllabus.html#course-assessment",
     "title": "Course syllabus",
     "section": "Course assessment",
-    "text": "Course assessment\nYour performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week."
+    "text": "Course assessment\nYour performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week. We will use Canvas to manage the assignments."
   },
   {
     "objectID": "syllabus.html#attendance-and-homework-policy",
@@ -172,7 +172,7 @@
     "href": "modules/week01/hw-01.html",
     "title": "Week 1 - Data modeling exercise",
     "section": "",
-    "text": "Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL’s data definition language as is possible.\nIn the class data GitHub repository, week 1 directory you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.\nPlease consider:\nYou may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.\nPlease express your table definition in SQL, but don’t worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the DuckDB CREATE TABLE documentation.\nFinally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don’t write an essay! Bullet points are sufficient."
+    "text": "** Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301 **\nCreate a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL’s data definition language as is possible.\nIn the class data GitHub repository, week 1 directory you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.\nPlease consider:\nYou may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.\nPlease express your table definition in SQL, but don’t worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the DuckDB CREATE TABLE documentation.\nFinally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don’t write an essay! Bullet points are sufficient."
   },
   {
     "objectID": "modules/week01/hw-01.html#appendix",
