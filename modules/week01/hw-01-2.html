@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Week 5 - Instructor notes</title>
+<title>eds213 - Week 1 - Create an ER diagram</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,93 +66,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-concurrency-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-filename',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-filename-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-filename","listing-file-modified"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-concurrency-listing'] = new List('listing-concurrency-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-indexes-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-filename',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-indexes-listing'] = new List('listing-indexes-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -233,21 +145,14 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#concurrency-demonstration" id="toc-concurrency-demonstration" class="nav-link active" data-scroll-target="#concurrency-demonstration">Concurrency demonstration</a></li>
-  <li><a href="#index-demonstration-and-homework" id="toc-index-demonstration-and-homework" class="nav-link" data-scroll-target="#index-demonstration-and-homework">Index demonstration and homework</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 5 - Instructor notes</h1>
+<h1 class="title">Week 1 - Create an ER diagram</h1>
 </div>
 
 
@@ -264,231 +169,19 @@ window.Quarto = {
 </header>
 
 
-<section id="concurrency-demonstration" class="level2">
-<h2 class="anchored" data-anchor-id="concurrency-demonstration">Concurrency demonstration</h2>
-<div id="listing-concurrency-listing" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Files
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="concurrency.db">
-<td>
-<a href="../../modules/week05/concurrency/concurrency.db" class="filename listing-filename">concurrency.db</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="concurrency.sql">
-<td>
-<a href="../../modules/week05/concurrency/concurrency.sql" class="filename listing-filename">concurrency.sql</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="experiment.sh">
-<td>
-<a href="../../modules/week05/concurrency/experiment.sh" class="filename listing-filename">experiment.sh</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="worker.py">
-<td>
-<a href="../../modules/week05/concurrency/worker.py" class="filename listing-filename">worker.py</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-<p>The above files, which can be downloaded <em>in toto</em> as <a href="concurrency.zip">concurrency.zip</a>, can be used to demonstrate the necessity of using transactions and locking to avoid race conditions. <code>concurrency.db</code> is an SQLite database created by running the commands in <code>concurrency.sql</code>. It contains a single value <span class="math inline">\(V\)</span> in a single row in a single table.</p>
-<p><code>worker.py</code> is a Python program that adds a specified delta value to <span class="math inline">\(V\)</span> a specified number of times. For example, <code>python worker.py 500 1</code> adds 1 to <span class="math inline">\(V\)</span> 500 times. By default it does no locking at all, but if a <code>wt</code> (“with transactions”) argument is added, as in <code>python worker.py 500 1 wt</code>, it wraps each update in a transaction.</p>
-<p><code>experiment.sh</code> is a Bash script that resets <span class="math inline">\(V\)</span> to 0, runs two instances of <code>worker.py</code> concurrently, one adding +1 to <span class="math inline">\(V\)</span> 500 times and the other adding -1 to <span class="math inline">\(V\)</span> 500 times, and then prints the final value of <span class="math inline">\(V\)</span>. By default it does no locking, but as with <code>worker.py</code>, if it is run with a <code>wt</code> argument then transactions and locking are employed. With no race conditions the final value of <span class="math inline">\(V\)</span> will of course be 0, but if race conditions occur, <span class="math inline">\(V\)</span> will likely have a random nonzero value.</p>
-<p>The database configuration, the connection details, and the timing delays have all been designed to make race conditions very likely to occur. (It is suprisingly difficult to get race conditions to occur due to SQLite’s default locking and due to artifacts of operating system timeslicing.) This experimental setup has been tested on MacOS, Windows, and several Unix platforms and consistently yields the desired result. Here’s an example run without transactions:</p>
-<pre><code>% ./experiment.sh
-value = 14
-% ./experiment.sh
-value = 15
-% ./experiment.sh
-value = -2</code></pre>
-<p>And adding transactions and locking:</p>
-<pre><code>% ./experiment.sh wt
-value = 0
-% ./experiment.sh wt
-value = 0
-% ./experiment.sh wt
-value = 0</code></pre>
-<p>It should take less than 60 seconds to run an experiment.</p>
-</section>
-<section id="index-demonstration-and-homework" class="level2">
-<h2 class="anchored" data-anchor-id="index-demonstration-and-homework">Index demonstration and homework</h2>
-<div id="listing-indexes-listing" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Files
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1712098586886" data-listing-reading-time-sort="1" data-listing-word-count-sort="38" data-listing-title-sort="Week 4 - Bash scripting" data-listing-filename-sort="hw-05-1.qmd">
-<td>
-<a href="../../modules/week05/indexes/hw-05-1.html" class="filename listing-filename">hw-05-1.qmd</a>
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="build-big-db.sql">
-<td>
-<a href="../../modules/week05/indexes/build-big-db.sql" class="filename listing-filename">build-big-db.sql</a>
-</td>
-</tr>
-<tr data-index="2" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="generate-rows">
-<td>
-<a href="../../modules/week05/indexes/generate-rows" class="filename listing-filename">generate-rows</a>
-</td>
-</tr>
-<tr data-index="3" data-listing-file-modified-sort="1712100227970" data-listing-filename-sort="hw-05-1.html">
-<td>
-<a href="../../modules/week05/indexes/hw-05-1.html" class="filename listing-filename">hw-05-1.html</a>
-</td>
-</tr>
-<tr data-index="4" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="index-timer">
-<td>
-<a href="../../modules/week05/indexes/index-timer" class="filename listing-filename">index-timer</a>
-</td>
-</tr>
-<tr data-index="5" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="query.sql">
-<td>
-<a href="../../modules/week05/indexes/query.sql" class="filename listing-filename">query.sql</a>
-</td>
-</tr>
-<tr data-index="6" data-listing-file-modified-sort="1712098586886" data-listing-filename-sort="sample-output.csv">
-<td>
-<a href="../../modules/week05/indexes/sample-output.csv" class="filename listing-filename">sample-output.csv</a>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-<p>The above files, which can be downloaded <em>in toto</em> as <a href="indexes.zip">indexes.zip</a>, create a large SQLite database to be used for the homework assignment. The database is essentially the same as has been used throughout the course to date, but contains a Bird_nests table having 1 million rows. The rows are valid (i.e., satisfy all table constraints) but have randomly generated values. The rows are also padded so that the database size is inflated to 4GB.</p>
-<p><code>query.sql</code> is a query that returns exactly one row from this enlarged Bird_nests table. The design is such that placing indexes on different column(s) of the table will result in markedly different performance improvements. Furthermore, query performance can be seen to have a clear relationship to index cardinality.</p>
-<p>To build the database, create a copy of the database from week 7 and then run <code>build-big-db.sql</code> on it as shown below. The SQL script internally invokes the <code>generate-rows</code> Python script.</p>
-<pre><code>cp .../week7/database.db db/database-long-wide.db
-sqlite3 -init build-big-db.sql db/database-long-wide.db</code></pre>
-<p><code>index-timer</code> is a Bash script that is essentially what the homework problem asks the students to use, and what the students should have developed in assignment <a href="../week05/hw-05-3.qmd">Week 5 - Create a test harness</a>. Running experiments as described in the homework problem should produce data resembling the following:</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">index</th>
-<th style="text-align: right;">average_time</th>
-<th style="text-align: right;">num_distinct_values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">none</td>
-<td style="text-align: right;">0.700</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Site</td>
-<td style="text-align: right;">0.090</td>
-<td style="text-align: right;">16</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Species</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">99</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Year</td>
-<td style="text-align: right;">0.026</td>
-<td style="text-align: right;">66</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Observer</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">269</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ageMethod</td>
-<td style="text-align: right;">0.400</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Site,Species</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">1584</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Site,Year</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">1056</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Site,Observer</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">4304</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Site,ageMethod</td>
-<td style="text-align: right;">0.040</td>
-<td style="text-align: right;">48</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Species,Year</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">6534</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Species,Observer</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">26631</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Species,ageMethod</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">297</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Year,Observer</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">17754</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Year,ageMethod</td>
-<td style="text-align: right;">0.022</td>
-<td style="text-align: right;">198</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Observer,ageMethod</td>
-<td style="text-align: right;">0.023</td>
-<td style="text-align: right;">807</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Which, when plotted, reveals a clear relationship:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="instructor-notes-05_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/19301" class="uri">https://ucsb.instructure.com/courses/19301</a></strong></p>
+<p>Create a physical ER (entity-relationship) diagram for the Harry Potter tables discussed in class.</p>
+<ul>
+<li>Your diagram should include the Student, House, Wand, Course, and Enrollment tables.</li>
+<li>Each table should list the name of the entity, any attributes and their data types, and which attribute(s) form the primary key, if there is one.</li>
+<li>A foreign key relationship from an attribute in one table to an attribute in another table should be indicated by a line. The ends of the lines should reflect the cardinalities at each end: a single vertical bar indicates “one,” while a crow’s foot indicates “many.” See the example below.</li>
+</ul>
+<p><strong>Twist #1!</strong> The slides shown in class demonstrated a many-to-one relationship between wands and students, i.e., one student could own multiple wands, but any given wand has only one owner. However, for this exercise, you are asked to model a many-to-many relationship between wands and students (it happened in the books that the same wand was used by different students, though at different times, of course). To create a many-to-many relationship, you will need to invent an intermediate table that represents the wand ownership relationship, in the same way the Enrollment table intermediates between the Student and Course tables.</p>
+<p><strong>Twist #2!</strong> You must also store the date range (i.e., begin date and end date) of wand ownership. You will need to think where these date attributes belong. Are they attributes of a student? Of a wand? Of something else?</p>
+<p>In the end, your diagram should visually resemble some like this: <img src="asdn-er-diagram.png" class="img-fluid"></p>
+<p>You can use a tool like <a href="https://dbdiagram.io">dbdiagram.io</a> as was used to create the above diagram, or any other drawing tool. Or you can just draw it by hand and take a picture with your phone. Regardless of the method, be sure to indicate primary keys somehow (bold text, underlined text, add “PK” next to the attribute, etc., whatever works visually).</p>
 
 
-
-</section>
 
 </main> <!-- /main -->
 <div>
