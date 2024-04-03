@@ -1,9 +1,9 @@
 ---
-title: "Week 1 - Data modeling exercise"
+title: "Week 1 - Data modeling"
 ---
 
 
-** Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301> **
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301>**
 
 Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL's data definition language as is possible.
 
