@@ -1,0 +1,19 @@
+---
+title: "Week 1 - Create an ER diagram"
+---
+
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301>**
+
+Create a physical ER (entity-relationship) diagram for the Harry Potter tables discussed in class.
+
+-   Your diagram should include the Student, House, Wand, Course, and Enrollment tables.
+-   Each table should list the name of the entity, any attributes and their data types, and which attribute(s) form the primary key, if there is one.
+-   A foreign key relationship from an attribute in one table to an attribute in another table should be indicated by a line. The ends of the lines should reflect the cardinalities at each end: a single vertical bar indicates "one," while a crow's foot indicates "many." See the example below.
+
+**Twist #1!** The slides shown in class demonstrated a many-to-one relationship between wands and students, i.e., one student could own multiple wands, but any given wand has only one owner. However, for this exercise, you are asked to model a many-to-many relationship between wands and students (it happened in the books that the same wand was used by different students, though at different times, of course). To create a many-to-many relationship, you will need to invent an intermediate table that represents the wand ownership relationship, in the same way the Enrollment table intermediates between the Student and Course tables.
+
+**Twist #2!** You must also store the date range (i.e., begin date and end date) of wand ownership. You will need to think where these date attributes belong. Are they attributes of a student? Of a wand? Of something else?
+
+In the end, your diagram should visually resemble some like this: ![](asdn-er-diagram.png)
+
+You can use a tool like [dbdiagram.io](https://dbdiagram.io) as was used to create the above diagram, or any other drawing tool. Or you can just draw it by hand and take a picture with your phone. Regardless of the method, be sure to indicate primary keys somehow (bold text, underlined text, add "PK" next to the attribute, etc., whatever works visually).
