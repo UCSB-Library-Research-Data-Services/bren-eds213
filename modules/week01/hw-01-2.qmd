@@ -2,7 +2,6 @@
 title: "Week 1 - Data modeling"
 ---
 
-
 **Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301>**
 
 Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL's data definition language as is possible.
@@ -22,7 +21,7 @@ You may (or may not) want to take advantage of the Species, Site, Color_band_cod
 
 Please express your table definition in SQL, but don't worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the [DuckDB CREATE TABLE documentation](https://duckdb.org/docs/sql/statements/create_table).
 
-Finally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don't write an essay! Bullet points are sufficient.
+Finally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don't write an essay! Bullet points are sufficient.  But do please explain your thought process.
 
 ## Appendix
 
