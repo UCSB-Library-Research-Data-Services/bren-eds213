@@ -10,7 +10,7 @@ website:
       - text: Modules
         menu:
           - modules/week01/index-01.qmd
-          #- modules/week02/index-02.qmd
+          - modules/week02/index-02.qmd
           #- modules/week03/index-03.qmd
           #- modules/week04/index-04.qmd
           #- modules/week05/index-05.qmd

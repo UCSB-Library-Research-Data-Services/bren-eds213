@@ -5,7 +5,7 @@ title: "Week 2: Analyzing & cleaning the bird dataset (from csv)"
 
 ## Cleaning the raw data
 
-The original shorebird dataset has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the `garbage in, garbage out` motto often use in modeling applies here as well!
+The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the `garbage in, garbage out` motto often use in modeling applies here as well!
 
 Here is the repository where we are going to practice our data wranglers skills:
 
@@ -13,4 +13,8 @@ Here is the repository where we are going to practice our data wranglers skills:
 
 
 ## Analyzing the data from the csv files
+
+Now that we have cleaned some of the tables, let's try to conduct some data analyses to start exploring the data set:
+
+<https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis>
 
