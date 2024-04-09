@@ -2,7 +2,7 @@
 title: "Week 2 - Data Cleaning"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301/assignments/238393>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301/assignments/238393>{target="_blank"}**
 
 We cleaned the `Snow_cover` column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:
 
