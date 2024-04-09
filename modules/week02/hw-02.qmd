@@ -4,7 +4,7 @@ title: "Week 2 - Data Cleaning"
 
 **Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301/assignments/238393>**
 
-We cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:
+We cleaned the `Snow_cover` column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:
 
 1. Clean the `Water_cover` column to transform it into the correct data type and respect expectations for a percentage
 
