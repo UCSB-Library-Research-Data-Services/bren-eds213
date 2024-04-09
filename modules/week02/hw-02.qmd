@@ -22,8 +22,8 @@ You should start a new quarto document named `eds213_data_cleaning_assign_YOURNA
 
 ### The expectations are:
 
-- The qmd should run and
-- Output a csv file named `all_cover_fixed_YOURNAME.csv` in the `data/processed` folder
+- The qmd `eds213_data_cleaning_assign_YOURNAME.qmd` should run if your repo is cloned locally and
+- the code should output a csv file named `all_cover_fixed_YOURNAME.csv` in the `data/processed` folder
 
 
 ### On Canvas:
