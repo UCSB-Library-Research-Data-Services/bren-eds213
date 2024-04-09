@@ -12,7 +12,7 @@ We cleaned the Snow_cover column during class. Inspiring yourself from the steps
 
 3. Use the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the `Total_cover` column
 
-**Add comments on your quarto document about your decisions and assumptions**, this will be part of the grading.
+**Add comments to your quarto document about your decisions and assumptions**, this will be part of the grading.
 
 
 ### Setup
