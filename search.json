@@ -399,25 +399,95 @@
     "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
   },
   {
-    "objectID": "modules/week07/hw-07.html",
-    "href": "modules/week07/hw-07.html",
-    "title": "Week 7 - EML record",
+    "objectID": "modules/week07/index-07.html",
+    "href": "modules/week07/index-07.html",
+    "title": "Week 7 - Metadata standards",
     "section": "",
-    "text": "Each Capstone group should create an EML metadata record using the EML R Package for one of the analysis-ready datasets the project has generated or reused (consider a tabular dataset with 5-8 columns).\nAll groups must include the minimum elements covered in class, plus any additional attributes and descriptions required to describe your chosen dataset fully. For example, if attributes have specific units of measure, you should incorporate them into the code.\nExplore the package documentation, the README.md file you created for Week 4, and the important resources listed on Week 6 - Metadata standards.\nSubmit two files, the R script and the XML."
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
   },
   {
-    "objectID": "modules/week06/hw-06-3.html",
-    "href": "modules/week06/hw-06-3.html",
-    "title": "Week 6 - Characterizing egg variation",
+    "objectID": "modules/week07/index-07.html#learning-goals",
+    "href": "modules/week07/index-07.html#learning-goals",
+    "title": "Week 7 - Metadata standards",
     "section": "",
-    "text": "You read Egg Dimensions and Neonatal Mass of Shorebirds by Robert E. Ricklefs and want to see how the egg data we’ve been using in class compares to his results. Specifically, Ricklefs reported, “Coefficients of variation were 4 to 9% for egg volume” for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?\nThe “coefficient of variation,” or CV, is a unitless measure of the variation of a sample, defined as the standard deviation divided by the mean and multiplied by 100 to express as a percentage. Thus, a CV of 10% means the standard deviation is 10% of the mean value. For the purposes of this computation, we will copy Ricklefs and use as a proxy for egg volume the formula\n\\[ W^2 L \\]\nwhere \\(W\\) is egg width and \\(L\\) is egg length.\nYour task is to create a Python program that reads data from the ASDN database and uses Pandas to compute, for each species in the database (for which there is egg data), the coefficient of variation of volume using the above formula. There are many ways this can be done. Because this assignment is primarily about programming in Python, please follow the steps below. Please submit your Python code when done.\n\nStep 1\nCreate a query that will return the distinct species for which there is egg data (not all species and not all nests have egg data), so that you can then loop over those species. Your query should return two columns, species code and scientific name.\n\n\nStep 2\nAfter you’ve connected to the database and created a cursor c, iterate over the species like so:\nspecies_query = \"\"\"SELECT Code, Scientific_name FROM...\"\"\"\nfor row in c.execute(species_query):\n    species_code = row[0]\n    scientific_name = row[1]\n    # query egg data for that species (step 3)\n    # compute statistics and print results (step 4)\n\n\nStep 3\nYou will need to construct a query template that gathers egg data for a species that will be supplied as a parameter. You can compute the formula\n\\[ W^2 L \\]\nin SQL or in Pandas. For simplicity, SQL is suggested:\negg_query = \"\"\"SELECT Width*Width*Length AS Volume FROM...\"\"\"\nWithin the loop, you will want to execute the query on the current species in the loop iteration. You may use the Pandas function pd.read_sql to do so and also directly load the results into a dataframe:\ndf = pd.read_sql(egg_query, conn, ...)\nDo a help(pd.read_sql) to figure out how to pass parameters to a query.\n\n\nStep 4\nFinally, and still within your loop, you’ll want to compute statistics and print out the results:\ncv = round(df.Volume.std()/df.Volume.mean()*100, 2)\nprint(f\"{scientific_name} {cv}%\")\nYour output should look like this:\nCharadrius semipalmatus 8.99%\nPluvialis dominica 19.88%\nPluvialis squatarola 6.94%\nCalidris alpina 5.46%\nCalidris fuscicollis 16.77%\nPhalaropus fulicarius 4.65%\nArenaria interpres 21.12%\n\n\nAppendix\nIt’s not necessary to use pd.read_sql to get data into a dataframe, it’s just a convenience. To do so manually (and to show you it’s not that hard), imagine that your query returns three columns. Collect the row data into three separate lists, then manually create a dataframe specifying the contents as a dictionary:\nrows = c.execute(\"SELECT Species, Width, Length FROM...\").fetchall()\nspecies_column = [t[0] for t in rows]\nwidth_column = [t[1] for t in rows]\nlength_column = [t[2] for t in rows]\n\ndf = pd.DataFrame(\n    {\n        \"species\": species_column,\n        \"width\": width_column,\n        \"length\": length_column\n    }\n)"
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
   },
   {
-    "objectID": "modules/week06/hw-06-4.html",
-    "href": "modules/week06/hw-06-4.html",
-    "title": "Week 6 - Who were the winners?",
+    "objectID": "modules/week07/index-07.html#slides-and-other-materials",
+    "href": "modules/week07/index-07.html#slides-and-other-materials",
+    "title": "Week 7 - Metadata standards",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
+  },
+  {
+    "objectID": "modules/week07/index-07.html#recommended-readings",
+    "href": "modules/week07/index-07.html#recommended-readings",
+    "title": "Week 7 - Metadata standards",
+    "section": "Recommended readings",
+    "text": "Recommended readings\n\nGries, C., Hanson, P. C., O’Brien, M., Servilla, M., Vanderbilt, K., & Waide, R. (2023). The Environmental Data Initiative: Connecting the past to the future through data reuse. Ecology and Evolution, 13(1), e9592. https://doi.org/10.1002/ece3.9592\nLeipzig, J., Nüst, D., Hoyt, C. T., Ram, K., & Greenberg, J. (2021). The role of metadata in reproducible computational research. Patterns, 2(9), https://doi.org/10.1016/j.patter.2021.100322"
+  },
+  {
+    "objectID": "modules/week07/index-07.html#homework",
+    "href": "modules/week07/index-07.html#homework",
+    "title": "Week 7 - Metadata standards",
+    "section": "Homework",
+    "text": "Homework\nEML record"
+  },
+  {
+    "objectID": "modules/week06/hw-06-1.html",
+    "href": "modules/week06/hw-06-1.html",
+    "title": "Week 6 - Little Bobby Tables",
     "section": "",
-    "text": "At the conclusion of the ASDN project the PIs decided to hand out first, second, and third prizes to the observers who measured the most eggs. Who won? Please use R and dbplyr to answer this question, and please submit your R code. Your code should print out:\n# Ordered by: desc(total_eggs)\n  Name            total_eggs\n  &lt;chr&gt;                &lt;int&gt;\n1 Vanessa Loverti        163\n2 Dylan Kessler           87\n3 Richard Lanctot         50\nYou’ll want to load database tables using statements such as:\negg_table &lt;- tbl(conn, \"Bird_eggs\")\nand then use tidyverse grouping, summarization, joining, and other functions to compute the desired result.\nAlso, take your final expression and pipe it into show_query(). If you used multiple R statements, did dbplyr create a temporary table, or did it manage to do everything in one query? Did it limit to the first three rows using an R expression or an SQL LIMIT clause?"
+    "text": "View this classic XKCD cartoon:\n\n\n\nhttps://xkcd.com/327/\n\n\nFor the purposes of this problem you may assume that at some point the school’s software performs the query\nSELECT *\n    FROM Students\n    WHERE (name = '%s' AND year = 2023);\nwhere the student’s name is directly substituted for the %s. Explain exactly how Little Bobby Tables’ name can cause a catastrophe. Explain what happens to the AND year = 2023 clause in the query."
+  },
+  {
+    "objectID": "modules/week06/index-06.html",
+    "href": "modules/week06/index-06.html",
+    "title": "Week 6 - Programming with databases",
+    "section": "",
+    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
+  },
+  {
+    "objectID": "modules/week06/index-06.html#learning-objectives",
+    "href": "modules/week06/index-06.html#learning-objectives",
+    "title": "Week 6 - Programming with databases",
+    "section": "",
+    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
+  },
+  {
+    "objectID": "modules/week06/index-06.html#slides-and-other-materials",
+    "href": "modules/week06/index-06.html#slides-and-other-materials",
+    "title": "Week 6 - Programming with databases",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-06.pptx\nCoding transcripts:\n\ntranscript-06-mon.ipynb\ntranscript-06-wed-python.ipynb\ntranscript-06-wed-r.R"
+  },
+  {
+    "objectID": "modules/week06/index-06.html#resources",
+    "href": "modules/week06/index-06.html#resources",
+    "title": "Week 6 - Programming with databases",
+    "section": "Resources",
+    "text": "Resources\n\nhttps://peps.python.org/pep-0249/\n\nCommon Python-RDBMS API\n\nhttps://duckdb.org/docs/api/python/overview\n\nPython DuckDB module\n\nhttps://dbplyr.tidyverse.org/\n\nR dbplyr documentation"
+  },
+  {
+    "objectID": "modules/week06/index-06.html#homework",
+    "href": "modules/week06/index-06.html#homework",
+    "title": "Week 6 - Programming with databases",
+    "section": "Homework",
+    "text": "Homework\nLittle Bobby Tables\nWho’s the culprit?\nCharacterizing egg variation\nWho were the winners?"
+  },
+  {
+    "objectID": "modules/week06/hw-06-2.html",
+    "href": "modules/week06/hw-06-2.html",
+    "title": "Week 6 - Who’s the culprit?",
+    "section": "",
+    "text": "You’re reading up on how eggs are aged by floating them in water 1:\nwhen you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly 36 nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return exactly one row, the answer. That is, your query should produce:"
+  },
+  {
+    "objectID": "modules/week06/hw-06-2.html#footnotes",
+    "href": "modules/week06/hw-06-2.html#footnotes",
+    "title": "Week 6 - Who’s the culprit?",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nLiebezeit, Joseph R., et al. “Assessing the Development of Shorebird Eggs Using the Flotation Method: Species-Specific and Generalized Regression Models.” The Condor, vol. 109, no. 1, 2007, pp. 32–47. JSTOR, http://www.jstor.org/stable/4122529↩︎"
   },
   {
     "objectID": "index.html",
@@ -483,95 +553,32 @@
     "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL part 1 & DuckDB\n\n\n4\nImporting data in the database + SQL part 2\n\n\n5\nAnalyzing the bird database using SQL + bash programming\n\n\n6\nUsing R & Python to query databases\n\n\n7\nDocumenting your work: metadata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication"
   },
   {
-    "objectID": "modules/week06/hw-06-2.html",
-    "href": "modules/week06/hw-06-2.html",
-    "title": "Week 6 - Who’s the culprit?",
+    "objectID": "modules/week06/hw-06-4.html",
+    "href": "modules/week06/hw-06-4.html",
+    "title": "Week 6 - Who were the winners?",
     "section": "",
-    "text": "You’re reading up on how eggs are aged by floating them in water 1:\nwhen you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly 36 nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return exactly one row, the answer. That is, your query should produce:"
+    "text": "At the conclusion of the ASDN project the PIs decided to hand out first, second, and third prizes to the observers who measured the most eggs. Who won? Please use R and dbplyr to answer this question, and please submit your R code. Your code should print out:\n# Ordered by: desc(total_eggs)\n  Name            total_eggs\n  &lt;chr&gt;                &lt;int&gt;\n1 Vanessa Loverti        163\n2 Dylan Kessler           87\n3 Richard Lanctot         50\nYou’ll want to load database tables using statements such as:\negg_table &lt;- tbl(conn, \"Bird_eggs\")\nand then use tidyverse grouping, summarization, joining, and other functions to compute the desired result.\nAlso, take your final expression and pipe it into show_query(). If you used multiple R statements, did dbplyr create a temporary table, or did it manage to do everything in one query? Did it limit to the first three rows using an R expression or an SQL LIMIT clause?"
   },
   {
-    "objectID": "modules/week06/hw-06-2.html#footnotes",
-    "href": "modules/week06/hw-06-2.html#footnotes",
-    "title": "Week 6 - Who’s the culprit?",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nLiebezeit, Joseph R., et al. “Assessing the Development of Shorebird Eggs Using the Flotation Method: Species-Specific and Generalized Regression Models.” The Condor, vol. 109, no. 1, 2007, pp. 32–47. JSTOR, http://www.jstor.org/stable/4122529↩︎"
-  },
-  {
-    "objectID": "modules/week06/index-06.html",
-    "href": "modules/week06/index-06.html",
-    "title": "Week 6 - Programming with databases",
+    "objectID": "modules/week06/hw-06-3.html",
+    "href": "modules/week06/hw-06-3.html",
+    "title": "Week 6 - Characterizing egg variation",
     "section": "",
-    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
+    "text": "You read Egg Dimensions and Neonatal Mass of Shorebirds by Robert E. Ricklefs and want to see how the egg data we’ve been using in class compares to his results. Specifically, Ricklefs reported, “Coefficients of variation were 4 to 9% for egg volume” for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?\nThe “coefficient of variation,” or CV, is a unitless measure of the variation of a sample, defined as the standard deviation divided by the mean and multiplied by 100 to express as a percentage. Thus, a CV of 10% means the standard deviation is 10% of the mean value. For the purposes of this computation, we will copy Ricklefs and use as a proxy for egg volume the formula\n\\[ W^2 L \\]\nwhere \\(W\\) is egg width and \\(L\\) is egg length.\nYour task is to create a Python program that reads data from the ASDN database and uses Pandas to compute, for each species in the database (for which there is egg data), the coefficient of variation of volume using the above formula. There are many ways this can be done. Because this assignment is primarily about programming in Python, please follow the steps below. Please submit your Python code when done.\n\nStep 1\nCreate a query that will return the distinct species for which there is egg data (not all species and not all nests have egg data), so that you can then loop over those species. Your query should return two columns, species code and scientific name.\n\n\nStep 2\nAfter you’ve connected to the database and created a cursor c, iterate over the species like so:\nspecies_query = \"\"\"SELECT Code, Scientific_name FROM...\"\"\"\nfor row in c.execute(species_query):\n    species_code = row[0]\n    scientific_name = row[1]\n    # query egg data for that species (step 3)\n    # compute statistics and print results (step 4)\n\n\nStep 3\nYou will need to construct a query template that gathers egg data for a species that will be supplied as a parameter. You can compute the formula\n\\[ W^2 L \\]\nin SQL or in Pandas. For simplicity, SQL is suggested:\negg_query = \"\"\"SELECT Width*Width*Length AS Volume FROM...\"\"\"\nWithin the loop, you will want to execute the query on the current species in the loop iteration. You may use the Pandas function pd.read_sql to do so and also directly load the results into a dataframe:\ndf = pd.read_sql(egg_query, conn, ...)\nDo a help(pd.read_sql) to figure out how to pass parameters to a query.\n\n\nStep 4\nFinally, and still within your loop, you’ll want to compute statistics and print out the results:\ncv = round(df.Volume.std()/df.Volume.mean()*100, 2)\nprint(f\"{scientific_name} {cv}%\")\nYour output should look like this:\nCharadrius semipalmatus 8.99%\nPluvialis dominica 19.88%\nPluvialis squatarola 6.94%\nCalidris alpina 5.46%\nCalidris fuscicollis 16.77%\nPhalaropus fulicarius 4.65%\nArenaria interpres 21.12%\n\n\nAppendix\nIt’s not necessary to use pd.read_sql to get data into a dataframe, it’s just a convenience. To do so manually (and to show you it’s not that hard), imagine that your query returns three columns. Collect the row data into three separate lists, then manually create a dataframe specifying the contents as a dictionary:\nrows = c.execute(\"SELECT Species, Width, Length FROM...\").fetchall()\nspecies_column = [t[0] for t in rows]\nwidth_column = [t[1] for t in rows]\nlength_column = [t[2] for t in rows]\n\ndf = pd.DataFrame(\n    {\n        \"species\": species_column,\n        \"width\": width_column,\n        \"length\": length_column\n    }\n)"
   },
   {
-    "objectID": "modules/week06/index-06.html#learning-objectives",
-    "href": "modules/week06/index-06.html#learning-objectives",
-    "title": "Week 6 - Programming with databases",
+    "objectID": "modules/week07/hw-07.html",
+    "href": "modules/week07/hw-07.html",
+    "title": "Week 7 - EML record",
     "section": "",
-    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
+    "text": "Each Capstone group should create an EML metadata record using the EML R Package for one of the analysis-ready datasets the project has generated or reused (consider a tabular dataset with 5-8 columns).\nAll groups must include the minimum elements covered in class, plus any additional attributes and descriptions required to describe your chosen dataset fully. For example, if attributes have specific units of measure, you should incorporate them into the code.\nExplore the package documentation, the README.md file you created for Week 4, and the important resources listed on Week 6 - Metadata standards.\nSubmit two files, the R script and the XML."
   },
   {
-    "objectID": "modules/week06/index-06.html#slides-and-other-materials",
-    "href": "modules/week06/index-06.html#slides-and-other-materials",
-    "title": "Week 6 - Programming with databases",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-06.pptx\nCoding transcripts:\n\ntranscript-06-mon.ipynb\ntranscript-06-wed-python.ipynb\ntranscript-06-wed-r.R"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#resources",
-    "href": "modules/week06/index-06.html#resources",
-    "title": "Week 6 - Programming with databases",
-    "section": "Resources",
-    "text": "Resources\n\nhttps://peps.python.org/pep-0249/\n\nCommon Python-RDBMS API\n\nhttps://duckdb.org/docs/api/python/overview\n\nPython DuckDB module\n\nhttps://dbplyr.tidyverse.org/\n\nR dbplyr documentation"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#homework",
-    "href": "modules/week06/index-06.html#homework",
-    "title": "Week 6 - Programming with databases",
-    "section": "Homework",
-    "text": "Homework\nLittle Bobby Tables\nWho’s the culprit?\nCharacterizing egg variation\nWho were the winners?"
-  },
-  {
-    "objectID": "modules/week06/hw-06-1.html",
-    "href": "modules/week06/hw-06-1.html",
-    "title": "Week 6 - Little Bobby Tables",
+    "objectID": "modules/week02/hw-02.html",
+    "href": "modules/week02/hw-02.html",
+    "title": "Week 2 - Data Cleaning",
     "section": "",
-    "text": "View this classic XKCD cartoon:\n\n\n\nhttps://xkcd.com/327/\n\n\nFor the purposes of this problem you may assume that at some point the school’s software performs the query\nSELECT *\n    FROM Students\n    WHERE (name = '%s' AND year = 2023);\nwhere the student’s name is directly substituted for the %s. Explain exactly how Little Bobby Tables’ name can cause a catastrophe. Explain what happens to the AND year = 2023 clause in the query."
-  },
-  {
-    "objectID": "modules/week07/index-07.html",
-    "href": "modules/week07/index-07.html",
-    "title": "Week 7 - Metadata standards",
-    "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#learning-goals",
-    "href": "modules/week07/index-07.html#learning-goals",
-    "title": "Week 7 - Metadata standards",
-    "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#slides-and-other-materials",
-    "href": "modules/week07/index-07.html#slides-and-other-materials",
-    "title": "Week 7 - Metadata standards",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#recommended-readings",
-    "href": "modules/week07/index-07.html#recommended-readings",
-    "title": "Week 7 - Metadata standards",
-    "section": "Recommended readings",
-    "text": "Recommended readings\n\nGries, C., Hanson, P. C., O’Brien, M., Servilla, M., Vanderbilt, K., & Waide, R. (2023). The Environmental Data Initiative: Connecting the past to the future through data reuse. Ecology and Evolution, 13(1), e9592. https://doi.org/10.1002/ece3.9592\nLeipzig, J., Nüst, D., Hoyt, C. T., Ram, K., & Greenberg, J. (2021). The role of metadata in reproducible computational research. Patterns, 2(9), https://doi.org/10.1016/j.patter.2021.100322"
-  },
-  {
-    "objectID": "modules/week07/index-07.html#homework",
-    "href": "modules/week07/index-07.html#homework",
-    "title": "Week 7 - Metadata standards",
-    "section": "Homework",
-    "text": "Homework\nEML record"
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments on your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd should run and Output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder.\n\n\n\nOn Canvas:\nAdd the URL to your fork on GitHub in the Website URL\nUpload the qmd & csv file your code generated to Canvas"
   },
   {
     "objectID": "modules/week03/hw-03-3.html",
