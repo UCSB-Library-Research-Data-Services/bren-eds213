@@ -1,0 +1,33 @@
+---
+title: "Week 2 - Data Cleaning"
+---
+
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301/assignments/238393>**
+
+We cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:
+
+1. Clean the `Water_cover` column to transform it into the correct data type and respect expectations for a percentage
+
+2. Clean the `Land_cover` column to transform it into the correct data type and respect expectations for a percentage
+
+3. Use the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the `Total_cover` column
+
+**Add comments on your quarto document about your decisions and assumptions**, this will be part of the grading.
+
+
+### Setup
+
+You should start a new quarto document named `eds213_data_cleaning_assign_YOURNAME.qmd` in your fork of the GitHub repository [bren-meds213-data-cleaning](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning).
+
+
+### The expectations are:
+
+- The qmd should run and
+Output a csv file named `all_cover_fixed_YOURNAME.csv` in the `data/processed` folder.
+
+
+### On Canvas:
+
+Add the URL to your fork on GitHub in the Website URL
+
+Upload the qmd & csv file your code generated to Canvas
