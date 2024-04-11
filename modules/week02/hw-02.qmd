@@ -25,7 +25,7 @@ You should start a new quarto document named `eds213_data_cleaning_assign_YOURNA
 - The qmd `eds213_data_cleaning_assign_YOURNAME.qmd` should run if your repo is cloned locally and
 - the code should output a csv file named `all_cover_fixed_YOURNAME.csv` in the `data/processed` folder
 
-**Note**: We recommend to start by reading in the csv file with the corrected `Snow_cover` column (`data/processed/snow_cover.csv`) we generated during class (my code [here](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/later/data-cleaning.qmd))
+**Note**: We recommend starting by importing the csv file with the corrected `Snow_cover` column (`data/processed/snow_cover.csv`) we generated during class (my code [here](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/later/data-cleaning.qmd))
 
 ### On Canvas:
 
