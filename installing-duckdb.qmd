@@ -5,7 +5,7 @@ title: "Installing duckDB"
 
 ## Installation
 
-DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/
+DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: <https://duckdb.org/docs/installation/>
 
 
 ## Visual code integration (optional)
@@ -28,17 +28,21 @@ In Visual Code:
 
 ```
 
+OR alternative method to set this up: 
+
+Under the main VS menu, go to _Settings_ -> Keyboard Shortcuts, search for "run selected", the "run selected text in active terminal" will be one of the options.  Set the shift-enter keypress by double-clicking.  Right-click on the _When_ column, select _Change When Expression_, and add `editorLangId == 'sql'` to restrict to just SQL files and not every kind of file.
+
 *Now you can hit <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!*
 
 ## Test
 
 Let's test our new installation using visual code
 
-1. open a terminal from the _terminal menu -> new terminal_
+1. open a terminal from the _terminal_ menu -> _new terminal_
 
-2. In the terminal type `duckdb`, this should start duckdb
+2. In the terminal type `duckdb`, this should start duckdb 
 
-3. Open a New text file: _file menu -> new text file_
+3. Open a New text file: _file_ menu -> _new text file_
 
 4. Copy paste the following code: 
 
