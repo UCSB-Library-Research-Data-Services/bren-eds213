@@ -14,7 +14,7 @@ title: "Week 1 - Relational databases and data modeling"
 
 ## Resources
 
-1.  <https://learning.nceas.ucsb.edu/2022-04-arctic/data-modeling-essentials.html>
+1.  <https://learning.nceas.ucsb.edu/2023-06-delta/session_09.html>
 
     -   *Very brief introduction to data modeling, ties into "tidy data."*
 
