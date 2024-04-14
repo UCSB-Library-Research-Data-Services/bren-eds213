@@ -340,21 +340,21 @@
     "href": "modules/week03/index-03.html",
     "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "",
-    "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+    "text": "Understand the relationship of SQL to relational databases\nUnderstand how local databases differ from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
   },
   {
     "objectID": "modules/week03/index-03.html#learning-objectives",
     "href": "modules/week03/index-03.html#learning-objectives",
     "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "",
-    "text": "Understand the relationship of SQL to relational databases\nUnderstand how SQLite differs from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+    "text": "Understand the relationship of SQL to relational databases\nUnderstand how local databases differ from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
   },
   {
     "objectID": "modules/week03/index-03.html#slides-and-other-materials",
     "href": "modules/week03/index-03.html#slides-and-other-materials",
     "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
+    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n(forthcoming)\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
   },
   {
     "objectID": "modules/week03/index-03.html#resources",
@@ -364,130 +364,39 @@
     "text": "Resources\n\nhttp://swcarpentry.github.io/sql-novice-survey/\n\nGood Carpentry lesson, our lesson is drawn from this.\n\nC.J. Date and Hugh Darwen (1993). A Guide to the SQL Standard. 3rd ed. Reading, MA: Addison-Wesley.\nAccess via Library Catalog\n\nThe ANSI standard.\n\nJoe Celko (1995). Joe Celko’s SQL For Smarties: Advanced SQL Programming. San Francisco, CA: Morgan Kaufmann.\nAccess via Library Catalog\n\nThis guy is an SQL guru. Newer versions of this book are available online, check the Library catalog (a bug is preventing me from linking directly).\n\nGrant Allen and Mike Owens (2010). The Definitive Guide to SQLite. 2nd ed. Berkeley, CA: Apress.\nAccess via Library Catalog\n\nGood reference. Can access online!\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
   },
   {
-    "objectID": "modules/week03/index-03.html#homework",
-    "href": "modules/week03/index-03.html#homework",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
-    "section": "Homework",
-    "text": "Homework\nSQL problem 1\nSQL problem 2\nSQL problem 3"
-  },
-  {
-    "objectID": "modules/week03/hw-03-1.html",
-    "href": "modules/week03/hw-03-1.html",
-    "title": "Week 3 - SQL problem 1",
+    "objectID": "modules/week03/hw-03-3.html",
+    "href": "modules/week03/hw-03-3.html",
+    "title": "Week 3 - SQL problem 3",
     "section": "",
-    "text": "It’s a useful skill in life (I’m not being rhetorical, I really mean that, it’s a useful skill) to be able to construct an experiment to answer a hypothesis. Suppose you’re not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn’t have access to any documentation, or didn’t trust it. What experiment could you run to find out what happens?\nThere are two parts to this problem.\n\nPart 1\nConstruct an SQL experiment to determine the answer to the question above. Does SQL abort with some kind of error? Does it ignore NULL values? Do the NULL values somehow factor into the calculation, and if so, how?\nI would suggest you start by creating a table (in the bird database, in a new database, in a transient in-memory database, doesn’t matter) with a single column that has data type REAL (for part 2 below, it must be REAL). You can make your table a temp table or not, your choice.\nCREATE TEMP TABLE mytable... ;\nNow insert some real numbers and at least one NULL into your table.\nINSERT INTO mytable... ;\n(Hmm, can you insert multiple rows at once, or do you have to do a separate INSERT for each row?)\nOnce you have your little table constructed, try doing an AVG on the column and see what is returned. What would the average be if the function ignored NULLs? What would the average be if it somehow factored them in? What is actually returned?\nPlease submit both your SQL and your answer to the question about how AVG operates in the presence of NULL values.\n\n\nPart 2\nIf SQL didn’t have an AVG function, you could compute the average value of a column by doing something like this on your table:\nSELECT SUM(mycolumn)/COUNT(*) FROM mytable;\nSELECT SUM(mycolumn)/COUNT(mycolumn) FROM mytable;\nWhich query above is correct? Please explain why.\nNow that you’re done with your table, you can delete it if desired:\nDROP TABLE mytable;"
+    "text": "Your mission, should you choose to accept it, is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:\n┌─────────────────────────┬──────────────────┐\n│     Scientific_name     │  Max_avg_volume  │\n├─────────────────────────┼──────────────────┤\n│ Pluvialis squatarola    │ 36541.8531755592 │\n│ Pluvialis dominica      │ 33847.8550096089 │\n│ Arenaria interpres      │ 23338.620942275  │\n│ Calidris fuscicollis    │ 13277.1428014342 │\n│ Calidris alpina         │ 12196.2368406617 │\n│ Charadrius semipalmatus │ 11266.9746753467 │\n│ Phalaropus fulicarius   │ 8906.7745740725  │\n└─────────────────────────┴──────────────────┘\n(By the way, regarding the leader in egg size above, Birds of the World says that Pluvialis squatarola’s eggs are “Exceptionally large for size of female (ca. 16% weight of female)”.)\nTo calculate the volume of an egg, use the simplified formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length. You can use 3.14 for \\(\\pi\\). (The real formula takes into account the ovoid shape of eggs, but only width and length are available to us here.)\nA good place to start is just to group bird eggs by nest (i.e., Nest_ID) and compute average volumes:\nCREATE TEMP TABLE Averages AS\n    SELECT Nest_ID, AVG(...) AS Avg_volume\n        FROM ...\n        GROUP BY ...;\nYou can now join that table with Bird_nests, so that you can group by species, and also join with the Species table to pick up scientific names. To do just the first of those joins, you could say something like\nSELECT Species, MAX(...)\n    FROM Bird_nests, Averages USING (Nest_ID)\n    GROUP BY ...;\nThat’s not the whole story, we want scientific names not species codes. Another join is needed. A couple strategies here. One, you can modify the above query to also join with the Species table (you’ll need to replace USING with ON …). Two, you can save the above as another temp table and join it to Species separately.\nDon’t forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.\nPlease submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement."
   },
   {
-    "objectID": "modules/week02/index-02.html",
-    "href": "modules/week02/index-02.html",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "objectID": "modules/week02/hw-02.html",
+    "href": "modules/week02/hw-02.html",
+    "title": "Week 2 - Data Cleaning",
     "section": "",
-    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments to your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd eds213_data_cleaning_assign_YOURNAME.qmd should run if your repo is cloned locally and\nthe code should output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder\n\nNote: We recommend starting by importing the csv file with the corrected Snow_cover column (data/processed/snow_cover.csv) we generated during class (my code here)\n\n\nOn Canvas:\n\nAdd the URL to your fork on GitHub in the Website URL slot\nUpload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)"
   },
   {
-    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
-    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "objectID": "modules/week07/hw-07.html",
+    "href": "modules/week07/hw-07.html",
+    "title": "Week 7 - EML record",
     "section": "",
-    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+    "text": "Each Capstone group should create an EML metadata record using the EML R Package for one of the analysis-ready datasets the project has generated or reused (consider a tabular dataset with 5-8 columns).\nAll groups must include the minimum elements covered in class, plus any additional attributes and descriptions required to describe your chosen dataset fully. For example, if attributes have specific units of measure, you should incorporate them into the code.\nExplore the package documentation, the README.md file you created for Week 4, and the important resources listed on Week 6 - Metadata standards.\nSubmit two files, the R script and the XML."
   },
   {
-    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
-    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
-    "section": "Analyzing the data from the csv files",
-    "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
-  },
-  {
-    "objectID": "modules/week07/index-07.html",
-    "href": "modules/week07/index-07.html",
-    "title": "Week 7 - Metadata standards",
+    "objectID": "modules/week06/hw-06-3.html",
+    "href": "modules/week06/hw-06-3.html",
+    "title": "Week 6 - Characterizing egg variation",
     "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
+    "text": "You read Egg Dimensions and Neonatal Mass of Shorebirds by Robert E. Ricklefs and want to see how the egg data we’ve been using in class compares to his results. Specifically, Ricklefs reported, “Coefficients of variation were 4 to 9% for egg volume” for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?\nThe “coefficient of variation,” or CV, is a unitless measure of the variation of a sample, defined as the standard deviation divided by the mean and multiplied by 100 to express as a percentage. Thus, a CV of 10% means the standard deviation is 10% of the mean value. For the purposes of this computation, we will copy Ricklefs and use as a proxy for egg volume the formula\n\\[ W^2 L \\]\nwhere \\(W\\) is egg width and \\(L\\) is egg length.\nYour task is to create a Python program that reads data from the ASDN database and uses Pandas to compute, for each species in the database (for which there is egg data), the coefficient of variation of volume using the above formula. There are many ways this can be done. Because this assignment is primarily about programming in Python, please follow the steps below. Please submit your Python code when done.\n\nStep 1\nCreate a query that will return the distinct species for which there is egg data (not all species and not all nests have egg data), so that you can then loop over those species. Your query should return two columns, species code and scientific name.\n\n\nStep 2\nAfter you’ve connected to the database and created a cursor c, iterate over the species like so:\nspecies_query = \"\"\"SELECT Code, Scientific_name FROM...\"\"\"\nfor row in c.execute(species_query):\n    species_code = row[0]\n    scientific_name = row[1]\n    # query egg data for that species (step 3)\n    # compute statistics and print results (step 4)\n\n\nStep 3\nYou will need to construct a query template that gathers egg data for a species that will be supplied as a parameter. You can compute the formula\n\\[ W^2 L \\]\nin SQL or in Pandas. For simplicity, SQL is suggested:\negg_query = \"\"\"SELECT Width*Width*Length AS Volume FROM...\"\"\"\nWithin the loop, you will want to execute the query on the current species in the loop iteration. You may use the Pandas function pd.read_sql to do so and also directly load the results into a dataframe:\ndf = pd.read_sql(egg_query, conn, ...)\nDo a help(pd.read_sql) to figure out how to pass parameters to a query.\n\n\nStep 4\nFinally, and still within your loop, you’ll want to compute statistics and print out the results:\ncv = round(df.Volume.std()/df.Volume.mean()*100, 2)\nprint(f\"{scientific_name} {cv}%\")\nYour output should look like this:\nCharadrius semipalmatus 8.99%\nPluvialis dominica 19.88%\nPluvialis squatarola 6.94%\nCalidris alpina 5.46%\nCalidris fuscicollis 16.77%\nPhalaropus fulicarius 4.65%\nArenaria interpres 21.12%\n\n\nAppendix\nIt’s not necessary to use pd.read_sql to get data into a dataframe, it’s just a convenience. To do so manually (and to show you it’s not that hard), imagine that your query returns three columns. Collect the row data into three separate lists, then manually create a dataframe specifying the contents as a dictionary:\nrows = c.execute(\"SELECT Species, Width, Length FROM...\").fetchall()\nspecies_column = [t[0] for t in rows]\nwidth_column = [t[1] for t in rows]\nlength_column = [t[2] for t in rows]\n\ndf = pd.DataFrame(\n    {\n        \"species\": species_column,\n        \"width\": width_column,\n        \"length\": length_column\n    }\n)"
   },
   {
-    "objectID": "modules/week07/index-07.html#learning-goals",
-    "href": "modules/week07/index-07.html#learning-goals",
-    "title": "Week 7 - Metadata standards",
+    "objectID": "modules/week06/hw-06-4.html",
+    "href": "modules/week06/hw-06-4.html",
+    "title": "Week 6 - Who were the winners?",
     "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#slides-and-other-materials",
-    "href": "modules/week07/index-07.html#slides-and-other-materials",
-    "title": "Week 7 - Metadata standards",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#recommended-readings",
-    "href": "modules/week07/index-07.html#recommended-readings",
-    "title": "Week 7 - Metadata standards",
-    "section": "Recommended readings",
-    "text": "Recommended readings\n\nGries, C., Hanson, P. C., O’Brien, M., Servilla, M., Vanderbilt, K., & Waide, R. (2023). The Environmental Data Initiative: Connecting the past to the future through data reuse. Ecology and Evolution, 13(1), e9592. https://doi.org/10.1002/ece3.9592\nLeipzig, J., Nüst, D., Hoyt, C. T., Ram, K., & Greenberg, J. (2021). The role of metadata in reproducible computational research. Patterns, 2(9), https://doi.org/10.1016/j.patter.2021.100322"
-  },
-  {
-    "objectID": "modules/week07/index-07.html#homework",
-    "href": "modules/week07/index-07.html#homework",
-    "title": "Week 7 - Metadata standards",
-    "section": "Homework",
-    "text": "Homework\nEML record"
-  },
-  {
-    "objectID": "modules/week06/hw-06-1.html",
-    "href": "modules/week06/hw-06-1.html",
-    "title": "Week 6 - Little Bobby Tables",
-    "section": "",
-    "text": "View this classic XKCD cartoon:\n\n\n\nhttps://xkcd.com/327/\n\n\nFor the purposes of this problem you may assume that at some point the school’s software performs the query\nSELECT *\n    FROM Students\n    WHERE (name = '%s' AND year = 2023);\nwhere the student’s name is directly substituted for the %s. Explain exactly how Little Bobby Tables’ name can cause a catastrophe. Explain what happens to the AND year = 2023 clause in the query."
-  },
-  {
-    "objectID": "modules/week06/index-06.html",
-    "href": "modules/week06/index-06.html",
-    "title": "Week 6 - Programming with databases",
-    "section": "",
-    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#learning-objectives",
-    "href": "modules/week06/index-06.html#learning-objectives",
-    "title": "Week 6 - Programming with databases",
-    "section": "",
-    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#slides-and-other-materials",
-    "href": "modules/week06/index-06.html#slides-and-other-materials",
-    "title": "Week 6 - Programming with databases",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-06.pptx\nCoding transcripts:\n\ntranscript-06-mon.ipynb\ntranscript-06-wed-python.ipynb\ntranscript-06-wed-r.R"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#resources",
-    "href": "modules/week06/index-06.html#resources",
-    "title": "Week 6 - Programming with databases",
-    "section": "Resources",
-    "text": "Resources\n\nhttps://peps.python.org/pep-0249/\n\nCommon Python-RDBMS API\n\nhttps://duckdb.org/docs/api/python/overview\n\nPython DuckDB module\n\nhttps://dbplyr.tidyverse.org/\n\nR dbplyr documentation"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#homework",
-    "href": "modules/week06/index-06.html#homework",
-    "title": "Week 6 - Programming with databases",
-    "section": "Homework",
-    "text": "Homework\nLittle Bobby Tables\nWho’s the culprit?\nCharacterizing egg variation\nWho were the winners?"
-  },
-  {
-    "objectID": "modules/week06/hw-06-2.html",
-    "href": "modules/week06/hw-06-2.html",
-    "title": "Week 6 - Who’s the culprit?",
-    "section": "",
-    "text": "You’re reading up on how eggs are aged by floating them in water 1:\nwhen you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly 36 nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return exactly one row, the answer. That is, your query should produce:"
-  },
-  {
-    "objectID": "modules/week06/hw-06-2.html#footnotes",
-    "href": "modules/week06/hw-06-2.html#footnotes",
-    "title": "Week 6 - Who’s the culprit?",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nLiebezeit, Joseph R., et al. “Assessing the Development of Shorebird Eggs Using the Flotation Method: Species-Specific and Generalized Regression Models.” The Condor, vol. 109, no. 1, 2007, pp. 32–47. JSTOR, http://www.jstor.org/stable/4122529↩︎"
+    "text": "At the conclusion of the ASDN project the PIs decided to hand out first, second, and third prizes to the observers who measured the most eggs. Who won? Please use R and dbplyr to answer this question, and please submit your R code. Your code should print out:\n# Ordered by: desc(total_eggs)\n  Name            total_eggs\n  &lt;chr&gt;                &lt;int&gt;\n1 Vanessa Loverti        163\n2 Dylan Kessler           87\n3 Richard Lanctot         50\nYou’ll want to load database tables using statements such as:\negg_table &lt;- tbl(conn, \"Bird_eggs\")\nand then use tidyverse grouping, summarization, joining, and other functions to compute the desired result.\nAlso, take your final expression and pipe it into show_query(). If you used multiple R statements, did dbplyr create a temporary table, or did it manage to do everything in one query? Did it limit to the first three rows using an R expression or an SQL LIMIT clause?"
   },
   {
     "objectID": "index.html",
@@ -553,123 +462,123 @@
     "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL part 1 & DuckDB\n\n\n4\nImporting data in the database + SQL part 2\n\n\n5\nAnalyzing the bird database using SQL + bash programming\n\n\n6\nUsing R & Python to query databases\n\n\n7\nDocumenting your work: metadata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication"
   },
   {
-    "objectID": "modules/week06/hw-06-4.html",
-    "href": "modules/week06/hw-06-4.html",
-    "title": "Week 6 - Who were the winners?",
+    "objectID": "modules/week06/hw-06-2.html",
+    "href": "modules/week06/hw-06-2.html",
+    "title": "Week 6 - Who’s the culprit?",
     "section": "",
-    "text": "At the conclusion of the ASDN project the PIs decided to hand out first, second, and third prizes to the observers who measured the most eggs. Who won? Please use R and dbplyr to answer this question, and please submit your R code. Your code should print out:\n# Ordered by: desc(total_eggs)\n  Name            total_eggs\n  &lt;chr&gt;                &lt;int&gt;\n1 Vanessa Loverti        163\n2 Dylan Kessler           87\n3 Richard Lanctot         50\nYou’ll want to load database tables using statements such as:\negg_table &lt;- tbl(conn, \"Bird_eggs\")\nand then use tidyverse grouping, summarization, joining, and other functions to compute the desired result.\nAlso, take your final expression and pipe it into show_query(). If you used multiple R statements, did dbplyr create a temporary table, or did it manage to do everything in one query? Did it limit to the first three rows using an R expression or an SQL LIMIT clause?"
+    "text": "You’re reading up on how eggs are aged by floating them in water 1:\nwhen you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly 36 nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return exactly one row, the answer. That is, your query should produce:"
   },
   {
-    "objectID": "modules/week06/hw-06-3.html",
-    "href": "modules/week06/hw-06-3.html",
-    "title": "Week 6 - Characterizing egg variation",
+    "objectID": "modules/week06/hw-06-2.html#footnotes",
+    "href": "modules/week06/hw-06-2.html#footnotes",
+    "title": "Week 6 - Who’s the culprit?",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nLiebezeit, Joseph R., et al. “Assessing the Development of Shorebird Eggs Using the Flotation Method: Species-Specific and Generalized Regression Models.” The Condor, vol. 109, no. 1, 2007, pp. 32–47. JSTOR, http://www.jstor.org/stable/4122529↩︎"
+  },
+  {
+    "objectID": "modules/week06/index-06.html",
+    "href": "modules/week06/index-06.html",
+    "title": "Week 6 - Programming with databases",
     "section": "",
-    "text": "You read Egg Dimensions and Neonatal Mass of Shorebirds by Robert E. Ricklefs and want to see how the egg data we’ve been using in class compares to his results. Specifically, Ricklefs reported, “Coefficients of variation were 4 to 9% for egg volume” for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?\nThe “coefficient of variation,” or CV, is a unitless measure of the variation of a sample, defined as the standard deviation divided by the mean and multiplied by 100 to express as a percentage. Thus, a CV of 10% means the standard deviation is 10% of the mean value. For the purposes of this computation, we will copy Ricklefs and use as a proxy for egg volume the formula\n\\[ W^2 L \\]\nwhere \\(W\\) is egg width and \\(L\\) is egg length.\nYour task is to create a Python program that reads data from the ASDN database and uses Pandas to compute, for each species in the database (for which there is egg data), the coefficient of variation of volume using the above formula. There are many ways this can be done. Because this assignment is primarily about programming in Python, please follow the steps below. Please submit your Python code when done.\n\nStep 1\nCreate a query that will return the distinct species for which there is egg data (not all species and not all nests have egg data), so that you can then loop over those species. Your query should return two columns, species code and scientific name.\n\n\nStep 2\nAfter you’ve connected to the database and created a cursor c, iterate over the species like so:\nspecies_query = \"\"\"SELECT Code, Scientific_name FROM...\"\"\"\nfor row in c.execute(species_query):\n    species_code = row[0]\n    scientific_name = row[1]\n    # query egg data for that species (step 3)\n    # compute statistics and print results (step 4)\n\n\nStep 3\nYou will need to construct a query template that gathers egg data for a species that will be supplied as a parameter. You can compute the formula\n\\[ W^2 L \\]\nin SQL or in Pandas. For simplicity, SQL is suggested:\negg_query = \"\"\"SELECT Width*Width*Length AS Volume FROM...\"\"\"\nWithin the loop, you will want to execute the query on the current species in the loop iteration. You may use the Pandas function pd.read_sql to do so and also directly load the results into a dataframe:\ndf = pd.read_sql(egg_query, conn, ...)\nDo a help(pd.read_sql) to figure out how to pass parameters to a query.\n\n\nStep 4\nFinally, and still within your loop, you’ll want to compute statistics and print out the results:\ncv = round(df.Volume.std()/df.Volume.mean()*100, 2)\nprint(f\"{scientific_name} {cv}%\")\nYour output should look like this:\nCharadrius semipalmatus 8.99%\nPluvialis dominica 19.88%\nPluvialis squatarola 6.94%\nCalidris alpina 5.46%\nCalidris fuscicollis 16.77%\nPhalaropus fulicarius 4.65%\nArenaria interpres 21.12%\n\n\nAppendix\nIt’s not necessary to use pd.read_sql to get data into a dataframe, it’s just a convenience. To do so manually (and to show you it’s not that hard), imagine that your query returns three columns. Collect the row data into three separate lists, then manually create a dataframe specifying the contents as a dictionary:\nrows = c.execute(\"SELECT Species, Width, Length FROM...\").fetchall()\nspecies_column = [t[0] for t in rows]\nwidth_column = [t[1] for t in rows]\nlength_column = [t[2] for t in rows]\n\ndf = pd.DataFrame(\n    {\n        \"species\": species_column,\n        \"width\": width_column,\n        \"length\": length_column\n    }\n)"
+    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
   },
   {
-    "objectID": "modules/week07/hw-07.html",
-    "href": "modules/week07/hw-07.html",
-    "title": "Week 7 - EML record",
+    "objectID": "modules/week06/index-06.html#learning-objectives",
+    "href": "modules/week06/index-06.html#learning-objectives",
+    "title": "Week 6 - Programming with databases",
     "section": "",
-    "text": "Each Capstone group should create an EML metadata record using the EML R Package for one of the analysis-ready datasets the project has generated or reused (consider a tabular dataset with 5-8 columns).\nAll groups must include the minimum elements covered in class, plus any additional attributes and descriptions required to describe your chosen dataset fully. For example, if attributes have specific units of measure, you should incorporate them into the code.\nExplore the package documentation, the README.md file you created for Week 4, and the important resources listed on Week 6 - Metadata standards.\nSubmit two files, the R script and the XML."
+    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
   },
   {
-    "objectID": "modules/week02/hw-02.html",
-    "href": "modules/week02/hw-02.html",
-    "title": "Week 2 - Data Cleaning",
+    "objectID": "modules/week06/index-06.html#slides-and-other-materials",
+    "href": "modules/week06/index-06.html#slides-and-other-materials",
+    "title": "Week 6 - Programming with databases",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-06.pptx\nCoding transcripts:\n\ntranscript-06-mon.ipynb\ntranscript-06-wed-python.ipynb\ntranscript-06-wed-r.R"
+  },
+  {
+    "objectID": "modules/week06/index-06.html#resources",
+    "href": "modules/week06/index-06.html#resources",
+    "title": "Week 6 - Programming with databases",
+    "section": "Resources",
+    "text": "Resources\n\nhttps://peps.python.org/pep-0249/\n\nCommon Python-RDBMS API\n\nhttps://duckdb.org/docs/api/python/overview\n\nPython DuckDB module\n\nhttps://dbplyr.tidyverse.org/\n\nR dbplyr documentation"
+  },
+  {
+    "objectID": "modules/week06/index-06.html#homework",
+    "href": "modules/week06/index-06.html#homework",
+    "title": "Week 6 - Programming with databases",
+    "section": "Homework",
+    "text": "Homework\nLittle Bobby Tables\nWho’s the culprit?\nCharacterizing egg variation\nWho were the winners?"
+  },
+  {
+    "objectID": "modules/week06/hw-06-1.html",
+    "href": "modules/week06/hw-06-1.html",
+    "title": "Week 6 - Little Bobby Tables",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments to your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd eds213_data_cleaning_assign_YOURNAME.qmd should run if your repo is cloned locally and\nthe code should output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder\n\nNote: We recommend starting by importing the csv file with the corrected Snow_cover column (data/processed/snow_cover.csv) we generated during class (my code here)\n\n\nOn Canvas:\n\nAdd the URL to your fork on GitHub in the Website URL slot\nUpload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)"
+    "text": "View this classic XKCD cartoon:\n\n\n\nhttps://xkcd.com/327/\n\n\nFor the purposes of this problem you may assume that at some point the school’s software performs the query\nSELECT *\n    FROM Students\n    WHERE (name = '%s' AND year = 2023);\nwhere the student’s name is directly substituted for the %s. Explain exactly how Little Bobby Tables’ name can cause a catastrophe. Explain what happens to the AND year = 2023 clause in the query."
   },
   {
-    "objectID": "modules/week03/hw-03-3.html",
-    "href": "modules/week03/hw-03-3.html",
-    "title": "Week 3 - SQL problem 3",
+    "objectID": "modules/week07/index-07.html",
+    "href": "modules/week07/index-07.html",
+    "title": "Week 7 - Metadata standards",
     "section": "",
-    "text": "Your mission, should you choose to accept it, is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:\n┌─────────────────────────┬──────────────────┐\n│     Scientific_name     │  Max_avg_volume  │\n├─────────────────────────┼──────────────────┤\n│ Pluvialis squatarola    │ 36541.8531755592 │\n│ Pluvialis dominica      │ 33847.8550096089 │\n│ Arenaria interpres      │ 23338.620942275  │\n│ Calidris fuscicollis    │ 13277.1428014342 │\n│ Calidris alpina         │ 12196.2368406617 │\n│ Charadrius semipalmatus │ 11266.9746753467 │\n│ Phalaropus fulicarius   │ 8906.7745740725  │\n└─────────────────────────┴──────────────────┘\n(By the way, regarding the leader in egg size above, Birds of the World says that Pluvialis squatarola’s eggs are “Exceptionally large for size of female (ca. 16% weight of female)”.)\nTo calculate the volume of an egg, use the simplified formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length. You can use 3.14 for \\(\\pi\\). (The real formula takes into account the ovoid shape of eggs, but only width and length are available to us here.)\nA good place to start is just to group bird eggs by nest (i.e., Nest_ID) and compute average volumes:\nCREATE TEMP TABLE Averages AS\n    SELECT Nest_ID, AVG(...) AS Avg_volume\n        FROM ...\n        GROUP BY ...;\nYou can now join that table with Bird_nests, so that you can group by species, and also join with the Species table to pick up scientific names. To do just the first of those joins, you could say something like\nSELECT Species, MAX(...)\n    FROM Bird_nests, Averages USING (Nest_ID)\n    GROUP BY ...;\nThat’s not the whole story, we want scientific names not species codes. Another join is needed. A couple strategies here. One, you can modify the above query to also join with the Species table (you’ll need to replace USING with ON …). Two, you can save the above as another temp table and join it to Species separately.\nDon’t forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.\nPlease submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement."
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
   },
   {
-    "objectID": "modules/week03/bash-essentials.html",
-    "href": "modules/week03/bash-essentials.html",
-    "title": "Ten Bash Essentials",
+    "objectID": "modules/week07/index-07.html#learning-goals",
+    "href": "modules/week07/index-07.html#learning-goals",
+    "title": "Week 7 - Metadata standards",
     "section": "",
-    "text": "Greg Janée &lt;gjanee@ucsb.edu&gt;\nMay 2023\nSome essential concepts to get you started writing your first Bash script."
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#what-does-bash-or-any-shell-for-that-matter-do",
-    "href": "modules/week03/bash-essentials.html#what-does-bash-or-any-shell-for-that-matter-do",
-    "title": "Ten Bash Essentials",
-    "section": "1. What does Bash (or any shell for that matter) do?",
-    "text": "1. What does Bash (or any shell for that matter) do?\nBash is program on your machine that allows you to interactively run other programs. It:\n\nWrites a prompt, reads a line from the terminal window\nPerforms various “expansions” to arrive at a final command or command pipeline\nLocates where the program(s) requested to be run are\nRuns the requested program(s) and links their input/output/error streams to and from files and into pipelines\nWrites any output to the terminal window\nRepeat\n\nThese steps are described in more detail below."
+    "objectID": "modules/week07/index-07.html#slides-and-other-materials",
+    "href": "modules/week07/index-07.html#slides-and-other-materials",
+    "title": "Week 7 - Metadata standards",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#fundamentals-review",
-    "href": "modules/week03/bash-essentials.html#fundamentals-review",
-    "title": "Ten Bash Essentials",
-    "section": "2. Fundamentals review",
-    "text": "2. Fundamentals review\nFiles in Unix and Unix-like systems are organized into hierarchical directories identified by “pathnames” as in /Users/moe/somefile.txt. Here the leading / represents the root directory on the machine, Users is a directory within that, moe a directory within that directory, and so forth until we get to a final directory or file.\nAt any given time you are “in” a directory. Handy commands:\n\npwd: where am I?\ncd new_directory: change directories\nls: what files and subdirectories are in here?\nls -F: same, but nicer formatting\n\nAn “absolute” pathname begins with / and identifies a directory or file starting from the root directory as in the example above. A “relative” pathname does not begin with / and does the same, but relative to the current directory.\nSome pseudo directory names. Wherever you are:\n\n.: current directory\n..: parent directory of current directory\n~: home directory\n\nSo:\n\n/Users/shemp: absolute pathname of Shemp’s home directory\n../shemp: same, relative to /Users/moe\n~: your home directory\n~shemp: Shemp’s home directory\n\nBy convention Unix commands accept “options” followed by “arguments”. Options begin with a single (-) or double (--) hyphen. Multiple options that begin with a single hyphen can be combined for brevity.\n\nls foo: list files in directory foo\nls -A foo: same, option -A to include hidden files\nls -A -l foo: add long listing option\nls -Al foo: equivalent to above\npython --version: print Python version number\n\nBut be aware that these are only conventions, and there are idiosyncracies in how commands are run."
+    "objectID": "modules/week07/index-07.html#recommended-readings",
+    "href": "modules/week07/index-07.html#recommended-readings",
+    "title": "Week 7 - Metadata standards",
+    "section": "Recommended readings",
+    "text": "Recommended readings\n\nGries, C., Hanson, P. C., O’Brien, M., Servilla, M., Vanderbilt, K., & Waide, R. (2023). The Environmental Data Initiative: Connecting the past to the future through data reuse. Ecology and Evolution, 13(1), e9592. https://doi.org/10.1002/ece3.9592\nLeipzig, J., Nüst, D., Hoyt, C. T., Ram, K., & Greenberg, J. (2021). The role of metadata in reproducible computational research. Patterns, 2(9), https://doi.org/10.1016/j.patter.2021.100322"
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#variables",
-    "href": "modules/week03/bash-essentials.html#variables",
-    "title": "Ten Bash Essentials",
-    "section": "3. Variables",
-    "text": "3. Variables\nBash supports variables, and variables are essential in writing Bash scripts. To set a variable:\nname=Moe\nNo space between the variable name and equals sign! Variables are referenced as ${name}, or as just $name if not ambiguous. Lots of other stuff can go inside the braces, such as string processing and array indexing. Refer to the Bash manual or a good cheat sheet for examples.\nNames defined as above are local to the current Bash session or script. “Environment variables” are variables that are inherited by (visible to) programs and any scripts you run. To set, add export:\nexport DEBUG_ENABLED=1\nThe two most important environment variables are HOME (your home directory) and PATH (discussed below). The use of all-caps environment variable names is just a convention."
+    "objectID": "modules/week07/index-07.html#homework",
+    "href": "modules/week07/index-07.html#homework",
+    "title": "Week 7 - Metadata standards",
+    "section": "Homework",
+    "text": "Homework\nEML record"
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#expansions",
-    "href": "modules/week03/bash-essentials.html#expansions",
-    "title": "Ten Bash Essentials",
-    "section": "4. Expansions",
-    "text": "4. Expansions\nBefore running any commands Bash performs various kinds of expansions. The rules about what expansions it performs and when and in what order are confusing. If you feel lost, join the club.\n\nVariable substitution.\nname=Moe\necho \"Hello $name\"\nis expanded to\necho \"Hello Moe\"\nThe meaning of the above is that $name is literally replaced with Moe before the echo command is run.\nCommand alias substitution. Aliases are handy abbreviations usually defined in the ~/.bashrc Bash configuration file.\nalias ll=\"ls -l\"\nll foo\nis expanded to\nls -l foo\nWildcard expansion (“globbing”).\nwc -l *.csv\nis expanded to\nwc -l ASDN_Bird_eggs.csv species.csv ...\nAs with variable substitutions, the globbing expansion literally replaces the wildcard expression with a list of filenames before the wc command is run.\nRunning subcommands.\nnow=\"$(date)\"\nis expanded to\nnow=\"Sat May  6 19:02:07 PDT 2023\"\nThe expression placed in the $(...) can be an entire command pipeline. When done, the subcommand is replaced with any output produced.\nArithmetic.\nanswer=$(( 21 * 2 ))\nis expanded to\nanswer=42\nBash can do integer arithmetic only.\n\nTakeaway: program(s) that are run see only the finally expanded command line."
+    "objectID": "modules/week02/index-02.html",
+    "href": "modules/week02/index-02.html",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "section": "",
+    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#quoting",
-    "href": "modules/week03/bash-essentials.html#quoting",
-    "title": "Ten Bash Essentials",
-    "section": "5. Quoting",
-    "text": "5. Quoting\nQuoting is another difficult area of Bash. It’s hard to get right.\n\nDouble quotes support variable, subcommand, and arithmetic expansions. We’ve already seen these examples:\necho \"Hello $name\"\necho \"Today is $(date)\"\nget expanded to\necho \"Hello Moe\"\necho \"Today is Sat May  6 19:02:07 PDT 2023\"\nSingle quotes don’t.\necho 'Hello $name'\njust remains\necho 'Hello $name'\n\nGenerally, arguments to programs must be quoted to prevent Bash from expanding them into multiple arguments. This is easier to appreciate when you’re passing in an explicitly quoted string as in the examples above. But it’s less obvious that quoting is required even if you’re referencing a variable. Sometimes you want to allow a referenced variable to be expanded into multiple arguments, and quotes should be left off:\nmy_fave_ls_options=\"-l -F\"\nls $my_fave_ls_options foo\ngets expanded to\nls -l -F foo\nOther times you don’t:\nquery=\"SELECT * FROM table\"\nsqlite3 db \"$query\"\ngets expanded to\nsqlite3 db \"SELECT * FROM table\"\nIf $query is not quoted in the previous example, SELECT, *, etc., will be passed as separate arguments, which is not what sqlite3 expects. Making matters worse, * will then be interpreted as a wildcard and expanded into a list of all files in the current directory!"
+    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "section": "",
+    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#path-determines-what-programs-are-run",
-    "href": "modules/week03/bash-essentials.html#path-determines-what-programs-are-run",
-    "title": "Ten Bash Essentials",
-    "section": "6. PATH determines what programs are run",
-    "text": "6. PATH determines what programs are run\nA few commands (cd, pwd, if, while) are Bash built-ins. All other commands are simply programs on the system, whether coming packaged along with Unix (ls, cp, mkdir, grep, etc.) or installed later (sqlite3, python, etc.).\nThe PATH environment variable is a colon-separated list of directories in which Bash looks for programs, in order. You can inspect it:\necho $PATH\nTo see where a command is coming from:\nwhich ls\nTo see all places where you have Python installed (cf. https://xkcd.com/1987/):\nwhich -a python\nYou can modify PATH to, for example, add a directory to it (recall export is used for environment variables):\nexport PATH=$PATH:/another/directory/I/want/Bash/to/look/in\nIt’s typical to set PATH in one of the Bash configuration files ~/.bash_profile or ~/.profile, so that it is automatically set upon each login."
+    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "section": "Analyzing the data from the csv files",
+    "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
   },
   {
-    "objectID": "modules/week03/bash-essentials.html#io-redirection",
-    "href": "modules/week03/bash-essentials.html#io-redirection",
-    "title": "Ten Bash Essentials",
-    "section": "7. I/O redirection",
-    "text": "7. I/O redirection\nEvery program running in a Unix or Unix-like environment has three I/O streams: one for input (stdin), one for output (stdout), and one for error messages and other out-of-band output (stderr).\nBy convention, Unix programs read from file(s) specified on the command line, but if none are given, from stdin. And also by convention, Unix programs write to stdout. In this way it is easy to construct pipelines. Ex:\nwc -l *.csv | sort -n\nHere the wc -l command, which counts the number of lines in files, is given filenames on the command line, so it counts the lines in those files. It writes its output to stdout. sort -n sorts lines in files. It was given no files to sort, so it sorts whatever lines come in via stdin. By piping these together (i.e., by hooking wc’s stdout to sort’s stdin using the pipe operator), the output from wc -l is thereby sorted.\nThere are various operators for redirecting where stdin comes from and where stdout and stderr go:\n\n&lt; file: read stdin from file\n&gt; file: write stdout to file\n2&gt; file: write stderr to file\n&gt;& file: write both stdout and stderr to file\n&gt;&gt; file: append stdout to file\n\nCaution: except for &gt;&gt;, all forms of &gt; are destructive: Bash overwrites any existing file with an empty file before the program is run.\nWant to get rid of output you don’t want to see? Use the Unix black hole: &gt;& /dev/null. (This is a cultural meme, you’ll see it on T-shirts and license plates.)\nThe above are the main redirections, but there are others."
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#control-statements",
-    "href": "modules/week03/bash-essentials.html#control-statements",
-    "title": "Ten Bash Essentials",
-    "section": "8. Control statements",
-    "text": "8. Control statements\nThe syntax of Bash’s control statements is a little funky. A conditional statement looks like this:\nif [ sometest ]; then\n    ...\nfi\nIt can also be formatted like so:\nif [ sometest ]\nthen\n    ...\nfi\nWhat can go in inside [ ... ]? A lot of things. Believe it or not, [ is a program! Do a man [ to read about it (see section 10 for other ways to get help).\nA for loop iterates over a list of items:\nfor file in *.csv; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone\nRecall expansions from section 4. The *.csv is expanded before the loop is run, ergo the above is equivalent to listing the files explicitly:\nfor file in ASDN_Bird_eggs.csv species.csv ...; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone\nWant to do something 99 times? You can use a while loop and a variable as a counter (recall arithmetic from section 4), or you can use seq (try seq by itself to see what it outputs):\nfor i in $(seq 99); do\n    echo \"Putting $i bottles of beer on the wall\"\ndone\nThere are other control statements."
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#scripts",
-    "href": "modules/week03/bash-essentials.html#scripts",
-    "title": "Ten Bash Essentials",
-    "section": "9. Scripts",
-    "text": "9. Scripts\nA Bash script is a text file containing the same Bash commands you might type interactively. It’s analogous to an R or Python script but written in Bash instead of one of those other languages.\nBash knows it is reading from a file instead of the terminal window, and it operates slightly differently:\n\nIt doesn’t print a prompt.\nIt doesn’t read Bash configuration files (~/.bashrc, ~/.bash_profile, ~/.profile, etc.). As a consequence, aliases and variables defined in those files are not visible to scripts. (Any environment variables set in configuration files are visible, but that’s because environment variables are inherited.)\n\nBash makes arguments passed to your script available as variables $1, $2, etc. Variable $# is the number of arguments. Ex:\nif [ $# -ne 3 ]; then\n    echo \"This script requires 3 arguments\"\n    exit 1  # terminate with error status (exit 0 = success)\nfi\nA Bash script can be run as so:\nbash myscript.sh\nTo run a script just by saying\nmyscript.sh\ni.e., to make it look more like a command, requires that two things be done:\n\nThe first line of the script file must be:\n#!/bin/bash\nThere can’t be any spaces before the #!. (You can similarly make a Python or R script directly runnable by including such a first line, but with the pathname of the R or Python interpreter to run.)\nSet the “execute” flag on the script file:\nchmod +x myscript.sh\nYou can see that the file has the execute flag set by doing a long listing and looking for the x characters in the permissions mask.\nls -l myscript.sh\n\nYou might find that you still can’t run your script just by saying\nmyscript.sh\nThis is likely due to the current directory not being included in PATH. (echo $PATH to see.) You can either qualify the script name with a directory name:\n./myscript.sh\nor you can modify PATH per section 6.\nA complete example of a script:\n#!/bin/bash\n# Add two numbers.\nif [ $# -ne 2 ]; then\n    echo \"Supply two numbers, no more, no less\"\n    exit 1\nfi\nfirst=$1\nsecond=$2\necho \"The sum of $first and $second is $(( $first + $second ))\""
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#getting-help-and-a-couple-tips",
-    "href": "modules/week03/bash-essentials.html#getting-help-and-a-couple-tips",
-    "title": "Ten Bash Essentials",
-    "section": "10. Getting help and a couple tips",
-    "text": "10. Getting help and a couple tips\nTo get help on a command, for example ls, try one of the following:\nman ls\nls --help\nMost but not all systems support man; MacOS does not support the --help option. Failing either of those, do an internet search for “ls man page”.\nWhen writing a script, it can be invaluable to run it through https://shellcheck.net. The advice is good and the creator of that tool knows way more about Bash than you or I. Other good resources:\n\nOfficial Bash user manual: https://www.gnu.org/software/bash/manual/\nBash pitfalls, or, how to do things the right way: http://mywiki.wooledge.org/BashPitfalls\nCheat sheet that is better than most: https://www.pcwdld.com/bash-cheat-sheet\n\nAnd two tips.\n\nIf you’re about to embark on a potentially destructive operation, first try just echoing the commands to confirm they’ll do what you want:\n# rename files from .JPG to .jpg\nfor file in *.JPG; do\necho mv $file ${file/.JPG/.jpg}\ndone\nOnce you’re satisfied, remove echo and run your script for real.\nrm, particulary when paired with a wildcard, is a notoriously dangerous command: it deletes files instantly and permanently. Consider creating an alias\nalias rm=\"rm -i\"\nto confirm deletion."
-  },
-  {
-    "objectID": "modules/week03/bash-essentials.html#test-your-understanding",
-    "href": "modules/week03/bash-essentials.html#test-your-understanding",
-    "title": "Ten Bash Essentials",
-    "section": "Test your understanding",
-    "text": "Test your understanding\nBe sure to cd to the MEDS 213 git repo directory, week5 subdirectory, before answering these.\n\nCompare the output of these three commands:\nls\nls .\nls \"$(pwd)/../week5\"\nExplain why you see what you see.\nTry the following two commands:\nwc -l *.csv\ncat *.csv | wc -l\nThe first prints filenames and line counts. The second prints a bare number. Why does it print that number, and why does it not print any filenames?\nYou want to count the total number of lines in all CSV files and try this command:\ncat *.csv | wc -l species.csv\nWhat happens and why?\nYou’re given\nname=Moe\nand you’d like to print “Moe_Howard”. You try this:\necho \"$name_Howard\"\nbut that doesn’t quite work. What fix can you apply to make this command give the desired effect?\nYou create a script and run it like so:\nbash myscript.sh *.csv\nWhat are the values of variables $1 and $#? Explain why the script does not see just one argument passed to it.\nYou create a script and run it like so:\nbash myscript.sh \"$(date)\" $(date)\nIn your script, what is the value of variable $3?\nCreate a file you don’t care about (because you’re about to destroy it):\necho \"yo ho a line of text\" &gt; junk_file.txt\necho \"another line\" &gt;&gt; junk_file.txt\nYou want to sort the lines in this file, so you try:\nsort junk_file.txt\nWell that prints the lines in sorted order, but it doesn’t actually change the file. You recall section 7 and try:\nsort junk_file.txt &gt; junk_file.txt\nWhat happens and why? How can you sort the lines in your file? (Hint: it involves creating a second file and using mv.)\nYou want to delete all files ending in .csv, so you type (don’t actually try this):\nrm * .csv\nbut as can be seen, your thumb accidentally hit the space bar and you got an extra space in there. What will rm do?"
+    "objectID": "modules/week03/hw-03-1.html",
+    "href": "modules/week03/hw-03-1.html",
+    "title": "Week 3 - SQL problem 1",
+    "section": "",
+    "text": "It’s a useful skill in life (I’m not being rhetorical, I really mean that, it’s a useful skill) to be able to construct an experiment to answer a hypothesis. Suppose you’re not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn’t have access to any documentation, or didn’t trust it. What experiment could you run to find out what happens?\nThere are two parts to this problem.\n\nPart 1\nConstruct an SQL experiment to determine the answer to the question above. Does SQL abort with some kind of error? Does it ignore NULL values? Do the NULL values somehow factor into the calculation, and if so, how?\nI would suggest you start by creating a table (in the bird database, in a new database, in a transient in-memory database, doesn’t matter) with a single column that has data type REAL (for part 2 below, it must be REAL). You can make your table a temp table or not, your choice.\nCREATE TEMP TABLE mytable... ;\nNow insert some real numbers and at least one NULL into your table.\nINSERT INTO mytable... ;\n(Hmm, can you insert multiple rows at once, or do you have to do a separate INSERT for each row?)\nOnce you have your little table constructed, try doing an AVG on the column and see what is returned. What would the average be if the function ignored NULLs? What would the average be if it somehow factored them in? What is actually returned?\nPlease submit both your SQL and your answer to the question about how AVG operates in the presence of NULL values.\n\n\nPart 2\nIf SQL didn’t have an AVG function, you could compute the average value of a column by doing something like this on your table:\nSELECT SUM(mycolumn)/COUNT(*) FROM mytable;\nSELECT SUM(mycolumn)/COUNT(mycolumn) FROM mytable;\nWhich query above is correct? Please explain why.\nNow that you’re done with your table, you can delete it if desired:\nDROP TABLE mytable;"
   },
   {
     "objectID": "modules/week03/hw-03-2.html",
