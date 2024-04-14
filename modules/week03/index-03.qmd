@@ -5,7 +5,7 @@ title: "Week 3 - Structured Query Language (SQL) & DuckDB"
 ## Learning objectives
 
 -   Understand the relationship of SQL to relational databases
--   Understand how SQLite differs from client/server databases
+-   Understand how local databases differ from client/server databases
 -   Understand basic SQL syntax and statements
 -   Be able to answer basic questions about data
 
@@ -15,12 +15,11 @@ title: "Week 3 - Structured Query Language (SQL) & DuckDB"
 
 Lecture notes:
 
--   [lecture-notes-03-mon.txt](lecture-notes-03-mon.txt)
--   [lecture-notes-03-wed.txt](lecture-notes-03-wed.txt)
+(forthcoming)
 
 [ASDN dataset ER (entity-relationship) diagram](asdn-er-diagram.png)
 
-[Class data GitHub repository, week 3](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2023-class-data/tree/main/week3)
+[Class data GitHub repository, week 3](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week3)
 
 ## Resources
 
@@ -47,11 +46,3 @@ Lecture notes:
     [Access via Library Catalog](https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma990032103790203776)
 
     -   *Complete but theoretical introduction to relational databases, data modeling, and relational algebra.*
-
-## Homework
-
-[SQL problem 1](hw-03-1.qmd)
-
-[SQL problem 2](hw-03-2.qmd)
-
-[SQL problem 3](hw-03-3.qmd)
