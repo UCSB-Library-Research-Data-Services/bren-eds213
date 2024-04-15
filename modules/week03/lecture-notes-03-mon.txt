@@ -1,0 +1,45 @@
+Running DuckDB
+- no argument: in-memory database, will disappear when closed
+- or new file
+- or existing file
+- use .exit or Ctrl-D to get out
+
+Getting around DuckDB
+- dot commands
+- .help
+- .help <cmd> to get help on command
+- .tables to list tables, .schema to list table definitions
+
+Getting help
+- .help
+- SQLite's SQL railroad diagrams on website
+
+SQL syntax
+- SELECT * FROM Species;
+- case-insensitive, both keywords and table/column names
+- sources of confusion, DuckDB keeps prompting:
+-- when missing trailing ;
+-- when there's a quoted string and missing trailing '
+-- how to abandon? Ctrl-C
+- -- to comment
+
+SELECT *
+- LIMIT, OFFSET
+- SELECT * from Site
+- can select individual columns
+
+SELECT DISTINCT
+- SELECT DISTINCT Species FROM Bird_nests;
+- SELECT DISTINCT Species, Observer FROM Bird_nests;
+- distinct pairs ^^
+
+ORDER BY
+- SELECT DISTINCT Species FROM Bird_nests ORDER BY Species;
+- order is random otherwise, particulary after table updates
+- as above, order by Species
+- as above by Species, Date_found DESC
+
+In-class challenge
+- Select distinct locations, are they in order?  If not, order them.
+- Does adding a limit apply after the results are ordered or before?
+- Refer back to syntax chart - syntax echoes processing order.
