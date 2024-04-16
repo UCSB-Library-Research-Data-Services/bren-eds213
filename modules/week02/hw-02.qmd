@@ -29,7 +29,7 @@ You should start a new quarto document named `eds213_data_cleaning_assign_YOURNA
 
 ### On Canvas:
 
-- Add the URL to your fork on GitHub in the Website URL slot
+- Add the URL to your fork on GitHub at the top of your quarto document
 
 - Upload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)
 
