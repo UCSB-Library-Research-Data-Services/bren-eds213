@@ -15,7 +15,7 @@ title: "Week 3 - Structured Query Language (SQL) & DuckDB"
 
 Lecture notes:
 
-(forthcoming)
+-   [lecture-notes-03-mon.txt](lecture-notes-03-mon.txt)
 
 [ASDN dataset ER (entity-relationship) diagram](asdn-er-diagram.png)
 
