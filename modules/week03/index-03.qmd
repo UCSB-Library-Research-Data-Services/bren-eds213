@@ -48,3 +48,11 @@ Lecture notes:
     [Access via Library Catalog](https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma990032103790203776)
 
     -   *Complete but theoretical introduction to relational databases, data modeling, and relational algebra.*
+
+## Homework
+
+[SQL problem 1](hw-03-1.qmd)
+
+[SQL problem 2](hw-03-2.qmd)
+
+[SQL problem 3](hw-03-3.qmd)
