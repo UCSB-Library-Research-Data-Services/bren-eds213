@@ -8,7 +8,7 @@ Getting around DuckDB
 - dot commands
 - .help
 - .help <cmd> to get help on command
-- .tables to list tables, .schema to list table definitions
+- .table to list tables, .schema to list table definitions
 
 Getting help
 - .help
@@ -20,7 +20,8 @@ SQL syntax
 - sources of confusion, DuckDB keeps prompting:
 -- when missing trailing ;
 -- when there's a quoted string and missing trailing '
--- how to abandon? Ctrl-C
+-- how to abandon?
+--- or Ctrl-C
 - -- to comment
 
 SELECT *

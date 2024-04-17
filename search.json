@@ -312,7 +312,7 @@
     "href": "modules/week03/index-03.html#slides-and-other-materials",
     "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
+    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\nclass-script-03-wed.sql\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
   },
   {
     "objectID": "modules/week03/index-03.html#resources",
