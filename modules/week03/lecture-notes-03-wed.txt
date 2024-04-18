@@ -1,0 +1,131 @@
+RECAP
+- open DuckDB on database file
+- .tables, .schema to find out what's inside
+- SELECT DISTINCT Location
+      FROM Site
+      ORDER BY Location
+      LIMIT 3;
+- write query in file, use .read to execute it
+- good idea to capture schema in SQL file to recreate database,
+  for documentation
+
+FILTERING
+- SELECT * FROM Site WHERE Area < 200;
+- ...AND Latitude > 60, etc.
+- not equals: classic is <>, but everybody supports != nowadays
+- string matching
+-- double up single quotes to create a single quote: 'I don''t like this'
+-- LIKE '...', % for wildcard
+-- string matching might be case (in)sensitive, check database settings
+-- DuckDB: ILIKE for case-insensitive
+-- regexp usually supported via functions
+
+EXPRESSIONS
+- SELECT Site_name, Area*2.47 FROM Site;
+- expr AS name to give name to computed column
+- look at DuckDB function list, lots of 'em
+- || to concatenate strings
+
+AGGREGATION & GROUPING
+- SELECT COUNT(*) FROM Species;
+- number of rows
+- SELECT COUNT(Scientific_name) FROM Species;
+- number of non-NULL values
+- SELECT COUNT(DISTINCT Relevance) FROM Species;
+- same as SELECT DISTINCT, but see how many rows are returned
+- SELECT AVG(Area) FROM Site;
+- MIN, MAX, etc.
+- careful: SELECT Location, AVG(Area) FROM Site;
+-- !! picks arbitrary value for location
+-- But DuckDB prevents this (SQLite doesn't)
+- enter grouping
+- SQL will return one row per group
+- SELECT Location, MAX(Area)
+      FROM Site
+      GROUP BY Location;
+- SELECT Location, COUNT(*)... : counts #rows in each group
+- WHERE to filter rows going into grouping operation
+- HAVING to filter rows coming out of grouping operation
+- SELECT Location, MAX(Area) AS Max_area
+      FROM Site
+      WHERE Location LIKE '%Canada'
+      GROUP BY Location
+      HAVING Max_area > 200
+      ORDER BY Max_area DESC;
+
+RELATIONAL ALGEBRA
+- result of every operation is another table
+- even SELECT COUNT(*) returns a little baby table
+- CREATE TEMP TABLE AS SELECT... to save query
+- can nest queries
+-- SELECT ... FROM (SELECT ...)
+-- another place: WHERE column IN (SELECT ...)
+--- example: SELECT * FROM Bird_nests WHERE Observer IN (SELECT Abbreviation FROM Personnel WHERE Abbreviation LIKE 'b%')
+--- example: SELECT * FROM Species WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);
+-- there are others
+-- order is lost when query incorporated as subquery, part of join, etc.
+-- So, generally, ORDER BY last part of outermost query
+
+NULL PROCESSING
+- NULL means unknown
+- SELECT COUNT(*) FROM Bird_nests WHERE floatAge > 5;
+- or <= 5
+- still missing rows, because a NULL value is neither > 5 nor <= 5
+- must use IS NULL or IS NOT NULL
+- aggregate functions omit NULLs like R does
+
+JOINS, THE HEART AND SOUL OF RDBMS
+- SELECT * FROM Camp_assignment;
+- but we want full names, not abbreviations
+- so follow linkage shown in ER diagram
+- SELECT * FROM Camp_assignment JOIN Personnel
+      ON Observer = Abbreviation
+      LIMIT 10;
+- .mode csv, see all columns
+- return is a mega-table with all columns
+- (database doesn't actually do that unless required, is more efficient)
+- more commonly, ask for selected columns
+- notice denormalization that is happening
+- which is the idea: normalize for data organization/compactness
+- temporarily denormalize to relate data back together
+- most databases support , in place of JOIN but not DuckDB
+- or INNER JOIN to be verbose
+- may need to qualify by table name if ambiguous
+- SELECT * FROM Camp_assignment JOIN Personnel
+      ON Camp_assignment.Observer = Personnel.Abbreviation
+      LIMIT 10;
+- SELECT * FROM Camp_assignment AS ca JOIN Personnel p
+      ON ca.Observer = p.Abbreviation
+      LIMIT 10;
+
+- 3 way join:
+- SELECT * FROM Camp_assignment CA JOIN Personnel P
+        ON CA.Observer = P.Abbreviation
+        JOIN Site S ON CA.Site = S.Code
+        LIMIT 10;
+- can add WHERE clauses, etc.: WHERE CA.Observer = 'lmckinnon'
+- order of operations follows order of clauses in statement
+
+- another example: how many bird eggs are in each nest?
+- SELECT Nest_ID, COUNT(*) FROM Bird_eggs GROUP BY Nest_ID;
+- can get away with USING since same column name
+- SELECT Nest_id, COUNT(*)
+      FROM Bird_eggs JOIN Bird_nests
+      USING (Nest_ID)
+      GROUP BY Nest_ID;
+- let's add in some nicer species names; need to add Species to the join
+- SELECT Nest_id, Species, COUNT(*)
+      FROM Bird_eggs JOIN Bird_nests
+      USING (Nest_ID)
+      GROUP BY Nest_ID;
+
+- Argh@#)*$&@*#)$& f-ing DuckDB won't let us
+- There's only one Species per Nest_ID (Nest_ID is primary key of Bird_nests)
+- so safe to use ANY_VALUE(Species), or add Species to the GROUP BY
+- I prefer the former, since the latter is confusing
+
+- Add nice scientific names
+- SELECT Nest_ID, ANY_VALUE(Scientific_name), COUNT(*) AS Num_eggs
+  FROM Bird_eggs JOIN Bird_nests USING (Nest_ID)
+  JOIN Species On Species = Code
+  GROUP BY Nest_ID;
