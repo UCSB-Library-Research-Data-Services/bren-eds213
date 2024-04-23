@@ -32,7 +32,7 @@ The idea is that the above join will give us rows that pair every person/site/da
 
 Submit your final SQL query.
 
-## Bonus!
+## Bonus problem!
 
 Produce this much nicer table by joining with the Personnel table:
 
