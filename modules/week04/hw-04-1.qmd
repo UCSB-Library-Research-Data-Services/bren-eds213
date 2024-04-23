@@ -1,8 +1,8 @@
 ---
-title: "Week 4 - What sites did we miss?"
+title: "Week 4 - What sites are missing?"
 ---
 
-Which sites have **no** egg data? Please answer this question using the three techniques demonstrated in class. In doing so, your query will involve the Bird_eggs table, the Site table, or both. The techniques are:
+Which sites have **no** egg data? Please answer this question using the three techniques demonstrated in class. In doing so, your query will involve the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:
 
 -   Using a `Code NOT IN (subquery)` clause.
 
