@@ -345,23 +345,65 @@
   {
     "objectID": "modules/week04/hw-04-3.html",
     "href": "modules/week04/hw-04-3.html",
-    "title": "Week 6 - Who’s the culprit?",
+    "title": "Week 4 - Who’s the culprit?",
     "section": "",
-    "text": "You’re reading up on how eggs are aged by floating them in water 1:\nwhen you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly 36 nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? (Full nume is not necessary; the name abbreviation is fine.) Please submit your SQL. Your SQL should return exactly one row, the answer. That is, your query should produce:"
+    "text": "You’re reading up on how eggs are aged by floating them in water 1:\nwhen you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly 36 nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return exactly one row, the answer. That is, your query should produce:"
   },
   {
     "objectID": "modules/week04/hw-04-3.html#footnotes",
     "href": "modules/week04/hw-04-3.html#footnotes",
-    "title": "Week 6 - Who’s the culprit?",
+    "title": "Week 4 - Who’s the culprit?",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nLiebezeit, Joseph R., et al. “Assessing the Development of Shorebird Eggs Using the Flotation Method: Species-Specific and Generalized Regression Models.” The Condor, vol. 109, no. 1, 2007, pp. 32–47. JSTOR, http://www.jstor.org/stable/4122529↩︎"
   },
   {
-    "objectID": "modules/week02/hw-02.html",
-    "href": "modules/week02/hw-02.html",
-    "title": "Week 2 - Data Cleaning",
+    "objectID": "modules/week04/index-04.html",
+    "href": "modules/week04/index-04.html",
+    "title": "Week 4 - SQL and DuckDB",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments to your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd eds213_data_cleaning_assign_YOURNAME.qmd should run if your repo is cloned locally and\nthe code should output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder\n\nNote: We recommend starting by importing the csv file with the corrected Snow_cover column (data/processed/snow_cover.csv) we generated during class (my code here)\n\n\nOn Canvas:\n\nAdd the URL to your fork on GitHub at the top of your quarto document\nUpload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)"
+    "text": "Continued exploration of SQL concepts including joins, views, set operations, and triggers\nRead and write data from SQLite\nWrite a basic Bash script"
+  },
+  {
+    "objectID": "modules/week04/index-04.html#learning-objectives",
+    "href": "modules/week04/index-04.html#learning-objectives",
+    "title": "Week 4 - SQL and DuckDB",
+    "section": "",
+    "text": "Continued exploration of SQL concepts including joins, views, set operations, and triggers\nRead and write data from SQLite\nWrite a basic Bash script"
+  },
+  {
+    "objectID": "modules/week04/index-04.html#slides-and-other-materials",
+    "href": "modules/week04/index-04.html#slides-and-other-materials",
+    "title": "Week 4 - SQL and DuckDB",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-04-intro.pptx\nslides-04-triggers.pptx\nLecture notes:\n\nlecture-notes-04-mon.txt\nlecture-notes-04-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 4"
+  },
+  {
+    "objectID": "modules/week04/index-04.html#homework",
+    "href": "modules/week04/index-04.html#homework",
+    "title": "Week 4 - SQL and DuckDB",
+    "section": "Homework",
+    "text": "Homework\nProtect yourself\nCreate a test harness"
+  },
+  {
+    "objectID": "modules/week02/index-02.html",
+    "href": "modules/week02/index-02.html",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "section": "",
+    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+  },
+  {
+    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "section": "",
+    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+  },
+  {
+    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "section": "Analyzing the data from the csv files",
+    "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
   },
   {
     "objectID": "syllabus.html",
@@ -434,53 +476,18 @@
     "text": "Disabled students program\nStudents with disabilities and/or alternative learning needs are encouraged to work with the Disabled Students Program at UCSB to ensure we can best support your learning and success."
   },
   {
-    "objectID": "modules/week02/index-02.html",
-    "href": "modules/week02/index-02.html",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "objectID": "modules/week02/hw-02.html",
+    "href": "modules/week02/hw-02.html",
+    "title": "Week 2 - Data Cleaning",
     "section": "",
-    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments to your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd eds213_data_cleaning_assign_YOURNAME.qmd should run if your repo is cloned locally and\nthe code should output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder\n\nNote: We recommend starting by importing the csv file with the corrected Snow_cover column (data/processed/snow_cover.csv) we generated during class (my code here)\n\n\nOn Canvas:\n\nAdd the URL to your fork on GitHub at the top of your quarto document\nUpload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)"
   },
   {
-    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
-    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "objectID": "modules/week04/hw-04-1.html",
+    "href": "modules/week04/hw-04-1.html",
+    "title": "Week 4 - What sites did we miss?",
     "section": "",
-    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
-  },
-  {
-    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
-    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
-    "section": "Analyzing the data from the csv files",
-    "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
-  },
-  {
-    "objectID": "modules/week04/index-04.html",
-    "href": "modules/week04/index-04.html",
-    "title": "Week 4 - SQL and DuckDB",
-    "section": "",
-    "text": "Continued exploration of SQL concepts including joins, views, set operations, and triggers\nRead and write data from SQLite\nWrite a basic Bash script"
-  },
-  {
-    "objectID": "modules/week04/index-04.html#learning-objectives",
-    "href": "modules/week04/index-04.html#learning-objectives",
-    "title": "Week 4 - SQL and DuckDB",
-    "section": "",
-    "text": "Continued exploration of SQL concepts including joins, views, set operations, and triggers\nRead and write data from SQLite\nWrite a basic Bash script"
-  },
-  {
-    "objectID": "modules/week04/index-04.html#slides-and-other-materials",
-    "href": "modules/week04/index-04.html#slides-and-other-materials",
-    "title": "Week 4 - SQL and DuckDB",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-04-intro.pptx\nslides-04-triggers.pptx\nLecture notes:\n\nlecture-notes-04-mon.txt\nlecture-notes-04-wed.txt\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 4"
-  },
-  {
-    "objectID": "modules/week04/index-04.html#homework",
-    "href": "modules/week04/index-04.html#homework",
-    "title": "Week 4 - SQL and DuckDB",
-    "section": "Homework",
-    "text": "Homework\nProtect yourself\nCreate a test harness"
+    "text": "Which sites have no egg data? Please answer this question using the three techniques demonstrated in class. In doing so, your query will involve the Bird_eggs table, the Site table, or both. The techniques are:\n\nUsing a Code NOT IN (subquery) clause.\nUsing an outer join with a WHERE clause that selects the desired rows. Caution: make sure your IS NULL test is performed against a column that is not ordinarily allowed to be NULL.\nUsing the set operation EXCEPT.\n\nAdd an ORDER BY clause to your queries so that all three produce the exact same result:\n┌─────────┐\n│  Code   │\n│ varchar │\n├─────────┤\n│ barr    │\n│ burn    │\n│ bylo    │\n│ cakr    │\n│ cari    │\n│ chau    │\n│ coat    │\n│ colv    │\n│ iglo    │\n│ ikpi    │\n│ lkri    │\n│ made    │\n│ nome    │\n│ prba    │\n├─────────┤\n│ 14 rows │\n└─────────┘"
   },
   {
     "objectID": "modules/week03/hw-03-2.html",
