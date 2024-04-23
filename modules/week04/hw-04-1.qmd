@@ -1,0 +1,37 @@
+---
+title: "Week 4 - What sites did we miss?"
+---
+
+Which sites have **no** egg data? Please answer this question using the three techniques demonstrated in class. In doing so, your query will involve the Bird_eggs table, the Site table, or both. The techniques are:
+
+-   Using a `Code NOT IN (subquery)` clause.
+
+-   Using an outer join with a `WHERE` clause that selects the desired rows. Caution: make sure your `IS NULL` test is performed against a column that is not ordinarily allowed to be NULL.
+
+-   Using the set operation `EXCEPT`.
+
+Add an `ORDER BY` clause to your queries so that all three produce the exact same result:
+
+```         
+┌─────────┐
+│  Code   │
+│ varchar │
+├─────────┤
+│ barr    │
+│ burn    │
+│ bylo    │
+│ cakr    │
+│ cari    │
+│ chau    │
+│ coat    │
+│ colv    │
+│ iglo    │
+│ ikpi    │
+│ lkri    │
+│ made    │
+│ nome    │
+│ prba    │
+├─────────┤
+│ 14 rows │
+└─────────┘
+```
