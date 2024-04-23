@@ -12,7 +12,7 @@ website:
           - modules/week01/index-01.qmd
           - modules/week02/index-02.qmd
           - modules/week03/index-03.qmd
-          #- modules/week04/index-04.qmd
+          - modules/week04/index-04.qmd
           #- modules/week05/index-05.qmd
           #- modules/week06/index-06.qmd
           #- modules/week07/index-07.qmd
@@ -27,7 +27,9 @@ website:
           - modules/week03/hw-03-1.qmd
           - modules/week03/hw-03-2.qmd
           - modules/week03/hw-03-3.qmd
-          #- modules/week04/hw-04.qmd
+          - modules/week04/hw-04-1.qmd
+          - modules/week04/hw-04-2.qmd
+          - modules/week04/hw-04-3.qmd
           #- modules/week05/hw-05-1.qmd
           #- modules/week05/hw-05-2.qmd
           #- modules/week05/hw-05-3.qmd

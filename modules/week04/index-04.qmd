@@ -5,32 +5,24 @@ title: "Week 4 - SQL and DuckDB"
 ## Learning objectives
 
 -   Continued exploration of SQL concepts including joins, views, set operations, and triggers
--   Read and write data from SQLite
--   Write a basic Bash script
 
 ## Slides and other materials
 
-[slides-04-intro.pptx](slides-04-intro.pptx)
-
-[slides-04-triggers.pptx](slides-04-triggers.pptx)
+[slides-04.pptx](slides-04.pptx)
 
 Lecture notes:
 
 -   [lecture-notes-04-mon.txt](lecture-notes-04-mon.txt)
--   [lecture-notes-04-wed.txt](lecture-notes-04-wed.txt)
+-   [class-script-04-mon.sql](class-script-04-mon.sql)
 
 [ASDN dataset ER (entity-relationship) diagram](asdn-er-diagram.png)
 
-[Class data GitHub repository, week 4](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week4)
-
-
-
-
+[Class data GitHub repository, week 3](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week3)
 
 ## Homework
 
-[Protect yourself](hw-04-1.qmd)
+[Missing data](hw-04-1.qmd)
 
-[Create a test harness](hw-04-3.qmd)
+[Who worked with whom?](hw-04-2.qmd)
 
-
+[Who's the culprit?](hw-04-3.qmd)
