@@ -232,14 +232,14 @@ window.Quarto = {
 </header>
 
 
-<p>The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who work with whom? That is, find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.</p>
-<p>A self-join of a table is regular join, but instead of joining two different tables, we join two copies of the same table, which we will call the “A” copy and the “B” copy:</p>
+<p>The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who work with whom? That is, you are to find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.</p>
+<p>A self-join of a table is a regular join, but instead of joining two different tables, we join two copies of the same table, which we will call the “A” copy and the “B” copy:</p>
 <pre><code>SELECT * FROM Camp_assignment A JOIN Camp_assignment B ...</code></pre>
-<p>The idea is that the above join will give us rows that pair every person/site/date range with every person/site/date range. With no conditions on the join, since there are <span class="math inline">\(441\)</span> rows in the Camp_assignment table, the join will produce <span class="math inline">\(441^2 = 194481\)</span> rows. But out of all those rows we want only those where the two people worked at the same site. So:</p>
+<p>The idea is that the above join will give us rows that pair every person/site/date range with every other person/site/date range. With no conditions on the join, since there are <span class="math inline">\(441\)</span> rows in the Camp_assignment table, the join will produce <span class="math inline">\(441^2 = 194481\)</span> rows. But out of all those rows we want only those where the two people worked at the same site. So:</p>
 <ul>
 <li><p>Step 1. To the above join, add an <code>ON</code> clause that selects only those rows where the two people (the “A” person and the “B” person) worked at the same site: <code>ON A.Site = ...</code>. You should wind up with a table with <span class="math inline">\(15521\)</span> rows.</p></li>
-<li><p>Step 2. We’ve matched up people working at the same site, but they didn’t necessarily overlap in time. To the previous <code>ON</code> clause, add another condition that checks that the “A” person’s and the “B” person’s date ranges overlap. If you are unsure of the formula for this, it may be helpful to consult <a href="https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap/325964">this StackOverflow post</a>. Your new table should be down to 3500 rows.</p></li>
-<li><p>Step 3. Well, there’s a problem. To better see the problem, add a clause <code>WHERE A.Site = 'lkri'</code> so you’re only looking at 8 rows. If you look closely, you can see that there are rows that represent people working with themselves, which is not what we’re interested in. Also, every pair of people working together is represented by two rows, with the names in different order. We only want one row per unique pair. We can clean this up by adding a condition to the clause, <code>A.Observer &lt; B.Observer</code>. I.e., we only want ordered, distinct pairs. Your table should be down to <span class="math inline">\(2\)</span> rows.</p></li>
+<li><p>Step 2. We’ve matched up people working at the same site, but they don’t necessarily overlap in time. To the previous <code>ON</code> clause, add another condition that checks that the “A” person’s and the “B” person’s date ranges overlap. If you are unsure of the formula to do this, it may be helpful to consult <a href="https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap/325964">this StackOverflow post</a>. Your table should be down to <span class="math inline">\(3500\)</span> rows.</p></li>
+<li><p>Step 3. Well, there’s a problem. To better see the problem, add a clause <code>WHERE A.Site = 'lkri'</code> so you’re only looking at <span class="math inline">\(8\)</span> rows. If you look closely, you can see that there are rows that represent people working with themselves, which is not what we’re interested in. Also, every pair of people working together is represented by two rows, which are identical but with the names in different order. We only want one row per unique pair of people. We can clean this up by adding a condition to the clause, <code>A.Observer &lt; B.Observer</code>. I.e., we only want ordered, distinct pairs. Your table should be down to <span class="math inline">\(2\)</span> rows.</p></li>
 <li><p>Step 4. Clean up your table so it looks like this:</p></li>
 </ul>
 <pre><code>┌─────────┬────────────┬──────────────┐
@@ -252,7 +252,7 @@ window.Quarto = {
 <p>Submit your final SQL query.</p>
 <section id="bonus" class="level2">
 <h2 class="anchored" data-anchor-id="bonus">Bonus!</h2>
-<p>Produce this much nicer table by joining with the Personnel table.</p>
+<p>Produce this much nicer table by joining with the Personnel table:</p>
 <pre><code>┌─────────┬─────────────────────┬───────────────────┐
 │  Site   │       Name_1        │      Name_2       │
 │ varchar │       varchar       │      varchar      │
@@ -260,7 +260,7 @@ window.Quarto = {
 │ lkri    │ Anastasia Popovkina │ Gleb Sedash       │
 │ lkri    │ Anastasia Popovkina │ Julya Loshchagina │
 └─────────┴─────────────────────┴───────────────────┘</code></pre>
-<p>You’ll need to join with the Personnel table twice, once for each observer column. You may need give abbreviations to tables (e.g., <code>JOIN Personnel AS p1</code>). You can do it!</p>
+<p>You’ll need to join with the Personnel table twice, once for each observer column. You may need give abbreviations to tables (e.g., <code>JOIN Personnel AS p1</code>) to distinguish the tables and columns. You can do it!</p>
 
 
 </section>
