@@ -2,7 +2,7 @@
 title: "Week 4 - Who worked with whom?"
 ---
 
-The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who work with whom? That is, you are to find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.
+The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who worked with whom? That is, you are to find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.
 
 A self-join of a table is a regular join, but instead of joining two different tables, we join two copies of the same table, which we will call the "A" copy and the "B" copy:
 
