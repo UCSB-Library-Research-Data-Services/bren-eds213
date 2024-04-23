@@ -14,6 +14,8 @@ Lecture notes:
 
 -   [lecture-notes-04-mon.txt](lecture-notes-04-mon.txt)
 -   [class-script-04-mon.sql](class-script-04-mon.sql)
+-   [class-script-04-wed-empty.sql](class-script-04-wed-empty.sql)
+
 
 [ASDN dataset ER (entity-relationship) diagram](asdn-er-diagram.png)
 
