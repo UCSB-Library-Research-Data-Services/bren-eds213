@@ -2,21 +2,21 @@
 title: "Week 4 - Who worked with whom?"
 ---
 
-The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who work with whom? That is, find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.
+The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who work with whom? That is, you are to find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.
 
-A self-join of a table is regular join, but instead of joining two different tables, we join two copies of the same table, which we will call the "A" copy and the "B" copy:
+A self-join of a table is a regular join, but instead of joining two different tables, we join two copies of the same table, which we will call the "A" copy and the "B" copy:
 
 ```         
 SELECT * FROM Camp_assignment A JOIN Camp_assignment B ...
 ```
 
-The idea is that the above join will give us rows that pair every person/site/date range  with every person/site/date range. With no conditions on the join, since there are $441$ rows in the Camp_assignment table, the join will produce $441^2 = 194481$ rows. But out of all those rows we want only those where the two people worked at the same site. So:
+The idea is that the above join will give us rows that pair every person/site/date range with every other person/site/date range. With no conditions on the join, since there are $441$ rows in the Camp_assignment table, the join will produce $441^2 = 194481$ rows. But out of all those rows we want only those where the two people worked at the same site. So:
 
 -   Step 1. To the above join, add an `ON` clause that selects only those rows where the two people (the "A" person and the "B" person) worked at the same site: `ON A.Site = ...`. You should wind up with a table with $15521$ rows.
 
--   Step 2. We've matched up people working at the same site, but they didn't necessarily overlap in time. To the previous `ON` clause, add another condition that checks that the "A" person's and the "B" person's date ranges overlap. If you are unsure of the formula for this, it may be helpful to consult [this StackOverflow post](https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap/325964). Your new table should be down to 3500 rows.
+-   Step 2. We've matched up people working at the same site, but they don't necessarily overlap in time. To the previous `ON` clause, add another condition that checks that the "A" person's and the "B" person's date ranges overlap. If you are unsure of the formula to do this, it may be helpful to consult [this StackOverflow post](https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap/325964). Your table should be down to $3500$ rows.
 
--   Step 3. Well, there's a problem. To better see the problem, add a clause `WHERE A.Site = 'lkri'` so you're only looking at 8 rows. If you look closely, you can see that there are rows that represent people working with themselves, which is not what we're interested in.  Also, every pair of people working together is represented by two rows, with the names in different order. We only want one row per unique pair.  We can clean this up by adding a condition to the clause, `A.Observer < B.Observer`.  I.e., we only want ordered, distinct pairs.  Your table should be down to $2$ rows.
+-   Step 3. Well, there's a problem. To better see the problem, add a clause `WHERE A.Site = 'lkri'` so you're only looking at $8$ rows. If you look closely, you can see that there are rows that represent people working with themselves, which is not what we're interested in. Also, every pair of people working together is represented by two rows, which are identical but with the names in different order. We only want one row per unique pair of people. We can clean this up by adding a condition to the clause, `A.Observer < B.Observer`. I.e., we only want ordered, distinct pairs. Your table should be down to $2$ rows.
 
 -   Step 4. Clean up your table so it looks like this:
 
@@ -34,9 +34,9 @@ Submit your final SQL query.
 
 ## Bonus!
 
-Produce this much nicer table by joining with the Personnel table.
+Produce this much nicer table by joining with the Personnel table:
 
-```
+```         
 ┌─────────┬─────────────────────┬───────────────────┐
 │  Site   │       Name_1        │      Name_2       │
 │ varchar │       varchar       │      varchar      │
@@ -46,4 +46,4 @@ Produce this much nicer table by joining with the Personnel table.
 └─────────┴─────────────────────┴───────────────────┘
 ```
 
-You'll need to join with the Personnel table twice, once for each observer column.  You may need give abbreviations to tables (e.g., `JOIN Personnel AS p1`).  You can do it!
+You'll need to join with the Personnel table twice, once for each observer column. You may need give abbreviations to tables (e.g., `JOIN Personnel AS p1`) to distinguish the tables and columns. You can do it!
