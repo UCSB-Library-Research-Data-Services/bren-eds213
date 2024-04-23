@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Week 4 - What sites are missing?</title>
+<title>eds213 - Week 4 - Missing data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -180,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 4 - What sites are missing?</h1>
+<h1 class="title">Week 4 - Missing data</h1>
 </div>
 
 
@@ -197,10 +197,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Which sites have <strong>no</strong> egg data? Please answer this question using the three techniques demonstrated in class. In doing so, your query will involve the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:</p>
+<p>Which sites have <strong>no</strong> egg data? Please answer this question using all three techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:</p>
 <ul>
 <li><p>Using a <code>Code NOT IN (subquery)</code> clause.</p></li>
-<li><p>Using an outer join with a <code>WHERE</code> clause that selects the desired rows. Caution: make sure your <code>IS NULL</code> test is performed against a column that is not ordinarily allowed to be NULL.</p></li>
+<li><p>Using an outer join with a <code>WHERE</code> clause that selects the desired rows. Caution: make sure your <code>IS NULL</code> test is performed against a column that is not ordinarily allowed to be NULL. You may want to consult the <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/blob/main/week3/schema-build-script.sql">database schema</a> to remind yourself of column declarations.</p></li>
 <li><p>Using the set operation <code>EXCEPT</code>.</p></li>
 </ul>
 <p>Add an <code>ORDER BY</code> clause to your queries so that all three produce the exact same result:</p>
@@ -225,6 +225,7 @@ ul.task-list li input[type="checkbox"] {
 ├─────────┤
 │ 14 rows │
 └─────────┘</code></pre>
+<p>Submit your SQL.</p>
 
 
 

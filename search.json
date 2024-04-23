@@ -499,9 +499,9 @@
   {
     "objectID": "modules/week04/hw-04-1.html",
     "href": "modules/week04/hw-04-1.html",
-    "title": "Week 4 - What sites are missing?",
+    "title": "Week 4 - Missing data",
     "section": "",
-    "text": "Which sites have no egg data? Please answer this question using the three techniques demonstrated in class. In doing so, your query will involve the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:\n\nUsing a Code NOT IN (subquery) clause.\nUsing an outer join with a WHERE clause that selects the desired rows. Caution: make sure your IS NULL test is performed against a column that is not ordinarily allowed to be NULL.\nUsing the set operation EXCEPT.\n\nAdd an ORDER BY clause to your queries so that all three produce the exact same result:\n┌─────────┐\n│  Code   │\n│ varchar │\n├─────────┤\n│ barr    │\n│ burn    │\n│ bylo    │\n│ cakr    │\n│ cari    │\n│ chau    │\n│ coat    │\n│ colv    │\n│ iglo    │\n│ ikpi    │\n│ lkri    │\n│ made    │\n│ nome    │\n│ prba    │\n├─────────┤\n│ 14 rows │\n└─────────┘"
+    "text": "Which sites have no egg data? Please answer this question using all three techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:\n\nUsing a Code NOT IN (subquery) clause.\nUsing an outer join with a WHERE clause that selects the desired rows. Caution: make sure your IS NULL test is performed against a column that is not ordinarily allowed to be NULL. You may want to consult the database schema to remind yourself of column declarations.\nUsing the set operation EXCEPT.\n\nAdd an ORDER BY clause to your queries so that all three produce the exact same result:\n┌─────────┐\n│  Code   │\n│ varchar │\n├─────────┤\n│ barr    │\n│ burn    │\n│ bylo    │\n│ cakr    │\n│ cari    │\n│ chau    │\n│ coat    │\n│ colv    │\n│ iglo    │\n│ ikpi    │\n│ lkri    │\n│ made    │\n│ nome    │\n│ prba    │\n├─────────┤\n│ 14 rows │\n└─────────┘\nSubmit your SQL."
   },
   {
     "objectID": "modules/week03/hw-03-2.html",
