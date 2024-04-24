@@ -21,7 +21,7 @@ Lecture notes:
 Data:
 
 - [Class data GitHub repository, week 3 -- for Monday](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week3)
-- [Class data GitHub repository, week 4 -- for Wednesday only)](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week4)
+- [Class data GitHub repository, week 4 -- for Wednesday only](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week4)
 - [ASDN dataset ER (entity-relationship) diagram](asdn-er-diagram.png)
 
 
