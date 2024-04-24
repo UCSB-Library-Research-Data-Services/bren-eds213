@@ -22,7 +22,7 @@ SELECT Site, AVG(Snow_cover) AS avg_snowcover FROM Snow_cover
   ORDER BY avg_snowcover DESC
   LIMIT 3;
 
--- Ask 3: Save your results into a temporary table named  Site_avg_snowcover
+-- Ask 3: Save your results into a view named  Site_avg_snowcover
 CREATE VIEW Site_avg_snowcover AS (SELECT Site, AVG(Snow_cover) AS avg_snowcover FROM Snow_cover
   GROUP BY Site
   ORDER BY avg_snowcover DESC
@@ -39,7 +39,7 @@ SELECT Site, AVG(Snow_cover) AS avg_snowcover_nozero FROM Snow_cover
   ORDER BY avg_snowcover_nozero DESC
   LIMIT 3;
 
--- Ask 6: Save your results into a **view** named  Site_avg_snowcover_nozeros
+-- Ask 6: Save your results into a  temporary table named  Site_avg_snowcover_nozeros
 CREATE TMP TABLE Site_avg_snowcover_nozeros AS (SELECT Site, AVG(Snow_cover) AS avg_snowcover_nozero FROM Snow_cover
   WHERE Snow_cover > 0
   GROUP BY Site
@@ -57,10 +57,9 @@ SELECT Site, avg_snowcover,  avg_snowcover_nozero, avg_snowcover_nozero - avg_sn
   LIMIT 1;
 
 -- Ask 9: So? Would it be time well spent to further look into the meaning of zeros?
-
+YES!! 
 
 -- We found out that actually at the location `sno05` of the site eaba, 0 means NULL... let's update our Snow_cover table
-
 CREATE TABLE Snow_cover_backup AS SELECT * FROM Snow_cover; -- Create a copy of the table to be safe (and not cry a lot)
 
 -- For Recall
