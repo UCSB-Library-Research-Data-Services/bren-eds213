@@ -4,7 +4,8 @@ title: "Week 4 - SQL and DuckDB"
 
 ## Learning objectives
 
--   Continued exploration of SQL concepts including joins, views, set operations, and triggers
+-   Continued exploration of SQL concepts including joins, views, and set operations; and apply it to conduct data analysis.
+
 
 ## Slides and other materials
 
