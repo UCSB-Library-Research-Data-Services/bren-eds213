@@ -4,61 +4,22 @@ title: "Week 5 - Bash Programming & Advanced database topics"
 
 ## Learning objectives
 
-- Introduction to bash to write script  
+- Data management SQL statement
 
-- Exposure to the concepts of:
+## Lecture notes:
 
-    -   Concurrency and transactions
-    -   Backups
-    -   Indexes
+-   [lecture-notes-05-mon.txt](lecture-notes-05-mon.txt)
+-   [slides triggers](slides-05-triggers.pptx)
 
+## Data:
 
-## Bash programming
-
-
-[Ten Bash Essentials](bash-essentials.qmd)
-
-
-## Bash resources
-
-1.  <https://swcarpentry.github.io/shell-novice/>
-
-    -   *Good Carpentry lesson, our lesson on Bash is drawn from this.*
-
-2.  <https://www.gnu.org/software/bash/manual/>
-
-    -   *The official user manual.*
-
-3.  <https://www.pcwdld.com/bash-cheat-sheet>
-
-    -   *A cheat sheet that is better than most.*
-
-4.  <https://www.shellcheck.net/>
-
-    -   *Indispensable tool for writing scripts.*
-
-5.  <http://mywiki.wooledge.org/BashPitfalls>
-
-    -   *How to do things the right way in Bash.*
+- [Class data GitHub repository, week 3 -- for Monday](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week3)
 
 
 
 
-## Advanced topics
 
 
-## Slides
-
-[slides-05.pptx](slides-05.pptx)
-
-## Instructor materials
-
-[Instructor notes](instructor-notes-05.qmd)
-
-Instructor files:
-
--   [concurrency.zip](concurrency.zip)
--   [indexes.zip](indexes.zip)
 
 ## Resources
 
@@ -69,10 +30,6 @@ Instructor files:
 
 
 
-## Homework
 
-[Bash scripting](hw-05-1.qmd)
-
-[What makes a good index?](hw-05-2.qmd)
 
 
