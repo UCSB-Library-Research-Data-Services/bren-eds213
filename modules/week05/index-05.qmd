@@ -1,5 +1,5 @@
 ---
-title: "Week 5 - I/O, data management & Advanced database topics"
+title: "Week 5 - I/O, data management & More"
 ---
 
 ## Learning objectives
