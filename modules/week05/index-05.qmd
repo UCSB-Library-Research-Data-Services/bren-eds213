@@ -9,6 +9,7 @@ title: "Week 5 - Bash Programming & Advanced database topics"
 ## Lecture notes:
 
 -   [lecture-notes-05-mon.txt](lecture-notes-05-mon.txt)
+-   [Bash essentials](bash-essentials.qmd)
 -   [slides triggers](slides-05-triggers.pptx)
 
 ## Data:
