@@ -15,10 +15,21 @@ I/O
 - all RDBMSs have scriptable I/O tools
 - generally, INSERT one at a time is slow
 - output to CSV
--- .mode csv, .headers on, .output file
--- plain .output to turn output off
+-- COPY Species TO 'species_fixed.csv' (HEADER, DELIMITER ',');
 - loading CSVs: see build script
-- if table doesn't exist, is created w/ all text columns (don't skip header)
+-- 1. CREATE a new empty table in the database:
+CREATE TABLE Snow_cover (
+    Site VARCHAR NOT NULL,
+    Year INTEGER NOT NULL CHECK (Year BETWEEN 1950 AND 2015),
+    Date DATE NOT NULL,
+    Plot VARCHAR, -- some Null in the data :/
+    Location VARCHAR NOT NULL,
+    Snow_cover INTEGER CHECK (Snow_cover > -1 AND Snow_cover < 101),
+    Observer VARCHAR
+);
+-- 2. Copy the data from a csv
+COPY Snow_cover FROM 'snow_cover_fixedman_JB.csv' (header TRUE); 
+NOTE: If you run this last lines several times you will keep adding the data to the table!!!
 
 TRIGGERS
 - on some event, take some action(s)
@@ -40,45 +51,3 @@ TRIGGERS
           SET Scientific_name = NULL
           WHERE Code = new.Code AND Scientific_name = '';
       END;
-
-=== BASH =================
-
-GETTING HELP
-- https://www.pcwdld.com/bash-cheat-sheet (and other cheat sheets)
-- GNU manual
-- shellcheck.net
-- man, --help
-- Google "... man page"
-
-RUNNING COMMANDS
-- I/O model for all programs running in Unix:
--- one input stream, stdin
--- two output streams, stdout & stderr
-- Unix conventions:
--- programs read from stdin if no files specified on command line (ie, as args)
--- programs write to stdout
--- programs write error messages & out-of-band messages to stderr
-- can pipe one program's stdout to another's stdin:
-- wc -l *.csv | sort -n
-- wc is given files, it reports #lines on those files
-- wc -l 01_ASDN_Readme.txt
--- #lines for that file
-- wc -l < 01_ASDN_Readme.txt
--- no files given, #lines in stdin
-- equivalent: cat 01_ASDN_Readme.txt | wc -l
-- on output side, try sqlite3 -csv database.db 'SELECT Code FROM Species'
--- cmd > output.dat
--- output o tfile, info message still appears because it's in stderr
--- > redirect stdout
--- 2> redirect stderr
--- >& stdout + stderr
-
-PATH
-- where are commands coming from?
-- some are built in to Bash (cd, pwd, if, while)
-- most are programs, whether from Unix (ls, mkdir, grep) or installed
-  (sqlite3, python, etc.)
-- Bash looks at PATH
-- echo $PATH
-- which -a command: see where a program is being read from
-- PATH can be set in .bash_profile or .profile
