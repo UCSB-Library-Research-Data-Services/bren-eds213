@@ -12,7 +12,11 @@ title: "Week 5 - I/O, data management & More"
 
 -   [lecture-notes-05-mon.txt](lecture-notes-05-mon.txt)
 
+-   [class-script-05-mon-1.txt](class-script-05-mon-1.txt)
+
 -   [slides triggers](slides-05-triggers.pptx)
+
+-   [class-script-05-mon-2.txt](class-script-05-mon-2.txt)
 
 ### Wednesday
 
