@@ -1,9 +1,7 @@
 ---
 title: "Ten Bash Essentials"
+author: "Greg Janée, gjanee@ucsb.edu"
 ---
-
-Greg Janée \<gjanee\@ucsb.edu\>\
-May 2023
 
 Some essential concepts to get you started writing your first Bash script.
 
@@ -64,7 +62,7 @@ Bash supports variables, and variables are essential in writing Bash scripts. To
 name=Moe
 ```
 
-No space between the variable name and equals sign! Variables are referenced as `${name}`, or as just `$name` if not ambiguous. Lots of other stuff can go inside the braces, such as string processing and array indexing. Refer to the Bash manual or a good cheat sheet for examples.
+**No space** between the variable name and equals sign! Variables are referenced as `${name}`, or as just `$name` if not ambiguous. Lots of other stuff can go inside the braces, such as string processing and array indexing. Refer to the Bash manual or a good cheat sheet for examples.
 
 Names defined as above are local to the current Bash session or script. "Environment variables" are variables that are inherited by (visible to) programs and any scripts you run. To set, add `export`:
 
@@ -128,7 +126,7 @@ Before running any commands Bash performs various kinds of expansions. The rules
 
     Bash can do integer arithmetic only.
 
-Takeaway: program(s) that are run see only the finally expanded command line.
+**Takeaway: program(s) that are run see only the finally expanded command line.**
 
 ## 5. Quoting
 
@@ -391,9 +389,11 @@ And two tips.
 
     to confirm deletion.
 
+<br> 
+
 ## Test your understanding
 
-Be sure to `cd` to the MEDS 213 git repo directory, week5 subdirectory, before answering these.
+Be sure to `cd` to the MEDS 213 data git repo directory, week3 subdirectory, before answering these.
 
 1.  Compare the output of these three commands:
 
