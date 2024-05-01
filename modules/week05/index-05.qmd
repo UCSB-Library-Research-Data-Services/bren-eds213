@@ -4,7 +4,7 @@ title: "Week 5 - I/O, data management & More"
 
 ## Learning objectives
 
-- Data management SQL statement
+-   Data management SQL statement
 
 ## Lecture notes:
 
@@ -16,20 +16,14 @@ title: "Week 5 - I/O, data management & More"
 
 ### Wednesday
 
-- Advanced topics:
-  - [Slides](slides-05-advanced.pptx)
-- Bash programming: 
-  - [Bash essentials](bash-essentials.qmd)
+-   Advanced topics:
+    -   [Slides](slides-05-advanced.pptx)
+-   Bash programming:
+    -   [Bash essentials](bash-essentials.qmd)
 
 ## Data:
 
-- [Class data GitHub repository, week 3 -- for Monday](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week3)
-
-
-
-
-
-
+-   [Class data GitHub repository, week 3 -- for Monday](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week3)
 
 ## Resources
 
@@ -37,9 +31,3 @@ title: "Week 5 - I/O, data management & More"
     [Access via Library Catalog](https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma990032103790203776)
 
     -   *Complete but theoretical introduction to relational databases, data modeling, and relational algebra.*
-
-
-
-
-
-
