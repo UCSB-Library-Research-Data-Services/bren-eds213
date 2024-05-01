@@ -8,9 +8,18 @@ title: "Week 5 - I/O, data management & More"
 
 ## Lecture notes:
 
+### Monday
+
 -   [lecture-notes-05-mon.txt](lecture-notes-05-mon.txt)
--   [Bash essentials](bash-essentials.qmd)
+
 -   [slides triggers](slides-05-triggers.pptx)
+
+### Wednesday
+
+- Advanced topics:
+  - [Slides](slides-05-advanced.pptx)
+- Bash programming: 
+  - [Bash essentials](bash-essentials.qmd)
 
 ## Data:
 
