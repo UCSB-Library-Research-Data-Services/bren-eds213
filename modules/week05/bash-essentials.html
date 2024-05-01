@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Greg Janée, gjanee@ucsb.edu">
 
 <title>eds213 - Ten Bash Essentials</title>
 <style>
@@ -223,6 +224,12 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Greg Janée, gjanee@ucsb.edu </p>
+          </div>
+  </div>
     
   
     
@@ -233,8 +240,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Greg Janée &lt;gjanee@ucsb.edu&gt;<br>
-May 2023</p>
 <p>Some essential concepts to get you started writing your first Bash script.</p>
 <section id="what-does-bash-or-any-shell-for-that-matter-do" class="level2">
 <h2 class="anchored" data-anchor-id="what-does-bash-or-any-shell-for-that-matter-do">1. What does Bash (or any shell for that matter) do?</h2>
@@ -287,7 +292,7 @@ May 2023</p>
 <h2 class="anchored" data-anchor-id="variables">3. Variables</h2>
 <p>Bash supports variables, and variables are essential in writing Bash scripts. To set a variable:</p>
 <pre><code>name=Moe</code></pre>
-<p>No space between the variable name and equals sign! Variables are referenced as <code>${name}</code>, or as just <code>$name</code> if not ambiguous. Lots of other stuff can go inside the braces, such as string processing and array indexing. Refer to the Bash manual or a good cheat sheet for examples.</p>
+<p><strong>No space</strong> between the variable name and equals sign! Variables are referenced as <code>${name}</code>, or as just <code>$name</code> if not ambiguous. Lots of other stuff can go inside the braces, such as string processing and array indexing. Refer to the Bash manual or a good cheat sheet for examples.</p>
 <p>Names defined as above are local to the current Bash session or script. “Environment variables” are variables that are inherited by (visible to) programs and any scripts you run. To set, add <code>export</code>:</p>
 <pre><code>export DEBUG_ENABLED=1</code></pre>
 <p>The two most important environment variables are <code>HOME</code> (your home directory) and <code>PATH</code> (discussed below). The use of all-caps environment variable names is just a convention.</p>
@@ -323,7 +328,7 @@ May 2023</p>
 <p><code>answer=42</code></p>
 <p>Bash can do integer arithmetic only.</p></li>
 </ol>
-<p>Takeaway: program(s) that are run see only the finally expanded command line.</p>
+<p><strong>Takeaway: program(s) that are run see only the finally expanded command line.</strong></p>
 </section>
 <section id="quoting" class="level2">
 <h2 class="anchored" data-anchor-id="quoting">5. Quoting</h2>
@@ -476,10 +481,11 @@ ls --help</code></pre>
 <p><code>alias rm="rm -i"</code></p>
 <p>to confirm deletion.</p></li>
 </ul>
+<p><br></p>
 </section>
 <section id="test-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="test-your-understanding">Test your understanding</h2>
-<p>Be sure to <code>cd</code> to the MEDS 213 git repo directory, week5 subdirectory, before answering these.</p>
+<p>Be sure to <code>cd</code> to the MEDS 213 data git repo directory, week3 subdirectory, before answering these.</p>
 <ol type="1">
 <li><p>Compare the output of these three commands:</p>
 <p><code>ls</code><br>
