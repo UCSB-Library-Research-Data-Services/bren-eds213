@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -161,6 +161,22 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../modules/week04/hw-04-3.html">
  <span class="dropdown-text">Week 4 - Who’s the culprit?</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-1.html">
+ <span class="dropdown-text">Week 5 - Protect yourself</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-2.html">
+ <span class="dropdown-text">Week 5 - Create a trigger</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-3.html">
+ <span class="dropdown-text">Week 5 - Bash essentials</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-4.html">
+ <span class="dropdown-text">Week 5 - Create a test harness</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -315,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Wildcard expansion (“globbing”).</p>
 <p><code>wc -l *.csv</code></p>
 <p>is expanded to</p>
-<p><code>wc -l ASDN_Bird_eggs.csv species.csv ...</code></p>
+<p><code>wc -l ASDN_Bird_eggs.csv ... species.csv</code></p>
 <p>As with variable substitutions, the globbing expansion literally replaces the wildcard expression with a list of filenames before the <code>wc</code> command is run.</p></li>
 <li><p>Running subcommands.</p>
 <p><code>now="$(date)"</code></p>
@@ -405,7 +421,7 @@ fi</code></pre>
     echo "$file has $(wc -l &lt; $file) lines"
 done</code></pre>
 <p>Recall expansions from section 4. The <code>*.csv</code> is expanded before the loop is run, ergo the above is equivalent to listing the files explicitly:</p>
-<pre><code>for file in ASDN_Bird_eggs.csv species.csv ...; do
+<pre><code>for file in ASDN_Bird_eggs.csv ... species.csv; do
     echo "$file has $(wc -l &lt; $file) lines"
 done</code></pre>
 <p>Want to do something 99 times? You can use a <code>while</code> loop and a variable as a counter (recall arithmetic from section 4), or you can use <code>seq</code> (try <code>seq</code> by itself to see what it outputs):</p>
@@ -431,7 +447,7 @@ fi</code></pre>
 <pre><code>bash myscript.sh</code></pre>
 <p>To run a script just by saying</p>
 <pre><code>myscript.sh</code></pre>
-<p>i.e., to make it look more like a command, requires that two things be done:</p>
+<p>i.e., to make it look more like a built-in command, requires that two things be done:</p>
 <ol type="1">
 <li><p>The first line of the script file must be:</p>
 <p><code>#!/bin/bash</code></p>
@@ -474,7 +490,7 @@ ls --help</code></pre>
 <li><p>If you’re about to embark on a potentially destructive operation, first try just echoing the commands to confirm they’ll do what you want:</p>
 <p><code># rename files from .JPG to .jpg</code><br>
 <code>for file in *.JPG; do</code><br>
-<code>echo mv $file ${file/.JPG/.jpg}</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>echo mv $file ${file/.JPG/.jpg}</code><br>
 <code>done</code></p>
 <p>Once you’re satisfied, remove <code>echo</code> and run your script for real.</p></li>
 <li><p><code>rm</code>, particulary when paired with a wildcard, is a notoriously dangerous command: it deletes files instantly and permanently. Consider creating an alias</p>
@@ -485,12 +501,12 @@ ls --help</code></pre>
 </section>
 <section id="test-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="test-your-understanding">Test your understanding</h2>
-<p>Be sure to <code>cd</code> to the MEDS 213 data git repo directory, week3 subdirectory, before answering these.</p>
+<p><strong>Be sure to <code>cd</code> to the class data GitHub repository, week3 subdirectory, before answering these.</strong></p>
 <ol type="1">
 <li><p>Compare the output of these three commands:</p>
 <p><code>ls</code><br>
 <code>ls .</code><br>
-<code>ls "$(pwd)/../week5"</code></p>
+<code>ls "$(pwd)/../week3"</code></p>
 <p>Explain why you see what you see.</p></li>
 <li><p>Try the following two commands:</p>
 <p><code>wc -l *.csv</code><br>
@@ -503,13 +519,13 @@ ls --help</code></pre>
 <p><code>name=Moe</code></p>
 <p>and you’d like to print “Moe_Howard”. You try this:</p>
 <p><code>echo "$name_Howard"</code></p>
-<p>but that doesn’t quite work. What fix can you apply to make this command give the desired effect?</p></li>
+<p>but that doesn’t quite work. What fix can you apply to <code>$name</code> to make this command give the desired effect?</p></li>
 <li><p>You create a script and run it like so:</p>
 <p><code>bash myscript.sh *.csv</code></p>
 <p>What are the values of variables <code>$1</code> and <code>$#</code>? Explain why the script does not see just one argument passed to it.</p></li>
 <li><p>You create a script and run it like so:</p>
 <p><code>bash myscript.sh "$(date)" $(date)</code></p>
-<p>In your script, what is the value of variable <code>$3</code>?</p></li>
+<p>In your script, what is the value of variable <code>$2</code>?</p></li>
 <li><p>Create a file you don’t care about (because you’re about to destroy it):</p>
 <p><code>echo "yo ho a line of text" &gt; junk_file.txt</code><br>
 <code>echo "another line" &gt;&gt; junk_file.txt</code></p>
@@ -520,7 +536,7 @@ ls --help</code></pre>
 <p>What happens and why? How <em>can</em> you sort the lines in your file? (Hint: it involves creating a second file and using <code>mv</code>.)</p></li>
 <li><p>You want to delete all files ending in <code>.csv</code>, so you type (don’t actually try this):</p>
 <p><code>rm * .csv</code></p>
-<p>but as can be seen, your thumb accidentally hit the space bar and you got an extra space in there. What will <code>rm</code> do?</p></li>
+<p>but as can be seen, your thumb accidentally hit the space bar and you got an extra space in there. What will <code>rm</code> do in this case?</p></li>
 </ol>
 
 
