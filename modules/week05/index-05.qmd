@@ -35,3 +35,13 @@ title: "Week 5 - I/O, data management & More"
     [Access via Library Catalog](https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma990032103790203776)
 
     -   *Complete but theoretical introduction to relational databases, data modeling, and relational algebra.*
+
+## Homework
+
+[Protect yourself](hw-05-1.qmd)
+
+[Create a trigger](hw-05-2.qmd)
+
+[Bash essentials](hw-05-3.qmd)
+
+[Create a test harness](hw-05-4.qmd)

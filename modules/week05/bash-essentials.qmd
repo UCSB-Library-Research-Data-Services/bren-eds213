@@ -102,7 +102,7 @@ Before running any commands Bash performs various kinds of expansions. The rules
 
     is expanded to
 
-    `wc -l ASDN_Bird_eggs.csv species.csv ...`
+    `wc -l ASDN_Bird_eggs.csv ... species.csv`
 
     As with variable substitutions, the globbing expansion literally replaces the wildcard expression with a list of filenames before the `wc` command is run.
 
@@ -266,7 +266,7 @@ done
 Recall expansions from section 4. The `*.csv` is expanded before the loop is run, ergo the above is equivalent to listing the files explicitly:
 
 ```         
-for file in ASDN_Bird_eggs.csv species.csv ...; do
+for file in ASDN_Bird_eggs.csv ... species.csv; do
     echo "$file has $(wc -l < $file) lines"
 done
 ```
@@ -311,7 +311,7 @@ To run a script just by saying
 myscript.sh
 ```
 
-i.e., to make it look more like a command, requires that two things be done:
+i.e., to make it look more like a built-in command, requires that two things be done:
 
 1.  The first line of the script file must be:
 
@@ -378,7 +378,7 @@ And two tips.
 
     `# rename files from .JPG to .jpg`\
     `for file in *.JPG; do`\
-    `echo mv $file ${file/.JPG/.jpg}`\
+    \ \ \ \ \ `echo mv $file ${file/.JPG/.jpg}`\
     `done`
 
     Once you're satisfied, remove `echo` and run your script for real.
@@ -393,13 +393,13 @@ And two tips.
 
 ## Test your understanding
 
-Be sure to `cd` to the MEDS 213 data git repo directory, week3 subdirectory, before answering these.
+**Be sure to `cd` to the class data GitHub repository, week3 subdirectory, before answering these.**
 
 1.  Compare the output of these three commands:
 
     `ls`\
     `ls .`\
-    `ls "$(pwd)/../week5"`
+    `ls "$(pwd)/../week3"`
 
     Explain why you see what you see.
 
@@ -424,7 +424,7 @@ Be sure to `cd` to the MEDS 213 data git repo directory, week3 subdirectory, bef
 
     `echo "$name_Howard"`
 
-    but that doesn't quite work. What fix can you apply to make this command give the desired effect?
+    but that doesn't quite work. What fix can you apply to `$name` to make this command give the desired effect?
 
 5.  You create a script and run it like so:
 
@@ -436,7 +436,7 @@ Be sure to `cd` to the MEDS 213 data git repo directory, week3 subdirectory, bef
 
     `bash myscript.sh "$(date)" $(date)`
 
-    In your script, what is the value of variable `$3`?
+    In your script, what is the value of variable `$2`?
 
 7.  Create a file you don't care about (because you're about to destroy it):
 
@@ -457,4 +457,4 @@ Be sure to `cd` to the MEDS 213 data git repo directory, week3 subdirectory, bef
 
     `rm * .csv`
 
-    but as can be seen, your thumb accidentally hit the space bar and you got an extra space in there. What will `rm` do?
+    but as can be seen, your thumb accidentally hit the space bar and you got an extra space in there. What will `rm` do in this case?
