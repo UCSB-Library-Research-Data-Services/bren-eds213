@@ -8,7 +8,7 @@ title: "dbplyr"
 library(tidyverse)
 library(DBI)         # low-level database interface, comparable to what we saw in Python
 library(dbplyr)
-library(duckdb)
+library(duckdb)     # Specific to duckDB
 ```
 
 
