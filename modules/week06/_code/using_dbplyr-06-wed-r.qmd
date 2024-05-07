@@ -103,6 +103,17 @@ species %>%
   show_query()
 ```
 
+You can even join tables:
+
+```{r}
+# loading all the necessary tables
+eggs_db <- tbl(conn, "Bird_eggs")
+nests_db <- tbl(conn, "Bird_nests")
+
+left_join(nests_db, eggs_db, by="Nest_ID", keep = FALSE) %>%
+  head(5)
+```
+
 
 **Limitation**: no way to add or update data.  **dbplyr is view only**.
 If you want to add or update data, you'll need to use
