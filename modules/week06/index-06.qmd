@@ -6,7 +6,7 @@ title: "Week 6 - Programming with databases"
 
 -   Review: understand how the data model relates to queries
 -   Understand the basic database programming model
--   Access an SQLite database from Python and R
+-   Access an DuckDB database from Python and R
 -   Understand how to use the Python/Pandas and R/dbplyr convenience functions
 
 ## Slides and other materials
