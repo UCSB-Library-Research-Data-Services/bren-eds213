@@ -249,14 +249,14 @@
     "href": "modules/week06/index-06.html",
     "title": "Week 6 - Programming with databases",
     "section": "",
-    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
+    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an DuckDB database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
   },
   {
     "objectID": "modules/week06/index-06.html#learning-objectives",
     "href": "modules/week06/index-06.html#learning-objectives",
     "title": "Week 6 - Programming with databases",
     "section": "",
-    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an SQLite database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
+    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an DuckDB database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
   },
   {
     "objectID": "modules/week06/index-06.html#slides-and-other-materials",
