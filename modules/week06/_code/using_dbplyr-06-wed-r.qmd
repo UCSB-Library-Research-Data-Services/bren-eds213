@@ -26,7 +26,10 @@ conn <- DBI::dbConnect(RSQLite::SQLite(), "database.db")
 All the magic is right here.  A dataframe view of a database table.
 
 ```{r}
+DBI::dbListTables(conn)
+
 species <- tbl(conn, "Species")
+species
 ```
 
 
@@ -48,7 +51,8 @@ species %>%
   filter(Relevance=="Study species") %>%
   select(Scientific_name) %>%
   arrange(Scientific_name) %>%
-  head(3) %>% show_query()
+  head(3) %>% 
+  show_query()
 ```
 
 **Great way to learn SQL!!**
@@ -66,7 +70,9 @@ SQL to the database, retrieving results, etc.
 
 ```{r}
 # Want a local copy that is a true dataframe?  Add collect():
-local_copy <- species %>% collect()
+local_copy <- species %>% 
+  collect()
+
 str(local_copy)
 dim(local_copy)
 ```
