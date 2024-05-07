@@ -4,9 +4,8 @@ title: "Week 6 - Programming with databases"
 
 ## Learning objectives
 
--   Review: understand how the data model relates to queries
 -   Understand the basic database programming model
--   Access an DuckDB database from Python and R
+-   Access a DuckDB database from Python and R
 -   Understand how to use the Python/Pandas and R/dbplyr convenience functions
 
 ## Slides and other materials
@@ -15,9 +14,7 @@ title: "Week 6 - Programming with databases"
 
 Coding transcripts:
 
--   [transcript-06-mon.ipynb](_code/transcript-06-mon.ipynb)
--   [transcript-06-wed-python.ipynb](_code/transcript-06-wed-python.ipynb)
--   [using_dbplyr-06-wed-r.qmd](_code/using_dbplyr-06-wed-r.qmd)
+-   [python-programming.ipynb](python-programming.ipynb)
 
 ## Resources
 
@@ -37,8 +34,6 @@ Coding transcripts:
 
 [Little Bobby Tables](hw-06-1.qmd)
 
-[Who's the culprit?](hw-06-2.qmd)
+[Characterizing egg variation](hw-06-2.qmd)
 
-[Characterizing egg variation](hw-06-3.qmd)
-
-[Who were the winners?](hw-06-4.qmd)
+[Who were the winners?](hw-06-3.qmd)

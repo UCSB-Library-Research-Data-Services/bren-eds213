@@ -2,9 +2,9 @@
 title: "Week 6 - Little Bobby Tables"
 ---
 
-View this classic XKCD cartoon: 
+View this classic XKCD cartoon:
 
-![https://xkcd.com/327/](https://xkcd.com/327/)
+![https://xkcd.com/327](exploits_of_a_mom_2x.png)
 
 For the purposes of this problem you may assume that at some point the school's software performs the query
 
@@ -14,4 +14,17 @@ SELECT *
     WHERE (name = '%s' AND year = 2023);
 ```
 
-where the student's name is directly substituted for the `%s`. Explain exactly how Little Bobby Tables' name can cause a catastrophe. Explain what happens to the `AND year = 2023` clause in the query.
+where the student's name is directly substituted for the `%s`. Explain exactly how Little Bobby Tables' "name" can cause a catastrophe. Also, explain what happens to the `' AND year = 2023);` part of the query.
+
+## Bonus problem!
+
+Hack your bird database! Let's imagine that your Shiny application, in response to user input, executes the query
+
+```         
+SELECT * FROM Species WHERE Code = '%s';
+```
+
+where a code is directly substited into the query's `%s` using Python interpolation. For example, the user might input "barr". Craft an input that will:
+
+-   Add Taylor Swift to the Personnel table
+-   *Still* return the results of the query `SELECT * FROM Species Code = 'barr'`
