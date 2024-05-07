@@ -14,7 +14,7 @@ website:
           - modules/week03/index-03.qmd
           - modules/week04/index-04.qmd
           - modules/week05/index-05.qmd
-          #- modules/week06/index-06.qmd
+          - modules/week06/index-06.qmd
           #- modules/week07/index-07.qmd
           #- modules/week08/index-08.qmd
           #- modules/week09/index-09.qmd
