@@ -94,11 +94,13 @@ including grouping, summarization, joins, etc.
 ```{r}
 species %>%
   group_by(Relevance) %>%
-  summarize(num_species = n()) %>% show_query()
+  summarize(num_species = n()) %>% 
+  show_query()
 
 # Even mutating columns gets translated into SQL operations, wild!
 species %>%
-  mutate(Code = paste("X", Code)) %>% show_query()
+  mutate(Code = paste("X", Code)) %>% 
+  show_query()
 ```
 
 
