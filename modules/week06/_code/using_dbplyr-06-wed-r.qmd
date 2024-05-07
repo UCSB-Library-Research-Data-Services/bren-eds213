@@ -102,7 +102,13 @@ species %>%
 ```
 
 
-**Limitation**: no way to add or update data.  dbplyr is view only.
+**Limitation**: no way to add or update data.  **dbplyr is view only**.
 If you want to add or update data, you'll need to use
 DBI functions.
+
+## Close your connection
+
+```{r}
+DBI::dbDisconnect(conn, shutdown = TRUE)
+```
 
