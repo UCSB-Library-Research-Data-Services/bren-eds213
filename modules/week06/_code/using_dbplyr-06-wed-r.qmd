@@ -106,6 +106,7 @@ species %>%
 If you want to add or update data, you'll need to use
 DBI functions.
 
+
 ## Close your connection
 
 ```{r}

@@ -17,7 +17,7 @@ Coding transcripts:
 
 -   [transcript-06-mon.ipynb](_code/transcript-06-mon.ipynb)
 -   [transcript-06-wed-python.ipynb](_code/transcript-06-wed-python.ipynb)
--   [transcript-06-wed-r.R](_code/transcript-06-wed-r.R)
+-   [transcript-06-wed-r.R](_code/using_dbplyr-06-wed-r.qmd)
 
 ## Resources
 
