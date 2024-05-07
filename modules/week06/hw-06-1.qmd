@@ -6,15 +6,15 @@ View this classic XKCD cartoon:
 
 ![https://xkcd.com/327](exploits_of_a_mom_2x.png)
 
-For the purposes of this problem you may assume that at some point the school's software performs the query
+For the purposes of this problem you may assume that at some point the school's system performs the query
 
 ```         
 SELECT *
     FROM Students
-    WHERE (name = '%s' AND year = 2023);
+    WHERE (name = '%s' AND year = 2024);
 ```
 
-where the student's name is directly substituted for the `%s`. Explain exactly how Little Bobby Tables' "name" can cause a catastrophe. Also, explain what happens to the `' AND year = 2023);` part of the query.
+where a student's name, as input by a user of the system, is directly substituted for the `%s`. Explain exactly how Little Bobby Tables' "name" can cause a catastrophe. Also, explain why his name has two dashes (`--`) at the end.
 
 ## Bonus problem!
 
@@ -24,7 +24,7 @@ Hack your bird database! Let's imagine that your Shiny application, in response 
 SELECT * FROM Species WHERE Code = '%s';
 ```
 
-where a code is directly substited into the query's `%s` using Python interpolation. For example, the user might input "barr". Craft an input that will:
+where a species code supplied by the application user is directly substituted for the query's `%s` using Python interpolation. For example, an innocent user might input "wolv". Craft an input that a devious user could use to:
 
 -   Add Taylor Swift to the Personnel table
--   *Still* return the results of the query `SELECT * FROM Species Code = 'barr'`
+-   *Still* return the results of the query `SELECT * FROM Species WHERE Code = 'wolv'`
