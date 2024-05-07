@@ -8,6 +8,7 @@ title: "dbplyr"
 library(tidyverse)
 library(DBI)         # low-level database interface, comparable to what we saw in Python
 library(dbplyr)
+library(duckdb)
 ```
 
 
@@ -83,7 +84,8 @@ species %>%
   mutate(Code = paste("X", Code)) %>% show_query()
 ```
 
-Limitation: no way to add or update data.  dbplyr is view only.
+
+**Limitation**: no way to add or update data.  dbplyr is view only.
 If you want to add or update data, you'll need to use
 DBI functions.
 
