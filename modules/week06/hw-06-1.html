@@ -262,19 +262,19 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>https://xkcd.com/327</figcaption>
 </figure>
 </div>
-<p>For the purposes of this problem you may assume that at some point the school’s software performs the query</p>
+<p>For the purposes of this problem you may assume that at some point the school’s system performs the query</p>
 <pre><code>SELECT *
     FROM Students
-    WHERE (name = '%s' AND year = 2023);</code></pre>
-<p>where the student’s name is directly substituted for the <code>%s</code>. Explain exactly how Little Bobby Tables’ “name” can cause a catastrophe. Also, explain what happens to the <code>' AND year = 2023);</code> part of the query.</p>
+    WHERE (name = '%s' AND year = 2024);</code></pre>
+<p>where a student’s name, as input by a user of the system, is directly substituted for the <code>%s</code>. Explain exactly how Little Bobby Tables’ “name” can cause a catastrophe. Also, explain why his name has two dashes (<code>--</code>) at the end.</p>
 <section id="bonus-problem" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-problem">Bonus problem!</h2>
 <p>Hack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query</p>
 <pre><code>SELECT * FROM Species WHERE Code = '%s';</code></pre>
-<p>where a code is directly substited into the query’s <code>%s</code> using Python interpolation. For example, the user might input “barr”. Craft an input that will:</p>
+<p>where a species code supplied by the application user is directly substituted for the query’s <code>%s</code> using Python interpolation. For example, an innocent user might input “wolv”. Craft an input that a devious user could use to:</p>
 <ul>
 <li>Add Taylor Swift to the Personnel table</li>
-<li><em>Still</em> return the results of the query <code>SELECT * FROM Species Code = 'barr'</code></li>
+<li><em>Still</em> return the results of the query <code>SELECT * FROM Species WHERE Code = 'wolv'</code></li>
 </ul>
 
 
