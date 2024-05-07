@@ -180,6 +180,18 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../modules/week05/hw-05-4.html">
  <span class="dropdown-text">Week 5 - Create a test harness</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-1.html">
+ <span class="dropdown-text">Week 6 - Little Bobby Tables</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-2.html">
+ <span class="dropdown-text">Week 6 - Characterizing egg variation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-3.html">
+ <span class="dropdown-text">Week 6 - Who were the winners?</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -213,7 +225,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#bonus-problem" id="toc-bonus-problem" class="nav-link active" data-scroll-target="#bonus-problem">Bonus problem!</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -240,17 +258,27 @@ ul.task-list li input[type="checkbox"] {
 <p>View this classic XKCD cartoon:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://xkcd.com/327/.png" class="img-fluid figure-img"></p>
-<figcaption>https://xkcd.com/327/</figcaption>
+<p><img src="exploits_of_a_mom_2x.png" class="img-fluid figure-img"></p>
+<figcaption>https://xkcd.com/327</figcaption>
 </figure>
 </div>
 <p>For the purposes of this problem you may assume that at some point the school’s software performs the query</p>
 <pre><code>SELECT *
     FROM Students
     WHERE (name = '%s' AND year = 2023);</code></pre>
-<p>where the student’s name is directly substituted for the <code>%s</code>. Explain exactly how Little Bobby Tables’ name can cause a catastrophe. Explain what happens to the <code>AND year = 2023</code> clause in the query.</p>
+<p>where the student’s name is directly substituted for the <code>%s</code>. Explain exactly how Little Bobby Tables’ “name” can cause a catastrophe. Also, explain what happens to the <code>' AND year = 2023);</code> part of the query.</p>
+<section id="bonus-problem" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-problem">Bonus problem!</h2>
+<p>Hack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query</p>
+<pre><code>SELECT * FROM Species WHERE Code = '%s';</code></pre>
+<p>where a code is directly substited into the query’s <code>%s</code> using Python interpolation. For example, the user might input “barr”. Craft an input that will:</p>
+<ul>
+<li>Add Taylor Swift to the Personnel table</li>
+<li><em>Still</em> return the results of the query <code>SELECT * FROM Species Code = 'barr'</code></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Week 6 - Characterizing egg variation</title>
+<title>eds213 - Week 6 - Who were the winners?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,35 +67,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -209,6 +180,18 @@ window.Quarto = {
     <a class="dropdown-item" href="../../modules/week05/hw-05-4.html">
  <span class="dropdown-text">Week 5 - Create a test harness</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-1.html">
+ <span class="dropdown-text">Week 6 - Little Bobby Tables</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-2.html">
+ <span class="dropdown-text">Week 6 - Characterizing egg variation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-3.html">
+ <span class="dropdown-text">Week 6 - Who were the winners?</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -242,24 +225,14 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#step-1" id="toc-step-1" class="nav-link active" data-scroll-target="#step-1">Step 1</a></li>
-  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
-  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
-  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4</a></li>
-  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 6 - Characterizing egg variation</h1>
+<h1 class="title">Week 6 - Who were the winners?</h1>
 </div>
 
 
@@ -276,67 +249,19 @@ window.Quarto = {
 </header>
 
 
-<p>You read <a href="https://www.jstor.org/stable/1367334">Egg Dimensions and Neonatal Mass of Shorebirds</a> by Robert E. Ricklefs and want to see how the egg data we’ve been using in class compares to his results. Specifically, Ricklefs reported, “Coefficients of variation were 4 to 9% for egg volume” for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?</p>
-<p>The “coefficient of variation,” or CV, is a unitless measure of the variation of a sample, defined as the standard deviation divided by the mean and multiplied by 100 to express as a percentage. Thus, a CV of 10% means the standard deviation is 10% of the mean value. For the purposes of this computation, we will copy Ricklefs and use as a proxy for egg volume the formula</p>
-<p><span class="math display">\[ W^2 L \]</span></p>
-<p>where <span class="math inline">\(W\)</span> is egg width and <span class="math inline">\(L\)</span> is egg length.</p>
-<p>Your task is to create a Python program that reads data from the ASDN database and uses Pandas to compute, for each species in the database (for which there is egg data), the coefficient of variation of volume using the above formula. There are many ways this can be done. Because this assignment is primarily about programming in Python, please follow the steps below. Please submit your Python code when done.</p>
-<section id="step-1" class="level1">
-<h1>Step 1</h1>
-<p>Create a query that will return the distinct species for which there is egg data (not all species and not all nests have egg data), so that you can then loop over those species. Your query should return two columns, species code and scientific name.</p>
-</section>
-<section id="step-2" class="level1">
-<h1>Step 2</h1>
-<p>After you’ve connected to the database and created a cursor <code>c</code>, iterate over the species like so:</p>
-<pre><code>species_query = """SELECT Code, Scientific_name FROM..."""
-for row in c.execute(species_query):
-    species_code = row[0]
-    scientific_name = row[1]
-    # query egg data for that species (step 3)
-    # compute statistics and print results (step 4)</code></pre>
-</section>
-<section id="step-3" class="level1">
-<h1>Step 3</h1>
-<p>You will need to construct a query template that gathers egg data for a species that will be supplied as a parameter. You can compute the formula</p>
-<p><span class="math display">\[ W^2 L \]</span></p>
-<p>in SQL or in Pandas. For simplicity, SQL is suggested:</p>
-<pre><code>egg_query = """SELECT Width*Width*Length AS Volume FROM..."""</code></pre>
-<p>Within the loop, you will want to execute the query on the current species in the loop iteration. You may use the Pandas function <code>pd.read_sql</code> to do so and also directly load the results into a dataframe:</p>
-<pre><code>df = pd.read_sql(egg_query, conn, ...)</code></pre>
-<p>Do a <code>help(pd.read_sql)</code> to figure out how to pass parameters to a query.</p>
-</section>
-<section id="step-4" class="level1">
-<h1>Step 4</h1>
-<p>Finally, and still within your loop, you’ll want to compute statistics and print out the results:</p>
-<pre><code>cv = round(df.Volume.std()/df.Volume.mean()*100, 2)
-print(f"{scientific_name} {cv}%")</code></pre>
-<p>Your output should look like this:</p>
-<pre><code>Charadrius semipalmatus 8.99%
-Pluvialis dominica 19.88%
-Pluvialis squatarola 6.94%
-Calidris alpina 5.46%
-Calidris fuscicollis 16.77%
-Phalaropus fulicarius 4.65%
-Arenaria interpres 21.12%</code></pre>
-</section>
-<section id="appendix" class="level1">
-<h1>Appendix</h1>
-<p>It’s not necessary to use <code>pd.read_sql</code> to get data into a dataframe, it’s just a convenience. To do so manually (and to show you it’s not that hard), imagine that your query returns three columns. Collect the row data into three separate lists, then manually create a dataframe specifying the contents as a dictionary:</p>
-<pre><code>rows = c.execute("SELECT Species, Width, Length FROM...").fetchall()
-species_column = [t[0] for t in rows]
-width_column = [t[1] for t in rows]
-length_column = [t[2] for t in rows]
-
-df = pd.DataFrame(
-    {
-        "species": species_column,
-        "width": width_column,
-        "length": length_column
-    }
-)</code></pre>
+<p>At the conclusion of the ASDN project the PIs decided to hand out first, second, and third prizes to the observers who measured the most eggs. Who won? Please use R and dbplyr to answer this question, and please submit your R code. Your code should print out:</p>
+<pre><code># Ordered by: desc(total_eggs)
+  Name            total_eggs
+  &lt;chr&gt;                &lt;int&gt;
+1 Vanessa Loverti        163
+2 Dylan Kessler           87
+3 Richard Lanctot         50</code></pre>
+<p>You’ll want to load database tables using statements such as:</p>
+<pre><code>egg_table &lt;- tbl(conn, "Bird_eggs")</code></pre>
+<p>and then use tidyverse grouping, summarization, joining, and other functions to compute the desired result.</p>
+<p>Also, take your final expression and pipe it into <code>show_query()</code>. If you used multiple R statements, did dbplyr create a temporary table, or did it manage to do everything in one query? Did it limit to the first three rows using an R expression or an SQL LIMIT clause?</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <div>

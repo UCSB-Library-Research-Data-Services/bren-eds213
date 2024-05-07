@@ -238,137 +238,116 @@
     "text": "Homework\nNo homework this week!"
   },
   {
-    "objectID": "modules/week06/hw-06-3.html",
-    "href": "modules/week06/hw-06-3.html",
-    "title": "Week 6 - Characterizing egg variation",
+    "objectID": "modules/week06/hw-06-1.html",
+    "href": "modules/week06/hw-06-1.html",
+    "title": "Week 6 - Little Bobby Tables",
     "section": "",
-    "text": "You read Egg Dimensions and Neonatal Mass of Shorebirds by Robert E. Ricklefs and want to see how the egg data we’ve been using in class compares to his results. Specifically, Ricklefs reported, “Coefficients of variation were 4 to 9% for egg volume” for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?\nThe “coefficient of variation,” or CV, is a unitless measure of the variation of a sample, defined as the standard deviation divided by the mean and multiplied by 100 to express as a percentage. Thus, a CV of 10% means the standard deviation is 10% of the mean value. For the purposes of this computation, we will copy Ricklefs and use as a proxy for egg volume the formula\n\\[ W^2 L \\]\nwhere \\(W\\) is egg width and \\(L\\) is egg length.\nYour task is to create a Python program that reads data from the ASDN database and uses Pandas to compute, for each species in the database (for which there is egg data), the coefficient of variation of volume using the above formula. There are many ways this can be done. Because this assignment is primarily about programming in Python, please follow the steps below. Please submit your Python code when done.\n\nStep 1\nCreate a query that will return the distinct species for which there is egg data (not all species and not all nests have egg data), so that you can then loop over those species. Your query should return two columns, species code and scientific name.\n\n\nStep 2\nAfter you’ve connected to the database and created a cursor c, iterate over the species like so:\nspecies_query = \"\"\"SELECT Code, Scientific_name FROM...\"\"\"\nfor row in c.execute(species_query):\n    species_code = row[0]\n    scientific_name = row[1]\n    # query egg data for that species (step 3)\n    # compute statistics and print results (step 4)\n\n\nStep 3\nYou will need to construct a query template that gathers egg data for a species that will be supplied as a parameter. You can compute the formula\n\\[ W^2 L \\]\nin SQL or in Pandas. For simplicity, SQL is suggested:\negg_query = \"\"\"SELECT Width*Width*Length AS Volume FROM...\"\"\"\nWithin the loop, you will want to execute the query on the current species in the loop iteration. You may use the Pandas function pd.read_sql to do so and also directly load the results into a dataframe:\ndf = pd.read_sql(egg_query, conn, ...)\nDo a help(pd.read_sql) to figure out how to pass parameters to a query.\n\n\nStep 4\nFinally, and still within your loop, you’ll want to compute statistics and print out the results:\ncv = round(df.Volume.std()/df.Volume.mean()*100, 2)\nprint(f\"{scientific_name} {cv}%\")\nYour output should look like this:\nCharadrius semipalmatus 8.99%\nPluvialis dominica 19.88%\nPluvialis squatarola 6.94%\nCalidris alpina 5.46%\nCalidris fuscicollis 16.77%\nPhalaropus fulicarius 4.65%\nArenaria interpres 21.12%\n\n\nAppendix\nIt’s not necessary to use pd.read_sql to get data into a dataframe, it’s just a convenience. To do so manually (and to show you it’s not that hard), imagine that your query returns three columns. Collect the row data into three separate lists, then manually create a dataframe specifying the contents as a dictionary:\nrows = c.execute(\"SELECT Species, Width, Length FROM...\").fetchall()\nspecies_column = [t[0] for t in rows]\nwidth_column = [t[1] for t in rows]\nlength_column = [t[2] for t in rows]\n\ndf = pd.DataFrame(\n    {\n        \"species\": species_column,\n        \"width\": width_column,\n        \"length\": length_column\n    }\n)"
+    "text": "View this classic XKCD cartoon:\nFor the purposes of this problem you may assume that at some point the school’s software performs the query\nwhere the student’s name is directly substituted for the %s. Explain exactly how Little Bobby Tables’ “name” can cause a catastrophe. Also, explain what happens to the ' AND year = 2023); part of the query."
   },
   {
-    "objectID": "modules/week06/index-06.html",
-    "href": "modules/week06/index-06.html",
-    "title": "Week 6 - Programming with databases",
-    "section": "",
-    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an DuckDB database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#learning-objectives",
-    "href": "modules/week06/index-06.html#learning-objectives",
-    "title": "Week 6 - Programming with databases",
-    "section": "",
-    "text": "Review: understand how the data model relates to queries\nUnderstand the basic database programming model\nAccess an DuckDB database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#slides-and-other-materials",
-    "href": "modules/week06/index-06.html#slides-and-other-materials",
-    "title": "Week 6 - Programming with databases",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-06.pptx\nCoding transcripts:\n\ntranscript-06-mon.ipynb\ntranscript-06-wed-python.ipynb\nusing_dbplyr-06-wed-r.qmd"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#resources",
-    "href": "modules/week06/index-06.html#resources",
-    "title": "Week 6 - Programming with databases",
-    "section": "Resources",
-    "text": "Resources\n\nhttps://peps.python.org/pep-0249/\n\nCommon Python-RDBMS API\n\nhttps://duckdb.org/docs/api/python/overview\n\nPython DuckDB module\n\nhttps://dbplyr.tidyverse.org/\n\nR dbplyr documentation"
-  },
-  {
-    "objectID": "modules/week06/index-06.html#homework",
-    "href": "modules/week06/index-06.html#homework",
-    "title": "Week 6 - Programming with databases",
-    "section": "Homework",
-    "text": "Homework\nLittle Bobby Tables\nWho’s the culprit?\nCharacterizing egg variation\nWho were the winners?"
-  },
-  {
-    "objectID": "modules/week07/index-07.html",
-    "href": "modules/week07/index-07.html",
-    "title": "Week 7 - Metadata standards",
-    "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#learning-goals",
-    "href": "modules/week07/index-07.html#learning-goals",
-    "title": "Week 7 - Metadata standards",
-    "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#slides-and-other-materials",
-    "href": "modules/week07/index-07.html#slides-and-other-materials",
-    "title": "Week 7 - Metadata standards",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
-  },
-  {
-    "objectID": "modules/week07/index-07.html#recommended-readings",
-    "href": "modules/week07/index-07.html#recommended-readings",
-    "title": "Week 7 - Metadata standards",
-    "section": "Recommended readings",
-    "text": "Recommended readings\n\nGries, C., Hanson, P. C., O’Brien, M., Servilla, M., Vanderbilt, K., & Waide, R. (2023). The Environmental Data Initiative: Connecting the past to the future through data reuse. Ecology and Evolution, 13(1), e9592. https://doi.org/10.1002/ece3.9592\nLeipzig, J., Nüst, D., Hoyt, C. T., Ram, K., & Greenberg, J. (2021). The role of metadata in reproducible computational research. Patterns, 2(9), https://doi.org/10.1016/j.patter.2021.100322"
-  },
-  {
-    "objectID": "modules/week07/index-07.html#homework",
-    "href": "modules/week07/index-07.html#homework",
-    "title": "Week 7 - Metadata standards",
-    "section": "Homework",
-    "text": "Homework\nEML record"
-  },
-  {
-    "objectID": "modules/week03/hw-03-3.html",
-    "href": "modules/week03/hw-03-3.html",
-    "title": "Week 3 - SQL problem 3",
-    "section": "",
-    "text": "Your mission is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:\n┌─────────────────────────┬────────────────────┐\n│     Scientific_name     │   Max_avg_volume   │\n│         varchar         │       double       │\n├─────────────────────────┼────────────────────┤\n│ Pluvialis squatarola    │   36541.8525390625 │\n│ Pluvialis dominica      │    33847.853515625 │\n│ Arenaria interpres      │   23338.6220703125 │\n│ Calidris fuscicollis    │ 13277.143310546875 │\n│ Calidris alpina         │ 12196.237548828125 │\n│ Charadrius semipalmatus │ 11266.974975585938 │\n│ Phalaropus fulicarius   │  8906.775146484375 │\n└─────────────────────────┴────────────────────┘\n(By the way, regarding the leader in egg size above, Birds of the World says that Pluvialis squatarola’s eggs are “Exceptionally large for size of female (ca. 16% weight of female)”.)\nTo calculate the volume of an egg, use the simplified formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length. You can use 3.14 for \\(\\pi\\). (The real formula takes into account the ovoid shape of eggs, but only width and length are available to us here.)\nA good place to start is just to group bird eggs by nest (i.e., Nest_ID) and compute average volumes:\nCREATE TEMP TABLE Averages AS\n    SELECT Nest_ID, AVG(...) AS Avg_volume\n        FROM ...\n        GROUP BY ...;\nYou can now join that table with Bird_nests, so that you can group by species, and also join with the Species table to pick up scientific names. To do just the first of those joins, you could say something like\nSELECT Species, MAX(...)\n    FROM Bird_nests JOIN Averages USING (Nest_ID)\n    GROUP BY ...;\n(Notice how, if the joined columns have the same name, you can more compactly say USING (common_column) instead of ON column_a = column_b.)\nThat’s not the whole story, we want scientific names not species codes. Another join is needed. A couple strategies here. One, you can modify the above query to also join with the Species table (you’ll need to replace USING with ON …). Two, you can save the above as another temp table and join it to Species separately.\nDon’t forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.\nPlease submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement."
-  },
-  {
-    "objectID": "modules/week03/hw-03-2.html",
-    "href": "modules/week03/hw-03-2.html",
-    "title": "Week 3 - SQL problem 2",
-    "section": "",
-    "text": "Part 1\nIf we want to know which site has the largest area, it’s tempting to say\nSELECT Site_name, MAX(Area) FROM Site;\nWouldn’t that be great? But DuckDB gives an error. And right it should! This query is conceptually flawed. Please describe what is wrong with this query. Don’t just quote DuckDB’s error message— explain why DuckDB is objecting to performing this query.\nTo help you answer this question, you may want to consider:\n\nTo the database, the above query is no different from\n\nSELECT Site_name, AVG(Area) FROM Site\nSELECT Site_name, COUNT(*) FROM Site\nSELECT Site_name, SUM(Area) FROM Site\n\nIn all these examples, the database sees that it is being asked to apply an aggregate function to a table column.\nWhen performing an aggregation, SQL wants to collapse the requested columns down to a single row. (For a table-level aggregation such as requested above, it wants to collapse the entire table down to a single row. For a GROUP BY, it wants to collapse each group down to a single row.)\n\n\n\nPart 2\nTime for plan B. Find the site name and area of the site having the largest area. Do so by ordering the rows in a particularly convenient order, and using LIMIT to select just the first row. Your result should look like:\n┌──────────────┬────────┐\n│  Site_name   │  Area  │\n│   varchar    │ float  │\n├──────────────┼────────┤\n│ Coats Island │ 1239.1 │\n└──────────────┴────────┘\nPlease submit your SQL.\n\n\nPart 3\nDo the same, but use a nested query. First, create a query that finds the maximum area. Then, create a query that selects the site name and area of the site whose area equals the maximum. Your overall query will look something like:\nSELECT Site_name, Area FROM Site WHERE Area = (SELECT ...);"
-  },
-  {
-    "objectID": "modules/week04/hw-04-1.html",
-    "href": "modules/week04/hw-04-1.html",
-    "title": "Week 4 - Missing data",
-    "section": "",
-    "text": "Which sites have no egg data? Please answer this question using all three techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:\n\nUsing a Code NOT IN (subquery) clause.\nUsing an outer join with a WHERE clause that selects the desired rows. Caution: make sure your IS NULL test is performed against a column that is not ordinarily allowed to be NULL. You may want to consult the database schema to remind yourself of column declarations.\nUsing the set operation EXCEPT.\n\nAdd an ORDER BY clause to your queries so that all three produce the exact same result:\n┌─────────┐\n│  Code   │\n│ varchar │\n├─────────┤\n│ barr    │\n│ burn    │\n│ bylo    │\n│ cakr    │\n│ cari    │\n│ chau    │\n│ coat    │\n│ colv    │\n│ iglo    │\n│ ikpi    │\n│ lkri    │\n│ made    │\n│ nome    │\n│ prba    │\n├─────────┤\n│ 14 rows │\n└─────────┘\nSubmit your SQL."
-  },
-  {
-    "objectID": "modules/week04/hw-04-2.html",
-    "href": "modules/week04/hw-04-2.html",
-    "title": "Week 4 - Who worked with whom?",
-    "section": "",
-    "text": "The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who worked with whom? That is, you are to find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.\nA self-join of a table is a regular join, but instead of joining two different tables, we join two copies of the same table, which we will call the “A” copy and the “B” copy:\nThe idea is that the above join will give us rows that pair every person/site/date range with every other person/site/date range. With no conditions on the join, since there are \\(441\\) rows in the Camp_assignment table, the join will produce \\(441^2 = 194481\\) rows. But out of all those rows we want only those where the two people worked at the same site. So:\nSubmit your final SQL query."
-  },
-  {
-    "objectID": "modules/week04/hw-04-2.html#bonus-problem",
-    "href": "modules/week04/hw-04-2.html#bonus-problem",
-    "title": "Week 4 - Who worked with whom?",
+    "objectID": "modules/week06/hw-06-1.html#bonus-problem",
+    "href": "modules/week06/hw-06-1.html#bonus-problem",
+    "title": "Week 6 - Little Bobby Tables",
     "section": "Bonus problem!",
-    "text": "Bonus problem!\nProduce this much nicer table by joining with the Personnel table:\n┌─────────┬─────────────────────┬───────────────────┐\n│  Site   │       Name_1        │      Name_2       │\n│ varchar │       varchar       │      varchar      │\n├─────────┼─────────────────────┼───────────────────┤\n│ lkri    │ Anastasia Popovkina │ Gleb Sedash       │\n│ lkri    │ Anastasia Popovkina │ Julya Loshchagina │\n└─────────┴─────────────────────┴───────────────────┘\nYou’ll need to join with the Personnel table twice, once for each observer column. You may need give abbreviations to tables (e.g., JOIN Personnel AS p1) to distinguish the tables and columns. You can do it!"
+    "text": "Bonus problem!\nHack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query\nSELECT * FROM Species WHERE Code = '%s';\nwhere a code is directly substited into the query’s %s using Python interpolation. For example, the user might input “barr”. Craft an input that will:\n\nAdd Taylor Swift to the Personnel table\nStill return the results of the query SELECT * FROM Species Code = 'barr'"
   },
   {
-    "objectID": "modules/week02/index-02.html",
-    "href": "modules/week02/index-02.html",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "objectID": "modules/week06/python-programming.html",
+    "href": "modules/week06/python-programming.html",
+    "title": "eds213",
     "section": "",
-    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+    "text": "import duckdb\n\nExample of Jupyter “magic command”:\n\n%pwd\n\n'/Users/gjanee-local/Desktop/meds/bren-meds213-spring-2024-class-data/week3'\n\n\nTo install DuckDB Python module:\n\n# %pip install duckdb\n\n\nCreate a connection and a cursor\n\n\nconn = duckdb.connect(\"database.db\")\n\n\nconn\n\n&lt;duckdb.duckdb.DuckDBPyConnection at 0x1040abb70&gt;\n\n\n\ncur = conn.cursor()\n\nNow let’s do something with our cursor\n\ncur.execute(\"SELECT * FROM Site LIMIT 5\")\n\n&lt;duckdb.duckdb.DuckDBPyConnection at 0x10406b6b0&gt;\n\n\nNow we want results… three ways of getting them. 1. All results at once\n\ncur.fetchall()\n\n[('barr',\n  'Barrow',\n  'Alaska, USA',\n  71.30000305175781,\n  -156.60000610351562,\n  220.39999389648438),\n ('burn',\n  'Burntpoint Creek',\n  'Ontario, Canada',\n  55.20000076293945,\n  -84.30000305175781,\n  63.0),\n ('bylo',\n  'Bylot Island',\n  'Nunavut, Canada',\n  73.19999694824219,\n  -80.0,\n  723.5999755859375),\n ('cakr',\n  'Cape Krusenstern',\n  'Alaska, USA',\n  67.0999984741211,\n  -163.5,\n  54.099998474121094),\n ('cari',\n  'Canning River Delta',\n  'Alaska, USA',\n  70.0999984741211,\n  -145.8000030517578,\n  722.0)]\n\n\nCursors don’t store anything, they just transfer queries to the database and get results back.\n\ncur.fetchall()\n\n[]\n\n\nAlways get tuples, even if you only request one column\n\ncur.execute(\"SELECT Nest_ID FROM Bird_nests LIMIT 10\")\n\n&lt;duckdb.duckdb.DuckDBPyConnection at 0x10406b6b0&gt;\n\n\n\ncur.fetchall()\n\n[('14HPE1',),\n ('11eaba',),\n ('11eabaagc01',),\n ('11eabaagv01',),\n ('11eababbc02',),\n ('11eababsv01',),\n ('11eabaduh01',),\n ('11eabaduv01',),\n ('11eabarpc01',),\n ('11eabarpc02',)]\n\n\n\ncur.execute(\"SELECT Nest_ID FROM Bird_nests LIMIT 10\")\n[t[0] for t in cur.fetchall()]\n\n['14HPE1',\n '11eaba',\n '11eabaagc01',\n '11eabaagv01',\n '11eababbc02',\n '11eababsv01',\n '11eabaduh01',\n '11eabaduv01',\n '11eabarpc01',\n '11eabarpc02']\n\n\n\nGet the one result, or the next result\n\n\ncur.execute(\"SELECT COUNT(*) FROM Bird_nests\")\ncur.fetchall()\n\n[(1547,)]\n\n\n\ncur.execute(\"SELECT COUNT(*) FROM Bird_nests\")\ncur.fetchone()\n\n(1547,)\n\n\n\ncur.execute(\"SELECT COUNT(*) FROM Bird_nests\")\ncur.fetchone()[0]\n\n1547\n\n\n\nUsing an iterator - but DuckDB doesn’t support iterators :(\n\n\ncur.execute(\"SELECT Nest_ID FROM Bird_nests LIMIT 10\")\nfor row in cur:\n    print(f\"got {row[0]}\")\n\nTypeError: 'duckdb.duckdb.DuckDBPyConnection' object is not iterable\n\n\nA workaround:\n\ncur.execute(\"SELECT Nest_ID FROM Bird_nests LIMIT 10\")\nwhile True:\n    row = cur.fetchone()\n    if row == None:\n        break\n    # do something with row\n    print(f\"got nest ID {row[0]}\")\n\ngot nest ID 14HPE1\ngot nest ID 11eaba\ngot nest ID 11eabaagc01\ngot nest ID 11eabaagv01\ngot nest ID 11eababbc02\ngot nest ID 11eababsv01\ngot nest ID 11eabaduh01\ngot nest ID 11eabaduv01\ngot nest ID 11eabarpc01\ngot nest ID 11eabarpc02\n\n\nCan do things other than SELECT!\n\ncur.execute(\"CREATE TEMP TABLE temp_table AS\n            SELECT * FROM Bird_nests LIMIT 10\")\n\nSyntaxError: unterminated string literal (detected at line 1) (1747419494.py, line 1)\n\n\n\ncur.execute(\"\"\"\n    CREATE TEMP TABLE temp_table AS\n    SELECT * FROM Bird_nests LIMIT 10\n\"\"\")\n\n&lt;duckdb.duckdb.DuckDBPyConnection at 0x10406b6b0&gt;\n\n\n\ncur.execute(\"SELECT * FROM temp_table\")\n\n&lt;duckdb.duckdb.DuckDBPyConnection at 0x10406b6b0&gt;\n\n\n\ncur.fetchall()\n\n[('b14.6',\n  2014,\n  'chur',\n  '14HPE1',\n  'sepl',\n  'vloverti',\n  datetime.date(2014, 6, 14),\n  None,\n  3,\n  None,\n  None),\n ('b11.7',\n  2011,\n  'eaba',\n  '11eaba',\n  'wrsa',\n  'bhill',\n  datetime.date(2011, 7, 10),\n  'searcher',\n  4,\n  None,\n  None),\n ('b11.6',\n  2011,\n  'eaba',\n  '11eabaagc01',\n  'amgp',\n  'dkessler',\n  datetime.date(2011, 6, 24),\n  'searcher',\n  4,\n  6.0,\n  'float'),\n ('b11.6',\n  2011,\n  'eaba',\n  '11eabaagv01',\n  'amgp',\n  'dkessler',\n  datetime.date(2011, 6, 25),\n  'searcher',\n  3,\n  3.0,\n  'float'),\n ('b11.6',\n  2011,\n  'eaba',\n  '11eababbc02',\n  'bbpl',\n  'dkessler',\n  datetime.date(2011, 6, 24),\n  'searcher',\n  4,\n  4.0,\n  'float'),\n ('b11.7',\n  2011,\n  'eaba',\n  '11eababsv01',\n  'wrsa',\n  'bhill',\n  datetime.date(2011, 7, 7),\n  'searcher',\n  4,\n  2.0,\n  'float'),\n ('b11.6',\n  2011,\n  'eaba',\n  '11eabaduh01',\n  'dunl',\n  'dkessler',\n  datetime.date(2011, 6, 28),\n  'searcher',\n  3,\n  2.0,\n  'float'),\n ('b11.6',\n  2011,\n  'eaba',\n  '11eabaduv01',\n  'dunl',\n  'dkessler',\n  datetime.date(2011, 6, 29),\n  'searcher',\n  4,\n  5.0,\n  'float'),\n ('b11.7',\n  2011,\n  'eaba',\n  '11eabarpc01',\n  'reph',\n  'bhill',\n  datetime.date(2011, 7, 8),\n  'searcher',\n  4,\n  4.0,\n  'float'),\n ('b11.7',\n  2011,\n  'eaba',\n  '11eabarpc02',\n  'reph',\n  'bhill',\n  datetime.date(2011, 7, 8),\n  'searcher',\n  3,\n  4.0,\n  'float')]\n\n\nA note on fragility\nFor example: INSERT INTO Site VALUES (“abcd”, “Foo”, 35.7, 42.3, “?”)\nA less fragile way of expressing the same thing: INSERT INTO Site (Code, Site_name, Latitude, Longitude, Something_else) VALUES (“abcd”, “Foo”, 35.7, 42.3, “?”)\nIn the same vein: SELECT * is fragile\n\ncur.execute(\"SELECT * FROM Site LIMIT 3\")\ncur.fetchall()\n\n[('barr',\n  'Barrow',\n  'Alaska, USA',\n  71.30000305175781,\n  -156.60000610351562,\n  220.39999389648438),\n ('burn',\n  'Burntpoint Creek',\n  'Ontario, Canada',\n  55.20000076293945,\n  -84.30000305175781,\n  63.0),\n ('bylo',\n  'Bylot Island',\n  'Nunavut, Canada',\n  73.19999694824219,\n  -80.0,\n  723.5999755859375)]\n\n\nA better, more robust way of coding the same thing:\n\ncur.execute(\"SELECT Site_name, Code, Latitude, Longitude FROM Site LIMIT 3\")\ncur.fetchall()\n\n[('Barrow', 'barr', 71.30000305175781, -156.60000610351562),\n ('Burntpoint Creek', 'burn', 55.20000076293945, -84.30000305175781),\n ('Bylot Island', 'bylo', 73.19999694824219, -80.0)]\n\n\nAn extended example: Question we’re trying to answer: How many nests do we have for each species?\nApproach: first get all species. Then execute a count query for each species.\nA digression: string interpolation in Python\n\n# The % method\ns = \"My name is %s\"\nprint(s % \"Greg\")\ns = \"My name is %s and the other teacher's name is %s\"\nprint(s % (\"Greg\", \"Julien\"))\n# The new f-string method\nname = \"Greg\"\nprint(f\"My name is {name}\")\n# Third way\nprint(\"My name is {}\".format(\"Greg\"))\n\nMy name is Greg\nMy name is Greg and the other teacher's name is Julien\nMy name is Greg\nMy name is Greg\n\n\n\nquery = \"\"\"\n   SELECT COUNT(*) FROM Bird_nests\n   WHERE Species = '%s'\n\"\"\"\ncur.execute(\"SELECT Code FROM Species LIMIT 3\")\nfor row in cur.fetchall():  # DuckDB workaround\n    code = row[0]\n    prepared_query = query % code\n    #print(prepared_query)\n    cur2 = conn.cursor()\n    cur2.execute(prepared_query)\n    print(f\"Species {code} has {cur2.fetchone()[0]} nests\")\n    cur2.close()\n\nSpecies agsq has 0 nests\nSpecies amcr has 0 nests\nSpecies amgp has 29 nests\n\n\nThe above Python interpolation is dangerous and has caused many database hacks! There’s a better way\n\nquery = \"\"\"\n   SELECT COUNT(*) FROM Bird_nests\n   WHERE Species = ?\n\"\"\"\ncur.execute(\"SELECT Code FROM Species LIMIT 3\")\nfor row in cur.fetchall():  # DuckDB workaround\n    code = row[0]\n    # NOT NEEDED! prepared_query = query % code\n    #print(prepared_query)\n    cur2 = conn.cursor()\n    cur2.execute(query, [code])  # &lt;-- added argument here\n    print(f\"Species {code} has {cur2.fetchone()[0]} nests\")\n    cur2.close()\n\nSpecies agsq has 0 nests\nSpecies amcr has 0 nests\nSpecies amgp has 29 nests\n\n\nLet’s illustrate the danger with a different example\n\nabbrev = \"TS\"\nname = \"Taylor Swift\"\ncur.execute(\"\"\"\n   INSERT INTO Personnel (Abbreviation, Name)\n   VALUES ('%s', '%s')\n   \"\"\" % (abbrev, name)\n           )\n\n&lt;duckdb.duckdb.DuckDBPyConnection at 0x10406b6b0&gt;\n\n\n\ncur.execute(\"SELECT * FROM Personnel\")\ncur.fetchall()[-3:]\n\n[('emagnuson', 'Emily Magnuson'),\n ('mcorrell', 'Maureen Correll'),\n ('TS', 'Taylor Swift')]\n\n\n\nabbrev = \"CO\"\nname = \"Conan O'Brien\"\ncur.execute(\"\"\"\n   INSERT INTO Personnel (Abbreviation, Name)\n   VALUES ('%s', '%s')\n   \"\"\" % (abbrev, name)\n           )\n\nParserException: Parser Error: syntax error at or near \"Brien\"\n\n\n\n\"\"\"\n   INSERT INTO Personnel (Abbreviation, Name)\n   VALUES ('%s', '%s')\n   \"\"\" % (abbrev, name)\n\n\"\\n   INSERT INTO Personnel (Abbreviation, Name)\\n   VALUES ('CO', 'Conan O'Brien')\\n   \"\n\n\n\nabbrev = \"CO\"\nname = \"Conan O'Brien\"\ncur.execute(\"\"\"\n   INSERT INTO Personnel (Abbreviation, Name)\n   VALUES (?, ?)\n   \"\"\",\n    [abbrev, name])\n\n&lt;duckdb.duckdb.DuckDBPyConnection at 0x10406b6b0&gt;\n\n\n\ncur.execute(\"SELECT * FROM Personnel\")\ncur.fetchall()[-3:]\n\n[('mcorrell', 'Maureen Correll'),\n ('TS', 'Taylor Swift'),\n ('CO', \"Conan O'Brien\")]"
   },
   {
-    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
-    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "objectID": "modules/week03/hw-03-1.html",
+    "href": "modules/week03/hw-03-1.html",
+    "title": "Week 3 - SQL problem 1",
     "section": "",
-    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+    "text": "It’s a useful skill in life (I’m not being rhetorical, I really mean that, it’s a useful skill) to be able to construct an experiment to answer a hypothesis. Suppose you’re not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn’t have access to any documentation, or didn’t trust it. What experiment could you run to find out what happens?\nThere are two parts to this problem.\n\nPart 1\nConstruct an SQL experiment to determine the answer to the question above. Does SQL abort with some kind of error? Does it ignore NULL values? Do the NULL values somehow factor into the calculation, and if so, how?\nI would suggest you start by creating a table (in the bird database, in a new database, in a transient in-memory database, doesn’t matter) with a single column that has data type REAL (for part 2 below, it must be REAL). You can make your table a temp table or not, your choice.\nCREATE TEMP TABLE mytable... ;\nNow insert some real numbers and at least one NULL into your table.\nINSERT INTO mytable... ;\n(Hmm, can you insert multiple rows at once, or do you have to do a separate INSERT for each row?)\nOnce you have your little table constructed, try doing an AVG on the column and see what is returned. What would the average be if the function ignored NULLs? What would the average be if it somehow factored them in? What is actually returned?\nPlease submit both your SQL and your answer to the question about how AVG operates in the presence of NULL values.\n\n\nPart 2\nIf SQL didn’t have an AVG function, you could compute the average value of a column by doing something like this on your table:\nSELECT SUM(mycolumn)/COUNT(*) FROM mytable;\nSELECT SUM(mycolumn)/COUNT(mycolumn) FROM mytable;\nWhich query above is correct? Please explain why.\nNow that you’re done with your table, you can delete it if desired:\nDROP TABLE mytable;"
   },
   {
-    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
-    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
-    "section": "Analyzing the data from the csv files",
-    "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
+    "objectID": "modules/week03/index-03.html",
+    "href": "modules/week03/index-03.html",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "section": "",
+    "text": "Understand the relationship of SQL to relational databases\nUnderstand how local databases differ from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+  },
+  {
+    "objectID": "modules/week03/index-03.html#learning-objectives",
+    "href": "modules/week03/index-03.html#learning-objectives",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "section": "",
+    "text": "Understand the relationship of SQL to relational databases\nUnderstand how local databases differ from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+  },
+  {
+    "objectID": "modules/week03/index-03.html#slides-and-other-materials",
+    "href": "modules/week03/index-03.html#slides-and-other-materials",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\nclass-script-03-wed.sql\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
+  },
+  {
+    "objectID": "modules/week03/index-03.html#resources",
+    "href": "modules/week03/index-03.html#resources",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "section": "Resources",
+    "text": "Resources\n\nhttp://swcarpentry.github.io/sql-novice-survey/\n\nGood Carpentry lesson, our lesson is drawn from this.\n\nC.J. Date and Hugh Darwen (1993). A Guide to the SQL Standard. 3rd ed. Reading, MA: Addison-Wesley.\nAccess via Library Catalog\n\nThe ANSI standard.\n\nJoe Celko (1995). Joe Celko’s SQL For Smarties: Advanced SQL Programming. San Francisco, CA: Morgan Kaufmann.\nAccess via Library Catalog\n\nThis guy is an SQL guru. Newer versions of this book are available online, check the Library catalog (a bug is preventing me from linking directly).\n\nGrant Allen and Mike Owens (2010). The Definitive Guide to SQLite. 2nd ed. Berkeley, CA: Apress.\nAccess via Library Catalog\n\nGood reference. Can access online!\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+  },
+  {
+    "objectID": "modules/week03/index-03.html#homework",
+    "href": "modules/week03/index-03.html#homework",
+    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "section": "Homework",
+    "text": "Homework\nSQL problem 1\nSQL problem 2\nSQL problem 3"
+  },
+  {
+    "objectID": "modules/week04/hw-04-3.html",
+    "href": "modules/week04/hw-04-3.html",
+    "title": "Week 4 - Who’s the culprit?",
+    "section": "",
+    "text": "You’re reading up on how eggs are aged by floating them in water 1:\nwhen you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly 36 nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return exactly one row, the answer. That is, your query should produce:"
+  },
+  {
+    "objectID": "modules/week04/hw-04-3.html#footnotes",
+    "href": "modules/week04/hw-04-3.html#footnotes",
+    "title": "Week 4 - Who’s the culprit?",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nLiebezeit, Joseph R., et al. “Assessing the Development of Shorebird Eggs Using the Flotation Method: Species-Specific and Generalized Regression Models.” The Condor, vol. 109, no. 1, 2007, pp. 32–47. JSTOR, http://www.jstor.org/stable/4122529↩︎"
+  },
+  {
+    "objectID": "modules/week04/index-04.html",
+    "href": "modules/week04/index-04.html",
+    "title": "Week 4 - SQL and DuckDB",
+    "section": "",
+    "text": "Continued exploration of SQL concepts including joins, views, and set operations; and apply it to conduct data analysis."
+  },
+  {
+    "objectID": "modules/week04/index-04.html#learning-objectives",
+    "href": "modules/week04/index-04.html#learning-objectives",
+    "title": "Week 4 - SQL and DuckDB",
+    "section": "",
+    "text": "Continued exploration of SQL concepts including joins, views, and set operations; and apply it to conduct data analysis."
+  },
+  {
+    "objectID": "modules/week04/index-04.html#slides-and-other-materials",
+    "href": "modules/week04/index-04.html#slides-and-other-materials",
+    "title": "Week 4 - SQL and DuckDB",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-04.pptx\nLecture notes:\n\nlecture-notes-04-mon.txt\nclass-script-04-mon.sql\nclass-script-04-wed-empty.sql\nclass-script-04-wed-solution.sql\n\nData:\n\nClass data GitHub repository, week 3 – for Monday\nClass data GitHub repository, week 4 – for Wednesday only\nASDN dataset ER (entity-relationship) diagram"
+  },
+  {
+    "objectID": "modules/week04/index-04.html#homework",
+    "href": "modules/week04/index-04.html#homework",
+    "title": "Week 4 - SQL and DuckDB",
+    "section": "Homework",
+    "text": "Homework\nMissing data\nWho worked with whom?\nWho’s the culprit?"
+  },
+  {
+    "objectID": "modules/week02/hw-02.html",
+    "href": "modules/week02/hw-02.html",
+    "title": "Week 2 - Data Cleaning",
+    "section": "",
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments to your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd eds213_data_cleaning_assign_YOURNAME.qmd should run if your repo is cloned locally and\nthe code should output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder\n\nNote: We recommend starting by importing the csv file with the corrected Snow_cover column (data/processed/snow_cover.csv) we generated during class (my code here)\n\n\nOn Canvas:\n\nAdd the URL to your fork on GitHub at the top of your quarto document\nUpload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)"
   },
   {
     "objectID": "syllabus.html",
@@ -441,109 +420,144 @@
     "text": "Disabled students program\nStudents with disabilities and/or alternative learning needs are encouraged to work with the Disabled Students Program at UCSB to ensure we can best support your learning and success."
   },
   {
-    "objectID": "modules/week02/hw-02.html",
-    "href": "modules/week02/hw-02.html",
-    "title": "Week 2 - Data Cleaning",
+    "objectID": "modules/week02/index-02.html",
+    "href": "modules/week02/index-02.html",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments to your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd eds213_data_cleaning_assign_YOURNAME.qmd should run if your repo is cloned locally and\nthe code should output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder\n\nNote: We recommend starting by importing the csv file with the corrected Snow_cover column (data/processed/snow_cover.csv) we generated during class (my code here)\n\n\nOn Canvas:\n\nAdd the URL to your fork on GitHub at the top of your quarto document\nUpload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)"
+    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
   },
   {
-    "objectID": "modules/week04/index-04.html",
-    "href": "modules/week04/index-04.html",
-    "title": "Week 4 - SQL and DuckDB",
+    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
     "section": "",
-    "text": "Continued exploration of SQL concepts including joins, views, and set operations; and apply it to conduct data analysis."
+    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
   },
   {
-    "objectID": "modules/week04/index-04.html#learning-objectives",
-    "href": "modules/week04/index-04.html#learning-objectives",
-    "title": "Week 4 - SQL and DuckDB",
-    "section": "",
-    "text": "Continued exploration of SQL concepts including joins, views, and set operations; and apply it to conduct data analysis."
+    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "section": "Analyzing the data from the csv files",
+    "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
   },
   {
-    "objectID": "modules/week04/index-04.html#slides-and-other-materials",
-    "href": "modules/week04/index-04.html#slides-and-other-materials",
-    "title": "Week 4 - SQL and DuckDB",
+    "objectID": "modules/week04/hw-04-2.html",
+    "href": "modules/week04/hw-04-2.html",
+    "title": "Week 4 - Who worked with whom?",
+    "section": "",
+    "text": "The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who worked with whom? That is, you are to find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.\nA self-join of a table is a regular join, but instead of joining two different tables, we join two copies of the same table, which we will call the “A” copy and the “B” copy:\nThe idea is that the above join will give us rows that pair every person/site/date range with every other person/site/date range. With no conditions on the join, since there are \\(441\\) rows in the Camp_assignment table, the join will produce \\(441^2 = 194481\\) rows. But out of all those rows we want only those where the two people worked at the same site. So:\nSubmit your final SQL query."
+  },
+  {
+    "objectID": "modules/week04/hw-04-2.html#bonus-problem",
+    "href": "modules/week04/hw-04-2.html#bonus-problem",
+    "title": "Week 4 - Who worked with whom?",
+    "section": "Bonus problem!",
+    "text": "Bonus problem!\nProduce this much nicer table by joining with the Personnel table:\n┌─────────┬─────────────────────┬───────────────────┐\n│  Site   │       Name_1        │      Name_2       │\n│ varchar │       varchar       │      varchar      │\n├─────────┼─────────────────────┼───────────────────┤\n│ lkri    │ Anastasia Popovkina │ Gleb Sedash       │\n│ lkri    │ Anastasia Popovkina │ Julya Loshchagina │\n└─────────┴─────────────────────┴───────────────────┘\nYou’ll need to join with the Personnel table twice, once for each observer column. You may need give abbreviations to tables (e.g., JOIN Personnel AS p1) to distinguish the tables and columns. You can do it!"
+  },
+  {
+    "objectID": "modules/week04/hw-04-1.html",
+    "href": "modules/week04/hw-04-1.html",
+    "title": "Week 4 - Missing data",
+    "section": "",
+    "text": "Which sites have no egg data? Please answer this question using all three techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:\n\nUsing a Code NOT IN (subquery) clause.\nUsing an outer join with a WHERE clause that selects the desired rows. Caution: make sure your IS NULL test is performed against a column that is not ordinarily allowed to be NULL. You may want to consult the database schema to remind yourself of column declarations.\nUsing the set operation EXCEPT.\n\nAdd an ORDER BY clause to your queries so that all three produce the exact same result:\n┌─────────┐\n│  Code   │\n│ varchar │\n├─────────┤\n│ barr    │\n│ burn    │\n│ bylo    │\n│ cakr    │\n│ cari    │\n│ chau    │\n│ coat    │\n│ colv    │\n│ iglo    │\n│ ikpi    │\n│ lkri    │\n│ made    │\n│ nome    │\n│ prba    │\n├─────────┤\n│ 14 rows │\n└─────────┘\nSubmit your SQL."
+  },
+  {
+    "objectID": "modules/week03/hw-03-2.html",
+    "href": "modules/week03/hw-03-2.html",
+    "title": "Week 3 - SQL problem 2",
+    "section": "",
+    "text": "Part 1\nIf we want to know which site has the largest area, it’s tempting to say\nSELECT Site_name, MAX(Area) FROM Site;\nWouldn’t that be great? But DuckDB gives an error. And right it should! This query is conceptually flawed. Please describe what is wrong with this query. Don’t just quote DuckDB’s error message— explain why DuckDB is objecting to performing this query.\nTo help you answer this question, you may want to consider:\n\nTo the database, the above query is no different from\n\nSELECT Site_name, AVG(Area) FROM Site\nSELECT Site_name, COUNT(*) FROM Site\nSELECT Site_name, SUM(Area) FROM Site\n\nIn all these examples, the database sees that it is being asked to apply an aggregate function to a table column.\nWhen performing an aggregation, SQL wants to collapse the requested columns down to a single row. (For a table-level aggregation such as requested above, it wants to collapse the entire table down to a single row. For a GROUP BY, it wants to collapse each group down to a single row.)\n\n\n\nPart 2\nTime for plan B. Find the site name and area of the site having the largest area. Do so by ordering the rows in a particularly convenient order, and using LIMIT to select just the first row. Your result should look like:\n┌──────────────┬────────┐\n│  Site_name   │  Area  │\n│   varchar    │ float  │\n├──────────────┼────────┤\n│ Coats Island │ 1239.1 │\n└──────────────┴────────┘\nPlease submit your SQL.\n\n\nPart 3\nDo the same, but use a nested query. First, create a query that finds the maximum area. Then, create a query that selects the site name and area of the site whose area equals the maximum. Your overall query will look something like:\nSELECT Site_name, Area FROM Site WHERE Area = (SELECT ...);"
+  },
+  {
+    "objectID": "modules/week03/hw-03-3.html",
+    "href": "modules/week03/hw-03-3.html",
+    "title": "Week 3 - SQL problem 3",
+    "section": "",
+    "text": "Your mission is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:\n┌─────────────────────────┬────────────────────┐\n│     Scientific_name     │   Max_avg_volume   │\n│         varchar         │       double       │\n├─────────────────────────┼────────────────────┤\n│ Pluvialis squatarola    │   36541.8525390625 │\n│ Pluvialis dominica      │    33847.853515625 │\n│ Arenaria interpres      │   23338.6220703125 │\n│ Calidris fuscicollis    │ 13277.143310546875 │\n│ Calidris alpina         │ 12196.237548828125 │\n│ Charadrius semipalmatus │ 11266.974975585938 │\n│ Phalaropus fulicarius   │  8906.775146484375 │\n└─────────────────────────┴────────────────────┘\n(By the way, regarding the leader in egg size above, Birds of the World says that Pluvialis squatarola’s eggs are “Exceptionally large for size of female (ca. 16% weight of female)”.)\nTo calculate the volume of an egg, use the simplified formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length. You can use 3.14 for \\(\\pi\\). (The real formula takes into account the ovoid shape of eggs, but only width and length are available to us here.)\nA good place to start is just to group bird eggs by nest (i.e., Nest_ID) and compute average volumes:\nCREATE TEMP TABLE Averages AS\n    SELECT Nest_ID, AVG(...) AS Avg_volume\n        FROM ...\n        GROUP BY ...;\nYou can now join that table with Bird_nests, so that you can group by species, and also join with the Species table to pick up scientific names. To do just the first of those joins, you could say something like\nSELECT Species, MAX(...)\n    FROM Bird_nests JOIN Averages USING (Nest_ID)\n    GROUP BY ...;\n(Notice how, if the joined columns have the same name, you can more compactly say USING (common_column) instead of ON column_a = column_b.)\nThat’s not the whole story, we want scientific names not species codes. Another join is needed. A couple strategies here. One, you can modify the above query to also join with the Species table (you’ll need to replace USING with ON …). Two, you can save the above as another temp table and join it to Species separately.\nDon’t forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.\nPlease submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement."
+  },
+  {
+    "objectID": "modules/week07/index-07.html",
+    "href": "modules/week07/index-07.html",
+    "title": "Week 7 - Metadata standards",
+    "section": "",
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
+  },
+  {
+    "objectID": "modules/week07/index-07.html#learning-goals",
+    "href": "modules/week07/index-07.html#learning-goals",
+    "title": "Week 7 - Metadata standards",
+    "section": "",
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
+  },
+  {
+    "objectID": "modules/week07/index-07.html#slides-and-other-materials",
+    "href": "modules/week07/index-07.html#slides-and-other-materials",
+    "title": "Week 7 - Metadata standards",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-04.pptx\nLecture notes:\n\nlecture-notes-04-mon.txt\nclass-script-04-mon.sql\nclass-script-04-wed-empty.sql\nclass-script-04-wed-solution.sql\n\nData:\n\nClass data GitHub repository, week 3 – for Monday\nClass data GitHub repository, week 4 – for Wednesday only\nASDN dataset ER (entity-relationship) diagram"
+    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
   },
   {
-    "objectID": "modules/week04/index-04.html#homework",
-    "href": "modules/week04/index-04.html#homework",
-    "title": "Week 4 - SQL and DuckDB",
+    "objectID": "modules/week07/index-07.html#recommended-readings",
+    "href": "modules/week07/index-07.html#recommended-readings",
+    "title": "Week 7 - Metadata standards",
+    "section": "Recommended readings",
+    "text": "Recommended readings\n\nGries, C., Hanson, P. C., O’Brien, M., Servilla, M., Vanderbilt, K., & Waide, R. (2023). The Environmental Data Initiative: Connecting the past to the future through data reuse. Ecology and Evolution, 13(1), e9592. https://doi.org/10.1002/ece3.9592\nLeipzig, J., Nüst, D., Hoyt, C. T., Ram, K., & Greenberg, J. (2021). The role of metadata in reproducible computational research. Patterns, 2(9), https://doi.org/10.1016/j.patter.2021.100322"
+  },
+  {
+    "objectID": "modules/week07/index-07.html#homework",
+    "href": "modules/week07/index-07.html#homework",
+    "title": "Week 7 - Metadata standards",
     "section": "Homework",
-    "text": "Homework\nMissing data\nWho worked with whom?\nWho’s the culprit?"
+    "text": "Homework\nEML record"
   },
   {
-    "objectID": "modules/week04/hw-04-3.html",
-    "href": "modules/week04/hw-04-3.html",
-    "title": "Week 4 - Who’s the culprit?",
+    "objectID": "modules/week06/index-06.html",
+    "href": "modules/week06/index-06.html",
+    "title": "Week 6 - Programming with databases",
     "section": "",
-    "text": "You’re reading up on how eggs are aged by floating them in water 1:\nwhen you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly 36 nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return exactly one row, the answer. That is, your query should produce:"
+    "text": "Understand the basic database programming model\nAccess a DuckDB database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
   },
   {
-    "objectID": "modules/week04/hw-04-3.html#footnotes",
-    "href": "modules/week04/hw-04-3.html#footnotes",
-    "title": "Week 4 - Who’s the culprit?",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nLiebezeit, Joseph R., et al. “Assessing the Development of Shorebird Eggs Using the Flotation Method: Species-Specific and Generalized Regression Models.” The Condor, vol. 109, no. 1, 2007, pp. 32–47. JSTOR, http://www.jstor.org/stable/4122529↩︎"
-  },
-  {
-    "objectID": "modules/week03/index-03.html",
-    "href": "modules/week03/index-03.html",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "objectID": "modules/week06/index-06.html#learning-objectives",
+    "href": "modules/week06/index-06.html#learning-objectives",
+    "title": "Week 6 - Programming with databases",
     "section": "",
-    "text": "Understand the relationship of SQL to relational databases\nUnderstand how local databases differ from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
+    "text": "Understand the basic database programming model\nAccess a DuckDB database from Python and R\nUnderstand how to use the Python/Pandas and R/dbplyr convenience functions"
   },
   {
-    "objectID": "modules/week03/index-03.html#learning-objectives",
-    "href": "modules/week03/index-03.html#learning-objectives",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
-    "section": "",
-    "text": "Understand the relationship of SQL to relational databases\nUnderstand how local databases differ from client/server databases\nUnderstand basic SQL syntax and statements\nBe able to answer basic questions about data"
-  },
-  {
-    "objectID": "modules/week03/index-03.html#slides-and-other-materials",
-    "href": "modules/week03/index-03.html#slides-and-other-materials",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "objectID": "modules/week06/index-06.html#slides-and-other-materials",
+    "href": "modules/week06/index-06.html#slides-and-other-materials",
+    "title": "Week 6 - Programming with databases",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\nclass-script-03-wed.sql\n\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository, week 3"
+    "text": "Slides and other materials\nslides-06.pptx\nCoding transcripts:\n\npython-programming.ipynb"
   },
   {
-    "objectID": "modules/week03/index-03.html#resources",
-    "href": "modules/week03/index-03.html#resources",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "objectID": "modules/week06/index-06.html#resources",
+    "href": "modules/week06/index-06.html#resources",
+    "title": "Week 6 - Programming with databases",
     "section": "Resources",
-    "text": "Resources\n\nhttp://swcarpentry.github.io/sql-novice-survey/\n\nGood Carpentry lesson, our lesson is drawn from this.\n\nC.J. Date and Hugh Darwen (1993). A Guide to the SQL Standard. 3rd ed. Reading, MA: Addison-Wesley.\nAccess via Library Catalog\n\nThe ANSI standard.\n\nJoe Celko (1995). Joe Celko’s SQL For Smarties: Advanced SQL Programming. San Francisco, CA: Morgan Kaufmann.\nAccess via Library Catalog\n\nThis guy is an SQL guru. Newer versions of this book are available online, check the Library catalog (a bug is preventing me from linking directly).\n\nGrant Allen and Mike Owens (2010). The Definitive Guide to SQLite. 2nd ed. Berkeley, CA: Apress.\nAccess via Library Catalog\n\nGood reference. Can access online!\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+    "text": "Resources\n\nhttps://peps.python.org/pep-0249/\n\nCommon Python-RDBMS API\n\nhttps://duckdb.org/docs/api/python/overview\n\nPython DuckDB module\n\nhttps://dbplyr.tidyverse.org/\n\nR dbplyr documentation"
   },
   {
-    "objectID": "modules/week03/index-03.html#homework",
-    "href": "modules/week03/index-03.html#homework",
-    "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
+    "objectID": "modules/week06/index-06.html#homework",
+    "href": "modules/week06/index-06.html#homework",
+    "title": "Week 6 - Programming with databases",
     "section": "Homework",
-    "text": "Homework\nSQL problem 1\nSQL problem 2\nSQL problem 3"
+    "text": "Homework\nLittle Bobby Tables\nCharacterizing egg variation\nWho were the winners?"
   },
   {
-    "objectID": "modules/week03/hw-03-1.html",
-    "href": "modules/week03/hw-03-1.html",
-    "title": "Week 3 - SQL problem 1",
-    "section": "",
-    "text": "It’s a useful skill in life (I’m not being rhetorical, I really mean that, it’s a useful skill) to be able to construct an experiment to answer a hypothesis. Suppose you’re not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn’t have access to any documentation, or didn’t trust it. What experiment could you run to find out what happens?\nThere are two parts to this problem.\n\nPart 1\nConstruct an SQL experiment to determine the answer to the question above. Does SQL abort with some kind of error? Does it ignore NULL values? Do the NULL values somehow factor into the calculation, and if so, how?\nI would suggest you start by creating a table (in the bird database, in a new database, in a transient in-memory database, doesn’t matter) with a single column that has data type REAL (for part 2 below, it must be REAL). You can make your table a temp table or not, your choice.\nCREATE TEMP TABLE mytable... ;\nNow insert some real numbers and at least one NULL into your table.\nINSERT INTO mytable... ;\n(Hmm, can you insert multiple rows at once, or do you have to do a separate INSERT for each row?)\nOnce you have your little table constructed, try doing an AVG on the column and see what is returned. What would the average be if the function ignored NULLs? What would the average be if it somehow factored them in? What is actually returned?\nPlease submit both your SQL and your answer to the question about how AVG operates in the presence of NULL values.\n\n\nPart 2\nIf SQL didn’t have an AVG function, you could compute the average value of a column by doing something like this on your table:\nSELECT SUM(mycolumn)/COUNT(*) FROM mytable;\nSELECT SUM(mycolumn)/COUNT(mycolumn) FROM mytable;\nWhich query above is correct? Please explain why.\nNow that you’re done with your table, you can delete it if desired:\nDROP TABLE mytable;"
-  },
-  {
-    "objectID": "modules/week06/hw-06-4.html",
-    "href": "modules/week06/hw-06-4.html",
+    "objectID": "modules/week06/hw-06-3.html",
+    "href": "modules/week06/hw-06-3.html",
     "title": "Week 6 - Who were the winners?",
     "section": "",
     "text": "At the conclusion of the ASDN project the PIs decided to hand out first, second, and third prizes to the observers who measured the most eggs. Who won? Please use R and dbplyr to answer this question, and please submit your R code. Your code should print out:\n# Ordered by: desc(total_eggs)\n  Name            total_eggs\n  &lt;chr&gt;                &lt;int&gt;\n1 Vanessa Loverti        163\n2 Dylan Kessler           87\n3 Richard Lanctot         50\nYou’ll want to load database tables using statements such as:\negg_table &lt;- tbl(conn, \"Bird_eggs\")\nand then use tidyverse grouping, summarization, joining, and other functions to compute the desired result.\nAlso, take your final expression and pipe it into show_query(). If you used multiple R statements, did dbplyr create a temporary table, or did it manage to do everything in one query? Did it limit to the first three rows using an R expression or an SQL LIMIT clause?"
   },
   {
-    "objectID": "modules/week06/hw-06-1.html",
-    "href": "modules/week06/hw-06-1.html",
-    "title": "Week 6 - Little Bobby Tables",
+    "objectID": "modules/week06/hw-06-2.html",
+    "href": "modules/week06/hw-06-2.html",
+    "title": "Week 6 - Characterizing egg variation",
     "section": "",
-    "text": "View this classic XKCD cartoon:\n\n\n\nhttps://xkcd.com/327/\n\n\nFor the purposes of this problem you may assume that at some point the school’s software performs the query\nSELECT *\n    FROM Students\n    WHERE (name = '%s' AND year = 2023);\nwhere the student’s name is directly substituted for the %s. Explain exactly how Little Bobby Tables’ name can cause a catastrophe. Explain what happens to the AND year = 2023 clause in the query."
+    "text": "You read Egg Dimensions and Neonatal Mass of Shorebirds by Robert E. Ricklefs and want to see how the egg data we’ve been using in class compares to his results. Specifically, Ricklefs reported, “Coefficients of variation were 4 to 9% for egg volume” for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?\nThe “coefficient of variation,” or CV, is a unitless measure of the variation of a sample, defined as the standard deviation divided by the mean and multiplied by 100 to express as a percentage. Thus, a CV of 10% means the standard deviation is 10% of the mean value. For the purposes of this computation, we will copy Ricklefs and use as a proxy for egg volume the formula\n\\[ W^2 L \\]\nwhere \\(W\\) is egg width and \\(L\\) is egg length.\nYour task is to create a Python program that reads data from the ASDN database and uses Pandas to compute, for each species in the database (for which there is egg data), the coefficient of variation of volume using the above formula. There are many ways this can be done. Because this assignment is primarily about programming in Python, please follow the steps below. Please submit your Python code when done.\n\nStep 1\nCreate a query that will return the distinct species for which there is egg data (not all species and not all nests have egg data), so that you can then loop over those species. Your query should return two columns, species code and scientific name.\n\n\nStep 2\nAfter you’ve connected to the database and created a cursor c, iterate over the species like so:\nspecies_query = \"\"\"SELECT Code, Scientific_name FROM...\"\"\"\nfor row in c.execute(species_query):\n    species_code = row[0]\n    scientific_name = row[1]\n    # query egg data for that species (step 3)\n    # compute statistics and print results (step 4)\n\n\nStep 3\nYou will need to construct a query template that gathers egg data for a species that will be supplied as a parameter. You can compute the formula\n\\[ W^2 L \\]\nin SQL or in Pandas. For simplicity, SQL is suggested:\negg_query = \"\"\"SELECT Width*Width*Length AS Volume FROM...\"\"\"\nWithin the loop, you will want to execute the query on the current species in the loop iteration. You may use the Pandas function pd.read_sql to do so and also directly load the results into a dataframe:\ndf = pd.read_sql(egg_query, conn, ...)\nDo a help(pd.read_sql) to figure out how to pass parameters to a query.\n\n\nStep 4\nFinally, and still within your loop, you’ll want to compute statistics and print out the results:\ncv = round(df.Volume.std()/df.Volume.mean()*100, 2)\nprint(f\"{scientific_name} {cv}%\")\nYour output should look like this:\nCharadrius semipalmatus 8.99%\nPluvialis dominica 19.88%\nPluvialis squatarola 6.94%\nCalidris alpina 5.46%\nCalidris fuscicollis 16.77%\nPhalaropus fulicarius 4.65%\nArenaria interpres 21.12%\n\n\nAppendix\nIt’s not necessary to use pd.read_sql to get data into a dataframe, it’s just a convenience. To do so manually (and to show you it’s not that hard), imagine that your query returns three columns. Collect the row data into three separate lists, then manually create a dataframe specifying the contents as a dictionary:\nrows = c.execute(\"SELECT Species, Width, Length FROM...\").fetchall()\nspecies_column = [t[0] for t in rows]\nwidth_column = [t[1] for t in rows]\nlength_column = [t[2] for t in rows]\n\ndf = pd.DataFrame(\n    {\n        \"species\": species_column,\n        \"width\": width_column,\n        \"length\": length_column\n    }\n)"
   },
   {
     "objectID": "modules/week08/index-08.html",
