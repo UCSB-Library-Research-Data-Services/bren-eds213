@@ -249,7 +249,7 @@
     "href": "modules/week06/hw-06-1.html#bonus-problem",
     "title": "Week 6 - Little Bobby Tables",
     "section": "Bonus problem!",
-    "text": "Bonus problem!\nHack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query\nSELECT * FROM Species WHERE Code = '%s';\nwhere a species code supplied by the application user is directly substituted for the query’s %s using Python interpolation. For example, an innocent user might input “wolv”. Craft an input that a devious user could use to:\n\nAdd Taylor Swift to the Personnel table\nStill return the results of the query SELECT * FROM Species WHERE Code = 'wolv'"
+    "text": "Bonus problem!\nHack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query\nSELECT * FROM Species WHERE Code = '%s';\nwhere a species code (supplied by the application user) is directly substituted for the query’s %s using Python interpolation. For example, an innocent user might input “wolv”. Craft an input that a devious user could use to:\n\nAdd Taylor Swift to the Personnel table\nYet still return the results of the query SELECT * FROM Species WHERE Code = 'wolv' (devious!)"
   },
   {
     "objectID": "modules/week06/python-programming.html",

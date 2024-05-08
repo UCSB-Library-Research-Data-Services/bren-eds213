@@ -271,10 +271,10 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="bonus-problem">Bonus problem!</h2>
 <p>Hack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query</p>
 <pre><code>SELECT * FROM Species WHERE Code = '%s';</code></pre>
-<p>where a species code supplied by the application user is directly substituted for the query’s <code>%s</code> using Python interpolation. For example, an innocent user might input “wolv”. Craft an input that a devious user could use to:</p>
+<p>where a species code (supplied by the application user) is directly substituted for the query’s <code>%s</code> using Python interpolation. For example, an innocent user might input “wolv”. Craft an input that a devious user could use to:</p>
 <ul>
 <li>Add Taylor Swift to the Personnel table</li>
-<li><em>Still</em> return the results of the query <code>SELECT * FROM Species WHERE Code = 'wolv'</code></li>
+<li>Yet <em>still</em> return the results of the query <code>SELECT * FROM Species WHERE Code = 'wolv'</code> (devious!)</li>
 </ul>
 
 
