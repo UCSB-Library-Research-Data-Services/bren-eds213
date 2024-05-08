@@ -548,7 +548,7 @@
   {
     "objectID": "modules/week07/hw-07.html",
     "href": "modules/week07/hw-07.html",
-    "title": "Week 7 - README Document",
+    "title": "Wee7 7 - Capstone project README.md",
     "section": "",
     "text": "Each capstone project group should produce a README file, which must later be submitted to Dryad along with project data and code files, following the program guidelines and deadlines.\nTotal points: 50\nInstructions:\n\nUtilize this README Template in Markdown (md) format and customize it to suit specific project requirements. Note that the sections “data file overview” and “data-specific information” should comprehensively describe each dataset.\nThe README should list and attribute all files used in the project, including those that cannot be openly shared.\nFor multiple datasets sharing the same characteristics, variables, and units of measurement (e.g., images, time series), you can streamline the description by providing details about the number of datasets, their file naming convention, and attributes once.\nIn instances where a metadata standard was adopted (by the group, original source, or the client), ensure to acknowledge it in your README."
   },
