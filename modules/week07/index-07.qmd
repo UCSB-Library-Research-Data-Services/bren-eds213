@@ -6,24 +6,16 @@ title: "Week 7 - Metadata standards"
 
 -   Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.
 -   Recognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.
--   Acquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.
--   Programmatically create EML metadata records using R.
+-   Identify metadata standards relevant to environmental sciences research.
 
 ## Slides and other materials
 
 [slides-07.pptx](slides-07.pptx)
 
-[Class data GitHub repository, week 6](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2023-class-data/tree/main/week6) for in-class exercise
-
 Related resources:
 
 -   [Research Data Alliance (RDA) Metadata Standard Catalog](https://rdamsc.bath.ac.uk).
--   [EML Schema Documentation](https://eml.ecoinformatics.org/).
--   [EML Best Practices](https://ediorg.github.io/data-package-best-practices/eml-best-practices.html).
--   [Creating EML records in R](https://github.com/ropensci/EML).
--   [EzEML - Ecological Data Initiative (EDI)](https://ezeml.edirepository.org/).
--   [Excel to EML](https://github.com/lkuiucsb/Excel-to-EML).
--   [capemlGIS](https://caplter.github.io/capemlGIS/) - a package that extends the [CAPLTER/capeml](https://github.com/CAPLTER/capeml) to facilitate the creation of EML spatialRaster and spatialVector objects and metadata.
+-   [DataOne Repository](https://www.dataone.org)
 
 ## Recommended readings
 
@@ -33,4 +25,4 @@ Related resources:
 
 ## Homework
 
-[EML record](hw-07.qmd)
+[Capstone project README.md](hw-07.qmd)

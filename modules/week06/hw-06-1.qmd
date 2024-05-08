@@ -24,7 +24,7 @@ Hack your bird database! Let's imagine that your Shiny application, in response 
 SELECT * FROM Species WHERE Code = '%s';
 ```
 
-where a species code supplied by the application user is directly substituted for the query's `%s` using Python interpolation. For example, an innocent user might input "wolv". Craft an input that a devious user could use to:
+where a species code (supplied by the application user) is directly substituted for the query's `%s` using Python interpolation. For example, an innocent user might input "wolv". Craft an input that a devious user could use to:
 
 -   Add Taylor Swift to the Personnel table
--   *Still* return the results of the query `SELECT * FROM Species WHERE Code = 'wolv'`
+-   Yet *still* return the results of the query `SELECT * FROM Species WHERE Code = 'wolv'` (devious!)
