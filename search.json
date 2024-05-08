@@ -480,21 +480,21 @@
     "href": "modules/week07/index-07.html",
     "title": "Week 7 - Metadata standards",
     "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nIdentify metadata standards relevant to environmental sciences research."
   },
   {
     "objectID": "modules/week07/index-07.html#learning-goals",
     "href": "modules/week07/index-07.html#learning-goals",
     "title": "Week 7 - Metadata standards",
     "section": "",
-    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nAcquire familiarity with the overall structure of the Ecological Metadata Language (EML) schema and the anatomy of an EML record.\nProgrammatically create EML metadata records using R."
+    "text": "Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.\nRecognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.\nIdentify metadata standards relevant to environmental sciences research."
   },
   {
     "objectID": "modules/week07/index-07.html#slides-and-other-materials",
     "href": "modules/week07/index-07.html#slides-and-other-materials",
     "title": "Week 7 - Metadata standards",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-07.pptx\nClass data GitHub repository, week 6 for in-class exercise\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nEML Schema Documentation.\nEML Best Practices.\nCreating EML records in R.\nEzEML - Ecological Data Initiative (EDI).\nExcel to EML.\ncapemlGIS - a package that extends the CAPLTER/capeml to facilitate the creation of EML spatialRaster and spatialVector objects and metadata."
+    "text": "Slides and other materials\nslides-07.pptx\nRelated resources:\n\nResearch Data Alliance (RDA) Metadata Standard Catalog.\nDataOne Repository"
   },
   {
     "objectID": "modules/week07/index-07.html#recommended-readings",
@@ -508,7 +508,7 @@
     "href": "modules/week07/index-07.html#homework",
     "title": "Week 7 - Metadata standards",
     "section": "Homework",
-    "text": "Homework\nEML record"
+    "text": "Homework\nCapstone project README.md"
   },
   {
     "objectID": "modules/week06/index-06.html",
