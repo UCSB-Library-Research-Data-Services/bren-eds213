@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Week 6 - Programming with databases</title>
+<title>eds213</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -66,6 +100,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -229,75 +266,316 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#slides-and-other-materials" id="toc-slides-and-other-materials" class="nav-link" data-scroll-target="#slides-and-other-materials">Slides and other materials</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
+  <li><a href="#pandas" id="toc-pandas" class="nav-link active" data-scroll-target="#pandas">Pandas</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Week 6 - Programming with databases</h1>
+
+
+
+<p>To install the duckdb Python package:</p>
+<div id="bec2de22-10ab-4ebe-bcd0-955444c5fa06" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install duckdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Common model: connect to database, get a cursor. In Python, all database packages follow the DB-API standard, so they all look the same. See course website for pointer to DB-API.</p>
+<div id="caf77e09-b059-422f-a3d0-38e15d17bafd" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> duckdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b788d521-f11d-4e96-8714-0aef31a913f8" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> duckdb.<span class="ex">connect</span>(<span class="st">"database.db"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cursor mediates access to query, getting results. Can deal with one query at a time.</p>
+<div id="096bbbe4-b4ea-46f2-ab27-77ac92bfb62a" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cur <span class="op">=</span> conn.cursor()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Get all results. Cursor is streaming mechanism, does not store results.</p>
+<div id="5bbd6bd4-7c4b-46c6-83cc-218e28fcaf28" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Camp_assignment LIMIT 3"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>[(2005,
+  'bylo',
+  'lmckinnon',
+  datetime.date(2005, 6, 1),
+  datetime.date(2005, 8, 5)),
+ (2005,
+  'bylo',
+  'blalibert',
+  datetime.date(2005, 6, 1),
+  datetime.date(2005, 8, 20)),
+ (2006,
+  'bylo',
+  'lmckinnon',
+  datetime.date(2006, 6, 1),
+  datetime.date(2006, 8, 5))]</code></pre>
+</div>
+</div>
+<div id="ddda253f-db9a-482a-a922-75376d4236af" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cur.fetchall()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>[]</code></pre>
+</div>
+</div>
+<p>Or get one row at a time</p>
+<div id="99248c39-0da9-4464-a0c6-d7c699ae47c2" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Camp_assignment LIMIT 3"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cur.fetchone()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>(2005,
+ 'bylo',
+ 'lmckinnon',
+ datetime.date(2005, 6, 1),
+ datetime.date(2005, 8, 5))</code></pre>
+</div>
+</div>
+<div id="9ebc0a4b-615b-4c47-aec0-3a3e177f2531" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cur.fetchone()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>(2005,
+ 'bylo',
+ 'blalibert',
+ datetime.date(2005, 6, 1),
+ datetime.date(2005, 8, 20))</code></pre>
+</div>
+</div>
+<div id="a381c0d9-aef5-49f0-b611-e8eb33160291" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>cur.fetchone()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>(2006,
+ 'bylo',
+ 'lmckinnon',
+ datetime.date(2006, 6, 1),
+ datetime.date(2006, 8, 5))</code></pre>
+</div>
+</div>
+<div id="2995812c-8cf3-4d2b-9c3d-5f4f0deb59ac" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>cur.fetchone()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Extended example showing looping over cursor (DuckDB does not support direct iteration over cursor), using second cursor, using parameterized queries.</p>
+<div id="f18238e0-a0e1-4f32-ae92-d9560d9a3deb" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>inner_query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">   SELECT COUNT(*) AS num_nests</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">   FROM Bird_nests</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">   WHERE Observer = ?</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>outer_query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">   SELECT DISTINCT Observer FROM Bird_nests</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> cur.execute(outer_query).fetchall():</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    observer <span class="op">=</span> row[<span class="dv">0</span>]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    cur2 <span class="op">=</span> conn.cursor()</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    cur2.execute(inner_query, [observer])</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Observer </span><span class="sc">{</span>observer<span class="sc">}</span><span class="ss"> gathered </span><span class="sc">{</span>cur2<span class="sc">.</span>fetchone()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> nests"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Observer mballvanzee gathered 2 nests
+Observer dkessler gathered 69 nests
+Observer bharrington gathered 245 nests
+Observer lmckinnon gathered 249 nests
+Observer dhodkinson gathered 15 nests
+Observer mbwunder gathered 4 nests
+Observer None gathered 0 nests
+Observer kkalasz gathered 12 nests
+Observer bhill gathered 55 nests
+Observer ssaalfeld gathered 13 nests
+Observer wenglish gathered 18 nests
+Observer lworing gathered 14 nests
+Observer vloverti gathered 54 nests
+Observer rlanctot gathered 40 nests
+Observer abankert gathered 17 nests
+Observer edastrous gathered 38 nests
+Observer jzamuido gathered 11 nests
+Observer amould gathered 42 nests
+Observer bkaselow gathered 4 nests
+Observer jflamarre gathered 43 nests</code></pre>
+</div>
+</div>
+<section id="pandas" class="level1">
+<h1>Pandas</h1>
+<div id="093ba155-7c71-45be-88bc-c46d6841c346" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d6b8cf04-4493-4dae-9d1f-4ce1088b3c1c" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_sql(<span class="st">"SELECT * FROM Site"</span>, conn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/rl/j368fbbx25l937pdxgzdpmxm0000gq/T/ipykernel_18456/2832309421.py:1: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df = pd.read_sql("SELECT * FROM Site", conn)</code></pre>
+</div>
+</div>
+<div id="d72e1fdb-02a1-4aab-be0e-34eb1ebe2306" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+<div>
 
 
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Code</th>
+<th data-quarto-table-cell-role="th">Site_name</th>
+<th data-quarto-table-cell-role="th">Location</th>
+<th data-quarto-table-cell-role="th">Latitude</th>
+<th data-quarto-table-cell-role="th">Longitude</th>
+<th data-quarto-table-cell-role="th">Area</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>barr</td>
+<td>Barrow</td>
+<td>Alaska, USA</td>
+<td>71.300003</td>
+<td>-156.600006</td>
+<td>220.399994</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>burn</td>
+<td>Burntpoint Creek</td>
+<td>Ontario, Canada</td>
+<td>55.200001</td>
+<td>-84.300003</td>
+<td>63.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>bylo</td>
+<td>Bylot Island</td>
+<td>Nunavut, Canada</td>
+<td>73.199997</td>
+<td>-80.000000</td>
+<td>723.599976</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>cakr</td>
+<td>Cape Krusenstern</td>
+<td>Alaska, USA</td>
+<td>67.099998</td>
+<td>-163.500000</td>
+<td>54.099998</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>cari</td>
+<td>Canning River Delta</td>
+<td>Alaska, USA</td>
+<td>70.099998</td>
+<td>-145.800003</td>
+<td>722.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>chau</td>
+<td>Chaun River Delta</td>
+<td>Chukotka, Russia</td>
+<td>68.800003</td>
+<td>170.600006</td>
+<td>248.199997</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>chur</td>
+<td>Churchill</td>
+<td>Manitoba, Canada</td>
+<td>58.700001</td>
+<td>-93.800003</td>
+<td>866.900024</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>coat</td>
+<td>Coats Island</td>
+<td>Nunavut, Canada</td>
+<td>62.900002</td>
+<td>-82.500000</td>
+<td>1239.099976</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>colv</td>
+<td>Colville River Delta</td>
+<td>Alaska, USA</td>
+<td>70.400002</td>
+<td>-150.699997</td>
+<td>324.799988</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>eaba</td>
+<td>East Bay</td>
+<td>Nunavut, Canada</td>
+<td>64.000000</td>
+<td>-81.699997</td>
+<td>1205.500000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>iglo</td>
+<td>Igloolik</td>
+<td>Nunavut, Canada</td>
+<td>69.400002</td>
+<td>-81.599998</td>
+<td>59.799999</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>ikpi</td>
+<td>Ikpikpuk</td>
+<td>Alaska, USA</td>
+<td>70.599998</td>
+<td>-154.699997</td>
+<td>174.100006</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>lkri</td>
+<td>Lower Khatanga River</td>
+<td>Krasnoyarsk, Russia</td>
+<td>72.900002</td>
+<td>106.099998</td>
+<td>270.899994</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>made</td>
+<td>Mackenzie River Delta</td>
+<td>Northwest Territories, Canada</td>
+<td>69.400002</td>
+<td>-135.000000</td>
+<td>667.299988</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>nome</td>
+<td>Nome</td>
+<td>Alaska, USA</td>
+<td>64.400002</td>
+<td>-164.899994</td>
+<td>90.099998</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>prba</td>
+<td>Prudhoe Bay</td>
+<td>Alaska, USA</td>
+<td>70.300003</td>
+<td>-148.600006</td>
+<td>120.000000</td>
+</tr>
+</tbody>
+</table>
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
-<ul>
-<li>Understand the basic database programming model</li>
-<li>Access a DuckDB database from Python and R</li>
-<li>Understand how to use the Python/Pandas and R/dbplyr convenience functions</li>
-</ul>
-</section>
-<section id="slides-and-other-materials" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-other-materials">Slides and other materials</h2>
-<p><a href="slides-06.pptx">slides-06.pptx</a></p>
-<p>Coding transcripts:</p>
-<ul>
-<li><a href="../../modules/week06/python-programming.html">python-programming.ipynb</a></li>
-<li><a href="../../modules/week06/python-programming-cont.html">python-programming-cont.ipynb</a></li>
-<li><a href="_code/using_dbplyr-06-wed-r.qmd">using_dbplyr-06-wed-r.qmd</a></li>
-</ul>
-</section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
-<ol type="1">
-<li><p><a href="https://peps.python.org/pep-0249/" class="uri">https://peps.python.org/pep-0249/</a></p>
-<ul>
-<li><em>Common Python-RDBMS API</em></li>
-</ul></li>
-<li><p><a href="https://duckdb.org/docs/api/python/overview" class="uri">https://duckdb.org/docs/api/python/overview</a></p>
-<ul>
-<li><em>Python DuckDB module</em></li>
-</ul></li>
-<li><p><a href="https://dbplyr.tidyverse.org/" class="uri">https://dbplyr.tidyverse.org/</a></p>
-<ul>
-<li><em>R dbplyr documentation</em></li>
-</ul></li>
-</ol>
-</section>
-<section id="homework" class="level2">
-<h2 class="anchored" data-anchor-id="homework">Homework</h2>
-<p><a href="../../modules/week06/hw-06-1.html">Little Bobby Tables</a></p>
-<p><a href="../../modules/week06/hw-06-2.html">Characterizing egg variation</a></p>
-<p><a href="../../modules/week06/hw-06-3.html">Who were the winners?</a></p>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>
