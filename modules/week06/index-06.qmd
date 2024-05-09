@@ -15,6 +15,7 @@ title: "Week 6 - Programming with databases"
 Coding transcripts:
 
 -   [python-programming.ipynb](python-programming.ipynb)
+-   [python-programming-cont.ipynb](python-programming-cont.ipynb)
 -   [using_dbplyr-06-wed-r.qmd](_code/using_dbplyr-06-wed-r.qmd)
 
 ## Resources

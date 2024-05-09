@@ -1,5 +1,15 @@
 ---
-title: "Week 7 - Recording your Metadata: README Document"
+title: "Week 7 - Capstone project README.md"
 ---
 
+Each capstone project group should produce a README file, which must later be submitted to [Dryad](https://datadryad.org) along with project data and code files, following the program guidelines and deadlines.
 
+Total points: 50
+
+Instructions:
+
+- Follow this [README Template](https://zenodo.org/records/10828379) in Markdown (md) format and customize it to suit specific project requirements. Note that the sections "data file overview" and "data-specific information" should comprehensively describe each dataset included/used in the project. 
+- The README should list and attribute all files used in the project, including those that cannot be openly shared.
+- Ensure that you describe how missing data was handled. 
+- For multiple datasets sharing the same characteristics, variables, and units of measurement (e.g., images, time series), you can streamline the description by providing details about the number of datasets, their file naming convention, and attributes once.
+- In instances where a metadata standard was adopted (by the group, original source, or the client), ensure to acknowledge it in your README.
