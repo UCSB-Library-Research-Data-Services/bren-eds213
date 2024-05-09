@@ -1,5 +1,5 @@
 ---
-title: "Wee7 7 - Capstone project README.md"
+title: "Week 7 - Capstone project README.md"
 ---
 
 Each capstone project group should produce a README file, which must later be submitted to [Dryad](https://datadryad.org) along with project data and code files, following the program guidelines and deadlines.
