@@ -550,14 +550,14 @@
     "href": "modules/hw_bonus.html",
     "title": "Homework Bonus",
     "section": "",
-    "text": "One might wonder if egg volumes would be larger during warmer months. We don’t have much data to work with our database example, but we can leverage measurements for the months of June and July.\nOur ask:\n\nDevelop an SQL query to compute a table with the average egg volume per month (June & July) at each site (20pt)\nUse you favorite programming language to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt)"
+    "text": "One might wonder if egg volumes would be larger during warmer months. We don’t have much data to work with using our database example, but we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.\nOur ask:\n\nDevelop an SQL query to compute a table with the average egg volume per month (June & July) at each site (20pt)\nUse you favorite programming language (R or Python) to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt)"
   },
   {
-    "objectID": "modules/hw_bonus.html#relationship-between-egg-volume-and-tim-of-the-year",
-    "href": "modules/hw_bonus.html#relationship-between-egg-volume-and-tim-of-the-year",
+    "objectID": "modules/hw_bonus.html#relationship-between-egg-volume-and-time-of-the-year",
+    "href": "modules/hw_bonus.html#relationship-between-egg-volume-and-time-of-the-year",
     "title": "Homework Bonus",
     "section": "",
-    "text": "One might wonder if egg volumes would be larger during warmer months. We don’t have much data to work with our database example, but we can leverage measurements for the months of June and July.\nOur ask:\n\nDevelop an SQL query to compute a table with the average egg volume per month (June & July) at each site (20pt)\nUse you favorite programming language to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt)"
+    "text": "One might wonder if egg volumes would be larger during warmer months. We don’t have much data to work with using our database example, but we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.\nOur ask:\n\nDevelop an SQL query to compute a table with the average egg volume per month (June & July) at each site (20pt)\nUse you favorite programming language (R or Python) to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt)"
   },
   {
     "objectID": "modules/week07/hw-07.html",
