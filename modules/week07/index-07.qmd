@@ -14,7 +14,7 @@ title: "Week 7 - Metadata standards"
 
 Related resources:
 
--   [Research Data Alliance (RDA) Metadata Standard Catalog](https://rdamsc.bath.ac.uk).
+-   [Research Data Alliance (RDA) Metadata Standard Catalog](https://rdamsc.bath.ac.uk)
 -   [DataOne Repository](https://www.dataone.org)
 
 ## Recommended readings
