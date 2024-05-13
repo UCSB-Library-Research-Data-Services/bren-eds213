@@ -560,8 +560,8 @@
     "text": "One might wonder if egg volumes would be larger during warmer months. We don’t have much data to work with using our database example, but we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.\nOur ask:\n\nDevelop an SQL query to compute a table with the average egg volume per month (June & July) at each site (20pt)\nUse you favorite programming language (R or Python) to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt)"
   },
   {
-    "objectID": "modules/week07/hw-07-01.html",
-    "href": "modules/week07/hw-07-01.html",
+    "objectID": "modules/week07/hw-07-1.html",
+    "href": "modules/week07/hw-07-1.html",
     "title": "Week 7 - Capstone project README.md",
     "section": "",
     "text": "Each capstone project group should produce a README file, which must later be submitted to Dryad along with project data and code files, following the program guidelines and deadlines.\nTotal points: 50\nInstructions:\n\nFollow this README Template in Markdown (md) format and customize it to suit specific project requirements. Note that the sections “data file overview” and “data-specific information” should comprehensively describe each dataset included/used in the project.\nThe README should list and attribute all files used in the project, including those that cannot be openly shared.\nEnsure that you describe how missing data was handled.\nFor multiple datasets sharing the same characteristics, variables, and units of measurement (e.g., images, time series), you can streamline the description by providing details about the number of datasets, their file naming convention, and attributes once.\nIn instances where a metadata standard was adopted (by the group, original source, or the client), ensure to acknowledge it in your README.\n\nSee Canvas for submission information"
