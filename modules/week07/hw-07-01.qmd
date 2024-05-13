@@ -13,3 +13,6 @@ Instructions:
 - Ensure that you describe how missing data was handled. 
 - For multiple datasets sharing the same characteristics, variables, and units of measurement (e.g., images, time series), you can streamline the description by providing details about the number of datasets, their file naming convention, and attributes once.
 - In instances where a metadata standard was adopted (by the group, original source, or the client), ensure to acknowledge it in your README.
+
+
+See Canvas for submission information
