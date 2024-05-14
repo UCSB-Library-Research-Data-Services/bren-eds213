@@ -9,7 +9,7 @@ Total points: 50
 Instructions:
 
 - Use `devtools::session_info()` R or `pip freeze` Python to generate a text file that lists the libraries and respective versions you used for your capstone your project
-- Commit this file to the relevant repositories
+- Commit this/ose file/s to the relevant repository/ies
 - Submit the URLs to those files via Canvas 
 
 
