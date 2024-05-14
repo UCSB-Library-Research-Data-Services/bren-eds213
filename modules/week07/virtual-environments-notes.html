@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#virtual-environments-notes" id="toc-virtual-environments-notes" class="nav-link active" data-scroll-target="#virtual-environments-notes"><strong>Virtual Environments Notes</strong></a>
+  <li><a href="#virtual-environments-notes" id="toc-virtual-environments-notes" class="nav-link active" data-scroll-target="#virtual-environments-notes">Virtual Environments Notes</a>
   <ul class="collapse">
   <li><a href="#renv-reproducible-environments-in-r" id="toc-renv-reproducible-environments-in-r" class="nav-link" data-scroll-target="#renv-reproducible-environments-in-r">Renv (Reproducible Environments) in R</a></li>
   <li><a href="#venv-using-pip" id="toc-venv-using-pip" class="nav-link" data-scroll-target="#venv-using-pip">Venv Using pip</a></li>
@@ -287,12 +287,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="virtual-environments-notes" class="level2">
-<h2 class="anchored" data-anchor-id="virtual-environments-notes"><strong>Virtual Environments Notes</strong></h2>
+<h2 class="anchored" data-anchor-id="virtual-environments-notes">Virtual Environments Notes</h2>
 <section id="renv-reproducible-environments-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="renv-reproducible-environments-in-r">Renv (Reproducible Environments) in R</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../img/renv.png" class="img-fluid figure-img"></p>
+<figcaption>source: https://rstudio.github.io/renv/articles/renv.html</figcaption>
+</figure>
+</div>
 <p>We are going to add renv to our shorebird data cleaning project. Make sure you have the renv package installed:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><mark>You may also choose Tools&gt;Project Options&gt;Environments and check “use renv for this project”</mark></p>
+<p>You may also choose Tools&gt;Project Options&gt;Environments and check “use renv for this project”</p>
 <p>Or at the R console:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>( )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Let’s check the new files that we have…</p>
