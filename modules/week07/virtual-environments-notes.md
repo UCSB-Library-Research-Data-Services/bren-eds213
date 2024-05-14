@@ -1,6 +1,9 @@
-## **Virtual Environments Notes**
+## Virtual Environments Notes
+
 
 ### Renv (Reproducible Environments) in R
+
+![source: https://rstudio.github.io/renv/articles/renv.html](../../img/renv.png)
 
 We are going to add renv to our shorebird data cleaning project. Make
 sure you have the renv package installed:
@@ -9,8 +12,8 @@ sure you have the renv package installed:
 install.packages("renv")
 ```
 
-[You may also choose Tools\>Project Options\>Environments and check "use
-renv for this project"]{.mark}
+You may also choose Tools>Project Options>Environments and check "use
+renv for this project"
 
 Or at the R console:
 
