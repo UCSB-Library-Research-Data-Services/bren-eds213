@@ -1,7 +1,7 @@
-## Virtual Environments Notes
+# Virtual Environments Notes
 
 
-### Renv (Reproducible Environments) in R
+## Renv (Reproducible Environments) in R
 
 ![source: https://rstudio.github.io/renv/articles/renv.html](../../img/renv.png)
 
@@ -33,9 +33,16 @@ R package to deal with the NAs. Let's update or virtual environment:
 ```r
 renv::install("naniar")
 ```
+Add some R code using this package, for example
 
-Alright, now that the installation is completed, we can save, and take a
-snapshot:
+```r
+library(naniar)
+
+snowsurvey_csv %>% 
+  miss_var_summary()
+```
+
+Alright, now that the installation is completed and we added this package to our code, we can save, and take a snapshot:
 
 ```r
 renv::snapshot()
@@ -50,9 +57,43 @@ revert to the previous state as encoded in the lockfile.
 
 Use `.libPaths()` to confirm where package installations are located!
 
-### Venv Using pip 
 
-#### Open the Terminal in VS Code
+## Containers
+
+### Binder
+
+Transform your Github repository into a full computing environment: <https://mybinder.org/>
+
+![Level up!](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemkwd3RnMzA4a3FocHZ2bWJscHgxNG9yaW4yeGZ6YzZpaXgzNHJhciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/x2woMnCz4W0Vy/giphy.gif)
+
+
+
+You need to add 2 files:
+
+- runtime.txt
+- install.R (spoiler it can leverage renv)
+
+
+`runtime.txt` sets the R version, in our example:
+
+```
+r-4.3.3-2024-02-29
+```
+
+
+`install.R` provides the list of the necessary R packages to install or in our case the renv:
+
+```
+install.packages('renv')
+renv::restore()
+```
+
+
+<hr>
+
+## Venv Using pip 
+
+### Open the Terminal in VS Code
 
 **Checking our version:**
 
@@ -224,7 +265,7 @@ pip install -r requirements.txt
 -   Make sure to deactivate when done using it.
 
 
-### Environments in Conda
+## Environments in Conda
 
 **Checking what is in the system:**
 
