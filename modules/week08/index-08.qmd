@@ -1,43 +1,43 @@
 ---
-title: "Week 8 - Sensitive data"
+title: "Week 8 - Ethical and responsible data management"
 ---
 
-## Learning goals
+## Learning objectives
 
--   Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.
--   Identify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.
--   Apply the acquired techniques while quantifying the information loss and utility, utilizing an R package.
+-   Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues
+-   Apply ethical and responsible data management principles to real-world scenarios
 
-## Student notes
-
-Before class, install the sdcMicro package if you choose not to use the servers.
-
-If testing out using sensitive data, make sure to launch it from RStudio, not from the online website.
-
-## Slides and other materials
+## Slides
 
 [slides-08.pptx](slides-08.pptx)
 
-[Class data GitHub repository, week 8](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2023-class-data/tree/main/week8) for in-class demo and homework
+## Preparatory work for in-class exercise
 
-## Resources
+*Required readings*
 
-1.  sdcMicro Documentation: <https://sdcpractice.readthedocs.io/en/latest/intro.html>
+1.  Boté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) <http://hdl.handle.net/2445/151341>
 
-2.  sdcMicro Shiny app: <https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html>
+2.  McGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. <https://doi.org/10.1017/eds.2022.5>
 
-Other useful links can be found on slides.
+*Questions to consider: (no need to answer the questions on paper)*
 
-## Suggested readings
+-   Boté and Térmens (2019) present some technical and ethical challenges researchers may face when using pre-existing data. Based on the lecture and our group discussion on day 3, in what ways do you think the technical challenges highlighted in this paper can also have ethical implications?
+-   Can you think of ways some of the ethical concerns presented by Boté and Térmens (2019) can affect other stages of the data lifecycle other than reuse?
+-   Based on concrete examples, McGovern et al. (2022) discuss how AI and ML can go wrong for environmental sciences. While the community is still grappling with these challenges, what responsible and ethical data management practices could help to minimize such problems?
+-   Reflecting on both settings of readings, can you identify any ethical concerns that resonate with your capstone project? How have you or do you plan to mitigate them?
 
-1.  Bledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., ... & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), <https://doi.org/10.1098/rspb.2022.0938>
+*Additional suggested readings are noted in the slides.*
 
-2.  Bourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). "Commercially Sensitive" Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. <https://doi.org/10.1525/cse.2017.sc.454841>
+## In-class exercise
 
-3.  Gehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. <https://doi.org/10.1007/978-1-4419-5906-5_899>
+*Instructions*
 
-4.  Samarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. <https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf>
-
-## Homework
-
-[sdcMicro exercise](hw-08.qmd)
+1.  Find a partner (preferably someone from a different capstone project team).
+2.  Read the cases listed below, discuss them with your partner, and answer the quizzes individually.
+    -   [Case Study A: Containing the flames of bias in machine learning](case-a.qmd)
+    -   [Case Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife](case-b.qmd)
+    -   [Case Study C: To reuse or not reuse, that is the key question!](case-c.qmd)
+    -   [Case Study D: Navigating the complexities of ownership zones](case-d.qmd)
+3.  Switch partners and discuss your answers.
+4.  Reflect on your answers and change them or refine the open ones if you'd like.
+5.  Submit your final answers (individually) before the end of the class.

@@ -61,7 +61,7 @@ A class data GitHub repository, linked below, is used to distribute data files t
 | 5    | [I/O & data management + Advanced database topics (indexing, triggers, ...)](modules/week05/index-05.qmd)   |
 | 6    | [Using R & Python to query databases + bash programming](modules/week06/index-06.qmd)     |
 | 7    | [Documenting your work: metadata & computing environment](modules/week07/index-07.qmd)|
-| 8    | [Sensitive data](modules/week08/index-08.qmd)                          |
-| 9    | [Ethical & responsible data mgnt](modules/week09/index-09.qmd)         |
+| 8    | [Ethical & responsible data mgnt](modules/week08/index-08.qmd)         |
+| 9    | [Sensitive data](modules/week09/index-09.qmd)].                        |
 | 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |
 
