@@ -403,7 +403,7 @@
     "href": "index.html#modules",
     "title": "EDS 213: Databases and Data Management",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R & Python to query databases + bash programming\n\n\n7\nDocumenting your work: metadata & computing environment\n\n\n8\nEthical & responsible data mgnt\n\n\n9\nSensitive data].\n\n\n10\nData licensing and publication"
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R & Python to query databases + bash programming\n\n\n7\nDocumenting your work: metadata & computing environment\n\n\n8\nEthical & responsible data mgnt\n\n\n9\nSensitive data.\n\n\n10\nData licensing and publication"
   },
   {
     "objectID": "installing-duckdb.html",
