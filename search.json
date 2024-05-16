@@ -403,7 +403,7 @@
     "href": "index.html#modules",
     "title": "EDS 213: Databases and Data Management",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R & Python to query databases + bash programming\n\n\n7\nDocumenting your work: metadata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication"
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R & Python to query databases + bash programming\n\n\n7\nDocumenting your work: metadata & computing environment\n\n\n8\nEthical & responsible data mgnt\n\n\n9\nSensitive data].\n\n\n10\nData licensing and publication"
   },
   {
     "objectID": "installing-duckdb.html",
@@ -527,51 +527,37 @@
   {
     "objectID": "modules/week08/index-08.html",
     "href": "modules/week08/index-08.html",
-    "title": "Week 8 - Sensitive data",
+    "title": "Week 8 - Ethical and responsible data management",
     "section": "",
-    "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while quantifying the information loss and utility, utilizing an R package."
+    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nApply ethical and responsible data management principles to real-world scenarios"
   },
   {
-    "objectID": "modules/week08/index-08.html#learning-goals",
-    "href": "modules/week08/index-08.html#learning-goals",
-    "title": "Week 8 - Sensitive data",
+    "objectID": "modules/week08/index-08.html#learning-objectives",
+    "href": "modules/week08/index-08.html#learning-objectives",
+    "title": "Week 8 - Ethical and responsible data management",
     "section": "",
-    "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while quantifying the information loss and utility, utilizing an R package."
+    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nApply ethical and responsible data management principles to real-world scenarios"
   },
   {
-    "objectID": "modules/week08/index-08.html#student-notes",
-    "href": "modules/week08/index-08.html#student-notes",
-    "title": "Week 8 - Sensitive data",
-    "section": "Student notes",
-    "text": "Student notes\nBefore class, install the sdcMicro package if you choose not to use the servers.\nIf testing out using sensitive data, make sure to launch it from RStudio, not from the online website."
+    "objectID": "modules/week08/index-08.html#slides",
+    "href": "modules/week08/index-08.html#slides",
+    "title": "Week 8 - Ethical and responsible data management",
+    "section": "Slides",
+    "text": "Slides\nslides-08.pptx"
   },
   {
-    "objectID": "modules/week08/index-08.html#slides-and-other-materials",
-    "href": "modules/week08/index-08.html#slides-and-other-materials",
-    "title": "Week 8 - Sensitive data",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-08.pptx\nClass data GitHub repository, week 8 for in-class demo and homework"
+    "objectID": "modules/week08/index-08.html#preparatory-work-for-in-class-exercise",
+    "href": "modules/week08/index-08.html#preparatory-work-for-in-class-exercise",
+    "title": "Week 8 - Ethical and responsible data management",
+    "section": "Preparatory work for in-class exercise",
+    "text": "Preparatory work for in-class exercise\nRequired readings\n\nBoté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) http://hdl.handle.net/2445/151341\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\n\nQuestions to consider: (no need to answer the questions on paper)\n\nBoté and Térmens (2019) present some technical and ethical challenges researchers may face when using pre-existing data. Based on the lecture and our group discussion on day 3, in what ways do you think the technical challenges highlighted in this paper can also have ethical implications?\nCan you think of ways some of the ethical concerns presented by Boté and Térmens (2019) can affect other stages of the data lifecycle other than reuse?\nBased on concrete examples, McGovern et al. (2022) discuss how AI and ML can go wrong for environmental sciences. While the community is still grappling with these challenges, what responsible and ethical data management practices could help to minimize such problems?\nReflecting on both settings of readings, can you identify any ethical concerns that resonate with your capstone project? How have you or do you plan to mitigate them?\n\nAdditional suggested readings are noted in the slides."
   },
   {
-    "objectID": "modules/week08/index-08.html#resources",
-    "href": "modules/week08/index-08.html#resources",
-    "title": "Week 8 - Sensitive data",
-    "section": "Resources",
-    "text": "Resources\n\nsdcMicro Documentation: https://sdcpractice.readthedocs.io/en/latest/intro.html\nsdcMicro Shiny app: https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html\n\nOther useful links can be found on slides."
-  },
-  {
-    "objectID": "modules/week08/index-08.html#suggested-readings",
-    "href": "modules/week08/index-08.html#suggested-readings",
-    "title": "Week 8 - Sensitive data",
-    "section": "Suggested readings",
-    "text": "Suggested readings\n\nBledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), https://doi.org/10.1098/rspb.2022.0938\nBourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. https://doi.org/10.1525/cse.2017.sc.454841\nGehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. https://doi.org/10.1007/978-1-4419-5906-5_899\nSamarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf"
-  },
-  {
-    "objectID": "modules/week08/index-08.html#homework",
-    "href": "modules/week08/index-08.html#homework",
-    "title": "Week 8 - Sensitive data",
-    "section": "Homework",
-    "text": "Homework\nsdcMicro exercise"
+    "objectID": "modules/week08/index-08.html#in-class-exercise",
+    "href": "modules/week08/index-08.html#in-class-exercise",
+    "title": "Week 8 - Ethical and responsible data management",
+    "section": "In-class exercise",
+    "text": "In-class exercise\nInstructions\n\nFind a partner (preferably someone from a different capstone project team).\nRead the cases listed below, discuss them with your partner, and answer the quizzes individually.\n\nCase Study A: Containing the flames of bias in machine learning\nCase Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife\nCase Study C: To reuse or not reuse, that is the key question!\nCase Study D: Navigating the complexities of ownership zones\n\nSwitch partners and discuss your answers.\nReflect on your answers and change them or refine the open ones if you’d like.\nSubmit your final answers (individually) before the end of the class."
   },
   {
     "objectID": "modules/week04/hw-04-2.html",
@@ -786,37 +772,51 @@
   {
     "objectID": "modules/week09/index-09.html",
     "href": "modules/week09/index-09.html",
-    "title": "Week 9 - Ethical and responsible data management",
+    "title": "Week 9 - Sensitive data",
     "section": "",
-    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nApply ethical and responsible data management principles to real-world scenarios"
+    "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while quantifying the information loss and utility, utilizing an R package."
   },
   {
-    "objectID": "modules/week09/index-09.html#learning-objectives",
-    "href": "modules/week09/index-09.html#learning-objectives",
-    "title": "Week 9 - Ethical and responsible data management",
+    "objectID": "modules/week09/index-09.html#learning-goals",
+    "href": "modules/week09/index-09.html#learning-goals",
+    "title": "Week 9 - Sensitive data",
     "section": "",
-    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nApply ethical and responsible data management principles to real-world scenarios"
+    "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while quantifying the information loss and utility, utilizing an R package."
   },
   {
-    "objectID": "modules/week09/index-09.html#slides",
-    "href": "modules/week09/index-09.html#slides",
-    "title": "Week 9 - Ethical and responsible data management",
-    "section": "Slides",
-    "text": "Slides\nslides-09.pptx"
+    "objectID": "modules/week09/index-09.html#student-notes",
+    "href": "modules/week09/index-09.html#student-notes",
+    "title": "Week 9 - Sensitive data",
+    "section": "Student notes",
+    "text": "Student notes\nBefore class, install the sdcMicro package if you choose not to use the servers.\nIf testing out using sensitive data, make sure to launch it from RStudio, not from the online website."
   },
   {
-    "objectID": "modules/week09/index-09.html#preparatory-work-for-in-class-exercise",
-    "href": "modules/week09/index-09.html#preparatory-work-for-in-class-exercise",
-    "title": "Week 9 - Ethical and responsible data management",
-    "section": "Preparatory work for in-class exercise",
-    "text": "Preparatory work for in-class exercise\nRequired readings\n\nBoté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) http://hdl.handle.net/2445/151341\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\n\nQuestions to consider: (no need to answer the questions on paper)\n\nBoté and Térmens (2019) present some technical and ethical challenges researchers may face when using pre-existing data. Based on the lecture and our group discussion on day 3, in what ways do you think the technical challenges highlighted in this paper can also have ethical implications?\nCan you think of ways some of the ethical concerns presented by Boté and Térmens (2019) can affect other stages of the data lifecycle other than reuse?\nBased on concrete examples, McGovern et al. (2022) discuss how AI and ML can go wrong for environmental sciences. While the community is still grappling with these challenges, what responsible and ethical data management practices could help to minimize such problems?\nReflecting on both settings of readings, can you identify any ethical concerns that resonate with your capstone project? How have you or do you plan to mitigate them?\n\nAdditional suggested readings are noted in the slides."
+    "objectID": "modules/week09/index-09.html#slides-and-other-materials",
+    "href": "modules/week09/index-09.html#slides-and-other-materials",
+    "title": "Week 9 - Sensitive data",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\nslides-09.pptx\nClass data GitHub repository, week 9 for in-class demo and homework"
   },
   {
-    "objectID": "modules/week09/index-09.html#in-class-exercise",
-    "href": "modules/week09/index-09.html#in-class-exercise",
-    "title": "Week 9 - Ethical and responsible data management",
-    "section": "In-class exercise",
-    "text": "In-class exercise\nInstructions\n\nFind a partner (preferably someone from a different capstone project team).\nRead the cases listed below, discuss them with your partner, and answer the quizzes individually.\n\nCase Study A: Containing the flames of bias in machine learning\nCase Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife\nCase Study C: To reuse or not reuse, that is the key question!\nCase Study D: Navigating the complexities of ownership zones\n\nSwitch partners and discuss your answers.\nReflect on your answers and change them or refine the open ones if you’d like.\nSubmit your final answers (individually) before the end of the class."
+    "objectID": "modules/week09/index-09.html#resources",
+    "href": "modules/week09/index-09.html#resources",
+    "title": "Week 9 - Sensitive data",
+    "section": "Resources",
+    "text": "Resources\n\nsdcMicro Documentation: https://sdcpractice.readthedocs.io/en/latest/intro.html\nsdcMicro Shiny app: https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html\n\nOther useful links can be found on slides."
+  },
+  {
+    "objectID": "modules/week09/index-09.html#suggested-readings",
+    "href": "modules/week09/index-09.html#suggested-readings",
+    "title": "Week 9 - Sensitive data",
+    "section": "Suggested readings",
+    "text": "Suggested readings\n\nBledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), https://doi.org/10.1098/rspb.2022.0938\nBourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. https://doi.org/10.1525/cse.2017.sc.454841\nGehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. https://doi.org/10.1007/978-1-4419-5906-5_899\nSamarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf"
+  },
+  {
+    "objectID": "modules/week09/index-09.html#homework",
+    "href": "modules/week09/index-09.html#homework",
+    "title": "Week 9 - Sensitive data",
+    "section": "Homework",
+    "text": "Homework\nsdcMicro exercise"
   },
   {
     "objectID": "modules/week05/hw-05-3.html",

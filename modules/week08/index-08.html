@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Week 8 - Sensitive data</title>
+<title>eds213 - Week 8 - Ethical and responsible data management</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -241,12 +241,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
-  <li><a href="#student-notes" id="toc-student-notes" class="nav-link" data-scroll-target="#student-notes">Student notes</a></li>
-  <li><a href="#slides-and-other-materials" id="toc-slides-and-other-materials" class="nav-link" data-scroll-target="#slides-and-other-materials">Slides and other materials</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings">Suggested readings</a></li>
-  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#slides" id="toc-slides" class="nav-link" data-scroll-target="#slides">Slides</a></li>
+  <li><a href="#preparatory-work-for-in-class-exercise" id="toc-preparatory-work-for-in-class-exercise" class="nav-link" data-scroll-target="#preparatory-work-for-in-class-exercise">Preparatory work for in-class exercise</a></li>
+  <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise">In-class exercise</a></li>
   </ul>
 </nav>
     </div>
@@ -255,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 8 - Sensitive data</h1>
+<h1 class="title">Week 8 - Ethical and responsible data management</h1>
 </div>
 
 
@@ -272,44 +270,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-goals" class="level2">
-<h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <ul>
-<li>Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.</li>
-<li>Identify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.</li>
-<li>Apply the acquired techniques while quantifying the information loss and utility, utilizing an R package.</li>
+<li>Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues</li>
+<li>Apply ethical and responsible data management principles to real-world scenarios</li>
 </ul>
 </section>
-<section id="student-notes" class="level2">
-<h2 class="anchored" data-anchor-id="student-notes">Student notes</h2>
-<p>Before class, install the sdcMicro package if you choose not to use the servers.</p>
-<p>If testing out using sensitive data, make sure to launch it from RStudio, not from the online website.</p>
-</section>
-<section id="slides-and-other-materials" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-other-materials">Slides and other materials</h2>
+<section id="slides" class="level2">
+<h2 class="anchored" data-anchor-id="slides">Slides</h2>
 <p><a href="slides-08.pptx">slides-08.pptx</a></p>
-<p><a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2023-class-data/tree/main/week8">Class data GitHub repository, week 8</a> for in-class demo and homework</p>
 </section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<section id="preparatory-work-for-in-class-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="preparatory-work-for-in-class-exercise">Preparatory work for in-class exercise</h2>
+<p><em>Required readings</em></p>
 <ol type="1">
-<li><p>sdcMicro Documentation: <a href="https://sdcpractice.readthedocs.io/en/latest/intro.html" class="uri">https://sdcpractice.readthedocs.io/en/latest/intro.html</a></p></li>
-<li><p>sdcMicro Shiny app: <a href="https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html" class="uri">https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html</a></p></li>
+<li><p>Boté, J. J., &amp; Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library &amp; Information Technology, 39(6) <a href="http://hdl.handle.net/2445/151341" class="uri">http://hdl.handle.net/2445/151341</a></p></li>
+<li><p>McGovern, A., Ebert-Uphoff, I., Gagne, D., &amp; Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. <a href="https://doi.org/10.1017/eds.2022.5" class="uri">https://doi.org/10.1017/eds.2022.5</a></p></li>
 </ol>
-<p>Other useful links can be found on slides.</p>
+<p><em>Questions to consider: (no need to answer the questions on paper)</em></p>
+<ul>
+<li>Boté and Térmens (2019) present some technical and ethical challenges researchers may face when using pre-existing data. Based on the lecture and our group discussion on day 3, in what ways do you think the technical challenges highlighted in this paper can also have ethical implications?</li>
+<li>Can you think of ways some of the ethical concerns presented by Boté and Térmens (2019) can affect other stages of the data lifecycle other than reuse?</li>
+<li>Based on concrete examples, McGovern et al.&nbsp;(2022) discuss how AI and ML can go wrong for environmental sciences. While the community is still grappling with these challenges, what responsible and ethical data management practices could help to minimize such problems?</li>
+<li>Reflecting on both settings of readings, can you identify any ethical concerns that resonate with your capstone project? How have you or do you plan to mitigate them?</li>
+</ul>
+<p><em>Additional suggested readings are noted in the slides.</em></p>
 </section>
-<section id="suggested-readings" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-readings">Suggested readings</h2>
+<section id="in-class-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercise">In-class exercise</h2>
+<p><em>Instructions</em></p>
 <ol type="1">
-<li><p>Bledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … &amp; Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), <a href="https://doi.org/10.1098/rspb.2022.0938" class="uri">https://doi.org/10.1098/rspb.2022.0938</a></p></li>
-<li><p>Bourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. &amp; Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St.&nbsp;Lawrence, Canada. Case Studies in the Environment. <a href="https://doi.org/10.1525/cse.2017.sc.454841" class="uri">https://doi.org/10.1525/cse.2017.sc.454841</a></p></li>
-<li><p>Gehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. <a href="https://doi.org/10.1007/978-1-4419-5906-5_899" class="uri">https://doi.org/10.1007/978-1-4419-5906-5_899</a></p></li>
-<li><p>Samarati, P., &amp; Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. <a href="https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf" class="uri">https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf</a></p></li>
+<li>Find a partner (preferably someone from a different capstone project team).</li>
+<li>Read the cases listed below, discuss them with your partner, and answer the quizzes individually.
+<ul>
+<li><a href="case-a.qmd">Case Study A: Containing the flames of bias in machine learning</a></li>
+<li><a href="case-b.qmd">Case Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife</a></li>
+<li><a href="case-c.qmd">Case Study C: To reuse or not reuse, that is the key question!</a></li>
+<li><a href="case-d.qmd">Case Study D: Navigating the complexities of ownership zones</a></li>
+</ul></li>
+<li>Switch partners and discuss your answers.</li>
+<li>Reflect on your answers and change them or refine the open ones if you’d like.</li>
+<li>Submit your final answers (individually) before the end of the class.</li>
 </ol>
-</section>
-<section id="homework" class="level2">
-<h2 class="anchored" data-anchor-id="homework">Homework</h2>
-<p><a href="../../modules/week08/hw-08.html">sdcMicro exercise</a></p>
 
 
 </section>
