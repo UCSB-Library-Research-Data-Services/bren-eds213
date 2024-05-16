@@ -19,9 +19,9 @@ title: "Week 8 - Ethical and responsible data management"
 
 *Additional suggested readings are noted in the slides.*
 
-## In-class case-based discussion
+## Case-based discussion:
 
-    -   [Case Study A: Containing the flames of bias in machine learning](case-a.qmd)
-    -   [Case Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife](case-b.qmd)
-    -   [Case Study C: To reuse or not reuse, that is the key question!](case-c.qmd)
-    -   [Case Study D: Navigating the complexities of ownership zones](case-d.qmd)
+-   Case Study A: [Containing the flames of bias in machine learning](case-a.qmd)
+-   Case Study B: [The caveat is the caviar: navigating ethics to protect endangered river wildlife](case-b.qmd)
+-   Case Study C: [To reuse or not reuse, that is the key question!](case-c.qmd)
+-   Case Study D: [Navigating the complexities of ownership zones](case-d.qmd)
