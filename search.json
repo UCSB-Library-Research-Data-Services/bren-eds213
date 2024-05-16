@@ -543,21 +543,14 @@
     "href": "modules/week08/index-08.html#slides",
     "title": "Week 8 - Ethical and responsible data management",
     "section": "Slides",
-    "text": "Slides\nslides-08.pptx"
+    "text": "Slides\nslides-08.pptx\nSuggested readings\n\nBoté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) http://hdl.handle.net/2445/151341\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\n\nAdditional suggested readings are noted in the slides."
   },
   {
-    "objectID": "modules/week08/index-08.html#preparatory-work-for-in-class-exercise",
-    "href": "modules/week08/index-08.html#preparatory-work-for-in-class-exercise",
+    "objectID": "modules/week08/index-08.html#in-class-case-based-discussion",
+    "href": "modules/week08/index-08.html#in-class-case-based-discussion",
     "title": "Week 8 - Ethical and responsible data management",
-    "section": "Preparatory work for in-class exercise",
-    "text": "Preparatory work for in-class exercise\nRequired readings\n\nBoté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) http://hdl.handle.net/2445/151341\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\n\nQuestions to consider: (no need to answer the questions on paper)\n\nBoté and Térmens (2019) present some technical and ethical challenges researchers may face when using pre-existing data. Based on the lecture and our group discussion on day 3, in what ways do you think the technical challenges highlighted in this paper can also have ethical implications?\nCan you think of ways some of the ethical concerns presented by Boté and Térmens (2019) can affect other stages of the data lifecycle other than reuse?\nBased on concrete examples, McGovern et al. (2022) discuss how AI and ML can go wrong for environmental sciences. While the community is still grappling with these challenges, what responsible and ethical data management practices could help to minimize such problems?\nReflecting on both settings of readings, can you identify any ethical concerns that resonate with your capstone project? How have you or do you plan to mitigate them?\n\nAdditional suggested readings are noted in the slides."
-  },
-  {
-    "objectID": "modules/week08/index-08.html#in-class-exercise",
-    "href": "modules/week08/index-08.html#in-class-exercise",
-    "title": "Week 8 - Ethical and responsible data management",
-    "section": "In-class exercise",
-    "text": "In-class exercise\nInstructions\n\nFind a partner (preferably someone from a different capstone project team).\nRead the cases listed below, discuss them with your partner, and answer the quizzes individually.\n\nCase Study A: Containing the flames of bias in machine learning\nCase Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife\nCase Study C: To reuse or not reuse, that is the key question!\nCase Study D: Navigating the complexities of ownership zones\n\nSwitch partners and discuss your answers.\nReflect on your answers and change them or refine the open ones if you’d like.\nSubmit your final answers (individually) before the end of the class."
+    "section": "In-class case-based discussion",
+    "text": "In-class case-based discussion\n-   [Case Study A: Containing the flames of bias in machine learning](case-a.qmd)\n-   [Case Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife](case-b.qmd)\n-   [Case Study C: To reuse or not reuse, that is the key question!](case-c.qmd)\n-   [Case Study D: Navigating the complexities of ownership zones](case-d.qmd)"
   },
   {
     "objectID": "modules/week04/hw-04-2.html",
