@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Week 9 - Sensitive data</title>
+<title>eds213 - Week 9 - sdcMicro exercise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -237,25 +237,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
-  <li><a href="#student-notes" id="toc-student-notes" class="nav-link" data-scroll-target="#student-notes">Student notes</a></li>
-  <li><a href="#slides-and-other-materials" id="toc-slides-and-other-materials" class="nav-link" data-scroll-target="#slides-and-other-materials">Slides and other materials</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings">Suggested readings</a></li>
-  <li><a href="#homework" id="toc-homework" class="nav-link" data-scroll-target="#homework">Homework</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 9 - Sensitive data</h1>
+<h1 class="title">Week 9 - sdcMicro exercise</h1>
 </div>
 
 
@@ -272,49 +261,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-goals" class="level2">
-<h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
-<ul>
-<li>Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.</li>
-<li>Identify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.</li>
-<li>Apply the acquired techniques while quantifying the information loss and utility, utilizing an R package.</li>
-</ul>
-</section>
-<section id="student-notes" class="level2">
-<h2 class="anchored" data-anchor-id="student-notes">Student notes</h2>
-<p>Before class, install the sdcMicro package if you choose not to use the servers.</p>
-<p>If testing out using sensitive data, make sure to launch it from RStudio, not from the online website.</p>
-</section>
-<section id="slides-and-other-materials" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-other-materials">Slides and other materials</h2>
-<p><a href="slides-09.pptx">slides-09.pptx</a></p>
-<p><a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2023-class-data/tree/main/week8">Class data GitHub repository, week 9</a> for in-class demo and homework</p>
-</section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
-<ol type="1">
-<li><p>sdcMicro Documentation: <a href="https://sdcpractice.readthedocs.io/en/latest/intro.html" class="uri">https://sdcpractice.readthedocs.io/en/latest/intro.html</a></p></li>
-<li><p>sdcMicro Shiny app: <a href="https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html" class="uri">https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html</a></p></li>
+<p>Your team has successfully obtained a dataset<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> that encompasses whale entanglement data associated with specific fisheries along the West Coast. This dataset, named <code>whale-sdc.csv</code>, and an accompanying file called <code>whale-exercise.Rmd</code>, are available on the <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2023-class-data/tree/main/week8">class data GitHub repository, week 8 directory</a>.</p>
+<p>In groups of two or three, your task is to thoroughly examine the dataset and complete the provided R Markdown file. This entails implementing the necessary code and addressing the given questions. To ensure proper identification, please include the names of all participating members in the YAML header before submitting the modified R Markdown file.</p>
+
+
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This dataset was purposefully adapted exclusively for instruction use.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-<p>Other useful links can be found on slides.</p>
-</section>
-<section id="suggested-readings" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-readings">Suggested readings</h2>
-<ol type="1">
-<li><p>Bledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … &amp; Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), <a href="https://doi.org/10.1098/rspb.2022.0938" class="uri">https://doi.org/10.1098/rspb.2022.0938</a></p></li>
-<li><p>Bourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. &amp; Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St.&nbsp;Lawrence, Canada. Case Studies in the Environment. <a href="https://doi.org/10.1525/cse.2017.sc.454841" class="uri">https://doi.org/10.1525/cse.2017.sc.454841</a></p></li>
-<li><p>Gehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. <a href="https://doi.org/10.1007/978-1-4419-5906-5_899" class="uri">https://doi.org/10.1007/978-1-4419-5906-5_899</a></p></li>
-<li><p>Samarati, P., &amp; Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. <a href="https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf" class="uri">https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf</a></p></li>
-</ol>
-</section>
-<section id="homework" class="level2">
-<h2 class="anchored" data-anchor-id="homework">Homework</h2>
-<p><a href="../../modules/week09/hw-09.html">sdcMicro exercise</a></p>
-
-
-</section>
-
-</main> <!-- /main -->
+</section></div></main> <!-- /main -->
 <div>
   <p></p><hr><p></p>
   <p align="center"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a></p>
