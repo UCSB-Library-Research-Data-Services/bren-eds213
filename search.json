@@ -329,16 +329,16 @@
     "text": "Homework\nMissing data\nWho worked with whom?\nWho’s the culprit?"
   },
   {
-    "objectID": "modules/week08/hw-08.html",
-    "href": "modules/week08/hw-08.html",
-    "title": "Week 8 - sdcMicro exercise",
+    "objectID": "modules/week08/hw-09.html",
+    "href": "modules/week08/hw-09.html",
+    "title": "Week 9 - sdcMicro exercise",
     "section": "",
     "text": "Your team has successfully obtained a dataset1 that encompasses whale entanglement data associated with specific fisheries along the West Coast. This dataset, named whale-sdc.csv, and an accompanying file called whale-exercise.Rmd, are available on the class data GitHub repository, week 8 directory.\nIn groups of two or three, your task is to thoroughly examine the dataset and complete the provided R Markdown file. This entails implementing the necessary code and addressing the given questions. To ensure proper identification, please include the names of all participating members in the YAML header before submitting the modified R Markdown file."
   },
   {
-    "objectID": "modules/week08/hw-08.html#footnotes",
-    "href": "modules/week08/hw-08.html#footnotes",
-    "title": "Week 8 - sdcMicro exercise",
+    "objectID": "modules/week08/hw-09.html#footnotes",
+    "href": "modules/week08/hw-09.html#footnotes",
+    "title": "Week 9 - sdcMicro exercise",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nThis dataset was purposefully adapted exclusively for instruction use.↩︎"
   },
