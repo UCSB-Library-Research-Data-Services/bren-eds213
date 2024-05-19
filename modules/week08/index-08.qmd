@@ -5,7 +5,7 @@ title: "Week 8 - Ethical and responsible data management"
 ## Learning objectives
 
 -   Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues
--   Apply ethical and responsible data management principles to real-world scenarios
+-   Relate ethical and responsible data management principles to real-world scenarios
 
 ## Slides
 
