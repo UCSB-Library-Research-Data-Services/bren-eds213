@@ -1,7 +1,7 @@
 ---
 title: "Data Anonymization with R's sdcMicro Package"
 author: "Renata Goncalves Curty - UCSB Library, Research Data Services"
-date: "2023-02-17"
+date: "2024-05-20"
 output:
   html_document: default
   pdf_document: default
@@ -17,9 +17,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Mayor McDaniels and Peter Charles (aka PC Principal) are concerned that even after removing direct identifiers such as names, SSNs, and IDs, students may still be easily re-identified in the yearly assessment dataset and have their math and reading scores revealed. For example, everyone in school knows that Tolkien Williams is the wealthiest kid in the whole town, whereas Kenny and his sister Karen are from a very poor family.
 
-They have requested our assistance to compute this risk of disclosure, implement strategies to minimize it, and determine information loss for the anonymized dataset they would like to make public to other school board members\*. They asked for our help, and we will be using the sdcMicro package for this purpose.
+They have requested our assistance to compute this risk of disclosure, implement strategies to minimize it, and determine information loss for the anonymized dataset they would like to make public to other school board members\*. They asked for our help, and we will use the sdcMicro package for this purpose.
 
-In summary, our client has three main questions to for us (and none of them involve finding out who keeps killing Keny and how come he keeps coming back to life):
+In summary, our client has three main questions for us (and none of them involve finding out who keeps killing Keny and how he keeps coming back to life):
 
 *Q1. What is the level of disclosure risk associated with this dataset?*
 
@@ -27,7 +27,7 @@ In summary, our client has three main questions to for us (and none of them invo
 
 *Q3. What would be the utility and information loss after implementing the anonymization strategies?*
 
-\*Caveat: We have a relative small dataset for this exercise (rows and columns, so we can't strive for some of the tresholds recommended in the literature.
+\*Caveat: We have a relatively small dataset for this exercise (rows and columns, so we can't strive for some of the thresholds recommended in the literature.
 
 #### Package & Data
 
@@ -49,7 +49,7 @@ data <- read.csv("southpark-sdc.csv")
 
 As we can see, we will need to convert some of the variables first.
 
-The stu-id, SSN, name and dob will be removed soon from the dataset as they are direct identifiers.
+The stu-id, SSN, name, and dob will be removed soon from the dataset as they are direct identifiers.
 
 Let's focus on the remaining ones that should be converted before we can proceed.
 
@@ -85,14 +85,14 @@ sdcInitial <- createSdcObj(dat=file,
 ?
 ```
 
-What about the stu_id? Why we are keeping it?
+What about the stu_id? Why are we keeping it?
 
-Check the results below, and the number of observations that violate 2-5 anonymity. What does that mean?
+Check the results below and the number of observations that violate 2-5 anonymity. What does that mean?
 
 ##### Time to calculate the risk of re-identification for the entire dataset
 
 ```{r}
-# The treshold depends on the size of the dataset and the access control (conservative number for large surveys are 0.04)
+# The threshold depends on the size of the dataset and the access control (a conservative number for large surveys is 0.04)
 ?
 ```
 
@@ -100,17 +100,17 @@ Was it good?
 
 Let's see if we can get that lowered to less than 15% and a k=5.
 
-We have to get some work done to reduce that. But that would be the first answer to our clients.
+We have to do some work to reduce that, but that would be the first answer for our clients.
 
 We can inspect this issue a little further before moving to the second question.
 
-##### Which observations/subjects have a higher risk to be re-identified?
+##### Which observations/subjects have a higher risk of being re-identified?
 
 ```{r}
 
 ```
 
-##### How many combinations of key variables each record have?
+##### How many combinations of key variables does each record have?
 
 ```{r}
 #Categorical variable risk
@@ -126,7 +126,7 @@ First, let's use some non-perturbative methods such as global recoding and top a
 
 *Income*
 
-As mentioned before, the household income of some students may pose a risk to their privacy in this dataset. So let's see if using top and bottom recoding could help reducing that risk.
+As mentioned before, the household income of some students may pose a risk to their privacy in this dataset. So let's see if using top and bottom recording could help reduce that risk.
 
 ```{r}
 # Frequencies of income before recoding
@@ -144,7 +144,7 @@ sdcInitial <- groupAndRename(obj= sdcInitial, var= c("income"), before=c("10,000
 *Age*
 
 ```{r}
-# Frequencies of age before recoding
+# Frequencies of age before recording
 ?
 ```
 
@@ -156,11 +156,11 @@ sdcInitial <- groupAndRename(obj= sdcInitial, var= c("income"), before=c("10,000
 ##### **Note: Undoing things**
 
 ```{r}
-# Important note: If the results are reassigned to the same sdcMicro object, it is possible to undo the last step in the SDC process. Using:
+# Important note: If the results are reassigned to the same sdcMicro object, undoing the last step in the SDC process is possible. Using:
 # sdcInitial <- undolast(sdcInitial)
-# It might be helpful to tune some parameters. The results of the last step, however, will be lost after undoing that step. 
+# It might be helpful to tune some parameters. However, the results of the last step will be lost after undoing that step. 
 # We can also choose to assign results to a new sdcMicro object this time, using:
-# sdc1 <- functionName(sdcInitial) specially if you anticipate creating multiple sdc problems to test out.Otherwise, you can delete the object and re-run the code when needed
+# sdc1 <- functionName(sdcInitial) specially if you anticipate creating multiple sdc problems to test out. Otherwise, you can delete the object and re-run the code when needed.
 ```
 
 Let's see if those steps lowered the risk of re-identification of subjects.
@@ -177,7 +177,7 @@ Only a tiny improvement compared to the original dataset. Let's try something el
 #Local suppression to obtain k-anonymity
 ?
   
-# Setting the parameters that we are aiming for at least 5 observations sharing the same attributes in the dataset.
+# Setting the parameters that we aim for at least 5 observations sharing the same attributes in the dataset.
 #Alternatively, we could have set the order of importance for each keyvariables
 #sdcInitial <- kAnon(sdcInitial, importance=c(9,5,6,7,8,4,3,1,2), k=c(5))
 ```
@@ -190,7 +190,7 @@ Time to check it again:
 ?
 ```
 
-Alright! We managed lower the risk of identification from 81% to about 10% and now we have 0 observations violating 5-anonymity! We can tell our clients we used some recoding, but supression via k-anonymity was necessary to improve the privacy level of this dataset.
+Alright! We managed to lower the risk of identification from 81% to about 10%, and now we have 0 observations violating 5-anonymity! We can tell our clients we used some recoding, but suppression via k-anonymity was necessary to improve the privacy level of this dataset.
 
 #### Q3. What would be the utility and information loss after implementing anonymization strategies?
 
@@ -220,7 +220,7 @@ for(i in 1:length(namesKeyVars)) {
 NAcount
 ```
 
-Based on the results we can tell PC Principal and the Mayor that the supression greatly reduced the level of detail about the income and the race of the students. We could continue exploring removing other less relevant variables and explore other functions in this package or even considering different ways of recoding that variable. But let's call the day for today, and export the anonymized dataset we produced.
+Based on the results, we can tell the PC Principal and the Mayor that the suppression greatly reduced the level of detail about the students' income and race. We could continue exploring removing other less relevant variables, exploring other functions in this package, or even considering different ways of recording that variable. But let's call it a day for today and export the anonymized dataset we produced.
 
 ##### Creating a new random number to replace the student ID
 
