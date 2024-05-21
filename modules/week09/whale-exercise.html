@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="YOUR NAMES HERE">
+<meta name="dcterms.date" content="2023-05-24">
 
-<title>eds213 - Week 9 - Sensitive data</title>
+<title>eds213 - sdcmicro-exercise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -245,12 +247,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
-  <li><a href="#student-notes" id="toc-student-notes" class="nav-link" data-scroll-target="#student-notes">Student notes</a></li>
-  <li><a href="#slides-and-other-materials" id="toc-slides-and-other-materials" class="nav-link" data-scroll-target="#slides-and-other-materials">Slides and other materials</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  <li><a href="#suggested-readings" id="toc-suggested-readings" class="nav-link" data-scroll-target="#suggested-readings">Suggested readings</a></li>
-  <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise">In-class exercise</a></li>
+  <li><a href="#whale-entanglement-sdcmicro-exercise" id="toc-whale-entanglement-sdcmicro-exercise" class="nav-link active" data-scroll-target="#whale-entanglement-sdcmicro-exercise">Whale Entanglement sdcMicro Exercise</a></li>
   </ul>
 </nav>
     </div>
@@ -259,14 +256,26 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 9 - Sensitive data</h1>
+<h1 class="title">sdcmicro-exercise</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>YOUR NAMES HERE </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 24, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -276,45 +285,55 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-goals" class="level2">
-<h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
-<ul>
-<li>Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.</li>
-<li>Identify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.</li>
-<li>Apply the acquired techniques while utilizing an R package to quantify the information loss and utility.</li>
-</ul>
+<section id="whale-entanglement-sdcmicro-exercise" class="level1">
+<h1>Whale Entanglement sdcMicro Exercise</h1>
+<p>Your team acquired a dataset* <a href="whale-sdc.csv">whale-sdc.csv</a> from researchers working with whale entanglement data on the West Coast. The dataset contains both direct and indirect identifiers. Your task is to assess the risk of re-identification of the fisheries associated with the cases before considering public release. Then, you should test one technique and apply k-anonymization to help lower the disclosure risk as well as compute the information loss.</p>
+<p>Please complete this exercise in pairs or groups of three. Each group should download the dataset and complete the rmd file, including the code and answering the questions. Remember to include your names in the YAML.</p>
+<p><em>*This dataset was purposefully adapted exclusively for instruction use.</em></p>
+<section id="setup" class="level4">
+<h4 class="anchored" data-anchor-id="setup"><em>Setup</em></h4>
 </section>
-<section id="student-notes" class="level2">
-<h2 class="anchored" data-anchor-id="student-notes">Student notes</h2>
-<p>Before class, install the sdcMicro package if you choose not to use the servers.</p>
-<p>If you are testing using sensitive data, make sure to launch it from RStudio, not from the website.</p>
+<section id="package-data" class="level4">
+<h4 class="anchored" data-anchor-id="package-data">Package &amp; Data</h4>
 </section>
-<section id="slides-and-other-materials" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-other-materials">Slides and other materials</h2>
-<p><a href="slides-09.pptx">slides-09.pptx</a></p>
-<p><a href="https://drive.google.com/file/d/1l2YApeWB960bNxT1YHwf41LA-U0y4yHM/view?usp=sharing">South Park dataset</a> for in-class demo.</p>
+<section id="inspect-the-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="inspect-the-dataset">Inspect the Dataset</h4>
 </section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
-<ol type="1">
-<li><p>sdcMicro Documentation: <a href="https://sdcpractice.readthedocs.io/en/latest/intro.html" class="uri">https://sdcpractice.readthedocs.io/en/latest/intro.html</a></p></li>
-<li><p>sdcMicro Shiny app: <a href="https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html" class="uri">https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html</a></p></li>
-</ol>
-<p>Other useful links can be found on slides.</p>
+<section id="q1.-how-many-direct-identifiers-are-present-in-this-dataset-what-are-they" class="level4">
+<h4 class="anchored" data-anchor-id="q1.-how-many-direct-identifiers-are-present-in-this-dataset-what-are-they">Q1. How many direct identifiers are present in this dataset? What are they?</h4>
+<p>A:</p>
 </section>
-<section id="suggested-readings" class="level2">
-<h2 class="anchored" data-anchor-id="suggested-readings">Suggested readings</h2>
-<ol type="1">
-<li><p>Bledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … &amp; Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), <a href="https://doi.org/10.1098/rspb.2022.0938" class="uri">https://doi.org/10.1098/rspb.2022.0938</a></p></li>
-<li><p>Bourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. &amp; Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St.&nbsp;Lawrence, Canada. Case Studies in the Environment. <a href="https://doi.org/10.1525/cse.2017.sc.454841" class="uri">https://doi.org/10.1525/cse.2017.sc.454841</a></p></li>
-<li><p>Gehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. <a href="https://doi.org/10.1007/978-1-4419-5906-5_899" class="uri">https://doi.org/10.1007/978-1-4419-5906-5_899</a></p></li>
-<li><p>Samarati, P., &amp; Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. <a href="https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf" class="uri">https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf</a></p></li>
-</ol>
+<section id="q2.-what-attributes-would-you-consider-quasi-identifiers-why" class="level4">
+<h4 class="anchored" data-anchor-id="q2.-what-attributes-would-you-consider-quasi-identifiers-why"><strong>Q2. What attributes would you consider quasi-identifiers? Why?</strong></h4>
+<p>A:</p>
 </section>
-<section id="in-class-exercise" class="level2">
-<h2 class="anchored" data-anchor-id="in-class-exercise">In-class exercise</h2>
+<section id="q3.-what-types-of-variables-are-they-define-them.-numeric-integer-factor-or-string" class="level4">
+<h4 class="anchored" data-anchor-id="q3.-what-types-of-variables-are-they-define-them.-numeric-integer-factor-or-string"><strong>Q3. What types of variables are they? Define them. (numeric, integer, factor or string)</strong></h4>
+<p>Make sure to have them set correctly.</p>
+</section>
+<section id="considering-your-answers-to-questions-1-2-and-3-create-a-sdc-problem." class="level4">
+<h4 class="anchored" data-anchor-id="considering-your-answers-to-questions-1-2-and-3-create-a-sdc-problem."><strong><em>4 Considering your answers to questions 1, 2 and 3 create a SDC problem.</em></strong></h4>
+</section>
+<section id="q4.1-what-is-the-risk-of-re-identification-for-this-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="q4.1-what-is-the-risk-of-re-identification-for-this-dataset"><strong>Q4.1 What is the risk of re-identification for this dataset?</strong></h4>
+</section>
+<section id="q4.2-to-what-extent-does-this-dataset-violate-k-anonymity" class="level4">
+<h4 class="anchored" data-anchor-id="q4.2-to-what-extent-does-this-dataset-violate-k-anonymity">Q4.2 To what extent does this dataset violate k-anonymity?</h4>
+</section>
+<section id="consider-techniques-that-could-reduce-the-risk-of-re-identification." class="level4">
+<h4 class="anchored" data-anchor-id="consider-techniques-that-could-reduce-the-risk-of-re-identification."><em>5. Consider techniques that could reduce the risk of re-identification.</em></h4>
+</section>
+<section id="q5.1-apply-one-non-perturbative-method-to-a-variable-of-your-choice.-how-effective-was-it-in-lowering-the-disclosure-risk" class="level4">
+<h4 class="anchored" data-anchor-id="q5.1-apply-one-non-perturbative-method-to-a-variable-of-your-choice.-how-effective-was-it-in-lowering-the-disclosure-risk">Q5.1 Apply one non-perturbative method to a variable of your choice. How effective was it in lowering the disclosure risk?</h4>
+</section>
+<section id="q5.2-apply-k-3-anonymization-to-this-dataset." class="level4">
+<h4 class="anchored" data-anchor-id="q5.2-apply-k-3-anonymization-to-this-dataset.">Q5.2 Apply ( k-3) anonymization to this dataset.</h4>
+</section>
+<section id="q6.-compute-the-information-loss-for-the-de-identified-version-of-the-dataset." class="level4">
+<h4 class="anchored" data-anchor-id="q6.-compute-the-information-loss-for-the-de-identified-version-of-the-dataset.">Q6. Compute the information loss for the de-identified version of the dataset.</h4>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
