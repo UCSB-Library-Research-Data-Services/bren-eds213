@@ -1,0 +1,78 @@
+---
+title: "sdcmicro-exercise"
+author: "YOUR NAMES HERE"
+date: "2023-05-24"
+output: html_document
+---
+
+# Whale Entanglement sdcMicro Exercise
+
+Your team acquired a dataset\* [whale-sdc.csv](whale-sdc.csv) from researchers working with whale entanglement data on the West Coast. The dataset contains both direct and indirect identifiers. Your task is to assess the risk of re-identification of the fisheries associated with the cases before considering public release. Then, you should test one technique and apply k-anonymization to help lower the disclosure risk as well as compute the information loss.
+
+Please complete this exercise in pairs or groups of three. Each group should download the dataset and complete the rmd file, including the code and answering the questions. Remember to include your names in the YAML.
+
+*\*This dataset was purposefully adapted exclusively for instruction use.*
+
+#### *Setup*
+
+#### Package & Data
+
+```{r}
+
+```
+
+#### Inspect the Dataset
+
+```{r}
+
+```
+
+#### Q1. How many direct identifiers are present in this dataset? What are they?
+
+A:
+
+#### **Q2. What attributes would you consider quasi-identifiers? Why?**
+
+A:
+
+#### **Q3. What types of variables are they? Define them. (numeric, integer, factor or string)**
+
+Make sure to have them set correctly.
+
+```{r}
+
+```
+
+#### ***4 Considering your answers to questions 1, 2 and 3 create a SDC problem.***
+
+#### **Q4.1 What is the risk of re-identification for this dataset?**
+
+```{r}
+
+```
+
+#### Q4.2 To what extent does this dataset violate k-anonymity?
+
+```{r}
+
+```
+
+#### *5. Consider techniques that could reduce the risk of re-identification.*
+
+#### Q5.1 Apply one non-perturbative method to a variable of your choice. How effective was it in lowering the disclosure risk?
+
+```{r}
+
+```
+
+#### Q5.2 Apply ( k-3) anonymization to this dataset.
+
+```{r}
+
+```
+
+#### Q6. Compute the information loss for the de-identified version of the dataset. 
+
+```{r}
+
+```
