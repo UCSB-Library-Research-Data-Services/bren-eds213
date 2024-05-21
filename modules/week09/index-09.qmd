@@ -19,6 +19,7 @@ If you are testing using sensitive data, make sure to launch it from RStudio, no
 [slides-09.pptx](slides-09.pptx)
 
 [South Park dataset](https://drive.google.com/file/d/1l2YApeWB960bNxT1YHwf41LA-U0y4yHM/view?usp=sharing) for in-class demo.
+[South Park Demo RMD](southpark-exercise.Rmd)
 
 ## Resources
 
