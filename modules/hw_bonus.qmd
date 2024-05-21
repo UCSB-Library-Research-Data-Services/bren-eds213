@@ -1,33 +1,35 @@
 ---
-title: "Homework Bonus"
+title: "Bonus Homework"
 ---
 
 ## Relationship between egg volume and time of the year
 
-One might wonder if egg volumes are larger during warmer months. Indeed, in *Egg size variation within passerine clutches: effects of ambient temperature and laying sequence* [^1], the authors report that
+One might wonder if egg volumes are larger during warmer months. Indeed, in *Egg size variation within passerine clutches: effects of ambient temperature and laying sequence* [^1], the authors report that:
 
-[^1]: Mikko Ojanen, Markku Orell, and Risto A. Väisänen (1981). Egg size variation within passerine clutches: effects of ambient temperature and laying sequence. *Ornis Fennica* **58**:93-108.  <https://ornisfennica.journal.fi/article/view/133071>
+[^1]: Mikko Ojanen, Markku Orell, and Risto A. Väisänen (1981). Egg size variation within passerine clutches: effects of ambient temperature and laying sequence. *Ornis Fennica* **58**:93-108. <https://ornisfennica.journal.fi/article/view/133071>
 
 > Slight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.
 
-There are multiple factors at play here, including clutch size and laying order, and we don't have much data to work with using our database example, but still, we can investigate if there is any change we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.
+There are multiple factors at play here, including clutch size and laying order, and we don't have much data to work with using our class database, but still, we can investigate if there is any change in average egg volume between the months of June and July, hypothesizing that July is warmer than June.
+
+Please submit your SQL code and your Python or R notebook.
 
 ## Step 1
 
-Create a query to compute and group average egg volumes by species and month. As before, use for volume the formula
+Create a query to compute and group average egg volume by species and month. As before, use for volume the formula
 
 $${\pi \over 6} W^2 L$$
 
-where $W$ is the egg width and $L$ is the egg length, and use 3.14 for $\pi$.
+where $W$ is egg width and $L$ is egg length, and use 3.14 for $\pi$. Call this table T.
 
 ## Step 2
 
-You'll notice that we have egg data for months 6 and 7, but there is one species for which there is only data for month 6. We want to exclude all such species. Doing so will require two queries. First, create a query that selects all those species having exactly 2 records in the above table; call this query Q. Then, create a query that selects the species in that set, i.e., `SELECT * FROM above_table WHERE Species IN (query Q)`.
+Looking at table T, you'll notice that we have egg data for months 6 and 7 for most species, but there is one species for which there is only data for month 6. We want to exclude all such species since there will be nothing to plot for them. How to do that?  Here's a hint.  First, create a query that identifies the set of species having 2 rows in T.  Then, select the rows from T where the species is in the aforementioned set.
 
-Join this table with ?  write to csv.
+Join this reduced table with the Species table to grab scientific names, and write out to a CSV file.
 
 ## Step 3
 
-Use you favorite programming language (R or Python) to plot to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt).  An example is shown below.
+Use R or Python to plot average egg volume as a function of month, by species. An example is shown below.
 
 ![](output-plot.png)
