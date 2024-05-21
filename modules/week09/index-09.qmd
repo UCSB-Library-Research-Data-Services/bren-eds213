@@ -39,3 +39,5 @@ Other useful links can be found on slides.
 4.  Samarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. <https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf>
 
 ## In-class exercise
+
+Instructions for the [Whale Entanglement sdcMicro Exercise](hmw-08.qmd)
