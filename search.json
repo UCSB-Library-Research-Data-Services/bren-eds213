@@ -214,14 +214,42 @@
     "href": "modules/hw_bonus.html",
     "title": "Homework Bonus",
     "section": "",
-    "text": "One might wonder if egg volumes would be larger during warmer months. We don’t have much data to work with using our database example, but we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.\nOur ask:\n\nDevelop an SQL query to compute a table with the average egg volume per month (June & July) at each site (20pt)\nUse you favorite programming language (R or Python) to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt)"
+    "text": "One might wonder if egg volumes are larger during warmer months. Indeed, in Egg size variation within passerine clutches: effects of ambient temperature and laying sequence 1, the authors report that\n\nSlight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.\n\nThere are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our database example, but still, we can investigate if there is any change we can leverage measurements for the months of June and July hypothesizing that July is warmer than June."
   },
   {
     "objectID": "modules/hw_bonus.html#relationship-between-egg-volume-and-time-of-the-year",
     "href": "modules/hw_bonus.html#relationship-between-egg-volume-and-time-of-the-year",
     "title": "Homework Bonus",
     "section": "",
-    "text": "One might wonder if egg volumes would be larger during warmer months. We don’t have much data to work with using our database example, but we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.\nOur ask:\n\nDevelop an SQL query to compute a table with the average egg volume per month (June & July) at each site (20pt)\nUse you favorite programming language (R or Python) to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt)"
+    "text": "One might wonder if egg volumes are larger during warmer months. Indeed, in Egg size variation within passerine clutches: effects of ambient temperature and laying sequence 1, the authors report that\n\nSlight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.\n\nThere are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our database example, but still, we can investigate if there is any change we can leverage measurements for the months of June and July hypothesizing that July is warmer than June."
+  },
+  {
+    "objectID": "modules/hw_bonus.html#step-1",
+    "href": "modules/hw_bonus.html#step-1",
+    "title": "Homework Bonus",
+    "section": "Step 1",
+    "text": "Step 1\nCreate a query to compute and group average egg volumes by species and month. As before, use for volume the formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length, and use 3.14 for \\(\\pi\\)."
+  },
+  {
+    "objectID": "modules/hw_bonus.html#step-2",
+    "href": "modules/hw_bonus.html#step-2",
+    "title": "Homework Bonus",
+    "section": "Step 2",
+    "text": "Step 2\nYou’ll notice that we have egg data for months 6 and 7, but there is one species for which there is only data for month 6. We want to exclude all such species. Doing so will require two queries. First, create a query that selects all those species having exactly 2 records in the above table; call this query Q. Then, create a query that selects the species in that set, i.e., SELECT * FROM above_table WHERE Species IN (query Q).\nJoin this table with ? write to csv."
+  },
+  {
+    "objectID": "modules/hw_bonus.html#step-3",
+    "href": "modules/hw_bonus.html#step-3",
+    "title": "Homework Bonus",
+    "section": "Step 3",
+    "text": "Step 3\nUse you favorite programming language (R or Python) to plot to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt). An example is shown below."
+  },
+  {
+    "objectID": "modules/hw_bonus.html#footnotes",
+    "href": "modules/hw_bonus.html#footnotes",
+    "title": "Homework Bonus",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nMikko Ojanen, Markku Orell, and Risto A. Väisänen (1981). Egg size variation within passerine clutches: effects of ambient temperature and laying sequence. Ornis Fennica 58:93-108. https://ornisfennica.journal.fi/article/view/133071↩︎"
   },
   {
     "objectID": "modules/week01/hw-01-2.html",

@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -246,6 +275,9 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#relationship-between-egg-volume-and-time-of-the-year" id="toc-relationship-between-egg-volume-and-time-of-the-year" class="nav-link active" data-scroll-target="#relationship-between-egg-volume-and-time-of-the-year">Relationship between egg volume and time of the year</a></li>
+  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
+  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
+  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
   </ul>
 </nav>
     </div>
@@ -273,17 +305,38 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="relationship-between-egg-volume-and-time-of-the-year" class="level2">
 <h2 class="anchored" data-anchor-id="relationship-between-egg-volume-and-time-of-the-year">Relationship between egg volume and time of the year</h2>
-<p>One might wonder if egg volumes would be larger during warmer months. We don’t have much data to work with using our database example, but we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.</p>
-<p>Our ask:</p>
-<ul>
-<li><p>Develop an SQL query to compute a table with the average egg volume per month (June &amp; July) at each site (20pt)</p></li>
-<li><p>Use you favorite programming language (R or Python) to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt)</p></li>
-</ul>
+<p>One might wonder if egg volumes are larger during warmer months. Indeed, in <em>Egg size variation within passerine clutches: effects of ambient temperature and laying sequence</em> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the authors report that</p>
+<blockquote class="blockquote">
+<p>Slight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.</p>
+</blockquote>
+<p>There are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our database example, but still, we can investigate if there is any change we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.</p>
+</section>
+<section id="step-1" class="level2">
+<h2 class="anchored" data-anchor-id="step-1">Step 1</h2>
+<p>Create a query to compute and group average egg volumes by species and month. As before, use for volume the formula</p>
+<p><span class="math display">\[{\pi \over 6} W^2 L\]</span></p>
+<p>where <span class="math inline">\(W\)</span> is the egg width and <span class="math inline">\(L\)</span> is the egg length, and use 3.14 for <span class="math inline">\(\pi\)</span>.</p>
+</section>
+<section id="step-2" class="level2">
+<h2 class="anchored" data-anchor-id="step-2">Step 2</h2>
+<p>You’ll notice that we have egg data for months 6 and 7, but there is one species for which there is only data for month 6. We want to exclude all such species. Doing so will require two queries. First, create a query that selects all those species having exactly 2 records in the above table; call this query Q. Then, create a query that selects the species in that set, i.e., <code>SELECT * FROM above_table WHERE Species IN (query Q)</code>.</p>
+<p>Join this table with ? write to csv.</p>
+</section>
+<section id="step-3" class="level2">
+<h2 class="anchored" data-anchor-id="step-3">Step 3</h2>
+<p>Use you favorite programming language (R or Python) to plot to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt). An example is shown below.</p>
+<p><img src="output-plot.png" class="img-fluid"></p>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Mikko Ojanen, Markku Orell, and Risto A. Väisänen (1981). Egg size variation within passerine clutches: effects of ambient temperature and laying sequence. <em>Ornis Fennica</em> <strong>58</strong>:93-108. <a href="https://ornisfennica.journal.fi/article/view/133071" class="uri">https://ornisfennica.journal.fi/article/view/133071</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <div>
   <p></p><hr><p></p>
   <p align="center"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a></p>
