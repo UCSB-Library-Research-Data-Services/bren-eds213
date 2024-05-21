@@ -6,19 +6,19 @@ title: "Week 9 - Sensitive data"
 
 -   Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.
 -   Identify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.
--   Apply the acquired techniques while quantifying the information loss and utility, utilizing an R package.
+-   Apply the acquired techniques while utilizing an R package to quantify the information loss and utility.
 
 ## Student notes
 
 Before class, install the sdcMicro package if you choose not to use the servers.
 
-If testing out using sensitive data, make sure to launch it from RStudio, not from the online website.
+If you are testing using sensitive data, make sure to launch it from RStudio, not from the website.
 
 ## Slides and other materials
 
 [slides-09.pptx](slides-09.pptx)
 
-[Class data GitHub repository, week 9](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2023-class-data/tree/main/week8) for in-class demo and homework
+[South Park dataset](https://drive.google.com/file/d/1l2YApeWB960bNxT1YHwf41LA-U0y4yHM/view?usp=sharing) for in-class demo.
 
 ## Resources
 
