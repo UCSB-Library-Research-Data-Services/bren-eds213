@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="YOUR NAMES HERE">
+<meta name="dcterms.date" content="2023-05-24">
 
-<title>eds213 - Week 9 - Whale entanglement sdcMicro exercise</title>
+<title>eds213 - sdcmicro-exercise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -250,21 +252,39 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#whale-entanglement-sdcmicro-exercise" id="toc-whale-entanglement-sdcmicro-exercise" class="nav-link active" data-scroll-target="#whale-entanglement-sdcmicro-exercise">Whale Entanglement sdcMicro Exercise</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 9 - Whale entanglement sdcMicro exercise</h1>
+<h1 class="title">sdcmicro-exercise</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>YOUR NAMES HERE </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 24, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -274,18 +294,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Your team has successfully obtained a dataset<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> that encompasses whale entanglement data associated with specific fisheries along the West Coast. This dataset, named <a href="whale-sdc.csv">whale-sdc.csv</a>, and an accompanying file called <a href="../../modules/week09/whale-sdcexercise.html">whale-exercise.Rmd</a>.</p>
-<p>In groups of two or three, your task is to thoroughly examine the dataset and complete the provided R Markdown file. This entails implementing the necessary code and addressing the given questions. To ensure proper identification, please include the names of all participating members in the YAML header before submitting the modified R Markdown file.</p>
+<section id="whale-entanglement-sdcmicro-exercise" class="level1">
+<h1>Whale Entanglement sdcMicro Exercise</h1>
+<p>Your team acquired a dataset* <a href="whale-sdc.csv">whale-sdc.csv</a> from researchers working with whale entanglement data on the West Coast. The dataset contains both direct and indirect identifiers. Your task is to assess the risk of re-identification of the fisheries associated with the cases before considering public release. Then, you should test one technique and apply k-anonymization to help lower the disclosure risk as well as compute the information loss.</p>
+<p>Please complete this exercise in pairs or groups of three. Each group should download the dataset and complete the rmd file, including the code and answering the questions. Remember to include your names in the YAML.</p>
+<p><em>*This dataset was purposefully adapted exclusively for instruction use.</em></p>
+<section id="setup" class="level4">
+<h4 class="anchored" data-anchor-id="setup"><em>Setup</em></h4>
+</section>
+<section id="package-data" class="level4">
+<h4 class="anchored" data-anchor-id="package-data">Package &amp; Data</h4>
+</section>
+<section id="inspect-the-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="inspect-the-dataset">Inspect the Dataset</h4>
+</section>
+<section id="q1.-how-many-direct-identifiers-are-present-in-this-dataset-what-are-they" class="level4">
+<h4 class="anchored" data-anchor-id="q1.-how-many-direct-identifiers-are-present-in-this-dataset-what-are-they">Q1. How many direct identifiers are present in this dataset? What are they?</h4>
+<p>A:</p>
+</section>
+<section id="q2.-what-attributes-would-you-consider-quasi-identifiers-why" class="level4">
+<h4 class="anchored" data-anchor-id="q2.-what-attributes-would-you-consider-quasi-identifiers-why"><strong>Q2. What attributes would you consider quasi-identifiers? Why?</strong></h4>
+<p>A:</p>
+</section>
+<section id="q3.-what-types-of-variables-are-they-define-them.-numeric-integer-factor-or-string" class="level4">
+<h4 class="anchored" data-anchor-id="q3.-what-types-of-variables-are-they-define-them.-numeric-integer-factor-or-string"><strong>Q3. What types of variables are they? Define them. (numeric, integer, factor or string)</strong></h4>
+<p>Make sure to have them set correctly.</p>
+</section>
+<section id="considering-your-answers-to-questions-1-2-and-3-create-a-sdc-problem." class="level4">
+<h4 class="anchored" data-anchor-id="considering-your-answers-to-questions-1-2-and-3-create-a-sdc-problem."><strong><em>4 Considering your answers to questions 1, 2 and 3 create a SDC problem.</em></strong></h4>
+</section>
+<section id="q4.1-what-is-the-risk-of-re-identification-for-this-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="q4.1-what-is-the-risk-of-re-identification-for-this-dataset"><strong>Q4.1 What is the risk of re-identification for this dataset?</strong></h4>
+</section>
+<section id="q4.2-to-what-extent-does-this-dataset-violate-k-anonymity" class="level4">
+<h4 class="anchored" data-anchor-id="q4.2-to-what-extent-does-this-dataset-violate-k-anonymity">Q4.2 To what extent does this dataset violate k-anonymity?</h4>
+</section>
+<section id="consider-techniques-that-could-reduce-the-risk-of-re-identification." class="level4">
+<h4 class="anchored" data-anchor-id="consider-techniques-that-could-reduce-the-risk-of-re-identification."><em>5. Consider techniques that could reduce the risk of re-identification.</em></h4>
+</section>
+<section id="q5.1-apply-one-non-perturbative-method-to-a-variable-of-your-choice.-how-effective-was-it-in-lowering-the-disclosure-risk" class="level4">
+<h4 class="anchored" data-anchor-id="q5.1-apply-one-non-perturbative-method-to-a-variable-of-your-choice.-how-effective-was-it-in-lowering-the-disclosure-risk">Q5.1 Apply one non-perturbative method to a variable of your choice. How effective was it in lowering the disclosure risk?</h4>
+</section>
+<section id="q5.2-apply-k-3-anonymization-to-this-dataset." class="level4">
+<h4 class="anchored" data-anchor-id="q5.2-apply-k-3-anonymization-to-this-dataset.">Q5.2 Apply ( k-3) anonymization to this dataset.</h4>
+</section>
+<section id="q6.-compute-the-information-loss-for-the-de-identified-version-of-the-dataset." class="level4">
+<h4 class="anchored" data-anchor-id="q6.-compute-the-information-loss-for-the-de-identified-version-of-the-dataset.">Q6. Compute the information loss for the de-identified version of the dataset.</h4>
 
 
+</section>
+</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>This dataset was purposefully adapted exclusively for instruction use.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <div>
   <p></p><hr><p></p>
   <p align="center"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a></p>
