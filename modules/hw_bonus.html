@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>eds213 - Homework Bonus</title>
+<title>eds213 - Bonus Homework</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,6 +158,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../modules/week08/index-08.html">
  <span class="dropdown-text">Week 8 - Ethical and responsible data management</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../modules/week09/index-09.html">
+ <span class="dropdown-text">Week 9 - Sensitive data</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -237,6 +241,11 @@ window.Quarto = {
     <a class="dropdown-item" href="../modules/week07/hw-07-2.html">
  <span class="dropdown-text">Week 7 - Capstone project computing environment</span></a>
   </li>  
+        <li class="dropdown-header">modules/week08/hw-08.qmd</li>
+        <li>
+    <a class="dropdown-item" href="../modules/week09/hw-09.html">
+ <span class="dropdown-text">Week 9 - Whale entanglement sdcMicro exercise</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -286,7 +295,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Homework Bonus</h1>
+<h1 class="title">Bonus Homework</h1>
 </div>
 
 
@@ -305,26 +314,27 @@ window.Quarto = {
 
 <section id="relationship-between-egg-volume-and-time-of-the-year" class="level2">
 <h2 class="anchored" data-anchor-id="relationship-between-egg-volume-and-time-of-the-year">Relationship between egg volume and time of the year</h2>
-<p>One might wonder if egg volumes are larger during warmer months. Indeed, in <em>Egg size variation within passerine clutches: effects of ambient temperature and laying sequence</em> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the authors report that</p>
+<p>One might wonder if egg volumes are larger during warmer months. Indeed, in <em>Egg size variation within passerine clutches: effects of ambient temperature and laying sequence</em> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the authors report that:</p>
 <blockquote class="blockquote">
 <p>Slight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.</p>
 </blockquote>
-<p>There are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our database example, but still, we can investigate if there is any change we can leverage measurements for the months of June and July hypothesizing that July is warmer than June.</p>
+<p>There are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our class database, but still, we can investigate if there is any change in average egg volume between the months of June and July, hypothesizing that July is warmer than June.</p>
+<p>Please submit your SQL code and your Python or R notebook.</p>
 </section>
 <section id="step-1" class="level2">
 <h2 class="anchored" data-anchor-id="step-1">Step 1</h2>
-<p>Create a query to compute and group average egg volumes by species and month. As before, use for volume the formula</p>
+<p>Create a query to compute and group average egg volume by species and month. As before, use for volume the formula</p>
 <p><span class="math display">\[{\pi \over 6} W^2 L\]</span></p>
-<p>where <span class="math inline">\(W\)</span> is the egg width and <span class="math inline">\(L\)</span> is the egg length, and use 3.14 for <span class="math inline">\(\pi\)</span>.</p>
+<p>where <span class="math inline">\(W\)</span> is egg width and <span class="math inline">\(L\)</span> is egg length, and use 3.14 for <span class="math inline">\(\pi\)</span>. Call this table T.</p>
 </section>
 <section id="step-2" class="level2">
 <h2 class="anchored" data-anchor-id="step-2">Step 2</h2>
-<p>You’ll notice that we have egg data for months 6 and 7, but there is one species for which there is only data for month 6. We want to exclude all such species. Doing so will require two queries. First, create a query that selects all those species having exactly 2 records in the above table; call this query Q. Then, create a query that selects the species in that set, i.e., <code>SELECT * FROM above_table WHERE Species IN (query Q)</code>.</p>
-<p>Join this table with ? write to csv.</p>
+<p>Looking at table T, you’ll notice that we have egg data for months 6 and 7 for most species, but there is one species for which there is only data for month 6. We want to exclude all such species since there will be nothing to plot for them. How to do that? Here’s a hint. First, create a query that identifies the set of species having 2 rows in T. Then, select the rows from T where the species is in the aforementioned set.</p>
+<p>Join this reduced table with the Species table to grab scientific names, and write out to a CSV file.</p>
 </section>
 <section id="step-3" class="level2">
 <h2 class="anchored" data-anchor-id="step-3">Step 3</h2>
-<p>Use you favorite programming language (R or Python) to plot to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt). An example is shown below.</p>
+<p>Use R or Python to plot average egg volume as a function of month, by species. An example is shown below.</p>
 <p><img src="output-plot.png" class="img-fluid"></p>
 
 

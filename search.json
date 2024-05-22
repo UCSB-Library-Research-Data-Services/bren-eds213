@@ -179,7 +179,7 @@
     "href": "modules/week09/index-09.html#slides-and-other-materials",
     "title": "Week 9 - Sensitive data",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-09.pptx\nSouth Park dataset for in-class demo. South Park Demo RMD"
+    "text": "Slides and other materials\n\nslides-09.pptx\n\nDemo South Park: - Dataset - RMD document"
   },
   {
     "objectID": "modules/week09/index-09.html#resources",
@@ -203,51 +203,58 @@
     "text": "In-class exercise (Day 2)\nInstructions for the Whale Entanglement sdcMicro Exercise"
   },
   {
-    "objectID": "modules/week09/whale-exercise.html",
-    "href": "modules/week09/whale-exercise.html",
-    "title": "sdcmicro-exercise",
+    "objectID": "modules/week09/hw-09.html",
+    "href": "modules/week09/hw-09.html",
+    "title": "Week 9 - Whale entanglement sdcMicro exercise",
     "section": "",
-    "text": "Whale Entanglement sdcMicro Exercise\nYour team acquired a dataset* whale-sdc.csv from researchers working with whale entanglement data on the West Coast. The dataset contains both direct and indirect identifiers. Your task is to assess the risk of re-identification of the fisheries associated with the cases before considering public release. Then, you should test one technique and apply k-anonymization to help lower the disclosure risk as well as compute the information loss.\nPlease complete this exercise in pairs or groups of three. Each group should download the dataset and complete the rmd file, including the code and answering the questions. Remember to include your names in the YAML.\n*This dataset was purposefully adapted exclusively for instruction use.\n\nSetup\n\n\nPackage & Data\n\n\nInspect the Dataset\n\n\nQ1. How many direct identifiers are present in this dataset? What are they?\nA:\n\n\nQ2. What attributes would you consider quasi-identifiers? Why?\nA:\n\n\nQ3. What types of variables are they? Define them. (numeric, integer, factor or string)\nMake sure to have them set correctly.\n\n\n4 Considering your answers to questions 1, 2 and 3 create a SDC problem.\n\n\nQ4.1 What is the risk of re-identification for this dataset?\n\n\nQ4.2 To what extent does this dataset violate k-anonymity?\n\n\n5. Consider techniques that could reduce the risk of re-identification.\n\n\nQ5.1 Apply one non-perturbative method to a variable of your choice. How effective was it in lowering the disclosure risk?\n\n\nQ5.2 Apply ( k-3) anonymization to this dataset.\n\n\nQ6. Compute the information loss for the de-identified version of the dataset."
+    "text": "Your team has successfully obtained a dataset1 that encompasses whale entanglement data associated with specific fisheries along the West Coast. This dataset, named whale-sdc.csv, and an accompanying file called whale-exercise.Rmd.\nIn groups of two or three, your task is to thoroughly examine the dataset and complete the provided R Markdown file. This entails implementing the necessary code and addressing the given questions. To ensure proper identification, please include the names of all participating members in the YAML header before submitting the modified R Markdown file."
+  },
+  {
+    "objectID": "modules/week09/hw-09.html#footnotes",
+    "href": "modules/week09/hw-09.html#footnotes",
+    "title": "Week 9 - Whale entanglement sdcMicro exercise",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThis dataset was purposefully adapted exclusively for instruction use.↩︎"
   },
   {
     "objectID": "modules/hw_bonus.html",
     "href": "modules/hw_bonus.html",
-    "title": "Homework Bonus",
+    "title": "Bonus Homework",
     "section": "",
-    "text": "One might wonder if egg volumes are larger during warmer months. Indeed, in Egg size variation within passerine clutches: effects of ambient temperature and laying sequence 1, the authors report that\n\nSlight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.\n\nThere are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our database example, but still, we can investigate if there is any change we can leverage measurements for the months of June and July hypothesizing that July is warmer than June."
+    "text": "One might wonder if egg volumes are larger during warmer months. Indeed, in Egg size variation within passerine clutches: effects of ambient temperature and laying sequence 1, the authors report that:\n\nSlight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.\n\nThere are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our class database, but still, we can investigate if there is any change in average egg volume between the months of June and July, hypothesizing that July is warmer than June.\nPlease submit your SQL code and your Python or R notebook."
   },
   {
     "objectID": "modules/hw_bonus.html#relationship-between-egg-volume-and-time-of-the-year",
     "href": "modules/hw_bonus.html#relationship-between-egg-volume-and-time-of-the-year",
-    "title": "Homework Bonus",
+    "title": "Bonus Homework",
     "section": "",
-    "text": "One might wonder if egg volumes are larger during warmer months. Indeed, in Egg size variation within passerine clutches: effects of ambient temperature and laying sequence 1, the authors report that\n\nSlight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.\n\nThere are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our database example, but still, we can investigate if there is any change we can leverage measurements for the months of June and July hypothesizing that July is warmer than June."
+    "text": "One might wonder if egg volumes are larger during warmer months. Indeed, in Egg size variation within passerine clutches: effects of ambient temperature and laying sequence 1, the authors report that:\n\nSlight but statistically significant positive correlations were detected between daily temperatures (mostly mean and minimum) and egg size. The first eggs of the clutch were often affected by the temperatures occurring about a week before they were laid. These temperatures probably influence the development of the insects from eggs and pupae providing protein for the egg-forming female. The last eggs of the clutch tended to be affected by the temperatures prevailing one to three days before laying, i.e.occurring in the most intensive period of egg formation.\n\nThere are multiple factors at play here, including clutch size and laying order, and we don’t have much data to work with using our class database, but still, we can investigate if there is any change in average egg volume between the months of June and July, hypothesizing that July is warmer than June.\nPlease submit your SQL code and your Python or R notebook."
   },
   {
     "objectID": "modules/hw_bonus.html#step-1",
     "href": "modules/hw_bonus.html#step-1",
-    "title": "Homework Bonus",
+    "title": "Bonus Homework",
     "section": "Step 1",
-    "text": "Step 1\nCreate a query to compute and group average egg volumes by species and month. As before, use for volume the formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is the egg width and \\(L\\) is the egg length, and use 3.14 for \\(\\pi\\)."
+    "text": "Step 1\nCreate a query to compute and group average egg volume by species and month. As before, use for volume the formula\n\\[{\\pi \\over 6} W^2 L\\]\nwhere \\(W\\) is egg width and \\(L\\) is egg length, and use 3.14 for \\(\\pi\\). Call this table T."
   },
   {
     "objectID": "modules/hw_bonus.html#step-2",
     "href": "modules/hw_bonus.html#step-2",
-    "title": "Homework Bonus",
+    "title": "Bonus Homework",
     "section": "Step 2",
-    "text": "Step 2\nYou’ll notice that we have egg data for months 6 and 7, but there is one species for which there is only data for month 6. We want to exclude all such species. Doing so will require two queries. First, create a query that selects all those species having exactly 2 records in the above table; call this query Q. Then, create a query that selects the species in that set, i.e., SELECT * FROM above_table WHERE Species IN (query Q).\nJoin this table with ? write to csv."
+    "text": "Step 2\nLooking at table T, you’ll notice that we have egg data for months 6 and 7 for most species, but there is one species for which there is only data for month 6. We want to exclude all such species since there will be nothing to plot for them. How to do that? Here’s a hint. First, create a query that identifies the set of species having 2 rows in T. Then, select the rows from T where the species is in the aforementioned set.\nJoin this reduced table with the Species table to grab scientific names, and write out to a CSV file."
   },
   {
     "objectID": "modules/hw_bonus.html#step-3",
     "href": "modules/hw_bonus.html#step-3",
-    "title": "Homework Bonus",
+    "title": "Bonus Homework",
     "section": "Step 3",
-    "text": "Step 3\nUse you favorite programming language (R or Python) to plot to create a plot (choosing the type of plot you think is the most appropriate) of average egg volume differences between June and July (in percentage) and try to answer the question about influence of temperature on egg volume (10pt). An example is shown below."
+    "text": "Step 3\nUse R or Python to plot average egg volume as a function of month, by species. An example is shown below."
   },
   {
     "objectID": "modules/hw_bonus.html#footnotes",
     "href": "modules/hw_bonus.html#footnotes",
-    "title": "Homework Bonus",
+    "title": "Bonus Homework",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nMikko Ojanen, Markku Orell, and Risto A. Väisänen (1981). Egg size variation within passerine clutches: effects of ambient temperature and laying sequence. Ornis Fennica 58:93-108. https://ornisfennica.journal.fi/article/view/133071↩︎"
   },
@@ -833,18 +840,11 @@
     "text": "Homework\nNo homework this week!"
   },
   {
-    "objectID": "modules/week09/hw-09.html",
-    "href": "modules/week09/hw-09.html",
-    "title": "Week 9 - Whale entanglement sdcMicro exercise",
+    "objectID": "modules/week09/whale-sdcexercise.html",
+    "href": "modules/week09/whale-sdcexercise.html",
+    "title": "sdcmicro-exercise",
     "section": "",
-    "text": "Your team has successfully obtained a dataset1 that encompasses whale entanglement data associated with specific fisheries along the West Coast. This dataset, named whale-sdc.csv, and an accompanying file called whale-exercise.Rmd.\nIn groups of two or three, your task is to thoroughly examine the dataset and complete the provided R Markdown file. This entails implementing the necessary code and addressing the given questions. To ensure proper identification, please include the names of all participating members in the YAML header before submitting the modified R Markdown file."
-  },
-  {
-    "objectID": "modules/week09/hw-09.html#footnotes",
-    "href": "modules/week09/hw-09.html#footnotes",
-    "title": "Week 9 - Whale entanglement sdcMicro exercise",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nThis dataset was purposefully adapted exclusively for instruction use.↩︎"
+    "text": "Whale Entanglement sdcMicro Exercise\nYour team acquired a dataset* whale-sdc.csv from researchers working with whale entanglement data on the West Coast. The dataset contains both direct and indirect identifiers. Your task is to assess the risk of re-identification of the fisheries associated with the cases before considering public release. Then, you should test one technique and apply k-anonymization to help lower the disclosure risk as well as compute the information loss.\nPlease complete this exercise in pairs or groups of three. Each group should download the dataset and complete the rmd file, including the code and answering the questions. Remember to include your names in the YAML.\n*This dataset was purposefully adapted exclusively for instruction use.\n\nSetup\n\n\nPackage & Data\n\n\nInspect the Dataset\n\n\nQ1. How many direct identifiers are present in this dataset? What are they?\nA:\n\n\nQ2. What attributes would you consider quasi-identifiers? Why?\nA:\n\n\nQ3. What types of variables are they? Define them. (numeric, integer, factor or string)\nMake sure to have them set correctly.\n\n\n4 Considering your answers to questions 1, 2 and 3 create a SDC problem.\n\n\nQ4.1 What is the risk of re-identification for this dataset?\n\n\nQ4.2 To what extent does this dataset violate k-anonymity?\n\n\n5. Consider techniques that could reduce the risk of re-identification.\n\n\nQ5.1 Apply one non-perturbative method to a variable of your choice. How effective was it in lowering the disclosure risk?\n\n\nQ5.2 Apply ( k-3) anonymization to this dataset.\n\n\nQ6. Compute the information loss for the de-identified version of the dataset."
   },
   {
     "objectID": "modules/week05/hw-05-3.html",
