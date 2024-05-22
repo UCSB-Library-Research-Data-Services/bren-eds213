@@ -830,7 +830,7 @@
     "href": "modules/week09/hw-09.html",
     "title": "Week 9 - Whale entanglement sdcMicro exercise",
     "section": "",
-    "text": "Your team has successfully obtained a dataset1 that encompasses whale entanglement data associated with specific fisheries along the West Coast. This dataset, named whale-sdc.csv, and an accompanying file called whale-exercise.Rmd.\nIn groups of two or three, your task is to thoroughly examine the dataset and complete the provided R Markdown file. This entails implementing the necessary code and addressing the given questions. To ensure proper identification, please include the names of all participating members in the YAML header before submitting the modified R Markdown file."
+    "text": "Your team has successfully obtained a dataset1 that encompasses whale entanglement data associated with specific fisheries along the West Coast. This dataset, named [whale-sdc.csv], and an accompanying file called [whale-exercise.Rmd].\nIn groups of two or three, your task is to thoroughly examine the dataset and complete the provided R Markdown file. This entails implementing the necessary code and addressing the given questions. To ensure proper identification, please include the names of all participating members in the YAML header before submitting the modified R Markdown file."
   },
   {
     "objectID": "modules/week09/hw-09.html#footnotes",
