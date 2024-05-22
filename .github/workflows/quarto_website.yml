@@ -28,7 +28,7 @@ jobs:
           packages:
             any::tidyverse
             any::duckdb
-            any::sdcmicro
+            any::sdcMicro
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
