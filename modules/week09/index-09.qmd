@@ -18,7 +18,7 @@ If you are testing using sensitive data, make sure to launch it from RStudio, no
 
 - [slides-09.pptx](slides-09.pptx)
 
-Demo South Park [data and rmd](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week9)
+- Demo: South Park Case [data and rmd - update your fork!](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week9)
 
 
 ## Resources
@@ -41,4 +41,4 @@ Other useful links can be found on slides.
 
 ## In-class exercise (Day 2)
 
-Instructions for the [Whale Entanglement sdcMicro Exercise](hw-09.qmd)
+Instructions for the [Whale Entanglement Exercise](hw-09.qmd)
