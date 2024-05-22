@@ -33,3 +33,6 @@ Join this reduced table with the Species table to grab scientific names, and wri
 Use R or Python to plot average egg volume as a function of month, by species. An example is shown below.
 
 ![](output-plot.png)
+
+Please submit your SQL code and notebook to Canvas: <https://ucsb.instructure.com/courses/19301/assignments/245958>
+
