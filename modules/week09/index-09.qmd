@@ -19,8 +19,8 @@ If you are testing using sensitive data, make sure to launch it from RStudio, no
 - [slides-09.pptx](slides-09.pptx)
 
 Demo South Park:
-- [Dataset](southpark-sdc.csv)
-- [RMD document](southpark-sdcdemo.rmd)
+- [Dataset]
+- [RMD document]
 
 ## Resources
 
