@@ -41,8 +41,9 @@ website:
           - modules/week07/hw-07-2.qmd
           #- modules/week07/hw-07-3.qmd
           #- modules/week07/hw-07-4.qmd
-          - modules/week08/hw-08.qmd
+          #- modules/week08/hw-08.qmd
           - modules/week09/hw-09.qmd
+          - modules/hw_bonus.qmd
       - about.qmd
     tools:
       - icon: github
