@@ -5,9 +5,9 @@ title: "Week 9 - How FAIR is your data set?"
 
 Using the [FAIR Assessment tool](FAIR_assessment_tool.qmd){target="_blank"}, evaluate the FAIRness of the two following data sets:
 
-- [Ephemeral wetland macroinvertebrate communities of the Great Plains](https://knb.ecoinformatics.org/view/urn%3Auuid%3Ad544dff2-319a-4753-a1f1-48b6e1413285)
-- [Insect functional traits on arable land, Finland 2020](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF11N7ZK5)
-- Which one would you prefer to reuse?
+1. [Ephemeral wetland macroinvertebrate communities of the Great Plains](https://knb.ecoinformatics.org/view/urn%3Auuid%3Ad544dff2-319a-4753-a1f1-48b6e1413285)
+2. [Insect functional traits on arable land, Finland 2020](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF11N7ZK5)
+3. Which one would you prefer to reuse?
 
 #### Notes:
 
@@ -15,4 +15,4 @@ Using the [FAIR Assessment tool](FAIR_assessment_tool.qmd){target="_blank"}, eva
 - There are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation, but discuss variability in your justification
 
 
-**Submit your answers (2 assessments + answer to the question) via Canvas**
+**Submit your answers (2 assessments with the justifications & answer to the preference/third question) via Canvas**
