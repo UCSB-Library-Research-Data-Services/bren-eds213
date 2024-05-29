@@ -9,7 +9,10 @@ Using the [FAIR Assessment tool](FAIR_assessment_tool.qmd){target="_blank"}, eva
 - [Insect functional traits on arable land, Finland 2020](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF11N7ZK5)
 - Which one would you prefer to reuse?
 
-Note: there are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation
+#### Notes:
+
+- Please add narrative justification to explain your choices done using the FAIR assessment tool
+- There are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation, but discuss variability in your justification
 
 
 **Submit your answers (2 assessments + answer to the question) via Canvas**
