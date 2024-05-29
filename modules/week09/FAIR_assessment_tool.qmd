@@ -2,6 +2,8 @@
 title: "FAIR assessment tool"
 ---
 
+_Please justify your answer using 1-2 sentences_
+
 
 ### **F**indable
 
@@ -35,6 +37,7 @@ c. Comprehensive, but in a text-based, non-standard format
 d. Comprehensively using a recognized formal machine-readable metadata schema
 
 
+
 #### 4. What type of repository or registry is the metadata record in?
 
 a. The data are not described in any repository
@@ -46,7 +49,6 @@ c. Domain-specific repository
 d. Generalist public repository
 
 e. Data are in one place but discoverable through several registries
-
 
 
 
@@ -69,7 +71,8 @@ f. Fully accessible to persons who meet explicitly stated conditions, e.g. ethic
 
 sensitive data
 
-(g) Publicly accessible
+g. Publicly accessible
+
 
 
 #### 6. Is the data available online without requiring specialized protocols or tools once access has been approved?
@@ -106,6 +109,7 @@ b. In a structured, open standard, non-machine-readable format
 c. In a structured, open standard, machine-readable format
 
 
+
 #### 9. What best describes the types of vocabularies/ontologies/tagging schemas used to define the data elements?
 
 a. Data elements not described
@@ -117,6 +121,7 @@ c. Standardised vocabularies/ontologies/schemas without global identifiers
 d. Standardised, open and universal, using resolvable global identifiers linking to explanations
 
 
+
 #### 10. How is the metadata linked to other data and metadata (to enhance context and clearly indicate relationships)?
 
 a. There are no links to other metadata
@@ -126,6 +131,7 @@ b. The metadata record includes URI links to related metadata, data and definiti
 c. Metadata is represented in machine-readable format, e.g. in a linked format such as
 
 Resource Description Framework (RDF)
+
 
 
 ### **R**eusable
@@ -155,6 +161,7 @@ b. Partially recorded
 c. Fully recorded in a text format
 
 d. Fully recorded in a machine-readable format
+
 
 
 ## Acknowledgements
