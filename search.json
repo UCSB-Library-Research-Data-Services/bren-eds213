@@ -172,7 +172,7 @@
     "href": "modules/week09/hw-09.html",
     "title": "Week 9 - How FAIR is your data set?",
     "section": "",
-    "text": "Using the FAIR Assessment tool, evaluate the FAIRness of the two following data sets:\n\nEphemeral wetland macroinvertebrate communities of the Great Plains\nInsect functional traits on arable land, Finland 2020\nWhich one would you prefer to reuse?\n\nNote: there are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation\nSubmit your answers (2 assessments + answer to the question) via Canvas"
+    "text": "Using the FAIR Assessment tool, evaluate the FAIRness of the two following data sets:\n\nEphemeral wetland macroinvertebrate communities of the Great Plains\nInsect functional traits on arable land, Finland 2020\nWhich one would you prefer to reuse?\n\n\nNotes:\n\nPlease add narrative justification to explain your choices done using the FAIR assessment tool\nThere are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation, but discuss variability in your justification\n\nSubmit your answers (2 assessments + answer to the question) via Canvas"
   },
   {
     "objectID": "modules/hw_bonus.html",
