@@ -3,7 +3,7 @@ title: "Week 9 - How FAIR is your data set?"
 ---
 
 
-Using the [FAIR Assessment tool](FAIR_assessment_tool.qmd), evaluate the FAIRness of the two following data sets:
+Using the [FAIR Assessment tool](FAIR_assessment_tool.qmd){target="_blank"}, evaluate the FAIRness of the two following data sets:
 
 - [Ephemeral wetland macroinvertebrate communities of the Great Plains](https://knb.ecoinformatics.org/view/urn%3Auuid%3Ad544dff2-319a-4753-a1f1-48b6e1413285)
 - [Insect functional traits on arable land, Finland 2020](https://knb.ecoinformatics.org/view/doi%3A10.5063%2FF11N7ZK5)
