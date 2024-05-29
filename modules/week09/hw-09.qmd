@@ -16,3 +16,5 @@ Using the [FAIR Assessment tool](FAIR_assessment_tool.qmd){target="_blank"}, eva
 
 
 **Submit your answers (2 assessments with the justifications & answer to the preference/third question) via Canvas**
+
+Total points: 100
