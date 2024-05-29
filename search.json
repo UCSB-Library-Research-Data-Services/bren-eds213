@@ -161,32 +161,11 @@
     "text": "No identifier\nLocal identifier\nWeb address (URL)\nGlobally unique identifier, citable and persistent (e.g. DOI, PURL, ARK or Handle)\n\n\n\n\n\nNo\nYes\n\n\n\n\n\nThe data are not described\nBrief title and description\nComprehensive, but in a text-based, non-standard format\nComprehensively using a recognized formal machine-readable metadata schema\n\n\n\n\n\nThe data are not described in any repository\nLocal institutional repository\nDomain-specific repository\nGeneralist public repository\nData are in one place but discoverable through several registries"
   },
   {
-    "objectID": "modules/week09/FAIR_assessment_tool.html#findable",
-    "href": "modules/week09/FAIR_assessment_tool.html#findable",
+    "objectID": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
+    "href": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
     "title": "FAIR assessment tool",
-    "section": "",
-    "text": "No identifier\nLocal identifier\nWeb address (URL)\nGlobally unique identifier, citable and persistent (e.g. DOI, PURL, ARK or Handle)\n\n\n\n\n\nNo\nYes\n\n\n\n\n\nThe data are not described\nBrief title and description\nComprehensive, but in a text-based, non-standard format\nComprehensively using a recognized formal machine-readable metadata schema\n\n\n\n\n\nThe data are not described in any repository\nLocal institutional repository\nDomain-specific repository\nGeneralist public repository\nData are in one place but discoverable through several registries"
-  },
-  {
-    "objectID": "modules/week09/FAIR_assessment_tool.html#accessible",
-    "href": "modules/week09/FAIR_assessment_tool.html#accessible",
-    "title": "FAIR assessment tool",
-    "section": "Accessible",
-    "text": "Accessible\n\n5. How accessible is the data\n\nNo access to data or metadata\nAccess to metadata only\nUnspecified conditional access, e.g. contact the data custodian\nEmbargoed access after a specified date\nA de-identified / modified subset of the data is publicly accessible\nFully accessible to persons who meet explicitly stated conditions, e.g. ethics approval for\n\nsensitive data\n\nPublicly accessible\n\n\n\n6. Is the data available online without requiring specialized protocols or tools once access has been approved?\n\nNo access to data\nBy individual arrangement\nFile download from online location\nNon-standard web service (e.g. OpenAPI, Swagger, Informal API)\nStandard web service API (e.g. OGC)\n\n\n\n7. Will the metadata record be available even if the data are no longer available?\n\nUnsure\nNo\nYes"
-  },
-  {
-    "objectID": "modules/week09/FAIR_assessment_tool.html#interoperable",
-    "href": "modules/week09/FAIR_assessment_tool.html#interoperable",
-    "title": "FAIR assessment tool",
-    "section": "Interoperable",
-    "text": "Interoperable\n\n8. What (file) formats is the data available in?\n\nMostly in a proprietary format\nIn a structured, open standard, non-machine-readable format\nIn a structured, open standard, machine-readable format\n\n\n\n9. What best describes the types of vocabularies/ontologies/tagging schemas used to define the data elements?\n\nData elements not described\nNo standards have been applied in the description of data elements\nStandardised vocabularies/ontologies/schemas without global identifiers\nStandardised, open and universal, using resolvable global identifiers linking to explanations\n\n\n\n10. How is the metadata linked to other data and metadata (to enhance context and clearly indicate relationships)?\n\nThere are no links to other metadata\nThe metadata record includes URI links to related metadata, data and definitions\nMetadata is represented in machine-readable format, e.g. in a linked format such as\n\nResource Description Framework (RDF)"
-  },
-  {
-    "objectID": "modules/week09/FAIR_assessment_tool.html#reusable",
-    "href": "modules/week09/FAIR_assessment_tool.html#reusable",
-    "title": "FAIR assessment tool",
-    "section": "Reusable",
-    "text": "Reusable\n\n11. Which of the following best describes the licence/usage rights attached to the data?\n\nNo licence\nNon-standard text-based licence\nNon-standard machine-readable licence (clearly indicating under what conditions the data\n\nmay be reused)\n\nStandard text-based licence\nStandard machine-readable licence (e.g. Creative Commons)\n\n\n\n12. How much provenance information has been captured to facilitate data reuse?\n\nNo provenance information is recorded\nPartially recorded\nFully recorded in a text format\nFully recorded in a machine-readable format"
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis exercise has been adapted from the UK Data Service https://ukdataservice.ac.uk/app/uploads/exercise_fairdata.pdf and is licensed under a Creative Commons Attribution CC-BY 4.0 International License."
   },
   {
     "objectID": "modules/week09/hw-09.html",
