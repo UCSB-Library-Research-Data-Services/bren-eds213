@@ -3,158 +3,160 @@ title: "FAIR assessment tool"
 ---
 
 
-## **F**indable
+### **F**indable
 
 
-### 1. Does the dataset have any identifiers assigned?
+#### 1. Does the dataset have any identifiers assigned?
 
-(a) No identifier
+a. No identifier
 
-(b) Local identifier
+b. Local identifier
 
-(c) Web address (URL)
+c. Web address (URL)
 
-(d) Globally unique identifier, citable and persistent (e.g. DOI, PURL, ARK or Handle)
-
-
-### 2. Is the dataset identifier included in all metadata records/files describing the data?
-
-(a) No
-
-(b) Yes
+d. Globally unique identifier, citable and persistent (e.g. DOI, PURL, ARK or Handle)
 
 
-### 3. How is the data described with metadata?
+#### 2. Is the dataset identifier included in all metadata records/files describing the data?
 
-(a) The data are not described
+a. No
 
-(b) Brief title and description
-
-(c) Comprehensive, but in a text-based, non-standard format
-
-(d) Comprehensively using a recognized formal machine-readable metadata schema
+b. Yes
 
 
-### 4. What type of repository or registry is the metadata record in?
+#### 3. How is the data described with metadata?
 
-(a) The data are not described in any repository
+a. The data are not described
 
-(b) Local institutional repository
+b. Brief title and description
 
-(c) Domain-specific repository
+c. Comprehensive, but in a text-based, non-standard format
 
-(d) Generalist public repository
-
-(e) Data are in one place but discoverable through several registries
+d. Comprehensively using a recognized formal machine-readable metadata schema
 
 
-## **A**ccessible
+#### 4. What type of repository or registry is the metadata record in?
+
+a. The data are not described in any repository
+
+b. Local institutional repository
+
+c. Domain-specific repository
+
+d. Generalist public repository
+
+e. Data are in one place but discoverable through several registries
 
 
-### 5. How accessible is the data
 
-(a) No access to data or metadata
 
-(b) Access to metadata only
+### **A**ccessible
 
-(c) Unspecified conditional access, e.g. contact the data custodian
 
-(d) Embargoed access after a specified date
+#### 5. How accessible is the data
 
-(e) A de-identified / modified subset of the data is publicly accessible
+a. No access to data or metadata
 
-(f) Fully accessible to persons who meet explicitly stated conditions, e.g. ethics approval for
+b. Access to metadata only
+
+c. Unspecified conditional access, e.g. contact the data custodian
+
+d. Embargoed access after a specified date
+
+e. A de-identified / modified subset of the data is publicly accessible
+
+f. Fully accessible to persons who meet explicitly stated conditions, e.g. ethics approval for
 
 sensitive data
 
 (g) Publicly accessible
 
 
-### 6. Is the data available online without requiring specialized protocols or tools once access has been approved?
+#### 6. Is the data available online without requiring specialized protocols or tools once access has been approved?
 
-(a) No access to data
+a. No access to data
 
-(b) By individual arrangement
+b. By individual arrangement
 
-(c) File download from online location
+c. File download from online location
 
-(d) Non-standard web service (e.g. OpenAPI, Swagger, Informal API)
+d. Non-standard web service (e.g. OpenAPI, Swagger, Informal API)
 
-(e) Standard web service API (e.g. OGC)
-
-
-### 7. Will the metadata record be available even if the data are no longer available?
-
-(a) Unsure
-
-(b) No
-
-(c) Yes
+e. Standard web service API (e.g. OGC)
 
 
-## **I**nteroperable
+#### 7. Will the metadata record be available even if the data are no longer available?
+
+a. Unsure
+
+b. No
+
+c. Yes
 
 
-### 8. What (file) formats is the data available in?
-
-(a) Mostly in a proprietary format
-
-(b) In a structured, open standard, non-machine-readable format
-
-(c) In a structured, open standard, machine-readable format
+### **I**nteroperable
 
 
-### 9. What best describes the types of vocabularies/ontologies/tagging schemas used to define the data elements?
+#### 8. What (file) formats is the data available in?
 
-(a) Data elements not described
+a. Mostly in a proprietary format
 
-(b) No standards have been applied in the description of data elements
+b. In a structured, open standard, non-machine-readable format
 
-(c) Standardised vocabularies/ontologies/schemas without global identifiers
-
-(d) Standardised, open and universal, using resolvable global identifiers linking to explanations
+c. In a structured, open standard, machine-readable format
 
 
-### 10. How is the metadata linked to other data and metadata (to enhance context and clearly indicate relationships)?
+#### 9. What best describes the types of vocabularies/ontologies/tagging schemas used to define the data elements?
 
-(a) There are no links to other metadata
+a. Data elements not described
 
-(b) The metadata record includes URI links to related metadata, data and definitions
+b. No standards have been applied in the description of data elements
 
-(c) Metadata is represented in machine-readable format, e.g. in a linked format such as
+c. Standardised vocabularies/ontologies/schemas without global identifiers
+
+d. Standardised, open and universal, using resolvable global identifiers linking to explanations
+
+
+#### 10. How is the metadata linked to other data and metadata (to enhance context and clearly indicate relationships)?
+
+a. There are no links to other metadata
+
+b. The metadata record includes URI links to related metadata, data and definitions
+
+c. Metadata is represented in machine-readable format, e.g. in a linked format such as
 
 Resource Description Framework (RDF)
 
 
-## **R**eusable
+### **R**eusable
 
 
-### 11. Which of the following best describes the licence/usage rights attached to the data?
+#### 11. Which of the following best describes the licence/usage rights attached to the data?
 
-(a) No licence
+a. No licence
 
-(b) Non-standard text-based licence
+b. Non-standard text-based licence
 
-(c) Non-standard machine-readable licence (clearly indicating under what conditions the data
+c. Non-standard machine-readable licence (clearly indicating under what conditions the data
 
 may be reused)
 
-(d) Standard text-based licence
+d. Standard text-based licence
 
-(e) Standard machine-readable licence (e.g. Creative Commons)
-
-
-### 12. How much provenance information has been captured to facilitate data reuse?
-
-(a) No provenance information is recorded
-
-(b) Partially recorded
-
-(c) Fully recorded in a text format
-
-(d) Fully recorded in a machine-readable format
+e. Standard machine-readable licence (e.g. Creative Commons)
 
 
-# Acknowledgements
+#### 12. How much provenance information has been captured to facilitate data reuse?
+
+a. No provenance information is recorded
+
+b. Partially recorded
+
+c. Fully recorded in a text format
+
+d. Fully recorded in a machine-readable format
+
+
+## Acknowledgements
 
 This exercise has been adapted from the UK Data Service [https://ukdataservice.ac.uk/app/uploads/exercise_fairdata.pdf](https://ukdataservice.ac.uk/app/uploads/exercise_fairdata.pdf) and is licensed under a Creative Commons Attribution CC-BY 4.0 International License.
