@@ -8,7 +8,7 @@
 
 ## Teaching Assistant
 
-- Jamie Miller
+- Annie Adams
 
 ## Description
 
