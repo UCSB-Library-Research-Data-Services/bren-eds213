@@ -46,7 +46,7 @@ A class data GitHub repository, linked below, is used to distribute data files t
 
 [Resources](resources.qmd)
 
-[Class data GitHub repository](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data)
+[Class data GitHub repository](https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data)
 
 
 ## Modules
