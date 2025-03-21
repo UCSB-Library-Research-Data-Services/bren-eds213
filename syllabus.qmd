@@ -9,31 +9,22 @@ This course will teach students the fundamentals of relational databases and dat
 ## Learning objectives
 
 -   Understand the fundamental principles of relational databases and relational data modeling, including table structures, primary and foreign keys, relationships between tables, and data normalization.
-
 -   Understand how to use the Unix command line and how manage DuckDB databases from the command line.
-
 -   Use SQL to retrieve, manipulate, and manage data stored in a relational database.
-
 -   Demonstrate proficiency in querying, filtering, sorting, and programmatically accessing and interacting with relational databases from R and Python.
-
 -   Become familiar with advanced database topics such as concurrency, transactions, indexing, backups, and publication.
-
 -   Understand the role of good data documentation and metadata standards for interoperability, effective data management, and reproducibility.
-
 -   Operationalize the FAIR principles into data management practices.
-
 -   Produce a metadata record in EML (Ecological Metadata Language) and apply metadata crosswalks to programmatically convert metadata schemas.
-
 -   Understand the ethics of sensitive data and how to de-identify sensitive data.
-
 -   Evaluate ethical and responsible data management practices, including bias, data privacy, sharing, ownership, and licensing issues.
 
 ## Schedule
 
-- Class: Monday & Wednesday 9:30-10:45 am (NCEAS)
-- Discussion - session 1: Thur 1-1:50PM, Bren Hall 1510
-- Discussion - session 2: Thur 2-2:50PM, Bren Hall 1510
-- Office hours: Monday 11-12 pm (NCEAS)
+- Class: Tuesday & Thursday 9:30-10:45 AM (BH 1424)
+- Discussion - session 1: Thursday 1-1:50 PM, BH 3022A
+- Discussion - session 2: Thursday 2-2:50 PM, BH 3022A
+- Office hours: TBD
 
 
 ## Modules
@@ -42,14 +33,14 @@ This course will teach students the fundamentals of relational databases and dat
 |------|------------------------------------------------------------------------|
 | 1    | [Relational databases and data modeling](modules/week01/index-01.qmd)  |
 | 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) |
-| 3    | [Introduction to SQL part 1 & DuckDB](modules/week03/index-03.qmd)            |
-| 4    | [Importing data in the database + SQL part 2](modules/week04/index-04.qmd)          |
-| 5    | [Analyzing the bird database using SQL + bash programming](modules/week05/index-05.qmd)   |
-| 6    | [Using R & python to query databases](modules/week06/index-06.qmd)     |
-| 7    | [Documenting your work: metdata & computing environment](modules/week07/index-07.qmd)|
-| 8    | [Sensitive data](modules/week08/index-08.qmd)                          |
-| 9    | [Ethical & responsible data mgnt](modules/week09/index-09.qmd)         |
-| 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |
+| 3    | [Introduction to SQL (part 1) & DuckDB](modules/week03/index-03.qmd)            |
+| 4    | [SQL part 2 + Analyzing the bird database using SQL](modules/week04/index-04.qmd)          |
+| 5    | [I/O & data management + Advanced database topics (indexing, triggers, ...)](modules/week05/index-05.qmd) |
+| 6    | [Using R to query databases + bash programming](modules/week06/index-06.qmd)     |
+| 7    | [Using Python to query databases + Documenting your work: metadata](modules/week07/index-07.qmd)|
+| 8    | [Capturing your computing environment + Ethical & responsible data mgnt](modules/week08/index-08.qmd)  |
+| 9    | [Sensitive data](modules/week09/index-09.qmd)                          |
+| 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |   
  
 \*Schedule subject to change.
 
@@ -58,11 +49,37 @@ This course will teach students the fundamentals of relational databases and dat
 Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week. We will use Canvas to manage the assignments.
 
 
-## Attendance and homework policy
+## Attendance policy
 
-Attendance is required. Material will be given in class that is not covered by slides or background readings.
+Attendance is required. Your presence and active participation will make a real difference, not just in this course, but in your future environmental data science career. The connections you build and the skills you sharpen here will help you succeed long after the quarter ends. Let’s make the most of it together! In addition not all the materials and interactive activities given in class will be covered by slides or background readings.
 
-Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. ***Homework turned in late will be docked 20% per day.***
+
+### Missing **a** class
+
+Life happens. Similar to missing a day at work, if you miss a class or discussion section then you are expected to:
+
+- ✉️ Be proactive: and notify your instructor as soon as possible and provide a brief explanation. Documentation is not required for short-term absences, but honesty and professionalism is expected in all communication. 
+- 🔄 Catch up: You’ll need to work with the instructor or the TA to review any missed material. 
+- 🤒 Stay home when you are sick! If you are feeling unwell, prioritize your health. Stay home and rest or work remotely.
+
+The following accommodations for missing in-person activities can be provided upon student request:
+
+- Consultation outside office hours
+- Zoom attendance (note that some sessions might not be suitable)
+
+Students with disabilities should work with the Disabled Students Program (DSP) to determine appropriate accommodations.
+
+### Attendance Concerns
+
+- 🚩 Frequent Absences: If you miss two or more consecutive classes, the instructor may reach out to check in. This is to ensure you are ok and aware of resources that can help you stay on track. 
+- ⚠️  Extended Absences: If you anticipate missing three or more classes, you’ll need to contact the instructor, the MEDS Program Coordinator, and the Director of Student Affairs to discuss possible next steps. UCSB courses are taught in person, so extended absences may require a [Leave of Absence](https://www.graddiv.ucsb.edu/forms/leave-absence), regardless of the attendance impact on your grade.
+- 🚫 Academic Dishonesty in Attendance Reporting: Fabricating reasons for absences is considered academic dishonesty and subject to disciplinary action under the [UCSB Student Code of Conduct](https://regulations.sa.ucsb.edu/home). If the instructor suspects this is the case, they will address it with you directly and may escalate it if needed.
+
+
+## Homework policy
+
+Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up.  To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. ***Homework turned in late will be docked 20% per day.***
+
 
 ## Code of conduct
 
