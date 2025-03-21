@@ -266,7 +266,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
   <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules">Modules</a></li>
   <li><a href="#course-assessment" id="toc-course-assessment" class="nav-link" data-scroll-target="#course-assessment">Course assessment</a></li>
-  <li><a href="#attendance-and-homework-policy" id="toc-attendance-and-homework-policy" class="nav-link" data-scroll-target="#attendance-and-homework-policy">Attendance and homework policy</a></li>
+  <li><a href="#attendance-policy" id="toc-attendance-policy" class="nav-link" data-scroll-target="#attendance-policy">Attendance policy</a>
+  <ul class="collapse">
+  <li><a href="#missing-a-class" id="toc-missing-a-class" class="nav-link" data-scroll-target="#missing-a-class">Missing <strong>a</strong> class</a></li>
+  <li><a href="#attendance-concerns" id="toc-attendance-concerns" class="nav-link" data-scroll-target="#attendance-concerns">Attendance Concerns</a></li>
+  </ul></li>
+  <li><a href="#homework-policy" id="toc-homework-policy" class="nav-link" data-scroll-target="#homework-policy">Homework policy</a></li>
   <li><a href="#code-of-conduct" id="toc-code-of-conduct" class="nav-link" data-scroll-target="#code-of-conduct">Code of conduct</a></li>
   <li><a href="#student-support" id="toc-student-support" class="nav-link" data-scroll-target="#student-support">Student support</a></li>
   <li><a href="#disabled-students-program" id="toc-disabled-students-program" class="nav-link" data-scroll-target="#disabled-students-program">Disabled students program</a></li>
@@ -302,25 +307,25 @@ ul.task-list li input[type="checkbox"] {
 <section id="learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
 <ul>
-<li><p>Understand the fundamental principles of relational databases and relational data modeling, including table structures, primary and foreign keys, relationships between tables, and data normalization.</p></li>
-<li><p>Understand how to use the Unix command line and how manage DuckDB databases from the command line.</p></li>
-<li><p>Use SQL to retrieve, manipulate, and manage data stored in a relational database.</p></li>
-<li><p>Demonstrate proficiency in querying, filtering, sorting, and programmatically accessing and interacting with relational databases from R and Python.</p></li>
-<li><p>Become familiar with advanced database topics such as concurrency, transactions, indexing, backups, and publication.</p></li>
-<li><p>Understand the role of good data documentation and metadata standards for interoperability, effective data management, and reproducibility.</p></li>
-<li><p>Operationalize the FAIR principles into data management practices.</p></li>
-<li><p>Produce a metadata record in EML (Ecological Metadata Language) and apply metadata crosswalks to programmatically convert metadata schemas.</p></li>
-<li><p>Understand the ethics of sensitive data and how to de-identify sensitive data.</p></li>
-<li><p>Evaluate ethical and responsible data management practices, including bias, data privacy, sharing, ownership, and licensing issues.</p></li>
+<li>Understand the fundamental principles of relational databases and relational data modeling, including table structures, primary and foreign keys, relationships between tables, and data normalization.</li>
+<li>Understand how to use the Unix command line and how manage DuckDB databases from the command line.</li>
+<li>Use SQL to retrieve, manipulate, and manage data stored in a relational database.</li>
+<li>Demonstrate proficiency in querying, filtering, sorting, and programmatically accessing and interacting with relational databases from R and Python.</li>
+<li>Become familiar with advanced database topics such as concurrency, transactions, indexing, backups, and publication.</li>
+<li>Understand the role of good data documentation and metadata standards for interoperability, effective data management, and reproducibility.</li>
+<li>Operationalize the FAIR principles into data management practices.</li>
+<li>Produce a metadata record in EML (Ecological Metadata Language) and apply metadata crosswalks to programmatically convert metadata schemas.</li>
+<li>Understand the ethics of sensitive data and how to de-identify sensitive data.</li>
+<li>Evaluate ethical and responsible data management practices, including bias, data privacy, sharing, ownership, and licensing issues.</li>
 </ul>
 </section>
 <section id="schedule" class="level2">
 <h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
 <ul>
-<li>Class: Monday &amp; Wednesday 9:30-10:45 am (NCEAS)</li>
-<li>Discussion - session 1: Thur 1-1:50PM, Bren Hall 1510</li>
-<li>Discussion - session 2: Thur 2-2:50PM, Bren Hall 1510</li>
-<li>Office hours: Monday 11-12 pm (NCEAS)</li>
+<li>Class: Tuesday &amp; Thursday 9:30-10:45 AM (BH 1424)</li>
+<li>Discussion - session 1: Thursday 1-1:50 PM, BH 3022A</li>
+<li>Discussion - session 2: Thursday 2-2:50 PM, BH 3022A</li>
+<li>Office hours: TBD</li>
 </ul>
 </section>
 <section id="modules" class="level2">
@@ -343,31 +348,31 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>3</td>
-<td><a href="./modules/week03/index-03.html">Introduction to SQL part 1 &amp; DuckDB</a></td>
+<td><a href="./modules/week03/index-03.html">Introduction to SQL (part 1) &amp; DuckDB</a></td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td><a href="./modules/week04/index-04.html">Importing data in the database + SQL part 2</a></td>
+<td><a href="./modules/week04/index-04.html">SQL part 2 + Analyzing the bird database using SQL</a></td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td><a href="./modules/week05/index-05.html">Analyzing the bird database using SQL + bash programming</a></td>
+<td><a href="./modules/week05/index-05.html">I/O &amp; data management + Advanced database topics (indexing, triggers, …)</a></td>
 </tr>
 <tr class="even">
 <td>6</td>
-<td><a href="./modules/week06/index-06.html">Using R &amp; python to query databases</a></td>
+<td><a href="./modules/week06/index-06.html">Using R to query databases + bash programming</a></td>
 </tr>
 <tr class="odd">
 <td>7</td>
-<td><a href="./modules/week07/index-07.html">Documenting your work: metdata &amp; computing environment</a></td>
+<td><a href="./modules/week07/index-07.html">Using Python to query databases + Documenting your work: metadata</a></td>
 </tr>
 <tr class="even">
 <td>8</td>
-<td><a href="./modules/week08/index-08.html">Sensitive data</a></td>
+<td><a href="./modules/week08/index-08.html">Capturing your computing environment + Ethical &amp; responsible data mgnt</a></td>
 </tr>
 <tr class="odd">
 <td>9</td>
-<td><a href="./modules/week09/index-09.html">Ethical &amp; responsible data mgnt</a></td>
+<td><a href="./modules/week09/index-09.html">Sensitive data</a></td>
 </tr>
 <tr class="even">
 <td>10</td>
@@ -381,10 +386,36 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="course-assessment">Course assessment</h2>
 <p>Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week. We will use Canvas to manage the assignments.</p>
 </section>
-<section id="attendance-and-homework-policy" class="level2">
-<h2 class="anchored" data-anchor-id="attendance-and-homework-policy">Attendance and homework policy</h2>
-<p>Attendance is required. Material will be given in class that is not covered by slides or background readings.</p>
-<p>Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. <strong><em>Homework turned in late will be docked 20% per day.</em></strong></p>
+<section id="attendance-policy" class="level2">
+<h2 class="anchored" data-anchor-id="attendance-policy">Attendance policy</h2>
+<p>Attendance is required. Your presence and active participation will make a real difference, not just in this course, but in your future environmental data science career. The connections you build and the skills you sharpen here will help you succeed long after the quarter ends. Let’s make the most of it together! In addition not all the materials and interactive activities given in class will be covered by slides or background readings.</p>
+<section id="missing-a-class" class="level3">
+<h3 class="anchored" data-anchor-id="missing-a-class">Missing <strong>a</strong> class</h3>
+<p>Life happens. Similar to missing a day at work, if you miss a class or discussion section then you are expected to:</p>
+<ul>
+<li>✉️ Be proactive: and notify your instructor as soon as possible and provide a brief explanation. Documentation is not required for short-term absences, but honesty and professionalism is expected in all communication.</li>
+<li>🔄 Catch up: You’ll need to work with the instructor or the TA to review any missed material.</li>
+<li>🤒 Stay home when you are sick! If you are feeling unwell, prioritize your health. Stay home and rest or work remotely.</li>
+</ul>
+<p>The following accommodations for missing in-person activities can be provided upon student request:</p>
+<ul>
+<li>Consultation outside office hours</li>
+<li>Zoom attendance (note that some sessions might not be suitable)</li>
+</ul>
+<p>Students with disabilities should work with the Disabled Students Program (DSP) to determine appropriate accommodations.</p>
+</section>
+<section id="attendance-concerns" class="level3">
+<h3 class="anchored" data-anchor-id="attendance-concerns">Attendance Concerns</h3>
+<ul>
+<li>🚩 Frequent Absences: If you miss two or more consecutive classes, the instructor may reach out to check in. This is to ensure you are ok and aware of resources that can help you stay on track.</li>
+<li>⚠️ Extended Absences: If you anticipate missing three or more classes, you’ll need to contact the instructor, the MEDS Program Coordinator, and the Director of Student Affairs to discuss possible next steps. UCSB courses are taught in person, so extended absences may require a <a href="https://www.graddiv.ucsb.edu/forms/leave-absence">Leave of Absence</a>, regardless of the attendance impact on your grade.</li>
+<li>🚫 Academic Dishonesty in Attendance Reporting: Fabricating reasons for absences is considered academic dishonesty and subject to disciplinary action under the <a href="https://regulations.sa.ucsb.edu/home">UCSB Student Code of Conduct</a>. If the instructor suspects this is the case, they will address it with you directly and may escalate it if needed.</li>
+</ul>
+</section>
+</section>
+<section id="homework-policy" class="level2">
+<h2 class="anchored" data-anchor-id="homework-policy">Homework policy</h2>
+<p>Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. <strong><em>Homework turned in late will be docked 20% per day.</em></strong></p>
 </section>
 <section id="code-of-conduct" class="level2">
 <h2 class="anchored" data-anchor-id="code-of-conduct">Code of conduct</h2>

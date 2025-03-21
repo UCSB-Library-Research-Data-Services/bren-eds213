@@ -424,14 +424,14 @@
     "href": "index.html#teaching-assistant",
     "title": "EDS 213: Databases and Data Management",
     "section": "Teaching Assistant",
-    "text": "Teaching Assistant\n\nJamie Miller (jkmiller@ucsb.edu)"
+    "text": "Teaching Assistant"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
     "title": "EDS 213: Databases and Data Management",
     "section": "Schedule",
-    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 am (NCEAS)\nDiscussion - session 1: Thur 1-1:50PM, Bren Hall 1510\nDiscussion - session 2: Thur 2-2:50PM, Bren Hall 1510\nOffice hours: Monday 11-12 pm (NCEAS)"
+    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: TBD"
   },
   {
     "objectID": "index.html#course-content",
@@ -445,7 +445,7 @@
     "href": "index.html#modules",
     "title": "EDS 213: Databases and Data Management",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R & Python to query databases + bash programming\n\n\n7\nDocumenting your work: metadata & computing environment\n\n\n8\nEthical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R to query databases + bash programming\n\n\n7\nUsing Python to query databases + Documenting your work: metadata\n\n\n8\nCapturing your computing environment + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
   },
   {
     "objectID": "syllabus.html",
@@ -473,14 +473,14 @@
     "href": "syllabus.html#schedule",
     "title": "Course syllabus",
     "section": "Schedule",
-    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 am (NCEAS)\nDiscussion - session 1: Thur 1-1:50PM, Bren Hall 1510\nDiscussion - session 2: Thur 2-2:50PM, Bren Hall 1510\nOffice hours: Monday 11-12 pm (NCEAS)"
+    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: TBD"
   },
   {
     "objectID": "syllabus.html#modules",
     "href": "syllabus.html#modules",
     "title": "Course syllabus",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL part 1 & DuckDB\n\n\n4\nImporting data in the database + SQL part 2\n\n\n5\nAnalyzing the bird database using SQL + bash programming\n\n\n6\nUsing R & python to query databases\n\n\n7\nDocumenting your work: metdata & computing environment\n\n\n8\nSensitive data\n\n\n9\nEthical & responsible data mgnt\n\n\n10\nData licensing and publication\n\n\n\n*Schedule subject to change."
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R to query databases + bash programming\n\n\n7\nUsing Python to query databases + Documenting your work: metadata\n\n\n8\nCapturing your computing environment + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication\n\n\n\n*Schedule subject to change."
   },
   {
     "objectID": "syllabus.html#course-assessment",
@@ -490,11 +490,18 @@
     "text": "Course assessment\nYour performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week. We will use Canvas to manage the assignments."
   },
   {
-    "objectID": "syllabus.html#attendance-and-homework-policy",
-    "href": "syllabus.html#attendance-and-homework-policy",
+    "objectID": "syllabus.html#attendance-policy",
+    "href": "syllabus.html#attendance-policy",
     "title": "Course syllabus",
-    "section": "Attendance and homework policy",
-    "text": "Attendance and homework policy\nAttendance is required. Material will be given in class that is not covered by slides or background readings.\nHomework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. Homework turned in late will be docked 20% per day."
+    "section": "Attendance policy",
+    "text": "Attendance policy\nAttendance is required. Your presence and active participation will make a real difference, not just in this course, but in your future environmental data science career. The connections you build and the skills you sharpen here will help you succeed long after the quarter ends. Let’s make the most of it together! In addition not all the materials and interactive activities given in class will be covered by slides or background readings.\n\nMissing a class\nLife happens. Similar to missing a day at work, if you miss a class or discussion section then you are expected to:\n\n✉️ Be proactive: and notify your instructor as soon as possible and provide a brief explanation. Documentation is not required for short-term absences, but honesty and professionalism is expected in all communication.\n🔄 Catch up: You’ll need to work with the instructor or the TA to review any missed material.\n🤒 Stay home when you are sick! If you are feeling unwell, prioritize your health. Stay home and rest or work remotely.\n\nThe following accommodations for missing in-person activities can be provided upon student request:\n\nConsultation outside office hours\nZoom attendance (note that some sessions might not be suitable)\n\nStudents with disabilities should work with the Disabled Students Program (DSP) to determine appropriate accommodations.\n\n\nAttendance Concerns\n\n🚩 Frequent Absences: If you miss two or more consecutive classes, the instructor may reach out to check in. This is to ensure you are ok and aware of resources that can help you stay on track.\n⚠️ Extended Absences: If you anticipate missing three or more classes, you’ll need to contact the instructor, the MEDS Program Coordinator, and the Director of Student Affairs to discuss possible next steps. UCSB courses are taught in person, so extended absences may require a Leave of Absence, regardless of the attendance impact on your grade.\n🚫 Academic Dishonesty in Attendance Reporting: Fabricating reasons for absences is considered academic dishonesty and subject to disciplinary action under the UCSB Student Code of Conduct. If the instructor suspects this is the case, they will address it with you directly and may escalate it if needed."
+  },
+  {
+    "objectID": "syllabus.html#homework-policy",
+    "href": "syllabus.html#homework-policy",
+    "title": "Course syllabus",
+    "section": "Homework policy",
+    "text": "Homework policy\nHomework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. Homework turned in late will be docked 20% per day."
   },
   {
     "objectID": "syllabus.html#code-of-conduct",
