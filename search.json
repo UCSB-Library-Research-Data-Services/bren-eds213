@@ -487,7 +487,7 @@
     "href": "syllabus.html#course-assessment",
     "title": "Course syllabus",
     "section": "Course assessment",
-    "text": "Course assessment\nYour performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week. We will use Canvas to manage the assignments."
+    "text": "Course assessment\nYour performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework on week 9 & 10 due to capstones. We will use Canvas to manage the assignments."
   },
   {
     "objectID": "syllabus.html#attendance-policy",
@@ -501,7 +501,14 @@
     "href": "syllabus.html#homework-policy",
     "title": "Course syllabus",
     "section": "Homework policy",
-    "text": "Homework policy\nHomework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up. To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. Homework turned in late will be docked 20% per day."
+    "text": "Homework policy\nHomework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up. To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. Homework turned in late will be docked 20% per day."
+  },
+  {
+    "objectID": "syllabus.html#acknowledgment-of-tools-used",
+    "href": "syllabus.html#acknowledgment-of-tools-used",
+    "title": "Course syllabus",
+    "section": "Acknowledgment of tools used",
+    "text": "Acknowledgment of tools used\nThe use of AI assistant technologies falls within the purview of the Student Conduct Code and the Student Guide to Academic Integrity. It states that “Materials (written or otherwise) submitted to fulfill academic requirements must represent a student’s own efforts unless otherwise permitted by an instructor.” Therefore, we expect students to disclaim the use of any coding assistant or other LLMs (such as ChatGPT) and to write and understand every line of code that is submitted as part of assignments. We expect those tools to be used in a similar manner than Google or StackOverflow could be. In other words, we do not want students to simply copy-paste answers without taking the time to understand and modify the suggested code to make it theirs."
   },
   {
     "objectID": "syllabus.html#code-of-conduct",
