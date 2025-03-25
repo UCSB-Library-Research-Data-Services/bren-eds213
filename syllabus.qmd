@@ -25,6 +25,7 @@ This course will teach students the fundamentals of relational databases and dat
 - Discussion - session 1: Thursday 1-1:50 PM, BH 3022A
 - Discussion - session 2: Thursday 2-2:50 PM, BH 3022A
 - Office hours: TBD
+- Best way to contact use: email
 
 
 ## Modules
@@ -44,9 +45,27 @@ This course will teach students the fundamentals of relational databases and dat
  
 \*Schedule subject to change.
 
+
 ## Course assessment
 
 Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework on week 9 & 10 due to capstones. We will use Canvas to manage the assignments.
+
+## Homework policy
+
+Homework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up.  To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. ***Homework turned in late will be docked 20% per day.***
+
+
+### Acknowledgment of tools used
+
+The use of AI assistant technologies falls within the purview of the Student Conduct Code and the [Student Guide to Academic Integrity](https://studentconduct.sa.ucsb.edu/academic-integrity). It states that “Materials (written or otherwise) submitted to fulfill academic requirements must represent a student’s own efforts unless otherwise permitted by an instructor.” Therefore, we expect students to disclaim the use of any coding assistant or other LLMs (such as ChatGPT) and to write and understand every line of code that is submitted as part of assignments. We expect those tools to be used in a similar manner than Google or StackOverflow could be. In other words, we do not want students to simply copy-paste answers without taking the time to understand and modify the suggested code to make it theirs.
+
+### Resubmission
+
+**All students can resubmit their assignments three days after they have received
+initial feedback**. In this second submission, students may recover up to 50% of the
+points not obtained during the initial submission. Revisions, corrections, and
+improvements are crucial in the learning process! We greatly encourage you to
+resubmit your revised assignments
 
 
 ## Attendance policy
@@ -75,15 +94,6 @@ Students with disabilities should work with the Disabled Students Program (DSP) 
 - ⚠️  Extended Absences: If you anticipate missing three or more classes, you’ll need to contact the instructor, the MEDS Program Coordinator, and the Director of Student Affairs to discuss possible next steps. UCSB courses are taught in person, so extended absences may require a [Leave of Absence](https://www.graddiv.ucsb.edu/forms/leave-absence), regardless of the attendance impact on your grade.
 - 🚫 Academic Dishonesty in Attendance Reporting: Fabricating reasons for absences is considered academic dishonesty and subject to disciplinary action under the [UCSB Student Code of Conduct](https://regulations.sa.ucsb.edu/home). If the instructor suspects this is the case, they will address it with you directly and may escalate it if needed.
 
-
-## Homework policy
-
-Homework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up.  To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. ***Homework turned in late will be docked 20% per day.***
-
-
-## Acknowledgment of tools used
-
-The use of AI assistant technologies falls within the purview of the Student Conduct Code and the [Student Guide to Academic Integrity](https://studentconduct.sa.ucsb.edu/academic-integrity). It states that “Materials (written or otherwise) submitted to fulfill academic requirements must represent a student’s own efforts unless otherwise permitted by an instructor.” Therefore, we expect students to disclaim the use of any coding assistant or other LLMs (such as ChatGPT) and to write and understand every line of code that is submitted as part of assignments. We expect those tools to be used in a similar manner than Google or StackOverflow could be. In other words, we do not want students to simply copy-paste answers without taking the time to understand and modify the suggested code to make it theirs.
 
 ## Code of conduct
 
