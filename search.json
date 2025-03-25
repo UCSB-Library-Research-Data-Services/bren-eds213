@@ -424,14 +424,14 @@
     "href": "index.html#teaching-assistant",
     "title": "EDS 213: Databases and Data Management",
     "section": "Teaching Assistant",
-    "text": "Teaching Assistant\n\nAnnie Adams"
+    "text": "Teaching Assistant\n\nAnnie Adams (aradams@ucsb.edu )"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
     "title": "EDS 213: Databases and Data Management",
     "section": "Schedule",
-    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: TBD"
+    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: TBD\nBest way to contact us: email"
   },
   {
     "objectID": "index.html#course-content",
@@ -473,7 +473,7 @@
     "href": "syllabus.html#schedule",
     "title": "Course syllabus",
     "section": "Schedule",
-    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: TBD"
+    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: TBD\nBest way to contact use: email"
   },
   {
     "objectID": "syllabus.html#modules",
@@ -490,25 +490,18 @@
     "text": "Course assessment\nYour performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework on week 9 & 10 due to capstones. We will use Canvas to manage the assignments."
   },
   {
-    "objectID": "syllabus.html#attendance-policy",
-    "href": "syllabus.html#attendance-policy",
-    "title": "Course syllabus",
-    "section": "Attendance policy",
-    "text": "Attendance policy\nAttendance is required. Your presence and active participation will make a real difference, not just in this course, but in your future environmental data science career. The connections you build and the skills you sharpen here will help you succeed long after the quarter ends. Let’s make the most of it together! In addition not all the materials and interactive activities given in class will be covered by slides or background readings.\n\nMissing a class\nLife happens. Similar to missing a day at work, if you miss a class or discussion section then you are expected to:\n\n✉️ Be proactive: and notify your instructor as soon as possible and provide a brief explanation. Documentation is not required for short-term absences, but honesty and professionalism is expected in all communication.\n🔄 Catch up: You’ll need to work with the instructor or the TA to review any missed material.\n🤒 Stay home when you are sick! If you are feeling unwell, prioritize your health. Stay home and rest or work remotely.\n\nThe following accommodations for missing in-person activities can be provided upon student request:\n\nConsultation outside office hours\nZoom attendance (note that some sessions might not be suitable)\n\nStudents with disabilities should work with the Disabled Students Program (DSP) to determine appropriate accommodations.\n\n\nAttendance Concerns\n\n🚩 Frequent Absences: If you miss two or more consecutive classes, the instructor may reach out to check in. This is to ensure you are ok and aware of resources that can help you stay on track.\n⚠️ Extended Absences: If you anticipate missing three or more classes, you’ll need to contact the instructor, the MEDS Program Coordinator, and the Director of Student Affairs to discuss possible next steps. UCSB courses are taught in person, so extended absences may require a Leave of Absence, regardless of the attendance impact on your grade.\n🚫 Academic Dishonesty in Attendance Reporting: Fabricating reasons for absences is considered academic dishonesty and subject to disciplinary action under the UCSB Student Code of Conduct. If the instructor suspects this is the case, they will address it with you directly and may escalate it if needed."
-  },
-  {
     "objectID": "syllabus.html#homework-policy",
     "href": "syllabus.html#homework-policy",
     "title": "Course syllabus",
     "section": "Homework policy",
-    "text": "Homework policy\nHomework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up. To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. Homework turned in late will be docked 20% per day."
+    "text": "Homework policy\nHomework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up. To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. Homework turned in late will be docked 20% per day.\n\nAcknowledgment of tools used\nThe use of AI assistant technologies falls within the purview of the Student Conduct Code and the Student Guide to Academic Integrity. It states that “Materials (written or otherwise) submitted to fulfill academic requirements must represent a student’s own efforts unless otherwise permitted by an instructor.” Therefore, we expect students to disclaim the use of any coding assistant or other LLMs (such as ChatGPT) and to write and understand every line of code that is submitted as part of assignments. We expect those tools to be used in a similar manner than Google or StackOverflow could be. In other words, we do not want students to simply copy-paste answers without taking the time to understand and modify the suggested code to make it theirs.\n\n\nResubmission\nAll students can resubmit their assignments three days after they have received initial feedback. In this second submission, students may recover up to 50% of the points not obtained during the initial submission. Revisions, corrections, and improvements are crucial in the learning process! We greatly encourage you to resubmit your revised assignments"
   },
   {
-    "objectID": "syllabus.html#acknowledgment-of-tools-used",
-    "href": "syllabus.html#acknowledgment-of-tools-used",
+    "objectID": "syllabus.html#attendance-policy",
+    "href": "syllabus.html#attendance-policy",
     "title": "Course syllabus",
-    "section": "Acknowledgment of tools used",
-    "text": "Acknowledgment of tools used\nThe use of AI assistant technologies falls within the purview of the Student Conduct Code and the Student Guide to Academic Integrity. It states that “Materials (written or otherwise) submitted to fulfill academic requirements must represent a student’s own efforts unless otherwise permitted by an instructor.” Therefore, we expect students to disclaim the use of any coding assistant or other LLMs (such as ChatGPT) and to write and understand every line of code that is submitted as part of assignments. We expect those tools to be used in a similar manner than Google or StackOverflow could be. In other words, we do not want students to simply copy-paste answers without taking the time to understand and modify the suggested code to make it theirs."
+    "section": "Attendance policy",
+    "text": "Attendance policy\nAttendance is required. Your presence and active participation will make a real difference, not just in this course, but in your future environmental data science career. The connections you build and the skills you sharpen here will help you succeed long after the quarter ends. Let’s make the most of it together! In addition not all the materials and interactive activities given in class will be covered by slides or background readings.\n\nMissing a class\nLife happens. Similar to missing a day at work, if you miss a class or discussion section then you are expected to:\n\n✉️ Be proactive: and notify your instructor as soon as possible and provide a brief explanation. Documentation is not required for short-term absences, but honesty and professionalism is expected in all communication.\n🔄 Catch up: You’ll need to work with the instructor or the TA to review any missed material.\n🤒 Stay home when you are sick! If you are feeling unwell, prioritize your health. Stay home and rest or work remotely.\n\nThe following accommodations for missing in-person activities can be provided upon student request:\n\nLesson materials will be made available online the same day\nConsultation outside office hours\n\nStudents with disabilities should work with the Disabled Students Program (DSP) to determine appropriate accommodations.\n\n\nAttendance Concerns\n\n🚩 Frequent Absences: If you miss two or more consecutive classes, the instructor may reach out to check in. This is to ensure you are ok and aware of resources that can help you stay on track.\n⚠️ Extended Absences: If you anticipate missing three or more classes, you’ll need to contact the instructor, the MEDS Program Coordinator, and the Director of Student Affairs to discuss possible next steps. UCSB courses are taught in person, so extended absences may require a Leave of Absence, regardless of the attendance impact on your grade.\n🚫 Academic Dishonesty in Attendance Reporting: Fabricating reasons for absences is considered academic dishonesty and subject to disciplinary action under the UCSB Student Code of Conduct. If the instructor suspects this is the case, they will address it with you directly and may escalate it if needed."
   },
   {
     "objectID": "syllabus.html#code-of-conduct",
