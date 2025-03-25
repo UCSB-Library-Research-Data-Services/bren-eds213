@@ -52,12 +52,12 @@ Your performance in this course will depend 90% on weekly homework assignments a
 
 ## Homework policy
 
-Homework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up.  To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. ***Homework turned in late will be docked 20% per day.***
+Homework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up.  To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. ***Homework turned in late will be docked 20% per day.*** Peer-to-peer learning is encouraged but each submission needs to be individual, which means students are expected to be able to explain all their answers in details. 
 
 
 ### Acknowledgment of tools used
 
-The use of AI assistant technologies falls within the purview of the Student Conduct Code and the [Student Guide to Academic Integrity](https://studentconduct.sa.ucsb.edu/academic-integrity). It states that “Materials (written or otherwise) submitted to fulfill academic requirements must represent a student’s own efforts unless otherwise permitted by an instructor.” Therefore, we expect students to disclaim the use of any coding assistant or other LLMs (such as ChatGPT) and to write and understand every line of code that is submitted as part of assignments. We expect those tools to be used in a similar manner than Google or StackOverflow could be. In other words, we do not want students to simply copy-paste answers without taking the time to understand and modify the suggested code to make it theirs.
+The use of AI assistant technologies falls within the purview of the Student Conduct Code and the [Student Guide to Academic Integrity](https://studentconduct.sa.ucsb.edu/academic-integrity). It states that “Materials (written or otherwise) submitted to fulfill academic requirements must represent a student’s own efforts unless otherwise permitted by an instructor.” Therefore, we expect students to disclaim the use of any coding assistant or LLMs (such as ChatGPT) and to write and understand every line of code that is submitted as part of assignments. We expect those tools to be used in a similar manner than Google or StackOverflow could be. In other words, copy-pasting answers without taking the time to understand and modify the suggested code to make it yours is not an acceptable practice. As you are building your skills in SQL and databases, we recommend to refrain the use of AI and keep practicing your skills and favor peer-to-peer learning.
 
 ### Resubmission
 
