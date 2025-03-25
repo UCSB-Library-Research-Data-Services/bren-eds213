@@ -34,7 +34,7 @@ This course will teach students the fundamentals of relational databases and dat
 | 1    | [Relational databases and data modeling](modules/week01/index-01.qmd)  |
 | 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) |
 | 3    | [Introduction to SQL (part 1) & DuckDB](modules/week03/index-03.qmd)            |
-| 4    | [SQL part 2 + Analyzing the bird database using SQL](modules/week04/index-04.qmd)          |
+| 4    | [SQL part 2 + Analyzing the bird database using SQL](modules/week04/index-04.qmd)|
 | 5    | [I/O & data management + Advanced database topics (indexing, triggers, ...)](modules/week05/index-05.qmd) |
 | 6    | [Using R to query databases + bash programming](modules/week06/index-06.qmd)     |
 | 7    | [Using Python to query databases + Documenting your work: metadata](modules/week07/index-07.qmd)|
@@ -46,7 +46,7 @@ This course will teach students the fundamentals of relational databases and dat
 
 ## Course assessment
 
-Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework the last week. We will use Canvas to manage the assignments.
+Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework on week 9 & 10 due to capstones. We will use Canvas to manage the assignments.
 
 
 ## Attendance policy
@@ -78,8 +78,12 @@ Students with disabilities should work with the Disabled Students Program (DSP) 
 
 ## Homework policy
 
-Homework is expected to be turned in on time. A generous amount of time will be given to complete assignments. Do not wait until the last minute to work on homework in case something unexpected comes up.  To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. ***Homework turned in late will be docked 20% per day.***
+Homework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up.  To be considered, a request for an extension must be submitted within business hours prior to the homework deadline. ***Homework turned in late will be docked 20% per day.***
 
+
+## Acknowledgment of tools used
+
+The use of AI assistant technologies falls within the purview of the Student Conduct Code and the [Student Guide to Academic Integrity](https://studentconduct.sa.ucsb.edu/academic-integrity). It states that “Materials (written or otherwise) submitted to fulfill academic requirements must represent a student’s own efforts unless otherwise permitted by an instructor.” Therefore, we expect students to disclaim the use of any coding assistant or other LLMs (such as ChatGPT) and to write and understand every line of code that is submitted as part of assignments. We expect those tools to be used in a similar manner than Google or StackOverflow could be. In other words, we do not want students to simply copy-paste answers without taking the time to understand and modify the suggested code to make it theirs.
 
 ## Code of conduct
 
