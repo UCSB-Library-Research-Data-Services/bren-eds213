@@ -12,24 +12,6 @@ DuckDB has been installed on the MEDS server. We also recommend to install it on
 
 You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:
 
-In Visual Code:
-
-- open the palette <kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>P</kbd> and search for: `Preferences: Open Keyboard Shortcuts (JSON)` ![](img/duckdb-vscode_setup.png)
-
-- enter the following text & save
-```json
-// Place your key bindings in this file to override the defaults
-[
-    {
-        "key": "shift+enter",
-        "command": "workbench.action.terminal.runSelectedText"
-    }
-]
-
-```
-
-OR alternative method to set this up: 
-
 Under the main VS menu, go to _Settings_ -> Keyboard Shortcuts, search for "run selected", the "run selected text in active terminal" will be one of the options.  Set the shift-enter keypress by double-clicking.  Right-click on the _When_ column, select _Change When Expression_, and add `editorLangId == 'sql'` to restrict to just SQL files and not every kind of file.
 
 *Now you can hit <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!*
