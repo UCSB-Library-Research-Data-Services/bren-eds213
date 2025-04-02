@@ -1,0 +1,9 @@
+---
+title: "Week 1 - Naming is hard"
+---
+
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301/assignments/224311>** <-- fix this
+
+In class we discussed the difficulty of selecting the right names for quantities. This can often involve reflecting on what a quantity actually **is** or represents. Settling on a name can be an iterative process.
+
+Please reflect on your capstone work. Describe a quantity (a filename, a variable name, etc.) for which you changed the name. Or, if you have yet to change any names, describe a quantity that would benefit from being renamed. Describe what the quantity represents in the context of your project. What are the old and new names, why was the old name not the best, and why is the new name an improvement?
