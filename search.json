@@ -224,228 +224,165 @@
     "text": "Homework\nProtect yourself\nCreate a trigger\nBash essentials\nCreate a test harness"
   },
   {
-    "objectID": "modules/week01/index-01.html",
-    "href": "modules/week01/index-01.html",
-    "title": "Week 1 - Relational databases and data modeling",
+    "objectID": "modules/week01/hw-01-3.html",
+    "href": "modules/week01/hw-01-3.html",
+    "title": "Week 1 - Naming is hard",
     "section": "",
-    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/224311 &lt;– fix this\nIn class we discussed the difficulty of selecting the right names for quantities. This can often involve reflecting on what a quantity actually is or represents. Settling on a name can be an iterative process.\nPlease reflect on your capstone work. Describe a quantity (a filename, a variable name, etc.) for which you changed the name. Or, if you have yet to change any names, describe a quantity that would benefit from being renamed. Describe what the quantity represents in the context of your project. What are the old and new names, why was the old name not the best, and why is the new name an improvement?"
   },
   {
-    "objectID": "modules/week01/index-01.html#learning-objectives",
-    "href": "modules/week01/index-01.html#learning-objectives",
-    "title": "Week 1 - Relational databases and data modeling",
+    "objectID": "modules/week01/hw-01-2.html",
+    "href": "modules/week01/hw-01-2.html",
+    "title": "Week 1 - Data modeling",
     "section": "",
-    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/224311\nCreate a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL’s data definition language as is possible.\nIn the class data GitHub repository, week 1 directory you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.\nPlease consider:\nYou may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.\nPlease express your table definition in SQL, but don’t worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the DuckDB CREATE TABLE documentation.\nFinally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don’t write an essay! Bullet points are sufficient. But do please explain your thought process."
   },
   {
-    "objectID": "modules/week01/index-01.html#slides",
-    "href": "modules/week01/index-01.html#slides",
-    "title": "Week 1 - Relational databases and data modeling",
-    "section": "Slides",
-    "text": "Slides\nslides-01.pptx"
+    "objectID": "modules/week01/hw-01-2.html#appendix",
+    "href": "modules/week01/hw-01-2.html#appendix",
+    "title": "Week 1 - Data modeling",
+    "section": "Appendix",
+    "text": "Appendix\nCREATE TABLE Species (\n    Code TEXT PRIMARY KEY,\n    Common_name TEXT UNIQUE NOT NULL,\n    Scientific_name TEXT,\n    Relevance TEXT\n);\n\nCREATE TABLE Site (\n    Code TEXT PRIMARY KEY,\n    Site_name TEXT UNIQUE NOT NULL,\n    Location TEXT NOT NULL,\n    Latitude REAL NOT NULL CHECK (Latitude BETWEEN -90 AND 90),\n    Longitude REAL NOT NULL CHECK (Longitude BETWEEN -180 AND 180),\n    \"Total_Study_Plot_Area_(ha)\" REAL NOT NULL\n        CHECK (\"Total_Study_Plot_Area_(ha)\" &gt; 0),\n    UNIQUE (Latitude, Longitude)\n);\n\nCREATE TABLE Color_band_code (\n    Code TEXT PRIMARY KEY,\n    Color TEXT NOT NULL UNIQUE\n);\n\nCREATE TABLE Personnel (\n    Abbreviation TEXT PRIMARY KEY,\n    Name TEXT NOT NULL UNIQUE\n);"
   },
   {
-    "objectID": "modules/week01/index-01.html#resources",
-    "href": "modules/week01/index-01.html#resources",
-    "title": "Week 1 - Relational databases and data modeling",
+    "objectID": "modules/week09/index-09.html",
+    "href": "modules/week09/index-09.html",
+    "title": "Week 9 - Sensitive data",
+    "section": "",
+    "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while utilizing an R package to quantify the information loss and utility."
+  },
+  {
+    "objectID": "modules/week09/index-09.html#learning-goals",
+    "href": "modules/week09/index-09.html#learning-goals",
+    "title": "Week 9 - Sensitive data",
+    "section": "",
+    "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while utilizing an R package to quantify the information loss and utility."
+  },
+  {
+    "objectID": "modules/week09/index-09.html#student-notes",
+    "href": "modules/week09/index-09.html#student-notes",
+    "title": "Week 9 - Sensitive data",
+    "section": "Student notes",
+    "text": "Student notes\nBefore class, install the sdcMicro package if you choose not to use the servers.\nIf you are testing using sensitive data, make sure to launch it from RStudio, not from the website."
+  },
+  {
+    "objectID": "modules/week09/index-09.html#slides-and-other-materials",
+    "href": "modules/week09/index-09.html#slides-and-other-materials",
+    "title": "Week 9 - Sensitive data",
+    "section": "Slides and other materials",
+    "text": "Slides and other materials\n\nslides-09.pptx\nDemo: South Park Case files - update your fork!"
+  },
+  {
+    "objectID": "modules/week09/index-09.html#resources",
+    "href": "modules/week09/index-09.html#resources",
+    "title": "Week 9 - Sensitive data",
     "section": "Resources",
-    "text": "Resources\n\nhttps://learning.nceas.ucsb.edu/2023-06-delta/session_09.html\n\nVery brief introduction to data modeling, ties into “tidy data.”\n\nChristoph Wohner, Johannes Peterseil, and Hermann Klug (2022). Designing and implementing a data model for describing environmental monitoring and research sites. Ecological Informatics 70, 101708.\nhttps://doi.org/10.1016/j.ecoinf.2022.101708\n\nGood case study.\n\nGerald A. Burnette (2022). Managing environmental data: principles, techniques, and best practices. CRC Press.\nAccess via Library Catalog\n\nComprehensive text, specific to environmental sciences.\n\nGraeme C. Simsion and Graham C. Witt (2005). Data Modeling Essentials. 3rd ed. Amsterdam: Morgan Kaufmann.\nAccess via Library Catalog\nGoogle Books\n\nComprehensive text, not specific to the environmental sciences.\n\nHartmut Hebbel (1994). Environmental data modeling. Annals of Operations Research 54, 263-278.\nhttps://doi.org/10.1007/BF02031737\n\nA broader view of data organization.\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+    "text": "Resources\n\nsdcMicro Documentation: https://sdcpractice.readthedocs.io/en/latest/intro.html\nsdcMicro Shiny app: https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html\n\nOther useful links can be found on slides."
   },
   {
-    "objectID": "modules/week01/index-01.html#homework",
-    "href": "modules/week01/index-01.html#homework",
-    "title": "Week 1 - Relational databases and data modeling",
-    "section": "Homework",
-    "text": "Homework\nCreate an ER diagram\nData modeling exercise"
+    "objectID": "modules/week09/index-09.html#suggested-readings",
+    "href": "modules/week09/index-09.html#suggested-readings",
+    "title": "Week 9 - Sensitive data",
+    "section": "Suggested readings",
+    "text": "Suggested readings\n\nBledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), https://doi.org/10.1098/rspb.2022.0938\nBourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. https://doi.org/10.1525/cse.2017.sc.454841\nGehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. https://doi.org/10.1007/978-1-4419-5906-5_899\nSamarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf"
   },
   {
-    "objectID": "modules/week01/hw-01-1.html",
-    "href": "modules/week01/hw-01-1.html",
-    "title": "Week 1 - Create an ER diagram",
+    "objectID": "modules/week09/index-09.html#in-class-exercise-day-2",
+    "href": "modules/week09/index-09.html#in-class-exercise-day-2",
+    "title": "Week 9 - Sensitive data",
+    "section": "In-class exercise (Day 2)",
+    "text": "In-class exercise (Day 2)\nInstructions for the Whale Entanglement Exercise"
+  },
+  {
+    "objectID": "modules/week09/hw-09.html",
+    "href": "modules/week09/hw-09.html",
+    "title": "Week 9 - How FAIR is your data set?",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/236835\nCreate a physical ER (entity-relationship) diagram for the Harry Potter tables shown in class. It will be helpful to refer back to the slides.\nAs discussed briefly in class, a logical or conceptual ER diagram focuses on high-level abstractions, and doesn’t address how entities and relationships actually get implemented. In particular, in a logical ER diagram a many-to-many relationship between two entities might be represented by a simple line, even though in implementation a many-to-many relationship requires a separate table to store the relationship tuples. By contrast, a physical ER diagram describes actual tables. You are being asked to create a physical ER diagram.\nRequirements:\n\nYour diagram should include Student, House, Wand, Course, and Enrollment tables.\nEach table should list the name of the entity, any attributes, and which attribute(s) form the primary key, if there is one.\nA foreign key relationship from an attribute in one table to an attribute in another table should be indicated by a line between the two attributes. The ends of the lines should reflect the cardinalities at each end. See the example below.\n\nTwist #1! The slides shown in class demonstrated a many-to-one relationship between wands and students, i.e., one student might own multiple wands, but any given wand has only one owner. However, for this exercise, you are being asked to model a many-to-many relationship between wands and students (it happened in the books that the same wand was used by different students, though at different times, of course). To create a many-to-many relationship, you will need to invent an intermediate table that represents the student-wand ownership relation, in the same way the Enrollment table intermediates between the Student and Course tables.\nTwist #2! You must also store the date range (i.e., begin date and end date) of wand ownership. You will need to think where these date attributes belong. Are they attributes of a student? Of a wand? Of something else?\nVarious symbologies have been developed for ER diagrams. For this assignment, represent the “one” side of a many-to-one relationship by a single vertical bar, and represent the “many” side by a so-called crow’s foot. In the end, your diagram should visually resemble something like this:\n\nYou can use a tool like dbdiagram.io as was used to create the above diagram, or any other drawing tool. Or you can just draw it by hand and take a picture with your phone. Regardless of the method, be sure to indicate primary keys somehow (bold text, underlined text, add “PK” next to the attribute, etc., whatever works visually)."
+    "text": "Using the FAIR Assessment tool, evaluate the FAIRness of the two following data sets:\n\nEphemeral wetland macroinvertebrate communities of the Great Plains\nInsect functional traits on arable land, Finland 2020\nWhich one would you prefer to reuse?\n\n\nNotes:\n\nPlease add narrative justification to explain your choices done using the FAIR assessment tool\nThere are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation, but discuss variability in your justification\n\nSubmit your answers (2 assessments with the justifications & answer to the preference/third question) via Canvas\nTotal points: 100"
   },
   {
-    "objectID": "modules/week09/FAIR_assessment_tool.html",
-    "href": "modules/week09/FAIR_assessment_tool.html",
-    "title": "FAIR assessment tool",
+    "objectID": "modules/week08/case-a.html",
+    "href": "modules/week08/case-a.html",
+    "title": "Case Study A: Containing the flames of bias in machine learning",
     "section": "",
-    "text": "Please justify your answer using 1-2 sentences"
+    "text": "Read the scenario and answer questions based on the weekly readings and the lecture:\nWildfires have become increasingly common and destructive in many regions worldwide, causing significant environmental and social problems. In response, many communities have implemented fire prevention and management strategies, including using machine learning (ML) algorithms to predict and mitigate the risk of wildfires.\nOakdale, located in a densely forested area in British Columbia, Canada, has implemented an ML algorithm to predict the risk of wildfires and prioritize fire prevention resources. The algorithm uses a variety of inputs, including historical fire data, weather patterns, topography, and vegetation coverage, to generate a risk score for each area of the city. However, after several months of using the algorithm, city officials noticed that specific neighborhoods with low-income and minority populations consistently receive lower risk scores than other areas with very similar environmental conditions. Upon closer examination of those patterns in the data, they realized that the historical data used to train the algorithm was heavily concentrated on more affluent and predominantly white neighborhoods, resulting in a skewed view of the fire risks for the whole city."
   },
   {
-    "objectID": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
-    "href": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
-    "title": "FAIR assessment tool",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis exercise has been adapted from the UK Data Service https://ukdataservice.ac.uk/app/uploads/exercise_fairdata.pdf and is licensed under a Creative Commons Attribution CC-BY 4.0 International License."
-  },
-  {
-    "objectID": "modules/week08/case-d.html",
-    "href": "modules/week08/case-d.html",
-    "title": "eds213",
+    "objectID": "modules/week08/case-a.html#instructions",
+    "href": "modules/week08/case-a.html#instructions",
+    "title": "Case Study A: Containing the flames of bias in machine learning",
     "section": "",
-    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nTina, a researcher working on coastal vulnerability analysis in Southern California, acquired LiDAR data from a vendor in 2017. Based on the acquired dataset, she submitted a paper to a high-impact academic journal early this year. The paper was accepted but is pending publication until Tina complies with the mandate of sharing supporting data and associated documentation in an open repository. While inspecting the data documentation, Max, the repository data manager, noticed that the files included raw and processed data from a vendor; however, no explicit declaration of authorization to share the data was included in the submission package. Tina presented an invoice of $20,000 USD certifying that she obtained the data and said she was told verbally that the data was not subject to any use restrictions."
+    "text": "Read the scenario and answer questions based on the weekly readings and the lecture:\nWildfires have become increasingly common and destructive in many regions worldwide, causing significant environmental and social problems. In response, many communities have implemented fire prevention and management strategies, including using machine learning (ML) algorithms to predict and mitigate the risk of wildfires.\nOakdale, located in a densely forested area in British Columbia, Canada, has implemented an ML algorithm to predict the risk of wildfires and prioritize fire prevention resources. The algorithm uses a variety of inputs, including historical fire data, weather patterns, topography, and vegetation coverage, to generate a risk score for each area of the city. However, after several months of using the algorithm, city officials noticed that specific neighborhoods with low-income and minority populations consistently receive lower risk scores than other areas with very similar environmental conditions. Upon closer examination of those patterns in the data, they realized that the historical data used to train the algorithm was heavily concentrated on more affluent and predominantly white neighborhoods, resulting in a skewed view of the fire risks for the whole city."
   },
   {
-    "objectID": "modules/week08/case-d.html#instructions",
-    "href": "modules/week08/case-d.html#instructions",
-    "title": "eds213",
-    "section": "",
-    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nTina, a researcher working on coastal vulnerability analysis in Southern California, acquired LiDAR data from a vendor in 2017. Based on the acquired dataset, she submitted a paper to a high-impact academic journal early this year. The paper was accepted but is pending publication until Tina complies with the mandate of sharing supporting data and associated documentation in an open repository. While inspecting the data documentation, Max, the repository data manager, noticed that the files included raw and processed data from a vendor; however, no explicit declaration of authorization to share the data was included in the submission package. Tina presented an invoice of $20,000 USD certifying that she obtained the data and said she was told verbally that the data was not subject to any use restrictions."
-  },
-  {
-    "objectID": "modules/week08/case-d.html#questions",
-    "href": "modules/week08/case-d.html#questions",
-    "title": "eds213",
+    "objectID": "modules/week08/case-a.html#questions",
+    "href": "modules/week08/case-a.html#questions",
+    "title": "Case Study A: Containing the flames of bias in machine learning",
     "section": "Questions",
-    "text": "Questions\n\nQuestion 1\nMax should advise Tina to acquire explicit permission from the data vendor to share the data.\n\nTrue\nFalse\n\n\n\nQuestion 2\nBecause Tina paid for the data, Max can move forward with the data publication without infringing on any legal and ethical aspects.\n\nTrue\nFalse\n\n\n\nQuestion 3\nIf Tina does not acquire explicit permission from the vendor to share the data, Max can’t publish the data in the repository.\n\nTrue\nFalse\n\n\n\nQuestion 4\nIf Tina does not acquire written permission to share the data, Max can suggest Tina share only aggregated data.\n\nTrue\nFalse"
+    "text": "Questions\n\nQuestion 1\nThis case presents an ethical concern primarily associated with what?\n\n\nQuestion 2\nAccording to McGovern et al. (2022), which AI/ML issues can be identified in this case study? Justify your answer.\n\n\nQuestion 3\nSuppose you were hired as a consultant by Oakdale’s city officials. Which of the following recommendations would you give them to prevent perpetuating bias and inequitable outcomes? (Select all that apply)\n\nImplement transparency measures that make the algorithms’ decision-making processes more visible and understandable to stakeholders. This may include clarifying how decisions are made, sharing data sources, and providing access to model outputs. Fully document any limitations and shortcomings of the model and data.\nInvolve diverse stakeholders in the algorithm development and testing, including individuals from communities whose outputs may disproportionately impact. This can help identify and address potential biases and ensure that the algorithm is designed with the interests of all community members in mind.\nContinue using the algorithm as the official decision-making source until the re-training is completed. After all, ML methods are more efficient than traditional fire prevention strategies (e.g., fire breaks and vegetation management)."
   },
   {
-    "objectID": "modules/week08/case-c.html",
-    "href": "modules/week08/case-c.html",
-    "title": "Case Study C: To reuse or not reuse, that is the key question!",
+    "objectID": "modules/week08/index-08.html",
+    "href": "modules/week08/index-08.html",
+    "title": "Week 8 - Ethical and responsible data management",
     "section": "",
-    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nAdam is a researcher for a non-profit organization dedicated to accelerating the adoption of solar energy. The organization relies on data from various sources, including sensors, satellite imagery, and field measurements, to inform solar energy allocation, usage, and conservation decisions.\nRecently, he identified an available dataset containing data on the solar energy market size, including trends, competition, and customer demand. These data can inform business and policy decisions related to solar energy adoption. Adam is particularly excited because this is a multivariate time series dataset from the past ten years. Also, the data documentation listed many important variables for his project, including the compound annual growth rates (CAGR) for solar energy companies. However, when Adam inspected some of the data files, he noticed a few data points that needed to be corrected. For example, some rows had NAs; others had 000, 999, and -999 or were utterly blank; the documentation does not help him infer those values.\nWhen he contacted the corresponding researcher for clarification, he was told these inconsistencies could have been caused either due to system migration or by human error in inaccurate data entry. The researcher mentioned that his team had multiple contributors throughout the years and noted there were no enforced validation rules or data quality checks. Ultimately, Adam should choose a solution that balances the benefits of using the existing dataset with the potential risks of using incomplete or inaccurate data.\nAdam faces a dilemma. On the one hand, the dataset could provide valuable insights into the solar energy market and inform better policies and management decisions. On the other hand, the missing and anomalous data could affect the dataset’s overall quality and integrity, potentially leading to incorrect conclusions and decisions."
+    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nRelate ethical and responsible data management principles to real-world scenarios"
   },
   {
-    "objectID": "modules/week08/case-c.html#instructions",
-    "href": "modules/week08/case-c.html#instructions",
-    "title": "Case Study C: To reuse or not reuse, that is the key question!",
+    "objectID": "modules/week08/index-08.html#learning-objectives",
+    "href": "modules/week08/index-08.html#learning-objectives",
+    "title": "Week 8 - Ethical and responsible data management",
     "section": "",
-    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nAdam is a researcher for a non-profit organization dedicated to accelerating the adoption of solar energy. The organization relies on data from various sources, including sensors, satellite imagery, and field measurements, to inform solar energy allocation, usage, and conservation decisions.\nRecently, he identified an available dataset containing data on the solar energy market size, including trends, competition, and customer demand. These data can inform business and policy decisions related to solar energy adoption. Adam is particularly excited because this is a multivariate time series dataset from the past ten years. Also, the data documentation listed many important variables for his project, including the compound annual growth rates (CAGR) for solar energy companies. However, when Adam inspected some of the data files, he noticed a few data points that needed to be corrected. For example, some rows had NAs; others had 000, 999, and -999 or were utterly blank; the documentation does not help him infer those values.\nWhen he contacted the corresponding researcher for clarification, he was told these inconsistencies could have been caused either due to system migration or by human error in inaccurate data entry. The researcher mentioned that his team had multiple contributors throughout the years and noted there were no enforced validation rules or data quality checks. Ultimately, Adam should choose a solution that balances the benefits of using the existing dataset with the potential risks of using incomplete or inaccurate data.\nAdam faces a dilemma. On the one hand, the dataset could provide valuable insights into the solar energy market and inform better policies and management decisions. On the other hand, the missing and anomalous data could affect the dataset’s overall quality and integrity, potentially leading to incorrect conclusions and decisions."
+    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nRelate ethical and responsible data management principles to real-world scenarios"
   },
   {
-    "objectID": "modules/week08/case-c.html#questions",
-    "href": "modules/week08/case-c.html#questions",
-    "title": "Case Study C: To reuse or not reuse, that is the key question!",
-    "section": "Questions",
-    "text": "Questions\n\nQuestion 1\nSuppose Adam is leaning toward reusing the dataset despite the identified problems. What general ethical and responsible steps would you advise him to take moving forward? (Select all that apply)\n\nAdam should carefully examine the dataset to map all existing issues to determine the extent of missing and anomalous data and how it could affect the accuracy of his analysis.\nIf Adam collects new data, he should enforce data validation rules to tables and perform quality checks to avoid similar problems.\nIf Adam integrates new data and perform all necessarily adjustments to remove uncertainties and other problems in the data, he no longer needs to attribute original data creators.\nIf the dataset has significant missing or anomalous data, Adam may need to collect additional data to ensure the analysis is accurate and representative. This may involve additional time and resources but could lead to more accurate and reliable insights.\nAdam may be able to proceed with the analysis after carefully documenting and accounting for any uncertainties or limitations in the data.\nAdam should produce new documentation for the dataset based on all improvements he makes to the original data."
+    "objectID": "modules/week08/index-08.html#slides",
+    "href": "modules/week08/index-08.html#slides",
+    "title": "Week 8 - Ethical and responsible data management",
+    "section": "Slides",
+    "text": "Slides\nslides-08.pptx\nSuggested readings\n\nBoté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) http://hdl.handle.net/2445/151341\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\n\nAdditional suggested readings are noted in the slides."
   },
   {
-    "objectID": "modules/week08/case-b.html",
-    "href": "modules/week08/case-b.html",
-    "title": "Case Study B: The caveat of the caviar: navigating ethics to protect endangered river wildlife",
+    "objectID": "modules/week08/index-08.html#case-based-discussion",
+    "href": "modules/week08/index-08.html#case-based-discussion",
+    "title": "Week 8 - Ethical and responsible data management",
+    "section": "Case-based discussion:",
+    "text": "Case-based discussion:\n\nCase Study A: Containing the flames of bias in machine learning\nCase Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife\nCase Study C: To reuse or not reuse, that is the key question!\nCase Study D: Navigating the complexities of ownership zones"
+  },
+  {
+    "objectID": "modules/week02/hw-02.html",
+    "href": "modules/week02/hw-02.html",
+    "title": "Week 2 - Data Cleaning",
     "section": "",
-    "text": "Read the scenario and answer questions based on the weekly readings and the lecture:\nA team of environmental scientists from the University of Wisconsin is researching the impact of climate change on the Mississippi River wildlife. The research involves collecting data on various environmental factors, including water temperature, salinity, pH, and nutrient levels, as well as data on the abundance and diversity of aquatic species on the lower basins of the river.\nThe team collects the data using various methods, including river sensors, underwater cameras, and traditional sampling techniques. The data is stored on a cloud-based platform, allowing sharing and real-time collaboration with multiple partners. However, the researchers soon realized that some of the collected data might be sensitive, including information on the distribution and abundance of the pallid sturgeon, recently listed by the Wisconsin Department of Natural Resources as one of the endangered species. They also realized that some data points might be of commercial interest, which can threaten the protection of the species and its habitat. For example, exposing the exact locations of the pallid sturgeon and their critical habitats could lead to increased poaching or unauthorized fishing, as the species is highly valued for its caviar.\nResearchers face ethical considerations related to sensitive data sharing. They want to comply with best practices in open science. However, in this process, they must balance the need to share their data openly to advance research and understanding of climate change and the Mississippi River ecosystem while protecting sensitive data and preventing it from being used for commercial purposes that could harm the environment."
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments to your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd eds213_data_cleaning_assign_YOURNAME.qmd should run if your repo is cloned locally and\nthe code should output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder\n\nNote: We recommend starting by importing the csv file with the corrected Snow_cover column (data/processed/snow_cover.csv) we generated during class (my code here)\n\n\nOn Canvas:\n\nAdd the URL to your fork on GitHub at the top of your quarto document\nUpload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)"
   },
   {
-    "objectID": "modules/week08/case-b.html#instructions",
-    "href": "modules/week08/case-b.html#instructions",
-    "title": "Case Study B: The caveat of the caviar: navigating ethics to protect endangered river wildlife",
+    "objectID": "installing-duckdb.html",
+    "href": "installing-duckdb.html",
+    "title": "Installing duckDB",
     "section": "",
-    "text": "Read the scenario and answer questions based on the weekly readings and the lecture:\nA team of environmental scientists from the University of Wisconsin is researching the impact of climate change on the Mississippi River wildlife. The research involves collecting data on various environmental factors, including water temperature, salinity, pH, and nutrient levels, as well as data on the abundance and diversity of aquatic species on the lower basins of the river.\nThe team collects the data using various methods, including river sensors, underwater cameras, and traditional sampling techniques. The data is stored on a cloud-based platform, allowing sharing and real-time collaboration with multiple partners. However, the researchers soon realized that some of the collected data might be sensitive, including information on the distribution and abundance of the pallid sturgeon, recently listed by the Wisconsin Department of Natural Resources as one of the endangered species. They also realized that some data points might be of commercial interest, which can threaten the protection of the species and its habitat. For example, exposing the exact locations of the pallid sturgeon and their critical habitats could lead to increased poaching or unauthorized fishing, as the species is highly valued for its caviar.\nResearchers face ethical considerations related to sensitive data sharing. They want to comply with best practices in open science. However, in this process, they must balance the need to share their data openly to advance research and understanding of climate change and the Mississippi River ecosystem while protecting sensitive data and preventing it from being used for commercial purposes that could harm the environment."
+    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
   },
   {
-    "objectID": "modules/week08/case-b.html#questions",
-    "href": "modules/week08/case-b.html#questions",
-    "title": "Case Study B: The caveat of the caviar: navigating ethics to protect endangered river wildlife",
-    "section": "Questions",
-    "text": "Questions\n\nQuestion 1\nAs a data manager, what recommendations would you offer to the researchers to avoid commercial exploitation of the pallid sturgeon while contributing to advancing the research in the field? You do not need to write a long essay; elaborating your advice in bullet points is enough.\n\n\nQuestion 2\nAs a general rule, the _____________ of endangered, sensitive species should not be shared publicly. (hint: 1-2 words)"
-  },
-  {
-    "objectID": "modules/week02/index-02.html",
-    "href": "modules/week02/index-02.html",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "objectID": "installing-duckdb.html#installation",
+    "href": "installing-duckdb.html#installation",
+    "title": "Installing duckDB",
     "section": "",
-    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
   },
   {
-    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
-    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
-    "section": "",
-    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
+    "objectID": "installing-duckdb.html#visual-code-integration-optional",
+    "href": "installing-duckdb.html#visual-code-integration-optional",
+    "title": "Installing duckDB",
+    "section": "Visual code integration (optional)",
+    "text": "Visual code integration (optional)\nYou can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:\nUnder the main VS menu, go to Settings -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the When column, select Change When Expression, and add editorLangId == 'sql' to restrict to just SQL files and not every kind of file.\nNow you can hit Shift+Return at then end of a line in your SQL script and it should run the command directly in the terminal!"
   },
   {
-    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
-    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
-    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
-    "section": "Analyzing the data from the csv files",
-    "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About RDS",
-    "section": "",
-    "text": "Research Data Services (RDS) helps UCSB researchers manage and preserve their research data through:\n\nConsultations\nLong-term engagements\nInstructional workshops\n\nOur team offers support across the research data lifecycle, from pre-project planning to post-project archival, connecting researchers with both locally- and externally-provided curation services. Our goal is to ensure that all research data is well-described, FAIR (Findable, Accessible, Interoperable, Reusable), and sustainably preservable, and that researchers receive scholarly credit for sharing and publishing data.\nContact us if you have any questions: rds@library.ucsb.edu"
-  },
-  {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
-    "section": "",
-    "text": "Burnette. (2022). Managing environmental data: principles, techniques, and best practices. CRC Press. https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma9917095897506531\nChapman, AD, & Grafton, O. (2008). Guide to Best Practices for Generalising Sensitive Species-Occurrence Data (v1.0). https://doi.org/10.15468/doc-b02j-gt10\nCrystal-Ornelas, R., Varadharajan, C., O’Ryan, D., Ramírez-Muñoz, J., Jones, M. B., Lehnert, K. A., … & Servilla, M. (2022). Enabling FAIR data in Earth and environmental science with community-centric (meta)data reporting formats. Scientific Data, 9(1), 700. https://doi.org/10.1038/s41597-022-01606-w\nJones, M. B., O’Brien, M., Mecum, B., Boettiger, C., Schildhauer, M., Maier, M., Whiteaker, T., Earl, S., & Chong, S. (2019). Ecological Metadata Language version 2.2.0. KNB Data Repository. https://doi.org/10.5063/F11834T2\nLabastida, I., & Margoni, T. (2020). Licensing FAIR Data for Reuse. Data Intelligence, 2(1-2), 199-207. https://doi.org/10.1162/dint_a_00042\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\nRecknagel, F., & Michener, W. K. (Eds.). (2018). Ecological informatics: Data management and knowledge discovery (3rd ed.). Springer."
-  },
-  {
-    "objectID": "resources.html#bibliography",
-    "href": "resources.html#bibliography",
-    "title": "Resources",
-    "section": "",
-    "text": "Burnette. (2022). Managing environmental data: principles, techniques, and best practices. CRC Press. https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma9917095897506531\nChapman, AD, & Grafton, O. (2008). Guide to Best Practices for Generalising Sensitive Species-Occurrence Data (v1.0). https://doi.org/10.15468/doc-b02j-gt10\nCrystal-Ornelas, R., Varadharajan, C., O’Ryan, D., Ramírez-Muñoz, J., Jones, M. B., Lehnert, K. A., … & Servilla, M. (2022). Enabling FAIR data in Earth and environmental science with community-centric (meta)data reporting formats. Scientific Data, 9(1), 700. https://doi.org/10.1038/s41597-022-01606-w\nJones, M. B., O’Brien, M., Mecum, B., Boettiger, C., Schildhauer, M., Maier, M., Whiteaker, T., Earl, S., & Chong, S. (2019). Ecological Metadata Language version 2.2.0. KNB Data Repository. https://doi.org/10.5063/F11834T2\nLabastida, I., & Margoni, T. (2020). Licensing FAIR Data for Reuse. Data Intelligence, 2(1-2), 199-207. https://doi.org/10.1162/dint_a_00042\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\nRecknagel, F., & Michener, W. K. (Eds.). (2018). Ecological informatics: Data management and knowledge discovery (3rd ed.). Springer."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "",
-    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
-  },
-  {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "",
-    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
-  },
-  {
-    "objectID": "index.html#data",
-    "href": "index.html#data",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Data",
-    "text": "Data\nFor the database portion of the course, the Arctic Shorebird Demographics Network dataset, obtained from the Arctic Data Center, was used as a running example. While this dataset is not distributed as a relational database (it is packaged as a set of related CSV files), its structure is highly amenable to a relational approach and provides a realistic example of where and why one would want to use a relational database in the Earth and environmental sciences. It also provides just enough complexity to support realistic and complex queries and views. Note that the dataset used in the course, and included in this archive, is a cleaned-up subset of the full dataset. It is necessarily a subset of the full dataset to keep the size and complexity manageable for pedagogical purposes, and it had to be cleaned up because, unfortunately, the full dataset has many errors that would have precluded creating foreign keys.\nA class data GitHub repository, linked below, is used to distribute data files to students. Each week a new directory of files will be added to the repository and the students will be asked to pull the repository to their local environment to get the updates."
-  },
-  {
-    "objectID": "index.html#database",
-    "href": "index.html#database",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Database",
-    "text": "Database\nDuckDB is used as the database platform due to its strict implementation of data types, which turned out to be a weakness when teaching with SQLlite last year. DuckDB is a fast in-process analytical personal database."
-  },
-  {
-    "objectID": "index.html#instructors",
-    "href": "index.html#instructors",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Instructors",
-    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)"
-  },
-  {
-    "objectID": "index.html#teaching-assistant",
-    "href": "index.html#teaching-assistant",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Teaching Assistant",
-    "text": "Teaching Assistant\n\nAnnie Adams (aradams@ucsb.edu )"
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Schedule",
-    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: TBD\nBest way to contact us: email"
-  },
-  {
-    "objectID": "index.html#course-content",
-    "href": "index.html#course-content",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Course content",
-    "text": "Course content\nSyllabus\nInstalling DuckDB\nResources\nClass data GitHub repository"
-  },
-  {
-    "objectID": "index.html#modules",
-    "href": "index.html#modules",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R to query databases + bash programming\n\n\n7\nUsing Python to query databases + Documenting your work: metadata\n\n\n8\nCapturing your computing environment + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
+    "objectID": "installing-duckdb.html#test",
+    "href": "installing-duckdb.html#test",
+    "title": "Installing duckDB",
+    "section": "Test",
+    "text": "Test\nLet’s test our new installation using visual code\n\nopen a terminal from the terminal menu -&gt; new terminal\nIn the terminal type duckdb, this should start duckdb\nOpen a New text file: file menu -&gt; new text file\nCopy paste the following code:\n\n-- Start the DB at the terminal: duckdb\n\nCREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;\n\nSHOW TABLES;\n\nFROM ducks SELECT *;\n\nUse Shift+Return to run the SQL code line by line\n\nYou should have something that looks like this:"
   },
   {
     "objectID": "syllabus.html",
@@ -525,158 +462,228 @@
     "text": "Disabled students program\nStudents with disabilities and/or alternative learning needs are encouraged to work with the Disabled Students Program at UCSB to ensure we can best support your learning and success."
   },
   {
-    "objectID": "installing-duckdb.html",
-    "href": "installing-duckdb.html",
-    "title": "Installing duckDB",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EDS 213: Databases and Data Management",
     "section": "",
-    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
+    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
   },
   {
-    "objectID": "installing-duckdb.html#installation",
-    "href": "installing-duckdb.html#installation",
-    "title": "Installing duckDB",
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "EDS 213: Databases and Data Management",
     "section": "",
-    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
+    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
   },
   {
-    "objectID": "installing-duckdb.html#visual-code-integration-optional",
-    "href": "installing-duckdb.html#visual-code-integration-optional",
-    "title": "Installing duckDB",
-    "section": "Visual code integration (optional)",
-    "text": "Visual code integration (optional)\nYou can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:\nUnder the main VS menu, go to Settings -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the When column, select Change When Expression, and add editorLangId == 'sql' to restrict to just SQL files and not every kind of file.\nNow you can hit Shift+Return at then end of a line in your SQL script and it should run the command directly in the terminal!"
+    "objectID": "index.html#data",
+    "href": "index.html#data",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Data",
+    "text": "Data\nFor the database portion of the course, the Arctic Shorebird Demographics Network dataset, obtained from the Arctic Data Center, was used as a running example. While this dataset is not distributed as a relational database (it is packaged as a set of related CSV files), its structure is highly amenable to a relational approach and provides a realistic example of where and why one would want to use a relational database in the Earth and environmental sciences. It also provides just enough complexity to support realistic and complex queries and views. Note that the dataset used in the course, and included in this archive, is a cleaned-up subset of the full dataset. It is necessarily a subset of the full dataset to keep the size and complexity manageable for pedagogical purposes, and it had to be cleaned up because, unfortunately, the full dataset has many errors that would have precluded creating foreign keys.\nA class data GitHub repository, linked below, is used to distribute data files to students. Each week a new directory of files will be added to the repository and the students will be asked to pull the repository to their local environment to get the updates."
   },
   {
-    "objectID": "installing-duckdb.html#test",
-    "href": "installing-duckdb.html#test",
-    "title": "Installing duckDB",
-    "section": "Test",
-    "text": "Test\nLet’s test our new installation using visual code\n\nopen a terminal from the terminal menu -&gt; new terminal\nIn the terminal type duckdb, this should start duckdb\nOpen a New text file: file menu -&gt; new text file\nCopy paste the following code:\n\n-- Start the DB at the terminal: duckdb\n\nCREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;\n\nSHOW TABLES;\n\nFROM ducks SELECT *;\n\nUse Shift+Return to run the SQL code line by line\n\nYou should have something that looks like this:"
+    "objectID": "index.html#database",
+    "href": "index.html#database",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Database",
+    "text": "Database\nDuckDB is used as the database platform due to its strict implementation of data types, which turned out to be a weakness when teaching with SQLlite last year. DuckDB is a fast in-process analytical personal database."
   },
   {
-    "objectID": "modules/week02/hw-02.html",
-    "href": "modules/week02/hw-02.html",
-    "title": "Week 2 - Data Cleaning",
+    "objectID": "index.html#instructors",
+    "href": "index.html#instructors",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Instructors",
+    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)"
+  },
+  {
+    "objectID": "index.html#teaching-assistant",
+    "href": "index.html#teaching-assistant",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Teaching Assistant",
+    "text": "Teaching Assistant\n\nAnnie Adams (aradams@ucsb.edu )"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Schedule",
+    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: TBD\nBest way to contact us: email"
+  },
+  {
+    "objectID": "index.html#course-content",
+    "href": "index.html#course-content",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Course content",
+    "text": "Course content\nSyllabus\nInstalling DuckDB\nResources\nClass data GitHub repository"
+  },
+  {
+    "objectID": "index.html#modules",
+    "href": "index.html#modules",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Modules",
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R to query databases + bash programming\n\n\n7\nUsing Python to query databases + Documenting your work: metadata\n\n\n8\nCapturing your computing environment + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/238393\nWe cleaned the Snow_cover column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:\n\nClean the Water_cover column to transform it into the correct data type and respect expectations for a percentage\nClean the Land_cover column to transform it into the correct data type and respect expectations for a percentage\nUse the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the Total_cover column\n\nAdd comments to your quarto document about your decisions and assumptions, this will be part of the grading.\n\nSetup\nYou should start a new quarto document named eds213_data_cleaning_assign_YOURNAME.qmd in your fork of the GitHub repository bren-meds213-data-cleaning.\n\n\nThe expectations are:\n\nThe qmd eds213_data_cleaning_assign_YOURNAME.qmd should run if your repo is cloned locally and\nthe code should output a csv file named all_cover_fixed_YOURNAME.csv in the data/processed folder\n\nNote: We recommend starting by importing the csv file with the corrected Snow_cover column (data/processed/snow_cover.csv) we generated during class (my code here)\n\n\nOn Canvas:\n\nAdd the URL to your fork on GitHub at the top of your quarto document\nUpload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)"
+    "text": "Burnette. (2022). Managing environmental data: principles, techniques, and best practices. CRC Press. https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma9917095897506531\nChapman, AD, & Grafton, O. (2008). Guide to Best Practices for Generalising Sensitive Species-Occurrence Data (v1.0). https://doi.org/10.15468/doc-b02j-gt10\nCrystal-Ornelas, R., Varadharajan, C., O’Ryan, D., Ramírez-Muñoz, J., Jones, M. B., Lehnert, K. A., … & Servilla, M. (2022). Enabling FAIR data in Earth and environmental science with community-centric (meta)data reporting formats. Scientific Data, 9(1), 700. https://doi.org/10.1038/s41597-022-01606-w\nJones, M. B., O’Brien, M., Mecum, B., Boettiger, C., Schildhauer, M., Maier, M., Whiteaker, T., Earl, S., & Chong, S. (2019). Ecological Metadata Language version 2.2.0. KNB Data Repository. https://doi.org/10.5063/F11834T2\nLabastida, I., & Margoni, T. (2020). Licensing FAIR Data for Reuse. Data Intelligence, 2(1-2), 199-207. https://doi.org/10.1162/dint_a_00042\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\nRecknagel, F., & Michener, W. K. (Eds.). (2018). Ecological informatics: Data management and knowledge discovery (3rd ed.). Springer."
   },
   {
-    "objectID": "modules/week08/index-08.html",
-    "href": "modules/week08/index-08.html",
-    "title": "Week 8 - Ethical and responsible data management",
+    "objectID": "resources.html#bibliography",
+    "href": "resources.html#bibliography",
+    "title": "Resources",
     "section": "",
-    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nRelate ethical and responsible data management principles to real-world scenarios"
+    "text": "Burnette. (2022). Managing environmental data: principles, techniques, and best practices. CRC Press. https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma9917095897506531\nChapman, AD, & Grafton, O. (2008). Guide to Best Practices for Generalising Sensitive Species-Occurrence Data (v1.0). https://doi.org/10.15468/doc-b02j-gt10\nCrystal-Ornelas, R., Varadharajan, C., O’Ryan, D., Ramírez-Muñoz, J., Jones, M. B., Lehnert, K. A., … & Servilla, M. (2022). Enabling FAIR data in Earth and environmental science with community-centric (meta)data reporting formats. Scientific Data, 9(1), 700. https://doi.org/10.1038/s41597-022-01606-w\nJones, M. B., O’Brien, M., Mecum, B., Boettiger, C., Schildhauer, M., Maier, M., Whiteaker, T., Earl, S., & Chong, S. (2019). Ecological Metadata Language version 2.2.0. KNB Data Repository. https://doi.org/10.5063/F11834T2\nLabastida, I., & Margoni, T. (2020). Licensing FAIR Data for Reuse. Data Intelligence, 2(1-2), 199-207. https://doi.org/10.1162/dint_a_00042\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\nRecknagel, F., & Michener, W. K. (Eds.). (2018). Ecological informatics: Data management and knowledge discovery (3rd ed.). Springer."
   },
   {
-    "objectID": "modules/week08/index-08.html#learning-objectives",
-    "href": "modules/week08/index-08.html#learning-objectives",
-    "title": "Week 8 - Ethical and responsible data management",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About RDS",
     "section": "",
-    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nRelate ethical and responsible data management principles to real-world scenarios"
+    "text": "Research Data Services (RDS) helps UCSB researchers manage and preserve their research data through:\n\nConsultations\nLong-term engagements\nInstructional workshops\n\nOur team offers support across the research data lifecycle, from pre-project planning to post-project archival, connecting researchers with both locally- and externally-provided curation services. Our goal is to ensure that all research data is well-described, FAIR (Findable, Accessible, Interoperable, Reusable), and sustainably preservable, and that researchers receive scholarly credit for sharing and publishing data.\nContact us if you have any questions: rds@library.ucsb.edu"
   },
   {
-    "objectID": "modules/week08/index-08.html#slides",
-    "href": "modules/week08/index-08.html#slides",
-    "title": "Week 8 - Ethical and responsible data management",
-    "section": "Slides",
-    "text": "Slides\nslides-08.pptx\nSuggested readings\n\nBoté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) http://hdl.handle.net/2445/151341\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\n\nAdditional suggested readings are noted in the slides."
-  },
-  {
-    "objectID": "modules/week08/index-08.html#case-based-discussion",
-    "href": "modules/week08/index-08.html#case-based-discussion",
-    "title": "Week 8 - Ethical and responsible data management",
-    "section": "Case-based discussion:",
-    "text": "Case-based discussion:\n\nCase Study A: Containing the flames of bias in machine learning\nCase Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife\nCase Study C: To reuse or not reuse, that is the key question!\nCase Study D: Navigating the complexities of ownership zones"
-  },
-  {
-    "objectID": "modules/week08/case-a.html",
-    "href": "modules/week08/case-a.html",
-    "title": "Case Study A: Containing the flames of bias in machine learning",
+    "objectID": "modules/week02/index-02.html",
+    "href": "modules/week02/index-02.html",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
     "section": "",
-    "text": "Read the scenario and answer questions based on the weekly readings and the lecture:\nWildfires have become increasingly common and destructive in many regions worldwide, causing significant environmental and social problems. In response, many communities have implemented fire prevention and management strategies, including using machine learning (ML) algorithms to predict and mitigate the risk of wildfires.\nOakdale, located in a densely forested area in British Columbia, Canada, has implemented an ML algorithm to predict the risk of wildfires and prioritize fire prevention resources. The algorithm uses a variety of inputs, including historical fire data, weather patterns, topography, and vegetation coverage, to generate a risk score for each area of the city. However, after several months of using the algorithm, city officials noticed that specific neighborhoods with low-income and minority populations consistently receive lower risk scores than other areas with very similar environmental conditions. Upon closer examination of those patterns in the data, they realized that the historical data used to train the algorithm was heavily concentrated on more affluent and predominantly white neighborhoods, resulting in a skewed view of the fire risks for the whole city."
+    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
   },
   {
-    "objectID": "modules/week08/case-a.html#instructions",
-    "href": "modules/week08/case-a.html#instructions",
-    "title": "Case Study A: Containing the flames of bias in machine learning",
+    "objectID": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "href": "modules/week02/index-02.html#cleaning-the-raw-data",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
     "section": "",
-    "text": "Read the scenario and answer questions based on the weekly readings and the lecture:\nWildfires have become increasingly common and destructive in many regions worldwide, causing significant environmental and social problems. In response, many communities have implemented fire prevention and management strategies, including using machine learning (ML) algorithms to predict and mitigate the risk of wildfires.\nOakdale, located in a densely forested area in British Columbia, Canada, has implemented an ML algorithm to predict the risk of wildfires and prioritize fire prevention resources. The algorithm uses a variety of inputs, including historical fire data, weather patterns, topography, and vegetation coverage, to generate a risk score for each area of the city. However, after several months of using the algorithm, city officials noticed that specific neighborhoods with low-income and minority populations consistently receive lower risk scores than other areas with very similar environmental conditions. Upon closer examination of those patterns in the data, they realized that the historical data used to train the algorithm was heavily concentrated on more affluent and predominantly white neighborhoods, resulting in a skewed view of the fire risks for the whole city."
+    "text": "The original shorebird data set has been collected over many years by many different researchers. It is thus prone to have some data quality issues. Before we can ingest our data into our database, we will have to implement some data cleaning on the csv files to make sure we do not loose information during the import due to the constraints we can impose on the database. And in any case, the garbage in, garbage out motto often use in modeling applies here as well!\nHere is the repository where we are going to practice our data wranglers skills:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning"
   },
   {
-    "objectID": "modules/week08/case-a.html#questions",
-    "href": "modules/week08/case-a.html#questions",
-    "title": "Case Study A: Containing the flames of bias in machine learning",
+    "objectID": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "href": "modules/week02/index-02.html#analyzing-the-data-from-the-csv-files",
+    "title": "Week 2 - Analyzing & cleaning the bird dataset (from csv)",
+    "section": "Analyzing the data from the csv files",
+    "text": "Analyzing the data from the csv files\nNow that we have cleaned some of the tables, let’s try to conduct some data analyses to start exploring the data set:\nhttps://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis"
+  },
+  {
+    "objectID": "modules/week08/case-b.html",
+    "href": "modules/week08/case-b.html",
+    "title": "Case Study B: The caveat of the caviar: navigating ethics to protect endangered river wildlife",
+    "section": "",
+    "text": "Read the scenario and answer questions based on the weekly readings and the lecture:\nA team of environmental scientists from the University of Wisconsin is researching the impact of climate change on the Mississippi River wildlife. The research involves collecting data on various environmental factors, including water temperature, salinity, pH, and nutrient levels, as well as data on the abundance and diversity of aquatic species on the lower basins of the river.\nThe team collects the data using various methods, including river sensors, underwater cameras, and traditional sampling techniques. The data is stored on a cloud-based platform, allowing sharing and real-time collaboration with multiple partners. However, the researchers soon realized that some of the collected data might be sensitive, including information on the distribution and abundance of the pallid sturgeon, recently listed by the Wisconsin Department of Natural Resources as one of the endangered species. They also realized that some data points might be of commercial interest, which can threaten the protection of the species and its habitat. For example, exposing the exact locations of the pallid sturgeon and their critical habitats could lead to increased poaching or unauthorized fishing, as the species is highly valued for its caviar.\nResearchers face ethical considerations related to sensitive data sharing. They want to comply with best practices in open science. However, in this process, they must balance the need to share their data openly to advance research and understanding of climate change and the Mississippi River ecosystem while protecting sensitive data and preventing it from being used for commercial purposes that could harm the environment."
+  },
+  {
+    "objectID": "modules/week08/case-b.html#instructions",
+    "href": "modules/week08/case-b.html#instructions",
+    "title": "Case Study B: The caveat of the caviar: navigating ethics to protect endangered river wildlife",
+    "section": "",
+    "text": "Read the scenario and answer questions based on the weekly readings and the lecture:\nA team of environmental scientists from the University of Wisconsin is researching the impact of climate change on the Mississippi River wildlife. The research involves collecting data on various environmental factors, including water temperature, salinity, pH, and nutrient levels, as well as data on the abundance and diversity of aquatic species on the lower basins of the river.\nThe team collects the data using various methods, including river sensors, underwater cameras, and traditional sampling techniques. The data is stored on a cloud-based platform, allowing sharing and real-time collaboration with multiple partners. However, the researchers soon realized that some of the collected data might be sensitive, including information on the distribution and abundance of the pallid sturgeon, recently listed by the Wisconsin Department of Natural Resources as one of the endangered species. They also realized that some data points might be of commercial interest, which can threaten the protection of the species and its habitat. For example, exposing the exact locations of the pallid sturgeon and their critical habitats could lead to increased poaching or unauthorized fishing, as the species is highly valued for its caviar.\nResearchers face ethical considerations related to sensitive data sharing. They want to comply with best practices in open science. However, in this process, they must balance the need to share their data openly to advance research and understanding of climate change and the Mississippi River ecosystem while protecting sensitive data and preventing it from being used for commercial purposes that could harm the environment."
+  },
+  {
+    "objectID": "modules/week08/case-b.html#questions",
+    "href": "modules/week08/case-b.html#questions",
+    "title": "Case Study B: The caveat of the caviar: navigating ethics to protect endangered river wildlife",
     "section": "Questions",
-    "text": "Questions\n\nQuestion 1\nThis case presents an ethical concern primarily associated with what?\n\n\nQuestion 2\nAccording to McGovern et al. (2022), which AI/ML issues can be identified in this case study? Justify your answer.\n\n\nQuestion 3\nSuppose you were hired as a consultant by Oakdale’s city officials. Which of the following recommendations would you give them to prevent perpetuating bias and inequitable outcomes? (Select all that apply)\n\nImplement transparency measures that make the algorithms’ decision-making processes more visible and understandable to stakeholders. This may include clarifying how decisions are made, sharing data sources, and providing access to model outputs. Fully document any limitations and shortcomings of the model and data.\nInvolve diverse stakeholders in the algorithm development and testing, including individuals from communities whose outputs may disproportionately impact. This can help identify and address potential biases and ensure that the algorithm is designed with the interests of all community members in mind.\nContinue using the algorithm as the official decision-making source until the re-training is completed. After all, ML methods are more efficient than traditional fire prevention strategies (e.g., fire breaks and vegetation management)."
+    "text": "Questions\n\nQuestion 1\nAs a data manager, what recommendations would you offer to the researchers to avoid commercial exploitation of the pallid sturgeon while contributing to advancing the research in the field? You do not need to write a long essay; elaborating your advice in bullet points is enough.\n\n\nQuestion 2\nAs a general rule, the _____________ of endangered, sensitive species should not be shared publicly. (hint: 1-2 words)"
   },
   {
-    "objectID": "modules/week09/hw-09.html",
-    "href": "modules/week09/hw-09.html",
-    "title": "Week 9 - How FAIR is your data set?",
+    "objectID": "modules/week08/case-c.html",
+    "href": "modules/week08/case-c.html",
+    "title": "Case Study C: To reuse or not reuse, that is the key question!",
     "section": "",
-    "text": "Using the FAIR Assessment tool, evaluate the FAIRness of the two following data sets:\n\nEphemeral wetland macroinvertebrate communities of the Great Plains\nInsect functional traits on arable land, Finland 2020\nWhich one would you prefer to reuse?\n\n\nNotes:\n\nPlease add narrative justification to explain your choices done using the FAIR assessment tool\nThere are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation, but discuss variability in your justification\n\nSubmit your answers (2 assessments with the justifications & answer to the preference/third question) via Canvas\nTotal points: 100"
+    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nAdam is a researcher for a non-profit organization dedicated to accelerating the adoption of solar energy. The organization relies on data from various sources, including sensors, satellite imagery, and field measurements, to inform solar energy allocation, usage, and conservation decisions.\nRecently, he identified an available dataset containing data on the solar energy market size, including trends, competition, and customer demand. These data can inform business and policy decisions related to solar energy adoption. Adam is particularly excited because this is a multivariate time series dataset from the past ten years. Also, the data documentation listed many important variables for his project, including the compound annual growth rates (CAGR) for solar energy companies. However, when Adam inspected some of the data files, he noticed a few data points that needed to be corrected. For example, some rows had NAs; others had 000, 999, and -999 or were utterly blank; the documentation does not help him infer those values.\nWhen he contacted the corresponding researcher for clarification, he was told these inconsistencies could have been caused either due to system migration or by human error in inaccurate data entry. The researcher mentioned that his team had multiple contributors throughout the years and noted there were no enforced validation rules or data quality checks. Ultimately, Adam should choose a solution that balances the benefits of using the existing dataset with the potential risks of using incomplete or inaccurate data.\nAdam faces a dilemma. On the one hand, the dataset could provide valuable insights into the solar energy market and inform better policies and management decisions. On the other hand, the missing and anomalous data could affect the dataset’s overall quality and integrity, potentially leading to incorrect conclusions and decisions."
   },
   {
-    "objectID": "modules/week09/index-09.html",
-    "href": "modules/week09/index-09.html",
-    "title": "Week 9 - Sensitive data",
+    "objectID": "modules/week08/case-c.html#instructions",
+    "href": "modules/week08/case-c.html#instructions",
+    "title": "Case Study C: To reuse or not reuse, that is the key question!",
     "section": "",
-    "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while utilizing an R package to quantify the information loss and utility."
+    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nAdam is a researcher for a non-profit organization dedicated to accelerating the adoption of solar energy. The organization relies on data from various sources, including sensors, satellite imagery, and field measurements, to inform solar energy allocation, usage, and conservation decisions.\nRecently, he identified an available dataset containing data on the solar energy market size, including trends, competition, and customer demand. These data can inform business and policy decisions related to solar energy adoption. Adam is particularly excited because this is a multivariate time series dataset from the past ten years. Also, the data documentation listed many important variables for his project, including the compound annual growth rates (CAGR) for solar energy companies. However, when Adam inspected some of the data files, he noticed a few data points that needed to be corrected. For example, some rows had NAs; others had 000, 999, and -999 or were utterly blank; the documentation does not help him infer those values.\nWhen he contacted the corresponding researcher for clarification, he was told these inconsistencies could have been caused either due to system migration or by human error in inaccurate data entry. The researcher mentioned that his team had multiple contributors throughout the years and noted there were no enforced validation rules or data quality checks. Ultimately, Adam should choose a solution that balances the benefits of using the existing dataset with the potential risks of using incomplete or inaccurate data.\nAdam faces a dilemma. On the one hand, the dataset could provide valuable insights into the solar energy market and inform better policies and management decisions. On the other hand, the missing and anomalous data could affect the dataset’s overall quality and integrity, potentially leading to incorrect conclusions and decisions."
   },
   {
-    "objectID": "modules/week09/index-09.html#learning-goals",
-    "href": "modules/week09/index-09.html#learning-goals",
-    "title": "Week 9 - Sensitive data",
+    "objectID": "modules/week08/case-c.html#questions",
+    "href": "modules/week08/case-c.html#questions",
+    "title": "Case Study C: To reuse or not reuse, that is the key question!",
+    "section": "Questions",
+    "text": "Questions\n\nQuestion 1\nSuppose Adam is leaning toward reusing the dataset despite the identified problems. What general ethical and responsible steps would you advise him to take moving forward? (Select all that apply)\n\nAdam should carefully examine the dataset to map all existing issues to determine the extent of missing and anomalous data and how it could affect the accuracy of his analysis.\nIf Adam collects new data, he should enforce data validation rules to tables and perform quality checks to avoid similar problems.\nIf Adam integrates new data and perform all necessarily adjustments to remove uncertainties and other problems in the data, he no longer needs to attribute original data creators.\nIf the dataset has significant missing or anomalous data, Adam may need to collect additional data to ensure the analysis is accurate and representative. This may involve additional time and resources but could lead to more accurate and reliable insights.\nAdam may be able to proceed with the analysis after carefully documenting and accounting for any uncertainties or limitations in the data.\nAdam should produce new documentation for the dataset based on all improvements he makes to the original data."
+  },
+  {
+    "objectID": "modules/week08/case-d.html",
+    "href": "modules/week08/case-d.html",
+    "title": "eds213",
     "section": "",
-    "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while utilizing an R package to quantify the information loss and utility."
+    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nTina, a researcher working on coastal vulnerability analysis in Southern California, acquired LiDAR data from a vendor in 2017. Based on the acquired dataset, she submitted a paper to a high-impact academic journal early this year. The paper was accepted but is pending publication until Tina complies with the mandate of sharing supporting data and associated documentation in an open repository. While inspecting the data documentation, Max, the repository data manager, noticed that the files included raw and processed data from a vendor; however, no explicit declaration of authorization to share the data was included in the submission package. Tina presented an invoice of $20,000 USD certifying that she obtained the data and said she was told verbally that the data was not subject to any use restrictions."
   },
   {
-    "objectID": "modules/week09/index-09.html#student-notes",
-    "href": "modules/week09/index-09.html#student-notes",
-    "title": "Week 9 - Sensitive data",
-    "section": "Student notes",
-    "text": "Student notes\nBefore class, install the sdcMicro package if you choose not to use the servers.\nIf you are testing using sensitive data, make sure to launch it from RStudio, not from the website."
+    "objectID": "modules/week08/case-d.html#instructions",
+    "href": "modules/week08/case-d.html#instructions",
+    "title": "eds213",
+    "section": "",
+    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nTina, a researcher working on coastal vulnerability analysis in Southern California, acquired LiDAR data from a vendor in 2017. Based on the acquired dataset, she submitted a paper to a high-impact academic journal early this year. The paper was accepted but is pending publication until Tina complies with the mandate of sharing supporting data and associated documentation in an open repository. While inspecting the data documentation, Max, the repository data manager, noticed that the files included raw and processed data from a vendor; however, no explicit declaration of authorization to share the data was included in the submission package. Tina presented an invoice of $20,000 USD certifying that she obtained the data and said she was told verbally that the data was not subject to any use restrictions."
   },
   {
-    "objectID": "modules/week09/index-09.html#slides-and-other-materials",
-    "href": "modules/week09/index-09.html#slides-and-other-materials",
-    "title": "Week 9 - Sensitive data",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\n\nslides-09.pptx\nDemo: South Park Case files - update your fork!"
+    "objectID": "modules/week08/case-d.html#questions",
+    "href": "modules/week08/case-d.html#questions",
+    "title": "eds213",
+    "section": "Questions",
+    "text": "Questions\n\nQuestion 1\nMax should advise Tina to acquire explicit permission from the data vendor to share the data.\n\nTrue\nFalse\n\n\n\nQuestion 2\nBecause Tina paid for the data, Max can move forward with the data publication without infringing on any legal and ethical aspects.\n\nTrue\nFalse\n\n\n\nQuestion 3\nIf Tina does not acquire explicit permission from the vendor to share the data, Max can’t publish the data in the repository.\n\nTrue\nFalse\n\n\n\nQuestion 4\nIf Tina does not acquire written permission to share the data, Max can suggest Tina share only aggregated data.\n\nTrue\nFalse"
   },
   {
-    "objectID": "modules/week09/index-09.html#resources",
-    "href": "modules/week09/index-09.html#resources",
-    "title": "Week 9 - Sensitive data",
+    "objectID": "modules/week09/FAIR_assessment_tool.html",
+    "href": "modules/week09/FAIR_assessment_tool.html",
+    "title": "FAIR assessment tool",
+    "section": "",
+    "text": "Please justify your answer using 1-2 sentences"
+  },
+  {
+    "objectID": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
+    "href": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
+    "title": "FAIR assessment tool",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis exercise has been adapted from the UK Data Service https://ukdataservice.ac.uk/app/uploads/exercise_fairdata.pdf and is licensed under a Creative Commons Attribution CC-BY 4.0 International License."
+  },
+  {
+    "objectID": "modules/week01/hw-01-1.html",
+    "href": "modules/week01/hw-01-1.html",
+    "title": "Week 1 - Create an ER diagram",
+    "section": "",
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/236835\nCreate a physical ER (entity-relationship) diagram for the Harry Potter tables shown in class. It will be helpful to refer back to the slides.\nAs discussed briefly in class, a logical or conceptual ER diagram focuses on high-level abstractions, and doesn’t address how entities and relationships actually get implemented. In particular, in a logical ER diagram a many-to-many relationship between two entities might be represented by a simple line, even though in implementation a many-to-many relationship requires a separate table to store the relationship tuples. By contrast, a physical ER diagram describes actual tables. You are being asked to create a physical ER diagram.\nRequirements:\n\nYour diagram should include Student, House, Wand, Course, and Enrollment tables.\nEach table should list the name of the entity, any attributes, and which attribute(s) form the primary key, if there is one.\nA foreign key relationship from an attribute in one table to an attribute in another table should be indicated by a line between the two attributes. The ends of the lines should reflect the cardinalities at each end. See the example below.\n\nTwist #1! The slides shown in class demonstrated a many-to-one relationship between wands and students, i.e., one student might own multiple wands, but any given wand has only one owner. However, for this exercise, you are being asked to model a many-to-many relationship between wands and students (it happened in the books that the same wand was used by different students, though at different times, of course). To create a many-to-many relationship, you will need to invent an intermediate table that represents the student-wand ownership relation, in the same way the Enrollment table intermediates between the Student and Course tables.\nTwist #2! You must also store the date range (i.e., begin date and end date) of wand ownership. You will need to think where these date attributes belong. Are they attributes of a student? Of a wand? Of something else?\nVarious symbologies have been developed for ER diagrams. For this assignment, represent the “one” side of a many-to-one relationship by a single vertical bar, and represent the “many” side by a so-called crow’s foot. In the end, your diagram should visually resemble something like this:\n\nYou can use a tool like dbdiagram.io as was used to create the above diagram, or any other drawing tool. Or you can just draw it by hand and take a picture with your phone. Regardless of the method, be sure to indicate primary keys somehow (bold text, underlined text, add “PK” next to the attribute, etc., whatever works visually)."
+  },
+  {
+    "objectID": "modules/week01/index-01.html",
+    "href": "modules/week01/index-01.html",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "",
+    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#learning-objectives",
+    "href": "modules/week01/index-01.html#learning-objectives",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "",
+    "text": "Benefits of relational databases\nRelational data model and SQL data definition\nData modeling"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#slides",
+    "href": "modules/week01/index-01.html#slides",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "Slides",
+    "text": "Slides\nslides-01.pptx"
+  },
+  {
+    "objectID": "modules/week01/index-01.html#resources",
+    "href": "modules/week01/index-01.html#resources",
+    "title": "Week 1 - Relational databases and data modeling",
     "section": "Resources",
-    "text": "Resources\n\nsdcMicro Documentation: https://sdcpractice.readthedocs.io/en/latest/intro.html\nsdcMicro Shiny app: https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html\n\nOther useful links can be found on slides."
+    "text": "Resources\n\nhttps://learning.nceas.ucsb.edu/2023-06-delta/session_09.html\n\nVery brief introduction to data modeling, ties into “tidy data.”\n\nChristoph Wohner, Johannes Peterseil, and Hermann Klug (2022). Designing and implementing a data model for describing environmental monitoring and research sites. Ecological Informatics 70, 101708.\nhttps://doi.org/10.1016/j.ecoinf.2022.101708\n\nGood case study.\n\nGerald A. Burnette (2022). Managing environmental data: principles, techniques, and best practices. CRC Press.\nAccess via Library Catalog\n\nComprehensive text, specific to environmental sciences.\n\nGraeme C. Simsion and Graham C. Witt (2005). Data Modeling Essentials. 3rd ed. Amsterdam: Morgan Kaufmann.\nAccess via Library Catalog\nGoogle Books\n\nComprehensive text, not specific to the environmental sciences.\n\nHartmut Hebbel (1994). Environmental data modeling. Annals of Operations Research 54, 263-278.\nhttps://doi.org/10.1007/BF02031737\n\nA broader view of data organization.\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
   },
   {
-    "objectID": "modules/week09/index-09.html#suggested-readings",
-    "href": "modules/week09/index-09.html#suggested-readings",
-    "title": "Week 9 - Sensitive data",
-    "section": "Suggested readings",
-    "text": "Suggested readings\n\nBledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), https://doi.org/10.1098/rspb.2022.0938\nBourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. https://doi.org/10.1525/cse.2017.sc.454841\nGehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. https://doi.org/10.1007/978-1-4419-5906-5_899\nSamarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf"
-  },
-  {
-    "objectID": "modules/week09/index-09.html#in-class-exercise-day-2",
-    "href": "modules/week09/index-09.html#in-class-exercise-day-2",
-    "title": "Week 9 - Sensitive data",
-    "section": "In-class exercise (Day 2)",
-    "text": "In-class exercise (Day 2)\nInstructions for the Whale Entanglement Exercise"
-  },
-  {
-    "objectID": "modules/week01/hw-01-2.html",
-    "href": "modules/week01/hw-01-2.html",
-    "title": "Week 1 - Data modeling",
-    "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/224311\nCreate a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL’s data definition language as is possible.\nIn the class data GitHub repository, week 1 directory you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.\nPlease consider:\nYou may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.\nPlease express your table definition in SQL, but don’t worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the DuckDB CREATE TABLE documentation.\nFinally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don’t write an essay! Bullet points are sufficient. But do please explain your thought process."
-  },
-  {
-    "objectID": "modules/week01/hw-01-2.html#appendix",
-    "href": "modules/week01/hw-01-2.html#appendix",
-    "title": "Week 1 - Data modeling",
-    "section": "Appendix",
-    "text": "Appendix\nCREATE TABLE Species (\n    Code TEXT PRIMARY KEY,\n    Common_name TEXT UNIQUE NOT NULL,\n    Scientific_name TEXT,\n    Relevance TEXT\n);\n\nCREATE TABLE Site (\n    Code TEXT PRIMARY KEY,\n    Site_name TEXT UNIQUE NOT NULL,\n    Location TEXT NOT NULL,\n    Latitude REAL NOT NULL CHECK (Latitude BETWEEN -90 AND 90),\n    Longitude REAL NOT NULL CHECK (Longitude BETWEEN -180 AND 180),\n    \"Total_Study_Plot_Area_(ha)\" REAL NOT NULL\n        CHECK (\"Total_Study_Plot_Area_(ha)\" &gt; 0),\n    UNIQUE (Latitude, Longitude)\n);\n\nCREATE TABLE Color_band_code (\n    Code TEXT PRIMARY KEY,\n    Color TEXT NOT NULL UNIQUE\n);\n\nCREATE TABLE Personnel (\n    Abbreviation TEXT PRIMARY KEY,\n    Name TEXT NOT NULL UNIQUE\n);"
+    "objectID": "modules/week01/index-01.html#homework",
+    "href": "modules/week01/index-01.html#homework",
+    "title": "Week 1 - Relational databases and data modeling",
+    "section": "Homework",
+    "text": "Homework\nCreate an ER diagram\nData modeling exercise"
   },
   {
     "objectID": "modules/week05/hw-05-4.html",
