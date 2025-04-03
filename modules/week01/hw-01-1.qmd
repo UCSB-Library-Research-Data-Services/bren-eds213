@@ -23,3 +23,5 @@ Various symbologies have been developed for ER diagrams. For this assignment, re
 ![](asdn-er-diagram.png)
 
 You can use a tool like [dbdiagram.io](https://dbdiagram.io) as was used to create the above diagram, or any other drawing tool. Or you can just draw it by hand and take a picture with your phone. Regardless of the method, be sure to indicate primary keys somehow (bold text, underlined text, add "PK" next to the attribute, etc., whatever works visually).
+
+**Credit: 40pts**

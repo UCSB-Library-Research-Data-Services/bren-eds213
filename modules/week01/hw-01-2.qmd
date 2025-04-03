@@ -54,3 +54,5 @@ CREATE TABLE Personnel (
     Name TEXT NOT NULL UNIQUE
 );
 ```
+
+**Credit: 50pts**
