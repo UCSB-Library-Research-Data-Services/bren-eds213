@@ -2,7 +2,7 @@
 title: "Week 1 - Create an ER diagram"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301/assignments/236835>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/355743>**
 
 Create a physical ER (entity-relationship) diagram for the Harry Potter tables shown in class.  It will be helpful to refer back to the [slides](index-01.qmd).
 
