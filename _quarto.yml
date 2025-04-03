@@ -23,6 +23,7 @@ website:
         menu:
           - modules/week01/hw-01-1.qmd
           - modules/week01/hw-01-2.qmd
+          - modules/week01/hw-01-3.qmd
           #- modules/week02/hw-02.qmd
           #- modules/week03/hw-03-1.qmd
           #- modules/week03/hw-03-2.qmd
