@@ -2,7 +2,7 @@
 title: "Week 1 - Naming things is hard"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301/assignments/224311>** \<-- fix this
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/355827>**
 
 In class we discussed the difficulty of selecting the right names for quantities. This can often involve reflecting on what a quantity actually **is** or represents. Settling on a name can be an iterative process.
 
