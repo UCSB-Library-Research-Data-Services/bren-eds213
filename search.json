@@ -226,7 +226,7 @@
   {
     "objectID": "modules/week01/hw-01-3.html",
     "href": "modules/week01/hw-01-3.html",
-    "title": "Week 1 - Naming is hard",
+    "title": "Week 1 - Naming things is hard",
     "section": "",
     "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/19301/assignments/224311 &lt;– fix this\nIn class we discussed the difficulty of selecting the right names for quantities. This can often involve reflecting on what a quantity actually is or represents. Settling on a name can be an iterative process.\nPlease reflect on your capstone work. Describe a quantity (a filename, a variable name, etc.) for which you changed the name. Or, if you have yet to change any names, describe a quantity that would benefit from being renamed. Describe what the quantity represents in the context of your project. What are the old and new names, why was the old name not the best, and why is the new name an improvement?"
   },
@@ -683,7 +683,7 @@
     "href": "modules/week01/index-01.html#homework",
     "title": "Week 1 - Relational databases and data modeling",
     "section": "Homework",
-    "text": "Homework\nCreate an ER diagram\nData modeling exercise"
+    "text": "Homework\nCreate an ER diagram\nData modeling exercise\nNaming things is hard"
   },
   {
     "objectID": "modules/week05/hw-05-4.html",
