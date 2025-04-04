@@ -6,7 +6,7 @@ title: "Week 1 - Data modeling"
 
 Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL's data definition language as is possible.
 
-In the [class data GitHub repository, week 1 directory](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week1) you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.
+In the [GitHub class data repository](https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data) you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.
 
 Please consider:
 
