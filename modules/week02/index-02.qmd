@@ -14,7 +14,7 @@ Here is the repository where we are going to practice our data wranglers skills,
 
 ## Analyzing the data from the csv files
 
-Now that we have cleaned some of the tables, let's try to conduct some data analyses to start exploring the data set:
+Now that we have cleaned some of the tables, let's try to conduct some data analyses to start exploring the data set.**PLEASE CREATE A FORK and clone your fork to your machine**:
 
 <https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-analysis>
 
