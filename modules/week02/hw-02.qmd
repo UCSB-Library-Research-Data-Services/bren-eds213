@@ -22,11 +22,11 @@ You should start a new quarto document named `eds213_data_cleaning_assign_YOURNA
 
 ### The expectations are:
 
-- The Quarto document `eds213_data_cleaning_assign_YOURNAME.qmd` should run if your repo is cloned locally (5pts; Reproducibility)
-- The code should output a csv file named `all_cover_fixed_YOURNAME.csv` in the `data/processed` folder (5pts; Code)
-- Comment well you code (10pts; Documentation)
-- Your quarto document should provide all the necessary explanations about your decisions and discuss potential assumptions you used (don't forget to look at the metadata!) (30pts; Documentation)
-- The code should perform the 3 data cleaning steps describe above to enable ingestion into a database (50pts; Technical concepts)
+- The Quarto document `eds213_data_cleaning_assign_YOURNAME.qmd` should run if your repo is cloned locally (5 pts; Reproducibility)
+- The code should output a csv file named `all_cover_fixed_YOURNAME.csv` in the `data/processed` folder (5 pts; Code)
+- Comment well you code (10 pts; Documentation)
+- Your quarto document should provide all the necessary explanations about your decisions and discuss potential assumptions you used (don't forget to look at the metadata!) (30 pts; Documentation)
+- The code should perform the 3 data cleaning steps describe above to enable ingestion into a database (50 pts; Technical concepts)
 
 **Note**: We recommend starting by importing the csv file with the corrected `Snow_cover` column (`data/processed/snow_cover.csv`) we generated during class (my code [here](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/later/data-cleaning.qmd))
 
@@ -38,4 +38,4 @@ Finally, remember there are many correct ways of doing this, so document your wo
 
 - Download your repository as a `.zip` file and upload it to canvas
 
-**Credit: 100pts**
+**Credit: 100 pts**
