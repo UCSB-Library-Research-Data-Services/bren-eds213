@@ -2,7 +2,7 @@
 title: "Week 2 - Data Cleaning"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/19301/assignments/238393>{target="_blank"}**
+**Please use Canvas to return the assignments: <>{target="_blank"}**
 
 We cleaned the `Snow_cover` column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:
 
@@ -10,26 +10,29 @@ We cleaned the `Snow_cover` column during class. Inspiring yourself from the ste
 
 2. Clean the `Land_cover` column to transform it into the correct data type and respect expectations for a percentage
 
-3. Use the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the `Total_cover` column
+3. Use the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the `Total_cover` column as needed
 
 **Add comments to your quarto document about your decisions and assumptions**, this will be part of the grading.
 
 
 ### Setup
 
-You should start a new quarto document named `eds213_data_cleaning_assign_YOURNAME.qmd` in your fork of the GitHub repository [bren-meds213-data-cleaning](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning).
+You should start a new quarto document named `eds213_data_cleaning_assign_YOURNAME.qmd` on **your fork** of the GitHub repository [bren-meds213-data-cleaning](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning). Don't forget to use the [metadata](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/main/data/raw/01_ASDN_Readme.txt) present in the data folder
 
 
 ### The expectations are:
 
-- The qmd `eds213_data_cleaning_assign_YOURNAME.qmd` should run if your repo is cloned locally and
-- the code should output a csv file named `all_cover_fixed_YOURNAME.csv` in the `data/processed` folder
+- The Quarto document `eds213_data_cleaning_assign_YOURNAME.qmd` should run if your repo is cloned locally
+- The code should output a csv file named `all_cover_fixed_YOURNAME.csv` in the `data/processed` folder
+- Your quarto document should have all the necessary explanations about the decisions you made and potential assumptions you used (don't forget to look at the metadata!)
+
 
 **Note**: We recommend starting by importing the csv file with the corrected `Snow_cover` column (`data/processed/snow_cover.csv`) we generated during class (my code [here](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/later/data-cleaning.qmd))
 
-### On Canvas:
+### How to submit your assignment to Canvas:
 
-- Add the URL to your fork on GitHub at the top of your quarto document
+- Add the URL of your repository at the top of your repo's README
 
-- Upload the qmd & csv files to Canvas (those versions will be the ones evaluated for grading)
+- Download your repository as a `.zip` file and upload it to canvas
+
 
