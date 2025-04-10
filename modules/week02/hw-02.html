@@ -156,6 +156,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../modules/week01/hw-01-3.html">
  <span class="dropdown-text">Week 1 - Naming things is hard</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week02/hw-02.html">
+ <span class="dropdown-text">Week 2 - Data Cleaning</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -228,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Clean the <code>Land_cover</code> column to transform it into the correct data type and respect expectations for a percentage</p></li>
 <li><p>Use the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the <code>Total_cover</code> column as needed</p></li>
 </ol>
-<p><strong>Add comments to your quarto document about your decisions and assumptions</strong>, this will be part of the grading.</p>
+<p><strong>Add comments to your quarto document about your decisions and assumptions</strong>, this will be a large part of the grading (see below).</p>
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
 <p>You should start a new quarto document named <code>eds213_data_cleaning_assign_YOURNAME.qmd</code> on <strong>your fork</strong> of the GitHub repository <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning">bren-meds213-data-cleaning</a>. Don’t forget to use the <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/main/data/raw/01_ASDN_Readme.txt">metadata</a> present in the data folder</p>
@@ -236,9 +240,11 @@ ul.task-list li input[type="checkbox"] {
 <section id="the-expectations-are" class="level3">
 <h3 class="anchored" data-anchor-id="the-expectations-are">The expectations are:</h3>
 <ul>
-<li>The Quarto document <code>eds213_data_cleaning_assign_YOURNAME.qmd</code> should run if your repo is cloned locally</li>
-<li>The code should be well commented and output a csv file named <code>all_cover_fixed_YOURNAME.csv</code> in the <code>data/processed</code> folder</li>
-<li>Your quarto document should have all the necessary explanations about the decisions you made and potential assumptions you used (don’t forget to look at the metadata!)</li>
+<li>The Quarto document <code>eds213_data_cleaning_assign_YOURNAME.qmd</code> should run if your repo is cloned locally (5pts; Reproducibility)</li>
+<li>The code should output a csv file named <code>all_cover_fixed_YOURNAME.csv</code> in the <code>data/processed</code> folder (5pts; Code)</li>
+<li>Comment well you code (10pts; Documentation)</li>
+<li>Your quarto document should provide all the necessary explanations about your decisions and discuss potential assumptions you used (don’t forget to look at the metadata!) (30pts; Documentation)</li>
+<li>The code should perform the 3 data cleaning steps describe above to enable ingestion into a database (50pts; Technical concepts)</li>
 </ul>
 <p><strong>Note</strong>: We recommend starting by importing the csv file with the corrected <code>Snow_cover</code> column (<code>data/processed/snow_cover.csv</code>) we generated during class (my code <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/later/data-cleaning.qmd">here</a>)</p>
 <p>Finally, remember there are many correct ways of doing this, so document your work well so in 6 months from now you can easily remember your thought process and decisions made while cleaning those data.</p>
@@ -249,6 +255,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Add the URL of your repository at the top of your repo’s README</p></li>
 <li><p>Download your repository as a <code>.zip</code> file and upload it to canvas</p></li>
 </ul>
+<p><strong>Credit: 100pts</strong></p>
 
 
 </section>
