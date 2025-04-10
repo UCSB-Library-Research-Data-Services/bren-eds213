@@ -34,11 +34,7 @@ Finally, remember there are many correct ways of doing this, thus the importance
 
 ### How to submit your assignment to Canvas:
 
-- Add the URL of your repository at the top of your repo's README
-
-- Make sure your repository is public
-
-- Download your repository as a `.zip` file and upload it to canvas
+- Zip your repository as a `.zip` file and upload it to canvas
 
 **Credit: 100 pts**
 
