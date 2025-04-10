@@ -195,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#the-expectations-are" id="toc-the-expectations-are" class="nav-link" data-scroll-target="#the-expectations-are">The expectations are:</a></li>
-  <li><a href="#on-canvas" id="toc-on-canvas" class="nav-link" data-scroll-target="#on-canvas">On Canvas:</a></li>
+  <li><a href="#how-to-submit-your-assignment-to-canvas" id="toc-how-to-submit-your-assignment-to-canvas" class="nav-link" data-scroll-target="#how-to-submit-your-assignment-to-canvas">How to submit your assignment to Canvas:</a></li>
   </ul>
 </nav>
     </div>
@@ -221,31 +221,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/19301/assignments/238393" target="_blank">https://ucsb.instructure.com/courses/19301/assignments/238393</a></strong></p>
+<p>**Please use Canvas to return the assignments: &lt;&gt;{target=“_blank”}**</p>
 <p>We cleaned the <code>Snow_cover</code> column during class. Inspiring yourself from the steps we followed, do the following in a quarto document:</p>
 <ol type="1">
 <li><p>Clean the <code>Water_cover</code> column to transform it into the correct data type and respect expectations for a percentage</p></li>
 <li><p>Clean the <code>Land_cover</code> column to transform it into the correct data type and respect expectations for a percentage</p></li>
-<li><p>Use the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the <code>Total_cover</code> column</p></li>
+<li><p>Use the relationship between the three cover columns (Snow, Water, Land) to infer missing values where possible and recompute the <code>Total_cover</code> column as needed</p></li>
 </ol>
 <p><strong>Add comments to your quarto document about your decisions and assumptions</strong>, this will be part of the grading.</p>
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
-<p>You should start a new quarto document named <code>eds213_data_cleaning_assign_YOURNAME.qmd</code> in your fork of the GitHub repository <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning">bren-meds213-data-cleaning</a>.</p>
+<p>You should start a new quarto document named <code>eds213_data_cleaning_assign_YOURNAME.qmd</code> on <strong>your fork</strong> of the GitHub repository <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning">bren-meds213-data-cleaning</a>. Don’t forget to use the <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/main/data/raw/01_ASDN_Readme.txt">metadata</a> present in the data folder</p>
 </section>
 <section id="the-expectations-are" class="level3">
 <h3 class="anchored" data-anchor-id="the-expectations-are">The expectations are:</h3>
 <ul>
-<li>The qmd <code>eds213_data_cleaning_assign_YOURNAME.qmd</code> should run if your repo is cloned locally and</li>
-<li>the code should output a csv file named <code>all_cover_fixed_YOURNAME.csv</code> in the <code>data/processed</code> folder</li>
+<li>The Quarto document <code>eds213_data_cleaning_assign_YOURNAME.qmd</code> should run if your repo is cloned locally</li>
+<li>The code should be well commented and output a csv file named <code>all_cover_fixed_YOURNAME.csv</code> in the <code>data/processed</code> folder</li>
+<li>Your quarto document should have all the necessary explanations about the decisions you made and potential assumptions you used (don’t forget to look at the metadata!)</li>
 </ul>
 <p><strong>Note</strong>: We recommend starting by importing the csv file with the corrected <code>Snow_cover</code> column (<code>data/processed/snow_cover.csv</code>) we generated during class (my code <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/later/data-cleaning.qmd">here</a>)</p>
+<p>Finally, remember there are many correct ways of doing this, so document your work well so in 6 months from now you can easily remember your thought process and decisions made while cleaning those data.</p>
 </section>
-<section id="on-canvas" class="level3">
-<h3 class="anchored" data-anchor-id="on-canvas">On Canvas:</h3>
+<section id="how-to-submit-your-assignment-to-canvas" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-submit-your-assignment-to-canvas">How to submit your assignment to Canvas:</h3>
 <ul>
-<li><p>Add the URL to your fork on GitHub at the top of your quarto document</p></li>
-<li><p>Upload the qmd &amp; csv files to Canvas (those versions will be the ones evaluated for grading)</p></li>
+<li><p>Add the URL of your repository at the top of your repo’s README</p></li>
+<li><p>Download your repository as a <code>.zip</code> file and upload it to canvas</p></li>
 </ul>
 
 
