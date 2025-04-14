@@ -18,11 +18,11 @@ Under the main VS menu, go to _Settings_ -> Keyboard Shortcuts, search for "run 
 
 ## Test
 
-Let's test our new installation using visual code
+Let's test our new installation using **Visual Studio Code**:
 
 1. open a terminal from the _terminal_ menu -> _new terminal_
 
-2. In the terminal type `duckdb`, this should start duckdb 
+2. In the terminal type `duckdb`, this will start `duckdb` (your prompt in the terminal should now be a `D`)
 
 3. Open a New text file: _file_ menu -> _new text file_
 
