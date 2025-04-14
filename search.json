@@ -382,7 +382,7 @@
     "href": "installing-duckdb.html#test",
     "title": "Installing duckDB",
     "section": "Test",
-    "text": "Test\nLet’s test our new installation using visual code\n\nopen a terminal from the terminal menu -&gt; new terminal\nIn the terminal type duckdb, this should start duckdb\nOpen a New text file: file menu -&gt; new text file\nCopy paste the following code:\n\n-- Start the DB at the terminal: duckdb\n\nCREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;\n\nSHOW TABLES;\n\nFROM ducks SELECT *;\n\nUse Shift+Return to run the SQL code line by line\n\nYou should have something that looks like this:"
+    "text": "Test\nLet’s test our new installation using Visual Studio Code:\n\nopen a terminal from the terminal menu -&gt; new terminal\nIn the terminal type duckdb, this will start duckdb (your prompt in the terminal should now be a D)\nOpen a New text file: file menu -&gt; new text file\nCopy paste the following code:\n\n-- Start the DB at the terminal: duckdb\n\nCREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;\n\nSHOW TABLES;\n\nFROM ducks SELECT *;\n\nUse Shift+Return to run the SQL code line by line\n\nYou should have something that looks like this:"
   },
   {
     "objectID": "syllabus.html",
