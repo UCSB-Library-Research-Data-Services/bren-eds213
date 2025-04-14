@@ -232,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#visual-code-integration-optional" id="toc-visual-code-integration-optional" class="nav-link" data-scroll-target="#visual-code-integration-optional">Visual code integration (optional)</a></li>
+  <li><a href="#visual-code-integration" id="toc-visual-code-integration" class="nav-link" data-scroll-target="#visual-code-integration">Visual code integration</a></li>
   <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
   </ul>
 </nav>
@@ -263,8 +263,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: <a href="https://duckdb.org/docs/installation/" class="uri">https://duckdb.org/docs/installation/</a></p>
 </section>
-<section id="visual-code-integration-optional" class="level2">
-<h2 class="anchored" data-anchor-id="visual-code-integration-optional">Visual code integration (optional)</h2>
+<section id="visual-code-integration" class="level2">
+<h2 class="anchored" data-anchor-id="visual-code-integration">Visual code integration</h2>
 <p>You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:</p>
 <p>Under the main VS menu, go to <em>Settings</em> -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the <em>When</em> column, select <em>Change When Expression</em>, and add <code>editorLangId == 'sql'</code> to restrict to just SQL files and not every kind of file.</p>
 <p><em>Now you can hit <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!</em></p>

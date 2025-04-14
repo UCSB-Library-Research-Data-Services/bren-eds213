@@ -371,11 +371,11 @@
     "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
   },
   {
-    "objectID": "installing-duckdb.html#visual-code-integration-optional",
-    "href": "installing-duckdb.html#visual-code-integration-optional",
+    "objectID": "installing-duckdb.html#visual-code-integration",
+    "href": "installing-duckdb.html#visual-code-integration",
     "title": "Installing duckDB",
-    "section": "Visual code integration (optional)",
-    "text": "Visual code integration (optional)\nYou can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:\nUnder the main VS menu, go to Settings -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the When column, select Change When Expression, and add editorLangId == 'sql' to restrict to just SQL files and not every kind of file.\nNow you can hit Shift+Return at then end of a line in your SQL script and it should run the command directly in the terminal!"
+    "section": "Visual code integration",
+    "text": "Visual code integration\nYou can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:\nUnder the main VS menu, go to Settings -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the When column, select Change When Expression, and add editorLangId == 'sql' to restrict to just SQL files and not every kind of file.\nNow you can hit Shift+Return at then end of a line in your SQL script and it should run the command directly in the terminal!"
   },
   {
     "objectID": "installing-duckdb.html#test",
