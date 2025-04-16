@@ -2,33 +2,56 @@
 title: "Installing duckDB"
 ---
 
+## DuckDB Installation
 
-## Installation
+DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.
 
-DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: <https://duckdb.org/docs/installation/>
+### MacOS
 
+We recommend to use homebrew to install DuckDb on a Mac:
+
+```bash
+brew install duckdb
+```
+
+
+### Windows
+
+1.  Download the latest version from <https://duckdb.org/docs/installation/>
+
+2.  Create a `DuckDB` folder inside `C:\Users\YOUR_USERNAME\AppData\Local` ![](img/duckdb-windows_folder.png)
+
+3.  Unzip the duckdb_xx_zip you just downloaded inside that folder (this should put `duckdb.exe` in this folder)
+
+4.  Add this folder to your path `C:\Users\YOUR_USERNAME\AppData\Local`
+
+    a.  Open System Properties by pressing the Windows key on your keyboard and searching for "environment variables"
+    b.  Access Environment Variables: In the System Properties window, go to the "Advanced" tab. Click on the "Environment Variables" button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the "Path" variable under the User section. Click the "Edit" button
+    c.  Add New Path: In the Edit Environment Variable window, click the "New" button. Type the full directory path of the program you want to add. Press "Enter" to confirm the path. ![](img/duckdb-windows_path.png)
+    d.  Save Changes: Click "Ok" in the Edit Environment Variable window. Click "Ok" in the Environment Variables window. Click "Ok" in the System Properties window.
+    e.  Restart your machine
 
 ## Visual code integration
 
 You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:
 
-Under the main VS menu, go to _Settings_ -> Keyboard Shortcuts, search for "run selected", the "run selected text in active terminal" will be one of the options.  Set the shift-enter keypress by double-clicking.  Right-click on the _When_ column, select _Change When Expression_, and add `editorLangId == 'sql'` to restrict to just SQL files and not every kind of file.
+Under the main VS menu, go to *Settings* -\> Keyboard Shortcuts, search for "run selected", the "run selected text in active terminal" will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the *When* column, select *Change When Expression*, and add `editorLangId == 'sql'` to restrict to just SQL files and not every kind of file.
 
-*Now you can hit <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!*
+*Now you can hit* <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!
 
 ## Test
 
 Let's test our new installation using **Visual Studio Code**:
 
-1. open a terminal from the _terminal_ menu -> _new terminal_
+1.  open a terminal from the *terminal* menu -\> *new terminal*
 
-2. In the terminal type `duckdb`, this will start `duckdb` (your prompt in the terminal should now be a `D`)
+2.  In the terminal type `duckdb`, this will start `duckdb` (your prompt in the terminal should now be a `D`)
 
-3. Open a New text file: _file_ menu -> _new text file_
+3.  Open a New text file: *file* menu -\> *new text file*
 
-4. Copy paste the following code: 
+4.  Copy paste the following code:
 
-```sql
+``` sql
 -- Start the DB at the terminal: duckdb
 
 CREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;
@@ -38,7 +61,7 @@ SHOW TABLES;
 FROM ducks SELECT *;
 ```
 
-5. Use <kbd>Shift</kbd>+<kbd>Return</kbd> to run the SQL code line by line
+5.  Use <kbd>Shift</kbd>+<kbd>Return</kbd> to run the SQL code line by line
 
 You should have something that looks like this:
 
