@@ -236,8 +236,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">MacOS</a></li>
   <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
   </ul></li>
-  <li><a href="#visual-code-integration" id="toc-visual-code-integration" class="nav-link" data-scroll-target="#visual-code-integration">Visual code integration</a></li>
+  <li><a href="#vs-code-integration" id="toc-vs-code-integration" class="nav-link" data-scroll-target="#vs-code-integration">VS Code integration</a></li>
   <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
+  <li><a href="#what-if-this-work-in-your-terminal-but-not-in-vs-code" id="toc-what-if-this-work-in-your-terminal-but-not-in-vs-code" class="nav-link" data-scroll-target="#what-if-this-work-in-your-terminal-but-not-in-vs-code">What if this work in your terminal but not in VS Code??</a>
+  <ul class="collapse">
+  <li><a href="#mac" id="toc-mac" class="nav-link" data-scroll-target="#mac">Mac</a></li>
+  <li><a href="#windows-1" id="toc-windows-1" class="nav-link" data-scroll-target="#windows-1">Windows</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -281,15 +286,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="a">
 <li>Open System Properties by pressing the Windows key on your keyboard and searching for “environment variables”</li>
 <li>Access Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button</li>
-<li>Add New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path. <img src="img/duckdb-windows_path.png" class="img-fluid"></li>
+<li>Add New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path.</li>
+</ol>
+<p><img src="img/duckdb-windows_path.png" class="img-fluid"></p>
+<ol start="4" type="a">
 <li>Save Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.</li>
 <li>Restart your machine</li>
 </ol></li>
 </ol>
 </section>
 </section>
-<section id="visual-code-integration" class="level2">
-<h2 class="anchored" data-anchor-id="visual-code-integration">Visual code integration</h2>
+<section id="vs-code-integration" class="level2">
+<h2 class="anchored" data-anchor-id="vs-code-integration">VS Code integration</h2>
 <p>You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:</p>
 <p>Under the main VS menu, go to <em>Settings</em> -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the <em>When</em> column, select <em>Change When Expression</em>, and add <code>editorLangId == 'sql'</code> to restrict to just SQL files and not every kind of file.</p>
 <p><em>Now you can hit</em> <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!</p>
@@ -315,8 +323,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>You should have something that looks like this:</p>
 <p><img src="img/duckdb-vscode_test.png" class="img-fluid"></p>
+</section>
+<section id="what-if-this-work-in-your-terminal-but-not-in-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="what-if-this-work-in-your-terminal-but-not-in-vs-code">What if this work in your terminal but not in VS Code??</h2>
+<p>When running the Terminal from VS Code, your path is not always loaded correctly depending of your machine settings. You can check this by running both in an independant terminal and the VS Code terminal:</p>
+<section id="mac" class="level3">
+<h3 class="anchored" data-anchor-id="mac">Mac</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="windows-1" class="level3">
+<h3 class="anchored" data-anchor-id="windows-1">Windows</h3>
+<p>In powershell:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">echo</span> <span class="va">$env</span><span class="op">:</span><span class="va">PATH</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you do not get the same answers, then you will have to edit the setting in VS Code. For more information please read <a href="https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch" class="uri">https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
