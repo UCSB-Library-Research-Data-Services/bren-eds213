@@ -83,14 +83,14 @@ echo $PATH
 
 ### Windows
 
-In powershell:
+In PowerShell:
 
 
 ```powershell
 echo $env:PATH
 ```
 
-If you do not get the same answers, then you will have to edit the setting in VS Code. For more information please read <https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch>
+If you do not get the same answers, then you will have to edit the terminal settings in VS Code. For more information please read this page <https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch>
 
 
 
