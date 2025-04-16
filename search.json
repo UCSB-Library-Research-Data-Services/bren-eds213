@@ -389,7 +389,7 @@
     "href": "installing-duckdb.html#what-if-this-work-in-your-terminal-but-not-in-vs-code",
     "title": "Installing duckDB",
     "section": "What if this work in your terminal but not in VS Code??",
-    "text": "What if this work in your terminal but not in VS Code??\nWhen running the Terminal from VS Code, your path is not always loaded correctly depending of your machine settings. You can check this by running both in an independant terminal and the VS Code terminal:\n\nMac\necho $PATH\n\n\nWindows\nIn powershell:\necho $env:PATH\nIf you do not get the same answers, then you will have to edit the setting in VS Code. For more information please read https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch"
+    "text": "What if this work in your terminal but not in VS Code??\nWhen running the Terminal from VS Code, your path is not always loaded correctly depending of your machine settings. You can check this by running both in an independant terminal and the VS Code terminal:\n\nMac\necho $PATH\n\n\nWindows\nIn PowerShell:\necho $env:PATH\nIf you do not get the same answers, then you will have to edit the terminal settings in VS Code. For more information please read this page https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch"
   },
   {
     "objectID": "syllabus.html",
