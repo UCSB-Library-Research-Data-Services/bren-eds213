@@ -34,7 +34,7 @@ brew install duckdb
     d.  Save Changes: Click "Ok" in the Edit Environment Variable window. Click "Ok" in the Environment Variables window. Click "Ok" in the System Properties window.
     e.  Restart your machine
 
-## Visual code integration
+## VS Code integration
 
 You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:
 
@@ -69,3 +69,28 @@ FROM ducks SELECT *;
 You should have something that looks like this:
 
 ![](img/duckdb-vscode_test.png)
+
+
+## What if this work in your terminal but not in VS Code??
+
+When running the Terminal from VS Code, your path is not always loaded correctly depending of your machine settings. You can check this by running both in an independant terminal and the VS Code terminal:
+
+### Mac
+
+```bash
+echo $PATH
+```
+
+### Windows
+
+In powershell:
+
+
+```powershell
+echo $env:PATH
+```
+
+If you do not get the same answers, then you will have to edit the setting in VS Code. For more information please read <https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch>
+
+
+
