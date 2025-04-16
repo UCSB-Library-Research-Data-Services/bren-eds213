@@ -231,7 +231,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#duckdb-installation" id="toc-duckdb-installation" class="nav-link active" data-scroll-target="#duckdb-installation">DuckDB Installation</a>
+  <ul class="collapse">
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">MacOS</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
+  </ul></li>
   <li><a href="#visual-code-integration" id="toc-visual-code-integration" class="nav-link" data-scroll-target="#visual-code-integration">Visual code integration</a></li>
   <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
   </ul>
@@ -259,15 +263,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<p>DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: <a href="https://duckdb.org/docs/installation/" class="uri">https://duckdb.org/docs/installation/</a></p>
+<section id="duckdb-installation" class="level2">
+<h2 class="anchored" data-anchor-id="duckdb-installation">DuckDB Installation</h2>
+<p>DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.</p>
+<section id="macos" class="level3">
+<h3 class="anchored" data-anchor-id="macos">MacOS</h3>
+<p>We recommend to use homebrew to install DuckDb on a Mac:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install duckdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="windows" class="level3">
+<h3 class="anchored" data-anchor-id="windows">Windows</h3>
+<ol type="1">
+<li><p>Download the latest version from <a href="https://duckdb.org/docs/installation/" class="uri">https://duckdb.org/docs/installation/</a></p></li>
+<li><p>Create a <code>DuckDB</code> folder inside <code>C:\Users\YOUR_USERNAME\AppData\Local</code> <img src="img/duckdb-windows_folder.png" class="img-fluid"></p></li>
+<li><p>Unzip the duckdb_xx_zip you just downloaded inside that folder (this should put <code>duckdb.exe</code> in this folder)</p></li>
+<li><p>Add this folder to your path <code>C:\Users\YOUR_USERNAME\AppData\Local</code></p>
+<ol type="a">
+<li>Open System Properties by pressing the Windows key on your keyboard and searching for “environment variables”</li>
+<li>Access Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button</li>
+<li>Add New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path. <img src="img/duckdb-windows_path.png" class="img-fluid"></li>
+<li>Save Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.</li>
+<li>Restart your machine</li>
+</ol></li>
+</ol>
+</section>
 </section>
 <section id="visual-code-integration" class="level2">
 <h2 class="anchored" data-anchor-id="visual-code-integration">Visual code integration</h2>
 <p>You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:</p>
 <p>Under the main VS menu, go to <em>Settings</em> -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the <em>When</em> column, select <em>Change When Expression</em>, and add <code>editorLangId == 'sql'</code> to restrict to just SQL files and not every kind of file.</p>
-<p><em>Now you can hit <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!</em></p>
+<p><em>Now you can hit</em> <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!</p>
 </section>
 <section id="test" class="level2">
 <h2 class="anchored" data-anchor-id="test">Test</h2>
@@ -278,13 +303,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Open a New text file: <em>file</em> menu -&gt; <em>new text file</em></p></li>
 <li><p>Copy paste the following code:</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start the DB at the terminal: duckdb</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> ducks <span class="kw">AS</span> <span class="kw">SELECT</span> <span class="dv">3</span> <span class="kw">As</span> age, <span class="st">'mandarin'</span> <span class="kw">AS</span> breed;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TABLES</span>;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ducks <span class="kw">SELECT</span> <span class="op">*</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start the DB at the terminal: duckdb</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> ducks <span class="kw">AS</span> <span class="kw">SELECT</span> <span class="dv">3</span> <span class="kw">As</span> age, <span class="st">'mandarin'</span> <span class="kw">AS</span> breed;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TABLES</span>;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ducks <span class="kw">SELECT</span> <span class="op">*</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="5" type="1">
 <li>Use <kbd>Shift</kbd>+<kbd>Return</kbd> to run the SQL code line by line</li>
 </ol>

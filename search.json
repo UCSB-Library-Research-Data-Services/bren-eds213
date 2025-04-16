@@ -361,14 +361,14 @@
     "href": "installing-duckdb.html",
     "title": "Installing duckDB",
     "section": "",
-    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
+    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.\n\n\nWe recommend to use homebrew to install DuckDb on a Mac:\nbrew install duckdb\n\n\n\n\nDownload the latest version from https://duckdb.org/docs/installation/\nCreate a DuckDB folder inside C:\\Users\\YOUR_USERNAME\\AppData\\Local \nUnzip the duckdb_xx_zip you just downloaded inside that folder (this should put duckdb.exe in this folder)\nAdd this folder to your path C:\\Users\\YOUR_USERNAME\\AppData\\Local\n\nOpen System Properties by pressing the Windows key on your keyboard and searching for “environment variables”\nAccess Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button\nAdd New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path. \nSave Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.\nRestart your machine"
   },
   {
-    "objectID": "installing-duckdb.html#installation",
-    "href": "installing-duckdb.html#installation",
+    "objectID": "installing-duckdb.html#duckdb-installation",
+    "href": "installing-duckdb.html#duckdb-installation",
     "title": "Installing duckDB",
     "section": "",
-    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions: https://duckdb.org/docs/installation/"
+    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.\n\n\nWe recommend to use homebrew to install DuckDb on a Mac:\nbrew install duckdb\n\n\n\n\nDownload the latest version from https://duckdb.org/docs/installation/\nCreate a DuckDB folder inside C:\\Users\\YOUR_USERNAME\\AppData\\Local \nUnzip the duckdb_xx_zip you just downloaded inside that folder (this should put duckdb.exe in this folder)\nAdd this folder to your path C:\\Users\\YOUR_USERNAME\\AppData\\Local\n\nOpen System Properties by pressing the Windows key on your keyboard and searching for “environment variables”\nAccess Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button\nAdd New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path. \nSave Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.\nRestart your machine"
   },
   {
     "objectID": "installing-duckdb.html#visual-code-integration",
