@@ -27,7 +27,10 @@ brew install duckdb
 
     a.  Open System Properties by pressing the Windows key on your keyboard and searching for "environment variables"
     b.  Access Environment Variables: In the System Properties window, go to the "Advanced" tab. Click on the "Environment Variables" button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the "Path" variable under the User section. Click the "Edit" button
-    c.  Add New Path: In the Edit Environment Variable window, click the "New" button. Type the full directory path of the program you want to add. Press "Enter" to confirm the path. ![](img/duckdb-windows_path.png)
+    c.  Add New Path: In the Edit Environment Variable window, click the "New" button. Type the full directory path of the program you want to add. Press "Enter" to confirm the path. 
+    
+    ![](img/duckdb-windows_path.png)
+    
     d.  Save Changes: Click "Ok" in the Edit Environment Variable window. Click "Ok" in the Environment Variables window. Click "Ok" in the System Properties window.
     e.  Restart your machine
 
