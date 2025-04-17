@@ -46,3 +46,5 @@ Now that you're done with your table, you can delete it if desired:
 ```         
 DROP TABLE mytable;
 ```
+
+**Credit: 20 points**

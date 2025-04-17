@@ -48,3 +48,5 @@ Do the same, but use a nested query. First, create a query that finds the maximu
 ```         
 SELECT Site_name, Area FROM Site WHERE Area = (SELECT ...);
 ```
+
+**Credit: 20 points**

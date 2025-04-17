@@ -53,3 +53,5 @@ That's not the whole story, we want scientific names not species codes. Another 
 Don't forget to order the results. Here it is convenient to give computed quantities nice names so you can refer to them.
 
 Please submit all of the SQL you used to solve the problem. Bonus points if you can do all of the above in one statement.
+
+**Credit: 60 points**
