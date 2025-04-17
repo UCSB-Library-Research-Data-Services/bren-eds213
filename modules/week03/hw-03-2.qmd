@@ -2,6 +2,8 @@
 title: "Week 3 - SQL problem 2"
 ---
 
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/358193>**
+
 # Part 1
 
 If we want to know which site has the largest area, it's tempting to say

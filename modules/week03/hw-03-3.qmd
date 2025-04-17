@@ -2,6 +2,8 @@
 title: "Week 3 - SQL problem 3"
 ---
 
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/358194>**
+
 Your mission is to list the scientific names of bird species in descending order of their maximum average egg volumes. That is, compute the average volume of the eggs in each nest, and then for the nests of each species compute the maximum of those average volumes, and list by species in descending order of maximum volume. You final table should look like:
 
 ```         
