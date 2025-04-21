@@ -1,0 +1,31 @@
+---
+title: "Notes"
+editor: source
+---
+
+Hello students, I wanted to give you some extra info that we didn't have time to get to in class.
+
+-   **Algebra**. I want to emphasize that SQL is based on a rigorous mathematical theory known as relational algebra. Everything is a table, and every operation produces a new table. It is this feature that allows us to work with tables as easily as integers. E.g., the `SELECT` statement queries a table. The table might be a "real" table or it might be one that is the output of another operation. Hence after the `FROM` we can put either a table name or a parenthesized `SELECT` statement.
+
+-   **Ordering**. Mathematically, a table is an unordered set of tuples; there is no intrinsic order (there are advanced features that allow you to specify how the table should be stored, but that's beyond this class). This is in stark contrast to R and Python, where dataframes are ordered lists of columns and each column is an ordered series of values. This difference manifests itself in three ways. One, the order of rows is not stable in a database; it can change unpredictably. I will show you an example that will surprise you later in the course. Two, SQL provides no features for accessing "adjacent" rows. You can't query for a row and also select its neighbors (not easily, anyway) because there is no concept of neighbor. Whereas in R this is totally possible. Three, it means that an `ORDER BY` clause should generally always come last, on the outermost query. You can put `ORDER BY` clauses on nested queries, but generally that order will be lost as the database continues processing, especially when a `JOIN` is performed.
+
+-   **Joins**. Fundamentally, a join first performs a Cartesian product of two tables, and that Cartesian product will include all columns from both tables. From there the database cuts things down, using the `ON` clause to narrow down rows and using the selected columns to narrow the columns (it's rare to do a `SELECT *` in a join).
+
+    -   The preceding is conceptual. In implementation, databases employ many CS PhD's worth of tricks to avoid doing all that work.
+    -   The `ON` clause will often equate a primary key with a foreign key, but not always. From the database perspective the `ON` clause is simply an expression to be evaluated on columns. For example, suppose in one table you have a date range and in another table you have a year. You could still join the tables by using an expression that checks that the year is within the date range. You would wind up with a row for each instance where a year falls within a date range.
+
+-   **USING**. When joining two tables by equating a primary key with a foreign key and if the keys' columns have the same name, you can use `USING` instead of `ON`. So instead of this:
+
+    ```         
+    SELECT ...
+       FROM Bird_nests JOIN Bird_eggs         
+       ON Bird_nests.Nest_ID = Bird_eggs.Nest_ID ...
+    ```
+
+    You can say:
+
+    ```         
+    SELECT ... FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
+    ```
+
+-   **Denormalization**. The observant will notice that when joining a table like Bird_eggs to Bird_nests, where there is a many-to-one relationship, the rows from Bird_nests will be repeated over and over for every egg.  This smells like denormalizations and it is. That's by design. Data is stored normalized, and denormalized on demand.

@@ -19,6 +19,8 @@ Lecture notes:
 -   [lecture-notes-03-wed.txt](lecture-notes-03-wed.txt)
 -   [class-script-03-wed.sql](class-script-03-wed.sql)
 
+[Additional notes](notes.qmd)
+
 [ASDN dataset ER (entity-relationship) diagram](asdn-er-diagram.png)
 
 [Class data GitHub repository](https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data)
