@@ -15,7 +15,7 @@ Lecture notes:
 
 -   [lecture-notes-04-tue.txt](lecture-notes-04-mon.txt)
 -   [class-script-04-tue.sql](class-script-04-mon.sql)
--   [lecture-notes-data-management-io.sql](lecture-notes-data-management-io.sql)
+-   [lecture-notes-data-management-io.sql](lecture-notes-data-management-io.txt)
 -   [class-script-04-thu-empty.sql](class-script-04-wed-empty.sql)
 <!-- -   [class-script-04-thu-solution.sql](week4-wed_lecture-notes.sql) -->
 
