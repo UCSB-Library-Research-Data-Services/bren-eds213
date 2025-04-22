@@ -1,0 +1,21 @@
+
+DATA MANAGEMENT STATEMENTS
+- INSERT: already seen that
+- UPDATE table SET ... WHERE ...
+- DELETE FROM table WHERE ...
+- caution: these operate on whole tables if unqualified
+- strategies to avoid catastrophes
+-- just subconsciouly be careful, like holding a kitchen knife
+-- put comment in front: -- DELETE FROM ..., then remove comment
+-- do SELECT first, then replace SELECT with DELETE <- allows inspection
+   of what's about to be deleted
+-- tweak table name, put x in front, then remove
+
+I/O
+- all RDBMSs have scriptable I/O tools
+- generally, INSERT one at a time is slow
+- output to CSV
+-- .mode csv, .headers on, .output file
+-- plain .output to turn output off
+- loading CSVs: see build script
+- if table doesn't exist, is created w/ all text columns (don't skip header)
