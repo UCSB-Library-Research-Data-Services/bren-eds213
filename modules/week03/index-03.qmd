@@ -15,9 +15,9 @@ title: "Week 3 - Structured Query Language (SQL) & DuckDB"
 
 Lecture notes:
 
--   [lecture-notes-03-mon.txt](lecture-notes-03-mon.txt)
--   [lecture-notes-03-wed.txt](lecture-notes-03-wed.txt)
--   [class-script-03-wed.sql](class-script-03-wed.sql)
+-   [lecture-notes-03-tue.txt](lecture-notes-03-mon.txt)
+-   [lecture-notes-03-thu.txt](lecture-notes-03-wed.txt)
+-   [class-script-03-thu.sql](class-script-03-wed.sql)
 
 [Additional notes](notes.qmd)
 

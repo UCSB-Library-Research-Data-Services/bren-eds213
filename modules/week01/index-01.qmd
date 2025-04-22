@@ -44,10 +44,3 @@ title: "Week 1 - Relational databases and data modeling"
 
     -   *Complete but theoretical introduction to relational databases, data modeling, and relational algebra.*
 
-## Homework
-
-[Create an ER diagram](hw-01-1.qmd)
-
-[Data modeling exercise](hw-01-2.qmd)
-
-[Naming things is hard](hw-01-3.qmd)

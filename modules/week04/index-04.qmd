@@ -13,10 +13,10 @@ title: "Week 4 - SQL and DuckDB"
 
 Lecture notes:
 
--   [lecture-notes-04-mon.txt](lecture-notes-04-mon.txt)
--   [class-script-04-mon.sql](class-script-04-mon.sql)
--   [class-script-04-wed-empty.sql](class-script-04-wed-empty.sql)
--   [class-script-04-wed-solution.sql](week4-wed_lecture-notes.sql)
+-   [lecture-notes-04-tue.txt](lecture-notes-04-mon.txt)
+-   [class-script-04-tue.sql](class-script-04-mon.sql)
+-   [class-script-04-thu-empty.sql](class-script-04-wed-empty.sql)
+-   [class-script-04-thu-solution.sql](week4-wed_lecture-notes.sql)
 
 
 Data:
@@ -26,10 +26,3 @@ Data:
 - [ASDN dataset ER (entity-relationship) diagram](asdn-er-diagram.png)
 
 
-## Homework
-
-[Missing data](hw-04-1.qmd)
-
-[Who worked with whom?](hw-04-2.qmd)
-
-[Who's the culprit?](hw-04-3.qmd)
