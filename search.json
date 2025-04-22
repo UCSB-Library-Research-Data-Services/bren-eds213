@@ -67,7 +67,7 @@
     "href": "modules/week03/index-03.html#slides-and-other-materials",
     "title": "Week 3 - Structured Query Language (SQL) & DuckDB",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-mon.txt\nlecture-notes-03-wed.txt\nclass-script-03-wed.sql\n\nAdditional notes\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository"
+    "text": "Slides and other materials\nslides-03.pptx\nLecture notes:\n\nlecture-notes-03-tue.txt\nlecture-notes-03-thu.txt\nclass-script-03-thu.sql\n\nAdditional notes\nASDN dataset ER (entity-relationship) diagram\nClass data GitHub repository"
   },
   {
     "objectID": "modules/week03/index-03.html#resources",
@@ -165,14 +165,7 @@
     "href": "modules/week04/index-04.html#slides-and-other-materials",
     "title": "Week 4 - SQL and DuckDB",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-04.pptx\nLecture notes:\n\nlecture-notes-04-mon.txt\nclass-script-04-mon.sql\nclass-script-04-wed-empty.sql\nclass-script-04-wed-solution.sql\n\nData:\n\nClass data GitHub repository, week 3 – for Monday\nClass data GitHub repository, week 4 – for Wednesday only\nASDN dataset ER (entity-relationship) diagram"
-  },
-  {
-    "objectID": "modules/week04/index-04.html#homework",
-    "href": "modules/week04/index-04.html#homework",
-    "title": "Week 4 - SQL and DuckDB",
-    "section": "Homework",
-    "text": "Homework\nMissing data\nWho worked with whom?\nWho’s the culprit?"
+    "text": "Slides and other materials\nslides-04.pptx\nLecture notes:\n\nlecture-notes-04-tue.txt\nclass-script-04-tue.sql\nclass-script-04-thu-empty.sql\nclass-script-04-thu-solution.sql\n\nData:\n\nClass data GitHub repository, week 3 – for Monday\nClass data GitHub repository, week 4 – for Wednesday only\nASDN dataset ER (entity-relationship) diagram"
   },
   {
     "objectID": "modules/week04/hw-04-3.html",
@@ -313,13 +306,6 @@
     "title": "Week 1 - Relational databases and data modeling",
     "section": "Resources",
     "text": "Resources\n\nhttps://learning.nceas.ucsb.edu/2023-06-delta/session_09.html\n\nVery brief introduction to data modeling, ties into “tidy data.”\n\nChristoph Wohner, Johannes Peterseil, and Hermann Klug (2022). Designing and implementing a data model for describing environmental monitoring and research sites. Ecological Informatics 70, 101708.\nhttps://doi.org/10.1016/j.ecoinf.2022.101708\n\nGood case study.\n\nGerald A. Burnette (2022). Managing environmental data: principles, techniques, and best practices. CRC Press.\nAccess via Library Catalog\n\nComprehensive text, specific to environmental sciences.\n\nGraeme C. Simsion and Graham C. Witt (2005). Data Modeling Essentials. 3rd ed. Amsterdam: Morgan Kaufmann.\nAccess via Library Catalog\nGoogle Books\n\nComprehensive text, not specific to the environmental sciences.\n\nHartmut Hebbel (1994). Environmental data modeling. Annals of Operations Research 54, 263-278.\nhttps://doi.org/10.1007/BF02031737\n\nA broader view of data organization.\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
-  },
-  {
-    "objectID": "modules/week01/index-01.html#homework",
-    "href": "modules/week01/index-01.html#homework",
-    "title": "Week 1 - Relational databases and data modeling",
-    "section": "Homework",
-    "text": "Homework\nCreate an ER diagram\nData modeling exercise\nNaming things is hard"
   },
   {
     "objectID": "modules/week01/hw-01-1.html",
