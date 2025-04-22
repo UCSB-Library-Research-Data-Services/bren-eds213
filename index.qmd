@@ -24,10 +24,6 @@ A class data GitHub repository, linked below, is used to distribute data files t
 - Julien Brun (jb160\@ucsb.edu)
 - Greg Janée (gjanee\@ucsb.edu)
 - Renata Curty (rcurty\@ucsb.edu)
-
-
-## Teaching Assistant
-
 - Annie Adams (aradams\@ucsb.edu )
 
 
