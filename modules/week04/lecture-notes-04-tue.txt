@@ -1,0 +1,103 @@
+DATABASES IN E&ES
+- where is SQL used in E&ES in practice?
+-- within projects
+-- SQL to build, manage such a database
+-- GBIF!
+-- SQL exposed to outsiders? no
+--- presumes SQL knowledge, and knowledge of schema, which is
+    usually considered internal to the implementation
+--- security risk
+--- danger of long-running queries
+-- SQL from R/Python usually streamlined to ask specific questions for
+   purposes of analysis
+
+RECAP
+- make sure ORDER BY is last step
+-- a join creates a whole new table, order may be completely different
+-- How many eggs are in each nest?
+   SELECT Nest_ID, COUNT(*) FROM Bird_eggs GROUP BY Nest_ID;
+- Grouping by species
+-- SELECT Species FROM Bird_nests WHERE Site = 'nome';
+-- SELECT Species, COUNT(*) AS Nest_count FROM Bird_nests
+   WHERE Site = 'nome'
+   GROUP BY Species
+   HAVING Nest_count > 10
+   ORDER BY Species
+   LIMIT 2;
+-- add in joins, can use nested queries
+-- SELECT Scientific_name, Nest_Count FROM
+   (SELECT Species, COUNT(*) AS Nest_count FROM Bird_nests
+   WHERE Site = 'nome'
+   GROUP BY Species
+   HAVING Nest_count > 10
+   ORDER BY Species
+   LIMIT 2) JOIN Species ON Species = Code;
+
+OUTER JOINS
+- what's happening?
+- value in creating experiment
+- CREATE TEMP TABLE a (cola INTEGER, common INTEGER);
+- INSERT INTO a VALUES (1, 1), (2, 2), (3, 3);
+- CREATE TEMP TABLE b (common INTEGER, colb INTEGER);
+- INSERT INTO b VALUES (2, 2), (3, 3), (4, 4), (5, 5);
+- OUTER JOIN b includes all rows of b and fills in a's columns with NULL
+- what species do *not* have nest data?
+- SELECT Code FROM Species
+      WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);
+- SELECT Code
+      FROM Species LEFT JOIN Bird_nests
+      ON Code = Species
+      WHERE Species IS NULL;
+
+SELF JOINS
+- homework assignment
+- used with hierarchical data
+
+GOTCHA WITH GROUPING
+- DuckDB not smart enough to recognize primary keys in joins
+- SELECT * FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
+  WHERE nest_id = '14eabaage01';
+- SELECT Nest_ID, COUNT(*)
+  FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
+  GROUP BY Nest_ID;
+- Can we add another column from Bird_nests?  Other RDBMs's say yes
+- DuckDB: n
+- So follow DuckDB's suggestions
+- SELECT Scientific_name, COUNT(*) AS Nest_count
+  FROM Bird_nests JOIN Species ON Species = Code
+  WHERE Site = 'nome'
+  GROUP BY Species
+  HAVING Nest_count > 10
+  ORDER BY Species
+  LIMIT 2;
+
+VIEWS
+- make normalized tables more palatable
+- virtual, not materialized like CREATE TABLE AS
+- virtual implies always reflects current data in source tables
+- CREATE VIEW v AS
+      SELECT Year, Site, Name, Start, "End"
+      FROM Camp_assignment JOIN Personnel
+      ON Observer = Abbreviation;
+- inserts, updates, deletes possible?  maybe, depends on DB intelligence
+- can't insert/update on view the uses aggregate function
+
+SET OPERATIONS
+- UNION, INTERSECT, EXCEPT
+- last one is set difference
+- BTW: 3rd way to get species that do *not* have nest data: use EXCEPT
+- SELECT Code FROM Species
+  EXCEPT
+  SELECT DISTINCT Species FROM Bird_nests;
+- example: book b14 measured in inches, not millimeters, adjust on fly
+- SELECT Book_page, Nest_ID, Egg_num, Length*25.4, Width*25.4
+      FROM Bird_eggs
+      WHERE Book_page LIKE 'b14%'
+  UNION
+  SELECT Book_page, Nest_ID, Egg_num, Length, Width
+      FROM Bird_eggs
+      WHERE Book_page NOT LIKE 'b14%';
+- ^^ what if Book_page is NULL?
+- caution: not really looking at names of columns, just #columns and data types
+- so is possible to union nonsensical things together
+- UNION throws out duplicates, UNION ALL keeps all
