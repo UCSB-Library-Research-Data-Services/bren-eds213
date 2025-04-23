@@ -28,9 +28,9 @@ website:
           - modules/week03/hw-03-1.qmd
           - modules/week03/hw-03-2.qmd
           - modules/week03/hw-03-3.qmd
-          #- modules/week04/hw-04-1.qmd
-          #- modules/week04/hw-04-2.qmd
-          #- modules/week04/hw-04-3.qmd
+          - modules/week04/hw-04-1.qmd
+          - modules/week04/hw-04-2.qmd
+          - modules/week04/hw-04-3.qmd
           #- modules/week05/hw-05-1.qmd
           #- modules/week05/hw-05-2.qmd
           #- modules/week05/hw-05-3.qmd

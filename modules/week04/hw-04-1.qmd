@@ -2,11 +2,13 @@
 title: "Week 4 - Missing data"
 ---
 
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/359037>**
+
 Which sites have **no** egg data? Please answer this question using all three techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:
 
 -   Using a `Code NOT IN (subquery)` clause.
 
--   Using an outer join with a `WHERE` clause that selects the desired rows. Caution: make sure your `IS NULL` test is performed against a column that is not ordinarily allowed to be NULL. You may want to consult the [database schema](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/blob/main/week3/schema-build-script.sql) to remind yourself of column declarations.
+-   Using an outer join with a `WHERE` clause that selects the desired rows. Caution: make sure your `IS NULL` test is performed against a column that is not ordinarily allowed to be NULL. You may want to consult the [database schema](https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data/blob/main/database/schema-build-script.sql) to remind yourself of column declarations.
 
 -   Using the set operation `EXCEPT`.
 
@@ -37,3 +39,5 @@ Add an `ORDER BY` clause to your queries so that all three produce the exact sam
 ```
 
 Submit your SQL.
+
+**Credit: 10 points**
