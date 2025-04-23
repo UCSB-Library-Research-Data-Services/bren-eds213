@@ -2,14 +2,38 @@ RECAP OF MONDAY
 - outer joins
 - self-joins: useful for answering questions like finding all pairs that
   meet some criteria
--- A.observer < B.observer business is a standard idiom
+  -- A.observer < B.observer business is a standard idiom
 - views
--- CREATE TABLE AS SELECT analogous to variable
--- CREATE VIEW analogous to function, gets re-evaluated each time referenced
-- set operations
-- data manipulation statements and reducing risk
-- reading and writing CSVs
--- use SQLite built-ins .import, .output + .mode + .headers
+  -- CREATE TABLE AS SELECT analogous to variable
+  -- CREATE VIEW analogous to function, gets re-evaluated each time referenced
+
+- Add data
+  -- CREATE TEMP TABLE a (cola INTEGER, common INTEGER);
+  -- INSERT INTO a VALUES (1, 1), (2, 2), (3, 3);
+
+
+I/O: data engineer
+
+- How to import data in a database
+  -- COPY TO
+- How to export a database
+
+
+DATA MANAGEMENT STATEMENTS (!Alert danger!)
+- INSERT: already seen that
+- UPDATE table SET ... WHERE ...
+- DELETE FROM table WHERE ...
+- caution: these operate on whole tables if unqualified
+- strategies to avoid catastrophes
+  -- just subconsciouly be careful, like holding a kitchen knife
+  -- put comment in front: -- DELETE FROM ..., then remove comment
+  -- do SELECT first, then replace SELECT with DELETE <- allows inspection
+   of what's about to be deleted
+  -- tweak table name, create TMP table, put x in front, then remove
+
+
+
+## Next week:
 
 TRIGGERS
 - on some event, take some action(s)
