@@ -201,6 +201,18 @@ window.Quarto = {
     <a class="dropdown-item" href="../../modules/week03/hw-03-3.html">
  <span class="dropdown-text">Week 3 - SQL problem 3</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week04/hw-04-1.html">
+ <span class="dropdown-text">Week 4 - Missing data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week04/hw-04-2.html">
+ <span class="dropdown-text">Week 4 - Who worked with whom?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week04/hw-04-3.html">
+ <span class="dropdown-text">Week 4 - Who’s the culprit?</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -264,6 +276,7 @@ window.Quarto = {
 </header>
 
 
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/359038" class="uri">https://ucsb.instructure.com/courses/26293/assignments/359038</a></strong></p>
 <p>The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who worked with whom? That is, you are to find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.</p>
 <p>A self-join of a table is a regular join, but instead of joining two different tables, we join two copies of the same table, which we will call the “A” copy and the “B” copy:</p>
 <pre><code>SELECT * FROM Camp_assignment A JOIN Camp_assignment B ...</code></pre>
@@ -282,6 +295,7 @@ window.Quarto = {
 │ lkri    │ apopovkina │ gsedash      │
 └─────────┴────────────┴──────────────┘</code></pre>
 <p>Submit your final SQL query.</p>
+<p><strong>Credit: 20 points</strong></p>
 <section id="bonus-problem" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-problem">Bonus problem!</h2>
 <p>Produce this much nicer table by joining with the Personnel table:</p>
@@ -293,6 +307,7 @@ window.Quarto = {
 │ lkri    │ Anastasia Popovkina │ Julya Loshchagina │
 └─────────┴─────────────────────┴───────────────────┘</code></pre>
 <p>You’ll need to join with the Personnel table twice, once for each observer column. You may need give abbreviations to tables (e.g., <code>JOIN Personnel AS p1</code>) to distinguish the tables and columns. You can do it!</p>
+<p><strong>Credit: 10 points</strong></p>
 
 
 </section>

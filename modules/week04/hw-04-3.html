@@ -172,6 +172,18 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../modules/week03/hw-03-3.html">
  <span class="dropdown-text">Week 3 - SQL problem 3</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week04/hw-04-1.html">
+ <span class="dropdown-text">Week 4 - Missing data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week04/hw-04-2.html">
+ <span class="dropdown-text">Week 4 - Who worked with whom?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week04/hw-04-3.html">
+ <span class="dropdown-text">Week 4 - Who’s the culprit?</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -229,15 +241,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/359040" class="uri">https://ucsb.instructure.com/courses/26293/assignments/359040</a></strong></p>
 <p>You’re reading up on how eggs are aged by floating them in water <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
 <p><img src="egg-float-graph.png" class="img-fluid"></p>
-<p>when you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly <strong>36</strong> nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return <strong>exactly one row</strong>, the answer. That is, your query should produce:</p>
+<p>when you receive an urgent phone call from a colleague who says they just discovered that an observer, who worked at the “nome” site between 1998 and 2008 inclusive, had been floating eggs in salt water and not freshwater. The density of salt water being different, those measurements are incorrect and need to be adjusted. The colleague says that this incorrect technique was used on exactly <strong>36</strong> nests, but before you can ask who the observer was, the phone is disconnected. Who made this error? That is, looking at nest data for “nome” between 1998 and 2008 inclusive, and for which egg age was determined by floating, can you determine the (full) name of the observer who observed exactly 36 nests? Please submit your SQL. Your SQL should return <strong>exactly one row</strong>, the answer. That is, your query should produce:</p>
 <pre><code>┌──────────────────┬───────────────────┐
 │       Name       │ Num_floated_nests │
 │     varchar      │       int64       │
 ├──────────────────┼───────────────────┤
 │ (hidden)         │                36 │
 └──────────────────┴───────────────────┘</code></pre>
+<p><strong>Credit: 50 points</strong></p>
 
 
 
