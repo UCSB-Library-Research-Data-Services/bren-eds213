@@ -46,5 +46,13 @@ SELECT * from Personnel WHERE Abbreviation ILIKE '%jz%';
 -- jzamuido vs jzamudio (typos)!!!
 
 
--- Exporting the entire databse
+-- Getting things out
+
+-- Exporting the entire database
 EXPORT DATABASE 'export_adsn';
+
+-- Exporting one table
+COPY Snow_cover TO 'Snow_cover_db.csv' (HEADER, DELIMITER ',');
+
+-- Exporting one query
+COPY (SELECT * FROM Snow_cover WHERE Site = 'barr') TO 'barr.csv' (HEADER, DELIMITER ',');
