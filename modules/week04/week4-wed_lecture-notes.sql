@@ -1,15 +1,64 @@
--- opening DuckDB with no database file , aka "in-memory"
-> duckdb
+-- Let's first to try to import the snow survey data in a new database
+-- from the ASDN folder run:
+-- duckdb import_test.duckdb 
 
--- opening an existing database with DuckDB
-> duckdb database_filename.db
+CREATE TABLE Snow_cover (
+    Site VARCHAR NOT NULL,
+    Year INTEGER NOT NULL CHECK (Year BETWEEN 1950 AND 2015),
+    Date DATE NOT NULL,
+    Plot VARCHAR NOT NULL,
+    Location VARCHAR NOT NULL,
+    Snow_cover REAL,
+    Water_cover REAL,
+    Land_cover REAL,
+    Total_cover REAL,
+    Observer VARCHAR NOT NULL,
+    Notes VARCHAR,
+    PRIMARY KEY (Site, Plot, Location, Date)
+);
+COPY Snow_cover FROM 'snow_survey_fixed.csv' (header TRUE);
 
--- But Beware!! if you provide a filename that does not exist, DuckDB will create a new empty database with that name
-> duckdb database_filename_with_tyop.db
+-- Adding it to the real database from the database folder this time
+-- duckdb database.db
 
--- Always good to check you have the right database using `.tables` after opening the database
+CREATE TABLE Snow_cover (
+    Site VARCHAR NOT NULL,
+    Year INTEGER NOT NULL CHECK (Year BETWEEN 1950 AND 2015),
+    Date DATE NOT NULL,
+    Plot VARCHAR NOT NULL,
+    Location VARCHAR NOT NULL,
+    Snow_cover REAL,
+    Water_cover REAL,
+    Land_cover REAL,
+    Total_cover REAL,
+    Observer VARCHAR NOT NULL,
+    Notes VARCHAR,
+    PRIMARY KEY (Site, Plot, Location, Date),
+    FOREIGN KEY (Site) REFERENCES Site (Code)
+);
+
+.tables
+
+-- load the data
+-- Nope
+COPY Snow_cover FROM 'snow_survey_fixed.csv' (header TRUE);
+
+-- Better But NAs!!
+COPY Snow_cover FROM '../ASDN_csv/snow_survey_fixed.csv' (header TRUE);
+
+-- Check how the table looks like
+SELECT * FROM Snow_cover LIMIT 10;
+DROP TABLE Snow_cover;
+
+-- correct
+COPY Snow_cover FROM '../ASDN_csv/snow_survey_fixed.csv' (header TRUE, nullstr "NA");
+
+-- Check how the table looks like
+SELECT * FROM Snow_cover LIMIT 10;
 
 
+
+--------------------------------------------------------
 -- Ask 1: What is the average snow cover at each site?
 SELECT * FROM Snow_cover LIMIT 10;
 
@@ -40,11 +89,13 @@ SELECT Site, AVG(Snow_cover) AS avg_snowcover_nozero FROM Snow_cover
   LIMIT 3;
 
 -- Ask 6: Save your results into a  temporary table named  Site_avg_snowcover_nozeros
-CREATE TMP TABLE Site_avg_snowcover_nozeros AS (SELECT Site, AVG(Snow_cover) AS avg_snowcover_nozero FROM Snow_cover
-  WHERE Snow_cover > 0
+CREATE TEMP TABLE Site_avg_snowcover_nozeros AS (SELECT Site, AVG(Snow_cover) AS avg_snowcover_nozero FROM Snow_cover
+  WHERE Snow_cover > 0 AND Site IN (SELECT DISTINCT Site FROM Site_avg_snowcover)
   GROUP BY Site
   ORDER BY avg_snowcover_nozero DESC
-  LIMIT 3);
+  );
+
+.tables
 
 -- Ask 7: Compute the difference between those two ways of computing average
 SELECT Site, avg_snowcover_nozero - avg_snowcover AS avg_snowcover_diff FROM Site_avg_snowcover
@@ -59,20 +110,20 @@ SELECT Site, avg_snowcover,  avg_snowcover_nozero, avg_snowcover_nozero - avg_sn
 -- Ask 9: So? Would it be time well spent to further look into the meaning of zeros?
 YES!! 
 
--- We found out that actually at the location `sno05` of the site eaba, 0 means NULL... let's update our Snow_cover table
+-- We found out that actually at the plot `brw0` of the site barr, 0 means NULL... let's update our Snow_cover table
 CREATE TABLE Snow_cover_backup AS SELECT * FROM Snow_cover; -- Create a copy of the table to be safe (and not cry a lot)
 
 -- For Recall
 SELECT * FROM Site_avg_snowcover;
 SELECT * FROM Site_avg_snowcover_nozeros;
 -- update the 0 for that site
-UPDATE Snow_cover SET Snow_cover = NULL WHERE Location = 'sno05' AND Snow_cover = 0; 
+UPDATE Snow_cover SET Snow_cover = NULL WHERE Plot = 'brw0' AND Snow_cover = 0; 
 -- Check the update was succesful
-SELECT * FROM Snow_cover WHERE Location = 'sno05';
+SELECT * FROM Snow_cover WHERE Plot = 'brw0';
 -- We should probably recompute the avg, let's check
 SELECT * FROM Site_avg_snowcover;
 -- What just happened!?
 
 
--- Ask 10: Let's move on to inpecting the nests and answer the following question: Which shorebird species makes the most eggs? Oh I need a table with the common names, just because :)
+
 
