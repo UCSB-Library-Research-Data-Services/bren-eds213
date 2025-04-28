@@ -1,5 +1,10 @@
 Recap from last session
 
+POSIT WORKBENCH
+- Beware of the lock with active sessions!!
+- Always quit duckDB before leaving workbench
+
+
 VIEWS are live data, if you change any table the VIEW reports on, the VIEW will update automatically (like a function you rerun every time you query it)
   -- How to list all the views in DuckDB: SELECT view_name FROM duckdb_views;
 
