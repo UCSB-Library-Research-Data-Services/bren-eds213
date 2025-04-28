@@ -1,5 +1,7 @@
 -- sqlite3 database/database.sqlite
 
+-- .mode column or .mode table
+
 
 CREATE TABLE Species (
     Code TEXT PRIMARY KEY,
