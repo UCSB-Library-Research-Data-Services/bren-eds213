@@ -1,21 +1,6 @@
-Recap from last session
 
-VIEWS are live data, if you change any table the VIEW reports on, the VIEW will update automatically (like a function you rerun every time you query it)
-  -- How to list all the views in DuckDB: SELECT view_name FROM duckdb_views;
 
-I/O:
-- How to import data into a database
-  -- Define table schema including data types and constraints
-  -- Add Primary key
-  -- Add any foreign keys
-  -- Copy data: COPY Snow_cover FROM "../ASDN_csv/snow_survey_fixed.csv" (header TRUE, nullstr "NA"); 
-
-- Update data: (!Alert danger!)
-  -- You can do real damage to your data!!
-  -- Strategies: (a) Start with SELECT then switch to UPDATE, (b) Create a TMP table and test your code on it
-  
-
-How to export a database
+-- How to export a database
 
 -- Exporting the entire database, including schema!! This is a DuckDB feature though
    EXPORT DATABASE 'export_adsn'; 
@@ -25,6 +10,7 @@ How to export a database
    
 -- Export a specific query
    COPY (SELECT * FROM Species) TO 'species_db.csv' (HEADER, DELIMITER ',');
+   
 
 Managing Data
 
