@@ -8,17 +8,17 @@ title: "Week 5 - I/O, data management & More"
 
 ## Lecture notes:
 
-### Monday
+### Tuesday
 
--   [lecture-notes-05-mon.txt](lecture-notes-05-mon.txt)
+-   [lecture-notes-05-tue.txt](lecture-notes-05-tue.txt)
 
--   [class-script-05-mon-1.txt](class-script-05-mon-1.txt)
+-   [class-script-05-tue-1.txt](class-script-05-tue-1.txt)
 
 -   [slides triggers](slides-05-triggers.pptx)
 
--   [class-script-05-mon-2.txt](class-script-05-mon-2.txt)
+-   [class-script-05-tue-2.txt](class-script-05-tue-2.txt)
 
-### Wednesday
+### Thursday
 
 -   Advanced topics:
     -   [Slides](slides-05-advanced.pptx)
@@ -27,7 +27,7 @@ title: "Week 5 - I/O, data management & More"
 
 ## Data:
 
--   [Class data GitHub repository, week 3 -- for Monday](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week3)
+-   [Class data GitHub repository](https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data)
 
 ## Resources
 
