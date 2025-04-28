@@ -1,3 +1,6 @@
+-- sqlite3 database/database.sqlite
+
+
 CREATE TABLE Species (
     Code TEXT PRIMARY KEY,
     Common_name TEXT UNIQUE NOT NULL,
