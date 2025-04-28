@@ -1,18 +1,16 @@
-
-
 -- How to export a database
 
 -- Exporting the entire database, including schema!! This is a DuckDB feature though
    EXPORT DATABASE 'export_adsn'; 
    
 -- Export an entire table
-   COPY Species TO 'output.csv' (HEADER, DELIMITER ',');
+   COPY Species TO 'species.csv' (HEADER, DELIMITER ',');
    
 -- Export a specific query
    COPY (SELECT * FROM Species) TO 'species_db.csv' (HEADER, DELIMITER ',');
    
 
-Managing Data
+-- Managing Data
 
 -- inserting data
 SELECT * FROM Species;
@@ -26,6 +24,8 @@ INSERT INTO Species (Common_name, Scientific_name, Code, Relevance)
 INSERT INTO Species (Common_name, Code) VALUES ('thing 3', 'ijkl');
 SELECT * FROM Species;
 .nullvalue -NULL-
+
+
 -- UPDATE and DELETE
 UPDATE Species SET Relevance = 'not sure yet' WHERE Relevance IS NULL;
 SELECT * FROM Species;
