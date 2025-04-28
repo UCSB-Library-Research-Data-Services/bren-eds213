@@ -868,13 +868,6 @@
     "text": "Resources\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
   },
   {
-    "objectID": "modules/week05/index-05.html#homework",
-    "href": "modules/week05/index-05.html#homework",
-    "title": "Week 5 - I/O, data management & More",
-    "section": "Homework",
-    "text": "Homework\nProtect yourself\nCreate a trigger\nBash essentials\nCreate a test harness"
-  },
-  {
     "objectID": "modules/week05/hw-05-4.html",
     "href": "modules/week05/hw-05-4.html",
     "title": "Week 5 - Create a test harness",
