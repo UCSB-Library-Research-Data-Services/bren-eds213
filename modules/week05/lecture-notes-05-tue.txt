@@ -1,3 +1,49 @@
+Recap from last session
+
+VIEWS are live data, if you change any table the VIEW reports on, the VIEW will update automatically (like a function you rerun every time you query it)
+  -- How to list all the views in DuckDB: SELECT view_name FROM duckdb_views;
+
+I/O:
+- How to import data into a database
+  -- Define table schema including data types and constraints
+  -- Add Primary key
+  -- Add any foreign keys
+  
+      CREATE TABLE Snow_surveys (
+        Site VARCHAR NOT NULL,
+        Year INTEGER NOT NULL CHECK (Year BETWEEN 1950 AND 2015),
+        Date DATE NOT NULL,
+        Plot VARCHAR NOT NULL,
+        Location VARCHAR NOT NULL,
+        Snow_cover REAL,
+        Water_cover REAL,
+        Land_cover REAL,
+        Total_cover REAL,
+        Observer VARCHAR NOT NULL,
+        Notes VARCHAR,
+        PRIMARY KEY (Site, Plot, Location, Date)
+    );
+  
+  -- Copy data: COPY Snow_cover FROM "../ASDN_csv/snow_survey_fixed.csv" (header TRUE, nullstr "NA"); 
+  -- NOTE: If you run this last lines several times you will keep adding the data to the table!!!
+
+- Update data: (!Alert danger!)
+  -- You can do real damage to your data!!
+  -- Strategies: (a) Start with SELECT then switch to UPDATE, (b) Create a TMP table and test your code on it
+  
+
+EXPORT
+
+-- Exporting the entire database, including schema!! This is a DuckDB feature though
+   EXPORT DATABASE 'export_adsn'; 
+   
+-- Export an entire table
+   COPY Species TO 'output.csv' (HEADER, DELIMITER ',');
+   
+-- Export a specific query
+   COPY (SELECT * FROM Species) TO 'species_db.csv' (HEADER, DELIMITER ',');
+
+
 
 DATA MANAGEMENT STATEMENTS
 - INSERT: already seen that
@@ -11,25 +57,6 @@ DATA MANAGEMENT STATEMENTS
    of what's about to be deleted
 -- tweak table name, put x in front, then remove
 
-I/O
-- all RDBMSs have scriptable I/O tools
-- generally, INSERT one at a time is slow
-- output to CSV
--- COPY Species TO 'species_fixed.csv' (HEADER, DELIMITER ',');
-- loading CSVs: see build script
--- 1. CREATE a new empty table in the database:
-CREATE TABLE Snow_cover (
-    Site VARCHAR NOT NULL,
-    Year INTEGER NOT NULL CHECK (Year BETWEEN 1950 AND 2015),
-    Date DATE NOT NULL,
-    Plot VARCHAR, -- some Null in the data :/
-    Location VARCHAR NOT NULL,
-    Snow_cover INTEGER CHECK (Snow_cover > -1 AND Snow_cover < 101),
-    Observer VARCHAR
-);
--- 2. Copy the data from a csv
-COPY Snow_cover FROM 'snow_cover_fixedman_JB.csv' (header TRUE); 
-NOTE: If you run this last lines several times you will keep adding the data to the table!!!
 
 TRIGGERS
 - on some event, take some action(s)
