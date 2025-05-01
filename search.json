@@ -399,95 +399,32 @@
     "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/26293/assignments/359037\nWhich sites have no egg data? Please answer this question using all three techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:\n\nUsing a Code NOT IN (subquery) clause.\nUsing an outer join with a WHERE clause that selects the desired rows. Caution: make sure your IS NULL test is performed against a column that is not ordinarily allowed to be NULL. You may want to consult the database schema to remind yourself of column declarations.\nUsing the set operation EXCEPT.\n\nAdd an ORDER BY clause to your queries so that all three produce the exact same result:\n┌─────────┐\n│  Code   │\n│ varchar │\n├─────────┤\n│ barr    │\n│ burn    │\n│ bylo    │\n│ cakr    │\n│ cari    │\n│ chau    │\n│ coat    │\n│ colv    │\n│ iglo    │\n│ ikpi    │\n│ lkri    │\n│ made    │\n│ nome    │\n│ prba    │\n├─────────┤\n│ 14 rows │\n└─────────┘\nSubmit your SQL.\nCredit: 10 points"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "EDS 213: Databases and Data Management",
+    "objectID": "git_sync_fork.html",
+    "href": "git_sync_fork.html",
+    "title": "How to update a fork",
     "section": "",
-    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+    "text": "Click on the “Sync fork” button\n\n\n\nDo a git rebase on your main branch of your local fork"
   },
   {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "EDS 213: Databases and Data Management",
+    "objectID": "git_sync_fork.html#using-github-website",
+    "href": "git_sync_fork.html#using-github-website",
+    "title": "How to update a fork",
     "section": "",
-    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+    "text": "Click on the “Sync fork” button\n\n\n\nDo a git rebase on your main branch of your local fork"
   },
   {
-    "objectID": "index.html#data",
-    "href": "index.html#data",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Data",
-    "text": "Data\nFor the database portion of the course, the Arctic Shorebird Demographics Network dataset, obtained from the Arctic Data Center, was used as a running example. While this dataset is not distributed as a relational database (it is packaged as a set of related CSV files), its structure is highly amenable to a relational approach and provides a realistic example of where and why one would want to use a relational database in the Earth and environmental sciences. It also provides just enough complexity to support realistic and complex queries and views. Note that the dataset used in the course, and included in this archive, is a cleaned-up subset of the full dataset. It is necessarily a subset of the full dataset to keep the size and complexity manageable for pedagogical purposes, and it had to be cleaned up because, unfortunately, the full dataset has many errors that would have precluded creating foreign keys.\nA class data GitHub repository, linked below, is used to distribute data files to students. Each week a new directory of files will be added to the repository and the students will be asked to pull the repository to their local environment to get the updates."
+    "objectID": "git_sync_fork.html#using-the-command-line",
+    "href": "git_sync_fork.html#using-the-command-line",
+    "title": "How to update a fork",
+    "section": "2. Using the Command Line",
+    "text": "2. Using the Command Line\n# Set the upstream repo of the fork -- To do only once\ngit remote add upstream https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data.git\n\n# Check it was added to remotes\ngit remote -v\n\n# Optional: Switch to your main branch if you were working on a branch\ngit checkout main \n\n# Pull all the latest commits from the main repo (upstream) \ngit rebase upstream main \ngit push origin main"
   },
   {
-    "objectID": "index.html#database",
-    "href": "index.html#database",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Database",
-    "text": "Database\nDuckDB is used as the database platform due to its strict implementation of data types, which turned out to be a weakness when teaching with SQLlite last year. DuckDB is a fast in-process analytical personal database."
-  },
-  {
-    "objectID": "index.html#instructors",
-    "href": "index.html#instructors",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Instructors",
-    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)\nAnnie Adams (aradams@ucsb.edu )"
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Schedule",
-    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: Julien & Greg: Tue after class in Oak room; Annie, Thursday after class\nBest way to contact us: email"
-  },
-  {
-    "objectID": "index.html#course-content",
-    "href": "index.html#course-content",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Course content",
-    "text": "Course content\nSyllabus\nInstalling DuckDB\nResources\nClass data GitHub repository"
-  },
-  {
-    "objectID": "index.html#modules",
-    "href": "index.html#modules",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R to query databases + bash programming\n\n\n7\nUsing Python to query databases + Documenting your work: metadata\n\n\n8\nCapturing your computing environment + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
-  },
-  {
-    "objectID": "installing-duckdb.html",
-    "href": "installing-duckdb.html",
-    "title": "Installing duckDB",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About RDS",
     "section": "",
-    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.\n\n\nWe recommend to use homebrew to install DuckDb on a Mac:\nbrew install duckdb\n\n\n\n\nDownload the latest version from https://duckdb.org/docs/installation/\nCreate a DuckDB folder inside C:\\Users\\YOUR_USERNAME\\AppData\\Local \nUnzip the duckdb_xx_zip you just downloaded inside that folder (this should put duckdb.exe in this folder)\nAdd this folder to your path C:\\Users\\YOUR_USERNAME\\AppData\\Local\n\nOpen System Properties by pressing the Windows key on your keyboard and searching for “environment variables”\nAccess Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button\nAdd New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path.\n\n\n\nSave Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.\nRestart your machine"
-  },
-  {
-    "objectID": "installing-duckdb.html#duckdb-installation",
-    "href": "installing-duckdb.html#duckdb-installation",
-    "title": "Installing duckDB",
-    "section": "",
-    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.\n\n\nWe recommend to use homebrew to install DuckDb on a Mac:\nbrew install duckdb\n\n\n\n\nDownload the latest version from https://duckdb.org/docs/installation/\nCreate a DuckDB folder inside C:\\Users\\YOUR_USERNAME\\AppData\\Local \nUnzip the duckdb_xx_zip you just downloaded inside that folder (this should put duckdb.exe in this folder)\nAdd this folder to your path C:\\Users\\YOUR_USERNAME\\AppData\\Local\n\nOpen System Properties by pressing the Windows key on your keyboard and searching for “environment variables”\nAccess Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button\nAdd New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path.\n\n\n\nSave Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.\nRestart your machine"
-  },
-  {
-    "objectID": "installing-duckdb.html#vs-code-integration",
-    "href": "installing-duckdb.html#vs-code-integration",
-    "title": "Installing duckDB",
-    "section": "VS Code integration",
-    "text": "VS Code integration\nYou can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:\nUnder the main VS menu, go to Settings -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the When column, select Change When Expression, and add editorLangId == 'sql' to restrict to just SQL files and not every kind of file.\nNow you can hit Shift+Return at then end of a line in your SQL script and it should run the command directly in the terminal!"
-  },
-  {
-    "objectID": "installing-duckdb.html#test",
-    "href": "installing-duckdb.html#test",
-    "title": "Installing duckDB",
-    "section": "Test",
-    "text": "Test\nLet’s test our new installation using Visual Studio Code:\n\nopen a terminal from the terminal menu -&gt; new terminal\nIn the terminal type duckdb, this will start duckdb (your prompt in the terminal should now be a D)\nOpen a New text file: file menu -&gt; new text file\nCopy paste the following code:\n\n-- Start the DB at the terminal: duckdb\n\nCREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;\n\nSHOW TABLES;\n\nFROM ducks SELECT *;\n\nUse Shift+Return to run the SQL code line by line\n\nYou should have something that looks like this:"
-  },
-  {
-    "objectID": "installing-duckdb.html#what-if-this-work-in-your-terminal-but-not-in-vs-code",
-    "href": "installing-duckdb.html#what-if-this-work-in-your-terminal-but-not-in-vs-code",
-    "title": "Installing duckDB",
-    "section": "What if this work in your terminal but not in VS Code??",
-    "text": "What if this work in your terminal but not in VS Code??\nWhen running the Terminal from VS Code, your path is not always loaded correctly depending of your machine settings. You can check this by running both in an independant terminal and the VS Code terminal:\n\nMac\necho $PATH\n\n\nWindows\nIn PowerShell:\necho $env:PATH\nIf you do not get the same answers, then you will have to edit the terminal settings in VS Code. For more information please read this page https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch"
+    "text": "Research Data Services (RDS) helps UCSB researchers manage and preserve their research data through:\n\nConsultations\nLong-term engagements\nInstructional workshops\n\nOur team offers support across the research data lifecycle, from pre-project planning to post-project archival, connecting researchers with both locally- and externally-provided curation services. Our goal is to ensure that all research data is well-described, FAIR (Findable, Accessible, Interoperable, Reusable), and sustainably preservable, and that researchers receive scholarly credit for sharing and publishing data.\nContact us if you have any questions: rds@library.ucsb.edu"
   },
   {
     "objectID": "syllabus.html",
@@ -567,11 +504,95 @@
     "text": "Disabled students program\nStudents with disabilities and/or alternative learning needs are encouraged to work with the Disabled Students Program at UCSB to ensure we can best support your learning and success."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About RDS",
+    "objectID": "installing-duckdb.html",
+    "href": "installing-duckdb.html",
+    "title": "Installing duckDB",
     "section": "",
-    "text": "Research Data Services (RDS) helps UCSB researchers manage and preserve their research data through:\n\nConsultations\nLong-term engagements\nInstructional workshops\n\nOur team offers support across the research data lifecycle, from pre-project planning to post-project archival, connecting researchers with both locally- and externally-provided curation services. Our goal is to ensure that all research data is well-described, FAIR (Findable, Accessible, Interoperable, Reusable), and sustainably preservable, and that researchers receive scholarly credit for sharing and publishing data.\nContact us if you have any questions: rds@library.ucsb.edu"
+    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.\n\n\nWe recommend to use homebrew to install DuckDb on a Mac:\nbrew install duckdb\n\n\n\n\nDownload the latest version from https://duckdb.org/docs/installation/\nCreate a DuckDB folder inside C:\\Users\\YOUR_USERNAME\\AppData\\Local \nUnzip the duckdb_xx_zip you just downloaded inside that folder (this should put duckdb.exe in this folder)\nAdd this folder to your path C:\\Users\\YOUR_USERNAME\\AppData\\Local\n\nOpen System Properties by pressing the Windows key on your keyboard and searching for “environment variables”\nAccess Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button\nAdd New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path.\n\n\n\nSave Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.\nRestart your machine"
+  },
+  {
+    "objectID": "installing-duckdb.html#duckdb-installation",
+    "href": "installing-duckdb.html#duckdb-installation",
+    "title": "Installing duckDB",
+    "section": "",
+    "text": "DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.\n\n\nWe recommend to use homebrew to install DuckDb on a Mac:\nbrew install duckdb\n\n\n\n\nDownload the latest version from https://duckdb.org/docs/installation/\nCreate a DuckDB folder inside C:\\Users\\YOUR_USERNAME\\AppData\\Local \nUnzip the duckdb_xx_zip you just downloaded inside that folder (this should put duckdb.exe in this folder)\nAdd this folder to your path C:\\Users\\YOUR_USERNAME\\AppData\\Local\n\nOpen System Properties by pressing the Windows key on your keyboard and searching for “environment variables”\nAccess Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button\nAdd New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path.\n\n\n\nSave Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.\nRestart your machine"
+  },
+  {
+    "objectID": "installing-duckdb.html#vs-code-integration",
+    "href": "installing-duckdb.html#vs-code-integration",
+    "title": "Installing duckDB",
+    "section": "VS Code integration",
+    "text": "VS Code integration\nYou can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:\nUnder the main VS menu, go to Settings -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the When column, select Change When Expression, and add editorLangId == 'sql' to restrict to just SQL files and not every kind of file.\nNow you can hit Shift+Return at then end of a line in your SQL script and it should run the command directly in the terminal!"
+  },
+  {
+    "objectID": "installing-duckdb.html#test",
+    "href": "installing-duckdb.html#test",
+    "title": "Installing duckDB",
+    "section": "Test",
+    "text": "Test\nLet’s test our new installation using Visual Studio Code:\n\nopen a terminal from the terminal menu -&gt; new terminal\nIn the terminal type duckdb, this will start duckdb (your prompt in the terminal should now be a D)\nOpen a New text file: file menu -&gt; new text file\nCopy paste the following code:\n\n-- Start the DB at the terminal: duckdb\n\nCREATE TABLE ducks AS SELECT 3 As age, 'mandarin' AS breed;\n\nSHOW TABLES;\n\nFROM ducks SELECT *;\n\nUse Shift+Return to run the SQL code line by line\n\nYou should have something that looks like this:"
+  },
+  {
+    "objectID": "installing-duckdb.html#what-if-this-work-in-your-terminal-but-not-in-vs-code",
+    "href": "installing-duckdb.html#what-if-this-work-in-your-terminal-but-not-in-vs-code",
+    "title": "Installing duckDB",
+    "section": "What if this work in your terminal but not in VS Code??",
+    "text": "What if this work in your terminal but not in VS Code??\nWhen running the Terminal from VS Code, your path is not always loaded correctly depending of your machine settings. You can check this by running both in an independant terminal and the VS Code terminal:\n\nMac\necho $PATH\n\n\nWindows\nIn PowerShell:\necho $env:PATH\nIf you do not get the same answers, then you will have to edit the terminal settings in VS Code. For more information please read this page https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "",
+    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "",
+    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+  },
+  {
+    "objectID": "index.html#data",
+    "href": "index.html#data",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Data",
+    "text": "Data\nFor the database portion of the course, the Arctic Shorebird Demographics Network dataset, obtained from the Arctic Data Center, was used as a running example. While this dataset is not distributed as a relational database (it is packaged as a set of related CSV files), its structure is highly amenable to a relational approach and provides a realistic example of where and why one would want to use a relational database in the Earth and environmental sciences. It also provides just enough complexity to support realistic and complex queries and views. Note that the dataset used in the course, and included in this archive, is a cleaned-up subset of the full dataset. It is necessarily a subset of the full dataset to keep the size and complexity manageable for pedagogical purposes, and it had to be cleaned up because, unfortunately, the full dataset has many errors that would have precluded creating foreign keys.\nA class data GitHub repository, linked below, is used to distribute data files to students. Each week a new directory of files will be added to the repository and the students will be asked to pull the repository to their local environment to get the updates."
+  },
+  {
+    "objectID": "index.html#database",
+    "href": "index.html#database",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Database",
+    "text": "Database\nDuckDB is used as the database platform due to its strict implementation of data types, which turned out to be a weakness when teaching with SQLlite last year. DuckDB is a fast in-process analytical personal database."
+  },
+  {
+    "objectID": "index.html#instructors",
+    "href": "index.html#instructors",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Instructors",
+    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)\nAnnie Adams (aradams@ucsb.edu )"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Schedule",
+    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: Julien & Greg: Tue after class in Oak room; Annie, Thursday after class\nBest way to contact us: email"
+  },
+  {
+    "objectID": "index.html#course-content",
+    "href": "index.html#course-content",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Course content",
+    "text": "Course content\nSyllabus\nInstalling DuckDB\nResources\nClass data GitHub repository"
+  },
+  {
+    "objectID": "index.html#modules",
+    "href": "index.html#modules",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Modules",
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R to query databases + bash programming\n\n\n7\nUsing Python to query databases + Documenting your work: metadata\n\n\n8\nCapturing your computing environment + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
   },
   {
     "objectID": "resources.html",
@@ -859,6 +880,13 @@
     "title": "Week 5 - I/O, data management & More",
     "section": "Data:",
     "text": "Data:\n\nClass data GitHub repository"
+  },
+  {
+    "objectID": "modules/week05/index-05.html#how-to-sync-your-fork",
+    "href": "modules/week05/index-05.html#how-to-sync-your-fork",
+    "title": "Week 5 - I/O, data management & More",
+    "section": "How to sync your fork",
+    "text": "How to sync your fork\n\nHow-to sync your fork"
   },
   {
     "objectID": "modules/week05/index-05.html#resources",
