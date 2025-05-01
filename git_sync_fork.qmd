@@ -1,0 +1,29 @@
+---
+title: "How to update a fork"
+---
+
+## 1. Using GitHub Website
+
+- Click on the "Sync fork" button
+
+![](img/git-syncfork.png)
+
+- Do a `git rebase` on your main branch of your local fork
+
+
+## 2. Using the Command Line
+
+```bash
+# Set the upstream repo of the fork -- To do only once
+git remote add upstream https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data.git
+
+# Check it was added to remotes
+git remote -v
+
+# Optional: Switch to your main branch if you were working on a branch
+git checkout main 
+
+# Pull all the latest commits from the main repo (upstream) 
+git rebase upstream main 
+git push origin main
+```

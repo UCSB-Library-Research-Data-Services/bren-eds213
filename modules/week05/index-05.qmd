@@ -30,6 +30,10 @@ title: "Week 5 - I/O, data management & More"
 
 -   [Class data GitHub repository](https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data)
 
+## How to sync your fork
+
+- [How-to sync your fork](../../git_sync_fork.qmd)
+
 ## Resources
 
 1.  Jeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\
