@@ -24,6 +24,7 @@ title: "Week 5 - I/O, data management & More"
     -   [Slides](slides-05-advanced.pptx)
 -   Bash programming:
     -   [Bash essentials](bash-essentials.qmd)
+    -   [Vim editor](https://brunj7.github.io/EDS-214-analytical-workflows/vim.html)
 
 ## Data:
 
