@@ -186,6 +186,22 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../modules/week04/hw-04-3.html">
  <span class="dropdown-text">Week 4 - Who’s the culprit?</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-1.html">
+ <span class="dropdown-text">Week 5 - Protect yourself</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-2.html">
+ <span class="dropdown-text">Week 5 - Create a trigger</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-3.html">
+ <span class="dropdown-text">Week 5 - Bash essentials</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-4.html">
+ <span class="dropdown-text">Week 5 - Create a test harness</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -377,9 +393,9 @@ ls $my_fave_ls_options foo</code></pre>
 <pre><code>ls -l -F foo</code></pre>
 <p>Other times you don’t:</p>
 <pre><code>query="SELECT * FROM table"
-sqlite3 db "$query"</code></pre>
+sqlite3 database.sqlite "$query"</code></pre>
 <p>gets expanded to</p>
-<pre><code>sqlite3 db "SELECT * FROM table"</code></pre>
+<pre><code>sqlite3 database.sqlite "SELECT * FROM table"</code></pre>
 <p>If <code>$query</code> is not quoted in the previous example, <code>SELECT</code>, <code>*</code>, etc., will be passed as separate arguments, which is not what <code>sqlite3</code> expects. Making matters worse, <code>*</code> will then be interpreted as a wildcard and expanded into a list of all files in the current directory!</p>
 </section>
 <section id="path-determines-what-programs-are-run" class="level2">
@@ -510,12 +526,12 @@ ls --help</code></pre>
 </section>
 <section id="test-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="test-your-understanding">Test your understanding</h2>
-<p><strong>Be sure to <code>cd</code> to the class data GitHub repository, week3 subdirectory, before answering these.</strong></p>
+<p><strong>Be sure to <code>cd</code> to the class data GitHub repository, <code>ASDN_csv</code> subdirectory, before answering these!!</strong></p>
 <ol type="1">
 <li><p>Compare the output of these three commands:</p>
 <p><code>ls</code><br>
 <code>ls .</code><br>
-<code>ls "$(pwd)/../week3"</code></p>
+<code>ls "$(pwd)/../ASDN_csv"</code></p>
 <p>Explain why you see what you see.</p></li>
 <li><p>Try the following two commands:</p>
 <p><code>wc -l *.csv</code><br>
@@ -528,7 +544,7 @@ ls --help</code></pre>
 <p><code>name=Moe</code></p>
 <p>and you’d like to print “Moe_Howard”. You try this:</p>
 <p><code>echo "$name_Howard"</code></p>
-<p>but that doesn’t quite work. What fix can you apply to <code>$name</code> to make this command give the desired effect?</p></li>
+<p>but that doesn’t quite work. What fix can you apply to <code>$name</code>, while keeping it inside the quotation marks, to make this command give the desired effect?</p></li>
 <li><p>You create a script and run it like so:</p>
 <p><code>bash myscript.sh *.csv</code></p>
 <p>What are the values of variables <code>$1</code> and <code>$#</code>? Explain why the script does not see just one argument passed to it.</p></li>

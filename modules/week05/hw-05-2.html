@@ -185,6 +185,22 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../modules/week04/hw-04-3.html">
  <span class="dropdown-text">Week 4 - Who’s the culprit?</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-1.html">
+ <span class="dropdown-text">Week 5 - Protect yourself</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-2.html">
+ <span class="dropdown-text">Week 5 - Create a trigger</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-3.html">
+ <span class="dropdown-text">Week 5 - Bash essentials</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week05/hw-05-4.html">
+ <span class="dropdown-text">Week 5 - Create a test harness</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -250,8 +266,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>For this assignment and this assignment only, you <em>must</em> use SQLite and <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week5">week5/database.sqlite</a> in the class data GitHub repository!</strong></p>
-<p>(The SQLite command is <code>sqlite3</code>. It’s already installed on taylor. Installing it on your local machine, if you like, is similar to installing DuckDB.)</p>
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/360505" class="uri">https://ucsb.instructure.com/courses/26293/assignments/360505</a></strong></p>
+<p><strong>For this assignment and this assignment only, you <em>must</em> use SQLite and <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data/blob/main/database/database.sqlite">database.sqlite</a> in the class data GitHub repository!</strong></p>
+<p>(The SQLite command is <code>sqlite3</code>. It’s already installed on the Bren servers. Installing it on your local machine, if you like, is similar to installing DuckDB.)</p>
 <p>The Bird_eggs table uniquely identifies each egg by a pair (Nest_ID, Egg_num). The egg numbers for a given nest always have the sequential values 1, 2, 3, 4, etc. For example, there are 3 eggs in nest 14eabaage01:</p>
 <pre><code>SELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';
 ┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐
@@ -348,6 +365,7 @@ SELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';
 <pre><code>INSERT INTO Bird_eggs
     VALUES ('14eabaage01', 12.34, 56.78);</code></pre>
 <p>Well you can do that! It involves creating a view and adding an INSTEAD OF INSERT trigger on the view. If there’s time I’ll show an example in class.</p>
+<p><strong>Credit: 65 points</strong></p>
 
 
 </section>
