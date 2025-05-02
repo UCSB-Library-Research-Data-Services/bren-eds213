@@ -2,6 +2,8 @@
 title: "Week 5 - Create a test harness"
 ---
 
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/360508>**
+
 # Part 1
 
 A common task is to create a script --- a "test harness" --- that will allow you to test something (some code, an algorithm, a model, etc.) by running it repeatedly, perhaps under varying conditions. Example applications include machine learning using different hyperparameters and Monte Carlo simulation using different random seeds. In this assignment you will create a Bash script that will allow you to time how long it takes to run an SQL query. You will be using this script later in class to explore the performance effects of indexes, so hang on to it.
@@ -130,3 +132,5 @@ SELECT DISTINCT Species FROM Bird_nests;
 ```
 
 Use your test harness to time these three queries. Use descriptive labels to record which query is being run, e.g., `subquery`, `outer_join`, and `except`. Submit your CSV file. Report back how many repetitions you had to use to get good timings, and which method is fastest.
+
+**Credit: 50 points**

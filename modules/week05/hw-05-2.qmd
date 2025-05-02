@@ -2,9 +2,11 @@
 title: "Week 5 - Create a trigger"
 ---
 
-**For this assignment and this assignment only, you *must* use SQLite and [week5/database.sqlite](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week5) in the class data GitHub repository!**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/360505>**
 
-(The SQLite command is `sqlite3`. It's already installed on taylor. Installing it on your local machine, if you like, is similar to installing DuckDB.)
+**For this assignment and this assignment only, you *must* use SQLite and [database.sqlite](https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data/blob/main/database/database.sqlite) in the class data GitHub repository!**
+
+(The SQLite command is `sqlite3`. It's already installed on the Bren servers. Installing it on your local machine, if you like, is similar to installing DuckDB.)
 
 The Bird_eggs table uniquely identifies each egg by a pair (Nest_ID, Egg_num). The egg numbers for a given nest always have the sequential values 1, 2, 3, 4, etc. For example, there are 3 eggs in nest 14eabaage01:
 
@@ -150,3 +152,5 @@ INSERT INTO Bird_eggs
 ```
 
 Well you can do that! It involves creating a view and adding an INSTEAD OF INSERT trigger on the view. If there's time I'll show an example in class.
+
+**Credit: 65 points**

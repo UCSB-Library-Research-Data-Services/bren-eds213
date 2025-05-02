@@ -2,4 +2,8 @@
 title: "Week 5 - Protect yourself"
 ---
 
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/360504>**
+
 Some strategies were mentioned in class for reducing the possibility of performing UPDATEs and DELETEs that have catastrophic consequences. What strategy will you use?
+
+**Credit: 5 points**

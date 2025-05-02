@@ -167,13 +167,13 @@ Other times you don't:
 
 ```         
 query="SELECT * FROM table"
-sqlite3 db "$query"
+sqlite3 database.sqlite "$query"
 ```
 
 gets expanded to
 
 ```         
-sqlite3 db "SELECT * FROM table"
+sqlite3 database.sqlite "SELECT * FROM table"
 ```
 
 If `$query` is not quoted in the previous example, `SELECT`, `*`, etc., will be passed as separate arguments, which is not what `sqlite3` expects. Making matters worse, `*` will then be interpreted as a wildcard and expanded into a list of all files in the current directory!
@@ -393,13 +393,13 @@ And two tips.
 
 ## Test your understanding
 
-**Be sure to `cd` to the class data GitHub repository, week3 subdirectory, before answering these.**
+**Be sure to `cd` to the class data GitHub repository, `ASDN_csv` subdirectory, before answering these!!**
 
 1.  Compare the output of these three commands:
 
     `ls`\
     `ls .`\
-    `ls "$(pwd)/../week3"`
+    `ls "$(pwd)/../ASDN_csv"`
 
     Explain why you see what you see.
 
@@ -424,7 +424,7 @@ And two tips.
 
     `echo "$name_Howard"`
 
-    but that doesn't quite work. What fix can you apply to `$name` to make this command give the desired effect?
+    but that doesn't quite work. What fix can you apply to `$name`, while keeping it inside the quotation marks, to make this command give the desired effect?
 
 5.  You create a script and run it like so:
 
