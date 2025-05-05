@@ -32,10 +32,3 @@ Coding transcripts:
 
     -   *R dbplyr documentation*
 
-## Homework
-
-[Little Bobby Tables](hw-06-1.qmd)
-
-[Characterizing egg variation](hw-06-2.qmd)
-
-[Who were the winners?](hw-06-3.qmd)
