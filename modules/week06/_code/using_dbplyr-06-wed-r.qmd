@@ -22,7 +22,7 @@ database name, etc.
 Here we want to use DuckDB, loading a file database:
 
 ```{r}
-conn <- DBI::dbConnect(duckdb::duckdb(), dbdir = "~/GitHub/gitRDS/bren-meds213-spring-2024-class-data/week3/database.db")  # adapt the path as needed
+conn <- DBI::dbConnect(duckdb::duckdb(), dbdir = "~/GitHub/gitRDS/bren-eds213-data/database.db")  # adapt the path as needed
 ```
 
 All the magic is right here.  A dataframe view of a database table.
