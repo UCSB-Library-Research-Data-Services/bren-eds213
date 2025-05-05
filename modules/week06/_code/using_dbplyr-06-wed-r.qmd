@@ -25,7 +25,7 @@ Here we want to use DuckDB, loading a file database:
 conn <- DBI::dbConnect(duckdb::duckdb(), dbdir = "~/GitHub/gitRDS/bren-eds213-data/database.db")  # adapt the path as needed
 ```
 
-All the magic is right here.  A dataframe view of a database table.
+All the magic is right here.  A data frame view of a database table.
 
 ```{r}
 DBI::dbListTables(conn)
@@ -47,19 +47,19 @@ Enters `dbplyr` -- your dplyr for databases
 
 ```{r}
 species %>%
-  filter(Relevance=="Study species") %>%
+  filter(Relevance == "Study species") %>%
   select(Code, Scientific_name) %>%
   arrange(Scientific_name) %>%
   head(3)
 ```
 
-What!? how this could worked?!
+Wait what!? How this could have worked?!
 
 ### Add show_query() to the end to see what SQL it is sending!
 
 ```{r}
 species %>%
-  filter(Relevance=="Study species") %>%
+  filter(Relevance == "Study species") %>%
   select(Scientific_name) %>%
   arrange(Scientific_name) %>%
   head(3) %>% 
