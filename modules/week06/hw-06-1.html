@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a6723c09d3d90db4a01089a59fa546f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d1c848f334961536e22465c615928b43.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -201,6 +201,18 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../modules/week05/hw-05-4.html">
  <span class="dropdown-text">Week 5 - Create a test harness</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-1.html">
+ <span class="dropdown-text">Week 6 - Little Bobby Tables</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-2.html">
+ <span class="dropdown-text">Week 6 - Characterizing egg variation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week06/hw-06-3.html">
+ <span class="dropdown-text">Week 6 - Who were the winners?</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -238,7 +250,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bonus-problem" id="toc-bonus-problem" class="nav-link active" data-scroll-target="#bonus-problem">Bonus problem!</a></li>
+  <li><a href="#part-1" id="toc-part-1" class="nav-link active" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#bonus-problem" id="toc-bonus-problem" class="nav-link" data-scroll-target="#bonus-problem">Bonus problem!</a></li>
   </ul>
 </nav>
     </div>
@@ -264,18 +278,42 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>View this classic XKCD cartoon:</p>
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/361496" class="uri">https://ucsb.instructure.com/courses/26293/assignments/361496</a></strong></p>
+<p>In class we discussed how to parameterize a query and then insert values for the parameter(s):</p>
+<pre><code>query_template = "SELECT ... WHERE Species = ? AND ageMethod = ?"
+species = "wolv"
+age_method = "float"
+cur.execute(query_template, [species, age_method])</code></pre>
+<p>The bare question marks in the template are placeholders. The database driver substitutes the supplied parameter values before submitting to the database, appropriately adding any quoting and character escaping as necessary.</p>
+<p>You may decide you want to use your own Python string substitution instead:</p>
+<pre><code>query_template = "SELECT ... WHERE Species = '%s' AND ageMethod = '%s'"
+species = "wolv"
+age_method = "float"
+cur.execute(query_template % (species, age_method))</code></pre>
+<p>Before you do that, recognize that this practice continues to this day to be a <strong>major</strong> source of security exploits. To understand why, view this classic XKCD cartoon:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="exploits_of_a_mom_2x.png" class="img-fluid figure-img"></p>
 <figcaption>https://xkcd.com/327</figcaption>
 </figure>
 </div>
-<p>For the purposes of this problem you may assume that at some point the school’s system performs the query</p>
+<p>To interpret the above, you may assume that at some point the school’s system performs the query</p>
 <pre><code>SELECT *
     FROM Students
-    WHERE (name = '%s' AND year = 2024);</code></pre>
-<p>where a student’s name, as input by a user of the system, is directly substituted for the <code>%s</code>. Explain exactly how Little Bobby Tables’ “name” can cause a catastrophe. Also, explain why his name has two dashes (<code>--</code>) at the end.</p>
+    WHERE (name = '%s' AND ...);</code></pre>
+<p>where a student’s name, as input by a user of the system, is directly substituted for the <code>%s</code>.</p>
+<section id="part-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
+<p>Explain exactly how Little Bobby Tables’ “name” can cause a catastrophe. Explain why his name has two hyphens (<code>--</code>) at the end.</p>
+</section>
+<section id="part-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
+<p>Suppose instead the school system executed the query</p>
+<pre><code>SELECT *
+    FROM Students WHERE name = '%s';</code></pre>
+<p>What “name” would Little Bobby Tables use to destroy things in that case?</p>
+<p><strong>Credit: 15 points</strong></p>
+</section>
 <section id="bonus-problem" class="level2">
 <h2 class="anchored" data-anchor-id="bonus-problem">Bonus problem!</h2>
 <p>Hack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query</p>
