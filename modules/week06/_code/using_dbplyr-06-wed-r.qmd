@@ -3,7 +3,6 @@ title: "dbplyr"
 ---
 
 
-
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 library(DBI)         # low-level database interface, comparable to what we saw in Python
@@ -123,7 +122,6 @@ left_join(nests_db, eggs_db, by="Nest_ID", keep = FALSE) %>%
 **Limitation**: no way to add or update data.  **dbplyr is view only**.
 If you want to add or update data, you'll need to use
 DBI functions.
-
 
 ## Close your connection
 
