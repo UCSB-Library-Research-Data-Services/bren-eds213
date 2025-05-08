@@ -2,6 +2,8 @@
 title: "Week 6 - Characterizing egg variation"
 ---
 
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/361506>**
+
 You read [Egg Dimensions and Neonatal Mass of Shorebirds](https://www.jstor.org/stable/1367334) by Robert E. Ricklefs and want to see how the egg data we've been using in class compares to his results. Specifically, Ricklefs reported, "Coefficients of variation were 4 to 9% for egg volume" for shorebird eggs gathered in Manitoba, Canada. What is the range of coefficients of variation in our ASDN dataset?
 
 The "coefficient of variation," or CV, is a unitless measure of the variation of a sample, defined as the standard deviation divided by the mean and multiplied by 100 to express as a percentage. Thus, a CV of 10% means the standard deviation is 10% of the mean value. For the purposes of this computation, we will copy Ricklefs and use as a proxy for egg volume the formula
@@ -71,6 +73,8 @@ Phalaropus fulicarius 4.65%
 Pluvialis dominica 19.88%
 Pluvialis squatarola 6.94%
 ```
+
+**Credit: 55 points**
 
 # Appendix
 

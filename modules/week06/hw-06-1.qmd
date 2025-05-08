@@ -2,19 +2,58 @@
 title: "Week 6 - Little Bobby Tables"
 ---
 
-View this classic XKCD cartoon:
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/361496>**
+
+In class we discussed how to parameterize a query and then insert values for the parameter(s):
+
+```         
+query_template = "SELECT ... WHERE Species = ? AND ageMethod = ?"
+species = "wolv"
+age_method = "float"
+cur.execute(query_template, [species, age_method])
+```
+
+The bare question marks in the template are placeholders. The database driver substitutes the supplied parameter values before submitting to the database, appropriately adding any quoting and character escaping as necessary.
+
+You may decide you want to use your own Python string substitution instead:
+
+```         
+query_template = "SELECT ... WHERE Species = '%s' AND ageMethod = '%s'"
+species = "wolv"
+age_method = "float"
+cur.execute(query_template % (species, age_method))
+```
+
+Before you do that, recognize that this practice continues to this day to be a **major** source of security exploits. To understand why, view this classic XKCD cartoon:
 
 ![https://xkcd.com/327](exploits_of_a_mom_2x.png)
 
-For the purposes of this problem you may assume that at some point the school's system performs the query
+To interpret the above, you may assume that at some point the school's system performs the query
 
 ```         
 SELECT *
     FROM Students
-    WHERE (name = '%s' AND year = 2024);
+    WHERE (name = '%s' AND ...);
 ```
 
-where a student's name, as input by a user of the system, is directly substituted for the `%s`. Explain exactly how Little Bobby Tables' "name" can cause a catastrophe. Also, explain why his name has two dashes (`--`) at the end.
+where a student's name, as input by a user of the system, is directly substituted for the `%s`.
+
+## Part 1
+
+Explain exactly how Little Bobby Tables' "name" can cause a catastrophe. Explain why his name has two hyphens (`--`) at the end.
+
+## Part 2
+
+Suppose instead the school system executed the query
+
+```         
+SELECT *
+    FROM Students WHERE name = '%s';
+```
+
+What "name" would Little Bobby Tables use to destroy things in that case?
+
+**Credit: 15 points**
 
 ## Bonus problem!
 
