@@ -288,6 +288,12 @@ Conda versions prior to 4.6, run:
 
 You can tell it is activated because it shows (venv213) in the prompt.
 
+You can also verify this
+
+```bash
+conda info --envs
+```
+
 Let's check which packages are there with a new 
 
 ```bash
@@ -370,7 +376,7 @@ packages and dependencies by running (this is noted on top of the yml
 file):**
 
 ```bash
-conda create --name my-env --file environment.yml
+conda create --name testenv --file environment.yml
 ```
 
 proceed (\[y\]/n)? y
@@ -395,6 +401,12 @@ conda deactivate (or see above if conda version \< 4.6)
 ```
 
 Check all your environments `conda env list`
+
+Remove unwanted environment
+
+```python
+ conda remove -n testenv --all
+ ```
 
 More info:
 [[https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html]{.underline}](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
