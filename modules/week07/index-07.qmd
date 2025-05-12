@@ -1,6 +1,16 @@
 ---
-title: "Week 7 - Metadata standards & computing environments"
+title: "Week 7 - Computing environments  &  Metadata standards"
 ---
+
+
+## Virtual Computing Environments
+
+### Slides and other materials
+
+[slides-virtual-environments.pptx](slides-renv-07.pptx)
+
+[Class Renv Exercise](virtual-environments-notes.md)
+
 
 ## Metadata standards
 
@@ -28,15 +38,6 @@ title: "Week 7 - Metadata standards & computing environments"
 
 <hr>
 
-## Virtual Computing Environments
-
-### Slides and other materials
-
-[slides-virtual-environments.pptx](slides-renv-07.pptx)
-
-[Class Renv Exercise](virtual-environments-notes.md)
-
-
 ### Recommended readings
 
 1.  Marwick B, Boettiger C, Mullen L. 2018. Packaging data analytical work reproducibly using R (and friends). PeerJ Preprints 6:e3192v2 <https://doi.org/10.7287/peerj.preprints.3192v2>.
@@ -47,9 +48,5 @@ title: "Week 7 - Metadata standards & computing environments"
 
 4.  Ushey, K. (April, 6, 2023). Renv: Project environments (Version 0.17.3) \[Computer software\]. Retrieved from <https://cran.r-project.org/web/packages/renv/renv.pdf>.
 
-<hr>
 
-## Homework
 
-1. [Capstone project README.md](hw-07-1.qmd)
-2. [Capstone project Computing Environment](hw-07-2.qmd)
