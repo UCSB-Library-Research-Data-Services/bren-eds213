@@ -3,7 +3,7 @@ title: "Week 7 - Metadata for the clean snow cover dataset"
 ---
 
 
-Use your week 2 assignment when you cleaned the snow cover dataset or this version [here]()
+Use your [week 2 assignment](https://ucsb-library-research-data-services.github.io/bren-eds213/modules/week02/hw-02.html) when you cleaned the snow cover dataset or this version [here]()
 
 Total points: 50
 
@@ -30,7 +30,7 @@ DATA & FILE OVERVIEW
 
 DATA-SPECIFIC INFORMATION FOR:
 
-[FILENAME] <repeat this section for each dataset, folder or file, as appropriate>
+For the file  data/processed/all_cover_fixed_YOURNAME.csv : 
 
 1. Number of variables:
 
