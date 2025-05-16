@@ -12,6 +12,6 @@ Instructions:
 - Commit this/ose file/s to the relevant repository/ies
 - Submit the URLs to those files via Canvas 
 
-**IMPORTANT: EACH Student should submit an answer on Canvas, even if it is the same between group members**
+**IMPORTANT: EACH Student should submit an answer to Canvas, even if it is the same between group members**
 
 
