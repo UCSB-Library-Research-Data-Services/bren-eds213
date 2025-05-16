@@ -1,18 +1,59 @@
 ---
-title: "Week 7 - Capstone project README.md"
+title: "Week 7 - Metadata for the clean snow cover dataset"
 ---
 
-Each capstone project group should produce a README file, which must later be submitted to [Dryad](https://datadryad.org) along with project data and code files, following the program guidelines and deadlines.
+Use your week 2 assignment when you cleaned the snow cover dataset or this version [here]()
 
 Total points: 50
 
 Instructions:
 
-- Follow this [README Template](https://zenodo.org/records/10828379) in Markdown (md) format and customize it to suit specific project requirements. Note that the sections "data file overview" and "data-specific information" should comprehensively describe each dataset included/used in the project. 
-- The README should list and attribute all files used in the project, including those that cannot be openly shared.
-- Ensure that you describe how missing data was handled. 
-- For multiple datasets sharing the same characteristics, variables, and units of measurement (e.g., images, time series), you can streamline the description by providing details about the number of datasets, their file naming convention, and attributes once.
-- In instances where a metadata standard was adopted (by the group, original source, or the client), ensure to acknowledge it in your README.
+- Follow the instructions below to write the metadata for the cleaned version of the snow cover table (the one you write at the end of your cleaning script) and add this information to the README.md of your repository used for week2 (or start a new one if you prefer)
+- You can reuse some of the original metadata
+- Be sure to adapt the metadata for the columns you modified during your data cleaning
+- Ensure that you describe how missing data was handled 
+
+
+```
+DATA & FILE OVERVIEW
+
+1. File List: <list all files (or folders, as appropriate for dataset organization) contained in the dataset, with a brief description of their content>
+
+2. Relationship between files, if important:
+
+3. Additional related data collected that was not included in the current data package:
+
+4. Are there multiple versions of the dataset? 
+
+
+DATA-SPECIFIC INFORMATION FOR:
+
+[FILENAME] <repeat this section for each dataset, folder or file, as appropriate>
+
+1. Number of variables:
+
+2. Number of cases/rows:
+
+3. Variable List: <list variable name(s), description(s), unit(s)and value labels as appropriate for each>
+
+4. Missing data codes: <list code/symbol and definition>
+
+5. Specialized formats or other abbreviations used:
+
+SHARING/ACCESS INFORMATION
+
+1. Licenses/restrictions placed on the data:
+
+2. Links to publications that cite or use the data:
+
+3. Links to other publicly accessible locations of the data:
+
+4. Links/relationships to ancillary data sets: <any supplementary data sources that support analysis or classification of the datasets, eg., plant taxonomy table.)>
+
+5. Was data derived from another source? If yes, list source(s): <list citations to original sources>
+
+6. Recommended citation for the project:
+```
 
 
 See Canvas for submission information
