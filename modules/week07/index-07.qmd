@@ -16,13 +16,18 @@ title: "Week 7 - Computing environments  &  Metadata standards"
 
 ### Learning goals
 
--   Understand the role of metadata in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.
--   Recognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.
--   Identify metadata standards relevant to environmental sciences research.
+- Understand the role of metadata standards in facilitating the management, discovery, interoperability, and reuse of digital resources and research data.
+- Recognize the importance of adhering to domain-specific metadata standards and determining which standard should be used.
+- Identify metadata standards commonly used in Earth and Environmental Sciences research.
 
-### Slides and other materials
+
+### Slides
 
 [slides-07.pptx](slides-07.pptx)
+
+### Homework
+
+[homework-week07-metadata](hw-07-1.qmd)
 
 ### Related resources:
 
