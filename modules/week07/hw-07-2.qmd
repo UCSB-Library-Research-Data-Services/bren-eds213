@@ -2,6 +2,11 @@
 title: "Week 7 - Capstone project computing environment"
 ---
 
+
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/363089>**
+
+**IMPORTANT: EACH Student should submit an answer to Canvas, even if it is the same between group members**
+
 Each capstone project group should produce a new file(s) to their GitHub repository/ies  that capture the libraries and software they used to conduct their analyses, including the versions used
 
 
@@ -13,7 +18,5 @@ Instructions:
 
 
 **Credit: 20 points**
-
-**IMPORTANT: EACH Student should submit an answer to Canvas, even if it is the same between group members**
 
 

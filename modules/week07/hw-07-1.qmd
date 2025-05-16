@@ -2,6 +2,7 @@
 title: "Week 7 - Metadata for the clean snow cover dataset"
 ---
 
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/363088>**
 
 Use your [week 2 assignment](https://ucsb-library-research-data-services.github.io/bren-eds213/modules/week02/hw-02.html) when you cleaned the snow cover dataset (or this version [here](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-data-cleaning/blob/main/data-cleaning.qmd))
 
@@ -63,4 +64,4 @@ to original sources>
 
 **Credit: 50 points**
 
-Submission details are available on Canvas.
+
