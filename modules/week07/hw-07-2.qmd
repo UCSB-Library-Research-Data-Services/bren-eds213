@@ -4,13 +4,15 @@ title: "Week 7 - Capstone project computing environment"
 
 Each capstone project group should produce a new file(s) to their GitHub repository/ies  that capture the libraries and software they used to conduct their analyses, including the versions used
 
-Total points: 50
 
 Instructions:
 
 - Use `devtools::session_info()` R or `pip freeze` Python to generate a text file that lists the libraries and respective versions you used for your capstone your project
 - Commit this/ose file/s to the relevant repository/ies
 - Submit the URLs to those files via Canvas 
+
+
+**Credit: 20 points**
 
 **IMPORTANT: EACH Student should submit an answer to Canvas, even if it is the same between group members**
 
