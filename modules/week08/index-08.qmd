@@ -1,5 +1,5 @@
 ---
-title: "Week 8 - Ethical and responsible data management"
+title: "Week 8 - DB advanced topics & Ethical and responsible data management"
 ---
 
 ## Learning objectives
