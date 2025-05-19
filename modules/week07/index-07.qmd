@@ -25,9 +25,6 @@ title: "Week 7 - Computing environments  &  Metadata standards"
 
 [slides-07.pptx](slides-07.pptx)
 
-### Homework
-
-[homework-week07-metadata](hw-07-1.qmd)
 
 ### Related resources:
 
