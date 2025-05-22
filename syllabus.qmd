@@ -24,7 +24,7 @@ This course will teach students the fundamentals of relational databases and dat
 - Class: Tuesday & Thursday 9:30-10:45 AM (BH 1424)
 - Discussion - session 1: Thursday 1-1:50 PM, BH 3022A
 - Discussion - session 2: Thursday 2-2:50 PM, BH 3022A
-- Office hours: TBD
+- Office hours: Julien & Greg: Tue after class in Oak room; Annie, Thursday after class
 - Best way to contact use: email
 
 
@@ -48,11 +48,21 @@ This course will teach students the fundamentals of relational databases and dat
 
 ## Course assessment
 
-Your performance in this course will depend 90% on weekly homework assignments and 10% on class participation. There will be no graded exercises or homework on week 9 & 10 due to capstones. We will use Canvas to manage the assignments.
+Your performance in this course will depend 90% on weekly homework assignments (including 15% for the discussion project) and 10% on class participation. There will be no graded exercises or homework on week 8 & 9 due to capstones. We will use Canvas to manage the assignments.
 
 ## Homework policy
 
-Homework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up.  To be considered, a request for an extension must be submitted within business hours before the homework deadline. ***Homework turned in late will be docked 20% per day.*** Peer-to-peer learning is encouraged, but each submission needs to be individual, which means students are expected to be able to explain all their answers in detail.
+Homework is expected to be turned in on time. Do not wait until the last minute to work on homework in case something unexpected comes up. To be considered, a request for an extension must be submitted within business hours before the homework deadline. ***Homework turned in late will be docked 20% per day.*** Peer-to-peer learning is encouraged, but each submission needs to be individual, which means students are expected to be able to explain all their answers in detail.
+
+## Homework policy update May 22
+
+To provide more flexibility in the assignments schedule and accommodate the capstone deadlines, all students will have the opportunity to submit missing assignments as follow:
+
+- You can submit any missing assignments to get **up to 50% of the total points possible** (e.g for a assignment with 100pts, it would mean 50pts for an entirely correct submission)
+- "Week4 - missing data" is **excluded** because the answer was discussed in class
+- **Due date** for those submissions: Fri June 6 11:59PM (end of week 10)
+- Submission via Canvas + email to Julien & Greg
+- The grade on those submissions will be final
 
 
 ### Acknowledgment of tools used
