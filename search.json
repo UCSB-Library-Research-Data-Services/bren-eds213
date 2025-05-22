@@ -793,28 +793,28 @@
   {
     "objectID": "modules/week08/index-08.html",
     "href": "modules/week08/index-08.html",
-    "title": "Week 8 - DB advanced topics & Ethical and responsible data management",
+    "title": "Week 8 - DB advanced topics & Ethical and Responsible Data Management",
     "section": "",
-    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nRelate ethical and responsible data management principles to real-world scenarios"
+    "text": "Understand core ethical and responsible data management principles, particularly those related to self-governance, conflict management, mitigating bias and harm, and appropriately handling sensitive data.\nArticulate these principles in the context of real-world scenarios relevant to environmental sciences research."
   },
   {
     "objectID": "modules/week08/index-08.html#learning-objectives",
     "href": "modules/week08/index-08.html#learning-objectives",
-    "title": "Week 8 - DB advanced topics & Ethical and responsible data management",
+    "title": "Week 8 - DB advanced topics & Ethical and Responsible Data Management",
     "section": "",
-    "text": "Understand fundamental ethical and responsible data management principles, focusing on the importance of data documentation, preventing bias and harm, properly handling sensitive data, ownership, and licensing issues\nRelate ethical and responsible data management principles to real-world scenarios"
+    "text": "Understand core ethical and responsible data management principles, particularly those related to self-governance, conflict management, mitigating bias and harm, and appropriately handling sensitive data.\nArticulate these principles in the context of real-world scenarios relevant to environmental sciences research."
   },
   {
     "objectID": "modules/week08/index-08.html#slides",
     "href": "modules/week08/index-08.html#slides",
-    "title": "Week 8 - DB advanced topics & Ethical and responsible data management",
+    "title": "Week 8 - DB advanced topics & Ethical and Responsible Data Management",
     "section": "Slides",
     "text": "Slides\nslides-08.pptx\nSuggested readings\n\nBoté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) http://hdl.handle.net/2445/151341\nMcGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. https://doi.org/10.1017/eds.2022.5\n\nAdditional suggested readings are noted in the slides."
   },
   {
     "objectID": "modules/week08/index-08.html#case-based-discussion",
     "href": "modules/week08/index-08.html#case-based-discussion",
-    "title": "Week 8 - DB advanced topics & Ethical and responsible data management",
+    "title": "Week 8 - DB advanced topics & Ethical and Responsible Data Management",
     "section": "Case-based discussion:",
     "text": "Case-based discussion:\n\nCase Study A: Containing the flames of bias in machine learning\nCase Study B: The caveat is the caviar: navigating ethics to protect endangered river wildlife\nCase Study C: To reuse or not reuse, that is the key question!\nCase Study D: Navigating the complexities of ownership zones"
   },
