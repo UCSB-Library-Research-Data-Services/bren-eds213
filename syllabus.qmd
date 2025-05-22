@@ -56,11 +56,11 @@ Homework is expected to be turned in on time. Do not wait until the last minute 
 
 ## Homework policy update May 22
 
-To provide more flexibility in the assignments schedule and accommodate the capstone deadlines, all students will have the opportunity to submit missing assignments as follow:
+To provide more flexibility in the assignments schedule and accommodate for capstone deadlines, all students will have the opportunity to submit missing assignments as follow:
 
 - You can submit any missing assignments to get **up to 50% of the total points possible** (e.g for a assignment with 100pts, it would mean 50pts for an entirely correct submission)
 - "Week4 - missing data" is **excluded** because the answer was discussed in class
-- **Due date** for those submissions: Fri June 6 11:59PM (end of week 10)
+- **Due date** for those submissions: **Fri June 6 11:59PM** (end of week 10)
 - Submission via Canvas + email to Julien & Greg
 - The grade on those submissions will be final
 
