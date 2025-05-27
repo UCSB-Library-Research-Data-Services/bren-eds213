@@ -8,18 +8,19 @@ title: "Week 9 - Sensitive data"
 -   Identify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.
 -   Apply the acquired techniques while utilizing an R package to quantify the information loss and utility.
 
-## Student notes
-
-Before class, install the sdcMicro package if you choose not to use the servers.
-
-If you are testing using sensitive data, make sure to launch it from RStudio, not from the website.
-
-## Slides and other materials
+## Slides
 
 - [slides-09.pptx](slides-09.pptx)
 
+## In-class demo and exercise (Day 2)
+
+## Student notes
+
+Before class, you can go ahead and install the sdcMicro package if you choose not to use the servers.
+
 - Demo: South Park Case [files - update your fork!](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week9)
 
+- Instructions for the [Whale Entanglement Exercise](hw-09.qmd)
 
 ## Resources
 
@@ -27,7 +28,7 @@ If you are testing using sensitive data, make sure to launch it from RStudio, no
 
 2.  sdcMicro Shiny app: <https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html>
 
-Other useful links can be found on slides.
+Other useful links can be found on the slides.
 
 ## Suggested readings
 
@@ -38,7 +39,3 @@ Other useful links can be found on slides.
 3.  Gehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. <https://doi.org/10.1007/978-1-4419-5906-5_899>
 
 4.  Samarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. <https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf>
-
-## In-class exercise (Day 2)
-
-Instructions for the [Whale Entanglement Exercise](hw-09.qmd)
