@@ -364,25 +364,32 @@
     "text": "Understand the importance of protecting sensitive data and ensuring privacy and confidentiality.\nIdentify and evaluate established approaches and techniques for de-identifying and anonymizing data to mitigate the risk of re-identification.\nApply the acquired techniques while utilizing an R package to quantify the information loss and utility."
   },
   {
+    "objectID": "modules/week09/index-09.html#slides",
+    "href": "modules/week09/index-09.html#slides",
+    "title": "Week 9 - Sensitive data",
+    "section": "Slides",
+    "text": "Slides\n\nslides-09.pptx"
+  },
+  {
+    "objectID": "modules/week09/index-09.html#in-class-demo-and-exercise-day-2",
+    "href": "modules/week09/index-09.html#in-class-demo-and-exercise-day-2",
+    "title": "Week 9 - Sensitive data",
+    "section": "In-class demo and exercise (Day 2)",
+    "text": "In-class demo and exercise (Day 2)"
+  },
+  {
     "objectID": "modules/week09/index-09.html#student-notes",
     "href": "modules/week09/index-09.html#student-notes",
     "title": "Week 9 - Sensitive data",
     "section": "Student notes",
-    "text": "Student notes\nBefore class, install the sdcMicro package if you choose not to use the servers.\nIf you are testing using sensitive data, make sure to launch it from RStudio, not from the website."
-  },
-  {
-    "objectID": "modules/week09/index-09.html#slides-and-other-materials",
-    "href": "modules/week09/index-09.html#slides-and-other-materials",
-    "title": "Week 9 - Sensitive data",
-    "section": "Slides and other materials",
-    "text": "Slides and other materials\n\nslides-09.pptx\nDemo: South Park Case files - update your fork!"
+    "text": "Student notes\nBefore class, you can go ahead and install the sdcMicro package if you choose not to use the servers.\n\nDemo: South Park Case files - update your fork!\nInstructions for the Whale Entanglement Exercise"
   },
   {
     "objectID": "modules/week09/index-09.html#resources",
     "href": "modules/week09/index-09.html#resources",
     "title": "Week 9 - Sensitive data",
     "section": "Resources",
-    "text": "Resources\n\nsdcMicro Documentation: https://sdcpractice.readthedocs.io/en/latest/intro.html\nsdcMicro Shiny app: https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html\n\nOther useful links can be found on slides."
+    "text": "Resources\n\nsdcMicro Documentation: https://sdcpractice.readthedocs.io/en/latest/intro.html\nsdcMicro Shiny app: https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html\n\nOther useful links can be found on the slides."
   },
   {
     "objectID": "modules/week09/index-09.html#suggested-readings",
@@ -390,13 +397,6 @@
     "title": "Week 9 - Sensitive data",
     "section": "Suggested readings",
     "text": "Suggested readings\n\nBledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), https://doi.org/10.1098/rspb.2022.0938\nBourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. https://doi.org/10.1525/cse.2017.sc.454841\nGehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. https://doi.org/10.1007/978-1-4419-5906-5_899\nSamarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf"
-  },
-  {
-    "objectID": "modules/week09/index-09.html#in-class-exercise-day-2",
-    "href": "modules/week09/index-09.html#in-class-exercise-day-2",
-    "title": "Week 9 - Sensitive data",
-    "section": "In-class exercise (Day 2)",
-    "text": "In-class exercise (Day 2)\nInstructions for the Whale Entanglement Exercise"
   },
   {
     "objectID": "modules/week04/hw-04-2.html",
