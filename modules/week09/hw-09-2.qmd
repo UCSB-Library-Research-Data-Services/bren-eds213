@@ -78,7 +78,7 @@ You can run your test harness manually for each experiment, and manually retriev
 
 Once you have your data, load it in Jupyter or RStudio and create a log-log scatter plot of the number of distinct index values (X axis) versus query time (Y axis). (Results will be difficult to see if both axes are not logarithmic.) If all goes well, your plot should resemble something like this:
 
-TBD
+![](IMG_7077.jpeg)
 
 **Finally,**
 
