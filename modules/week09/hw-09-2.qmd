@@ -10,7 +10,7 @@ If the table has multiple indexes, the database will analyze the query constrain
 
 An index can be created for a single column as in the example of I~C~ above. But an index can also be created across multiple columns. For example, an index I~C,D,E~ would index all tuples of values from columns C, D, and E.
 
-For the purposes of this assignment we will be working with an SQLite database that has the same structure as previous class databases but in which the Bird_nests table has 2 million rows, each of which has been fattened to occupy multiple kilobytes. As a consequence, the database file is approximately 8GB. The database file can be found on workbench-1.bren.ucsb.edu at `/courses/EDS213/big-fat.sqlite3`. To use it you will need to do your timings on workbench-1 or otherwise copy or download the database file to your own space.
+For the purposes of this assignment we will be working with an SQLite database that has the same structure as previous class databases but in which the Bird_nests table has 2 million rows, each of which has been fattened to occupy multiple kilobytes. As a consequence, the database file is approximately 8GB. The database file can be found on workbench-1.bren.ucsb.edu at `/courses/EDS213/big-fat.sqlite3`. **To use it you will need to copy or download the database file to your own space.**
 
 We will also be working with the following query:
 
