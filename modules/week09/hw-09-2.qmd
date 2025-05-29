@@ -14,7 +14,7 @@ For the purposes of this assignment we will be working with an SQLite database t
 
 We will also be working with the following query:
 
-```         
+```sql        
 SELECT Nest_ID
     FROM Bird_nests
     WHERE Site = 'nome' AND
@@ -93,7 +93,7 @@ Recall that num_distinct_values = 1, the leftmost point on your scatter plot, co
 
 A few tips on modifying your Bash test harness to make it more useful for this assignment. First, if you find it annoying to have to try different numbers of repetitions to get positive and more precise timings, you can automate your script to try different numbers of repetitions until it achieves something reasonable. Here's one idea:
 
-```         
+```bash         
 num_reps=1
 while true; do
     start=$SECONDS
@@ -117,4 +117,37 @@ And third, if you make the column(s) you want to index an argument to your scrip
 
 # Appendix 2: Connecting to SQLite from Python
 
+```python
+# %pip install sqlite3
+
+# Connect to the database
+import sqlite3
+conn = sqlite3.connect("/courses/EDS213/big-fat.sqlite3")
+cur = conn.cursor()
+
+# Execute a query
+cur.execute("SELECT * FROM Site")
+cur.fetchone()
+```
+
 # Appendix 3: Connecting to SQLite from R
+
+```r
+library(tidyverse)
+library(DBI)
+library(RSQLite)
+library(dbplyr)
+
+# Connect to the big database
+conn <- DBI::dbConnect(RSQLite::SQLite(), "/courses/EDS213/big-fat.sqlite3") 
+
+# List the available tables
+DBI::dbListTables(conn)
+
+# query using DBI
+DBI::dbGetQuery(conn, 'SELECT * FROM Site')
+
+# or using dbplyr
+sites <- tbl(conn, "Site")
+sites %>% filter(Location == 'Alaska, USA')
+```
