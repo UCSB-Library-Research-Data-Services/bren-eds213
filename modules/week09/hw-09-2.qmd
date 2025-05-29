@@ -80,6 +80,8 @@ Once you have your data, load it in Jupyter or RStudio and create a log-log scat
 
 ![](IMG_7077.jpeg)
 
+Recall that num_distinct_values = 1, the leftmost point on your scatter plot, corresponds to using no index at all.
+
 **Finally,**
 
 -   Answer these questions:
