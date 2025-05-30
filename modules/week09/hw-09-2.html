@@ -327,6 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/365666" class="uri">https://ucsb.instructure.com/courses/26293/assignments/365666</a></strong></p>
 <p>Recall from class that an index I<sub>C</sub> on a column C in a table T is in effect a mini-table, kept in sync with T, that contains all the values of column C in order. If there are a million rows in table T, there will be a million values in index I<sub>C</sub>. If the values of column C are unique, the index will hold a million unique values. If column C takes on only a few possible values, then index I<sub>C</sub> will still have a million values, but many of those values will be repeated.</p>
 <p>Suppose we are given a query that includes a constraint against column C, i.e., that includes <code>WHERE C = someval</code> possibly among other constraints. If the table has no indexes, then the database has no choice but to do a “full table scan,” i.e., to examine every table row. If the table is large that can be very costly. But if index I<sub>C</sub> exists, then to <em>use</em> index I<sub>C</sub> means that the database looks up the constraint value <code>someval</code> in the index to obtain a smaller number of table rows (just one row in the case of a unique index) to subsequently examine and match additional constraints against. The essential purpose of an index is to reduce the number of table rows that must be examined.</p>
 <p>If the table has multiple indexes, the database will analyze the query constraints and the distributions of column values and pick what it thinks will be the most effective index to use for the given query.</p>
@@ -398,6 +399,7 @@ ageMethod,#####,#####
 </ul></li>
 <li>Upload all your work: your test harness, your analysis notebook, and your CSV file.</li>
 </ul>
+<p><strong>Credit: 100 points</strong></p>
 </section>
 <section id="appendix-1-modifying-your-bash-test-harness" class="level1">
 <h1>Appendix 1: Modifying your Bash test harness</h1>
@@ -446,11 +448,8 @@ ageMethod,#####,#####
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbListTables</span>(conn)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># query using DBI</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbGetQuery</span>(conn, <span class="st">'SELECT * FROM Site'</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># or using dbplyr</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">tbl</span>(conn, <span class="st">"Site"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>sites <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Location <span class="sc">==</span> <span class="st">'Alaska, USA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbGetQuery</span>(conn, <span class="st">'SELECT * FROM Site'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Probably best to not use <code>dbplyr</code> for this assignment as you want control over the query that is submitted and the result that is returned.</p>
 
 
 </section>
