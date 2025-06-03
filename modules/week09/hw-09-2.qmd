@@ -2,6 +2,8 @@
 title: Week 9 - What makes a good index?
 ---
 
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/365666>**
+
 Recall from class that an index I~C~ on a column C in a table T is in effect a mini-table, kept in sync with T, that contains all the values of column C in order. If there are a million rows in table T, there will be a million values in index I~C~. If the values of column C are unique, the index will hold a million unique values. If column C takes on only a few possible values, then index I~C~ will still have a million values, but many of those values will be repeated.
 
 Suppose we are given a query that includes a constraint against column C, i.e., that includes `WHERE C = someval` possibly among other constraints. If the table has no indexes, then the database has no choice but to do a "full table scan," i.e., to examine every table row. If the table is large that can be very costly. But if index I~C~ exists, then to *use* index I~C~ means that the database looks up the constraint value `someval` in the index to obtain a smaller number of table rows (just one row in the case of a unique index) to subsequently examine and match additional constraints against. The essential purpose of an index is to reduce the number of table rows that must be examined.
@@ -89,6 +91,8 @@ Recall that num_distinct_values = 1, the leftmost point on your scatter plot, co
     -   What conclusion do you draw regarding what makes a good index?
 -   Upload all your work: your test harness, your analysis notebook, and your CSV file.
 
+**Credit: 100 points**
+
 # Appendix 1: Modifying your Bash test harness
 
 A few tips on modifying your Bash test harness to make it more useful for this assignment. First, if you find it annoying to have to try different numbers of repetitions to get positive and more precise timings, you can automate your script to try different numbers of repetitions until it achieves something reasonable. Here's one idea:
@@ -146,8 +150,6 @@ DBI::dbListTables(conn)
 
 # query using DBI
 DBI::dbGetQuery(conn, 'SELECT * FROM Site')
-
-# or using dbplyr
-sites <- tbl(conn, "Site")
-sites %>% filter(Location == 'Alaska, USA')
 ```
+
+Probably best to not use `dbplyr` for this assignment as you want control over the query that is submitted and the result that is returned.
