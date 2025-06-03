@@ -19,9 +19,12 @@ Before class, you can go ahead and install the `sdcMicro` package if you choose 
 [Files - update your fork!](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/tree/main/week9)
 
 Demo: South Park
+
 Exercise: Whale Entanglement
 
 Instructions are noted in the .rmd files. 
+
+[Answer Key - South Park](https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024-class-data/blob/main/week9/southpark-exercise-ak.Rmd)
 
 ## Resources
 
