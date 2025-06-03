@@ -12,7 +12,7 @@ title: "Week 10 - Data licensing and publication"
 
 ### Slides
 
-[slides-10-part1.pptx](slides-10-part1.pptx)
+[slides-10-licensing.pptx](slides-10-licensing.pptx)
 
 ## Part II - Data publication
 
