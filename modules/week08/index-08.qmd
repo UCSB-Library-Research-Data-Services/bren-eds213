@@ -11,7 +11,9 @@ title: "Week 8 - DB advanced topics & Ethical and Responsible Data Management"
 
 ## Slides
 
-[slides-08.pdf](slides-08.pdf)
+[Advanced topics](slides-05-advanced.pptx)
+
+[Ethics](slides-08.pdf)
 
 *Suggested readings*
 
