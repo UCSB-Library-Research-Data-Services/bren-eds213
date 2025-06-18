@@ -5,9 +5,6 @@
 - Julien Brun
 - Renata Curty
 - Greg Janée
-
-## Teaching Assistant
-
 - Annie Adams
 
 ## Description
