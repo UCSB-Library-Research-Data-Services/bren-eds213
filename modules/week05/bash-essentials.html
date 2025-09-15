@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -33,14 +68,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-bb70485c0e65fc7ae287f2baab3988e1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ba3e95c8acafb226fabc739e78f0788c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,6 +116,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">eds213</span>
     </a>
@@ -356,10 +394,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="variables" class="level2">
 <h2 class="anchored" data-anchor-id="variables">3. Variables</h2>
 <p>Bash supports variables, and variables are essential in writing Bash scripts. To set a variable:</p>
-<pre><code>name=Moe</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">name</span><span class="op">=</span>Moe</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>No space</strong> between the variable name and equals sign! Variables are referenced as <code>${name}</code>, or as just <code>$name</code> if not ambiguous. Lots of other stuff can go inside the braces, such as string processing and array indexing. Refer to the Bash manual or a good cheat sheet for examples.</p>
 <p>Names defined as above are local to the current Bash session or script. “Environment variables” are variables that are inherited by (visible to) programs and any scripts you run. To set, add <code>export</code>:</p>
-<pre><code>export DEBUG_ENABLED=1</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">DEBUG_ENABLED</span><span class="op">=</span>1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The two most important environment variables are <code>HOME</code> (your home directory) and <code>PATH</code> (discussed below). The use of all-caps environment variable names is just a convention.</p>
 </section>
 <section id="expansions" class="level2">
@@ -410,36 +448,36 @@ ul.task-list li input[type="checkbox"] {
 <p>just remains</p>
 <p><code>echo 'Hello $name'</code></p></li>
 </ul>
-<p>Generally, arguments to programs must be quoted to prevent Bash from expanding them into multiple arguments. This is easier to appreciate when you’re passing in an explicitly quoted string as in the examples above. But it’s less obvious that quoting is required even if you’re referencing a variable. Sometimes you want to allow a referenced variable to be expanded into multiple arguments, and quotes should be left off:</p>
-<pre><code>my_fave_ls_options="-l -F"
-ls $my_fave_ls_options foo</code></pre>
+<p>Generally, arguments to programs must be quoted to prevent Bash from expanding them into multiple arguments. This is easier to appreciate when you’re passing in an explicitly quoted string as in the examples above. However, it’s less obvious that quoting is required even when referencing a variable. Sometimes you want to allow a referenced variable to be expanded into multiple arguments, and quotes should be left off:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">my_fave_ls_options</span><span class="op">=</span><span class="st">"-l -F"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$my_fave_ls_options</span> foo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>gets expanded to</p>
-<pre><code>ls -l -F foo</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> <span class="at">-F</span> foo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Other times you don’t:</p>
-<pre><code>query="SELECT * FROM table"
-sqlite3 database.sqlite "$query"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">query</span><span class="op">=</span><span class="st">"SELECT * FROM table"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> database.sqlite <span class="st">"</span><span class="va">$query</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>gets expanded to</p>
-<pre><code>sqlite3 database.sqlite "SELECT * FROM table"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> database.sqlite <span class="st">"SELECT * FROM table"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If <code>$query</code> is not quoted in the previous example, <code>SELECT</code>, <code>*</code>, etc., will be passed as separate arguments, which is not what <code>sqlite3</code> expects. Making matters worse, <code>*</code> will then be interpreted as a wildcard and expanded into a list of all files in the current directory!</p>
 </section>
 <section id="path-determines-what-programs-are-run" class="level2">
 <h2 class="anchored" data-anchor-id="path-determines-what-programs-are-run">6. PATH determines what programs are run</h2>
 <p>A few commands (<code>cd</code>, <code>pwd</code>, <code>if</code>, <code>while</code>) are Bash built-ins. All other commands are simply programs on the system, whether coming packaged along with Unix (<code>ls</code>, <code>cp</code>, <code>mkdir</code>, <code>grep</code>, etc.) or installed later (<code>sqlite3</code>, <code>python</code>, etc.).</p>
 <p>The <code>PATH</code> environment variable is a colon-separated list of directories in which Bash looks for programs, in order. You can inspect it:</p>
-<pre><code>echo $PATH</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To see where a command is coming from:</p>
-<pre><code>which ls</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> ls</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To see all places where you have Python installed (cf.&nbsp;<a href="https://xkcd.com/1987/" class="uri">https://xkcd.com/1987/</a>):</p>
-<pre><code>which -a python</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span> <span class="at">-a</span> python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can modify <code>PATH</code> to, for example, add a directory to it (recall <code>export</code> is used for environment variables):</p>
-<pre><code>export PATH=$PATH:/another/directory/I/want/Bash/to/look/in</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/another/directory/I/want/Bash/to/look/in</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It’s typical to set <code>PATH</code> in one of the Bash configuration files <code>~/.bash_profile</code> or <code>~/.profile</code>, so that it is automatically set upon each login.</p>
 </section>
 <section id="io-redirection" class="level2">
 <h2 class="anchored" data-anchor-id="io-redirection">7. I/O redirection</h2>
 <p>Every program running in a Unix or Unix-like environment has three I/O streams: one for input (stdin), one for output (stdout), and one for error messages and other out-of-band output (stderr).</p>
 <p>By convention, Unix programs read from file(s) specified on the command line, but if none are given, from stdin. And also by convention, Unix programs write to stdout. In this way it is easy to construct pipelines. Ex:</p>
-<pre><code>wc -l *.csv | sort -n</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> <span class="pp">*</span>.csv <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-n</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here the <code>wc -l</code> command, which counts the number of lines in files, is given filenames on the command line, so it counts the lines in those files. It writes its output to stdout. <code>sort -n</code> sorts lines in files. It was given no files to sort, so it sorts whatever lines come in via stdin. By piping these together (i.e., by hooking <code>wc</code>’s stdout to <code>sort</code>’s stdin using the pipe operator), the output from <code>wc -l</code> is thereby sorted.</p>
 <p>There are various operators for redirecting where stdin comes from and where stdout and stderr go:</p>
 <ul>
@@ -456,27 +494,27 @@ sqlite3 database.sqlite "$query"</code></pre>
 <section id="control-statements" class="level2">
 <h2 class="anchored" data-anchor-id="control-statements">8. Control statements</h2>
 <p>The syntax of Bash’s control statements is a little funky. A conditional statement looks like this:</p>
-<pre><code>if [ sometest ]; then
-    ...
-fi</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> sometest <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">...</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It can also be formatted like so:</p>
-<pre><code>if [ sometest ]
-then
-    ...
-fi</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> sometest <span class="bu">]</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">then</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">...</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>What can go in inside <code>[ ... ]</code>? A lot of things. Believe it or not, <code>[</code> is a program! Do a <code>man [</code> to read about it (see section 10 for other ways to get help).</p>
 <p>A <code>for</code> loop iterates over a list of items:</p>
-<pre><code>for file in *.csv; do
-    echo "$file has $(wc -l &lt; $file) lines"
-done</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.csv<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"</span><span class="va">$file</span><span class="st"> has </span><span class="va">$(</span><span class="fu">wc</span> <span class="at">-l</span> <span class="op">&lt;</span> <span class="va">$file)</span><span class="st"> lines"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Recall expansions from section 4. The <code>*.csv</code> is expanded before the loop is run, ergo the above is equivalent to listing the files explicitly:</p>
-<pre><code>for file in ASDN_Bird_eggs.csv ... species.csv; do
-    echo "$file has $(wc -l &lt; $file) lines"
-done</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> ASDN_Bird_eggs.csv ... species.csv<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"</span><span class="va">$file</span><span class="st"> has </span><span class="va">$(</span><span class="fu">wc</span> <span class="at">-l</span> <span class="op">&lt;</span> <span class="va">$file)</span><span class="st"> lines"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Want to do something 99 times? You can use a <code>while</code> loop and a variable as a counter (recall arithmetic from section 4), or you can use <code>seq</code> (try <code>seq</code> by itself to see what it outputs):</p>
-<pre><code>for i in $(seq 99); do
-    echo "Putting $i bottles of beer on the wall"
-done</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="va">$(</span><span class="fu">seq</span> 99<span class="va">)</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Putting </span><span class="va">$i</span><span class="st"> bottles of beer on the wall"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There are other control statements.</p>
 </section>
 <section id="scripts" class="level2">
@@ -488,14 +526,14 @@ done</code></pre>
 <li>It doesn’t read Bash configuration files (<code>~/.bashrc</code>, <code>~/.bash_profile</code>, <code>~/.profile</code>, etc.). As a consequence, aliases and variables defined in those files are not visible to scripts. (Any environment variables set in configuration files <em>are</em> visible, but that’s because environment variables are inherited.)</li>
 </ul>
 <p>Bash makes arguments passed to your script available as variables <code>$1</code>, <code>$2</code>, etc. Variable <code>$#</code> is the number of arguments. Ex:</p>
-<pre><code>if [ $# -ne 3 ]; then
-    echo "This script requires 3 arguments"
-    exit 1  # terminate with error status (exit 0 = success)
-fi</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="va">$#</span> <span class="ot">-ne</span> 3 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"This script requires 3 arguments"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1  <span class="co"># terminate with error status (exit 0 = success)</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A Bash script can be run as so:</p>
-<pre><code>bash myscript.sh</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> myscript.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To run a script just by saying</p>
-<pre><code>myscript.sh</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">myscript.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>i.e., to make it look more like a built-in command, requires that two things be done:</p>
 <ol type="1">
 <li><p>The first line of the script file must be:</p>
@@ -507,26 +545,26 @@ fi</code></pre>
 <p><code>ls -l myscript.sh</code></p></li>
 </ol>
 <p>You might find that you still can’t run your script just by saying</p>
-<pre><code>myscript.sh</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">myscript.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is likely due to the current directory not being included in <code>PATH</code>. (<code>echo $PATH</code> to see.) You can either qualify the script name with a directory name:</p>
-<pre><code>./myscript.sh</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./myscript.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or you can modify <code>PATH</code> per section 6.</p>
 <p>A complete example of a script:</p>
-<pre><code>#!/bin/bash
-# Add two numbers.
-if [ $# -ne 2 ]; then
-    echo "Supply two numbers, no more, no less"
-    exit 1
-fi
-first=$1
-second=$2
-echo "The sum of $first and $second is $(( $first + $second ))"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two numbers.</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="va">$#</span> <span class="ot">-ne</span> 2 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Supply two numbers, no more, no less"</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="va">first</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="va">second</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"The sum of </span><span class="va">$first</span><span class="st"> and </span><span class="va">$second</span><span class="st"> is </span><span class="va">$((</span> <span class="va">$first</span> <span class="op">+</span> <span class="va">$second</span> <span class="va">))</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="getting-help-and-a-couple-tips" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help-and-a-couple-tips">10. Getting help and a couple tips</h2>
 <p>To get help on a command, for example <code>ls</code>, try one of the following:</p>
-<pre><code>man ls
-ls --help</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> ls</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Most but not all systems support <code>man</code>; MacOS does <em>not</em> support the <code>--help</code> option. Failing either of those, do an internet search for “ls man page”.</p>
 <p>When writing a script, it can be invaluable to run it through <a href="https://shellcheck.net" class="uri">https://shellcheck.net</a>. The advice is good and the creator of that tool knows way more about Bash than you or I. Other good resources:</p>
 <ul>
@@ -648,13 +686,14 @@ ls --help</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
