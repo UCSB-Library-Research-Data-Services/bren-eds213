@@ -58,7 +58,7 @@ But be aware that these are only conventions, and there are idiosyncracies in ho
 
 Bash supports variables, and variables are essential in writing Bash scripts. To set a variable:
 
-```         
+```bash
 name=Moe
 ```
 
@@ -66,7 +66,7 @@ name=Moe
 
 Names defined as above are local to the current Bash session or script. "Environment variables" are variables that are inherited by (visible to) programs and any scripts you run. To set, add `export`:
 
-```         
+```bash
 export DEBUG_ENABLED=1
 ```
 
@@ -150,29 +150,29 @@ Quoting is another difficult area of Bash. It's hard to get right.
 
     `echo 'Hello $name'`
 
-Generally, arguments to programs must be quoted to prevent Bash from expanding them into multiple arguments. This is easier to appreciate when you're passing in an explicitly quoted string as in the examples above. But it's less obvious that quoting is required even if you're referencing a variable. Sometimes you want to allow a referenced variable to be expanded into multiple arguments, and quotes should be left off:
+Generally, arguments to programs must be quoted to prevent Bash from expanding them into multiple arguments. This is easier to appreciate when you're passing in an explicitly quoted string as in the examples above. However, it's less obvious that quoting is required even when referencing a variable. Sometimes you want to allow a referenced variable to be expanded into multiple arguments, and quotes should be left off:
 
-```         
+```bash
 my_fave_ls_options="-l -F"
 ls $my_fave_ls_options foo
 ```
 
 gets expanded to
 
-```         
+```bash
 ls -l -F foo
 ```
 
 Other times you don't:
 
-```         
+```bash  
 query="SELECT * FROM table"
 sqlite3 database.sqlite "$query"
 ```
 
 gets expanded to
 
-```         
+```bash
 sqlite3 database.sqlite "SELECT * FROM table"
 ```
 
@@ -184,25 +184,25 @@ A few commands (`cd`, `pwd`, `if`, `while`) are Bash built-ins. All other comman
 
 The `PATH` environment variable is a colon-separated list of directories in which Bash looks for programs, in order. You can inspect it:
 
-```         
+```bash
 echo $PATH
 ```
 
 To see where a command is coming from:
 
-```         
+```bash
 which ls
 ```
 
 To see all places where you have Python installed (cf. <https://xkcd.com/1987/>):
 
-```         
+```bash
 which -a python
 ```
 
 You can modify `PATH` to, for example, add a directory to it (recall `export` is used for environment variables):
 
-```         
+```bash
 export PATH=$PATH:/another/directory/I/want/Bash/to/look/in
 ```
 
@@ -214,7 +214,7 @@ Every program running in a Unix or Unix-like environment has three I/O streams: 
 
 By convention, Unix programs read from file(s) specified on the command line, but if none are given, from stdin. And also by convention, Unix programs write to stdout. In this way it is easy to construct pipelines. Ex:
 
-```         
+```bash
 wc -l *.csv | sort -n
 ```
 
@@ -238,7 +238,7 @@ The above are the main redirections, but there are others.
 
 The syntax of Bash's control statements is a little funky. A conditional statement looks like this:
 
-```         
+```bash
 if [ sometest ]; then
     ...
 fi
@@ -246,7 +246,7 @@ fi
 
 It can also be formatted like so:
 
-```         
+``` bash
 if [ sometest ]
 then
     ...
@@ -257,7 +257,7 @@ What can go in inside `[ ... ]`? A lot of things. Believe it or not, `[` is a pr
 
 A `for` loop iterates over a list of items:
 
-```         
+```bash
 for file in *.csv; do
     echo "$file has $(wc -l < $file) lines"
 done
@@ -265,7 +265,7 @@ done
 
 Recall expansions from section 4. The `*.csv` is expanded before the loop is run, ergo the above is equivalent to listing the files explicitly:
 
-```         
+```bash
 for file in ASDN_Bird_eggs.csv ... species.csv; do
     echo "$file has $(wc -l < $file) lines"
 done
@@ -273,7 +273,7 @@ done
 
 Want to do something 99 times? You can use a `while` loop and a variable as a counter (recall arithmetic from section 4), or you can use `seq` (try `seq` by itself to see what it outputs):
 
-```         
+```bash
 for i in $(seq 99); do
     echo "Putting $i bottles of beer on the wall"
 done
@@ -292,7 +292,7 @@ Bash knows it is reading from a file instead of the terminal window, and it oper
 
 Bash makes arguments passed to your script available as variables `$1`, `$2`, etc. Variable `$#` is the number of arguments. Ex:
 
-```         
+```bash
 if [ $# -ne 3 ]; then
     echo "This script requires 3 arguments"
     exit 1  # terminate with error status (exit 0 = success)
@@ -301,13 +301,13 @@ fi
 
 A Bash script can be run as so:
 
-```         
+```bash
 bash myscript.sh
 ```
 
 To run a script just by saying
 
-```         
+```bash
 myscript.sh
 ```
 
@@ -329,13 +329,13 @@ i.e., to make it look more like a built-in command, requires that two things be 
 
 You might find that you still can't run your script just by saying
 
-```         
+```bash
 myscript.sh
 ```
 
 This is likely due to the current directory not being included in `PATH`. (`echo $PATH` to see.) You can either qualify the script name with a directory name:
 
-```         
+```bash
 ./myscript.sh
 ```
 
@@ -343,7 +343,7 @@ or you can modify `PATH` per section 6.
 
 A complete example of a script:
 
-```         
+```bash
 #!/bin/bash
 # Add two numbers.
 if [ $# -ne 2 ]; then
@@ -359,7 +359,7 @@ echo "The sum of $first and $second is $(( $first + $second ))"
 
 To get help on a command, for example `ls`, try one of the following:
 
-```         
+```bash
 man ls
 ls --help
 ```
