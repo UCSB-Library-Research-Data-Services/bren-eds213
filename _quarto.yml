@@ -45,6 +45,12 @@ website:
           #- modules/week08/hw-08.qmd
           - modules/week09/hw-09-2.qmd
           #- modules/hw_bonus.qmd
+      - text: Weekly Labs
+        menu:
+          - modules/labs/labs.qmd
+          - modules/labs/week1.qmd
+          - modules/labs/week2.qmd
+          - modules/labs/week3.qmd
       - about.qmd
     tools:
       - icon: github

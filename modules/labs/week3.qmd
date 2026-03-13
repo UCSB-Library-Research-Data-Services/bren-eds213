@@ -1,0 +1,86 @@
+---
+title: "Lab 3"
+subtitle: "EDS 213 | Ingesting Your Data into a Database"
+---
+
+## Overview
+
+Now that your data is clean, it's time to **load it into a database**. This week we cover two different methods for ingesting CSV files into a PostgreSQL database, and walk through the key differences between them.
+
+[View Slides](slides/week3.qmd){.btn .btn-outline-primary role="button"}
+
+---
+
+## Two Ways to Ingest Data
+
+There are many ways to get data into a database. We'll focus on two common approaches, both using a CSV file as the starting point.
+
+---
+
+### Option 1: `COPY`
+
+The `COPY` command is a **PostgreSQL-native** way to bulk-load data from a file directly into an existing table. You first create the table manually with the correct schema, then use `COPY` to populate it.
+
+```sql
+COPY table_name (col1, col2, col3)
+FROM '/path/to/file.csv'
+DELIMITER ','
+CSV HEADER;
+```
+
+**Key characteristics:**
+- Fast and efficient for large files
+- Requires the table to already exist with matching column names and types
+- You control the schema explicitly — data types, constraints, etc.
+- The file path must be accessible to the **PostgreSQL server** (not just your local machine)
+
+---
+
+### Option 2: `read_csv` (DuckDB / R / Python)
+
+The `read_csv` approach (available in DuckDB, R's `duckdb` package, or Python) lets you **create and populate a table in one step** directly from a CSV file, with automatic type inference.
+
+```sql
+CREATE TABLE table_name AS
+SELECT * FROM read_csv_auto('/path/to/file.csv');
+```
+
+**Key characteristics:**
+- Convenient — no need to define the schema upfront
+- Automatically infers column types from the data
+- Great for quick exploration and prototyping
+- Type inference can sometimes get things wrong — always verify!
+
+---
+
+## The Difference
+
+The two methods produce tables that look similar on the surface, but there are important practical differences:
+
+| | `COPY` | `read_csv` |
+|---|---|---|
+| Schema definition | Manual (you write it) | Automatic (inferred) |
+| Type control | Full control | Inferred — may need correction |
+| Speed | Very fast for large data | Fast, slightly more overhead |
+| File location | Server-side path | Local or relative path |
+| Best for | Production ingestion | Exploration & prototyping |
+
+::: callout-tip
+## Which should you use?
+For your project, either method works. If you want full control over your schema (recommended for a well-designed database), use `COPY`. If you want to get up and running quickly and explore first, `read_csv` is a great starting point — just double-check that the inferred types match what you expect.
+:::
+
+---
+
+## This Week's Task
+
+Ingest your cleaned data into a database and start exploring it.
+
+::: callout-note
+## Ingestion Checklist
+- [ ] Choose your ingestion method (`COPY` or `read_csv`)
+- [ ] Successfully load all your tables into the database
+- [ ] Verify that column types were correctly assigned
+- [ ] Run a few exploratory queries (`SELECT`, `COUNT`, `LIMIT`) to confirm the data looks right
+- [ ] Check that relationships between tables work as expected (try a `JOIN`!)
+:::
