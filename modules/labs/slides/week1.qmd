@@ -1,0 +1,74 @@
+---
+format: 
+  revealjs:
+    incremental: true
+    slide-number: true
+    progress: true
+    code-line-numbers: true
+    code-copy: true
+    theme: 
+      - EDS213_slides.scss
+    embed-resources: true
+---
+
+##  {#title-slide data-menu-title="Title Slide" background="#cad2c5"}
+
+[EDS 213 Discussion 1]{.custom-title}
+
+<hr class="hr-off-white">
+
+[Spring Quarter]{.custom-subtitle}
+
+
+
+##  {#Discussion-overview data-menu-title="Discussion overview"}
+[Discussion section overview]{.slide-title}
+
+The goal of our weekly discussion sections will be to answer an analytical question of your choosing using a database. You will create this database yourself, and then use it to answer your question. In week 7, we will have a database showcase where you get to teach your classmates about the database you created! 
+
+##  {#Schedule data-menu-title="Schedule"}
+[Schedule]{.slide-title}
+
+<table style="width: 70%; font-size: 0.7em;">
+  <thead>
+    <tr>
+      <th style="width: 15%;">Week</th>
+      <th style="width: 85%;">Objective</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="fragment">
+      <td>1</td>
+      <td>Select a dataset and understand the relationships among the different tables to define a schema. You can pick a dataset(s) from this [list](https://docs.google.com/spreadsheets/d/1WLvKeBbOKC-w-EJsk3BOELhO77JH1bQzP0hcsKEbVGw/edit?gid=0#gid=0), or find your own!</td>
+    </tr>
+    <tr class="fragment">
+      <td>2</td>
+      <td>Clean the data.</td>
+    </tr>
+    <tr class="fragment">
+      <td>3</td>
+      <td>Ingest the data into a database and explore your newly created database.</td>
+    </tr>
+    <tr class="fragment">
+      <td>4</td>
+      <td>After cleaning your data and having it in a database, come up with an analytical question to answer with your database. Develop the SQL query/ queries to answer this question.</td>
+    </tr>
+       <tr class="fragment">
+      <td>5</td>
+      <td>Write some R or Python code to create some data visualization/ analysis with your database.</td>
+    </tr>
+       <tr class="fragment">
+      <td>6</td>
+      <td>Document your work.</td>
+    </tr>
+       <tr class="fragment">
+      <td>7</td>
+      <td>Database showcase!</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
+

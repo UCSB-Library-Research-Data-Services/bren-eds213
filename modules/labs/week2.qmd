@@ -1,0 +1,88 @@
+---
+title: "Lab 2"
+subtitle: "EDS 213 | Data Cleaning"
+---
+
+## Overview
+
+This week, we focus on **cleaning your data** before ingesting it into a database. Real-world datasets are messy — inconsistent formats, wrong types, missing values, and awkward structures are all common. We'll walk through three example databases and the cleaning steps each one needs.
+
+[View Slides](slides/week2.qmd){.btn .btn-outline-primary role="button"}
+
+---
+
+## Why Clean Before Ingesting?
+
+Databases enforce strict data types and relationships. If your data has mixed formats or unexpected values, ingestion will fail — or worse, silently produce wrong results. Cleaning upfront saves a lot of headaches later.
+
+Common issues to look for:
+
+- **Inconsistent date formats** (e.g., `2020-01-01` vs `January 1, 2020` vs `01/01/2020`)
+- **Wrong data types** (e.g., a numeric column containing the string `"fifteen"`)
+- **Inconsistent NA representations** (e.g., `"NA"`, `""`, or just blank)
+- **Unit inconsistencies** (e.g., `"0.030 ppm"` mixed with plain numeric values)
+- **Wide vs. long format** mismatches that don't fit a relational schema
+
+---
+
+## Example Databases
+
+### Database 1: Air & Water Quality
+
+This dataset has two related tables — air quality measurements and water quality samples — with several cleaning issues:
+
+| Column | Problem |
+|--------|---------|
+| `Date` | Mixed formats: `2020-01-01`, `2020/02/01`, `March 3, 2020` |
+| `PM2_5` | Contains the string `"fifteen"` instead of a number |
+| `NO2` | Contains `"NA"` as a string rather than a true missing value |
+| `Lead_Concentration` | Mixes plain numbers with `"0.030 ppm"` (unit embedded in value) |
+
+**Cleaning steps:**
+
+1. Standardize all date formats to `YYYY-MM-DD`
+2. Convert `PM2_5` to numeric (coerce non-numeric strings to `NA`)
+3. Ensure all `NA` representations are true `NA` values
+4. Strip units from `Lead_Concentration` and store as numeric
+
+---
+
+### Database 2: Air Quality & Weather (Wide Format)
+
+This dataset introduces a **wide-to-long formatting** problem. The weather table stores multiple measurements per day as separate columns (`2023-04-01 Temp 06:00`, `2023-04-01 Humidity 06:00`, etc.), which is not suitable for a relational database.
+
+**Cleaning steps:**
+
+1. Remove embedded units from `PM10` and `PM2_5` (e.g., `"155 mg/m³"` → `155`)
+2. Pivot the weather table from **wide to long format** using `pivot_longer()`, separating date, measurement type, and time into their own columns
+
+
+
+---
+
+### Database 3: Daily Air Quality & Vegetation Health
+
+This dataset has a **temporal resolution mismatch**: air quality is recorded daily, but vegetation health is recorded yearly. To join these tables meaningfully, you need to aggregate the daily data up to the yearly level.
+
+**Cleaning steps:**
+
+1. Aggregate daily air quality measurements to yearly averages using `group_by()` + `summarise()`
+
+
+
+2. Now both tables share a `Year` + `Location` key and can be properly joined.
+
+---
+
+## This Week's Task
+
+Apply these principles to **your own dataset**. Before next week's ingestion step, make sure your data is:
+
+::: callout-tip
+## Cleaning Checklist
+- [ ] All date columns use a consistent format (`YYYY-MM-DD` recommended)
+- [ ] Numeric columns contain only numbers (no units or text mixed in)
+- [ ] Missing values are represented consistently as `NA`
+- [ ] Column names are consistent across tables that will be joined
+- [ ] Data is in **long/tidy format** (each variable in its own column, each observation in its own row)
+:::

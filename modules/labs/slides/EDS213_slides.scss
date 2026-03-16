@@ -1,0 +1,149 @@
+/*-- scss:defaults --*/
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@300;800&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
+
+
+// fonts
+
+$montserrat: 'Montserrat', sans-serif;
+
+// colors
+$white: #FFFFFF;
+$black: #000000;
+$off-white: #FAF9F6;
+$light-gray : #cad2c5;
+$light-green: #84a98c;
+$green-blue: #52796f;
+$gray-blue: #354f52;
+$dark-blue: #2f3e46;
+
+
+
+
+// scss variables
+$presentation-title-slide-text-align: "left";
+$body-bg: $white;
+$code-block-font-size: 0.8em;
+$code-block-bg: $off-white;
+$presentation-font-size-root: 35px;
+
+/*-- scss:rules --*/
+
+
+// black horizontal line (default dark blue)
+hr {
+  border: 4px solid $black;
+  border-radius: 3px;
+  margin-bottom: 30px;
+}
+
+// off white horizontal line (default dark blue)
+.hr-off-white {
+  background-color: $off-white; // Changing the color to off-white
+}
+
+
+
+.highlight {
+    background-color: $light-green;
+    font-weight: bold;
+  }
+
+
+
+// custom slide title
+.custom-title {
+  font-family: $montserrat;
+  color: $light-green;
+  font-size: 1.8em; 
+  left: 20px;
+  text-align: center;
+}
+
+// cover slide subtitle (large)
+.custom-subtitle {
+  font-family: $montserrat;
+  color: $off-white;
+  font-size: 1.5em;
+  left: 20px;
+  text-align: center;
+}
+
+// cover slide subtitle (medium)
+.custom-subtitle2 {
+  font-family: $montserrat;
+  color: $off-white;
+  font-size: 1.0em;
+  left: 20px;
+  text-align: center;
+}
+
+
+
+// slide title (large)
+.slide-title {
+  font-family: $montserrat;
+  color: $light-green;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+
+.no-fragment * {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
+
+
+// white text
+.white-text {
+  color: $white;
+}
+
+//off white text
+.off-white-text {
+  color: $off-white;
+}
+
+
+// green blue text
+.green-blue-text {
+  color: $green-blue;
+}
+
+
+// gray blue text
+.gray-blue-text {
+  color: $gray-blue;
+}
+
+
+
+// dark blue text
+.dark-blue-text {
+  color: $dark-blue;
+}
+
+// light green text
+.light-green-text {
+  color: $light-green;
+}
+
+
+// light gray text
+.light-gray-text {
+  color: $light-gray;
+}
+
+
+// black text
+.black-text {
+  color: $black;
+}
+
+
+

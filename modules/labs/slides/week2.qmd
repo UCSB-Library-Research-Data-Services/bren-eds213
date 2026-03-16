@@ -1,0 +1,208 @@
+---
+format: 
+  revealjs:
+    incremental: true
+    slide-number: true
+    progress: true
+    code-line-numbers: true
+    code-copy: true
+    theme: 
+      - EDS213_slides.scss
+    embed-resources: true
+---
+
+##  {#title-slide data-menu-title="Title Slide" background="#cad2c5"}
+
+[EDS 213 Discussion 2]{.custom-title}
+
+<hr class="hr-off-white">
+
+[Data Cleaning]{.custom-subtitle}
+
+
+
+
+
+
+
+
+
+
+##  {#Database#1 data-menu-title="Database # 1"}
+[Database #1 ]{.slide-title}
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(kableExtra)
+```
+
+
+
+```{r}
+# Create Air Quality Data
+air_quality <- data.frame(
+  Date = c("2020-01-01", "2020/02/01", "March 3, 2020", NA, "2020-04-01"),
+  Location = c("Site A", "Site B", "Site C", "Site A", "Site D"),
+  PM2_5 = c(12.3, "fifteen", 7.8, 9.0, 10.2),
+  NO2 = c(20, 30, 25, "NA", 40),
+  O3 = c(15, 20, "twenty", 30, 35)
+)
+
+knitr::kable(head(air_quality), caption = "Air Quality data") %>%   kable_styling(bootstrap_options = c("striped", "hover"), font_size = 13)
+
+
+# Create Water Quality Data
+water_quality <- data.frame(
+  Sample_Date = c("01-01-2020", "2020-02-01", "03-03-2020", "2020-Apr-04", "2020-05-01"),
+  Site_Name = c("River X", "Lake Y", "River X", "Lake Z", "River X"),
+  pH = c(6.5, 7.0, 7.5, "7.2", 8.1),
+  Turbidity = c(3.2, 2.8, NA, 3.5, 300),  # Note the outlier in Turbidity
+  Lead_Concentration = c(0.05, 0.07, "0.1", 0.04, "0.030 ppm")  # Note the unit in the last entry
+)
+
+knitr::kable(head(water_quality), caption = "Water Quality data") %>%   kable_styling(bootstrap_options = c("striped", "hover"), font_size = 13)
+
+```
+
+##  {#Database1 data-menu-title="Database # 1 Cleaning"}
+[Database #1 Cleaning ]{.slide-title}
+
+- Standaradize date formats
+- Convert PM 2.5 to numeric
+- Ensure NAs are actually numeric
+- Consistent naming across tables
+
+
+
+##  {#Database2 data-menu-title="Database # 2"}
+[Database #2 ]{.slide-title}
+
+```{r}
+# Create Air Quality Measurements dataset
+air_quality <- data.frame(
+  Date = c("2023-04-01", "2023-04-01", "2023-04-02", "2023-04-02", "2023-04-03"),
+  Time = c("08:00", "14:00", "08:00", "14:00", "08:00"),
+  Location = c("City Park", "City Park", "Industrial Area", "Industrial Area", "Residential Zone"),
+  PM10 = c(50, 55, 150, "155 mg/m³", 40),  # Note the unit in one entry
+  PM2_5 = c("25 µg/m³", 30, 75, 80, NA),  # Missing value and unit variation
+  NO2 = c(40, 42, 60, NA, 35)  # Missing value
+)
+
+
+knitr::kable(head(air_quality),caption = "Air quality data") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+
+
+# Create a wide format meteorological dataset
+daily_weather <- data.frame(
+  Location = c("Park", "Beach", "Forest", "Hill"),
+  `2023-04-01 Temp 06:00` = c(14, 16, 13, 15),
+  `2023-04-01 Humidity 06:00` = c(80, 85, 90, 75),
+  `2023-04-01 Temp 12:00` = c(22, 24, 21, 23),
+  `2023-04-01 Humidity 12:00` = c(60, 55, 65, 50),
+  `2023-04-01 Temp 18:00` = c(20, 22, 19, 21),
+  `2023-04-01 Humidity 18:00` = c(70, 75, 80, 65),
+  `2023-04-01 Temp 24:00` = c(16, 18, 15, 17),
+  `2023-04-01 Humidity 24:00` = c(85, 90, 95, 80)
+)
+
+
+
+
+
+# Print the original wide format table
+knitr::kable(head(daily_weather), caption = "Daily weather data") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+
+
+
+```
+
+
+
+##  {#Database2 data-menu-title="Database # 2"}
+[Database #2 Cleaning ]{.slide-title}
+
+```{r}
+# Pivot the dataset from wide to long format
+
+# Apply pivot_longer with correct regex pattern
+long_weather <- daily_weather %>%
+  pivot_longer(
+    cols = -Location,
+    names_to = c("Date", ".value", "Time"),
+    names_pattern = "^X(\\d{4}\\.\\d{2}\\.\\d{2})\\.(\\w+)\\.(\\d{2}\\.\\d{2})$",
+    values_to = "Measurements"
+  )
+# Print the long format table
+
+knitr::kable(head(long_weather), caption = "Pivoted Daily Weather data") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+
+```
+
+
+
+##  {#Database3 data-menu-title="Database # 3"}
+[Database #3 ]{.slide-title}
+
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Generate daily air quality measurements data
+dates <- seq(as.Date('2020-01-01'), as.Date('2022-12-31'), by = 'day')
+locations <- c("Location1", "Location2", "Location3")
+n <- length(dates) * length(locations)
+
+daily_air_quality <- data.frame(
+  Date = rep(dates, each = length(locations)),
+  Location = rep(locations, times = length(dates)),
+  PM2_5 = runif(n, 5, 150),   # Random PM2.5 values between 5 and 150 µg/m³
+  NO2 = runif(n, 10, 100),    # Random NO2 values between 10 and 100 µg/m³
+  Ozone = runif(n, 20, 120)   # Random Ozone levels between 20 and 120 µg/m³
+)
+
+
+knitr::kable(head(daily_air_quality), caption = "Daily air quality data") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+
+
+# Generate yearly vegetation health data
+years <- 2020:2022
+
+yearly_vegetation_health <- expand.grid(
+  Year = years,
+  Location = locations
+)
+
+yearly_vegetation_health$VHI <- runif(nrow(yearly_vegetation_health), 40, 100)  # VHI values between 40 and 100
+
+
+knitr::kable(head(yearly_vegetation_health), caption = "Yearly vegetation health") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+```
+
+
+##  {#Database3-cleaning data-menu-title="Database # 3 Cleaning"}
+[Database #3 Cleaning ]{.slide-title}
+
+
+```{r}
+library(dplyr)
+
+yearly_air_quality <- daily_air_quality %>%
+  group_by(Year = lubridate::year(Date), Location) %>%
+  summarise(
+    Avg_PM2_5 = mean(PM2_5, na.rm = TRUE),
+    Avg_NO2 = mean(NO2, na.rm = TRUE),
+    Avg_Ozone = mean(Ozone, na.rm = TRUE),
+    .groups = 'drop'
+  )
+
+
+knitr::kable(head(yearly_air_quality), caption = "Yearly Air Quality") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+```
+
