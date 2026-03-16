@@ -29,6 +29,7 @@ jobs:
             any::tidyverse
             any::duckdb
             any::sdcMicro
+            any::kableExtra
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
