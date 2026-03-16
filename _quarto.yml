@@ -56,9 +56,9 @@ website:
       - icon: github
         menu:
           - text: Website Code
-            url:  https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024
+            url:  https://github.com/UCSB-Library-Research-Data-Services/bren-meds213
           - text: Report an issue
-            url:  https://github.com/UCSB-Library-Research-Data-Services/bren-meds213-spring-2024/issues
+            url:  https://github.com/UCSB-Library-Research-Data-Services/bren-meds213/issues
 
 format:
   html:
