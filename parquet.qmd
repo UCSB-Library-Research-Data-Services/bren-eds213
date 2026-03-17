@@ -1,0 +1,134 @@
+---
+title: "Those tools beyond the DBMS"
+---
+
+## Parquet file format
+
+Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides high performance compression (read binary format) and encoding schemes to handle complex data in bulk and is supported in many programming languages and analytics tools. Parquet is also optimized for cloud access, therefoer Parquet is incredibly fast at scanning specific columns from large datasets hosted in a remote server.
+
+
+### Metadata Hierarchy
+
+To help with the fast retrieving, the Parquet format provides metadata. In other words, Parquet files are "self-describing." All the schema information and column statistics are stored directly in the file footer.
+
+Parquet doesn't just store one giant block of metadata. It breaks it down hierarchically to allow for surgical precision when querying:
+
+- File Metadata: Contains the overall schema (column names, data types), the total number of rows, and the location of the "Row Groups."
+- Row Group Metadata: A Parquet file is divided horizontally into chunks called Row Groups (typically containing 10,000 to 1,000,000 rows). The metadata stores statistics for every single column within that specific Row Group.
+- Page Metadata: Row groups are further divided into pages. Metadata here tracks things like dictionary encoding.
+
+### Standard Parquet Statistics
+
+For every column inside a Row Group, the metadata stores a mini-index of statistics:
+
+- Min / Max Values: The lowest and highest value in that chunk.
+- Null Counts: How many empty rows exist in that chunk.
+- Dictionary Data: (If applicable) A list of the unique values.
+
+
+### Hive Partitioning
+
+**Hive partitioning** is a data organization strategy used in distributed databases and data lakes (originally popularized by Apache Hive) that divides a massive table into smaller, more manageable parts based on the values of one or more columns.
+
+Instead of storing all the data in a single giant directory, Hive partitioning groups rows with the same partition key into their own specific sub-directories.
+
+While powerful, partitioning must be done carefully to avoid performance bottlenecks.
+
+- Choose the right cardinality: You want a partition column with a "medium" number of distinct values (cardinality). Dates (year, month, date) or broad categories (like country or department) are excellent choices.
+
+- Avoid the "Small Files Problem": Do not partition by a column with millions of unique values (like customer_id or timestamp). This will create millions of tiny directories, each with a tiny Parquet file. Query engines spend more time opening and closing files (metadata overhead) than actually reading data.
+
+- Aim for file size sweet spots: Ideally, the Parquet files within your leaf partitions should be reasonably sized—typically between 128 MB and 1 GB each.
+
+- Order matters: If you partition by multiple columns, put the most broadly filtered column first. year -> month -> day is good. day -> month -> year is highly inefficient.
+
+
+The core of Hive partitioning is its directory naming convention. It uses a key=value format for folder names.
+
+If you have a massive table of sales_data and you partition it by year and month, the underlying file system (like Amazon S3, Google Cloud Storage, or HDFS) will look like this:
+
+```bash
+/sales_data/
+├── year=2022/
+│   ├── month=11/
+│   │   ├── file1.parquet
+│   │   └── file2.parquet
+│   └── month=12/
+│       ├── file1.parquet
+│       └── file2.parquet
+├── year=2023/
+│   ├── month=01/
+│   │   ├── file1.parquet
+│   │   └── file2.parquet
+...
+```
+
+While Parquet is incredibly fast at scanning specific columns, Hive partitioning is incredibly fast at filtering out entire files. Combining them creates a powerhouse for analytical querying.
+
+
+### Parquet and Hive paritioning combo
+
+Here is how they work together:
+ 
+- Partition Pruning (The Hive part): When you run a query like SELECT * FROM sales_data WHERE year = 2023 AND month = 01, the query engine looks at the file path. It instantly knows it can completely ignore the year=2022 directory and all other months. It "prunes" these partitions from the search, saving massive amounts of time and I/O cost.
+
+- Columnar Scanning (The Parquet part): Once the engine is inside the year=2023/month=01/ folder, it opens the Parquet files. If your query was SELECT customer_id FROM sales_data..., Parquet's columnar nature allows it to skip all the other columns (like product_name, price, etc.) and only read the customer_id data.
+
+
+
+## Geoparquet 
+
+Simply put, GeoParquet biulds on the parquet ecosystem to store geospatial vector data (point, lines, polygons) 
+
+Because GeoParquet is not a separate format, any program that can read Parquet is able to load GeoParquet as well, even if it can’t make sense of the geometry information. This is very similar to how GeoTIFF layers geospatial information on top of the existing TIFF image standard.
+
+The two main things that GeoParquet defines on top of Parquet are how to encode geometries in the geometry column and how to include metadata like the geometries’ Coordinate Reference System (CRS).
+
+### GeoParquet Metadata Layer
+
+As we discussed earlier, GeoParquet takes the standard Parquet metadata footer and adds a specifically formatted JSON string (called geo) to it. This adds vital context for spatial query engines:
+
+- primary_column: Tells the engine which column contains the main geometry (since you can have multiple geometry columns in one file)
+- geometry_types: Lists the types of shapes in the file (e.g., ["Polygon", "Line"])
+- crs (Coordinate Reference System): Instead of relying on external files (.prj files in Shapefiles), GeoParquet embeds the PROJJSON standard directly in the metadata
+- bbox (Bounding Box): The spatial equivalent of Min/Max statistics. It provides the exact [xmin, ymin, xmax, ymax] that covers all geometries in the file, and crucially, inside individual Row Groups.
+
+
+### Partitioning Geoparquet files
+
+You cannot use a raw geometry column (like a complex polygon representing a city boundary) as a Hive partition key. Hive directories require simple scalar values (strings, integers).
+
+To spatially partition GeoParquet, you must first derive a simple geographic identifier from your spatial data and partition by that derived column.
+
+When organizing GeoParquet, data engineers typically use one of three methods to create Hive partition keys:
+
+- Spatial Indices (Grid Systems): This is the most common and powerful method for large-scale spatial data. You calculate a discrete grid cell ID for each geometry (usually based on its centroid) and use that ID as the folder name:
+
+  - H3 (Uber's Hexagonal Grid): h3_res4=8428308ffffffff/file.parquet
+  - S2 (Google's Spherical Geometry): s2_cell=4/file.parquet
+  - Geohash: geohash=9q8y/file.parquet
+
+- Map Tiles (Z/X/Y): If you are serving data to web maps, you can partition by zoom level, X coordinate, and Y coordinate. Example: /z=10/x=163/y=395/file.parquet
+
+- Administrative Boundaries: For human-centric data, partitioning by known boundaries works well, provided the data is evenly distributed. Example: /country=US/state=CA/file.parquet
+
+
+Geospatial data is very often time-series data (e.g., GPS pings from delivery trucks, daily satellite imagery, or weather sensors). The most efficient GeoParquet data lakes combine temporal and spatial Hive partitioning. For example, storing Uber ride drop-offs:
+
+```bash
+/rides_data/
+├── year=2024/
+│   ├── month=03/
+│   │   ├── h3_index=842a107ffffffff/
+│   │   │   ├── part-001.parquet
+│   │   │   └── part-002.parquet
+│   │   └── h3_index=842a10bffffffff/
+│   │       ├── part-001.parquet
+...
+```
+
+
+
+## Further reading
+
+- Cloud-Optimized Geospatial Formats Guide: https://guide.cloudnativegeo.org/geoparquet/
