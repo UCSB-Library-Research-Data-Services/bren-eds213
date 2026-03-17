@@ -13,17 +13,17 @@ To help with the fast retrieving, the Parquet format provides metadata. In other
 
 Parquet doesn't just store one giant block of metadata. It breaks it down hierarchically to allow for surgical precision when querying:
 
-- File Metadata: Contains the overall schema (column names, data types), the total number of rows, and the location of the "Row Groups."
-- Row Group Metadata: A Parquet file is divided horizontally into chunks called Row Groups (typically containing 10,000 to 1,000,000 rows). The metadata stores statistics for every single column within that specific Row Group.
-- Page Metadata: Row groups are further divided into pages. Metadata here tracks things like dictionary encoding.
+- `File Metadata`: Contains the overall schema (column names, data types), the total number of rows, and the location of the "Row Groups."
+- `Row Group Metadata`: A Parquet file is divided horizontally into chunks called Row Groups (typically containing 10,000 to 1,000,000 rows). The metadata stores statistics for every single column within that specific Row Group.
+- `Page Metadata`: Row groups are further divided into pages. Metadata here tracks things like dictionary encoding.
 
 ### Standard Parquet Statistics
 
 For every column inside a Row Group, the metadata stores a mini-index of statistics:
 
-- Min / Max Values: The lowest and highest value in that chunk.
-- Null Counts: How many empty rows exist in that chunk.
-- Dictionary Data: (If applicable) A list of the unique values.
+- `Min/Max` Values: The lowest and highest value in that chunk.
+- `Null` Counts: How many empty rows exist in that chunk.
+- `Dictionary Data`: (If applicable) A list of the unique values.
 
 
 ### Hive Partitioning
@@ -32,7 +32,7 @@ For every column inside a Row Group, the metadata stores a mini-index of statist
 
 Instead of storing all the data in a single giant directory, Hive partitioning groups rows with the same partition key into their own specific sub-directories.
 
-While powerful, partitioning must be done carefully to avoid performance bottlenecks.
+While powerful, partitioning must be done carefully to avoid performance bottlenecks:
 
 - Choose the right cardinality: You want a partition column with a "medium" number of distinct values (cardinality). Dates (year, month, date) or broad categories (like country or department) are excellent choices.
 
@@ -70,15 +70,15 @@ While Parquet is incredibly fast at scanning specific columns, Hive partitioning
 
 Here is how they work together:
  
-- Partition Pruning (The Hive part): When you run a query like SELECT * FROM sales_data WHERE year = 2023 AND month = 01, the query engine looks at the file path. It instantly knows it can completely ignore the year=2022 directory and all other months. It "prunes" these partitions from the search, saving massive amounts of time and I/O cost.
+- Partition Pruning (The Hive part): When you run a query like `SELECT * FROM sales_data WHERE year = 2023 AND month = 01`, the query engine looks at the file path. It instantly knows it can completely ignore the year=2022 directory and all other months. It "prunes" these partitions from the search, saving massive amounts of time and I/O cost.
 
-- Columnar Scanning (The Parquet part): Once the engine is inside the year=2023/month=01/ folder, it opens the Parquet files. If your query was SELECT customer_id FROM sales_data..., Parquet's columnar nature allows it to skip all the other columns (like product_name, price, etc.) and only read the customer_id data.
+- Columnar Scanning (The Parquet part): Once the engine is inside the `year=2023/month=01/` folder, it opens the Parquet files. If your query was `SELECT customer_id FROM sales_data...`, Parquet's columnar nature allows it to skip all the other columns (like product_name, price, etc.) and only read the customer_id data.
 
 
 
 ## Geoparquet 
 
-Simply put, GeoParquet biulds on the parquet ecosystem to store geospatial vector data (point, lines, polygons) 
+Simply put, GeoParquet builds on the parquet ecosystem to store geospatial vector data (point, lines, polygons) 
 
 Because GeoParquet is not a separate format, any program that can read Parquet is able to load GeoParquet as well, even if it can’t make sense of the geometry information. This is very similar to how GeoTIFF layers geospatial information on top of the existing TIFF image standard.
 
@@ -88,10 +88,10 @@ The two main things that GeoParquet defines on top of Parquet are how to encode 
 
 As we discussed earlier, GeoParquet takes the standard Parquet metadata footer and adds a specifically formatted JSON string (called geo) to it. This adds vital context for spatial query engines:
 
-- primary_column: Tells the engine which column contains the main geometry (since you can have multiple geometry columns in one file)
-- geometry_types: Lists the types of shapes in the file (e.g., ["Polygon", "Line"])
-- crs (Coordinate Reference System): Instead of relying on external files (.prj files in Shapefiles), GeoParquet embeds the PROJJSON standard directly in the metadata
-- bbox (Bounding Box): The spatial equivalent of Min/Max statistics. It provides the exact [xmin, ymin, xmax, ymax] that covers all geometries in the file, and crucially, inside individual Row Groups.
+- `primary_column`: Tells the engine which column contains the main geometry (since you can have multiple geometry columns in one file)
+- `geometry_types`: Lists the types of shapes in the file (e.g., ["Polygon", "Line"])
+- `Coordinate Reference System (crs)`: Instead of relying on external files (.prj files like in Shapefiles), GeoParquet embeds the PROJJSON standard directly in the metadata
+- `Bounding Box (bbox)`: The spatial equivalent of Min/Max statistics. It provides the exact [xmin, ymin, xmax, ymax] that covers all geometries in th e file, and crucially, inside individual Row Groups.
 
 
 ### Partitioning Geoparquet files
@@ -104,9 +104,9 @@ When organizing GeoParquet, data engineers typically use one of three methods to
 
 - Spatial Indices (Grid Systems): This is the most common and powerful method for large-scale spatial data. You calculate a discrete grid cell ID for each geometry (usually based on its centroid) and use that ID as the folder name:
 
-  - H3 (Uber's Hexagonal Grid): h3_res4=8428308ffffffff/file.parquet
-  - S2 (Google's Spherical Geometry): s2_cell=4/file.parquet
-  - Geohash: geohash=9q8y/file.parquet
+  - `H3`: Uber's Hexagonal Grid (<https://h3geo.org/>)
+  - `S2`: Google's Spherical Geometry (<https://s2geometry.io/>)
+  - `Geohash`: geohash (<https://esp.info/geohash>)
 
 - Map Tiles (Z/X/Y): If you are serving data to web maps, you can partition by zoom level, X coordinate, and Y coordinate. Example: /z=10/x=163/y=395/file.parquet
 
@@ -131,4 +131,7 @@ Geospatial data is very often time-series data (e.g., GPS pings from delivery tr
 
 ## Further reading
 
-- Cloud-Optimized Geospatial Formats Guide: https://guide.cloudnativegeo.org/geoparquet/
+- Cloud-Optimized Geospatial Formats Guide: <https://guide.cloudnativegeo.org/geoparquet/>
+
+
+
