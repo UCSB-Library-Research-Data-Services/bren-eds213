@@ -613,14 +613,14 @@
     "href": "index.html#instructors",
     "title": "EDS 213: Databases and Data Management",
     "section": "Instructors",
-    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)\nAnnie Adams (aradams@ucsb.edu )"
+    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nAnnie Adams (aradams@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
     "title": "EDS 213: Databases and Data Management",
     "section": "Schedule",
-    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 AM (BH 1424)\nWeekly Lab: Wednesday 1:00 - 2:20 PM (BH 3022A)\nOffice hours:\n\nJulien & Greg: Tue after class in Oak room;\nAnnie: Thursdays 11 am - 12 pm @ BH 3418\n\nBest way to contact us: email"
+    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 AM (BH 1424)\nLab: Wednesday 1 - 2:20 pm\nOffice hours: Julien & Greg: Mon after class in Oak room; Annie, Wed after class\n\nBest way to contact use: email"
   },
   {
     "objectID": "index.html#course-content",
@@ -634,7 +634,7 @@
     "href": "index.html#modules",
     "title": "EDS 213: Databases and Data Management",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + Advanced database topics (indexing, triggers, …)\n\n\n6\nUsing R to query databases + bash programming\n\n\n7\nUsing Python to query databases + Documenting your work: metadata\n\n\n8\nCapturing your computing environment + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
+    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + DuckDB and Parquet files\n\n\n6\nUsing R & Python to query databases + bash programming\n\n\n7\nCapturing your computing environment + Documenting your work: metadata\n\n\n8\nDatabases advanced topics + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
   },
   {
     "objectID": "syllabus.html",
