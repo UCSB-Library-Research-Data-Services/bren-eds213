@@ -23,23 +23,22 @@ A class data GitHub repository, linked below, is used to distribute data files t
 
 - Julien Brun (jb160\@ucsb.edu)
 - Greg Janée (gjanee\@ucsb.edu)
+- Annie Adams (aradams\@ucsb.edu)
 - Renata Curty (rcurty\@ucsb.edu)
-- Annie Adams (aradams\@ucsb.edu )
 
 
 ## Schedule
 
 - Class: Monday & Wednesday 9:30-10:45 AM (BH 1424)
-- Weekly Lab: Wednesday 1:00 - 2:20 PM (BH 3022A)
-- Office hours: 
+- Lab: Wednesday 1 - 2:20 pm
+- Office hours: Julien & Greg: Mon after class in Oak room; Annie, Wed after class
 
-    - Julien & Greg: Tue after class in Oak room; 
-    - Annie: Thursdays 11 am - 12 pm @ BH 3418
-- Best way to contact us: email
+Best way to contact use: email
+
 
 ## Course content
 
-[Syllabus](syllabus.qmd)
+[Syllabus](https://docs.google.com/document/d/1wjTt38KQZHUeTCkD-R_6fbhwqVYazCeFY0X_4ISwP98/)
 
 [Installing DuckDB](installing-duckdb.qmd)
 
@@ -56,10 +55,10 @@ A class data GitHub repository, linked below, is used to distribute data files t
 | 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) |
 | 3    | [Introduction to SQL (part 1) & DuckDB](modules/week03/index-03.qmd)            |
 | 4    | [SQL part 2 + Analyzing the bird database using SQL](modules/week04/index-04.qmd)|
-| 5    | [I/O & data management + Advanced database topics (indexing, triggers, ...)](modules/week05/index-05.qmd) |
-| 6    | [Using R to query databases + bash programming](modules/week06/index-06.qmd)  |
-| 7    | [Using Python to query databases + Documenting your work: metadata](modules/week07/index-07.qmd) |
-| 8    | [Capturing your computing environment + Ethical & responsible data mgnt](modules/week08/index-08.qmd)  |
+| 5    | [I/O & data management + DuckDB and Parquet files](modules/week05/index-05.qmd) |
+| 6    | [Using R & Python to query databases + bash programming](modules/week06/index-06.qmd)  |
+| 7    | [Capturing your computing environment + Documenting your work: metadata](modules/week07/index-07.qmd) |
+| 8    | [Databases advanced topics + Ethical & responsible data mgnt](modules/week08/index-08.qmd)  |
 | 9    | [Sensitive data](modules/week09/index-09.qmd)                          |
 | 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |
 
