@@ -26,6 +26,8 @@ A class data GitHub repository, linked below, is used to distribute data files t
 - Annie Adams (aradams\@ucsb.edu)
 - Renata Curty (rcurty\@ucsb.edu)
 
+Best way to contact use: email or course slack channel for general questions
+
 
 ## Schedule
 
@@ -33,7 +35,7 @@ A class data GitHub repository, linked below, is used to distribute data files t
 - Lab: Wednesday 1 - 2:20 pm
 - Office hours: Julien & Greg: Mon after class in Oak room; Annie, Wed after class
 
-Best way to contact use: email
+
 
 
 ## Course content
