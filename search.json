@@ -606,7 +606,7 @@
     "href": "index.html#database",
     "title": "EDS 213: Databases and Data Management",
     "section": "Database",
-    "text": "Database\nDuckDB is used as the database platform due to its strict implementation of data types, which turned out to be a weakness when teaching with SQLlite last year. DuckDB is a fast in-process analytical personal database."
+    "text": "Database\nDuckDB is used as the database platform due to its analytical focu, growing set of extensions such as spatial analysis, and its strict implementation of data types."
   },
   {
     "objectID": "index.html#instructors",
@@ -634,7 +634,7 @@
     "href": "index.html#modules",
     "title": "EDS 213: Databases and Data Management",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nTopic/Content\n\n\n\n\n1\nRelational databases and data modeling\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\n\n\n5\nI/O & data management + DuckDB and Parquet files\n\n\n6\nUsing R & Python to query databases + bash programming\n\n\n7\nCapturing your computing environment + Documenting your work: metadata\n\n\n8\nDatabases advanced topics + Ethical & responsible data mgnt\n\n\n9\nSensitive data\n\n\n10\nData licensing and publication"
+    "text": "Modules\n\n\n\nWeek\nLecture\nLab\n\n\n\n\n1\nRelational databases and data modeling\nFinding your relational dataset\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\nDesign the schema of your database\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\nClean and ingest\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\nData exploration and analysis using SQL\n\n\n5\nI/O & data management + DuckDB and Parquet files\nVisualize your data\n\n\n6\nUsing R & Python to query databases + bash programming\nFinalize and document\n\n\n7\nCapturing your computing environment + Documenting your work: metadata\nDatabase showcases\n\n\n8\nDatabases advanced topics + Ethical & responsible data mgnt\n-\n\n\n9\nSensitive data\nSensitive data lab\n\n\n10\nData licensing and publication\n-"
   },
   {
     "objectID": "syllabus.html",
