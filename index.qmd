@@ -16,7 +16,7 @@ A class data GitHub repository, linked below, is used to distribute data files t
 
 ## Database
 
-[DuckDB](https://duckdb.org/) is used as the database platform due to its strict implementation of data types, which turned out to be a weakness when teaching with SQLlite last year. DuckDB is a fast in-process analytical personal database.
+[DuckDB](https://duckdb.org/) is used as the database platform due to its analytical focu, growing set of extensions such as spatial analysis,  and its strict implementation of data types. 
 
 
 ## Instructors
@@ -36,8 +36,6 @@ Best way to contact use: email or course slack channel for general questions
 - Office hours: Julien & Greg: Mon after class in Oak room; Annie, Wed after class
 
 
-
-
 ## Course content
 
 [Syllabus](https://docs.google.com/document/d/1wjTt38KQZHUeTCkD-R_6fbhwqVYazCeFY0X_4ISwP98/)
@@ -51,16 +49,16 @@ Best way to contact use: email or course slack channel for general questions
 
 ## Modules
 
-| Week | Topic/Content                                                          |
-|------|------------------------------------------------------------------------|
-| 1    | [Relational databases and data modeling](modules/week01/index-01.qmd)  |
-| 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) |
-| 3    | [Introduction to SQL (part 1) & DuckDB](modules/week03/index-03.qmd)            |
-| 4    | [SQL part 2 + Analyzing the bird database using SQL](modules/week04/index-04.qmd)|
-| 5    | [I/O & data management + DuckDB and Parquet files](modules/week05/index-05.qmd) |
-| 6    | [Using R & Python to query databases + bash programming](modules/week06/index-06.qmd)  |
-| 7    | [Capturing your computing environment + Documenting your work: metadata](modules/week07/index-07.qmd) |
-| 8    | [Databases advanced topics + Ethical & responsible data mgnt](modules/week08/index-08.qmd)  |
-| 9    | [Sensitive data](modules/week09/index-09.qmd)                          |
-| 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |
+| Week | Lecture                                                                |   Lab   |
+|------|------------------------------------------------------------------------|------------------------------------|
+| 1    | [Relational databases and data modeling](modules/week01/index-01.qmd)  | Finding your relational dataset |
+| 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) | Design the schema of your database |
+| 3    | [Introduction to SQL (part 1) & DuckDB](modules/week03/index-03.qmd)            | Clean and ingest |
+| 4    | [SQL part 2 + Analyzing the bird database using SQL](modules/week04/index-04.qmd)| Data exploration and analysis using SQL |
+| 5    | [I/O & data management + DuckDB and Parquet files](modules/week05/index-05.qmd) | Visualize your data |
+| 6    | [Using R & Python to query databases + bash programming](modules/week06/index-06.qmd)  | Finalize and document |
+| 7    | [Capturing your computing environment + Documenting your work: metadata](modules/week07/index-07.qmd) | Database showcases |
+| 8    | [Databases advanced topics + Ethical & responsible data mgnt](modules/week08/index-08.qmd)  |  -  |
+| 9    | [Sensitive data](modules/week09/index-09.qmd)                          | Sensitive data lab |
+| 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |  -  |
 
