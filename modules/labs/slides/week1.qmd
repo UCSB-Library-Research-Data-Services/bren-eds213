@@ -10,25 +10,17 @@ format:
       - EDS213_slides.scss
     embed-resources: true
 ---
-
 ##  {#title-slide data-menu-title="Title Slide" background="#cad2c5"}
-
-[EDS 213 Discussion 1]{.custom-title}
-
+[EDS 213 Lab 1]{.custom-title}
 <hr class="hr-off-white">
-
 [Spring Quarter]{.custom-subtitle}
 
-
-
-##  {#Discussion-overview data-menu-title="Discussion overview"}
-[Discussion section overview]{.slide-title}
-
-The goal of our weekly discussion sections will be to answer an analytical question of your choosing using a database. You will create this database yourself, and then use it to answer your question. In week 7, we will have a database showcase where you get to teach your classmates about the database you created! 
+##  {#Lab-overview data-menu-title="Lab overview"}
+[Lab section overview]{.slide-title}
+The goal of our weekly lab sections will be to answer an analytical question of your choosing using a database. You will create this database yourself, and then use it to answer your question. In week 7, we will have a database showcase where you get to teach your classmates about the database you created! 
 
 ##  {#Schedule data-menu-title="Schedule"}
 [Schedule]{.slide-title}
-
 <table style="width: 70%; font-size: 0.7em;">
   <thead>
     <tr>
@@ -39,7 +31,7 @@ The goal of our weekly discussion sections will be to answer an analytical quest
   <tbody>
     <tr class="fragment">
       <td>1</td>
-      <td>Select a dataset and understand the relationships among the different tables to define a schema. You can pick a dataset(s) from this [list](https://docs.google.com/spreadsheets/d/1WLvKeBbOKC-w-EJsk3BOELhO77JH1bQzP0hcsKEbVGw/edit?gid=0#gid=0), or find your own!</td>
+      <td>Select a dataset and understand the relationships among the different tables to define a schema. </td>
     </tr>
     <tr class="fragment">
       <td>2</td>
@@ -69,6 +61,87 @@ The goal of our weekly discussion sections will be to answer an analytical quest
   </tbody>
 </table>
 
+##  {#Grading data-menu-title="Project Rubric"}
+[Project Rubric]{.slide-title}
 
+Your lab project is graded **Pass/Fail** across four criteria:
 
+<table style="width: 90%; font-size: 0.55em; margin-top: 0.5em;">
+  <thead>
+    <tr>
+      <th style="width: 20%;">Criteria</th>
+      <th style="width: 40%;">Pass</th>
+      <th style="width: 40%;">Fail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="fragment">
+      <td><strong>Database Schema</strong></td>
+      <td>Appropriate dataset; correct entities & relationships; complete schema diagram; proper primary/foreign keys & data types. <em>(Submit schema to Annie via Slack by 4/17)</em></td>
+      <td>Dataset too simple; missing critical relationships; incomplete or incorrect schema diagram.</td>
+    </tr>
+    <tr class="fragment">
+      <td><strong>Code</strong></td>
+      <td>Appropriate data transformations; missing values handled; formats standardized; data integrity preserved.</td>
+      <td>No evidence of cleaning; major data quality issues remain; missing values mishandled; lack of standardization.</td>
+    </tr>
+    <tr class="fragment">
+      <td><strong>Documentation</strong></td>
+      <td>Clear project purpose; well-documented process; commented code; decisions explained; results discussed; GitHub repo follows repository rubric.</td>
+      <td>Minimal/unclear docs; omitted steps; code lacks comments; results presented without context; insufficient GitHub repo.</td>
+    </tr>
+    <tr class="fragment">
+      <td><strong>Reproducibility</strong></td>
+      <td>Project reproducible from docs; all files included (`.sql` + `.ipynb`/`.qmd`); steps clearly ordered; dependencies listed.</td>
+      <td>Critical files/steps missing; process cannot be reproduced; dependencies not specified; setup requirements missing.</td>
+    </tr>
+    <tr class="fragment">
+      <td><strong>Presentation</strong></td>
+      <td>Covers dataset overview, analytical question, and SQL query; includes a data visualization; stays within 2.5 minutes; reflects on challenges or surprises.</td>
+      <td>Missing key components (dataset context, query, or visualization); significantly over/under time; little to no reflection on the process.</td>
+    </tr>
+  </tbody>
+</table>
 
+##  {#Repo-rubric data-menu-title="Repository Rubric"}
+[GitHub Repository Rubric]{.slide-title}
+
+Your README should include:
+
+- A short, descriptive **title**
+- **Markdown headers** separating each section
+- A brief **explanation of the repository's purpose**
+- A concise description of **repository structure / file organization**
+- **No hidden files** other than `.gitignore` (no `.DS_Store`!)
+- Details on **data access** — where the data lives and how to access it
+- **References & acknowledgements** in a consistent format (include course, data sources, and any other resources)
+- Free of **typos, grammatical errors, and formatting mistakes**
+
+##  {#Repo-files data-menu-title="Required Files"}
+[Required Repository Files]{.slide-title}
+
+Your repo must contain:
+
+- Your **database** (if applicable)
+- A **`.sql` file** with your query
+- A **`.qmd` / `.ipynb` file** with your data analysis & visualization
+- Your **data cleaning script**
+- A **`README`**
+- A **`.txt` file** listing dependencies and environment requirements for your R/Python analysis
+- Any **other files** necessary to reproduce your analysis
+
+##  {#Presentation-rubric data-menu-title="Presentation Rubric"}
+[Week 7 Presentation Rubric]{.slide-title}
+
+You'll have **2.5 minutes** to present your database to the class. Your presentation must cover:
+
+- **Dataset overview**
+  - How did you find it? Was it messy? Well documented?
+  - Any challenges ingesting it into a database?
+
+- **Your question & how you answered it**
+  - Include your **SQL query**
+
+- **The data visualization** created from your query
+
+- **Any other comments** — challenges, surprises, lessons learned!
