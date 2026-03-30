@@ -24,7 +24,10 @@ This course will teach students the fundamentals of relational databases and dat
 - Class: Tuesday & Thursday 9:30-10:45 AM (BH 1424)
 - Discussion - session 1: Thursday 1-1:50 PM, BH 3022A
 - Discussion - session 2: Thursday 2-2:50 PM, BH 3022A
-- Office hours: Julien & Greg: Tue after class in Oak room; Annie, Thursday after class
+- Office hours: 
+
+    - Julien & Greg: Mon after class in Oak room 
+    - Annie: Thursday 11 am - 12 pm in BH 3418
 - Best way to contact use: email
 
 
