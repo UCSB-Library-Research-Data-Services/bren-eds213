@@ -17,6 +17,7 @@ format:
 
 ##  {#Lab-overview data-menu-title="Lab overview"}
 [Lab section overview]{.slide-title}
+
 The goal of our weekly lab sections will be to answer an analytical question of your choosing using a database. You will create this database yourself, and then use it to answer your question. In week 7, we will have a database showcase where you get to teach your classmates about the database you created! 
 
 ##  {#Schedule data-menu-title="Schedule"}
@@ -77,7 +78,7 @@ Your lab project is graded **Pass/Fail** across four criteria:
   <tbody>
     <tr class="fragment">
       <td><strong>Database Schema</strong></td>
-      <td>Appropriate dataset; correct entities & relationships; complete schema diagram; proper primary/foreign keys & data types. <em>(Submit schema to Annie via Slack by 4/17)</em></td>
+      <td>Appropriate dataset; correct entities & relationships; complete schema diagram; proper primary/foreign keys & data types. <em>(Submit schema to Canvas by 4/15)</em></td>
       <td>Dataset too simple; missing critical relationships; incomplete or incorrect schema diagram.</td>
     </tr>
     <tr class="fragment">
