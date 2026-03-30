@@ -5,7 +5,7 @@ subtitle: "EDS 213 | Databases and Data Management"
 
 ## Welcome to Lab! 
 
-Each week, lab section gives you dedicated time to work on a **hands-on database project** of your choosing. Over the quarter, you'll go from raw data to a fully documented, queryable database — and share what you built with your classmates.
+Each week, lab section gives you dedicated time to work on a **hands-on database project** of your choosing. Over the quarter, you'll go from raw data to a fully documented, query-able database and share what you built with your classmates.
 
 This is your chance to apply what you learn in lecture to a dataset that genuinely interests you. You'll walk away with a portfolio piece and experience with the full data pipeline: from messy files to structured, query-ready databases.
 
@@ -31,12 +31,12 @@ Over 7 weeks, you will:
 | Week | Topic | Materials |
 |------|-------|-----------|
 | 1 | Select a dataset & define your schema | [Week 1](week1-discussion.qmd) |
-| 2 | Clean the data | [Week 2](week2-discussion.qmd) |
-| 3 | Ingest data & explore your database | [Week 3](week3-discussion.qmd) |
-| 4 | Develop an analytical question & write SQL queries | Week 5 *(coming soon)* |
-| 5 | Visualize your results | Week 5 *(coming soon)* | 
-| 6 | Document your work | Week 6 *(coming soon)* |
-| 7 | Database showcase! | Week 7 *(coming soon)* |
+| 2 | Clean the data | [Week 2]() |
+| 3 | Ingest data & explore your database | [Week 3]() |
+| 4 | Develop an analytical question & write SQL queries | [Week 4]()  |
+| 5 | Visualize your results | [Week 5]()  | 
+| 6 | Document your work | [Week 6]() |
+| 7 | Database showcase! | [Week 7]()  |
 
 ---
 
@@ -44,12 +44,8 @@ Over 7 weeks, you will:
 
 You can use any dataset that interests you — the only requirement is that it has **multiple related tables** so you can practice designing a real relational schema.
 
-Looking for inspiration? Browse the curated list below:
 
-::: {.text-center}
-[📋 View Suggested Datasets](https://docs.google.com/spreadsheets/d/1WLvKeBbOKC-w-EJsk3BOELhO77JH1bQzP0hcsKEbVGw/edit?gid=0#gid=0){.btn .btn-outline-primary role="button" style="margin: 0.5em;"}
- 
-:::
+
 
 ::: callout-tip
 ## Tips for Picking a Good Dataset
@@ -72,4 +68,8 @@ In **Week 7**, each student (or pair) will give a short presentation on their da
 More details on the showcase format will be shared closer to Week 7.
 
 ---
+
+## Rubric 
+
+The rubric for the project can be found [here](https://docs.google.com/document/d/1tMSJvJ7Yueelxac9T2De9ayHjRTcSR92_RKV20SSDZM).
 

@@ -19,11 +19,8 @@ This week, your goal is to **select a dataset** and start thinking about its str
 
 Specifically, you should:
 
-1. **Choose a dataset** — You can pick one from the [suggested dataset list](https://docs.google.com/spreadsheets/d/1WLvKeBbOKC-w-EJsk3BOELhO77JH1bQzP0hcsKEbVGw/edit?gid=0#gid=0), or find your own!
+1. **Choose a dataset** 
 2. **Understand the relationships** among the different tables in your dataset.
 3. **Define a schema** — think about how the tables connect, what the primary and foreign keys might be, and what data types you're working with.
 
-::: callout-tip
-## Not sure where to start?
-Browse the [suggested datasets](https://docs.google.com/spreadsheets/d/1WLvKeBbOKC-w-EJsk3BOELhO77JH1bQzP0hcsKEbVGw/edit?gid=0#gid=0) for inspiration. Look for something that genuinely interests you — you'll be spending several weeks with this data!
-:::
+
