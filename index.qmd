@@ -26,14 +26,16 @@ A class data GitHub repository, linked below, is used to distribute data files t
 - Annie Adams (aradams\@ucsb.edu)
 - Renata Curty (rcurty\@ucsb.edu)
 
-Best way to contact use: email or course slack channel for general questions
+Best way to contact us: email or course slack channel for general questions
 
 
 ## Schedule
 
 - Class: Monday & Wednesday 9:30-10:45 AM (BH 1424)
 - Lab: Wednesday 1 - 2:20 pm
-- Office hours: Julien & Greg: Mon after class in Oak room; Annie, Wed after class
+- Office hours: 
+  - Julien & Greg: Tue after class in Oak room 
+  - Annie: Thursday 11 am - 12 pm in BH 3418
 
 
 ## Course content
