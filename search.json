@@ -564,7 +564,7 @@
     "href": "syllabus.html#schedule",
     "title": "Course syllabus",
     "section": "Schedule",
-    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nDiscussion - session 1: Thursday 1-1:50 PM, BH 3022A\nDiscussion - session 2: Thursday 2-2:50 PM, BH 3022A\nOffice hours: Julien & Greg: Tue after class in Oak room; Annie, Thursday after class\nBest way to contact use: email"
+    "text": "Schedule\n\nClass: Tuesday & Thursday 9:30-10:45 AM (BH 1424)\nLab: Wednesday 1 pm - 2:20 pm in BH 3022\nOffice hours:\n\nJulien & Greg: Tue after class in Oak room\nAnnie: Thursday 11 am - 12 pm in BH 3418\n\nBest way to contact us: email or course slack channel for general questions"
   },
   {
     "objectID": "syllabus.html#modules",
@@ -1222,14 +1222,14 @@
     "href": "index.html#instructors",
     "title": "EDS 213: Databases and Data Management",
     "section": "Instructors",
-    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nAnnie Adams (aradams@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)\n\nBest way to contact use: email or course slack channel for general questions"
+    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nAnnie Adams (aradams@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)\n\nBest way to contact us: email or course slack channel for general questions"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
     "title": "EDS 213: Databases and Data Management",
     "section": "Schedule",
-    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 AM (BH 1424)\nLab: Wednesday 1 - 2:20 pm\nOffice hours: Julien & Greg: Mon after class in Oak room; Annie, Wed after class"
+    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 AM (BH 1424)\nLab: Wednesday 1 - 2:20 pm\nOffice hours:\n\nJulien & Greg: Tue after class in Oak room\nAnnie: Thursday 11 am - 12 pm in BH 3418"
   },
   {
     "objectID": "index.html#course-content",
