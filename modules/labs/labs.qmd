@@ -58,7 +58,7 @@ You can use any dataset that interests you — the only requirement is that it h
 
 ## The Database Showcase
 
-In **Week 7**, each student (or pair) will give a short presentation on their database project. This is a chance to:
+In **Week 7**, each student will give a short presentation on their database project. This is a chance to:
 
 - Share the question you set out to answer
 - Walk through your schema design decisions
