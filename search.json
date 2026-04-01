@@ -1047,7 +1047,7 @@
     "href": "modules/labs/labs.html#the-database-showcase",
     "title": "Lab Section Overview",
     "section": "The Database Showcase",
-    "text": "The Database Showcase\nIn Week 7, each student (or pair) will give a short presentation on their database project. This is a chance to:\n\nShare the question you set out to answer\nWalk through your schema design decisions\nShow off your SQL queries and visualizations\nTeach your classmates something new about a topic you explored\n\nMore details on the showcase format will be shared closer to Week 7."
+    "text": "The Database Showcase\nIn Week 7, each student will give a short presentation on their database project. This is a chance to:\n\nShare the question you set out to answer\nWalk through your schema design decisions\nShow off your SQL queries and visualizations\nTeach your classmates something new about a topic you explored\n\nMore details on the showcase format will be shared closer to Week 7."
   },
   {
     "objectID": "modules/labs/labs.html#rubric",
