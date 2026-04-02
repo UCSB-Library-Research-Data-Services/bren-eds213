@@ -1,11 +1,19 @@
 ---
-title: "Week 1 - Naming things is hard"
+title: "Week 1 - Data modeling is hard"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/355827>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/459630>**
 
-In class we discussed the difficulty of selecting the right names for quantities. This can often involve reflecting on what a quantity actually **is** or represents. Settling on a name can be an iterative process.
+In class we've been discussing some simple data modeling: students belong to a house, they enroll in courses. Alas, in the real world, data modeling can be quite difficult. There is no one right answer; rather, describing the data is often a balancing act between competing concerns:
 
-Please reflect on your capstone work. Describe a quantity (a filename, a variable name, etc.) for which you changed the name. Or, if you have yet to change any names, describe a quantity that would benefit from being renamed. Describe what the quantity represents in the context of your project. What are the old and new names, why was the old name not the best, and why is the new name an improvement?
+-   The fidelity of the data description (how accurate or detailed or granular do we want to be, do we need to be?);
+-   The functional requirements (what do we need to do with this data?);
+-   Understandability and maintainability (complexity is its own evil); and
+-   Data availability (there's no point in describing attributes if you can't populate them).
+
+Please briefly reflect on an experience in your career (could be your capstone work, could be something else) where you spent time thinking about how to organize or structure your data.
+
+-   Were you successful? Did you model the data in such a way that you could get your work done, and possibly also make it easy to extend in the future?
+-   Or, despite your best efforts, did you run into problems down the road and find that you wished you had done things differently? In that case, did you walk away with any learning experiences?
 
 **Credit: 10pts**
