@@ -22,11 +22,11 @@ website:
           # - modules/week08/index-08.qmd
           # - modules/week09/index-09.qmd
           # - modules/week10/index-10.qmd
-      # - text: Assignments
-      #   menu:
-      #     - modules/week01/hw-01-1.qmd
-      #     - modules/week01/hw-01-2.qmd
-      #     - modules/week01/hw-01-3.qmd
+      - text: Assignments
+        menu:
+          - modules/week01/hw-01-1.qmd
+          - modules/week01/hw-01-2.qmd
+          - modules/week01/hw-01-3.qmd
       #     - modules/week02/hw-02.qmd
       #     - modules/week03/hw-03-1.qmd
       #     - modules/week03/hw-03-2.qmd
