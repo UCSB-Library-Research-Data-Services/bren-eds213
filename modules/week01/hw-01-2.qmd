@@ -6,14 +6,14 @@ title: "Week 1 - Data modeling"
 
 Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL's data definition language as is possible.
 
-The Snow_survey table and related tables you will find useful for this exercise can be downloaded at:
+The Snow_survey table and some additional tables you might find useful for this exercise can be downloaded at:
 
 - [ASDN_Snow_survey.csv](ASDN_Snow_survey.csv)
 - [site.csv](site.csv)
 - [species.csv](species.csv)
 - [personnel.csv](personnel.csv)
 
-To understand this table, you will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.  To help you further, in Appendix 1 is the documentation for the table that comes with the ASDN dataset, and in Appendix 2 are SQL table definitions for the supporting tables.
+To understand the Snow_survey table, you will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.  To help you further, in Appendix 1 is the documentation for the table that comes with the ASDN dataset, and in Appendix 2 are SQL table definitions for the additional tables.
 
 **Your goal is to express your expectations about what the data should look like, so that the database can then enforce those expectations.**
 
@@ -30,7 +30,7 @@ Please express your table definition in SQL, but don't worry about getting the S
 
 Finally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don't write an essay! Bullet points are sufficient.  But do please explain your thought process.
 
-## Appendex 1: Metadata
+## Appendix 1: Metadata
 
 Periodic records of snow cover remaining at the site
 
@@ -50,16 +50,9 @@ Periodic records of snow cover remaining at the site
 
 ## Appendix 2: Table definitions
 
-Table definitions for the supporting tables:
+Table definitions for the additional tables:
 
 ```         
-CREATE TABLE Species (
-    Code TEXT PRIMARY KEY,
-    Common_name TEXT UNIQUE NOT NULL,
-    Scientific_name TEXT,
-    Relevance TEXT
-);
-
 CREATE TABLE Site (
     Code TEXT PRIMARY KEY,
     Site_name TEXT UNIQUE NOT NULL,
@@ -69,6 +62,13 @@ CREATE TABLE Site (
     "Total_Study_Plot_Area_(ha)" REAL NOT NULL
         CHECK ("Total_Study_Plot_Area_(ha)" > 0),
     UNIQUE (Latitude, Longitude)
+);
+
+CREATE TABLE Species (
+    Code TEXT PRIMARY KEY,
+    Common_name TEXT UNIQUE NOT NULL,
+    Scientific_name TEXT,
+    Relevance TEXT
 );
 
 CREATE TABLE Personnel (
