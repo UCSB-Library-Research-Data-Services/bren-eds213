@@ -116,6 +116,25 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../../modules/week01/hw-01-1.html">
+ <span class="dropdown-text">Week 1 - Create an ER diagram</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week01/hw-01-2.html">
+ <span class="dropdown-text">Week 1 - Data modeling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week01/hw-01-3.html">
+ <span class="dropdown-text">Week 1 - Data modeling is hard</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-weekly-labs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Weekly Labs</span>
     </a>
@@ -165,7 +184,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#appendix" id="toc-appendix" class="nav-link active" data-scroll-target="#appendix">Appendix</a></li>
+  <li><a href="#appendex-1-metadata" id="toc-appendex-1-metadata" class="nav-link active" data-scroll-target="#appendex-1-metadata">Appendex 1: Metadata</a></li>
+  <li><a href="#appendix-2-table-definitions" id="toc-appendix-2-table-definitions" class="nav-link" data-scroll-target="#appendix-2-table-definitions">Appendix 2: Table definitions</a></li>
   </ul>
 </nav>
     </div>
@@ -191,9 +211,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/355744" class="uri">https://ucsb.instructure.com/courses/26293/assignments/355744</a></strong></p>
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/32934/assignments/459589" class="uri">https://ucsb.instructure.com/courses/32934/assignments/459589</a></strong></p>
 <p>Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL’s data definition language as is possible.</p>
-<p>In the <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data">GitHub class data repository</a> you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.</p>
+<p>The Snow_survey table and related tables you will find useful for this exercise can be downloaded at:</p>
+<ul>
+<li><a href="ASDN_Snow_survey.csv">ASDN_Snow_survey.csv</a></li>
+<li><a href="site.csv">site.csv</a></li>
+<li><a href="species.csv">species.csv</a></li>
+<li><a href="personnel.csv">personnel.csv</a></li>
+</ul>
+<p>To understand this table, you will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine. To help you further, in Appendix 1 is the documentation for the table that comes with the ASDN dataset, and in Appendix 2 are SQL table definitions for the supporting tables.</p>
+<p><strong>Your goal is to express your expectations about what the data should look like, so that the database can then enforce those expectations.</strong></p>
 <p>Please consider:</p>
 <ul>
 <li>the data types of columns (pick from TEXT, REAL, INTEGER, DATE for this exercise)</li>
@@ -203,11 +231,73 @@ ul.task-list li input[type="checkbox"] {
 <li>uniqueness constraints, on individual columns and across columns</li>
 <li>other column value constraints, again, on individual columns and across columns</li>
 </ul>
-<p>You may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.</p>
 <p>Please express your table definition in SQL, but don’t worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the <a href="https://duckdb.org/docs/sql/statements/create_table">DuckDB CREATE TABLE documentation</a>.</p>
 <p>Finally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don’t write an essay! Bullet points are sufficient. But do please explain your thought process.</p>
-<section id="appendix" class="level2">
-<h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
+<section id="appendex-1-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="appendex-1-metadata">Appendex 1: Metadata</h2>
+<p>Periodic records of snow cover remaining at the site</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 48%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column name</th>
+<th style="text-align: left;">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Site</td>
+<td style="text-align: left;">Four-letter code of site at which data were collected</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Year</td>
+<td style="text-align: left;">Year in which data were collected</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">Date on which data were collected</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Plot</td>
+<td style="text-align: left;">Name of study plot on which survey was conducted</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Location</td>
+<td style="text-align: left;">Name of dedicated snow-survey location, if applicable</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Snow_cover</td>
+<td style="text-align: left;">Percent cover of snow, including slush</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Water_cover</td>
+<td style="text-align: left;">Percent cover of water</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Land_cover</td>
+<td style="text-align: left;">Percent cover of exposed land</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total_cover</td>
+<td style="text-align: left;">Total sum (to check the above percents; should always sum to 100)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Observer</td>
+<td style="text-align: left;">Person who conducted the survey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Notes</td>
+<td style="text-align: left;">Any relevant comments on the survey</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="appendix-2-table-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-2-table-definitions">Appendix 2: Table definitions</h2>
+<p>Table definitions for the supporting tables:</p>
 <pre><code>CREATE TABLE Species (
     Code TEXT PRIMARY KEY,
     Common_name TEXT UNIQUE NOT NULL,
@@ -224,11 +314,6 @@ CREATE TABLE Site (
     "Total_Study_Plot_Area_(ha)" REAL NOT NULL
         CHECK ("Total_Study_Plot_Area_(ha)" &gt; 0),
     UNIQUE (Latitude, Longitude)
-);
-
-CREATE TABLE Color_band_code (
-    Code TEXT PRIMARY KEY,
-    Color TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE Personnel (
