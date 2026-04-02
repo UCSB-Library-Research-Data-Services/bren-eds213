@@ -2,11 +2,20 @@
 title: "Week 1 - Data modeling"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/355744>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/459589>**
 
 Create a table definition for the Snow_survey table that is maximally expressive, that is, that captures as much of the semantics and characteristics of the data using SQL's data definition language as is possible.
 
-In the [GitHub class data repository](https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data) you will find the table described in the metadata (consult 01_ASDN_Readme.txt) and the data can be found in ASDN_Snow_survey.csv. You will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.
+The Snow_survey table and related tables you will find useful for this exercise can be downloaded at:
+
+- [ASDN_Snow_survey.csv](ASDN_Snow_survey.csv)
+- [site.csv](site.csv)
+- [species.csv](species.csv)
+- [personnel.csv](personnel.csv)
+
+To understand this table, you will want to look at the values that occur in the data using a tool like R, Python, or OpenRefine.  To help you further, in Appendix 1 is the documentation for the table that comes with the ASDN dataset, and in Appendix 2 are SQL table definitions for the supporting tables.
+
+**Your goal is to express your expectations about what the data should look like, so that the database can then enforce those expectations.**
 
 Please consider:
 
@@ -17,13 +26,31 @@ Please consider:
 -   uniqueness constraints, on individual columns and across columns
 -   other column value constraints, again, on individual columns and across columns
 
-You may (or may not) want to take advantage of the Species, Site, Color_band_code, and Personnel supporting tables. These are also documented in the metadata, and SQL table definitions for them have already been created and are included below.
-
 Please express your table definition in SQL, but don't worry about getting the SQL syntax exactly correct. This assignment is just a thought exercise. If you do want to try to write correct SQL, though, your may find it helpful to consult the [DuckDB CREATE TABLE documentation](https://duckdb.org/docs/sql/statements/create_table).
 
 Finally, please provide some explanation for why you made the choices you did, and any questions or uncertainties you have. Don't write an essay! Bullet points are sufficient.  But do please explain your thought process.
 
-## Appendix
+## Appendex 1: Metadata
+
+Periodic records of snow cover remaining at the site
+
+| Column name | Definition |
+|:------------|:-----------|
+| Site | Four-letter code of site at which data were collected |
+| Year | Year in which data were collected |
+| Date | Date on which data were collected |
+| Plot | Name of study plot on which survey was conducted |
+| Location | Name of dedicated snow-survey location, if applicable |
+| Snow_cover | Percent cover of snow, including slush |
+| Water_cover | Percent cover of water |
+| Land_cover | Percent cover of exposed land |
+| Total_cover | Total sum (to check the above percents; should always sum to 100) |
+| Observer | Person who conducted the survey |
+| Notes | Any relevant comments on the survey |
+
+## Appendix 2: Table definitions
+
+Table definitions for the supporting tables:
 
 ```         
 CREATE TABLE Species (
@@ -42,11 +69,6 @@ CREATE TABLE Site (
     "Total_Study_Plot_Area_(ha)" REAL NOT NULL
         CHECK ("Total_Study_Plot_Area_(ha)" > 0),
     UNIQUE (Latitude, Longitude)
-);
-
-CREATE TABLE Color_band_code (
-    Code TEXT PRIMARY KEY,
-    Color TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE Personnel (
