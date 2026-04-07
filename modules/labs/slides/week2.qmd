@@ -1,208 +1,268 @@
 ---
-format: 
+format:
   revealjs:
     incremental: true
     slide-number: true
     progress: true
     code-line-numbers: true
     code-copy: true
-    theme: 
+    scrollable: true
+    theme:
       - EDS213_slides.scss
     embed-resources: true
 ---
 
 ##  {#title-slide data-menu-title="Title Slide" background="#cad2c5"}
 
-[EDS 213 Discussion 2]{.custom-title}
+[EDS 213 Lab 2]{.custom-title}
 
 <hr class="hr-off-white">
 
 [Data Cleaning]{.custom-subtitle}
 
 
+##  {#overview data-menu-title="Overview"}
+[Today's Lab]{.slide-title}
 
 
 
 
+Real-world datasets are messy. We'll walk through **three example databases** and the cleaning steps each one needs before ingesting into a database.
 
 
 
 
-##  {#Database#1 data-menu-title="Database # 1"}
-[Database #1 ]{.slide-title}
 
 ```{r}
+#| echo: false
 library(tidyverse)
 library(dplyr)
+library(lubridate)
 library(kableExtra)
-```
 
-
-
-```{r}
-# Create Air Quality Data
+# --- Database 1 ---
 air_quality <- data.frame(
-  Date = c("2020-01-01", "2020/02/01", "March 3, 2020", NA, "2020-04-01"),
+  Date     = c("2020-01-01", "2020/02/01", "March 3, 2020", NA, "2020-04-01"),
   Location = c("Site A", "Site B", "Site C", "Site A", "Site D"),
-  PM2_5 = c(12.3, "fifteen", 7.8, 9.0, 10.2),
-  NO2 = c(20, 30, 25, "NA", 40),
-  O3 = c(15, 20, "twenty", 30, 35)
+  PM2_5    = c(12.3, "fifteen", 7.8, 9.0, 10.2),
+  NO2      = c(20, 30, 25, "NA", 40),
+  O3       = c(15, 20, "twenty", 30, 35)
 )
 
-knitr::kable(head(air_quality), caption = "Air Quality data") %>%   kable_styling(bootstrap_options = c("striped", "hover"), font_size = 13)
-
-
-# Create Water Quality Data
 water_quality <- data.frame(
-  Sample_Date = c("01-01-2020", "2020-02-01", "03-03-2020", "2020-Apr-04", "2020-05-01"),
-  Site_Name = c("River X", "Lake Y", "River X", "Lake Z", "River X"),
-  pH = c(6.5, 7.0, 7.5, "7.2", 8.1),
-  Turbidity = c(3.2, 2.8, NA, 3.5, 300),  # Note the outlier in Turbidity
-  Lead_Concentration = c(0.05, 0.07, "0.1", 0.04, "0.030 ppm")  # Note the unit in the last entry
+  Sample_Date        = c("01-01-2020", "2020-02-01", "03-03-2020", "2020-Apr-04", "2020-05-01"),
+  Site_Name          = c("River X", "Lake Y", "River X", "Lake Z", "River X"),
+  pH                 = c(6.5, 7.0, 7.5, "7.2", 8.1),
+  Turbidity          = c(3.2, 2.8, NA, 3.5, 300),
+  Lead_Concentration = c(0.05, 0.07, "0.1", 0.04, "0.030 ppm")
 )
 
-knitr::kable(head(water_quality), caption = "Water Quality data") %>%   kable_styling(bootstrap_options = c("striped", "hover"), font_size = 13)
-
-```
-
-##  {#Database1 data-menu-title="Database # 1 Cleaning"}
-[Database #1 Cleaning ]{.slide-title}
-
-- Standaradize date formats
-- Convert PM 2.5 to numeric
-- Ensure NAs are actually numeric
-- Consistent naming across tables
-
-
-
-##  {#Database2 data-menu-title="Database # 2"}
-[Database #2 ]{.slide-title}
-
-```{r}
-# Create Air Quality Measurements dataset
-air_quality <- data.frame(
-  Date = c("2023-04-01", "2023-04-01", "2023-04-02", "2023-04-02", "2023-04-03"),
-  Time = c("08:00", "14:00", "08:00", "14:00", "08:00"),
+# --- Database 2 ---
+air_quality2 <- data.frame(
+  Date     = c("2023-04-01", "2023-04-01", "2023-04-02", "2023-04-02", "2023-04-03"),
+  Time     = c("08:00", "14:00", "08:00", "14:00", "08:00"),
   Location = c("City Park", "City Park", "Industrial Area", "Industrial Area", "Residential Zone"),
-  PM10 = c(50, 55, 150, "155 mg/m³", 40),  # Note the unit in one entry
-  PM2_5 = c("25 µg/m³", 30, 75, 80, NA),  # Missing value and unit variation
-  NO2 = c(40, 42, 60, NA, 35)  # Missing value
+  PM10     = c(50, 55, 150, "155 mg/m³", 40),
+  PM2_5    = c("25 µg/m³", 30, 75, 80, NA),
+  NO2      = c(40, 42, 60, NA, 35)
 )
 
-
-knitr::kable(head(air_quality),caption = "Air quality data") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
-
-
-# Create a wide format meteorological dataset
 daily_weather <- data.frame(
   Location = c("Park", "Beach", "Forest", "Hill"),
-  `2023-04-01 Temp 06:00` = c(14, 16, 13, 15),
+  `2023-04-01 Temp 06:00`     = c(14, 16, 13, 15),
   `2023-04-01 Humidity 06:00` = c(80, 85, 90, 75),
-  `2023-04-01 Temp 12:00` = c(22, 24, 21, 23),
+  `2023-04-01 Temp 12:00`     = c(22, 24, 21, 23),
   `2023-04-01 Humidity 12:00` = c(60, 55, 65, 50),
-  `2023-04-01 Temp 18:00` = c(20, 22, 19, 21),
+  `2023-04-01 Temp 18:00`     = c(20, 22, 19, 21),
   `2023-04-01 Humidity 18:00` = c(70, 75, 80, 65),
-  `2023-04-01 Temp 24:00` = c(16, 18, 15, 17),
+  `2023-04-01 Temp 24:00`     = c(16, 18, 15, 17),
   `2023-04-01 Humidity 24:00` = c(85, 90, 95, 80)
 )
 
+# --- Database 3 ---
+set.seed(123)
+dates     <- seq(as.Date('2020-01-01'), as.Date('2022-12-31'), by = 'day')
+locations <- c("Location1", "Location2", "Location3")
+n         <- length(dates) * length(locations)
 
+daily_air_quality <- data.frame(
+  Date     = rep(dates, each = length(locations)),
+  Location = rep(locations, times = length(dates)),
+  PM2_5    = runif(n, 5, 150),
+  NO2      = runif(n, 10, 100),
+  Ozone    = runif(n, 20, 120)
+)
 
-
-
-# Print the original wide format table
-knitr::kable(head(daily_weather), caption = "Daily weather data") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
-
-
-
+years <- 2020:2022
+yearly_vegetation_health <- expand.grid(Year = years, Location = locations)
+yearly_vegetation_health$VHI <- runif(nrow(yearly_vegetation_health), 40, 100)
 ```
+
+
+##  {#Database1 data-menu-title="Database # 1"}
+[Database #1]{.slide-title}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+```{r}
+#| echo: false
+knitr::kable(air_quality, caption = "Air Quality") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
+```
+:::
+
+::: {.column width="45%"}
+```{r}
+#| echo: false
+knitr::kable(water_quality, caption = "Water Quality") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
+```
+:::
+
+::::
+
+
+##  {#Database1-issues data-menu-title="Database # 1 Issues"}
+[Database #1: What's Wrong?]{.slide-title}
+
+**Air Quality table:**
+
+- `Date` — mixed formats: `2020-01-01`, `2020/02/01`, `March 3, 2020`
+- `PM2_5` — contains `"fifteen"` instead of a number
+- `NO2` — contains `"NA"` as a string, not a true missing value
+
+**Water Quality table:**
+
+- `Sample_Date` — multiple inconsistent date formats
+- `Lead_Concentration` — mixes plain numbers with `"0.030 ppm"`
+
 
 
 
 ##  {#Database2 data-menu-title="Database # 2"}
-[Database #2 Cleaning ]{.slide-title}
+[Database #2]{.slide-title}
 
+:::: {.columns}
+
+::: {.column width="45%"}
 ```{r}
-# Pivot the dataset from wide to long format
-
-# Apply pivot_longer with correct regex pattern
-long_weather <- daily_weather %>%
-  pivot_longer(
-    cols = -Location,
-    names_to = c("Date", ".value", "Time"),
-    names_pattern = "^X(\\d{4}\\.\\d{2}\\.\\d{2})\\.(\\w+)\\.(\\d{2}\\.\\d{2})$",
-    values_to = "Measurements"
-  )
-# Print the long format table
-
-knitr::kable(head(long_weather), caption = "Pivoted Daily Weather data") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
-
+#| echo: false
+knitr::kable(air_quality2, caption = "Air Quality") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
 ```
+:::
+
+::: {.column width="55%"}
+```{r}
+#| echo: false
+knitr::kable(daily_weather, caption = "Weather (wide format)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 11)
+```
+:::
+
+::::
+
+
+##  {#Database2-issues data-menu-title="Database # 2 Issues"}
+[Database #2: What's Wrong?]{.slide-title}
+
+**Air Quality table:**
+
+- `PM10` has one entry with `"155 mg/m³"` — unit embedded in value
+- `PM2_5` has one entry with `"25 µg/m³"` — same problem
+
+**Weather table:**
+
+- Data is in **wide format** — each column encodes date, variable, and time
+- Relational databases need **long/tidy format**
+- Need `pivot_longer()` to reshape into separate `Date`, `Time`, `Temp`, and `Humidity` columns
+
 
 
 
 ##  {#Database3 data-menu-title="Database # 3"}
-[Database #3 ]{.slide-title}
+[Database #3]{.slide-title}
 
+:::: {.columns}
+
+::: {.column width="60%"}
 ```{r}
-# Set seed for reproducibility
-set.seed(123)
-
-# Generate daily air quality measurements data
-dates <- seq(as.Date('2020-01-01'), as.Date('2022-12-31'), by = 'day')
-locations <- c("Location1", "Location2", "Location3")
-n <- length(dates) * length(locations)
-
-daily_air_quality <- data.frame(
-  Date = rep(dates, each = length(locations)),
-  Location = rep(locations, times = length(dates)),
-  PM2_5 = runif(n, 5, 150),   # Random PM2.5 values between 5 and 150 µg/m³
-  NO2 = runif(n, 10, 100),    # Random NO2 values between 10 and 100 µg/m³
-  Ozone = runif(n, 20, 120)   # Random Ozone levels between 20 and 120 µg/m³
-)
-
-
-knitr::kable(head(daily_air_quality), caption = "Daily air quality data") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
-
-
-# Generate yearly vegetation health data
-years <- 2020:2022
-
-yearly_vegetation_health <- expand.grid(
-  Year = years,
-  Location = locations
-)
-
-yearly_vegetation_health$VHI <- runif(nrow(yearly_vegetation_health), 40, 100)  # VHI values between 40 and 100
-
-
-knitr::kable(head(yearly_vegetation_health), caption = "Yearly vegetation health") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+#| echo: false
+knitr::kable(head(daily_air_quality), caption = "Daily Air Quality") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
 ```
+:::
+
+::: {.column width="40%"}
+```{r}
+#| echo: false
+knitr::kable(yearly_vegetation_health, caption = "Yearly Vegetation Health") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
+```
+:::
+
+::::
+
+
+##  {#Database3-issues data-menu-title="Database # 3 Issues"}
+[Database #3: What's Wrong?]{.slide-title}
+
+**Daily Air Quality table:**
+
+- Recorded at **daily** resolution
+
+**Yearly Vegetation Health table:**
+
+- Recorded at **yearly** resolution
+- These tables cannot be joined directly — they have different temporal resolutions
+
+**Fix:** Aggregate daily air quality to yearly averages so both tables share a `Year` + `Location` key.
 
 
 ##  {#Database3-cleaning data-menu-title="Database # 3 Cleaning"}
-[Database #3 Cleaning ]{.slide-title}
-
+[Database #3 Cleaning]{.slide-title}
 
 ```{r}
-library(dplyr)
-
 yearly_air_quality <- daily_air_quality %>%
   group_by(Year = lubridate::year(Date), Location) %>%
   summarise(
     Avg_PM2_5 = mean(PM2_5, na.rm = TRUE),
-    Avg_NO2 = mean(NO2, na.rm = TRUE),
+    Avg_NO2   = mean(NO2,   na.rm = TRUE),
     Avg_Ozone = mean(Ozone, na.rm = TRUE),
     .groups = 'drop'
   )
 
-
 knitr::kable(head(yearly_air_quality), caption = "Yearly Air Quality") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
 ```
 
+
+##  {#Database3-join data-menu-title="Database # 3 Join"}
+[Database #3: Joining the Tables]{.slide-title}
+
+```{r}
+combined <- yearly_air_quality %>%
+  left_join(yearly_vegetation_health, by = c("Year", "Location"))
+
+knitr::kable(head(combined), caption = "Joined: Air Quality + Vegetation Health") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
+```
+
+Both tables now share the same `Year` + `Location` key — the join works cleanly.
+
+
+##  {#this-weeks-task data-menu-title="This Week's Task"}
+[This Week's Task]{.slide-title}
+
+::: {style="font-size: 0.8em;"}
+Apply these principles to **your own dataset**. Before next week's ingestion step, make sure your data meets the following criteria:
+
+- All date columns use a **consistent format**
+- Numeric columns contain **only numbers** (no units or text mixed in)
+- Missing values are represented consistently as **`NA`**
+- Column names are **consistent across tables** that will be joined
+- Data is in **long/tidy format** (each variable in its own column, each observation in its own row)
+- Tables that will be joined share a **common key**
+- Any **other cleaning steps** specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)
+:::

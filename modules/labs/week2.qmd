@@ -5,7 +5,7 @@ subtitle: "EDS 213 | Data Cleaning"
 
 ## Overview
 
-This week, we focus on **cleaning your data** before ingesting it into a database. Real-world datasets are messy — inconsistent formats, wrong types, missing values, and awkward structures are all common. We'll walk through three example databases and the cleaning steps each one needs.
+This week, we focus on **cleaning your data** before ingesting it into a database. Real-world datasets are messy. They can contain inconsistent formatting, wrong types, missing values, and awkward structures. We'll walk through three example databases and the cleaning steps each one needs.
 
 [View Slides](slides/week2.qmd){.btn .btn-outline-primary role="button"}
 
@@ -76,13 +76,15 @@ This dataset has a **temporal resolution mismatch**: air quality is recorded dai
 
 ## This Week's Task
 
-Apply these principles to **your own dataset**. Before next week's ingestion step, make sure your data is:
+Apply these principles to **your own dataset**. Before next week's ingestion step, make sure your data meets the requirements listed below:
 
-::: callout-tip
-## Cleaning Checklist
+#### Cleaning Checklist
 - [ ] All date columns use a consistent format (`YYYY-MM-DD` recommended)
 - [ ] Numeric columns contain only numbers (no units or text mixed in)
 - [ ] Missing values are represented consistently as `NA`
 - [ ] Column names are consistent across tables that will be joined
 - [ ] Data is in **long/tidy format** (each variable in its own column, each observation in its own row)
-:::
+- [ ] Tables that will be joined share a **common key**
+
+- [ ] Any **other cleaning steps** specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)
+
