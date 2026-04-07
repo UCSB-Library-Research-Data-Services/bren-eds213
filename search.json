@@ -207,35 +207,56 @@
     "href": "modules/labs/slides/week2.html#title-slide",
     "title": "eds213",
     "section": "",
-    "text": "EDS 213 Discussion 2\n\nData Cleaning"
+    "text": "EDS 213 Lab 2\n\nData Cleaning"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#1",
-    "href": "modules/labs/slides/week2.html#1",
+    "objectID": "modules/labs/slides/week2.html#overview",
+    "href": "modules/labs/slides/week2.html#overview",
     "title": "eds213",
     "section": "",
-    "text": "Database #1\n\n\n\nAir Quality data\n\n\nDate\nLocation\nPM2_5\nNO2\nO3\n\n\n\n\n2020-01-01\nSite A\n12.3\n20\n15\n\n\n2020/02/01\nSite B\nfifteen\n30\n20\n\n\nMarch 3, 2020\nSite C\n7.8\n25\ntwenty\n\n\nNA\nSite A\n9\nNA\n30\n\n\n2020-04-01\nSite D\n10.2\n40\n35\n\n\n\n\n\n\nWater Quality data\n\n\nSample_Date\nSite_Name\npH\nTurbidity\nLead_Concentration\n\n\n\n\n01-01-2020\nRiver X\n6.5\n3.2\n0.05\n\n\n2020-02-01\nLake Y\n7\n2.8\n0.07\n\n\n03-03-2020\nRiver X\n7.5\nNA\n0.1\n\n\n2020-Apr-04\nLake Z\n7.2\n3.5\n0.04\n\n\n2020-05-01\nRiver X\n8.1\n300.0\n0.030 ppm"
+    "text": "Today’s Lab\nReal-world datasets are messy. We’ll walk through three example databases and the cleaning steps each one needs before ingesting into a database."
   },
   {
     "objectID": "modules/labs/slides/week2.html#Database1",
     "href": "modules/labs/slides/week2.html#Database1",
     "title": "eds213",
     "section": "",
-    "text": "Database #1 Cleaning\n\nStandaradize date formats\nConvert PM 2.5 to numeric\nEnsure NAs are actually numeric\nConsistent naming across tables"
+    "text": "Database #1\n\n\n\n\n\nAir Quality\n\n\nDate\nLocation\nPM2_5\nNO2\nO3\n\n\n\n\n2020-01-01\nSite A\n12.3\n20\n15\n\n\n2020/02/01\nSite B\nfifteen\n30\n20\n\n\nMarch 3, 2020\nSite C\n7.8\n25\ntwenty\n\n\nNA\nSite A\n9\nNA\n30\n\n\n2020-04-01\nSite D\n10.2\n40\n35\n\n\n\n\n\n\n\n\n\nWater Quality\n\n\nSample_Date\nSite_Name\npH\nTurbidity\nLead_Concentration\n\n\n\n\n01-01-2020\nRiver X\n6.5\n3.2\n0.05\n\n\n2020-02-01\nLake Y\n7\n2.8\n0.07\n\n\n03-03-2020\nRiver X\n7.5\nNA\n0.1\n\n\n2020-Apr-04\nLake Z\n7.2\n3.5\n0.04\n\n\n2020-05-01\nRiver X\n8.1\n300.0\n0.030 ppm"
+  },
+  {
+    "objectID": "modules/labs/slides/week2.html#Database1-issues",
+    "href": "modules/labs/slides/week2.html#Database1-issues",
+    "title": "eds213",
+    "section": "",
+    "text": "Database #1: What’s Wrong?\nAir Quality table:\n\nDate — mixed formats: 2020-01-01, 2020/02/01, March 3, 2020\nPM2_5 — contains \"fifteen\" instead of a number\nNO2 — contains \"NA\" as a string, not a true missing value\n\nWater Quality table:\n\nSample_Date — multiple inconsistent date formats\nLead_Concentration — mixes plain numbers with \"0.030 ppm\""
   },
   {
     "objectID": "modules/labs/slides/week2.html#Database2",
     "href": "modules/labs/slides/week2.html#Database2",
     "title": "eds213",
     "section": "",
-    "text": "Database #2 Cleaning\n\n\n\nPivoted Daily Weather data\n\n\nLocation\nDate\nTime\nTemp\nHumidity\n\n\n\n\nPark\n2023.04.01\n06.00\n14\n80\n\n\nPark\n2023.04.01\n12.00\n22\n60\n\n\nPark\n2023.04.01\n18.00\n20\n70\n\n\nPark\n2023.04.01\n24.00\n16\n85\n\n\nBeach\n2023.04.01\n06.00\n16\n85\n\n\nBeach\n2023.04.01\n12.00\n24\n55"
+    "text": "Database #2\n\n\n\n\n\nAir Quality\n\n\nDate\nTime\nLocation\nPM10\nPM2_5\nNO2\n\n\n\n\n2023-04-01\n08:00\nCity Park\n50\n25 µg/m³\n40\n\n\n2023-04-01\n14:00\nCity Park\n55\n30\n42\n\n\n2023-04-02\n08:00\nIndustrial Area\n150\n75\n60\n\n\n2023-04-02\n14:00\nIndustrial Area\n155 mg/m³\n80\nNA\n\n\n2023-04-03\n08:00\nResidential Zone\n40\nNA\n35\n\n\n\n\n\n\n\n\n\nWeather (wide format)\n\n\nLocation\nX2023.04.01.Temp.06.00\nX2023.04.01.Humidity.06.00\nX2023.04.01.Temp.12.00\nX2023.04.01.Humidity.12.00\nX2023.04.01.Temp.18.00\nX2023.04.01.Humidity.18.00\nX2023.04.01.Temp.24.00\nX2023.04.01.Humidity.24.00\n\n\n\n\nPark\n14\n80\n22\n60\n20\n70\n16\n85\n\n\nBeach\n16\n85\n24\n55\n22\n75\n18\n90\n\n\nForest\n13\n90\n21\n65\n19\n80\n15\n95\n\n\nHill\n15\n75\n23\n50\n21\n65\n17\n80"
+  },
+  {
+    "objectID": "modules/labs/slides/week2.html#Database2-issues",
+    "href": "modules/labs/slides/week2.html#Database2-issues",
+    "title": "eds213",
+    "section": "",
+    "text": "Database #2: What’s Wrong?\nAir Quality table:\n\nPM10 has one entry with \"155 mg/m³\" — unit embedded in value\nPM2_5 has one entry with \"25 µg/m³\" — same problem\n\nWeather table:\n\nData is in wide format — each column encodes date, variable, and time\nRelational databases need long/tidy format\nNeed pivot_longer() to reshape into separate Date, Time, Temp, and Humidity columns"
   },
   {
     "objectID": "modules/labs/slides/week2.html#Database3",
     "href": "modules/labs/slides/week2.html#Database3",
     "title": "eds213",
     "section": "",
-    "text": "Database #3\n\n\n\nDaily air quality data\n\n\nDate\nLocation\nPM2_5\nNO2\nOzone\n\n\n\n\n2020-01-01\nLocation1\n46.69874\n87.96601\n98.12719\n\n\n2020-01-01\nLocation2\n119.30424\n33.44394\n89.80869\n\n\n2020-01-01\nLocation3\n64.30165\n35.56292\n63.59488\n\n\n2020-01-02\nLocation1\n133.03752\n24.92722\n88.71676\n\n\n2020-01-02\nLocation2\n141.36776\n12.69610\n34.84138\n\n\n2020-01-02\nLocation3\n11.60569\n18.83068\n22.21545\n\n\n\n\n\n\nYearly vegetation health\n\n\nYear\nLocation\nVHI\n\n\n\n\n2020\nLocation1\n63.01918\n\n\n2021\nLocation1\n83.86073\n\n\n2022\nLocation1\n80.71608\n\n\n2020\nLocation2\n92.40360\n\n\n2021\nLocation2\n42.04080\n\n\n2022\nLocation2\n51.59250"
+    "text": "Database #3\n\n\n\n\n\nDaily Air Quality\n\n\nDate\nLocation\nPM2_5\nNO2\nOzone\n\n\n\n\n2020-01-01\nLocation1\n46.69874\n87.96601\n98.12719\n\n\n2020-01-01\nLocation2\n119.30424\n33.44394\n89.80869\n\n\n2020-01-01\nLocation3\n64.30165\n35.56292\n63.59488\n\n\n2020-01-02\nLocation1\n133.03752\n24.92722\n88.71676\n\n\n2020-01-02\nLocation2\n141.36776\n12.69610\n34.84138\n\n\n2020-01-02\nLocation3\n11.60569\n18.83068\n22.21545\n\n\n\n\n\n\n\n\n\nYearly Vegetation Health\n\n\nYear\nLocation\nVHI\n\n\n\n\n2020\nLocation1\n63.01918\n\n\n2021\nLocation1\n83.86073\n\n\n2022\nLocation1\n80.71608\n\n\n2020\nLocation2\n92.40360\n\n\n2021\nLocation2\n42.04080\n\n\n2022\nLocation2\n51.59250\n\n\n2020\nLocation3\n75.97901\n\n\n2021\nLocation3\n77.41948\n\n\n2022\nLocation3\n88.97631"
+  },
+  {
+    "objectID": "modules/labs/slides/week2.html#Database3-issues",
+    "href": "modules/labs/slides/week2.html#Database3-issues",
+    "title": "eds213",
+    "section": "",
+    "text": "Database #3: What’s Wrong?\nDaily Air Quality table:\n\nRecorded at daily resolution\n\nYearly Vegetation Health table:\n\nRecorded at yearly resolution\nThese tables cannot be joined directly — they have different temporal resolutions\n\nFix: Aggregate daily air quality to yearly averages so both tables share a Year + Location key."
   },
   {
     "objectID": "modules/labs/slides/week2.html#Database3-cleaning",
@@ -243,6 +264,20 @@
     "title": "eds213",
     "section": "",
     "text": "Database #3 Cleaning\n\n\n\nYearly Air Quality\n\n\nYear\nLocation\nAvg_PM2_5\nAvg_NO2\nAvg_Ozone\n\n\n\n\n2020\nLocation1\n76.88149\n53.82688\n69.36883\n\n\n2020\nLocation2\n79.32856\n54.50517\n71.14231\n\n\n2020\nLocation3\n74.58713\n56.02009\n68.87337\n\n\n2021\nLocation1\n75.65688\n55.90514\n68.70571\n\n\n2021\nLocation2\n78.93855\n52.15081\n71.25445\n\n\n2021\nLocation3\n77.60456\n55.07368\n67.97183"
+  },
+  {
+    "objectID": "modules/labs/slides/week2.html#Database3-join",
+    "href": "modules/labs/slides/week2.html#Database3-join",
+    "title": "eds213",
+    "section": "",
+    "text": "Database #3: Joining the Tables\n\n\n\nJoined: Air Quality + Vegetation Health\n\n\nYear\nLocation\nAvg_PM2_5\nAvg_NO2\nAvg_Ozone\nVHI\n\n\n\n\n2020\nLocation1\n76.88149\n53.82688\n69.36883\n63.01918\n\n\n2020\nLocation2\n79.32856\n54.50517\n71.14231\n92.40360\n\n\n2020\nLocation3\n74.58713\n56.02009\n68.87337\n75.97901\n\n\n2021\nLocation1\n75.65688\n55.90514\n68.70571\n83.86073\n\n\n2021\nLocation2\n78.93855\n52.15081\n71.25445\n42.04080\n\n\n2021\nLocation3\n77.60456\n55.07368\n67.97183\n77.41948\n\n\n\n\n\nBoth tables now share the same Year + Location key — the join works cleanly."
+  },
+  {
+    "objectID": "modules/labs/slides/week2.html#this-weeks-task",
+    "href": "modules/labs/slides/week2.html#this-weeks-task",
+    "title": "eds213",
+    "section": "",
+    "text": "This Week’s Task\n\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data meets the following criteria:\n\nAll date columns use a consistent format\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nColumn names are consistent across tables that will be joined\nData is in long/tidy format (each variable in its own column, each observation in its own row)\nTables that will be joined share a common key\nAny other cleaning steps specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)"
   },
   {
     "objectID": "modules/labs/slides/week3.html#title-slide",
@@ -935,14 +970,14 @@
     "href": "modules/labs/week2.html",
     "title": "Lab 2",
     "section": "",
-    "text": "This week, we focus on cleaning your data before ingesting it into a database. Real-world datasets are messy — inconsistent formats, wrong types, missing values, and awkward structures are all common. We’ll walk through three example databases and the cleaning steps each one needs.\nView Slides"
+    "text": "This week, we focus on cleaning your data before ingesting it into a database. Real-world datasets are messy. They can contain inconsistent formatting, wrong types, missing values, and awkward structures. We’ll walk through three example databases and the cleaning steps each one needs.\nView Slides"
   },
   {
     "objectID": "modules/labs/week2.html#overview",
     "href": "modules/labs/week2.html#overview",
     "title": "Lab 2",
     "section": "",
-    "text": "This week, we focus on cleaning your data before ingesting it into a database. Real-world datasets are messy — inconsistent formats, wrong types, missing values, and awkward structures are all common. We’ll walk through three example databases and the cleaning steps each one needs.\nView Slides"
+    "text": "This week, we focus on cleaning your data before ingesting it into a database. Real-world datasets are messy. They can contain inconsistent formatting, wrong types, missing values, and awkward structures. We’ll walk through three example databases and the cleaning steps each one needs.\nView Slides"
   },
   {
     "objectID": "modules/labs/week2.html#why-clean-before-ingesting",
@@ -963,7 +998,7 @@
     "href": "modules/labs/week2.html#this-weeks-task",
     "title": "Lab 2",
     "section": "This Week’s Task",
-    "text": "This Week’s Task\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data is:\n\n\n\n\n\n\nTipCleaning Checklist\n\n\n\n\nAll date columns use a consistent format (YYYY-MM-DD recommended)\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nColumn names are consistent across tables that will be joined\nData is in long/tidy format (each variable in its own column, each observation in its own row)"
+    "text": "This Week’s Task\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data meets the requirements listed below:\n\nCleaning Checklist\n\nAll date columns use a consistent format (YYYY-MM-DD recommended)\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nColumn names are consistent across tables that will be joined\nData is in long/tidy format (each variable in its own column, each observation in its own row)\nTables that will be joined share a common key\nAny other cleaning steps specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)"
   },
   {
     "objectID": "modules/labs/slides/week1.html#title-slide",
