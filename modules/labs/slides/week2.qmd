@@ -217,39 +217,10 @@ knitr::kable(yearly_vegetation_health, caption = "Yearly Vegetation Health") %>%
 - Recorded at **yearly** resolution
 - These tables cannot be joined directly — they have different temporal resolutions
 
+::: {.fragment}
 **Fix:** Aggregate daily air quality to yearly averages so both tables share a `Year` + `Location` key.
+:::
 
-
-##  {#Database3-cleaning data-menu-title="Database # 3 Cleaning"}
-[Database #3 Cleaning]{.slide-title}
-
-```{r}
-yearly_air_quality <- daily_air_quality %>%
-  group_by(Year = lubridate::year(Date), Location) %>%
-  summarise(
-    Avg_PM2_5 = mean(PM2_5, na.rm = TRUE),
-    Avg_NO2   = mean(NO2,   na.rm = TRUE),
-    Avg_Ozone = mean(Ozone, na.rm = TRUE),
-    .groups = 'drop'
-  )
-
-knitr::kable(head(yearly_air_quality), caption = "Yearly Air Quality") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
-```
-
-
-##  {#Database3-join data-menu-title="Database # 3 Join"}
-[Database #3: Joining the Tables]{.slide-title}
-
-```{r}
-combined <- yearly_air_quality %>%
-  left_join(yearly_vegetation_health, by = c("Year", "Location"))
-
-knitr::kable(head(combined), caption = "Joined: Air Quality + Vegetation Health") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 14)
-```
-
-Both tables now share the same `Year` + `Location` key — the join works cleanly.
 
 
 ##  {#this-weeks-task data-menu-title="This Week's Task"}
