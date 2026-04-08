@@ -52,6 +52,7 @@ website:
         menu:
           - modules/labs/labs.qmd
           - modules/labs/week1.qmd
+          - modules/labs/week2.qmd
       - about.qmd
     tools:
       - icon: github
