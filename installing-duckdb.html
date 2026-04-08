@@ -291,7 +291,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="vs-code-integration" class="level2">
 <h2 class="anchored" data-anchor-id="vs-code-integration">VS Code integration</h2>
 <p>You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:</p>
-<p>Under the main VS menu, go to <em>Settings</em> -&gt; Keyboard Shortcuts, search for “run selected”, the “run selected text in active terminal” will be one of the options. Set the shift-enter keypress by double-clicking. Right-click on the <em>When</em> column, select <em>Change When Expression</em>, and add <code>editorLangId == 'sql'</code> to restrict to just SQL files and not every kind of file.</p>
+<p>Under the main VS menu, go to <em>Settings</em> -&gt; <em>Keyboard Shortcuts</em>, search for <code>run selected</code>, and choose the optoin <code>Terminal:run selected text in active terminal</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/vsc_shortcut.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of the keyboard shortcut settings</figcaption>
+</figure>
+</div>
+<ul>
+<li>Set the shift-enter keypress by double-clicking.</li>
+<li>Right-click on the <em>When</em> column, select <em>Change When Expression</em>, and add <code>editorLangId == 'sql'</code> to restrict to just SQL files and not every kind of file.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/vsc_shortcut_sql.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of the keyboard shortcut settings with the restriction applying it to SQL script only</figcaption>
+</figure>
+</div>
 <p><em>Now you can hit</em> <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!</p>
 </section>
 <section id="test" class="level2">
