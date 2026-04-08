@@ -277,7 +277,7 @@
     "href": "modules/labs/slides/week2.html#this-weeks-task",
     "title": "eds213",
     "section": "",
-    "text": "This Week’s Task\n\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data meets the following criteria:\n\nAll date columns use a consistent format\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nColumn names are consistent across tables that will be joined\nData is in long/tidy format (each variable in its own column, each observation in its own row)\nTables that will be joined share a common key\nAny other cleaning steps specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)"
+    "text": "This Week’s Task\n\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data meets the following criteria:\n\nAll date columns use a consistent format\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nData is in long/tidy format (each variable in its own column, each observation in its own row)\nTables that will be joined share a common key\nAny other cleaning steps specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)"
   },
   {
     "objectID": "modules/labs/slides/week3.html#title-slide",
@@ -998,7 +998,7 @@
     "href": "modules/labs/week2.html#this-weeks-task",
     "title": "Lab 2",
     "section": "This Week’s Task",
-    "text": "This Week’s Task\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data meets the requirements listed below:\n\nCleaning Checklist\n\nAll date columns use a consistent format (YYYY-MM-DD recommended)\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nColumn names are consistent across tables that will be joined\nData is in long/tidy format (each variable in its own column, each observation in its own row)\nTables that will be joined share a common key\nAny other cleaning steps specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)"
+    "text": "This Week’s Task\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data meets the requirements listed below:\n\nCleaning Checklist\n\nAll date columns use a consistent format (YYYY-MM-DD recommended)\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nData is in long/tidy format (each variable in its own column, each observation in its own row)\nTables that will be joined share a common key\nAny other cleaning steps specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)"
   },
   {
     "objectID": "modules/labs/slides/week1.html#title-slide",
