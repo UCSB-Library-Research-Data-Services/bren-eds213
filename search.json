@@ -256,21 +256,7 @@
     "href": "modules/labs/slides/week2.html#Database3-issues",
     "title": "eds213",
     "section": "",
-    "text": "Database #3: What’s Wrong?\nDaily Air Quality table:\n\nRecorded at daily resolution\n\nYearly Vegetation Health table:\n\nRecorded at yearly resolution\nThese tables cannot be joined directly — they have different temporal resolutions\n\nFix: Aggregate daily air quality to yearly averages so both tables share a Year + Location key."
-  },
-  {
-    "objectID": "modules/labs/slides/week2.html#Database3-cleaning",
-    "href": "modules/labs/slides/week2.html#Database3-cleaning",
-    "title": "eds213",
-    "section": "",
-    "text": "Database #3 Cleaning\n\n\n\nYearly Air Quality\n\n\nYear\nLocation\nAvg_PM2_5\nAvg_NO2\nAvg_Ozone\n\n\n\n\n2020\nLocation1\n76.88149\n53.82688\n69.36883\n\n\n2020\nLocation2\n79.32856\n54.50517\n71.14231\n\n\n2020\nLocation3\n74.58713\n56.02009\n68.87337\n\n\n2021\nLocation1\n75.65688\n55.90514\n68.70571\n\n\n2021\nLocation2\n78.93855\n52.15081\n71.25445\n\n\n2021\nLocation3\n77.60456\n55.07368\n67.97183"
-  },
-  {
-    "objectID": "modules/labs/slides/week2.html#Database3-join",
-    "href": "modules/labs/slides/week2.html#Database3-join",
-    "title": "eds213",
-    "section": "",
-    "text": "Database #3: Joining the Tables\n\n\n\nJoined: Air Quality + Vegetation Health\n\n\nYear\nLocation\nAvg_PM2_5\nAvg_NO2\nAvg_Ozone\nVHI\n\n\n\n\n2020\nLocation1\n76.88149\n53.82688\n69.36883\n63.01918\n\n\n2020\nLocation2\n79.32856\n54.50517\n71.14231\n92.40360\n\n\n2020\nLocation3\n74.58713\n56.02009\n68.87337\n75.97901\n\n\n2021\nLocation1\n75.65688\n55.90514\n68.70571\n83.86073\n\n\n2021\nLocation2\n78.93855\n52.15081\n71.25445\n42.04080\n\n\n2021\nLocation3\n77.60456\n55.07368\n67.97183\n77.41948\n\n\n\n\n\nBoth tables now share the same Year + Location key — the join works cleanly."
+    "text": "Database #3: What’s Wrong?\nDaily Air Quality table:\n\nRecorded at daily resolution\n\nYearly Vegetation Health table:\n\nRecorded at yearly resolution\nThese tables cannot be joined directly — they have different temporal resolutions\n\n\nFix: Aggregate daily air quality to yearly averages so both tables share a Year + Location key."
   },
   {
     "objectID": "modules/labs/slides/week2.html#this-weeks-task",
