@@ -29,6 +29,7 @@ CSV HEADER;
 ```
 
 **Key characteristics:**
+
 - Fast and efficient for large files
 - Requires the table to already exist with matching column names and types
 - You control the schema explicitly — data types, constraints, etc.
@@ -46,6 +47,7 @@ SELECT * FROM read_csv_auto('/path/to/file.csv');
 ```
 
 **Key characteristics:**
+
 - Convenient — no need to define the schema upfront
 - Automatically infers column types from the data
 - Great for quick exploration and prototyping
