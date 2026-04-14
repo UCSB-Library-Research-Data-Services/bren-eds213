@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>Now that your data is clean, it’s time to <strong>load it into a database</strong>. This week we cover two different methods for ingesting CSV files into a PostgreSQL database, and walk through the key differences between them.</p>
+<p>Now that your data is clean, it’s time to <strong>load it into a database</strong>. This week we cover two different methods for ingesting CSV files into a database, and walk through the key differences between them.</p>
 <p><a href="../../modules/labs/slides/week3.html" class="btn btn-outline-primary" role="button">View Slides</a></p>
 <hr>
 </section>
@@ -273,12 +273,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <section id="option-1-copy" class="level3">
 <h3 class="anchored" data-anchor-id="option-1-copy">Option 1: <code>COPY</code></h3>
-<p>The <code>COPY</code> command is a <strong>PostgreSQL-native</strong> way to bulk-load data from a file directly into an existing table. You first create the table manually with the correct schema, then use <code>COPY</code> to populate it.</p>
+<p>The <code>COPY</code> command is a way to bulk-load data from a file directly into an existing table. You first create the table manually with the correct schema, then use <code>COPY</code> to populate it.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> table_name (col1, col2, col3)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="st">'/path/to/file.csv'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>DELIMITER <span class="st">','</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>CSV <span class="kw">HEADER</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Key characteristics:</strong> - Fast and efficient for large files - Requires the table to already exist with matching column names and types - You control the schema explicitly — data types, constraints, etc. - The file path must be accessible to the <strong>PostgreSQL server</strong> (not just your local machine)</p>
+<p><strong>Key characteristics:</strong> - Fast and efficient for large files - Requires the table to already exist with matching column names and types - You control the schema explicitly — data types, constraints, etc.</p>
 <hr>
 </section>
 <section id="option-2-read_csv-duckdb-r-python" class="level3">
@@ -318,11 +318,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Fast, slightly more overhead</td>
 </tr>
 <tr class="even">
-<td>File location</td>
-<td>Server-side path</td>
-<td>Local or relative path</td>
-</tr>
-<tr class="odd">
 <td>Best for</td>
 <td>Production ingestion</td>
 <td>Exploration &amp; prototyping</td>
