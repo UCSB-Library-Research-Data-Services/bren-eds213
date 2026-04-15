@@ -17,6 +17,7 @@ Lecture notes:
 
 -   [lecture-notes-03-mon.txt](lecture-notes-03-mon.txt)
 -   [in-class-script-03-mon.sql](in-class-script-03-mon.sql)
+-   [lecture-notes-03-wed.txt](lecture-notes-03-wed.txt)
 
 [Additional notes](notes.qmd)
 
