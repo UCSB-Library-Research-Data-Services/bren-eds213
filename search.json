@@ -277,7 +277,7 @@
     "href": "modules/week04/index-04.html#slides-and-other-materials",
     "title": "Week 4 - SQL and DuckDB",
     "section": "Slides and other materials",
-    "text": "Slides and other materials\nslides-04.pptx\nLecture notes:\n\nlecture-notes-04-tue.txt\nclass-script-04-tue.sql\nlecture-notes-data-management-io.sql\nclass-script-04-thu-empty.sql\nclass-script-04-thu-solution.sql\n\nData:\n\nClass data GitHub repository"
+    "text": "Slides and other materials\nLecture notes:\n\nlecture-notes-04-mon.txt\nlecture-notes-04-wed.txt\nlecture-notes-data-management-io.sql\n\nData:\n\nClass data GitHub repository"
   },
   {
     "objectID": "modules/week04/hw-04-2.html",
