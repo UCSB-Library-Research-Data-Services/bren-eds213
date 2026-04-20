@@ -2,9 +2,11 @@
 title: "Week 3 - SQL problem 1"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/358192>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/471008>**
 
-It's a useful skill in life (I'm not being rhetorical, I really mean that, it's a useful skill) to be able to construct an experiment to answer a hypothesis. Suppose you're not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn't have access to any documentation, or didn't trust it. What experiment could you run to find out what happens?
+It's a useful skill in life (I'm not being rhetorical, I really mean that, it's a useful skill) to be able to construct an experiment to answer a question. Often that can be the most direct way of getting the true answer.
+
+Suppose you're not sure what the AVG function returns if there are NULL values in the column being averaged. Suppose you either didn't have access to any documentation, or didn't trust it. What experiment could you run to find out what happens?
 
 There are two parts to this problem.
 

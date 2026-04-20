@@ -68,13 +68,14 @@ RELATIONAL ALGEBRA
 
 NULL PROCESSING
 - NULL means unknown
-- SELECT COUNT(*) FROM Bird_nests WHERE floatAge > 5;
-- or <= 5
-- still missing rows, because a NULL value is neither > 5 nor <= 5
+- SELECT COUNT(*) FROM Bird_nests WHERE ageMethod = 'float';
+- or <> 'float'
+- still missing rows, because a NULL value is infectious
 - must use IS NULL or IS NOT NULL
 - aggregate functions omit NULLs like R does
 
 JOINS, THE HEART AND SOUL OF RDBMS
+- 90% of time, join on keys that link tables
 - SELECT * FROM Camp_assignment;
 - but we want full names, not abbreviations
 - so follow linkage shown in ER diagram
@@ -98,6 +99,21 @@ JOINS, THE HEART AND SOUL OF RDBMS
       ON ca.Observer = p.Abbreviation
       LIMIT 10;
 
+- more generally, any two tables can be joined
+- RDBS does Cartesian product, then applies condition (if any)
+- use CROSS JOIN to do Cartesian product
+- SELECT * FROM Site CROSS JOIN Camp_assignment;
+- notice that num rows = num sites * num assignments
+- SELECT 16*441;
+- and get all columns (so total columns = sum of both tables)
+- .mode line
+- SELECT * FROM Site CROSS JOIN Camp_assignment LIMIT 1;
+- When joining on a foreign key, because of the many-to-ONE
+-   relationship, has effect of just adding columns to the
+-   table with the foreign key
+- E.g. join Bird_eggs with Bird_nests: will get same number
+-   of rows as Bird_eggs, just with nest columns appended
+
 - 3 way join:
 - SELECT * FROM Camp_assignment CA JOIN Personnel P
         ON CA.Observer = P.Abbreviation
@@ -113,12 +129,12 @@ JOINS, THE HEART AND SOUL OF RDBMS
       FROM Bird_eggs JOIN Bird_nests
       USING (Nest_ID)
       GROUP BY Nest_ID;
+
 - let's add in some nicer species names; need to add Species to the join
 - SELECT Nest_id, Species, COUNT(*)
       FROM Bird_eggs JOIN Bird_nests
       USING (Nest_ID)
       GROUP BY Nest_ID;
-
 - Argh@#)*$&@*#)$& f-ing DuckDB won't let us
 - There's only one Species per Nest_ID (Nest_ID is primary key of Bird_nests)
 - so safe to use ANY_VALUE(Species), or add Species to the GROUP BY
