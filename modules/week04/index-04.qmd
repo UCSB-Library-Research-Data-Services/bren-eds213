@@ -12,6 +12,7 @@ title: "Week 4 - SQL and DuckDB"
 Lecture notes:
 
 -   [lecture-notes-04-mon.txt](lecture-notes-04-mon.txt)
+-   [in-class-script-04-mon.sql](in-class-script-04-mon.sql)
 -   [lecture-notes-04-wed.txt](lecture-notes-04-wed.txt)
 -   [lecture-notes-data-management-io.sql](lecture-notes-data-management-io.txt)
 
