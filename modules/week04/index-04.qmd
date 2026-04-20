@@ -9,15 +9,11 @@ title: "Week 4 - SQL and DuckDB"
 
 ## Slides and other materials
 
-[slides-04.pptx](slides-04.pptx)
-
 Lecture notes:
 
--   [lecture-notes-04-tue.txt](lecture-notes-04-tue.txt)
--   [class-script-04-tue.sql](class-script-04-tue.sql)
+-   [lecture-notes-04-mon.txt](lecture-notes-04-mon.txt)
+-   [lecture-notes-04-wed.txt](lecture-notes-04-wed.txt)
 -   [lecture-notes-data-management-io.sql](lecture-notes-data-management-io.txt)
--   [class-script-04-thu-empty.sql](class-script-04-thu-empty.sql)
--   [class-script-04-thu-solution.sql](week4-wed_lecture-notes.sql)
 
 
 Data:
