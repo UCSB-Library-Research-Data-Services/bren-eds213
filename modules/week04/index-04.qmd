@@ -7,7 +7,365 @@ title: "Week 4 - SQL and DuckDB"
 -   Continued exploration of SQL concepts including joins, views, and set operations; and apply it to conduct data analysis.
 
 
-## Slides and other materials
+## Monday 
+
+Let's open our ASDN database:
+
+```bash
+duckdb database.duckdb
+```
+
+Let's check we are in the right database
+
+```
+D .table
+```
+
+```output
+┌────────────────────┐┌───────────────────┐┌───────────────────┐┌──────────────────┐┌─────────────────────────┐
+│     Bird_nests     ││     Bird_eggs     ││       Site        ││ Camp_assignment  ││         Species         │
+│                    ││                   ││                   ││                  ││                         │
+│ Book_page  varchar ││ Book_page varchar ││ Code      varchar ││ Year     integer ││ Code            varchar │
+│ Year       integer ││ Year      integer ││ Site_name varchar ││ Site     varchar ││ Common_name     varchar │
+│ Site       varchar ││ Site      varchar ││ Location  varchar ││ Observer varchar ││ Scientific_name varchar │
+│ Nest_ID    varchar ││ Nest_ID   varchar ││ Latitude  float   ││ Start    date    ││ Relevance       varchar │
+│ Species    varchar ││ Egg_num   integer ││ Longitude float   ││ End      date    ││                         │
+│ Observer   varchar ││ Length    float   ││ Area      float   ││                  ││         99 rows         │
+│ Date_found date    ││ Width     float   ││                   ││     441 rows     │└─────────────────────────┘
+│ how_found  varchar ││                   ││      16 rows      │└──────────────────┘
+│ Clutch_max integer ││     406 rows      │└───────────────────┘                    
+│ floatAge   float   │└───────────────────┘                                         
+│ ageMethod  varchar │                                                              
+│                    │                                                              
+│     1547 rows      │                                                              
+└────────────────────┘                                                              
+┌──────────────────────┐
+│      Personnel       │
+│                      │
+│ Abbreviation varchar │
+│ Name         varchar │
+│                      │
+│       269 rows       │
+└──────────────────────┘
+```
+
+
+### Tri-value logic
+
+- Expressions can return TRUE, FALSE, or NULL
+- NULL is infectious
+- In filtering, only TRUE counts
+
+```sql
+SELECT COUNT(*) FROM Bird_nests
+  WHERE floatAge < 7 OR floatAge >= 7;
+```
+
+Only returns a fraction of the rows due to floatAge being NULL
+
+In SQL, if you want to ask (or not ask) for NULLs: `IS NULL`, or `IS NOT NULL`
+
+
+### Nesting queries for more complex analysis
+
+- Everything returned by an SQL query is a table
+- Even SELECT COUNT(*) returns a table
+- Wherever a table is requested, you can insert a parenthesized query; similarly to the tidyverse piping
+
+
+#### What species are *not* represented in the Bird_nests table?
+
+```sql
+SELECT * FROM Species WHERE
+  Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);
+```
+
+#### Which site are located in Canada and have an area larger than 200?
+
+```sql
+SELECT Location, MAX(Area) AS Max_area
+  FROM Site
+  WHERE Location LIKE '%Canada'
+  GROUP BY Location
+  HAVING Max_area > 200;
+```
+
+**Note: `HAVING` is used to filter data on condition in combination of `GROUP BY`, whereas `WHERE` is used to filter rows.**
+
+Now let's imagine there was no `HAVING` clause. How would you answer the above question?
+
+```sql
+SELECT Location, Max_area FROM
+    (SELECT Location, MAX(Area) AS Max_area
+      FROM Site
+      WHERE Location LIKE '%Canada'
+      GROUP BY Location)
+  WHERE Max_area > 200;
+```
+
+
+### Joins
+
+**For this part, we are using the `toy.duckdb`**. Make sure you sync your fork and pull the latest version of our
+data repository.
+
+```bash
+duckdb toy.duckdb
+```
+
+```
+D .table
+```
+
+```output
+ ─────────────────────────────────── toy ──────────────────────────────────── 
+ ─────────────────────────────────── main ─────────────────────────────────── 
+┌────────────────────┐┌────────────────────┐┌───────────────┐┌───────────────┐
+│      Student       ││       House        ││       B       ││       A       │
+│                    ││                    ││               ││               │
+│ Student_ID integer ││ House_ID   integer ││ bcol1 integer ││ acol1 integer │
+│ Name       varchar ││ Name       varchar ││ bcol2 varchar ││ acol2 varchar │
+│ Birthdate  date    ││ Headmaster varchar ││ bcol3 varchar ││               │
+│ House_ID   integer ││                    ││               ││    3 rows     │
+│                    ││       3 rows       ││    3 rows     │└───────────────┘
+│       4 rows       │└────────────────────┘└───────────────┘
+└────────────────────┘                                       
+```
+
+#### Cartesian product 
+
+- Conceptually, the database performs a Cartesian product of the
+  tables and then applies the join condition to filter
+- In some databases, can do a Cartesian product saying JOIN
+  with no join condition
+- But in DuckDB, need to use `CROSS JOIN`
+
+
+Let's have a look at out tables
+
+```sql
+SELECT * FROM A;
+```
+
+```output
+┌───────┬───────────┐
+│ acol1 │   acol2   │
+│ int32 │  varchar  │
+├───────┼───────────┤
+│     1 │ apple     │
+│     2 │ banana    │
+│     3 │ cranberry │
+└───────┴───────────┘
+```
+
+```sql
+SELECT * FROM B;
+```
+
+```output
+┌───────┬─────────┬──────────┐
+│ bcol1 │  bcol2  │  bcol3   │
+│ int32 │ varchar │ varchar  │
+├───────┼─────────┼──────────┤
+│     1 │ pie     │ streusel │
+│     2 │ cake    │ frosting │
+│     3 │ cookie  │ NULL     │
+└───────┴─────────┴──────────┘
+```
+
+```sql
+SELECT * FROM A CROSS JOIN B;
+```
+
+```output
+┌───────┬───────────┬───────┬─────────┬──────────┐
+│ acol1 │   acol2   │ bcol1 │  bcol2  │  bcol3   │
+│ int32 │  varchar  │ int32 │ varchar │ varchar  │
+├───────┼───────────┼───────┼─────────┼──────────┤
+│     1 │ apple     │     1 │ pie     │ streusel │
+│     1 │ apple     │     2 │ cake    │ frosting │
+│     1 │ apple     │     3 │ cookie  │ NULL     │
+│     2 │ banana    │     1 │ pie     │ streusel │
+│     2 │ banana    │     2 │ cake    │ frosting │
+│     2 │ banana    │     3 │ cookie  │ NULL     │
+│     3 │ cranberry │     1 │ pie     │ streusel │
+│     3 │ cranberry │     2 │ cake    │ frosting │
+│     3 │ cranberry │     3 │ cookie  │ NULL     │
+└───────┴───────────┴───────┴─────────┴──────────┘
+```
+
+As a result of a cross-join between to table you have a table that has the following characteristics:
+
+- Number of rows: **product of number of rows** from tables A & B
+- Number of columns:  **sum of number of columns** from tables A & B 
+
+
+#### Cross-joins with a condition
+
+When there is a condition added, `JOIN` defaults to **inner join**
+
+```sql
+SELECT * FROM A JOIN B ON acol1 < bcol1;
+```
+
+```output
+┌───────┬─────────┬───────┬─────────┬──────────┐
+│ acol1 │  acol2  │ bcol1 │  bcol2  │  bcol3   │
+│ int32 │ varchar │ int32 │ varchar │ varchar  │
+├───────┼─────────┼───────┼─────────┼──────────┤
+│     1 │ apple   │     2 │ cake    │ frosting │
+│     1 │ apple   │     3 │ cookie  │ NULL     │
+│     2 │ banana  │     3 │ cookie  │ NULL     │
+└───────┴─────────┴───────┴─────────┴──────────┘
+```
+
+- Left or right outer join: selects rows not included, supplies NULL for values
+  in other table
+
+```sql
+SELECT * FROM A RIGHT JOIN B ON acol1 < bcol1;
+```
+
+```output
+───────┬─────────┬───────┬─────────┬──────────┐
+│ acol1 │  acol2  │ bcol1 │  bcol2  │  bcol3   │
+│ int32 │ varchar │ int32 │ varchar │ varchar  │
+├───────┼─────────┼───────┼─────────┼──────────┤
+│     1 │ apple   │     2 │ cake    │ frosting │
+│     1 │ apple   │     3 │ cookie  │ NULL     │
+│     2 │ banana  │     3 │ cookie  │ NULL     │
+│  NULL │ NULL    │     1 │ pie     │ streusel │
+└───────┴─────────┴───────┴─────────┴──────────┘
+```
+
+
+- Notice how get B's row 1 now
+- Similar for left side
+
+```sql
+SELECT * FROM A LEFT JOIN B ON acol1 < bcol1;
+```
+
+- Do a FULL OUTER JOIN to get both missing sides (rare)
+
+
+#### Realtional join
+
+- In the case of a join on a foreign key, the effect is to add columns to
+  the "many" table
+  
+```sql
+SELECT * FROM House;
+SELECT * FROM Student;
+```
+
+```
+D .schema
+```
+
+SELECT * FROM Student S JOIN House H ON S.House_ID = H.House_ID;
+
+- more compact:
+
+SELECT * FROM Student JOIN House USING (House_ID);
+
+- switch to ASDN database
+
+.mode line
+SELECT COUNT(*) FROM Bird_eggs;
+SELECT * FROM Bird_eggs LIMIT 1;
+SELECT * FROM Bird_eggs
+  JOIN Bird_nests USING (Nest_ID)
+  LIMIT 1;
+
+SELECT * FROM Bird_eggs
+  JOIN Bird_nests USING (Nest_ID)
+  JOIN Species ON Species = Code
+  LIMIT 1;
+
+SELECT COUNT(*) FROM Bird_eggs
+  JOIN Bird_nests USING (Nest_ID)
+  JOIN Species ON Species = Code;
+
+- Conceptually clearer perhaps to list the "many" table first in a join?? Maybe
+
+- Ordering is assuredly lost in a join.  An entirely new table is formed.-
+- This is pointless:
+
+SELECT * FROM
+  (SELECT * FROM Bird_eggs ORDER BY Width)
+  JOIN Bird_nests
+  USING (Nest_ID);
+
+GOTCHA WITH GROUPING
+- DuckDB not smart enough to recognize primary keys in joins
+
+SELECT Nest_ID, COUNT(*)
+  FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
+  GROUP BY Nest_ID;
+
+- Can we add another column from Bird_nests?  Other RDBMs's say yes
+- DuckDB: no
+- So follow DuckDB's suggestions
+
+SELECT Nest_ID, ANY_VALUE(Species), COUNT(*)
+  FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
+  GROUP BY Nest_ID;
+SELECT Nest_ID, Species, COUNT(*)
+  FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
+  GROUP BY Nest_ID, Species;
+
+VIEWS
+- make normalized tables more palatable
+- virtual, not materialized like CREATE TABLE AS
+- virtual implies always reflects current data in source tables
+
+SELECT Year, Site, Name FROM Camp_assignment JOIN Personnel ON Observer = Abbreviation;
+
+CREATE VIEW v AS ....
+.schema
+
+- stored in dB
+- inserts, updates, deletes possible?  maybe, depends on DB intelligence
+- can't insert/update on view the uses aggregate function
+
+- can also CREATE [TEMP] TABLE
+- VIEW is live
+- [TEMP] TABLE is materialized, static
+
+SET OPERATIONS
+- UNION, INTERSECT, EXCEPT
+- last one is set difference
+- BTW: 3rd way to get species that do *not* have nest data: use EXCEPT
+
+SELECT Code FROM Species WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);
+SELECT BN.Species, S.Code FROM Bird_nests BN RIGHT JOIN Species S ON BN.Species = S.Code WHERE BN.Species IS NULL;
+
+SELECT Code FROM Species
+  EXCEPT
+  SELECT DISTINCT Species FROM Bird_nests;
+
+- example: book b14 measured in inches, not millimeters, adjust on fly
+- SELECT Book_page, Nest_ID, Egg_num, Length*25.4, Width*25.4
+      FROM Bird_eggs
+      WHERE Book_page LIKE 'b14%'
+  UNION
+  SELECT Book_page, Nest_ID, Egg_num, Length, Width
+      FROM Bird_eggs
+      WHERE Book_page NOT LIKE 'b14%';
+
+- ^^ what if Book_page is NULL?
+- caution: not really looking at names of columns, just #columns and data types
+- so is possible to union nonsensical things together
+- UNION throws out duplicates, UNION ALL keeps all
+
+
+
+
+
+
+
+## Resources
 
 Lecture notes:
 
