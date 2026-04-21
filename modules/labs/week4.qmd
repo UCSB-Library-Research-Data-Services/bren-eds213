@@ -1,0 +1,92 @@
+---
+title: "Lab 4"
+subtitle: "EDS 213 | Asking a Question & Writing SQL Queries"
+---
+
+## Overview
+
+Your data is clean and loaded into a database. This week, you'll ask an analytical question and write the SQL queries to answer it. A good question can't be answered by looking at a single row — it should require combining information across tables and produce a result that reveals something meaningful about your data.
+
+[View Slides](slides/week4.qmd){.btn .btn-outline-primary role="button"}
+
+---
+
+## What Makes a Good Analytical Question?
+
+The goal this week is to move beyond lookups and toward summaries. Compare these two questions:
+
+**Too narrow:**
+
+> "What was the water temperature at Site A on March 5th?"
+
+This just retrieves a single value. It doesn't use your second table and doesn't tell you anything about patterns.
+
+**Better:**
+
+> "Which habitat types have the highest average water temperature across all sampling dates?"
+
+This requires a JOIN, aggregation, and produces a result you can reason about.
+
+---
+
+## Your Query Must Use Both Tables
+
+The whole point of a relational database is being able to combine related information. Your SQL query this week should **JOIN at least two of your tables** using the shared key between them.
+
+A basic JOIN looks like:
+
+```sql
+SELECT
+  t1.column_a,
+  t2.column_b
+FROM table1 t1
+JOIN table2 t2 ON t1.shared_key = t2.shared_key;
+```
+
+Once your tables are joined, you can filter, aggregate, and sort to answer your question.
+
+---
+
+## Going Deeper
+
+A query that just pulls rows isn't much more useful than looking at the raw data. Use aggregation to **summarize across records** and surface patterns:
+
+```sql
+SELECT
+  s.site_name,
+  s.habitat_type,
+  SUM(o.count) AS total_observations
+FROM observations o
+JOIN sites s ON o.site_id = s.site_id
+GROUP BY s.site_name, s.habitat_type
+ORDER BY total_observations DESC;
+```
+
+This answers: *"Which habitat types have the most observations?"* — a question that needs both tables and produces something worth interpreting.
+
+---
+
+## Building Your Query Step by Step
+
+1. **Write your question in plain English**
+2. **Identify which tables** hold the data you need
+3. **Find the join key** — what column links those tables together?
+4. **Write the JOIN** to combine them
+5. **Add filters** (`WHERE`) if you want to narrow the scope
+6. **Aggregate** with `GROUP BY`, `COUNT`, `SUM`, `AVG`, etc.
+7. **Sort the results** with `ORDER BY` to surface the most meaningful rows
+
+---
+
+## This Week's Task
+
+Come up with an analytical question for your database and write the SQL to answer it.
+
+::: callout-note
+## Query Checklist
+- [ ] Write your question out in plain English
+- [ ] Your query uses a `JOIN` across at least two tables
+- [ ] Your query includes aggregation (`GROUP BY`, `COUNT`, `SUM`, `AVG`, etc.)
+- [ ] The result says something meaningful — a trend, ranking, or summary
+:::
+

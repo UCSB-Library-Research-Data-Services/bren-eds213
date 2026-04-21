@@ -133,38 +133,56 @@ SELECT Nest_ID, Species, COUNT(*)
   FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
   GROUP BY Nest_ID, Species;
 
+######### THIS IS WHERE WE GOT ON MONDAY
+
 VIEWS
-- make normalized tables more palatable
+- a view looks like a table
 - virtual, not materialized like CREATE TABLE AS
-- virtual implies always reflects current data in source tables
+- virtual implies always reflects current data in source tables, i.e.,
+  view is (re-)executed each time it is referenced
+- can make normalized tables more palatable; reduce the number of joins
+  one has to do manually
 
 SELECT Year, Site, Name FROM Camp_assignment JOIN Personnel ON Observer = Abbreviation;
 
 CREATE VIEW v AS ....
+
+- Stored in the database!
+
 .schema
 
-- stored in dB
-- inserts, updates, deletes possible?  maybe, depends on DB intelligence
-- can't insert/update on view the uses aggregate function
+- inserts, updates, deletes on a view possible?  maybe,
+  depends on DB intelligence
+- can't insert/update on a view that uses aggregate functions (obviously)
 
-- can also CREATE [TEMP] TABLE
-- VIEW is live
-- [TEMP] TABLE is materialized, static
+- can also CREATE TEMP TABLE AS ...
+- TEMP TABLE is materialized, static
+- handy for caching things in long computation; like a variable of sorts
+
+- DROP TABLE, DROP VIEW
 
 SET OPERATIONS
+
 - UNION, INTERSECT, EXCEPT
 - last one is set difference
+
 - BTW: 3rd way to get species that do *not* have nest data: use EXCEPT
 
+- First way
 SELECT Code FROM Species WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);
+
+- Second way
 SELECT BN.Species, S.Code FROM Bird_nests BN RIGHT JOIN Species S ON BN.Species = S.Code WHERE BN.Species IS NULL;
 
+- Third day
 SELECT Code FROM Species
   EXCEPT
   SELECT DISTINCT Species FROM Bird_nests;
 
-- example: book b14 measured in inches, not millimeters, adjust on fly
-- SELECT Book_page, Nest_ID, Egg_num, Length*25.4, Width*25.4
+- example of UNION: suppose book b14 measured in inches,
+  not millimeters, let's adjust on fly
+
+  SELECT Book_page, Nest_ID, Egg_num, Length*25.4, Width*25.4
       FROM Bird_eggs
       WHERE Book_page LIKE 'b14%'
   UNION
@@ -176,3 +194,17 @@ SELECT Code FROM Species
 - caution: not really looking at names of columns, just #columns and data types
 - so is possible to union nonsensical things together
 - UNION throws out duplicates, UNION ALL keeps all
+
+Perhaps better example of UNION: let's create a table of all
+bird nests and egg counts, including nests that have no egg data recorded.
+
+SELECT Nest_ID, COUNT(*) AS Num_eggs
+  FROM Bird_eggs
+  GROUP BY Nest_ID
+
+UNION
+
+SELECT Nest_ID, 0 AS Num_eggs
+  FROM Bird_nests
+  WHERE Nest_ID NOT IN (SELECT DISTINCT Nest_ID FROM Bird_eggs);
+  
