@@ -1,0 +1,173 @@
+---
+format:
+  revealjs:
+    incremental: true
+    slide-number: true
+    progress: true
+    code-line-numbers: true
+    code-copy: true
+    theme:
+      - EDS213_slides.scss
+    embed-resources: true
+---
+
+##  {#title-slide data-menu-title="Title Slide" background="#cad2c5"}
+
+[EDS 213: Lab 4]{.custom-title}
+
+<hr class="hr-off-white">
+
+[Asking a Question & Writing SQL Queries]{.custom-subtitle}
+
+##  {#overview data-menu-title="Overview"}
+
+[This Week's Goal]{.slide-title}
+
+You've cleaned your data and loaded it into a database. Now it's time to **ask a question** and write the SQL to answer it.
+
+- A good analytical question can't be answered by looking at a single row
+- It should require **combining information across tables**
+- The answer should reveal something meaningful — a pattern, a trend, a summary
+
+##  {#good-question data-menu-title="What Makes a Good Question?"}
+
+[What Makes a Sufficient Analytical Question?]{.slide-title-med}
+
+::: {style="font-size: 0.75em;"}
+
+
+
+
+**Only uses one table** — summarizing across records:
+
+> "What is the average water temperature at each site across all sampling dates?"
+
+**Uses multiple tables** — combining tables to add context:
+
+> "Which sites have above-average water temperatures, and what land cover type surrounds them?"
+:::
+
+
+
+##  {#example-tables data-menu-title="Example Tables"}
+
+[Example: Two Related Tables]{.slide-title-med}
+
+
+
+::: {style="font-size: 0.65em;"}
+**`observations`** — bird observations
+
+| obs_id | site_id | date       | species          | count |
+|--------|---------|------------|------------------|-------|
+| 1      | 101     | 2023-04-01 | Peregrine Falcon | 3     |
+| 2      | 102     | 2023-04-01 | Red-tailed Hawk  | 7     |
+| 3      | 101     | 2023-04-15 | Peregrine Falcon | 1     |
+| 4      | 103     | 2023-04-15 | Osprey           | 4     |
+
+**`sites`** — site-level metadata
+
+| site_id | site_name       | habitat_type  | elevation_m |
+|---------|-----------------|---------------|-------------|
+| 101     | Devereux Slough | Wetland       | 5           |
+| 102     | Ellwood Mesa    | Coastal Scrub | 45          |
+| 103     | More Mesa       | Grassland     | 60          |
+:::
+
+##  {#surface-query data-menu-title="Starting Too Simple"}
+
+[Starting Too Simple]{.slide-title}
+
+This query only touches one table and pulls out a single value:
+
+```sql
+SELECT count
+FROM observations
+WHERE obs_id = 1;
+```
+
+::: {.fragment}
+It answers: *"How many falcons were seen on one particular visit?"*
+
+That's not a question — it's a lookup. It doesn't use your second table at all, and it doesn't tell you anything about patterns in the data.
+:::
+
+##  {#join-query data-menu-title="Bringing Tables Together"}
+
+[Bringing Tables Together with JOIN]{.slide-title}
+
+To answer a richer question, you need to **combine your tables**:
+
+```sql
+SELECT
+  s.site_name,
+  s.habitat_type,
+  o.species,
+  o.count,
+  o.date
+FROM observations o
+JOIN sites s ON o.site_id = s.site_id;
+```
+
+::: {.fragment}
+Now each observation has site context attached.
+:::
+
+##  {#aggregate-query data-menu-title="Adding Aggregation"}
+
+[Answering a question with both tables]{.slide-title-med}
+
+Add `GROUP BY` to summarize across records:
+
+```sql
+SELECT
+  s.site_name,
+  s.habitat_type,
+  SUM(o.count) AS total_observations
+FROM observations o
+JOIN sites s ON o.site_id = s.site_id
+GROUP BY s.site_name, s.habitat_type
+ORDER BY total_observations DESC;
+```
+
+::: {.fragment}
+This answers: *"Which habitat types have the highest total bird observations?"*
+
+This is a question in which you need **both tables** to answer it.
+:::
+
+##  {#build-your-query data-menu-title="Building Your Query"}
+
+[Building Your Query]{.slide-title}
+
+::: {style="font-size: 0.85em;"}
+1. **Start with your question** — write it out in plain English
+2. **Identify the tables** — which tables contain the data you need?
+3. **Find the join key** — what column links them together?
+4. **Write the JOIN** — combine the tables
+5. **Add your filters** — `WHERE` clause if needed
+6. **Aggregate if needed** — `GROUP BY`, `COUNT`, `SUM`, `AVG`
+7. **Order the results** — `ORDER BY` to surface the most meaningful rows
+:::
+
+##  {#this-weeks-task data-menu-title="This Week's Task"}
+
+[This Week's Task]{.slide-title}
+
+::: {style="font-size: 0.85em;"}
+Come up with an **analytical question** for your own database and write the SQL to answer it.
+
+Your query must:
+
+- Use a **JOIN** across at least two of your tables
+- Include some form of **aggregation** (`GROUP BY`, `COUNT`, `SUM`, `AVG`, etc.)
+- Produce a result that **says something meaningful** about your data
+
+::: {.fragment}
+Write your question out in plain English first, then translate it to SQL. Write your question as a comment within your .sql script.
+:::
+
+::: {.fragment}
+Save your work in a **`.sql` script in your project repo** — this file will be part of your final submission.
+:::
+:::
