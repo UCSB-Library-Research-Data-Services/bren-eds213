@@ -90,6 +90,14 @@ hr {
 }
 
 
+// slide title (large)
+.slide-title-med {
+  font-family: $montserrat;
+  color: $light-green;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
 .no-fragment * {
   visibility: visible !important;
   opacity: 1 !important;
