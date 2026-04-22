@@ -237,13 +237,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/359037" class="uri">https://ucsb.instructure.com/courses/26293/assignments/359037</a></strong></p>
-<p>Which sites have <strong>no</strong> egg data? Please answer this question using all three techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:</p>
+<p>Which sites have <strong>no</strong> egg data? Please answer this question using the two techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:</p>
 <ul>
 <li><p>Using a <code>Code NOT IN (subquery)</code> clause.</p></li>
 <li><p>Using an outer join with a <code>WHERE</code> clause that selects the desired rows. Caution: make sure your <code>IS NULL</code> test is performed against a column that is not ordinarily allowed to be NULL. You may want to consult the <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data/blob/main/database/schema-build-script.sql">database schema</a> to remind yourself of column declarations.</p></li>
-<li><p>Using the set operation <code>EXCEPT</code>.</p></li>
 </ul>
-<p>Add an <code>ORDER BY</code> clause to your queries so that all three produce the exact same result:</p>
+<p>Add an <code>ORDER BY</code> clause to your queries so that the two queries produce the exact same result:</p>
 <pre><code>┌─────────┐
 │  Code   │
 │ varchar │
