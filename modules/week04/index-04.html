@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -217,7 +252,22 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#slides-and-other-materials" id="toc-slides-and-other-materials" class="nav-link" data-scroll-target="#slides-and-other-materials">Slides and other materials</a></li>
+  <li><a href="#monday-session" id="toc-monday-session" class="nav-link" data-scroll-target="#monday-session">Monday Session</a>
+  <ul class="collapse">
+  <li><a href="#tri-value-logic" id="toc-tri-value-logic" class="nav-link" data-scroll-target="#tri-value-logic">Tri-value logic</a></li>
+  <li><a href="#nesting-queries-for-more-complex-analysis" id="toc-nesting-queries-for-more-complex-analysis" class="nav-link" data-scroll-target="#nesting-queries-for-more-complex-analysis">Nesting queries for more complex analysis</a></li>
+  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins">Joins</a></li>
+  </ul></li>
+  <li><a href="#wednesday-session" id="toc-wednesday-session" class="nav-link" data-scroll-target="#wednesday-session">Wednesday session</a>
+  <ul class="collapse">
+  <li><a href="#add-a-new-table" id="toc-add-a-new-table" class="nav-link" data-scroll-target="#add-a-new-table">Add a new table</a></li>
+  <li><a href="#temporary-table" id="toc-temporary-table" class="nav-link" data-scroll-target="#temporary-table">Temporary table</a></li>
+  <li><a href="#views" id="toc-views" class="nav-link" data-scroll-target="#views">Views</a></li>
+  <li><a href="#dropping-things" id="toc-dropping-things" class="nav-link" data-scroll-target="#dropping-things">Dropping things</a></li>
+  <li><a href="#set-operations" id="toc-set-operations" class="nav-link" data-scroll-target="#set-operations">SET OPERATIONS</a></li>
+  <li><a href="#rd-way-to-get-species-that-do-not-have-nest-data-use-except" id="toc-rd-way-to-get-species-that-do-not-have-nest-data-use-except" class="nav-link" data-scroll-target="#rd-way-to-get-species-that-do-not-have-nest-data-use-except">3rd way to get species that do <em>not</em> have nest data: use EXCEPT</a></li>
+  </ul></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -245,12 +295,467 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>Continued exploration of SQL concepts, including:</p>
 <ul>
-<li>Continued exploration of SQL concepts including joins, views, and set operations; and apply it to conduct data analysis.</li>
+<li>nesting SQL queries</li>
+<li>different type of joins</li>
 </ul>
 </section>
-<section id="slides-and-other-materials" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-other-materials">Slides and other materials</h2>
+<section id="monday-session" class="level2">
+<h2 class="anchored" data-anchor-id="monday-session">Monday Session</h2>
+<p>Let’s open our ASDN database:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">duckdb</span> database.duckdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s check we are in the right database</p>
+<pre><code>D .table</code></pre>
+<pre class="output"><code>┌────────────────────┐┌───────────────────┐┌───────────────────┐┌──────────────────┐┌─────────────────────────┐
+│     Bird_nests     ││     Bird_eggs     ││       Site        ││ Camp_assignment  ││         Species         │
+│                    ││                   ││                   ││                  ││                         │
+│ Book_page  varchar ││ Book_page varchar ││ Code      varchar ││ Year     integer ││ Code            varchar │
+│ Year       integer ││ Year      integer ││ Site_name varchar ││ Site     varchar ││ Common_name     varchar │
+│ Site       varchar ││ Site      varchar ││ Location  varchar ││ Observer varchar ││ Scientific_name varchar │
+│ Nest_ID    varchar ││ Nest_ID   varchar ││ Latitude  float   ││ Start    date    ││ Relevance       varchar │
+│ Species    varchar ││ Egg_num   integer ││ Longitude float   ││ End      date    ││                         │
+│ Observer   varchar ││ Length    float   ││ Area      float   ││                  ││         99 rows         │
+│ Date_found date    ││ Width     float   ││                   ││     441 rows     │└─────────────────────────┘
+│ how_found  varchar ││                   ││      16 rows      │└──────────────────┘
+│ Clutch_max integer ││     406 rows      │└───────────────────┘                    
+│ floatAge   float   │└───────────────────┘                                         
+│ ageMethod  varchar │                                                              
+│                    │                                                              
+│     1547 rows      │                                                              
+└────────────────────┘                                                              
+┌──────────────────────┐
+│      Personnel       │
+│                      │
+│ Abbreviation varchar │
+│ Name         varchar │
+│                      │
+│       269 rows       │
+└──────────────────────┘</code></pre>
+<section id="tri-value-logic" class="level3">
+<h3 class="anchored" data-anchor-id="tri-value-logic">Tri-value logic</h3>
+<ul>
+<li>Expressions can return TRUE, FALSE, or NULL</li>
+<li>NULL is infectious</li>
+<li>In filtering, only TRUE counts</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> Bird_nests</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> floatAge <span class="op">&lt;</span> <span class="dv">7</span> <span class="kw">OR</span> floatAge <span class="op">&gt;=</span> <span class="dv">7</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Only returns a fraction of the rows due to floatAge being NULL</p>
+<p>In SQL, if you want to ask (or not ask) for NULLs: <code>IS NULL</code>, or <code>IS NOT NULL</code></p>
+</section>
+<section id="nesting-queries-for-more-complex-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="nesting-queries-for-more-complex-analysis">Nesting queries for more complex analysis</h3>
+<ul>
+<li>Everything returned by an SQL query is a table</li>
+<li>Even SELECT COUNT(*) returns a table</li>
+<li>Wherever a table is requested, you can insert a parenthesized query; similarly to the tidyverse piping</li>
+</ul>
+<section id="what-species-are-not-represented-in-the-bird_nests-table" class="level4">
+<h4 class="anchored" data-anchor-id="what-species-are-not-represented-in-the-bird_nests-table">What species are <em>not</em> represented in the Bird_nests table?</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Species <span class="kw">WHERE</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  Code <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> Species <span class="kw">FROM</span> Bird_nests);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="which-site-are-located-in-canada-and-have-an-area-larger-than-200" class="level4">
+<h4 class="anchored" data-anchor-id="which-site-are-located-in-canada-and-have-an-area-larger-than-200">Which site are located in Canada and have an area larger than 200?</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Location, <span class="fu">MAX</span>(Area) <span class="kw">AS</span> Max_area</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Site</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> Location <span class="kw">LIKE</span> <span class="st">'%Canada'</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> Location</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">HAVING</span> Max_area <span class="op">&gt;</span> <span class="dv">200</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Note: <code>HAVING</code> is used to filter data on condition in combination of <code>GROUP BY</code>, whereas <code>WHERE</code> is used to filter rows.</strong></p>
+<p>Now let’s imagine there was no <code>HAVING</code> clause. How would you answer the above question?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Location, Max_area <span class="kw">FROM</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">SELECT</span> Location, <span class="fu">MAX</span>(Area) <span class="kw">AS</span> Max_area</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">FROM</span> Site</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">WHERE</span> Location <span class="kw">LIKE</span> <span class="st">'%Canada'</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">GROUP</span> <span class="kw">BY</span> Location)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> Max_area <span class="op">&gt;</span> <span class="dv">200</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="joins" class="level3">
+<h3 class="anchored" data-anchor-id="joins">Joins</h3>
+<p><strong>For this part, we are using the <code>toy.duckdb</code></strong>. Make sure you sync your fork and pull the latest version of our data repository.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">duckdb</span> toy.duckdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>D .table</code></pre>
+<pre class="output"><code> ─────────────────────────────────── toy ──────────────────────────────────── 
+ ─────────────────────────────────── main ─────────────────────────────────── 
+┌────────────────────┐┌────────────────────┐┌───────────────┐┌───────────────┐
+│      Student       ││       House        ││       B       ││       A       │
+│                    ││                    ││               ││               │
+│ Student_ID integer ││ House_ID   integer ││ bcol1 integer ││ acol1 integer │
+│ Name       varchar ││ Name       varchar ││ bcol2 varchar ││ acol2 varchar │
+│ Birthdate  date    ││ Headmaster varchar ││ bcol3 varchar ││               │
+│ House_ID   integer ││                    ││               ││    3 rows     │
+│                    ││       3 rows       ││    3 rows     │└───────────────┘
+│       4 rows       │└────────────────────┘└───────────────┘
+└────────────────────┘                                       </code></pre>
+<section id="cartesian-product" class="level4">
+<h4 class="anchored" data-anchor-id="cartesian-product">Cartesian product</h4>
+<ul>
+<li>Conceptually, the database performs a Cartesian product of the tables and then applies the join condition to filter</li>
+<li>In some databases, can do a Cartesian product saying JOIN with no join condition</li>
+<li>But in DuckDB, need to use <code>CROSS JOIN</code></li>
+</ul>
+<p>Let’s have a look at out tables</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> A;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌───────┬───────────┐
+│ acol1 │   acol2   │
+│ int32 │  varchar  │
+├───────┼───────────┤
+│     1 │ apple     │
+│     2 │ banana    │
+│     3 │ cranberry │
+└───────┴───────────┘</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> B;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌───────┬─────────┬──────────┐
+│ bcol1 │  bcol2  │  bcol3   │
+│ int32 │ varchar │ varchar  │
+├───────┼─────────┼──────────┤
+│     1 │ pie     │ streusel │
+│     2 │ cake    │ frosting │
+│     3 │ cookie  │ NULL     │
+└───────┴─────────┴──────────┘</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> A <span class="kw">CROSS</span> <span class="kw">JOIN</span> B;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌───────┬───────────┬───────┬─────────┬──────────┐
+│ acol1 │   acol2   │ bcol1 │  bcol2  │  bcol3   │
+│ int32 │  varchar  │ int32 │ varchar │ varchar  │
+├───────┼───────────┼───────┼─────────┼──────────┤
+│     1 │ apple     │     1 │ pie     │ streusel │
+│     1 │ apple     │     2 │ cake    │ frosting │
+│     1 │ apple     │     3 │ cookie  │ NULL     │
+│     2 │ banana    │     1 │ pie     │ streusel │
+│     2 │ banana    │     2 │ cake    │ frosting │
+│     2 │ banana    │     3 │ cookie  │ NULL     │
+│     3 │ cranberry │     1 │ pie     │ streusel │
+│     3 │ cranberry │     2 │ cake    │ frosting │
+│     3 │ cranberry │     3 │ cookie  │ NULL     │
+└───────┴───────────┴───────┴─────────┴──────────┘</code></pre>
+<p>As a result of a cross-join between to table you have a table that has the following characteristics:</p>
+<ul>
+<li>Number of rows: <strong>product of number of rows</strong> from tables A &amp; B</li>
+<li>Number of columns: <strong>sum of number of columns</strong> from tables A &amp; B</li>
+</ul>
+</section>
+<section id="cross-joins-with-a-condition" class="level4">
+<h4 class="anchored" data-anchor-id="cross-joins-with-a-condition">Cross-joins with a condition</h4>
+<p>When there is a condition added, <code>JOIN</code> defaults to <strong>inner join</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> A <span class="kw">JOIN</span> B <span class="kw">ON</span> acol1 <span class="op">&lt;</span> bcol1;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌───────┬─────────┬───────┬─────────┬──────────┐
+│ acol1 │  acol2  │ bcol1 │  bcol2  │  bcol3   │
+│ int32 │ varchar │ int32 │ varchar │ varchar  │
+├───────┼─────────┼───────┼─────────┼──────────┤
+│     1 │ apple   │     2 │ cake    │ frosting │
+│     1 │ apple   │     3 │ cookie  │ NULL     │
+│     2 │ banana  │     3 │ cookie  │ NULL     │
+└───────┴─────────┴───────┴─────────┴──────────┘</code></pre>
+<ul>
+<li>Left or right outer join: selects rows not included, supplies NULL for values in other table</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> A <span class="kw">RIGHT</span> <span class="kw">JOIN</span> B <span class="kw">ON</span> acol1 <span class="op">&lt;</span> bcol1;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>───────┬─────────┬───────┬─────────┬──────────┐
+│ acol1 │  acol2  │ bcol1 │  bcol2  │  bcol3   │
+│ int32 │ varchar │ int32 │ varchar │ varchar  │
+├───────┼─────────┼───────┼─────────┼──────────┤
+│     1 │ apple   │     2 │ cake    │ frosting │
+│     1 │ apple   │     3 │ cookie  │ NULL     │
+│     2 │ banana  │     3 │ cookie  │ NULL     │
+│  NULL │ NULL    │     1 │ pie     │ streusel │
+└───────┴─────────┴───────┴─────────┴──────────┘</code></pre>
+<ul>
+<li>Notice how get B’s row 1 now (because B is the “right table”)</li>
+<li>Similar for left side</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> A <span class="kw">LEFT</span> <span class="kw">JOIN</span> B <span class="kw">ON</span> acol1 <span class="op">&lt;</span> bcol1;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌───────┬───────────┬───────┬─────────┬──────────┐
+│ acol1 │   acol2   │ bcol1 │  bcol2  │  bcol3   │
+│ int32 │  varchar  │ int32 │ varchar │ varchar  │
+├───────┼───────────┼───────┼─────────┼──────────┤
+│     1 │ apple     │     2 │ cake    │ frosting │
+│     1 │ apple     │     3 │ cookie  │ NULL     │
+│     2 │ banana    │     3 │ cookie  │ NULL     │
+│     3 │ cranberry │  NULL │ NULL    │ NULL     │
+└───────┴───────────┴───────┴─────────┴──────────┘</code></pre>
+<ul>
+<li><p>Now we we have the missing row from the A (left) table</p></li>
+<li><p>Do a FULL OUTER JOIN to get both missing sides (rare)</p></li>
+</ul>
+</section>
+<section id="relational-join" class="level4">
+<h4 class="anchored" data-anchor-id="relational-join">Relational join</h4>
+<ul>
+<li>In the case of a join on a foreign key, the effect is to add columns to the “many” table</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> House;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌──────────┬────────────┬────────────────────┐
+│ House_ID │    Name    │     Headmaster     │
+│  int32   │  varchar   │      varchar       │
+├──────────┼────────────┼────────────────────┤
+│        1 │ Gryffindor │ Minerva McGonagall │
+│        2 │ Hufflepuff │ Pomona Sprout      │
+│        3 │ Slytherin  │ Severus Snape      │
+└──────────┴────────────┴────────────────────┘</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Student;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌────────────┬──────────────────┬────────────┬──────────┐
+│ Student_ID │       Name       │ Birthdate  │ House_ID │
+│   int32    │     varchar      │    date    │  int32   │
+├────────────┼──────────────────┼────────────┼──────────┤
+│          1 │ Harry Potter     │ 1980-07-31 │        1 │
+│          2 │ Hermione Granger │ 1979-09-19 │        1 │
+│          3 │ Draco Malfoy     │ 1980-06-05 │        3 │
+│          4 │ Ginny Weasley    │ 1981-08-11 │        1 │
+└────────────┴──────────────────┴────────────┴──────────┘</code></pre>
+<pre><code>D .schema</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Student <span class="kw">AS</span> S <span class="kw">JOIN</span> House <span class="kw">AS</span> H <span class="kw">ON</span> S.House_ID <span class="op">=</span> H.House_ID;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌────────────┬──────────────────┬────────────┬──────────┬──────────┬────────────┬────────────────────┐
+│ Student_ID │       Name       │ Birthdate  │ House_ID │ House_ID │    Name    │     Headmaster     │
+│   int32    │     varchar      │    date    │  int32   │  int32   │  varchar   │      varchar       │
+├────────────┼──────────────────┼────────────┼──────────┼──────────┼────────────┼────────────────────┤
+│          1 │ Harry Potter     │ 1980-07-31 │        1 │        1 │ Gryffindor │ Minerva McGonagall │
+│          2 │ Hermione Granger │ 1979-09-19 │        1 │        1 │ Gryffindor │ Minerva McGonagall │
+│          3 │ Draco Malfoy     │ 1980-06-05 │        3 │        3 │ Slytherin  │ Severus Snape      │
+│          4 │ Ginny Weasley    │ 1981-08-11 │        1 │        1 │ Gryffindor │ Minerva McGonagall │
+└────────────┴──────────────────┴────────────┴──────────┴──────────┴────────────┴────────────────────┘</code></pre>
+<ul>
+<li>more compact syntax, since the columns used to join have the same name in each table:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Student <span class="kw">JOIN</span> House <span class="kw">USING</span> (House_ID);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌────────────┬──────────────────┬────────────┬──────────┬────────────┬────────────────────┐
+│ Student_ID │       Name       │ Birthdate  │ House_ID │    Name    │     Headmaster     │
+│   int32    │     varchar      │    date    │  int32   │  varchar   │      varchar       │
+├────────────┼──────────────────┼────────────┼──────────┼────────────┼────────────────────┤
+│          1 │ Harry Potter     │ 1980-07-31 │        1 │ Gryffindor │ Minerva McGonagall │
+│          2 │ Hermione Granger │ 1979-09-19 │        1 │ Gryffindor │ Minerva McGonagall │
+│          3 │ Draco Malfoy     │ 1980-06-05 │        3 │ Slytherin  │ Severus Snape      │
+│          4 │ Ginny Weasley    │ 1981-08-11 │        1 │ Gryffindor │ Minerva McGonagall │
+└────────────┴──────────────────┴────────────┴──────────┴────────────┴────────────────────┘</code></pre>
+<p>Note that the <code>USING</code> clause also keep only <strong>one</strong> of key columns!</p>
+</section>
+<section id="lets-switch-back-to-our-asdn-database" class="level4">
+<h4 class="anchored" data-anchor-id="lets-switch-back-to-our-asdn-database">Let’s switch back to our ASDN database</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">duckdb</span> database.duckdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>D .mode line</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>DuckDB Modes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>DuckDB’s different output formats: <a href="https://duckdb.org/docs/current/clients/cli/output_formats" class="uri">https://duckdb.org/docs/current/clients/cli/output_formats</a></p>
+</div>
+</div>
+<p>Let’s have a look at the <code>Bird_eggs</code> and <code>Bird_nests</code> tables:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> Bird_eggs;</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Bird_eggs <span class="kw">LIMIT</span> <span class="dv">1</span>;</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Bird_nests <span class="kw">LIMIT</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can use Nest_ID to join those two tables</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Bird_eggs</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">JOIN</span> Bird_nests <span class="kw">USING</span> (Nest_ID)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">LIMIT</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s also join the Species table to bring more readable names:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Bird_eggs</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">JOIN</span> Bird_nests <span class="kw">USING</span> (Nest_ID)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">JOIN</span> Species <span class="kw">ON</span> Species <span class="op">=</span> Code</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">LIMIT</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="when-to-order-rows-when-joining-tables" class="level4">
+<h4 class="anchored" data-anchor-id="when-to-order-rows-when-joining-tables">When to order rows when joining tables?</h4>
+<p><strong>Ordering is assuredly lost in a join.</strong> An entirely new table is formed.</p>
+<p>This is pointless:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Bird_eggs <span class="kw">ORDER</span> <span class="kw">BY</span> Width)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">JOIN</span> Bird_nests</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">USING</span> (Nest_ID);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="gotcha-with-grouping" class="level4">
+<h4 class="anchored" data-anchor-id="gotcha-with-grouping">GOTCHA WITH GROUPING</h4>
+<p>DuckDB not smart enough to recognize primary keys uniqueness rule in joins</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, <span class="fu">COUNT</span>(<span class="op">*</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Bird_nests <span class="kw">JOIN</span> Bird_eggs <span class="kw">USING</span> (Nest_ID)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  GR`OUP <span class="kw">BY</span> Nest_ID;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Can we add another column from Bird_nests? Other RDBMs’s say yes</li>
+<li>DuckDB: no</li>
+<li>So follow DuckDB’s suggestions</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, ANY_VALUE(Species), <span class="fu">COUNT</span>(<span class="op">*</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Bird_nests <span class="kw">JOIN</span> Bird_eggs <span class="kw">USING</span> (Nest_ID)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> Nest_ID;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, Species, <span class="fu">COUNT</span>(<span class="op">*</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> Bird_nests <span class="kw">JOIN</span> Bird_eggs <span class="kw">USING</span> (Nest_ID)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">GROUP</span> <span class="kw">BY</span> Nest_ID, Species;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="wednesday-session" class="level2">
+<h2 class="anchored" data-anchor-id="wednesday-session">Wednesday session</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>##POSIT WORKBENCH</p>
+<ul>
+<li>Beware of the lock with active sessions!!</li>
+<li>Always quit DuckDB before leaving workbench</li>
+</ul>
+<p>If you can not find the session, you can kill the process running it on the server. In the DuckDB error message, the PID of that process owning the lock will be provided. You can use it to kill this process and remove the lock:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> PID</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<section id="add-a-new-table" class="level3">
+<h3 class="anchored" data-anchor-id="add-a-new-table">Add a new table</h3>
+<p>As we mentioned, you can use SQL to add a new table to your database. Now that we have cleaned our snow data we might want to add this table to our database.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Snow_cover (</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    Site <span class="dt">VARCHAR</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Year</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">CHECK</span> (<span class="dt">Year</span> <span class="kw">BETWEEN</span> <span class="dv">1990</span> <span class="kw">AND</span> <span class="dv">2018</span>),</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Date</span> <span class="dt">DATE</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    Plot <span class="dt">VARCHAR</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    Location <span class="dt">VARCHAR</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    Snow_cover <span class="dt">REAL</span> <span class="kw">CHECK</span> (Snow_cover <span class="kw">BETWEEN</span> <span class="dv">0</span> <span class="kw">AND</span> <span class="dv">130</span>),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    Water_cover <span class="dt">REAL</span> <span class="kw">CHECK</span> (Water_cover <span class="kw">BETWEEN</span> <span class="dv">0</span> <span class="kw">AND</span> <span class="dv">130</span>),</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    Land_cover <span class="dt">REAL</span> <span class="kw">CHECK</span> (Land_cover <span class="kw">BETWEEN</span> <span class="dv">0</span> <span class="kw">AND</span> <span class="dv">130</span>),</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    Total_cover <span class="dt">REAL</span> <span class="kw">CHECK</span> (Total_cover <span class="kw">BETWEEN</span> <span class="dv">0</span> <span class="kw">AND</span> <span class="dv">130</span>),</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    Observer <span class="dt">VARCHAR</span>,</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    Notes <span class="dt">VARCHAR</span>,</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (Site, Plot, Location, <span class="dt">Date</span>),</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (Site) <span class="kw">REFERENCES</span> Site (Code)</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s check if the table was added to our database:</p>
+<pre><code>D .table</code></pre>
+<p>Our table should have no data in it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Snow_cover <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we can import the data from our csv file into our database:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> Snow_cover <span class="kw">FROM</span> <span class="ot">"../ASDN_csv/snow_survey_fixed.csv"</span> (<span class="kw">header</span> <span class="kw">TRUE</span>, nullstr <span class="ot">"NA"</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s check:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Snow_cover <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>🎉 import successful!!</p>
+</section>
+<section id="temporary-table" class="level3">
+<h3 class="anchored" data-anchor-id="temporary-table">Temporary table</h3>
+<p>Since every query output is a table, we can save any query as new table!</p>
+<p>We can for example create a backup of an entire table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> TEMP <span class="kw">TABLE</span> Camp_assignment_tmp <span class="kw">AS</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Camp_assignment; </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s check things:</p>
+<pre><code>D .table</code></pre>
+<p>Of course it can be a more complex query. Let’s say we often need to know which person worked at a specific site, We could use this query:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dt">Year</span>, Site, Name </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Since we need this query often we might want to save it… and since each SQL quey table returns a table, we can simply save it as a new table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> TEMP <span class="kw">TABLE</span> Camp_personnel <span class="kw">AS</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">SELECT</span> <span class="dt">Year</span>, Site, Name </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s check things:</p>
+<pre><code>D .table</code></pre>
+<p>Note that it does not have to be a JOIN, it can be any operations such as filetering the rows with a <code>WHERE</code> clause!</p>
+<p>What is special about a TEMP TABLE vs a TABLE? It is deleted when you exit the database. In other words, temporary tables are only available to the current session.</p>
+<p>However a <strong>TEMP TABLE is materialized and thus static</strong>.</p>
+<p>But wait there is even better…</p>
+</section>
+<section id="views" class="level3">
+<h3 class="anchored" data-anchor-id="views">Views</h3>
+<ul>
+<li>a view looks like a table</li>
+<li>virtual, <strong>not</strong> materialized like CREATE TABLE AS</li>
+<li>virtual implies always reflects current data in source tables, i.e., view is (re-)executed each time it is referenced</li>
+<li>can make normalized tables more palatable; reduce the number of joins one has to do manually</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> Camp_personnel_v <span class="kw">AS</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">SELECT</span> <span class="dt">Year</span>, Site, Name </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A VIEW is also stored in the database!</p>
+<pre><code>D .table</code></pre>
+<p>Also try:</p>
+<pre><code>D .schema</code></pre>
+<div class="Callout-tips">
+<p>Note that the VIEWs are mixed with the regular TABLEs. Why do you think?</p>
+<p>How to list all the views in DuckDB:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> view_name <span class="kw">FROM</span> duckdb_views;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="stressing-the-differences-between-a-view-and-a-tmp-table" class="level4">
+<h4 class="anchored" data-anchor-id="stressing-the-differences-between-a-view-and-a-tmp-table">Stressing the differences between a VIEW and a (TMP) TABLE:</h4>
+<p><strong>DANGER ZONE</strong></p>
+<p>Let’s say the site <code>bylo</code> has been remove from our study. We thus want to delete those rows. Since it is a destructive action, it is a good idea to first run the query as a SELECT then switch to the DELETE</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">WHERE</span> Site <span class="op">==</span> <span class="st">'bylo'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>OK, we are ready to delete:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">WHERE</span> Site <span class="op">==</span> <span class="st">'bylo'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s check:</p>
+<p>Did the temporary table update?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Camp_personnel_tmp <span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Did the view update?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Camp_personnel_v <span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="dropping-things" class="level3">
+<h3 class="anchored" data-anchor-id="dropping-things">Dropping things</h3>
+<p>You can also use <code>DROP</code> to delete a table, temp table, view, … and more:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> Camp_personnel_tmp;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note the lack of TEMP when dropping a temporary table!</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">VIEW</span> Camp_personnel_v;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="set-operations" class="level3">
+<h3 class="anchored" data-anchor-id="set-operations">SET OPERATIONS</h3>
+<ul>
+<li>UNION, INTERSECT, EXCEPT</li>
+<li>last one is set difference</li>
+</ul>
+</section>
+<section id="rd-way-to-get-species-that-do-not-have-nest-data-use-except" class="level3">
+<h3 class="anchored" data-anchor-id="rd-way-to-get-species-that-do-not-have-nest-data-use-except">3rd way to get species that do <em>not</em> have nest data: use EXCEPT</h3>
+<ul>
+<li>First way:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Code <span class="kw">FROM</span> Species <span class="kw">WHERE</span> Code <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> Species <span class="kw">FROM</span> Bird_nests);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Second way:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> BN.Species, S.Code <span class="kw">FROM</span> Bird_nests BN <span class="kw">RIGHT</span> <span class="kw">JOIN</span> Species S <span class="kw">ON</span> BN.Species <span class="op">=</span> S.Code <span class="kw">WHERE</span> BN.Species <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Third way</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Code <span class="kw">FROM</span> Species</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">EXCEPT</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> Species <span class="kw">FROM</span> Bird_nests;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>example of UNION: suppose book b14 measured in inches, not millimeters, let’s adjust on fly</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> Book_page, Nest_ID, Egg_num, <span class="fu">Length</span><span class="op">*</span><span class="fl">25.4</span>, Width<span class="op">*</span><span class="fl">25.4</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">FROM</span> Bird_eggs</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">WHERE</span> Book_page <span class="kw">LIKE</span> <span class="st">'b14%'</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">UNION</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> Book_page, Nest_ID, Egg_num, <span class="fu">Length</span>, Width</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>      <span class="kw">FROM</span> Bird_eggs</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">WHERE</span> Book_page <span class="kw">NOT</span> <span class="kw">LIKE</span> <span class="st">'b14%'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><sup></sup> what if Book_page is NULL?</li>
+<li>caution: not really looking at names of columns, just #columns and data types</li>
+<li>so is possible to union nonsensical things together</li>
+<li>UNION throws out duplicates, UNION ALL keeps all</li>
+</ul>
+<p>Perhaps better example of UNION: let’s create a table of all bird nests and egg counts, including nests that have no egg data recorded.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Num_eggs</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Bird_eggs</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> Nest_ID</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="kw">UNION</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, <span class="dv">0</span> <span class="kw">AS</span> Num_eggs</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Bird_nests</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> Nest_ID <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> Nest_ID <span class="kw">FROM</span> Bird_eggs);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
 <p>Lecture notes:</p>
 <ul>
 <li><a href="lecture-notes-04-mon.txt">lecture-notes-04-mon.txt</a></li>
