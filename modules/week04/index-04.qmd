@@ -624,6 +624,17 @@ Note the lack of TEMP when dropping a temporary table!
 DROP VIEW Camp_personnel_v;
 ```
 
+::: callout-note
+## Challenge
+
+- Close the database
+- Reopen the database
+
+What tables do you see?
+:::
+
+
+
 ### SET OPERATIONS
 
 - UNION, INTERSECT, EXCEPT
