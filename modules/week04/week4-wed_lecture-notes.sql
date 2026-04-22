@@ -1,7 +1,7 @@
 
 --- duckdb toy.duckdb
 
---- Self-joins
+--- CROSS joins
 SELECT * FROM A;
 SELECT * FROM B;
 
@@ -15,11 +15,13 @@ SELECT acol1, ANY_VALUE(acol2),  COUNT(*) FROM ( SELECT * FROM A CROSS JOIN B ) 
 
 SELECT acol1, ANY_VALUE(acol2), COUNT(bcol3) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
 
-
--- Using a condition:
+-- Using a condition on two different tables:
 
 SELECT * FROM A JOIN B ON acol1 < bcol1;
 
+--- Self-join
+--- useful for answering questions like finding all pairs that meet some criteria
+SELECT * FROM A A1 JOIN A A2 ON  A1.acol1 <> A2.bcol1;
 
 --- inner & outer joins
 
