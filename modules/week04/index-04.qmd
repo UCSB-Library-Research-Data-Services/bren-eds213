@@ -426,7 +426,7 @@ SELECT Nest_ID, Species, COUNT(*)
 ## Wednesday session
 
 ::: callout-warning  
-##POSIT WORKBENCH
+## POSIT WORKBENCH
 
 - Beware of the lock with active sessions!!
 - Always quit DuckDB before leaving workbench
