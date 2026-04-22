@@ -7,13 +7,18 @@ SELECT * FROM B;
 
 SELECT * FROM A CROSS JOIN B;
 
---- Side note on how COUNT(*) vs COUNT(column) differ
+-- Side note on how COUNT(*) vs COUNT(column) differ
 
 SELECT acol1, acol2, COUNT(*) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
 
 SELECT acol1, ANY_VALUE(acol2),  COUNT(*) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
 
 SELECT acol1, ANY_VALUE(acol2), COUNT(bcol3) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
+
+
+-- Using a condition:
+
+SELECT * FROM A JOIN B ON acol1 < bcol1;
 
 
 --- inner & outer joins
