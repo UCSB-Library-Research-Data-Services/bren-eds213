@@ -1,5 +1,5 @@
 ---
-title: "Week 4 - Who worked with whom?"
+title: "Week 4.2 - Who worked with whom?"
 ---
 
 **Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/472152>**
@@ -51,5 +51,7 @@ Produce this much nicer table by joining with the Personnel table:
 ```
 
 You'll need to join with the Personnel table twice, once for each observer column. You may need give abbreviations to tables (e.g., `JOIN Personnel AS p1`) to distinguish the tables and columns. You can do it!
+
+Submit your SQL.
 
 **Credit: 10 points**
