@@ -4,10 +4,14 @@ title: "Week 4 - SQL and DuckDB"
 
 ## Learning objectives
 
--   Continued exploration of SQL concepts including joins, views, and set operations; and apply it to conduct data analysis.
+Continued exploration of SQL concepts, including:
+
+- nesting SQL queries
+- different type of joins
 
 
-## Monday 
+
+## Monday Session
 
 Let's open our ASDN database:
 
@@ -238,131 +242,435 @@ SELECT * FROM A RIGHT JOIN B ON acol1 < bcol1;
 └───────┴─────────┴───────┴─────────┴──────────┘
 ```
 
-
-- Notice how get B's row 1 now
+- Notice how get B's row 1 now (because B is the "right table")
 - Similar for left side
 
 ```sql
 SELECT * FROM A LEFT JOIN B ON acol1 < bcol1;
 ```
 
+```output
+┌───────┬───────────┬───────┬─────────┬──────────┐
+│ acol1 │   acol2   │ bcol1 │  bcol2  │  bcol3   │
+│ int32 │  varchar  │ int32 │ varchar │ varchar  │
+├───────┼───────────┼───────┼─────────┼──────────┤
+│     1 │ apple     │     2 │ cake    │ frosting │
+│     1 │ apple     │     3 │ cookie  │ NULL     │
+│     2 │ banana    │     3 │ cookie  │ NULL     │
+│     3 │ cranberry │  NULL │ NULL    │ NULL     │
+└───────┴───────────┴───────┴─────────┴──────────┘
+```
+
+- Now we we have the missing row from the A (left) table
+
 - Do a FULL OUTER JOIN to get both missing sides (rare)
 
 
-#### Realtional join
+#### Relational join
 
 - In the case of a join on a foreign key, the effect is to add columns to
   the "many" table
   
 ```sql
 SELECT * FROM House;
+```
+
+```output
+┌──────────┬────────────┬────────────────────┐
+│ House_ID │    Name    │     Headmaster     │
+│  int32   │  varchar   │      varchar       │
+├──────────┼────────────┼────────────────────┤
+│        1 │ Gryffindor │ Minerva McGonagall │
+│        2 │ Hufflepuff │ Pomona Sprout      │
+│        3 │ Slytherin  │ Severus Snape      │
+└──────────┴────────────┴────────────────────┘
+```
+
+```sql
 SELECT * FROM Student;
+```
+
+```output
+┌────────────┬──────────────────┬────────────┬──────────┐
+│ Student_ID │       Name       │ Birthdate  │ House_ID │
+│   int32    │     varchar      │    date    │  int32   │
+├────────────┼──────────────────┼────────────┼──────────┤
+│          1 │ Harry Potter     │ 1980-07-31 │        1 │
+│          2 │ Hermione Granger │ 1979-09-19 │        1 │
+│          3 │ Draco Malfoy     │ 1980-06-05 │        3 │
+│          4 │ Ginny Weasley    │ 1981-08-11 │        1 │
+└────────────┴──────────────────┴────────────┴──────────┘
 ```
 
 ```
 D .schema
 ```
 
-SELECT * FROM Student S JOIN House H ON S.House_ID = H.House_ID;
+```sql
+SELECT * FROM Student AS S JOIN House AS H ON S.House_ID = H.House_ID;
+```
 
-- more compact:
+```output
+┌────────────┬──────────────────┬────────────┬──────────┬──────────┬────────────┬────────────────────┐
+│ Student_ID │       Name       │ Birthdate  │ House_ID │ House_ID │    Name    │     Headmaster     │
+│   int32    │     varchar      │    date    │  int32   │  int32   │  varchar   │      varchar       │
+├────────────┼──────────────────┼────────────┼──────────┼──────────┼────────────┼────────────────────┤
+│          1 │ Harry Potter     │ 1980-07-31 │        1 │        1 │ Gryffindor │ Minerva McGonagall │
+│          2 │ Hermione Granger │ 1979-09-19 │        1 │        1 │ Gryffindor │ Minerva McGonagall │
+│          3 │ Draco Malfoy     │ 1980-06-05 │        3 │        3 │ Slytherin  │ Severus Snape      │
+│          4 │ Ginny Weasley    │ 1981-08-11 │        1 │        1 │ Gryffindor │ Minerva McGonagall │
+└────────────┴──────────────────┴────────────┴──────────┴──────────┴────────────┴────────────────────┘
+```
 
+
+- more compact syntax, since the columns used to join have the same name in each table:
+
+```sql
 SELECT * FROM Student JOIN House USING (House_ID);
+```
 
-- switch to ASDN database
+```output
+┌────────────┬──────────────────┬────────────┬──────────┬────────────┬────────────────────┐
+│ Student_ID │       Name       │ Birthdate  │ House_ID │    Name    │     Headmaster     │
+│   int32    │     varchar      │    date    │  int32   │  varchar   │      varchar       │
+├────────────┼──────────────────┼────────────┼──────────┼────────────┼────────────────────┤
+│          1 │ Harry Potter     │ 1980-07-31 │        1 │ Gryffindor │ Minerva McGonagall │
+│          2 │ Hermione Granger │ 1979-09-19 │        1 │ Gryffindor │ Minerva McGonagall │
+│          3 │ Draco Malfoy     │ 1980-06-05 │        3 │ Slytherin  │ Severus Snape      │
+│          4 │ Ginny Weasley    │ 1981-08-11 │        1 │ Gryffindor │ Minerva McGonagall │
+└────────────┴──────────────────┴────────────┴──────────┴────────────┴────────────────────┘
+```
 
-.mode line
+Note that the `USING` clause also keep only **one** of key columns!
+
+
+#### Let's switch back to our ASDN database
+
+```bash
+duckdb database.duckdb
+```
+
+```
+D .mode line
+```
+
+:::  callout-tip
+## DuckDB Modes
+
+DuckDB's different output formats: <https://duckdb.org/docs/current/clients/cli/output_formats>
+:::
+
+Let's have a look at the `Bird_eggs` and `Bird_nests` tables:
+```sql
 SELECT COUNT(*) FROM Bird_eggs;
 SELECT * FROM Bird_eggs LIMIT 1;
+SELECT * FROM Bird_nests LIMIT 1;
+```
+
+We can use Nest_ID to join those two tables
+
+```sql
 SELECT * FROM Bird_eggs
   JOIN Bird_nests USING (Nest_ID)
   LIMIT 1;
+```
 
+Let's also join the Species table to bring more readable names:
+
+```sql
 SELECT * FROM Bird_eggs
   JOIN Bird_nests USING (Nest_ID)
   JOIN Species ON Species = Code
   LIMIT 1;
+```
 
-SELECT COUNT(*) FROM Bird_eggs
-  JOIN Bird_nests USING (Nest_ID)
-  JOIN Species ON Species = Code;
+#### When to order rows when joining tables?
 
-- Conceptually clearer perhaps to list the "many" table first in a join?? Maybe
+**Ordering is assuredly lost in a join.**  An entirely new table is formed.
 
-- Ordering is assuredly lost in a join.  An entirely new table is formed.-
-- This is pointless:
+This is pointless:
 
+```sql
 SELECT * FROM
   (SELECT * FROM Bird_eggs ORDER BY Width)
   JOIN Bird_nests
   USING (Nest_ID);
+```
 
-GOTCHA WITH GROUPING
-- DuckDB not smart enough to recognize primary keys in joins
+#### GOTCHA WITH GROUPING
 
+DuckDB not smart enough to recognize primary keys uniqueness rule in joins
+
+```sql
 SELECT Nest_ID, COUNT(*)
   FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
-  GROUP BY Nest_ID;
+  GR`OUP BY Nest_ID;
+```
 
 - Can we add another column from Bird_nests?  Other RDBMs's say yes
 - DuckDB: no
 - So follow DuckDB's suggestions
 
+```sql
 SELECT Nest_ID, ANY_VALUE(Species), COUNT(*)
   FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
   GROUP BY Nest_ID;
+ ```
+ 
+ ```sql
 SELECT Nest_ID, Species, COUNT(*)
   FROM Bird_nests JOIN Bird_eggs USING (Nest_ID)
   GROUP BY Nest_ID, Species;
+```
 
-VIEWS
-- make normalized tables more palatable
-- virtual, not materialized like CREATE TABLE AS
-- virtual implies always reflects current data in source tables
+## Wednesday session
 
-SELECT Year, Site, Name FROM Camp_assignment JOIN Personnel ON Observer = Abbreviation;
+::: callout-warning  
+##POSIT WORKBENCH
 
-CREATE VIEW v AS ....
-.schema
+- Beware of the lock with active sessions!!
+- Always quit DuckDB before leaving workbench
 
-- stored in dB
-- inserts, updates, deletes possible?  maybe, depends on DB intelligence
-- can't insert/update on view the uses aggregate function
+If you can not find the session, you can kill the process running it on the server. In the DuckDB error message,  the PID of that process owning the lock will be provided. You can use it to kill this process and remove the lock:
 
-- can also CREATE [TEMP] TABLE
-- VIEW is live
-- [TEMP] TABLE is materialized, static
+```bash
+kill PID
+```
+:::
 
-SET OPERATIONS
+### Add a new table
+
+As we mentioned, you can use SQL to add a new table to your database. Now that we have cleaned our snow data we might want to add this table to our database.
+
+```sql
+CREATE TABLE Snow_cover (
+    Site VARCHAR NOT NULL,
+    Year INTEGER NOT NULL CHECK (Year BETWEEN 1990 AND 2018),
+    Date DATE NOT NULL,
+    Plot VARCHAR NOT NULL,
+    Location VARCHAR NOT NULL,
+    Snow_cover REAL CHECK (Snow_cover BETWEEN 0 AND 130),
+    Water_cover REAL CHECK (Water_cover BETWEEN 0 AND 130),
+    Land_cover REAL CHECK (Land_cover BETWEEN 0 AND 130),
+    Total_cover REAL CHECK (Total_cover BETWEEN 0 AND 130),
+    Observer VARCHAR,
+    Notes VARCHAR,
+    PRIMARY KEY (Site, Plot, Location, Date),
+    FOREIGN KEY (Site) REFERENCES Site (Code)
+);
+```
+
+Let's check if the table was added to our database:
+
+```
+D .table
+```
+
+Our table should have no data in it:
+
+```sql
+SELECT * FROM Snow_cover LIMIT 5;
+```
+
+Now we can import the data from our csv file into our database:
+
+```sql
+COPY Snow_cover FROM "../ASDN_csv/snow_survey_fixed.csv" (header TRUE, nullstr "NA");
+```
+
+Let's check:
+
+```sql
+SELECT * FROM Snow_cover LIMIT 5;
+```
+
+🎉 import successful!!
+
+
+### Temporary table
+
+Since every query output is a table, we can save any query as new table!
+
+We can for example create a backup of an entire table:
+
+```sql
+CREATE TEMP TABLE Camp_assignment_tmp AS
+   SELECT * FROM Camp_assignment; 
+```
+
+Let's check things:
+
+```
+D .table
+```
+
+Of course it can be a more complex query. Let's say we often need to know which person worked at a specific site, We could use this query:
+
+```sql
+SELECT Year, Site, Name 
+   FROM Camp_assignment_tmp JOIN Personnel ON Observer = Abbreviation;
+```
+
+Since we need this query often we might want to save it... and since each SQL quey table returns a table, we can simply save it as a new table:
+
+```sql
+CREATE TEMP TABLE Camp_personnel AS
+   SELECT Year, Site, Name 
+   FROM Camp_assignment_tmp JOIN Personnel ON Observer = Abbreviation;
+```
+
+Let's check things:
+
+```
+D .table
+```
+
+Note that it does not have to be a JOIN, it can be any operations such as filetering the rows with a `WHERE` clause!
+
+What is special about a TEMP TABLE vs a TABLE? It is deleted when you exit the database. In other words, temporary tables are only available to the  current session. 
+
+However a **TEMP TABLE is materialized and thus static**.
+
+But wait there is even better...
+
+
+### Views
+
+- a view looks like a table
+- virtual, **not** materialized like CREATE TABLE AS
+- virtual implies always reflects current data in source tables, i.e.,
+  view is (re-)executed each time it is referenced
+- can make normalized tables more palatable; reduce the number of joins
+  one has to do manually
+
+
+```sql
+CREATE VIEW Camp_personnel_v AS
+   SELECT Year, Site, Name 
+   FROM Camp_assignment_tmp JOIN Personnel ON Observer = Abbreviation;
+```
+
+A VIEW is also stored in the database!
+
+```
+D .table
+```
+
+Also try:
+
+```
+D .schema
+```
+
+::: Callout-tips
+Note that the VIEWs are mixed with the regular TABLEs. Why do you think?
+
+How to list all the views in DuckDB: 
+
+```sql
+SELECT view_name FROM duckdb_views;
+```
+:::
+
+#### Stressing the differences between a VIEW and a (TMP) TABLE:
+
+**DANGER ZONE**
+
+Let's say the site `bylo` has been remove from our study. We thus want to delete those rows. Since it is a destructive action, it is a good idea to first run the query as a SELECT then switch to the DELETE
+
+
+```sql 
+SELECT * FROM Camp_assignment_tmp WHERE Site == 'bylo';
+```
+
+OK, we are ready to delete:
+
+```sql 
+DELETE FROM Camp_assignment_tmp WHERE Site == 'bylo';
+```
+
+Let's check:
+
+Did the temporary table update?
+```sql 
+SELECT * FROM Camp_personnel_tmp LIMIT 10;
+```
+
+Did the view update?
+```sql 
+SELECT * FROM Camp_personnel_v LIMIT 10;
+```
+
+
+### Dropping things
+
+You can also use `DROP` to delete a table, temp table, view, ... and more:
+
+```sql 
+DROP TABLE Camp_personnel_tmp;
+```
+
+Note the lack of TEMP when dropping a temporary table!
+
+```sql 
+DROP VIEW Camp_personnel_v;
+```
+
+### SET OPERATIONS
+
 - UNION, INTERSECT, EXCEPT
 - last one is set difference
-- BTW: 3rd way to get species that do *not* have nest data: use EXCEPT
 
+### 3rd way to get species that do *not* have nest data: use EXCEPT
+
+- First way:
+```sql
 SELECT Code FROM Species WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);
-SELECT BN.Species, S.Code FROM Bird_nests BN RIGHT JOIN Species S ON BN.Species = S.Code WHERE BN.Species IS NULL;
+```
 
+- Second way:
+```sql
+SELECT BN.Species, S.Code FROM Bird_nests BN RIGHT JOIN Species S ON BN.Species = S.Code WHERE BN.Species IS NULL;
+```
+
+- Third way
+```sql
 SELECT Code FROM Species
   EXCEPT
   SELECT DISTINCT Species FROM Bird_nests;
+```
 
-- example: book b14 measured in inches, not millimeters, adjust on fly
-- SELECT Book_page, Nest_ID, Egg_num, Length*25.4, Width*25.4
+- example of UNION: suppose book b14 measured in inches,
+  not millimeters, let's adjust on fly
+```sql
+  SELECT Book_page, Nest_ID, Egg_num, Length*25.4, Width*25.4
       FROM Bird_eggs
       WHERE Book_page LIKE 'b14%'
   UNION
   SELECT Book_page, Nest_ID, Egg_num, Length, Width
       FROM Bird_eggs
       WHERE Book_page NOT LIKE 'b14%';
+```
 
 - ^^ what if Book_page is NULL?
 - caution: not really looking at names of columns, just #columns and data types
 - so is possible to union nonsensical things together
 - UNION throws out duplicates, UNION ALL keeps all
 
+Perhaps better example of UNION: let's create a table of all
+bird nests and egg counts, including nests that have no egg data recorded.
 
+```sql
+SELECT Nest_ID, COUNT(*) AS Num_eggs
+  FROM Bird_eggs
+  GROUP BY Nest_ID
 
+UNION
 
-
+SELECT Nest_ID, 0 AS Num_eggs
+  FROM Bird_nests
+  WHERE Nest_ID NOT IN (SELECT DISTINCT Nest_ID FROM Bird_eggs);
+```  
 
 
 ## Resources
