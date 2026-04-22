@@ -639,22 +639,38 @@ Warning
 <p>Let’s check:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Snow_cover <span class="kw">LIMIT</span> <span class="dv">5</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>🎉 import successful!!</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Ask 1: What is the average snow cover at each site?</p></li>
+<li><p>Ask2: Top 5 most snowy sites</p></li>
+</ul>
+</div>
+</div>
 </section>
 <section id="temporary-table" class="level3">
 <h3 class="anchored" data-anchor-id="temporary-table">Temporary table</h3>
 <p>Since every query output is a table, we can save any query as new table!</p>
 <p>We can for example create a backup of an entire table:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> TEMP <span class="kw">TABLE</span> Camp_assignment_tmp <span class="kw">AS</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> TEMP <span class="kw">TABLE</span> Camp_assignment_copy <span class="kw">AS</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Camp_assignment; </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s check things:</p>
 <pre><code>D .table</code></pre>
 <p>Of course it can be a more complex query. Let’s say we often need to know which person worked at a specific site, We could use this query:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="dt">Year</span>, Site, Name </span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_copy <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Since we need this query often we might want to save it… and since each SQL quey table returns a table, we can simply save it as a new table:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> TEMP <span class="kw">TABLE</span> Camp_personnel <span class="kw">AS</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> TEMP <span class="kw">TABLE</span> Camp_personnel_tmp <span class="kw">AS</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">SELECT</span> <span class="dt">Year</span>, Site, Name </span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_copy <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s check things:</p>
 <pre><code>D .table</code></pre>
 <p>Note that it does not have to be a JOIN, it can be any operations such as filetering the rows with a <code>WHERE</code> clause!</p>
@@ -672,7 +688,7 @@ Warning
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> Camp_personnel_v <span class="kw">AS</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">SELECT</span> <span class="dt">Year</span>, Site, Name </span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">FROM</span> Camp_assignment_copy <span class="kw">JOIN</span> Personnel <span class="kw">ON</span> Observer <span class="op">=</span> Abbreviation;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A VIEW is also stored in the database!</p>
 <pre><code>D .table</code></pre>
 <p>Also try:</p>
@@ -686,9 +702,9 @@ Warning
 <h4 class="anchored" data-anchor-id="stressing-the-differences-between-a-view-and-a-tmp-table">Stressing the differences between a VIEW and a (TMP) TABLE:</h4>
 <p><strong>DANGER ZONE</strong></p>
 <p>Let’s say the site <code>bylo</code> has been remove from our study. We thus want to delete those rows. Since it is a destructive action, it is a good idea to first run the query as a SELECT then switch to the DELETE</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">WHERE</span> Site <span class="op">==</span> <span class="st">'bylo'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Camp_assignment_copy <span class="kw">WHERE</span> Site <span class="op">==</span> <span class="st">'bylo'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>OK, we are ready to delete:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Camp_assignment_tmp <span class="kw">WHERE</span> Site <span class="op">==</span> <span class="st">'bylo'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Camp_assignment_copy <span class="kw">WHERE</span> Site <span class="op">==</span> <span class="st">'bylo'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Let’s check:</p>
 <p>Did the temporary table update?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Camp_personnel_tmp <span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
