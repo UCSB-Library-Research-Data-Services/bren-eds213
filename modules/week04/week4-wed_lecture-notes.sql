@@ -22,6 +22,7 @@ SELECT * FROM A JOIN B ON acol1 < bcol1;
 
 
 --- inner & outer joins
+
 SELECT * FROM Student;
 SELECT * FROM House;
 
