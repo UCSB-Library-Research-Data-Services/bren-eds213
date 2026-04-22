@@ -486,6 +486,14 @@ SELECT * FROM Snow_cover LIMIT 5;
 
 🎉 import successful!!
 
+::: callout-note
+## Challenge
+
+- Ask 1: What is the average snow cover at each site?
+
+- Ask2: Top 5 most snowy sites
+
+:::
 
 ### Temporary table
 
@@ -494,7 +502,7 @@ Since every query output is a table, we can save any query as new table!
 We can for example create a backup of an entire table:
 
 ```sql
-CREATE TEMP TABLE Camp_assignment_tmp AS
+CREATE TEMP TABLE Camp_assignment_copy AS
    SELECT * FROM Camp_assignment; 
 ```
 
@@ -508,15 +516,15 @@ Of course it can be a more complex query. Let's say we often need to know which 
 
 ```sql
 SELECT Year, Site, Name 
-   FROM Camp_assignment_tmp JOIN Personnel ON Observer = Abbreviation;
+   FROM Camp_assignment_copy JOIN Personnel ON Observer = Abbreviation;
 ```
 
 Since we need this query often we might want to save it... and since each SQL quey table returns a table, we can simply save it as a new table:
 
 ```sql
-CREATE TEMP TABLE Camp_personnel AS
+CREATE TEMP TABLE Camp_personnel_tmp AS
    SELECT Year, Site, Name 
-   FROM Camp_assignment_tmp JOIN Personnel ON Observer = Abbreviation;
+   FROM Camp_assignment_copy JOIN Personnel ON Observer = Abbreviation;
 ```
 
 Let's check things:
@@ -547,7 +555,7 @@ But wait there is even better...
 ```sql
 CREATE VIEW Camp_personnel_v AS
    SELECT Year, Site, Name 
-   FROM Camp_assignment_tmp JOIN Personnel ON Observer = Abbreviation;
+   FROM Camp_assignment_copy JOIN Personnel ON Observer = Abbreviation;
 ```
 
 A VIEW is also stored in the database!
@@ -580,13 +588,13 @@ Let's say the site `bylo` has been remove from our study. We thus want to delete
 
 
 ```sql 
-SELECT * FROM Camp_assignment_tmp WHERE Site == 'bylo';
+SELECT * FROM Camp_assignment_copy WHERE Site == 'bylo';
 ```
 
 OK, we are ready to delete:
 
 ```sql 
-DELETE FROM Camp_assignment_tmp WHERE Site == 'bylo';
+DELETE FROM Camp_assignment_copy WHERE Site == 'bylo';
 ```
 
 Let's check:
