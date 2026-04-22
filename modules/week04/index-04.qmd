@@ -506,9 +506,22 @@ Useful for answering questions like finding all pairs that meet some criteria.
 For example, we might want to bake something that has two different fruits and would dlike to have a list of all our possible options from the table A:
 
 ```sql
-SELECT * FROM A AS A1 JOIN A AS A2 ON A1.acol1 <> A2.bcol1;
+SELECT * FROM A AS A1 JOIN A AS A2 ON A1.acol1 <> A2.acol1;
 ```
 
+```output
+┌───────┬───────────┬───────┬───────────┐
+│ acol1 │   acol2   │ acol1 │   acol2   │
+│ int32 │  varchar  │ int32 │  varchar  │
+├───────┼───────────┼───────┼───────────┤
+│     2 │ banana    │     1 │ apple     │
+│     3 │ cranberry │     1 │ apple     │
+│     1 │ apple     │     2 │ banana    │
+│     3 │ cranberry │     2 │ banana    │
+│     1 │ apple     │     3 │ cranberry │
+│     2 │ banana    │     3 │ cranberry │
+└───────┴───────────┴───────┴───────────┘
+```
 
 #### Inner & outer joins
 
