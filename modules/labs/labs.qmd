@@ -30,7 +30,7 @@ Over 7 weeks, you will:
 
 | Week | Topic | Materials |
 |------|-------|-----------|
-| 1 | Select a dataset & define your schema | [Week 1](week1-discussion.qmd) |
+| 1 | Select a dataset & define your schema | [Week 1](week1.qmd) |
 | 2 | Clean the data | [Week 2]() |
 | 3 | Ingest data & explore your database | [Week 3]() |
 | 4 | Develop an analytical question & write SQL queries | [Week 4]()  |
