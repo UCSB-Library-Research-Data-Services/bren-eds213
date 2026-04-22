@@ -438,6 +438,117 @@ kill PID
 ```
 :::
 
+### Monday recap
+
+Let's go back to our toy database to review the different types of joins we talked about on Monday.
+
+```bash
+duckdb toy.duckdb
+```
+
+Let’s check we are in the right database
+
+```
+D .table
+```
+
+Quick look at our A & B Tables
+
+```sql
+SELECT * FROM A;
+SELECT * FROM B;
+```
+
+
+#### Cross joins
+
+A cross join will compute the Cartesian product of all the possible combinations of rows between two tables. The resulting table will have the sum of the columns and the product of the row of two tables we are joining.
+
+```sql
+SELECT * FROM A CROSS JOIN B;
+```
+
+:::{.callout-tip}
+## Side notes  
+
+1. `SELECT` always select from the output of the query on the right side of the FROM
+   ```sql
+   SELECT acol1, acol2 FROM (SELECT * FROM A CROSS JOIN B);
+   ```
+2. `COUNT(*)` vs `COUNT(column)`
+Although those functions look similar, they behave very differently; `COUNT(*)` count the number of rows in a table, group, ... without caring about the values. `COUNT(col)` does look at the values and will thus ignore NULL values.
+   ```sql
+   --- Remember that DuckDB does not like the missmatch of number of values even if it is the same value; 
+   --- We need to add the any_value or add the column in the Group by clause
+   SELECT acol1, acol2, COUNT(*) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
+   
+   --- This will count the number of rows in each group
+   SELECT acol1, ANY_VALUE(acol2),  COUNT(*) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
+   
+   --- This will count the number of non-NULL values in the column bcol3 in each group
+   SELECT acol1, ANY_VALUE(acol2), COUNT(bcol3) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
+```
+:::
+
+
+#### Using a condition on two different tables
+
+For example joining A & B tables on the condition that the aclo1 is smaller that the bcol1
+
+```sql
+SELECT * FROM A JOIN B ON acol1 < bcol1;
+```
+
+#### Self-join
+
+Useful for answering questions like finding all pairs that meet some criteria.
+
+For example, we might want to bake something that has two different fruits and would dlike to have a list of all our possible options from the table A:
+
+```sql
+SELECT * FROM A AS A1 JOIN A AS A2 ON A1.acol1 <> A2.bcol1;
+```
+
+
+#### Inner & outer joins
+
+For those, you need a relationship between the two tables captured by an association of keys. Let's switch to our Harry Potter example
+
+```sql
+SELECT * FROM Student;
+SELECT * FROM House;
+```
+
+#### `INNER JOIN` is the Default join
+
+```sql
+SELECT * FROM Student AS S JOIN House AS H ON S.House_ID = H.House_ID;
+```
+or since we have the same column name in both tables:
+
+```sql
+SELECT * FROM Student JOIN House USING (House_ID);
+```
+
+Note that there is only one occurence the `House)ID` column in this case
+
+
+#### OUTER JOINS
+
+```sql
+SELECT * FROM Student FULL JOIN House USING (House_ID);
+
+SELECT * FROM Student LEFT JOIN House USING (House_ID);
+
+SELECT * FROM Student RIGHT JOIN House USING (House_ID);
+```
+`
+Note: Would a `CROSS JOIN` make any sense here? Well we can still do it :)
+
+```sql
+SELECT * FROM Student CROSS JOIN House;
+```
+
 ### Add a new table
 
 As we mentioned, you can use SQL to add a new table to your database. Now that we have cleaned our snow data we might want to add this table to our database.
@@ -492,7 +603,6 @@ SELECT * FROM Snow_cover LIMIT 5;
 - Ask 1: What is the average snow cover at each site?
 
 - Ask2: Top 5 most snowy sites
-
 :::
 
 ### Temporary table
