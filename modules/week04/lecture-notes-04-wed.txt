@@ -1,60 +1,13 @@
 RECAP OF MONDAY
-- outer joins
+- inner & outer joins
 - self-joins: useful for answering questions like finding all pairs that
   meet some criteria
   -- A.observer < B.observer business is a standard idiom
-- views
-  -- CREATE TABLE AS SELECT analogous to variable
-  -- CREATE VIEW analogous to function, gets re-evaluated each time referenced
-
-- Add data
-  -- CREATE TEMP TABLE a (cola INTEGER, common INTEGER);
-  -- INSERT INTO a VALUES (1, 1), (2, 2), (3, 3);
-
-
-I/O: data engineer
-
-- How to import data in a database
-  -- COPY TO
-- How to export a database
-
-
-DATA MANAGEMENT STATEMENTS (!Alert danger!)
-- INSERT: already seen that
-- UPDATE table SET ... WHERE ...
-- DELETE FROM table WHERE ...
-- caution: these operate on whole tables if unqualified
-- strategies to avoid catastrophes
-  -- just subconsciouly be careful, like holding a kitchen knife
-  -- put comment in front: -- DELETE FROM ..., then remove comment
-  -- do SELECT first, then replace SELECT with DELETE <- allows inspection
-   of what's about to be deleted
-  -- tweak table name, create TMP table, put x in front, then remove
 
 
 
 ## Next week:
 
-TRIGGERS
-- on some event, take some action(s)
-- event: insert, update, delete on some table
-- action: insert or update in same table or any other table
-- example: SQLite imports empty columns as empty strings, not NULLs,
-  which is lame
-- database.db build script (look at it) does post-import updates
-- trigger approach!
-- can't play with real Species table due to foreign keys
--- .import --csv species.csv new_species
-- .nullvalue --NULL--
-- notice no NULLs!
-- CREATE TRIGGER fix_species
-      AFTER INSERT ON new_species
-      FOR EACH ROW
-      BEGIN
-          UPDATE new_species
-          SET Scientific_name = NULL
-          WHERE Code = new.Code AND Scientific_name = '';
-      END;
 
 === BASH =================
 

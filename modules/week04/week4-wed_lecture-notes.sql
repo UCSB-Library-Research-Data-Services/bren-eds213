@@ -1,6 +1,51 @@
+
+--- duckdb toy.duckdb
+
+--- Self-joins
+SELECT * FROM A;
+SELECT * FROM B;
+
+SELECT * FROM A CROSS JOIN B;
+
+--- Side note on how COUNT(*) vs COUNT(column) differ
+
+SELECT acol1, acol2, COUNT(*) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
+
+SELECT acol1, ANY_VALUE(acol2),  COUNT(*) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
+
+SELECT acol1, ANY_VALUE(acol2), COUNT(bcol3) FROM ( SELECT * FROM A CROSS JOIN B ) GROUP BY acol1; 
+
+
+--- inner & outer joins
+SELECT * FROM Student;
+SELECT * FROM House;
+
+
+-- INNER JOIN is the Default
+SELECT * FROM Student AS S JOIN House AS H ON S.House_ID = H.House_ID;
+
+SELECT * FROM Student JOIN House USING (House_ID);
+
+-- OUTER JOINS
+
+SELECT * FROM Student FULL JOIN House USING (House_ID);
+
+SELECT * FROM Student LEFT JOIN House USING (House_ID);
+
+SELECT * FROM Student RIGHT JOIN House USING (House_ID);
+
+--- Would a CROSS JOIN make any sense? How many rows and columns would be that table?
+
+SELECT * FROM Student CROSS JOIN House;
+
+
+----TODAY
+
+--- See webpage: https://ucsb-library-research-data-services.github.io/bren-eds213/modules/week04/index-04.html#wednesday-session
+
 -- Let's first to try to import the snow survey data in a new database
--- from the ASDN folder run:
--- duckdb import_test.duckdb 
+-- from the ASDN_csv folder run:
+-- duckdb  
 
 CREATE TABLE Snow_cover (
     Site VARCHAR NOT NULL,
