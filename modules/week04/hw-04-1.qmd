@@ -2,7 +2,7 @@
 title: "Week 4 - Missing data"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/359037>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/472151>**
 
 Which sites have **no** egg data? Please answer this question using the two techniques demonstrated in class. In doing so, you will need to work with the Bird_eggs table, the Site table, or both. As a reminder, the techniques are:
 

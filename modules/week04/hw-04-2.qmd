@@ -2,7 +2,7 @@
 title: "Week 4 - Who worked with whom?"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/359038>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/472152>**
 
 The Camp_assignment table lists where each person worked and when. Your goal is to answer, Who worked with whom? That is, you are to find all pairs of people who worked at the same site, and whose date ranges overlap while at that site. This can be solved using a self-join.
 
