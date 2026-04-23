@@ -38,4 +38,4 @@ Add an `ORDER BY` clause to your queries so that the two queries produce the exa
 
 Submit your SQL.
 
-**Credit: 10 points**
+**Credit: 20 points**

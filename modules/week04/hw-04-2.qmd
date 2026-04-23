@@ -34,7 +34,7 @@ The idea is that the above join will give us rows that pair every person/site/da
 
 Submit your final SQL query.
 
-**Credit: 20 points**
+**Credit: 30 points**
 
 ## Bonus problem!
 
@@ -54,4 +54,4 @@ You'll need to join with the Personnel table twice, once for each observer colum
 
 Submit your SQL.
 
-**Credit: 10 points**
+**Credit: 20 points**
