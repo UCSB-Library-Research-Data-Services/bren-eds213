@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -42,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ebf5c29ee14afff2ee988c71e0de8d0f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-28693117127f89a21507109ae153cba2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -233,14 +268,20 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#lecture-notes" id="toc-lecture-notes" class="nav-link" data-scroll-target="#lecture-notes">Lecture notes:</a>
+  <li><a href="#monday" id="toc-monday" class="nav-link" data-scroll-target="#monday">Monday</a>
   <ul class="collapse">
-  <li><a href="#monday" id="toc-monday" class="nav-link" data-scroll-target="#monday">Monday</a></li>
+  <li><a href="#recap-view-temp-table" id="toc-recap-view-temp-table" class="nav-link" data-scroll-target="#recap-view-temp-table">RECAP: VIEW &amp; TEMP TABLE</a></li>
+  <li><a href="#set-operations" id="toc-set-operations" class="nav-link" data-scroll-target="#set-operations">SET OPERATIONS</a></li>
+  <li><a href="#data-management-statements" id="toc-data-management-statements" class="nav-link" data-scroll-target="#data-management-statements">DATA MANAGEMENT STATEMENTS</a></li>
+  </ul></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a>
+  <ul class="collapse">
+  <li><a href="#monday-1" id="toc-monday-1" class="nav-link" data-scroll-target="#monday-1">Monday</a></li>
   <li><a href="#wednesday" id="toc-wednesday" class="nav-link" data-scroll-target="#wednesday">Wednesday</a></li>
   </ul></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data:</a></li>
   <li><a href="#how-to-sync-your-fork" id="toc-how-to-sync-your-fork" class="nav-link" data-scroll-target="#how-to-sync-your-fork">How to sync your fork</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings">Readings</a></li>
   </ul>
 </nav>
     </div>
@@ -272,10 +313,186 @@ ul.task-list li input[type="checkbox"] {
 <li>Data management SQL statements</li>
 </ul>
 </section>
-<section id="lecture-notes" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-notes">Lecture notes:</h2>
-<section id="monday" class="level3">
-<h3 class="anchored" data-anchor-id="monday">Monday</h3>
+<section id="monday" class="level2">
+<h2 class="anchored" data-anchor-id="monday">Monday</h2>
+<section id="recap-view-temp-table" class="level3">
+<h3 class="anchored" data-anchor-id="recap-view-temp-table">RECAP: VIEW &amp; TEMP TABLE</h3>
+<section id="views" class="level4">
+<h4 class="anchored" data-anchor-id="views">Views</h4>
+<ul>
+<li>a view looks like a table</li>
+<li>stored in the database</li>
+<li>executed each time it is referenced</li>
+<li>handy way to make SQL more palatable</li>
+<li>ergo, a view similar to a function in a programming language</li>
+</ul>
+<p>Note: a view can also be used to subset attributes from a table that might store sensitive data, think SSN, that you do not want to expose to certain users, like a web application.</p>
+<p>Ex: suppose we always want to see species names, not codes</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> Nest_view <span class="kw">AS</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> Book_page, <span class="dt">Year</span>, Site, Nest_ID, Scientific_name, Observer</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Bird_nests <span class="kw">JOIN</span> Species</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ON</span> Species <span class="op">=</span> Code;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Looks just like <code>Bird_nests</code> but with code replaced by scientific name:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Nest_view <span class="kw">LIMIT</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌───────────┬───────┬─────────┬─────────┬─────────────────────────┬──────────┐
+│ Book_page │ Year  │  Site   │ Nest_ID │     Scientific_name     │ Observer │
+│  varchar  │ int32 │ varchar │ varchar │         varchar         │ varchar  │
+├───────────┼───────┼─────────┼─────────┼─────────────────────────┼──────────┤
+│ b14.6     │  2014 │ chur    │ 14HPE1  │ Charadrius semipalmatus │ vloverti │
+└───────────┴───────┴─────────┴─────────┴─────────────────────────┴──────────┘</code></pre>
+<p>Now use as usual:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, ANY_VALUE(Scientific_name), <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Num_eggs</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Nest_view <span class="kw">JOIN</span> Bird_eggs</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">USING</span> (Nest_ID)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> Nest_ID;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="temp-tables" class="level4">
+<h4 class="anchored" data-anchor-id="temp-tables">Temp tables</h4>
+<ul>
+<li>Temp table is like a variable in a programming language: you compute and store the value. It is static, you need manually to recompute it if the data changes</li>
+<li>As name suggests, a temp table is automatically deleted when database connection is closed</li>
+</ul>
+</section>
+<section id="with-clause" class="level4">
+<h4 class="anchored" data-anchor-id="with-clause">WITH clause</h4>
+<p>Another option is to use a<code>WITH</code> clause, which creates a view for just that statement</p>
+<p>Ex: take previous table, use it input to another query:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> x <span class="kw">AS</span> (</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> Nest_ID, ANY_VALUE(Scientific_name) <span class="kw">AS</span> Scientific_name,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Num_eggs</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Nest_view <span class="kw">JOIN</span> Bird_eggs</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">USING</span> (Nest_ID)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> Nest_ID</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Scientific_name, <span class="fu">AVG</span>(Num_eggs) <span class="kw">AS</span> Avg_num_eggs <span class="kw">FROM</span> x</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> Scientific_name;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="output"><code>┌─────────────────────────┬────────────────────┐
+│     Scientific_name     │    Avg_num_eggs    │
+│         varchar         │       double       │
+├─────────────────────────┼────────────────────┤
+│ Pluvialis dominica      │ 3.3333333333333335 │
+│ Pluvialis squatarola    │                4.0 │
+│ Phalaropus fulicarius   │                4.0 │
+│ Calidris fuscicollis    │ 3.6153846153846154 │
+│ Arenaria interpres      │ 3.8333333333333335 │
+│ Charadrius semipalmatus │  3.757142857142857 │
+│ Calidris alpina         │ 3.6666666666666665 │
+└─────────────────────────┴────────────────────┘</code></pre>
+</section>
+</section>
+<section id="set-operations" class="level3">
+<h3 class="anchored" data-anchor-id="set-operations">SET OPERATIONS</h3>
+<ul>
+<li>UNION, INTERSECT, EXCEPT</li>
+<li>last one is set difference</li>
+<li>these are set operations, so <strong>UNION eliminates duplicates</strong></li>
+<li>to preserve duplicate rows, UNION ALL</li>
+</ul>
+<section id="union" class="level4">
+<h4 class="anchored" data-anchor-id="union">UNION</h4>
+<p>Example of UNION: let’s create a table of all bird nests and egg counts, including nests that have no egg data recorded. In the quiz last week, we did this by using an outer join:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, <span class="fu">COUNT</span>(Egg_num) <span class="kw">as</span> Num_eggs</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Bird_nests <span class="kw">LEFT</span> <span class="kw">JOIN</span> Bird_eggs</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">USING</span> (Nest_ID)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> Nest_ID;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Using <code>UNION</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Num_eggs</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Bird_eggs</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> Nest_ID</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">UNION</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID, <span class="dv">0</span> <span class="kw">AS</span> Num_eggs</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Bird_nests</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> Nest_ID <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> Nest_ID <span class="kw">FROM</span> Bird_eggs);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Caution: UNION not really looking at names of columns, just number of columns and data types</li>
+<li>So is possible to union nonsensical things together (think <code>rbind</code> in the R world)</li>
+</ul>
+</section>
+<section id="except" class="level4">
+<h4 class="anchored" data-anchor-id="except">EXCEPT</h4>
+<p>Example of EXCEPT: 3rd way to get species that do <em>not</em> have nest data</p>
+<ul>
+<li>First way - WHERE clause:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Code <span class="kw">FROM</span> Species</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> Code <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> Species <span class="kw">FROM</span> Bird_nests);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Second way - Outer JOIN:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Species, Code</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Bird_nests <span class="kw">RIGHT</span> <span class="kw">JOIN</span> Species</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span> Species <span class="op">=</span> Code</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> Species <span class="kw">IS</span> <span class="kw">NULL</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Third way - EXCEPT</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Code <span class="kw">FROM</span> Species</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">EXCEPT</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> Species <span class="kw">FROM</span> Bird_nests;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="data-management-statements" class="level3">
+<h3 class="anchored" data-anchor-id="data-management-statements">DATA MANAGEMENT STATEMENTS</h3>
+<ul>
+<li>There’s way more than just SELECT in SQL, see <a href="https://www.sqlite.org/lang.html" class="uri">https://www.sqlite.org/lang.html</a> fro more</li>
+<li>Already seen CREATE, INSERT</li>
+<li>Can modify tables, schemas using ALTER</li>
+<li>DROP is counterpart to CREATE</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> <span class="kw">table</span> <span class="kw">SET</span> <span class="op">..</span>. <span class="kw">WHERE</span> <span class="op">..</span>.</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="kw">table</span> <span class="kw">WHERE</span> <span class="op">..</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Caution!!!: these operate on whole tables if unqualified</li>
+</ul>
+</div>
+</div>
+<p>Let’s have a look aht the first 10 rows of the <code>Bird_nesets</code> table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Bird_nests <span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Good news, we found new data about the floatAge for the Nest 14HPE1. Let’s update the table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Bird_nests</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SET</span> floatAge <span class="op">=</span> <span class="fl">4.5</span>, ageMethod <span class="op">=</span> <span class="st">'float'</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> Nest_ID <span class="op">=</span> <span class="st">'14HPE1'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>DELETE is similar</li>
+<li>Oops, what happens when accidentally do?:</li>
+</ul>
+<p>UPDATE Bird_nests SET floatAge = 4.5, ageMethod = ‘float’;</p>
+<ul>
+<li>There’s no UNDO in databases</li>
+<li>In this class we can recover using git:</li>
+</ul>
+<pre><code>D .exit</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore database.duckdb</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">duckdb</span> database.duckdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>But in general, won’t be a possibility, databases not typically under git control, usually stored on a server somewhere.</p>
+<section id="strategies-to-avoid-catastrophes" class="level4">
+<h4 class="anchored" data-anchor-id="strategies-to-avoid-catastrophes">Strategies to avoid catastrophes</h4>
+<ul>
+<li>Just subconsciouly be careful, like holding a kitchen knife</li>
+<li>Do SELECT first, then replace SELECT with DELETE &lt;- allows inspection of what’s about to be deleted</li>
+<li>Put comment in front: – DELETE FROM …, then remove comment</li>
+<li>Tweak table name, put x in front, then remove</li>
+<li>Create a temporary table (with the relevant subset when large table)</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<section id="monday-1" class="level3">
+<h3 class="anchored" data-anchor-id="monday-1">Monday</h3>
 <ul>
 <li><a href="lecture-notes-05-mon.txt">lecture-notes-05-mon.txt</a></li>
 <li><a href="in-class-script-05-mon.sql">in-class-script-05-mon.sql</a></li>
@@ -304,8 +521,8 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="../../git_sync_fork.html">How-to sync your fork</a></li>
 </ul>
 </section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<section id="readings" class="level2">
+<h2 class="anchored" data-anchor-id="readings">Readings</h2>
 <ol type="1">
 <li><p>Jeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed.&nbsp;Upper Saddle River, NJ: Pearson/Prentice Hall.<br>
 <a href="https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma990032103790203776">Access via Library Catalog</a></p>
