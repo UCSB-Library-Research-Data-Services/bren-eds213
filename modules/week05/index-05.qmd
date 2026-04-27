@@ -1,27 +1,19 @@
 ---
-title: "Week 5 - I/O, data management & More"
+title: "Week 5 - I/O, data management & more"
 ---
 
 ## Learning objectives
 
--   Data management SQL statement
+-   Data management SQL statements
 
 ## Lecture notes:
 
-### Tuesday
+### Monday
 
--   [lecture-notes-05-tue.txt](lecture-notes-05-tue.txt)
+-   [lecture-notes-05-mon.txt](lecture-notes-05-mon.txt)
 
--   [class-script-05-tue-1.sql](class-script-05-tue-1.sql)
+### Wednesday
 
--   [slides triggers](slides-05-triggers.pptx)
-
--   [class-script-05-tue-2.sql](class-script-05-tue-2.sql)
-
-### Thursday
-
--   Advanced topics:
-    -   [Slides](slides-05-advanced.pptx)
 -   Bash programming:
     -   [Bash essentials](bash-essentials.qmd)
     -   [Vim editor](https://brunj7.github.io/EDS-214-analytical-workflows/vim.html)
