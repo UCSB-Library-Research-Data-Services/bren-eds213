@@ -240,7 +240,7 @@ But in general, won't be a possibility, databases not typically under git contro
 
 - [How-to sync your fork](../../git_sync_fork.qmd)
 
-## Resources
+## Readings
 
 1.  Jeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\
     [Access via Library Catalog](https://search.library.ucsb.edu/permalink/01UCSB_INST/1aqck9j/alma990032103790203776)
