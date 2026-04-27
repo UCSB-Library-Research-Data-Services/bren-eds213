@@ -1,0 +1,137 @@
+RECAP: VIEWS
+============
+
+- a view looks like a table
+- stored in the database
+- executed each time it is referenced
+- handy way to make SQL more palatable
+- ergo, similar to a function in a programming language
+
+Ex: suppose we always want to see species names, not codes
+
+CREATE VIEW Nest_view AS
+    SELECT Book_page, Year, Site, Nest_ID, Scientific_name, Observer
+    FROM Bird_nests JOIN Species
+    ON Species = Code;
+
+Looks just like Bird_nests but with code replaced by scientific name:
+
+SELECT * FROM Nest_view LIMIT 1;
+
+Now use as usual:
+
+SELECT Nest_ID, ANY_VALUE(Scientific_name), COUNT(*) AS Num_eggs
+    FROM Nest_view JOIN Bird_eggs
+    USING (Nest_ID)
+    GROUP BY Nest_ID;
+
+Compared to temp tables:
+- Temp table is like a variable in a programming language
+- As name suggests, table is deleted when database connection is closed
+- Another option is to use a WITH clause, which creates a view
+  for just that statement
+
+Ex: take previous table, use it input to another query:
+
+WITH x AS (
+  SELECT Nest_ID, ANY_VALUE(Scientific_name) AS Scientific_name,
+    COUNT(*) AS Num_eggs
+    FROM Nest_view JOIN Bird_eggs
+    USING (Nest_ID)
+    GROUP BY Nest_ID
+  )
+SELECT Scientific_name, AVG(Num_eggs) AS Avg_num_eggs FROM x
+GROUP BY Scientific_name;
+
+SET OPERATIONS
+==============
+
+- UNION, INTERSECT, EXCEPT
+- last one is set difference
+- these are set operations, so UNION eliminates duplicates
+- to preserve duplicate rows, UNION ALL
+
+Example of UNION: let's create a table of all
+bird nests and egg counts, including nests that have no egg data recorded.
+In the quiz last week, we did this by
+
+SELECT Nest_ID, COUNT(Egg_num) as Num_eggs
+  FROM Bird_nests LEFT JOIN Bird_eggs
+  USING (Nest_ID)
+  GROUP BY Nest_ID;
+
+Using EXCEPT:
+
+SELECT Nest_ID, COUNT(*) AS Num_eggs
+  FROM Bird_eggs
+  GROUP BY Nest_ID
+
+UNION
+
+SELECT Nest_ID, 0 AS Num_eggs
+  FROM Bird_nests
+  WHERE Nest_ID NOT IN (SELECT DISTINCT Nest_ID FROM Bird_eggs);
+
+- Caution: UNION not really looking at names of columns,
+  just number of columns and data types
+- So is possible to union nonsensical things together
+
+Example of EXCEPT: 3rd way to get species that do *not* have nest data
+
+- First way
+SELECT Code FROM Species
+  WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);
+
+- Second way
+SELECT Species, Code
+  FROM Bird_nests RIGHT JOIN Species
+  ON Species = Code
+  WHERE Species IS NULL;
+
+- Third way
+SELECT Code FROM Species
+  EXCEPT
+  SELECT DISTINCT Species FROM Bird_nests;
+
+DATA MANAGEMENT STATEMENTS
+==========================
+
+- There's way more than just SELECT in SQL
+- Already seen CREATE, INSERT
+- More in https://www.sqlite.org/lang.html
+- Can modify tables, schemas using ALTER
+- DROP is counterpart to CREATE
+
+UPDATE table SET ... WHERE ...
+DELETE FROM table WHERE ...
+
+- Caution!!!: these operate on whole tables if unqualified
+
+SELECT * FROM Bird_nests LIMIT 10;
+
+UPDATE Bird_nests
+  SET floatAge = 4.5, ageMethod = 'float'
+  WHERE Nest_ID = '14HPE1';
+
+- DELETE is similar
+- Oops, what happens when accidentally do?:
+
+UPDATE Bird_nests
+  SET floatAge = 4.5, ageMethod = 'float';
+
+- There's no UNDO in databases
+- In this class we can recover:
+
+.exit
+git restore database.duckdb
+duckdb database.duckdb
+
+- But in general, won't be a possibility, databases not typically
+  under git control, usually stored on a server somewhere
+
+- Strategies to avoid catastrophes
+-- Just subconsciouly be careful, like holding a kitchen knife
+-- Do SELECT first, then replace SELECT with DELETE <- allows inspection
+   of what's about to be deleted
+-- Put comment in front: -- DELETE FROM ..., then remove comment
+-- Tweak table name, put x in front, then remove
