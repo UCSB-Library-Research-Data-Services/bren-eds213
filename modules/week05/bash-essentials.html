@@ -555,31 +555,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="test-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="test-your-understanding">Test your understanding</h2>
-<p><strong>Be sure to <code>cd</code> to the class data GitHub repository, <code>ASDN_csv</code> subdirectory, before answering these!!</strong></p>
+<p><strong>Be sure to <code>cd</code> to the class data GitHub repository, <code>for_bash_essentials</code> subdirectory, before answering these!!</strong></p>
 <ol type="1">
 <li><p>Compare the output of these three commands:</p>
 <p><code>ls</code><br>
 <code>ls .</code><br>
-<code>ls "$(pwd)/../ASDN_csv"</code></p>
-<p>Explain why you see what you see.</p></li>
+<code>ls "$(pwd)/../for_bash_essentials"</code></p>
+<p>Explain why you see what you see, and explain what processing Bash is doing in the third command.</p></li>
 <li><p>Try the following two commands:</p>
 <p><code>wc -l *.csv</code><br>
 <code>cat *.csv | wc -l</code></p>
 <p>The first prints filenames and line counts. The second prints a bare number. Why does it print that number, and why does it not print any filenames?</p></li>
 <li><p>You want to count the total number of lines in all CSV files and try this command:</p>
-<p><code>cat *.csv | wc -l species.csv</code></p>
+<p><code>cat *.csv | wc -l a.csv</code></p>
 <p>What happens and why?</p></li>
 <li><p>You’re given</p>
 <p><code>name=Moe</code></p>
 <p>and you’d like to print “Moe_Howard”. You try this:</p>
 <p><code>echo "$name_Howard"</code></p>
-<p>but that doesn’t quite work. What fix can you apply to <code>$name</code>, while keeping it inside the quotation marks, to make this command give the desired effect?</p></li>
+<p>but that doesn’t quite work. What fix can you apply to <code>$name</code>, while keeping it inside the quotation marks, to make this command give the desired effect? (Refer back to section 3.)</p></li>
 <li><p>You create a script and run it like so:</p>
 <p><code>bash myscript.sh *.csv</code></p>
 <p>What are the values of variables <code>$1</code> and <code>$#</code>? Explain why the script does not see just one argument passed to it.</p></li>
 <li><p>You create a script and run it like so:</p>
 <p><code>bash myscript.sh "$(date)" $(date)</code></p>
-<p>In your script, what is the value of variable <code>$3</code>?</p></li>
+<p>In your script, what are the values of variables <code>$1</code> and <code>$3</code>?</p></li>
 <li><p>Create a file you don’t care about (because you’re about to destroy it):</p>
 <p><code>echo "yo ho a line of text" &gt; junk_file.txt</code><br>
 <code>echo "another line" &gt;&gt; junk_file.txt</code></p>
