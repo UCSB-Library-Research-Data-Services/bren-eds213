@@ -219,14 +219,14 @@ But in general, won't be a possibility, databases not typically under git contro
 - Create a temporary table (with the relevant subset when large table)
 
 
-## Resources
+### Resources
 
-### Monday
+**Monday**
 
 -   [lecture-notes-05-mon.txt](lecture-notes-05-mon.txt)
 -   [in-class-script-05-mon.sql](in-class-script-05-mon.sql)
 
-### Wednesday
+## Wednesday
 
 -   Bash programming:
     -   [Bash essentials](bash-essentials.qmd)
