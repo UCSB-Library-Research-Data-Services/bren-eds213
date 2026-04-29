@@ -2,7 +2,7 @@
 title: "Week 5 - Create a test harness"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/360508>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/473367>**
 
 # Part 1
 

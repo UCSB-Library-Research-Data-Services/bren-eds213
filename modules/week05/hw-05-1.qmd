@@ -2,7 +2,7 @@
 title: "Week 5 - Egg variance"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/360508>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/473365>**
 
 Liu _et al_ found an interesting result, that characteristics of the eggs of certain Arctic shorebird species exhibit linear variation as a function of longitude (that's **longitude**, not latitude) [^1]:
 
