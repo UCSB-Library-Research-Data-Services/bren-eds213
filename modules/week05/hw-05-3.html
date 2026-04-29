@@ -266,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/360508" class="uri">https://ucsb.instructure.com/courses/26293/assignments/360508</a></strong></p>
 <section id="part-1" class="level1">
 <h1>Part 1</h1>
-<p>A common task is to create a script — a “test harness” — that will allow you to test something (some code, an algorithm, a model, etc.) by running it repeatedly, perhaps under varying conditions. Example applications include machine learning using different hyperparameters and Monte Carlo simulation using different random seeds. In this assignment you will create a Bash script that will allow you to time how long it takes to run an SQL query. You will be using this script later in class to explore the performance effects of indexes, so hang on to it.</p>
+<p>A common task is to create a script — a “test harness” — that will allow you to test something (some code, an algorithm, a model, etc.) by running it repeatedly, perhaps under varying conditions. Example applications include machine learning using different hyperparameters and Monte Carlo simulation using different random seeds. In this assignment you will create a Bash script that will allow you to time how long it takes to run an SQL query.</p>
 <p>Your script will be invoked like so:</p>
 <pre><code>% bash query_timer.sh label num_reps query db_file csv_file
 
@@ -278,8 +278,8 @@ ul.task-list li input[type="checkbox"] {
       csv_file: CSV file to create or append to</code></pre>
 <p>For example, you might run:</p>
 <pre><code>% bash query_timer.sh with_index_a 1000 'SELECT COUNT(*) FROM Bird_nests' \
-     database.db timings.csv</code></pre>
-<p>In this example your script would run the given query (i.e., SELECT COUNT(*) FROM Bird_nests) on the given database (database.db) 1000 times. If the total time that took was 3 seconds, your script will divide that time by the number of repetitions (1000) and compute that each DuckDB invocation took 0.003 seconds. Finally, your script will <strong>append</strong> the following record to the CSV tile timings.csv:</p>
+     database.duckdb timings.csv</code></pre>
+<p>In this example your script would run the given query (i.e., SELECT COUNT(*) FROM Bird_nests) on the given database (database.duckdb) 1000 times. If the total time that took was 3 seconds, your script will divide that time by the number of repetitions (1000) and compute that each DuckDB invocation took 0.003 seconds. Finally, your script will <strong>append</strong> the following record to the CSV file timings.csv:</p>
 <pre><code>with_index_a,0.003</code></pre>
 <p>Conceptually, your script will look something like this (this is pseudocode):</p>
 <pre><code>get current time and store it
@@ -298,7 +298,7 @@ write output</code></pre>
 <li><p>Looping: see below.</p></li>
 <li><p>In executing DuckDB, be sure to appropriately quote the query.</p></li>
 <li><p>Computing elapsed time: use Bash arithmetic.</p></li>
-<li><p>Division. Bash does not support floating point numbers, so you’ll have to use a helper program. Take yer pick depending on what’s available to you. Let’s say you want to divide 10 by 3 (you will want to reference variables in your computation, but here I’m just illustrating dividing two literal numbers). You might say something like:</p>
+<li><p>Division. Bash does not support floating point numbers, so you’ll have to use a helper program. Take yer pick depending on what’s available to you. Let’s say you want to divide 10 by 3 (you will want to reference variables in your computation, but here we’re just illustrating dividing two literal numbers). You might say something like:</p>
 <ul>
 <li><code>elapsed=$(echo "scale=7; 10/3" | bc)</code></li>
 <li><code>elapsed=$(echo "10/3" | awk -F / '{print $1/$2}')</code></li>
