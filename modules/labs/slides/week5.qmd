@@ -1,0 +1,166 @@
+---
+format:
+  revealjs:
+    incremental: true
+    slide-number: true
+    progress: true
+    code-line-numbers: true
+    code-copy: true
+    theme:
+      - EDS213_slides.scss
+    embed-resources: true
+---
+
+##  {#title-slide data-menu-title="Title Slide" background="#cad2c5"}
+
+[EDS 213: Lab 5]{.custom-title}
+
+<hr class="hr-off-white">
+
+[Documenting Your Work]{.custom-subtitle}
+
+##  {#overview data-menu-title="Overview"}
+
+[This Week's Goal]{.slide-title}
+
+You've found some datasets, cleaned your data, built a database, written queries, and started analyzing your data.Now make sure someone else (or future you) can understand and reproduce it.
+
+
+- This week you will document your project so it meets the course rubric
+- Documentation covers two things: your **code** and your **repository**
+- Remember: Others should be able to **reproduce your results** without asking you anything!
+
+
+
+##  {#doc-code data-menu-title="Comment Your Code"}
+
+[Comment Your Code]{.slide-title}
+
+::: {style="font-size: 0.85em;"}
+Every script and notebook should be self-explanatory. Add comments that explain **why**, not just what:
+
+```python
+# Drop rows where species_id is NULL —
+# these represent failed sensor readings, not real observations
+df = df.dropna(subset=["species_id"])
+```
+
+
+
+::: {.fragment}
+```sql
+-- Aggregate by habitat type to compare total observations
+-- across ecosystem categories rather than individual sites
+SELECT habitat_type, SUM(count) AS total
+FROM observations o
+JOIN sites s ON o.site_id = s.site_id
+GROUP BY habitat_type;
+```
+:::
+
+::: {.fragment}
+A future reader should understand **every non-obvious decision** without asking you.
+:::
+:::
+
+
+##  {#doc-reproducibility data-menu-title="Reproducibility"}
+
+[Make It Reproducible]{.slide-title}
+
+Someone should be able to **clone your repo and recreate your results** (with the exception of needing to download data, but instructions should this should be extremely clear!).That means:
+
+- All necessary files are included or clearly referenced
+- Your **`.sql` file** , cleaning script, and visualization script (both `.ipynb` or `.qmd`) are present
+- **Dependencies** are listed so the environment can be recreated
+
+##  {#dependencies data-menu-title="Dependencies File"}
+
+[The Dependencies File]{.slide-title}
+
+::: {style="font-size: 0.85em;"}
+Include a **`.txt` file** in your repo that lists your environment requirements.
+:::
+
+**For Python**, export from conda or pip:
+
+```bash
+# conda
+conda env export > environment.yml
+
+# pip
+pip freeze > requirements.txt
+```
+
+**For R**, document your package versions:
+
+```r
+# run in your R script or notebook
+sessionInfo()
+# or for a clean list:
+writeLines(capture.output(sessionInfo()), "requirements.txt")
+```
+
+::: {.fragment}
+Name it `requirements.txt` or `environment.yml`. 
+:::
+
+
+##  {#readme-overview data-menu-title="README Overview"}
+
+[Repository README]{.slide-title}
+
+The README is the **first thing anyone sees** when they visit your repository. It should answer: *"What is this, and how do I use it?"*
+
+Required sections:
+
+- Short, descriptive **title**
+- **Purpose** — what the project is about
+- **Repository structure** — what files exist and what they do
+- **Data access** — where the data lives and how to get it
+- **References & acknowledgements**
+- **Any other info** that is necessary to reproduce the analysis
+
+##  {#readme-details data-menu-title="README Details"}
+
+[README: What Each Section Should Cover]{.slide-title-med}
+
+::: {style="font-size: 0.75em;"}
+
+| Section | What to include |
+|---|---|
+| **Title** | Short and descriptive |
+| **Purpose** | Brief explanation of the repo's goal (paragraphs or bullets) |
+| **Repository structure** | File organization — what's in each folder/file |
+| **Data access** | Where data lives, how to access it to run the code |
+| **References** | Course, datasets, and any other sources — consistent format with links |
+
+::: {.fragment}
+No hidden files (especially **no `.DS_Store`**) other than `.gitignore`.
+:::
+
+:::
+
+##  {#this-weeks-task data-menu-title="This Week's Task"}
+
+[This Week's Task]{.slide-title}
+
+::: {style="font-size: 0.85em;"}
+Complete the documentation for your project.
+
+::: {.fragment}
+**In your code:**
+
+- [ ] Add comments explaining non-obvious decisions in your `.sql` and `.ipynb` / `.qmd` files
+- [ ] Ensure steps are clearly ordered and explained
+:::
+
+::: {.fragment}
+**In your repository:**
+
+- [ ] Write or update your `README` to meet the rubric
+- [ ] Add a `requirements.txt` or `environment.yml` listing your dependencies
+- [ ] Confirm all required files are present (`.sql`, `.ipynb` / `.qmd` visualization and data cleaning script)
+- [ ] Remove any `.DS_Store` or other hidden files
+:::
+:::
