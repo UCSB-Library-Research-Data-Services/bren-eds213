@@ -1,0 +1,138 @@
+---
+title: "Lab 5"
+subtitle: "EDS 213 | Documenting Your Work"
+---
+
+## Overview
+
+You've found some datasets, cleaned your data, built a database, written queries, and started analyzing your data. This week, you'll make the work you've done so far reproducible by documenting it thoroughly. 
+
+[View Slides](slides/week5.qmd){.btn .btn-outline-primary role="button"}
+
+---
+
+## What Documentation Covers
+
+Documentation for this project has two parts:
+
+1. **Your code** — the `.sql` script and `.ipynb` / `.qmd` analysis file should be well commented
+2. **Your repository** — the README should serve as a guide for anyone visiting your project
+
+Both are extremely important for both reproducibility and understanding the steps you decided to take and why. 
+
+---
+
+
+## Commenting Your Code
+
+Comments in your `.sql` and `.ipynb` / `.qmd` files should explain **why** decisions were made, not just describe what the code does. Variable names and SQL keywords already communicate *what* — comments are for context a reader couldn't otherwise infer.
+
+**Good:**
+```python
+# Drop rows where species_id is NULL —
+# these represent failed sensor readings, not valid observations
+df = df.dropna(subset=["species_id"])
+```
+
+**Not useful:**
+```python
+# Drop nulls
+df = df.dropna(subset=["species_id"])
+```
+
+The same principle applies to SQL:
+
+```sql
+-- Aggregate by habitat type rather than individual sites
+-- so results are comparable across the study area
+SELECT habitat_type, SUM(count) AS total_observations
+FROM observations o
+JOIN sites s ON o.site_id = s.site_id
+GROUP BY habitat_type;
+```
+
+---
+
+
+## Making Your Project Reproducible
+
+A reproducible project is one that someone else can clone and run without asking you anything (with the exception of needing to download data, but instructions should this should be extremely clear!). To get there:
+
+- All necessary files are included or clearly referenced
+- Both your **`.sql` file** and your **`.ipynb` / `.qmd` file** are in the repo
+- Dependencies are documented so the environment can be recreated
+
+---
+
+## The Dependencies File
+
+Include a plain-text file listing the packages and versions required to run your analysis.
+
+**For Python**, export from conda or pip:
+
+```bash
+# conda
+conda env export > environment.yml
+
+# pip
+pip freeze > requirements.txt
+```
+
+**For R**, capture your session info and write it to a file:
+
+```r
+writeLines(capture.output(sessionInfo()), "requirements.txt")
+```
+
+Name the file `requirements.txt` or `environment.yml` and place it in the root of your repository.
+
+---
+
+
+
+### README requirements
+
+Your README is the main location viewers can find the documentation for your repo. Include the following in your README: 
+
+- **Title**  Short and descriptive. It should tell someone what the project is without needing to read further.
+
+- **Purpose**  A brief explanation of what the repository is for. Paragraphs or a bulleted list are both fine. You may include an image or logo if relevant.
+
+- **Repository structure**  Describe what files and folders exist and what each one contains. A reader should know where to look for any piece of the project.
+
+- **Data access** Explain where the data lives (in the repo, on a server, in a package, etc.) and how to access it in order to run the code.
+
+- **References & acknowledgements**  In a consistent format with links, provide a reference to the course and any other sources that supported the project. Include references for datasets too.
+
+- **Any other essential info that is required to reproduce your project**
+
+---
+
+## README Quality Checklist
+
+Before submitting, review your README:
+
+::: callout-note
+## README Checklist
+- [ ] Short, descriptive title
+- [ ] Markdown headers separate each section
+- [ ] Purpose is clearly explained
+- [ ] Repository structure is described
+- [ ] Data access instructions are complete
+- [ ] References are included in a consistent format with links
+- [ ] No typos, grammatical errors, or formatting mistakes
+- [ ] No `.DS_Store` or other hidden files (other than `.gitignore`) are committed
+:::
+
+---
+
+## This Week's Task
+
+::: callout-note
+## Documentation Checklist
+- [ ] README is written and meets all rubric requirements
+- [ ] `requirements.txt` or `environment.yml` is present in the repo
+- [ ] All required files are present: `.sql`, `.ipynb` / `.qmd`, data cleaning script
+- [ ] Code is commented with non-obvious decisions explained
+- [ ] No `.DS_Store` or hidden files in the repo
+:::
