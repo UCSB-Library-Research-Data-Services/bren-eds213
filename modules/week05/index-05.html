@@ -508,12 +508,22 @@ Warning
 <li>Bash programming:
 <ul>
 <li><a href="../../modules/week05/bash-essentials.html">Bash essentials</a></li>
-<li><a href="https://brunj7.github.io/EDS-214-analytical-workflows/vim.html">Vim editor</a></li>
-<li><a href="https://eds-214.github.io/eds214-handson-cli/cli-pitch.html">CLI pitch</a></li>
-<li><a href="https://eds-214.github.io/eds214-handson-cli/cli-handson-files.html">CLI practice</a></li>
-<li><a href="https://eds-214.github.io/EDS-214-analytical-workflows/day2-cli_advanced.html">CLI advanced</a></li>
+<li>CLI pitch aka why should I care?!: <a href="https://eds-214.github.io/eds214-handson-cli/cli-pitch.html" class="uri">https://eds-214.github.io/eds214-handson-cli/cli-pitch.html</a></li>
+<li>CLI practice: <a href="https://eds-214.github.io/eds214-handson-cli/cli-handson-files.html" class="uri">https://eds-214.github.io/eds214-handson-cli/cli-handson-files.html</a></li>
+<li>CLI advanced topics: <a href="https://eds-214.github.io/EDS-214-analytical-workflows/day2-cli_advanced.html" class="uri">https://eds-214.github.io/EDS-214-analytical-workflows/day2-cli_advanced.html</a></li>
+<li>bash manual: <a href="https://www.gnu.org/software/bash/manual/" class="uri">https://www.gnu.org/software/bash/manual/</a></li>
+<li>vim editor cheat sheet: <a href="https://brunj7.github.io/EDS-214-analytical-workflows/vim.html" class="uri">https://brunj7.github.io/EDS-214-analytical-workflows/vim.html</a></li>
 </ul></li>
 </ul>
+<p>Our bash script <code>count_lines.sh</code> counting the number of line in csv files within a folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage: sh count_lines.sh /path/to/</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="va">csv_dir</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="va">$csv_dir</span>/<span class="pp">*</span>.csv<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"</span><span class="va">$file</span><span class="st"> has </span><span class="va">$(</span><span class="fu">wc</span> <span class="at">-l</span> <span class="op">&lt;</span> <span class="va">$file)</span><span class="st"> lines"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="data" class="level2">

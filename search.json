@@ -1110,7 +1110,7 @@
     "href": "modules/week05/index-05.html#resources",
     "title": "Week 5 - I/O, data management & more",
     "section": "Resources",
-    "text": "Resources\n\nMonday\n\nlecture-notes-05-mon.txt\nin-class-script-05-mon.sql\n\n\n\nWednesday\n\nBash programming:\n\nBash essentials\nVim editor\nCLI pitch\nCLI practice\nCLI advanced"
+    "text": "Resources\n\nMonday\n\nlecture-notes-05-mon.txt\nin-class-script-05-mon.sql\n\n\n\nWednesday\n\nBash programming:\n\nBash essentials\nCLI pitch aka why should I care?!: https://eds-214.github.io/eds214-handson-cli/cli-pitch.html\nCLI practice: https://eds-214.github.io/eds214-handson-cli/cli-handson-files.html\nCLI advanced topics: https://eds-214.github.io/EDS-214-analytical-workflows/day2-cli_advanced.html\nbash manual: https://www.gnu.org/software/bash/manual/\nvim editor cheat sheet: https://brunj7.github.io/EDS-214-analytical-workflows/vim.html\n\n\nOur bash script count_lines.sh counting the number of line in csv files within a folder:\n#!/bin/bash\n# Usage: sh count_lines.sh /path/to/\n\ncsv_dir=$1\n\nfor file in $csv_dir/*.csv; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone"
   },
   {
     "objectID": "modules/week05/index-05.html#data",
