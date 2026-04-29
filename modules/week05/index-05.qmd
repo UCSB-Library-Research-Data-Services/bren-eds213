@@ -231,6 +231,9 @@ But in general, won't be a possibility, databases not typically under git contro
 -   Bash programming:
     -   [Bash essentials](bash-essentials.qmd)
     -   [Vim editor](https://brunj7.github.io/EDS-214-analytical-workflows/vim.html)
+    -   [CLI pitch](https://eds-214.github.io/eds214-handson-cli/cli-pitch.html)
+    -   [CLI practice](https://eds-214.github.io/eds214-handson-cli/cli-handson-files.html)
+    -   [CLI advanced](https://eds-214.github.io/EDS-214-analytical-workflows/day2-cli_advanced.html)
 
 ## Data:
 
