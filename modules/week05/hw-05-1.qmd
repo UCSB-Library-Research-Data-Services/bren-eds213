@@ -24,19 +24,19 @@ For this problem, you will be:
 
 To do so you will need to load a larger set of nest and egg data from CSV files into new tables, and use some statistics functions provided by DuckDB to do the regression.
 
-- Step 1.  Open the ASDN database we have been using all along, `database.duckdb`.  In this database, load `nests_big.csv` into a table `nests_big` using
+- Step 1.  Open the ASDN database we have been using all along, `database.duckdb`.  In this database, load `nests_big.csv` into a table `Nests_big` using
 
-  `CREATE TABLE nests_big AS SELECT * FROM 'nests_big.csv';`
+  `CREATE TABLE Nests_big AS SELECT * FROM 'nests_big.csv';`
   
-  Similarly load `eggs_big.csv` into a table `eggs_big`.  Get a sense of what's in these tables by looking at how many rows they have, what columns they have, and what some sample rows look like.  Also look at the table definitions that DuckDB created automatically.
+  Similarly load `eggs_big.csv` into a table `Eggs_big`.  Get a sense of what's in these tables by looking at how many rows they have, what columns they have, and what some sample rows look like.  Also look at the table definitions that DuckDB created automatically.
   
-- Step 2.  To be able to relate egg measurements to species and sites you will need to perform some relational joins.  To start with, perform a 3-way join between `eggs_big`, `nests_big`, and `Species`.  To do so, know that any number of tables can be joined in one statement simply by listing the tables and join conditions in order, as in:
+- Step 2.  To be able to relate egg measurements to species and sites you will need to perform some relational joins.  To start with, perform a 3-way join between `Eggs_big`, `Nests_big`, and `Species`.  To do so, know that any number of tables can be joined in one statement simply by listing the tables and join conditions in order, as in:
 
   ```
   SELECT * FROM eggs_big
     JOIN nests_big USING ...
     JOIN Species ON ...
-    JOIN some_other_table ON ...
+    ...
   ```
 
   Add a WHERE clause to your query to select the eggs for species Calidris alpina only.  You should wind up with a table that has 2912 rows and 10 columns and that looks something like this:
@@ -70,7 +70,7 @@ To do so you will need to load a larger set of nest and egg data from CSV files 
   │ barr    │          10049.413 │
   ```
 
-- Step 4.  You're getting close.  To perform the linear regression you will need a table with two columns, Longitude and Volume.  To replace the Site column above with Longitude will require another join.  Revise your query to add a fourth (!) join with the Site table.  Uh oh, both the Species table and Site tables have columns named Code.  You will need to prefix column names with table names to disambiguate.  If all goes well, you should wind up with a table looking like this:
+- Step 4.  You're getting close.  To perform the linear regression you will need a table with two columns, Longitude and Volume.  To replace the Site column above with Longitude will require a join with the Site table.  You can save the query you have so far as a temporary table or view and then work from it, or keep adding on to your current query.  Either way, add a join with the Site table.  Uh oh, both the Species table and Site tables have columns named Code.  You may need to prefix column names with table names to disambiguate.  If all goes well, you should wind up with a table looking like this:
 
   ```
   ┌───────────┬────────────────────┐
@@ -83,7 +83,7 @@ To do so you will need to load a larger set of nest and egg data from CSV files 
   │    -156.6 │          10049.413 │
   ```
 
-- Step 5. Deal with a numeric bugaboo.  If you look at the minimum and maximum values of longitude in the Site table, you will see that they range from -164.9 to 170.6.  But in this case, the correct interpretation of a positive longitude is really that it is to the west of the +/-180 meridian, i.e., it is even more negative than -180.  In other words, if a longitude $l$ is positive, it should be replaced by $l-360$, but if it is negative, it can be left as is.  Use a CASE statement to express this.  Modify your query yet again so that it resembles:
+- Step 5. Deal with a numeric bugaboo.  If you look at the minimum and maximum values of longitude in the Site table, you will see that they range from -164.9 to 170.6.  But in this case, the correct interpretation of a positive longitude is really that it is to the west of the +/-180 meridian, i.e., it is even more negative than -180.  In other words, if a longitude $l$ is positive, it should be replaced by $l-360$, but if it is negative, it can be left as is.  Use a [CASE expression](https://duckdb.org/docs/current/sql/expressions/case) to express this.  Modify your query yet again so that it resembles:
 
   `SELECT CASE WHEN ... THEN ... ELSE ... END AS Longitude, ...`
 
@@ -108,7 +108,7 @@ Please submit your SQL for the above.
 
 Answer the following questions.
 
-1. Do the tables created automatically by DuckDB guarantee that a nest ID mentioned in the `eggs_big` table actually exists in the `nests_big` table?  If yes, explain how that is guaranteed, if not, explain why not. **(6pts)**
+1. Do the tables created automatically by DuckDB guarantee that a nest ID mentioned in the `Eggs_big` table actually exists in the `Nests_big` table?  If yes, explain how that is guaranteed, if not, explain why not. **(6pts)**
 
 2. What queries did you use (or could you use) to find the minimum and maximum longitude values in the Site table? **(2pts)**
 
