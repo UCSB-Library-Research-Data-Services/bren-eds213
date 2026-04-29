@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 5 - Bash essentials – eds213</title>
+<title>Week 5 - Create a test harness – eds213</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -231,15 +231,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#part-1" id="toc-part-1" class="nav-link active" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 5 - Bash essentials</h1>
+<h1 class="title">Week 5 - Create a test harness</h1>
 </div>
 
 
@@ -256,11 +263,89 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/360506" class="uri">https://ucsb.instructure.com/courses/26293/assignments/360506</a></strong></p>
-<p>Read <a href="../../modules/week05/bash-essentials.html">Ten Bash Essentials</a> and answer the 8 questions at the end. Be sure you are in the <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data/tree/main/ASDN_csv">ASDN_csv</a> of the class data GitHub repository before answering the questions, as they rely on the files contained therein.</p>
-<p><strong>Credit: 20 points</strong></p>
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/360508" class="uri">https://ucsb.instructure.com/courses/26293/assignments/360508</a></strong></p>
+<section id="part-1" class="level1">
+<h1>Part 1</h1>
+<p>A common task is to create a script — a “test harness” — that will allow you to test something (some code, an algorithm, a model, etc.) by running it repeatedly, perhaps under varying conditions. Example applications include machine learning using different hyperparameters and Monte Carlo simulation using different random seeds. In this assignment you will create a Bash script that will allow you to time how long it takes to run an SQL query. You will be using this script later in class to explore the performance effects of indexes, so hang on to it.</p>
+<p>Your script will be invoked like so:</p>
+<pre><code>% bash query_timer.sh label num_reps query db_file csv_file
+
+  Arguments:
+      label:    explanatory label that will be output
+      num_reps: number of repetitions
+      query:    SQL query to run
+      db_file:  database file
+      csv_file: CSV file to create or append to</code></pre>
+<p>For example, you might run:</p>
+<pre><code>% bash query_timer.sh with_index_a 1000 'SELECT COUNT(*) FROM Bird_nests' \
+     database.db timings.csv</code></pre>
+<p>In this example your script would run the given query (i.e., SELECT COUNT(*) FROM Bird_nests) on the given database (database.db) 1000 times. If the total time that took was 3 seconds, your script will divide that time by the number of repetitions (1000) and compute that each DuckDB invocation took 0.003 seconds. Finally, your script will <strong>append</strong> the following record to the CSV tile timings.csv:</p>
+<pre><code>with_index_a,0.003</code></pre>
+<p>Conceptually, your script will look something like this (this is pseudocode):</p>
+<pre><code>get current time and store it
+loop num_reps times
+    duckdb db_file query
+end loop
+get current time
+compute elapsed time
+divide elapsed time by num_reps
+write output</code></pre>
+<p>I would like you to follow the above pseudocode because this exercise is fundamentally about using certain Bash features.</p>
+<p>(BTW, is this a fair way to time queries? Yes and no. Clearly it’s a bit unfair that we are counting the overhead of repeatedly firing up DuckDB and opening the database file. And there may be other processing going on on the machine that affects the wall-clock time that we’re measuring here. On the other hand, databases are almost always I/O-bound and not compute-bound, that is, their performance is primarily limited by the time it takes to read data into memory from disk, and because of that, wall-clock time can be a better measure than CPU time.)</p>
+<p>We’re doing this in Bash, so every one of these steps is a challenge (it is okay to hate Bash). So here are a lot of tips and hints:</p>
+<ul>
+<li><p>Getting the current time: try <code>date +%s</code> or use the magic SECONDS variable (do a <code>man bash</code> to read about it).</p></li>
+<li><p>Looping: see below.</p></li>
+<li><p>In executing DuckDB, be sure to appropriately quote the query.</p></li>
+<li><p>Computing elapsed time: use Bash arithmetic.</p></li>
+<li><p>Division. Bash does not support floating point numbers, so you’ll have to use a helper program. Take yer pick depending on what’s available to you. Let’s say you want to divide 10 by 3 (you will want to reference variables in your computation, but here I’m just illustrating dividing two literal numbers). You might say something like:</p>
+<ul>
+<li><code>elapsed=$(echo "scale=7; 10/3" | bc)</code></li>
+<li><code>elapsed=$(echo "10/3" | awk -F / '{print $1/$2}')</code></li>
+<li><code>elapsed=$(python -c "print(10/3)")</code></li>
+<li><code>elapsed=$(perl -l -e "print 10/3")</code></li>
+</ul></li>
+<li><p>Output: be sure to use the appropriate I/O redirection.</p></li>
+</ul>
+<p>Two approaches to looping. If you want to do something 10 times, you can use a while loop that increments a counter:</p>
+<pre><code>i=0
+while [ $i -lt 10 ]; do
+    echo "this is loop iteration $i"
+    i=$((i+1))
+done</code></pre>
+<p>Or, you can use <code>seq</code>. Generally you can use a for loop to loop through a list of items like so:</p>
+<pre><code>for i in 0 1 2 3 4 5 6 7 8 9; do
+    echo "this is loop iteration $i"
+done</code></pre>
+<p>But you can use <code>seq</code> to generate a list of numbers of a desired length:</p>
+<pre><code>for i in $(seq 10); do
+    echo "this is loop iteration $i"
+done</code></pre>
+<p>And some more advice. The reason for making the number of repetitions an argument to this script, as opposed to a fixed constant, is that you may have to adjust the number of repetitions depending how fast the query is. The <code>date</code> command and SECONDS variable have a resolution of only 1 second, so if running the query 10 times still fits in under 1 second your elapsed time will show up as 0. You may need to run a query 100 or 1000 times or more to get positive elapsed times, and to get more precision.</p>
+<p>Also, we don’t actually care about the output from the query here. I would keep the output while you’re debugging your script (so that you can verify that DuckDB is being run repeatedly), but once you feel your script is working you can redirect DuckDB’s output and error streams to /dev/null.</p>
+<p>Finally, it is highly recommended that you upload your script to <a href="https://www.shellcheck.net" class="uri">https://www.shellcheck.net</a>. You’re not required to follow its advice, but I have found its advice to be enlightening.</p>
+<p>Please submit your Bash script.</p>
+</section>
+<section id="part-2" class="level1">
+<h1>Part 2</h1>
+<p>In class we looked at three ways to find out which species we do not have nest data for. Method using NOT IN:</p>
+<pre><code>SELECT Code
+    FROM Species
+    WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);</code></pre>
+<p>Method using an outer join:</p>
+<pre><code>SELECT Code
+    FROM Bird_nests RIGHT JOIN Species
+    ON Species = Code
+    WHERE Nest_ID IS NULL;</code></pre>
+<p>Method using a set operation:</p>
+<pre><code>SELECT Code FROM Species
+EXCEPT
+SELECT DISTINCT Species FROM Bird_nests;</code></pre>
+<p>Use your test harness to time these three queries. Use descriptive labels to record which query is being run, e.g., <code>subquery</code>, <code>outer_join</code>, and <code>except</code>. Submit your CSV file. Report back how many repetitions you had to use to get good timings, and which method is fastest.</p>
+<p><strong>Credit: 50 points</strong></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <div>

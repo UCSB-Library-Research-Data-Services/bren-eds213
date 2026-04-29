@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 5 - Create a test harness – eds213</title>
+<title>Week 5 - Create a trigger – eds213</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -238,6 +238,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#part-1" id="toc-part-1" class="nav-link active" data-scroll-target="#part-1">Part 1</a></li>
   <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
   </ul>
 </nav>
     </div>
@@ -246,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 5 - Create a test harness</h1>
+<h1 class="title">Week 5 - Create a trigger</h1>
 </div>
 
 
@@ -263,86 +264,106 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/360508" class="uri">https://ucsb.instructure.com/courses/26293/assignments/360508</a></strong></p>
+<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/360505" class="uri">https://ucsb.instructure.com/courses/26293/assignments/360505</a></strong></p>
+<p><strong>For this assignment and this assignment only, you <em>must</em> use SQLite and <a href="https://github.com/UCSB-Library-Research-Data-Services/bren-eds213-data/blob/main/database/database.sqlite">database.sqlite</a> in the class data GitHub repository!</strong></p>
+<p>(The SQLite command is <code>sqlite3</code>. It’s already installed on the Bren servers. Installing it on your local machine, if you like, is similar to installing DuckDB.)</p>
+<p>The Bird_eggs table uniquely identifies each egg by a pair (Nest_ID, Egg_num). The egg numbers for a given nest always have the sequential values 1, 2, 3, 4, etc. For example, there are 3 eggs in nest 14eabaage01:</p>
+<pre><code>SELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';
+┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐
+│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │
+├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤
+│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 1       │ 39.14  │ 33.0  │
+│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 2       │ 41.51  │ 33.39 │
+│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 3       │ 48.29  │ 33.4  │
+└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘</code></pre>
 <section id="part-1" class="level1">
 <h1>Part 1</h1>
-<p>A common task is to create a script — a “test harness” — that will allow you to test something (some code, an algorithm, a model, etc.) by running it repeatedly, perhaps under varying conditions. Example applications include machine learning using different hyperparameters and Monte Carlo simulation using different random seeds. In this assignment you will create a Bash script that will allow you to time how long it takes to run an SQL query. You will be using this script later in class to explore the performance effects of indexes, so hang on to it.</p>
-<p>Your script will be invoked like so:</p>
-<pre><code>% bash query_timer.sh label num_reps query db_file csv_file
-
-  Arguments:
-      label:    explanatory label that will be output
-      num_reps: number of repetitions
-      query:    SQL query to run
-      db_file:  database file
-      csv_file: CSV file to create or append to</code></pre>
-<p>For example, you might run:</p>
-<pre><code>% bash query_timer.sh with_index_a 1000 'SELECT COUNT(*) FROM Bird_nests' \
-     database.db timings.csv</code></pre>
-<p>In this example your script would run the given query (i.e., SELECT COUNT(*) FROM Bird_nests) on the given database (database.db) 1000 times. If the total time that took was 3 seconds, your script will divide that time by the number of repetitions (1000) and compute that each DuckDB invocation took 0.003 seconds. Finally, your script will <strong>append</strong> the following record to the CSV tile timings.csv:</p>
-<pre><code>with_index_a,0.003</code></pre>
-<p>Conceptually, your script will look something like this (this is pseudocode):</p>
-<pre><code>get current time and store it
-loop num_reps times
-    duckdb db_file query
-end loop
-get current time
-compute elapsed time
-divide elapsed time by num_reps
-write output</code></pre>
-<p>I would like you to follow the above pseudocode because this exercise is fundamentally about using certain Bash features.</p>
-<p>(BTW, is this a fair way to time queries? Yes and no. Clearly it’s a bit unfair that we are counting the overhead of repeatedly firing up DuckDB and opening the database file. And there may be other processing going on on the machine that affects the wall-clock time that we’re measuring here. On the other hand, databases are almost always I/O-bound and not compute-bound, that is, their performance is primarily limited by the time it takes to read data into memory from disk, and because of that, wall-clock time can be a better measure than CPU time.)</p>
-<p>We’re doing this in Bash, so every one of these steps is a challenge (it is okay to hate Bash). So here are a lot of tips and hints:</p>
+<p>When inserting a new egg measurement, wouldn’t it be nice if the database just automatically filled in the next sequential egg number for us? Indeed, we can accomplish this with an AFTER INSERT trigger that does an UPDATE.</p>
+<p>The schema for the database has been modified for this exercise so that Egg_num can be NULL and furthermore has a default value of NULL. This means we can insert a row without supplying an egg number. For example, we might say:</p>
+<pre><code>INSERT INTO Bird_eggs
+    (Book_page, Year, Site, Nest_ID, Length, Width)
+    VALUES ('b14.6', 2014, 'eaba', '14eabaage01', 12.34, 56.78);</code></pre>
+<p>If this were the first egg measurement for this particular nest, immediately after the insert we would see:</p>
+<pre><code>.nullvalue -NULL-
+SELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';
+┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐
+│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │
+├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤
+│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ -NULL-  │ 12.34  │ 56.78 │
+└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘</code></pre>
+<p>If there were already some egg measurements for this nest (as in fact there are), immediately after the insert we would see:</p>
+<pre><code>.nullvalue -NULL-
+SELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';
+┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐
+│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │
+├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤
+│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 1       │ 39.14  │ 33.0  │
+│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 2       │ 41.51  │ 33.39 │
+│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 3       │ 48.29  │ 33.4  │
+│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ -NULL-  │ 12.34  │ 56.78 │
+└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘</code></pre>
+<p>Your job is to create a trigger that will fire an UPDATE statement that will fill in a value for Egg_num <strong>in either situation above</strong>.</p>
+<p>Your trigger will have the form</p>
+<pre><code>CREATE TRIGGER egg_filler
+    AFTER INSERT ON Bird_eggs
+    FOR EACH ROW
+    BEGIN
+        UPDATE ...;
+    END;</code></pre>
+<p>A word of warning. Notice the two semicolons above: the UPDATE statement must be terminated by a semicolon, and the CREATE TRIGGER statement must be terminated by a semicolon.</p>
+<p>The crux is in the UPDATE statement. Recall from class that in your UPDATE statement you can refer to the values just inserted as new.Book_page, new.Year, new.Site, new.Nest_ID, etc. For example, using the INSERT above, new.Nest_ID will have the value ‘14eabaage01’ and new.Length will have the value 12.34. You need to figure out:</p>
 <ul>
-<li><p>Getting the current time: try <code>date +%s</code> or use the magic SECONDS variable (do a <code>man bash</code> to read about it).</p></li>
-<li><p>Looping: see below.</p></li>
-<li><p>In executing DuckDB, be sure to appropriately quote the query.</p></li>
-<li><p>Computing elapsed time: use Bash arithmetic.</p></li>
-<li><p>Division. Bash does not support floating point numbers, so you’ll have to use a helper program. Take yer pick depending on what’s available to you. Let’s say you want to divide 10 by 3 (you will want to reference variables in your computation, but here I’m just illustrating dividing two literal numbers). You might say something like:</p>
-<ul>
-<li><code>elapsed=$(echo "scale=7; 10/3" | bc)</code></li>
-<li><code>elapsed=$(echo "10/3" | awk -F / '{print $1/$2}')</code></li>
-<li><code>elapsed=$(python -c "print(10/3)")</code></li>
-<li><code>elapsed=$(perl -l -e "print 10/3")</code></li>
-</ul></li>
-<li><p>Output: be sure to use the appropriate I/O redirection.</p></li>
+<li><p>What column(s) to update. Well that’s easy, it’s just Egg_num.</p></li>
+<li><p>What Egg_num’s new value should be. Hint: the value can be computed from a SELECT statement. What SELECT statement could you use that will return the right value to use as the next sequential egg number?</p></li>
+<li><p>What row(s) to modify. Well, you want to modify just one row, the row that was just inserted. What WHERE clause could you use to identify this brand-new row? It has a unique signature.</p></li>
 </ul>
-<p>Two approaches to looping. If you want to do something 10 times, you can use a while loop that increments a counter:</p>
-<pre><code>i=0
-while [ $i -lt 10 ]; do
-    echo "this is loop iteration $i"
-    i=$((i+1))
-done</code></pre>
-<p>Or, you can use <code>seq</code>. Generally you can use a for loop to loop through a list of items like so:</p>
-<pre><code>for i in 0 1 2 3 4 5 6 7 8 9; do
-    echo "this is loop iteration $i"
-done</code></pre>
-<p>But you can use <code>seq</code> to generate a list of numbers of a desired length:</p>
-<pre><code>for i in $(seq 10); do
-    echo "this is loop iteration $i"
-done</code></pre>
-<p>And some more advice. The reason for making the number of repetitions an argument to this script, as opposed to a fixed constant, is that you may have to adjust the number of repetitions depending how fast the query is. The <code>date</code> command and SECONDS variable have a resolution of only 1 second, so if running the query 10 times still fits in under 1 second your elapsed time will show up as 0. You may need to run a query 100 or 1000 times or more to get positive elapsed times, and to get more precision.</p>
-<p>Also, we don’t actually care about the output from the query here. I would keep the output while you’re debugging your script (so that you can verify that DuckDB is being run repeatedly), but once you feel your script is working you can redirect DuckDB’s output and error streams to /dev/null.</p>
-<p>Finally, it is highly recommended that you upload your script to <a href="https://www.shellcheck.net" class="uri">https://www.shellcheck.net</a>. You’re not required to follow its advice, but I have found its advice to be enlightening.</p>
-<p>Please submit your Bash script.</p>
+<p>You can try out your trigger by creating it, doing an INSERT, and then seeing what the rows for that particular nest look like. If your trigger doesn’t work for some reason, you may need to <code>DROP TRIGGER egg_filler;</code> before creating it again. As before, you will probably find it convenient to write your trigger code in a separate file, and load it into SQLite using the .read built-in command.</p>
+<p>Please submit your SQL.</p>
 </section>
 <section id="part-2" class="level1">
 <h1>Part 2</h1>
-<p>In class we looked at three ways to find out which species we do not have nest data for. Method using NOT IN:</p>
-<pre><code>SELECT Code
-    FROM Species
-    WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);</code></pre>
-<p>Method using an outer join:</p>
-<pre><code>SELECT Code
-    FROM Bird_nests RIGHT JOIN Species
-    ON Species = Code
-    WHERE Nest_ID IS NULL;</code></pre>
-<p>Method using a set operation:</p>
-<pre><code>SELECT Code FROM Species
-EXCEPT
-SELECT DISTINCT Species FROM Bird_nests;</code></pre>
-<p>Use your test harness to time these three queries. Use descriptive labels to record which query is being run, e.g., <code>subquery</code>, <code>outer_join</code>, and <code>except</code>. Submit your CSV file. Report back how many repetitions you had to use to get good timings, and which method is fastest.</p>
-<p><strong>Credit: 50 points</strong></p>
+<p>Why stop there? Recall that Book_page, Year, and Site all duplicate the information from the Bird_nests table. Wouldn’t it be nice if the database automatically filled in those values as well? Then we could just say:</p>
+<pre><code>INSERT INTO Bird_eggs
+    (Nest_ID, Length, Width)
+    VALUES ('14eabaage01', 12.34, 56.78);</code></pre>
+<p>This can be accomplished by augmenting your previous trigger. Two options. One, you can add more UPDATE statements:</p>
+<pre><code>CREATE TRIGGER egg_filler
+    AFTER INSERT ON Bird_eggs
+    FOR EACH ROW
+    BEGIN
+        UPDATE Bird_eggs SET Egg_num = (SELECT...) WHERE...;
+        UPDATE Bird_eggs SET Book_page = (SELECT...) WHERE...;
+        UPDATE Bird_eggs SET Year = (SELECT...) WHERE...;
+        etc.
+    END;</code></pre>
+<p>Or two, you can add more clauses to a single UPDATE statement:</p>
+<pre><code>CREATE TRIGGER egg_filler
+    AFTER INSERT ON Bird_eggs
+    FOR EACH ROW
+    BEGIN
+        UPDATE Bird_eggs
+            SET
+                Egg_num = (SELECT...),
+                Book_page = (SELECT...),
+                Year = (SELECT...),
+                etc.
+            WHERE ...;
+    END;</code></pre>
+<p>(Honestly, this is not the most compact or efficient SQL, but sometimes it’s better sticking with a simple and understandable approach.)</p>
+<p>You need to figure out what SELECT statements to use to find the values to insert. That is, given that you can reference new.Nest_ID, new.Length, and new.Width, what SELECT statements could you use to find the correct values for Book_page, Year, and Nest_ID?</p>
+<p>Try out your trigger, marvel at what you have automated, and submit your SQL.</p>
+</section>
+<section id="part-3" class="level1">
+<h1>Part 3</h1>
+<p>Okay, there isn’t a part 3. But wouldn’t it be nice to be able to insert egg measurements even more compactly? That is, instead of having to say:</p>
+<pre><code>INSERT INTO Bird_eggs
+    (Nest_ID, Length, Width)
+    VALUES ('14eabaage01', 12.34, 56.78);</code></pre>
+<p>what if you could just say:</p>
+<pre><code>INSERT INTO Bird_eggs
+    VALUES ('14eabaage01', 12.34, 56.78);</code></pre>
+<p>Well you can do that! It involves creating a view and adding an INSTEAD OF INSERT trigger on the view. If there’s time I’ll show an example in class.</p>
+<p><strong>Credit: 65 points</strong></p>
 
 
 </section>
