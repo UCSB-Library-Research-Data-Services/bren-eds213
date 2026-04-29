@@ -393,15 +393,15 @@ And two tips.
 
 ## Test your understanding
 
-**Be sure to `cd` to the class data GitHub repository, `ASDN_csv` subdirectory, before answering these!!**
+**Be sure to `cd` to the class data GitHub repository, `for_bash_essentials` subdirectory, before answering these!!**
 
 1.  Compare the output of these three commands:
 
     `ls`\
     `ls .`\
-    `ls "$(pwd)/../ASDN_csv"`
+    `ls "$(pwd)/../for_bash_essentials"`
 
-    Explain why you see what you see.
+    Explain why you see what you see, and explain what processing Bash is doing in the third command.
 
 2.  Try the following two commands:
 
@@ -412,7 +412,7 @@ And two tips.
 
 3.  You want to count the total number of lines in all CSV files and try this command:
 
-    `cat *.csv | wc -l species.csv`
+    `cat *.csv | wc -l a.csv`
 
     What happens and why?
 
@@ -424,7 +424,7 @@ And two tips.
 
     `echo "$name_Howard"`
 
-    but that doesn't quite work. What fix can you apply to `$name`, while keeping it inside the quotation marks, to make this command give the desired effect?
+    but that doesn't quite work. What fix can you apply to `$name`, while keeping it inside the quotation marks, to make this command give the desired effect? (Refer back to section 3.)
 
 5.  You create a script and run it like so:
 
@@ -436,7 +436,7 @@ And two tips.
 
     `bash myscript.sh "$(date)" $(date)`
 
-    In your script, what is the value of variable `$3`?
+    In your script, what are the values of variables `$1` and `$3`?
 
 7.  Create a file you don't care about (because you're about to destroy it):
 

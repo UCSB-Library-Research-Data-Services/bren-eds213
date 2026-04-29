@@ -34,8 +34,8 @@ Over 7 weeks, you will:
 | 2 | Clean the data | [Week 2]() |
 | 3 | Ingest data & explore your database | [Week 3]() |
 | 4 | Develop an analytical question & write SQL queries | [Week 4]()  |
-| 5 | Visualize your results | [Week 5]()  | 
-| 6 | Document your work | [Week 6]() |
+| 5 | Document your work | [Week 5](week5.qmd) |
+| 6 | Visualize your results | [Week 6]()  | 
 | 7 | Database showcase! | [Week 7]()  |
 
 ---
