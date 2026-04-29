@@ -235,6 +235,21 @@ But in general, won't be a possibility, databases not typically under git contro
     -   CLI advanced topics: <https://eds-214.github.io/EDS-214-analytical-workflows/day2-cli_advanced.html>
     -   bash manual: <https://www.gnu.org/software/bash/manual/>
     -   vim editor cheat sheet: <https://brunj7.github.io/EDS-214-analytical-workflows/vim.html>
+    
+    
+Our bash script `count_lines.sh` counting the number of line in csv files within a folder:
+
+```bash
+#!/bin/bash
+# Usage: sh count_lines.sh /path/to/
+
+csv_dir=$1
+
+for file in $csv_dir/*.csv; do
+    echo "$file has $(wc -l < $file) lines"
+done
+```
+
 
 ## Data:
 
