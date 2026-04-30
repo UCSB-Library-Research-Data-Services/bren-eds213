@@ -70,7 +70,7 @@ To do so you will need to load a larger set of nest and egg data from CSV files 
   │ barr    │          10049.413 │
   ```
 
-- Step 4.  You're getting close.  To perform the linear regression you will need a table with two columns, Longitude and Volume.  To replace the Site column above with Longitude will require a join with the Site table.  You can save the query you have so far as a temporary table or view and then work from it, or keep adding on to your current query.  Either way, add a join with the Site table.  Uh oh, both the Species table and Site tables have columns named Code.  You may need to prefix column names with table names to disambiguate.  If all goes well, you should wind up with a table looking like this:
+- Step 4.  You're getting close.  To perform the linear regression you will need a table with two columns, Longitude and Volume.  To replace the Site column above with Longitude will require a join with the Site table.  You can save the query you have so far as a temporary table or view and then work from it, or keep adding on to your current query.  Either way, add a join with the Site table.  Uh oh, both the Species and Site tables have columns named Code.  You may need to prefix column names with table names to disambiguate.  If all goes well, you should wind up with a table looking like this:
 
   ```
   ┌───────────┬────────────────────┐
