@@ -1159,7 +1159,7 @@
     "href": "modules/week05/hw-05-1.html#part-2-10pts",
     "title": "Week 5 - Egg variance",
     "section": "Part 2 (10pts)",
-    "text": "Part 2 (10pts)\nAnswer the following questions.\n\nDo the tables created automatically by DuckDB guarantee that a nest ID mentioned in the eggs_big table actually exists in the nests_big table? If yes, explain how that is guaranteed, if not, explain why not. (6pts)\nWhat queries did you use (or could you use) to find the minimum and maximum longitude values in the Site table? (2pts)\nThe interpretation of the Pearson correlation coefficient is: +1 is a perfect positive correlation, -1 is a perfect negative correlation, and 0 is no correlation at all. How would you characterize the correlation between egg volume and longitude for the eggs of Calidris alpina in the Arctic above Canada? (2pts)"
+    "text": "Part 2 (10pts)\nAnswer the following questions.\n\nDo the tables created automatically by DuckDB guarantee that a nest ID mentioned in the Eggs_big table actually exists in the Nests_big table? If yes, explain how that is guaranteed, if not, explain why not. (6pts)\nWhat queries did you use (or could you use) to find the minimum and maximum longitude values in the Site table? (2pts)\nThe interpretation of the Pearson correlation coefficient is: +1 is a perfect positive correlation, -1 is a perfect negative correlation, and 0 is no correlation at all. How would you characterize the correlation between egg volume and longitude for the eggs of Calidris alpina in the Arctic above Canada? (2pts)"
   },
   {
     "objectID": "modules/week05/hw-05-1.html#footnotes",

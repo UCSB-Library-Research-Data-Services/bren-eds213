@@ -320,14 +320,14 @@ window.Quarto = {
 </ul>
 <p>To do so you will need to load a larger set of nest and egg data from CSV files into new tables, and use some statistics functions provided by DuckDB to do the regression.</p>
 <ul>
-<li><p>Step 1. Open the ASDN database we have been using all along, <code>database.duckdb</code>. In this database, load <code>nests_big.csv</code> into a table <code>nests_big</code> using</p>
-<p><code>CREATE TABLE nests_big AS SELECT * FROM 'nests_big.csv';</code></p>
-<p>Similarly load <code>eggs_big.csv</code> into a table <code>eggs_big</code>. Get a sense of what’s in these tables by looking at how many rows they have, what columns they have, and what some sample rows look like. Also look at the table definitions that DuckDB created automatically.</p></li>
-<li><p>Step 2. To be able to relate egg measurements to species and sites you will need to perform some relational joins. To start with, perform a 3-way join between <code>eggs_big</code>, <code>nests_big</code>, and <code>Species</code>. To do so, know that any number of tables can be joined in one statement simply by listing the tables and join conditions in order, as in:</p>
+<li><p>Step 1. Open the ASDN database we have been using all along, <code>database.duckdb</code>. In this database, load <code>nests_big.csv</code> into a table <code>Nests_big</code> using</p>
+<p><code>CREATE TABLE Nests_big AS SELECT * FROM 'nests_big.csv';</code></p>
+<p>Similarly load <code>eggs_big.csv</code> into a table <code>Eggs_big</code>. Get a sense of what’s in these tables by looking at how many rows they have, what columns they have, and what some sample rows look like. Also look at the table definitions that DuckDB created automatically.</p></li>
+<li><p>Step 2. To be able to relate egg measurements to species and sites you will need to perform some relational joins. To start with, perform a 3-way join between <code>Eggs_big</code>, <code>Nests_big</code>, and <code>Species</code>. To do so, know that any number of tables can be joined in one statement simply by listing the tables and join conditions in order, as in:</p>
 <pre><code>SELECT * FROM eggs_big
   JOIN nests_big USING ...
   JOIN Species ON ...
-  JOIN some_other_table ON ...</code></pre>
+  ...</code></pre>
 <p>Add a WHERE clause to your query to select the eggs for species Calidris alpina only. You should wind up with a table that has 2912 rows and 10 columns and that looks something like this:</p>
 <pre><code>D SELECT * FROM ...
 ┌───────────────────┬─────────┬────────┬───┬─────────────────┬───────────────┐
@@ -349,7 +349,7 @@ window.Quarto = {
 │ barr    │        12620.08704 │
 │ barr    │  9827.938333333334 │
 │ barr    │          10049.413 │</code></pre></li>
-<li><p>Step 4. You’re getting close. To perform the linear regression you will need a table with two columns, Longitude and Volume. To replace the Site column above with Longitude will require another join. Revise your query to add a fourth (!) join with the Site table. Uh oh, both the Species table and Site tables have columns named Code. You will need to prefix column names with table names to disambiguate. If all goes well, you should wind up with a table looking like this:</p>
+<li><p>Step 4. You’re getting close. To perform the linear regression you will need a table with two columns, Longitude and Volume. To replace the Site column above with Longitude will require a join with the Site table. You can save the query you have so far as a temporary table or view and then work from it, or keep adding on to your current query. Either way, add a join with the Site table. Uh oh, both the Species table and Site tables have columns named Code. You may need to prefix column names with table names to disambiguate. If all goes well, you should wind up with a table looking like this:</p>
 <pre><code>┌───────────┬────────────────────┐
 │ Longitude │       Volume       │
 │   float   │       double       │
@@ -358,7 +358,7 @@ window.Quarto = {
 │    -156.6 │        12620.08704 │
 │    -156.6 │  9827.938333333334 │
 │    -156.6 │          10049.413 │</code></pre></li>
-<li><p>Step 5. Deal with a numeric bugaboo. If you look at the minimum and maximum values of longitude in the Site table, you will see that they range from -164.9 to 170.6. But in this case, the correct interpretation of a positive longitude is really that it is to the west of the +/-180 meridian, i.e., it is even more negative than -180. In other words, if a longitude <span class="math inline">\(l\)</span> is positive, it should be replaced by <span class="math inline">\(l-360\)</span>, but if it is negative, it can be left as is. Use a CASE statement to express this. Modify your query yet again so that it resembles:</p>
+<li><p>Step 5. Deal with a numeric bugaboo. If you look at the minimum and maximum values of longitude in the Site table, you will see that they range from -164.9 to 170.6. But in this case, the correct interpretation of a positive longitude is really that it is to the west of the +/-180 meridian, i.e., it is even more negative than -180. In other words, if a longitude <span class="math inline">\(l\)</span> is positive, it should be replaced by <span class="math inline">\(l-360\)</span>, but if it is negative, it can be left as is. Use a <a href="https://duckdb.org/docs/current/sql/expressions/case">CASE expression</a> to express this. Modify your query yet again so that it resembles:</p>
 <p><code>SELECT CASE WHEN ... THEN ... ELSE ... END AS Longitude, ...</code></p></li>
 <li><p>Step 6. At this point, stop to admire your accomplishment; you’re ready for the analysis. Save your table as a view or temporary table (your choice).</p></li>
 <li><p>Step 7. DuckDB provides many, many functions, including many statistics functions. Use the <code>regr_slope</code> and <code>corr</code> functions to compute the linear regression slope and Pearson correlation coefficient. For both these functions, Volume is the dependent variable and Longitude is the independent variable. You should wind up with:</p>
@@ -377,7 +377,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="part-2-10pts">Part 2 (10pts)</h2>
 <p>Answer the following questions.</p>
 <ol type="1">
-<li><p>Do the tables created automatically by DuckDB guarantee that a nest ID mentioned in the <code>eggs_big</code> table actually exists in the <code>nests_big</code> table? If yes, explain how that is guaranteed, if not, explain why not. <strong>(6pts)</strong></p></li>
+<li><p>Do the tables created automatically by DuckDB guarantee that a nest ID mentioned in the <code>Eggs_big</code> table actually exists in the <code>Nests_big</code> table? If yes, explain how that is guaranteed, if not, explain why not. <strong>(6pts)</strong></p></li>
 <li><p>What queries did you use (or could you use) to find the minimum and maximum longitude values in the Site table? <strong>(2pts)</strong></p></li>
 <li><p>The interpretation of the Pearson correlation coefficient is: +1 is a perfect positive correlation, -1 is a perfect negative correlation, and 0 is no correlation at all. How would you characterize the correlation between egg volume and longitude for the eggs of Calidris alpina in the Arctic above Canada? <strong>(2pts)</strong></p></li>
 </ol>
