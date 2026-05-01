@@ -2,11 +2,63 @@
 title: "walkability_index"
 ---
 
+## The walkability index
+
+
+
+
+
+
+
+
+## Data Analysis
+
+To conduct our analysis we are going to use the `spatial` and `httfs` DuckDB extensions:
+
+```sql
+-- INSTALL spatial;
+LOAD spatial;
+-- INSTALL httpfs;
+LOAD httpfs;
+```
+
+
+
+```sql
+-- Let's try an analysis: Let's compute the number of block and their average area per tract for the states of CA, NV, OR, WA 
+-- Sate FIPS: https://www.bls.gov/respondents/mwr/electronic-data-interchange/appendix-d-usps-state-abbreviations-and-fips-codes.htm
+-- Adapted from https://medium.com/center-for-coastal-climate-resilience-visualizatio/optimal-geoparquet-partitioning-strategy-33331874ef6c
+
+SELECT
+  STATEFP,
+  TRACTCE,
+  COUNT(*) AS block_count,
+  AVG(ST_Area(geometry)) AS avg_area
+FROM walk84
+WHERE STATEFP IN ('06', '32', '41', '53')
+GROUP BY TRACTCE, STATEFP
+ORDER BY block_count DESC;
+```
+
+```sql
+-- Let's try an analysis: Let's compute the number of block and their average area per tract for the states of CA, NV, OR, WA 
+-- Sate FIPS: https://www.bls.gov/respondents/mwr/electronic-data-interchange/appendix-d-usps-state-abbreviations-and-fips-codes.htm
+-- Adapted from https://medium.com/center-for-coastal-climate-resilience-visualizatio/optimal-geoparquet-partitioning-strategy-33331874ef6c
+
+SELECT
+  STATEFP,
+  COUNT(*) AS tract_count,
+  AVG(ST_Area(geometry)) AS avg_area
+FROM walk84
+WHERE STATEFP IN ('06', '32', '41', '53')
+GROUP BY STATEFP
+ORDER BY tract_count DESC;
+```
+
 
 ## Dataset preparation 
 
-The walkability index came
-
+The walkability index came as an ESRI geodatabase
 
 ```sql
 -- INSTALL spatial;
@@ -29,56 +81,23 @@ CREATE TABLE walk84 AS (
   FROM ST_Read(Natl_WI.gdb)
   ORDER BY bbox_geom
   );
-
-  -- See if the table looks good
+  
+  
+-- See if the table looks good
 SELECT * FROM walk84 LIMIT 10;
 
--- Let's try an analysis: Let's compute the number of block and their average area per tract for the states of CA, NV, OR, WA 
--- Sate FIPS: https://www.bls.gov/respondents/mwr/electronic-data-interchange/appendix-d-usps-state-abbreviations-and-fips-codes.htm
--- Adapted from https://medium.com/center-for-coastal-climate-resilience-visualizatio/optimal-geoparquet-partitioning-strategy-33331874ef6c
 
-SELECT
-  STATEFP,
-  TRACTCE,
-  COUNT(*) AS block_count,
-  AVG(ST_Area(geometry)) AS avg_area
-FROM walk84
-WHERE STATEFP IN ('06', '32', '41', '53')
-GROUP BY TRACTCE, STATEFP
-ORDER BY block_count DESC;
-
--- Let's try an analysis: Let's compute the number of block and their average area per tract for the states of CA, NV, OR, WA 
--- Sate FIPS: https://www.bls.gov/respondents/mwr/electronic-data-interchange/appendix-d-usps-state-abbreviations-and-fips-codes.htm
--- Adapted from https://medium.com/center-for-coastal-climate-resilience-visualizatio/optimal-geoparquet-partitioning-strategy-33331874ef6c
-
-SELECT
-  STATEFP,
-  COUNT(*) AS tract_count,
-  AVG(ST_Area(geometry)) AS avg_area
-FROM walk84
-WHERE STATEFP IN ('06', '32', '41', '53')
-GROUP BY STATEFP
-ORDER BY tract_count DESC;
 
 --- Export to one large parquet file
 COPY walk84 TO 'walkability_wgs84.parquet' (FORMAT parquet);
 
 -- Export to parquet files using hive partitioning on state and county FIPS
-COPY (
+COPY(
     SELECT * 
     FROM walk84
-) 
-TO 'walkability_duck' 
+    ) 
+TO 'walkability_hive' 
 (FORMAT 'parquet', COMPRESSION 'zstd', PARTITION_BY (STATEFP, COUNTYFP));
 
--- Check if it worked
--- County FIPS
-SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd FROM read_parquet('walkability_hive/**/*.parquet', hive_partitioning=true)
-WHERE STATEFP = '06' AND COUNTYFP = '083';
-
---- Try with a remote file
--- Let's select the data for Santa Barbara County and subset only a few columns;
-SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd FROM read_parquet('https://apps.bren.ucsb.edu/eds213-data/walkability/walkability_wgs84.parquet')
-WHERE STATEFP = '06' AND COUNTYFP = '083';
-
+```
 
