@@ -7,6 +7,7 @@ title: "Week 6 - Programming with databases"
 -   Understand the basic database programming model
 -   Access a DuckDB database from Python and R
 -   Understand how to use the Python/Pandas and R/dbplyr convenience functions
+-   Experience how DuckDB and SQL can be used to analyze Parquet files
 
 ## Slides and other materials
 
@@ -17,6 +18,7 @@ Coding transcripts:
 -   [python-programming.ipynb](python-programming.ipynb)
 -   [python-programming-cont.ipynb](python-programming-cont.ipynb)
 -   [using_dbplyr-06-wed-r.qmd](_code/using_dbplyr-06-wed-r.qmd)
+-   [Manipulating Parquet files with DuckDB and SQL](parquet.qmd)
 
 ## Resources
 
