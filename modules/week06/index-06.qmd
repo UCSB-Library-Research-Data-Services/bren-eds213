@@ -13,12 +13,13 @@ title: "Week 6 - Programming with databases"
 
 [slides-06.pptx](slides-06.pptx)
 
-Coding transcripts:
+## Coding transcripts:
 
+-   [using_dbplyr-06-wed-r.qmd](_code/using_dbplyr-06-wed-r.qmd)
 -   [python-programming.ipynb](python-programming.ipynb)
 -   [python-programming-cont.ipynb](python-programming-cont.ipynb)
--   [using_dbplyr-06-wed-r.qmd](_code/using_dbplyr-06-wed-r.qmd)
 -   [Manipulating Parquet files with DuckDB and SQL](parquet.qmd)
+  - [Walkability Index](walkability_index.qmd)
 
 ## Resources
 
