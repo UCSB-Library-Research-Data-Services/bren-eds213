@@ -2,13 +2,20 @@
 title: "walkability_index"
 ---
 
-## The walkability index
+## The National walkability index
 
 
+The National **Walkability Index** is a nationwide geographic data resource that ranks block groups according to their relative walkability. The national dataset includes walkability scores for all US Census block groups as well as the underlying attributes that are used to rank the block groups.
 
+The index was developed using selected variables on density, diversity of land uses, and proximity to transit from the Smart Location Database. 
 
+Here is the user guide of this index: <https://www.epa.gov/sites/default/files/2021-06/documents/national_walkability_index_methodology_and_user_guide_june2021.pdf>
 
+The index range from 1 to 20, where 1 is the least walkable and 20 the most walkable.
 
+Here are four main categories:
+
+![](../../img/walkability_index_scale.png){fig-alt="Walkability index scale"}
 
 
 ## Data Analysis
@@ -58,7 +65,7 @@ ORDER BY tract_count DESC;
 
 ## Dataset preparation 
 
-The walkability index came as an ESRI geodatabase
+The walkability index came as an ESRI geodatabase. The spatial extension can directly read this file format:
 
 ```sql
 -- INSTALL spatial;
@@ -68,6 +75,7 @@ LOAD httpfs;
 
 -- Let's have a look at the data
 SELECT * FROM ST_Read(Natl_WI.gdb) LIMIT 10;
+
 
 -- Save it as a table
 DROP TABLE walk84;
