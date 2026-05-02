@@ -15,6 +15,11 @@ The index range from 1 to 20, where 1 is the least walkable and 20 the most walk
 
 Here are four main categories:
 
+- Least walkable: 1 -5.75
+- Below average: 5.76 - 10.5
+- Above average: 10.51 - 15.25
+- Most walkable: 15.26 - 20
+
 ![](../../img/walkability_index_scale.png){fig-alt="Walkability index scale"}
 
 
