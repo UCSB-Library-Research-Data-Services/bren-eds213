@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Installing duckDB – eds213</title>
+<title>Those tools beyond the DBMS – eds213</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -61,23 +61,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-28693117127f89a21507109ae153cba2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-28693117127f89a21507109ae153cba2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">eds213</span>
     </a>
   </div>
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -137,27 +137,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-modules">    
         <li>
-    <a class="dropdown-item" href="./modules/week01/index-01.html">
+    <a class="dropdown-item" href="../../modules/week01/index-01.html">
  <span class="dropdown-text">Week 1 - Relational databases and data modeling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week02/index-02.html">
+    <a class="dropdown-item" href="../../modules/week02/index-02.html">
  <span class="dropdown-text">Week 2 - Analyzing &amp; cleaning the bird dataset (from csv)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week03/index-03.html">
+    <a class="dropdown-item" href="../../modules/week03/index-03.html">
  <span class="dropdown-text">Week 3 - Structured Query Language (SQL) &amp; DuckDB</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week04/index-04.html">
+    <a class="dropdown-item" href="../../modules/week04/index-04.html">
  <span class="dropdown-text">Week 4 - SQL and DuckDB</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week05/index-05.html">
+    <a class="dropdown-item" href="../../modules/week05/index-05.html">
  <span class="dropdown-text">Week 5 - I/O, data management &amp; more</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week06/index-06.html">
+    <a class="dropdown-item" href="../../modules/week06/index-06.html">
  <span class="dropdown-text">Week 6 - Programming with databases</span></a>
   </li>  
     </ul>
@@ -168,55 +168,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
         <li>
-    <a class="dropdown-item" href="./modules/week01/hw-01-1.html">
+    <a class="dropdown-item" href="../../modules/week01/hw-01-1.html">
  <span class="dropdown-text">Week 1 - Create an ER diagram</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week01/hw-01-2.html">
+    <a class="dropdown-item" href="../../modules/week01/hw-01-2.html">
  <span class="dropdown-text">Week 1 - Data modeling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week01/hw-01-3.html">
+    <a class="dropdown-item" href="../../modules/week01/hw-01-3.html">
  <span class="dropdown-text">Week 1 - Data modeling is hard</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week02/hw-02.html">
+    <a class="dropdown-item" href="../../modules/week02/hw-02.html">
  <span class="dropdown-text">Week 2 - Data Cleaning</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week03/hw-03-1.html">
+    <a class="dropdown-item" href="../../modules/week03/hw-03-1.html">
  <span class="dropdown-text">Week 3 - SQL problem 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week03/hw-03-2.html">
+    <a class="dropdown-item" href="../../modules/week03/hw-03-2.html">
  <span class="dropdown-text">Week 3 - SQL problem 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week03/hw-03-3.html">
+    <a class="dropdown-item" href="../../modules/week03/hw-03-3.html">
  <span class="dropdown-text">Week 3 - SQL problem 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week04/hw-04-1.html">
+    <a class="dropdown-item" href="../../modules/week04/hw-04-1.html">
  <span class="dropdown-text">Week 4.1 - Missing data</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week04/hw-04-2.html">
+    <a class="dropdown-item" href="../../modules/week04/hw-04-2.html">
  <span class="dropdown-text">Week 4.2 - Who worked with whom?</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week04/hw-04-3.html">
+    <a class="dropdown-item" href="../../modules/week04/hw-04-3.html">
  <span class="dropdown-text">Week 4.3 - Who’s the culprit?</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week05/hw-05-1.html">
+    <a class="dropdown-item" href="../../modules/week05/hw-05-1.html">
  <span class="dropdown-text">Week 5 - Egg variance</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week05/hw-05-2.html">
+    <a class="dropdown-item" href="../../modules/week05/hw-05-2.html">
  <span class="dropdown-text">Week 5 - Bash essentials</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/week05/hw-05-3.html">
+    <a class="dropdown-item" href="../../modules/week05/hw-05-3.html">
  <span class="dropdown-text">Week 5 - Create a test harness</span></a>
   </li>  
     </ul>
@@ -227,33 +227,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-weekly-labs">    
         <li>
-    <a class="dropdown-item" href="./modules/labs/labs.html">
+    <a class="dropdown-item" href="../../modules/labs/labs.html">
  <span class="dropdown-text">Lab Section Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/labs/week1.html">
+    <a class="dropdown-item" href="../../modules/labs/week1.html">
  <span class="dropdown-text">Lab 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/labs/week2.html">
+    <a class="dropdown-item" href="../../modules/labs/week2.html">
  <span class="dropdown-text">Lab 2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/labs/week3.html">
+    <a class="dropdown-item" href="../../modules/labs/week3.html">
  <span class="dropdown-text">Lab 3</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/labs/week4.html">
+    <a class="dropdown-item" href="../../modules/labs/week4.html">
  <span class="dropdown-text">Lab 4</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./modules/labs/week5.html">
+    <a class="dropdown-item" href="../../modules/labs/week5.html">
  <span class="dropdown-text">Lab 5</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About RDS</span></a>
   </li>  
 </ul>
@@ -287,18 +287,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#duckdb-installation" id="toc-duckdb-installation" class="nav-link active" data-scroll-target="#duckdb-installation">DuckDB Installation</a>
+  <li><a href="#parquet-file-format" id="toc-parquet-file-format" class="nav-link active" data-scroll-target="#parquet-file-format">Parquet file format</a>
   <ul class="collapse">
-  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos">MacOS</a></li>
-  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
+  <li><a href="#metadata-hierarchy" id="toc-metadata-hierarchy" class="nav-link" data-scroll-target="#metadata-hierarchy">Metadata Hierarchy</a></li>
+  <li><a href="#standard-parquet-statistics" id="toc-standard-parquet-statistics" class="nav-link" data-scroll-target="#standard-parquet-statistics">Standard Parquet Statistics</a></li>
+  <li><a href="#hive-partitioning" id="toc-hive-partitioning" class="nav-link" data-scroll-target="#hive-partitioning">Hive Partitioning</a></li>
+  <li><a href="#parquet-and-hive-paritioning-combo" id="toc-parquet-and-hive-paritioning-combo" class="nav-link" data-scroll-target="#parquet-and-hive-paritioning-combo">Parquet and Hive paritioning combo</a></li>
   </ul></li>
-  <li><a href="#vs-code-integration" id="toc-vs-code-integration" class="nav-link" data-scroll-target="#vs-code-integration">VS Code integration</a></li>
-  <li><a href="#test" id="toc-test" class="nav-link" data-scroll-target="#test">Test</a></li>
-  <li><a href="#what-if-this-work-in-your-terminal-but-not-in-vs-code" id="toc-what-if-this-work-in-your-terminal-but-not-in-vs-code" class="nav-link" data-scroll-target="#what-if-this-work-in-your-terminal-but-not-in-vs-code">What if this work in your terminal but not in VS Code??</a>
+  <li><a href="#geoparquet" id="toc-geoparquet" class="nav-link" data-scroll-target="#geoparquet">Geoparquet</a>
   <ul class="collapse">
-  <li><a href="#mac" id="toc-mac" class="nav-link" data-scroll-target="#mac">Mac</a></li>
-  <li><a href="#windows-1" id="toc-windows-1" class="nav-link" data-scroll-target="#windows-1">Windows</a></li>
+  <li><a href="#geoparquet-metadata-layer" id="toc-geoparquet-metadata-layer" class="nav-link" data-scroll-target="#geoparquet-metadata-layer">GeoParquet Metadata Layer</a></li>
+  <li><a href="#partitioning-geoparquet-files" id="toc-partitioning-geoparquet-files" class="nav-link" data-scroll-target="#partitioning-geoparquet-files">Partitioning Geoparquet files</a></li>
   </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -307,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installing duckDB</h1>
+<h1 class="title">Those tools beyond the DBMS</h1>
 </div>
 
 
@@ -324,100 +325,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="duckdb-installation" class="level2">
-<h2 class="anchored" data-anchor-id="duckdb-installation">DuckDB Installation</h2>
-<p>DuckDB has been installed on the MEDS server. We also recommend to install it on your personal machine following those instructions.</p>
-<section id="macos" class="level3">
-<h3 class="anchored" data-anchor-id="macos">MacOS</h3>
-<p>We recommend to use homebrew to install DuckDb on a Mac:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install duckdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="windows" class="level3">
-<h3 class="anchored" data-anchor-id="windows">Windows</h3>
-<ol type="1">
-<li><p>Download the latest version from <a href="https://duckdb.org/docs/installation/" class="uri">https://duckdb.org/docs/installation/</a></p></li>
-<li><p>Create a <code>DuckDB</code> folder inside <code>C:\Users\YOUR_USERNAME\AppData\Local</code> <img src="img/duckdb-windows_folder.png" class="img-fluid"></p></li>
-<li><p>Unzip the duckdb_xx_zip you just downloaded inside that folder (this should put <code>duckdb.exe</code> in this folder)</p></li>
-<li><p>Add this folder to your path <code>C:\Users\YOUR_USERNAME\AppData\Local</code></p>
-<ol type="a">
-<li>Open System Properties by pressing the Windows key on your keyboard and searching for “environment variables”</li>
-<li>Access Environment Variables: In the System Properties window, go to the “Advanced” tab. Click on the “Environment Variables” button. Edit the PATH Variable: In the Environment Variables window, you will see two sections: User variables and System variables. Select the “Path” variable under the User section. Click the “Edit” button</li>
-<li>Add New Path: In the Edit Environment Variable window, click the “New” button. Type the full directory path of the program you want to add. Press “Enter” to confirm the path.</li>
-</ol>
-<p><img src="img/duckdb-windows_path.png" class="img-fluid"></p>
-<ol start="4" type="a">
-<li>Save Changes: Click “Ok” in the Edit Environment Variable window. Click “Ok” in the Environment Variables window. Click “Ok” in the System Properties window.</li>
-<li>Restart your machine</li>
-</ol></li>
-</ol>
-</section>
-</section>
-<section id="vs-code-integration" class="level2">
-<h2 class="anchored" data-anchor-id="vs-code-integration">VS Code integration</h2>
-<p>You can use DuckDB directly from the terminal but if you also want to have the option to have both a SQL script and the terminal open, we recommend to use visual code. There is one setting to be done to link the script and the terminal:</p>
-<p>Under the main VS menu, go to <em>Settings</em> -&gt; <em>Keyboard Shortcuts</em>, search for <code>run selected</code>, and choose the optoin <code>Terminal:run selected text in active terminal</code>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/vsc_shortcut.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of the keyboard shortcut settings</figcaption>
-</figure>
-</div>
+<section id="parquet-file-format" class="level2">
+<h2 class="anchored" data-anchor-id="parquet-file-format">Parquet file format</h2>
+<p>Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides high performance compression (read binary format) and encoding schemes to handle complex data in bulk and is supported in many programming languages and analytics tools. Parquet is also optimized for cloud access, therefoer Parquet is incredibly fast at scanning specific columns from large datasets hosted in a remote server.</p>
+<section id="metadata-hierarchy" class="level3">
+<h3 class="anchored" data-anchor-id="metadata-hierarchy">Metadata Hierarchy</h3>
+<p>To help with the fast retrieving, the Parquet format provides metadata. In other words, Parquet files are “self-describing.” All the schema information and column statistics are stored directly in the file footer.</p>
+<p>Parquet doesn’t just store one giant block of metadata. It breaks it down hierarchically to allow for surgical precision when querying:</p>
 <ul>
-<li>Set the shift-enter keypress by double-clicking.</li>
-<li>Right-click on the <em>When</em> column, select <em>Change When Expression</em>, and add <code>editorLangId == 'sql'</code> to restrict to just SQL files and not every kind of file.</li>
+<li><code>File Metadata</code>: Contains the overall schema (column names, data types), the total number of rows, and the location of the “Row Groups.”</li>
+<li><code>Row Group Metadata</code>: A Parquet file is divided horizontally into chunks called Row Groups (typically containing 10,000 to 1,000,000 rows). The metadata stores statistics for every single column within that specific Row Group.</li>
+<li><code>Page Metadata</code>: Row groups are further divided into pages. Metadata here tracks things like dictionary encoding.</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/vsc_shortcut_sql.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of the keyboard shortcut settings with the restriction applying it to SQL script only</figcaption>
-</figure>
-</div>
-<p><em>Now you can hit</em> <kbd>Shift</kbd>+<kbd>Return</kbd> at then end of a line in your SQL script and it should run the command directly in the terminal!</p>
 </section>
-<section id="test" class="level2">
-<h2 class="anchored" data-anchor-id="test">Test</h2>
-<p>Let’s test our new installation using <strong>Visual Studio Code</strong>:</p>
-<ol type="1">
-<li><p>open a terminal from the <em>terminal</em> menu -&gt; <em>new terminal</em></p></li>
-<li><p>In the terminal type <code>duckdb</code>, this will start <code>duckdb</code> (your prompt in the terminal should now be a <code>D</code>)</p></li>
-<li><p>Open a New text file: <em>file</em> menu -&gt; <em>new text file</em></p></li>
-<li><p>Copy paste the following code:</p></li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Start the DB at the terminal: duckdb</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> ducks <span class="kw">AS</span> <span class="kw">SELECT</span> <span class="dv">3</span> <span class="kw">As</span> age, <span class="st">'mandarin'</span> <span class="kw">AS</span> breed;</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TABLES</span>;</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ducks <span class="kw">SELECT</span> <span class="op">*</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="5" type="1">
-<li>Use <kbd>Shift</kbd>+<kbd>Return</kbd> to run the SQL code line by line</li>
-</ol>
-<p>You should have something that looks like this:</p>
-<p><img src="img/duckdb-vscode_test.png" class="img-fluid"></p>
+<section id="standard-parquet-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="standard-parquet-statistics">Standard Parquet Statistics</h3>
+<p>For every column inside a Row Group, the metadata stores a mini-index of statistics:</p>
+<ul>
+<li><code>Min/Max</code> Values: The lowest and highest value in that chunk.</li>
+<li><code>Null</code> Counts: How many empty rows exist in that chunk.</li>
+<li><code>Dictionary Data</code>: (If applicable) A list of the unique values.</li>
+</ul>
 </section>
-<section id="what-if-this-work-in-your-terminal-but-not-in-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="what-if-this-work-in-your-terminal-but-not-in-vs-code">What if this work in your terminal but not in VS Code??</h2>
-<p>When running the Terminal from VS Code, your path is not always loaded correctly depending of your machine settings. You can check this by running both in an independant terminal and the VS Code terminal:</p>
-<section id="mac" class="level3">
-<h3 class="anchored" data-anchor-id="mac">Mac</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="hive-partitioning" class="level3">
+<h3 class="anchored" data-anchor-id="hive-partitioning">Hive Partitioning</h3>
+<p><strong>Hive partitioning</strong> is a data organization strategy used in distributed databases and data lakes (originally popularized by Apache Hive) that divides a massive table into smaller, more manageable parts based on the values of one or more columns.</p>
+<p>Instead of storing all the data in a single giant directory, Hive partitioning groups rows with the same partition key into their own specific sub-directories.</p>
+<p>While powerful, partitioning must be done carefully to avoid performance bottlenecks:</p>
+<ul>
+<li><p>Choose the right cardinality: You want a partition column with a “medium” number of distinct values (cardinality). Dates (year, month, date) or broad categories (like country or department) are excellent choices.</p></li>
+<li><p>Avoid the “Small Files Problem”: Do not partition by a column with millions of unique values (like customer_id or timestamp). This will create millions of tiny directories, each with a tiny Parquet file. Query engines spend more time opening and closing files (metadata overhead) than actually reading data.</p></li>
+<li><p>Aim for file size sweet spots: Ideally, the Parquet files within your leaf partitions should be reasonably sized—typically between 128 MB and 1 GB each.</p></li>
+<li><p>Order matters: If you partition by multiple columns, put the most broadly filtered column first. year -&gt; month -&gt; day is good. day -&gt; month -&gt; year is highly inefficient.</p></li>
+</ul>
+<p>The core of Hive partitioning is its directory naming convention. It uses a key=value format for folder names.</p>
+<p>If you have a massive table of sales_data and you partition it by year and month, the underlying file system (like Amazon S3, Google Cloud Storage, or HDFS) will look like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/sales_data/</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> year=2022/</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── month=11/</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   ├── file1.parquet</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   └── file2.parquet</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── month=12/</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>       ├── file1.parquet</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>       └── file2.parquet</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> year=2023/</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── month=01/</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   ├── file1.parquet</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   └── file2.parquet</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>While Parquet is incredibly fast at scanning specific columns, Hive partitioning is incredibly fast at filtering out entire files. Combining them creates a powerhouse for analytical querying.</p>
 </section>
-<section id="windows-1" class="level3">
-<h3 class="anchored" data-anchor-id="windows-1">Windows</h3>
-<p>In PowerShell:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">echo</span> <span class="va">$env</span><span class="op">:</span><span class="va">PATH</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you do not get the same answers, then you will have to edit the terminal settings in VS Code. For more information please read this page <a href="https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch" class="uri">https://code.visualstudio.com/docs/supporting/troubleshoot-terminal-launch</a></p>
+<section id="parquet-and-hive-paritioning-combo" class="level3">
+<h3 class="anchored" data-anchor-id="parquet-and-hive-paritioning-combo">Parquet and Hive paritioning combo</h3>
+<p>Here is how they work together:</p>
+<ul>
+<li><p>Partition Pruning (The Hive part): When you run a query like <code>SELECT * FROM sales_data WHERE year = 2023 AND month = 01</code>, the query engine looks at the file path. It instantly knows it can completely ignore the year=2022 directory and all other months. It “prunes” these partitions from the search, saving massive amounts of time and I/O cost.</p></li>
+<li><p>Columnar Scanning (The Parquet part): Once the engine is inside the <code>year=2023/month=01/</code> folder, it opens the Parquet files. If your query was <code>SELECT customer_id FROM sales_data...</code>, Parquet’s columnar nature allows it to skip all the other columns (like product_name, price, etc.) and only read the customer_id data.</p></li>
+</ul>
+</section>
+</section>
+<section id="geoparquet" class="level2">
+<h2 class="anchored" data-anchor-id="geoparquet">Geoparquet</h2>
+<p>Simply put, GeoParquet builds on the parquet ecosystem to store geospatial vector data (point, lines, polygons)</p>
+<p>Because GeoParquet is not a separate format, any program that can read Parquet is able to load GeoParquet as well, even if it can’t make sense of the geometry information. This is very similar to how GeoTIFF layers geospatial information on top of the existing TIFF image standard.</p>
+<p>The two main things that GeoParquet defines on top of Parquet are how to encode geometries in the geometry column and how to include metadata like the geometries’ Coordinate Reference System (CRS).</p>
+<section id="geoparquet-metadata-layer" class="level3">
+<h3 class="anchored" data-anchor-id="geoparquet-metadata-layer">GeoParquet Metadata Layer</h3>
+<p>As we discussed earlier, GeoParquet takes the standard Parquet metadata footer and adds a specifically formatted JSON string (called geo) to it. This adds vital context for spatial query engines:</p>
+<ul>
+<li><code>primary_column</code>: Tells the engine which column contains the main geometry (since you can have multiple geometry columns in one file)</li>
+<li><code>geometry_types</code>: Lists the types of shapes in the file (e.g., [“Polygon”, “Line”])</li>
+<li><code>Coordinate Reference System (crs)</code>: Instead of relying on external files (.prj files like in Shapefiles), GeoParquet embeds the PROJJSON standard directly in the metadata</li>
+<li><code>Bounding Box (bbox)</code>: The spatial equivalent of Min/Max statistics. It provides the exact [xmin, ymin, xmax, ymax] that covers all geometries in th e file, and crucially, inside individual Row Groups.</li>
+</ul>
+</section>
+<section id="partitioning-geoparquet-files" class="level3">
+<h3 class="anchored" data-anchor-id="partitioning-geoparquet-files">Partitioning Geoparquet files</h3>
+<p>You cannot use a raw geometry column (like a complex polygon representing a city boundary) as a Hive partition key. Hive directories require simple scalar values (strings, integers).</p>
+<p>To spatially partition GeoParquet, you must first derive a simple geographic identifier from your spatial data and partition by that derived column.</p>
+<p>When organizing GeoParquet, data engineers typically use one of three methods to create Hive partition keys:</p>
+<ul>
+<li><p>Spatial Indices (Grid Systems): This is the most common and powerful method for large-scale spatial data. You calculate a discrete grid cell ID for each geometry (usually based on its centroid) and use that ID as the folder name:</p>
+<ul>
+<li><code>H3</code>: Uber’s Hexagonal Grid (<a href="https://h3geo.org/" class="uri">https://h3geo.org/</a>)</li>
+<li><code>S2</code>: Google’s Spherical Geometry (<a href="https://s2geometry.io/" class="uri">https://s2geometry.io/</a>)</li>
+<li><code>Geohash</code>: geohash (<a href="https://esp.info/geohash" class="uri">https://esp.info/geohash</a>)</li>
+</ul></li>
+<li><p>Map Tiles (Z/X/Y): If you are serving data to web maps, you can partition by zoom level, X coordinate, and Y coordinate. Example: /z=10/x=163/y=395/file.parquet</p></li>
+<li><p>Administrative Boundaries: For human-centric data, partitioning by known boundaries works well, provided the data is evenly distributed. Example: /country=US/state=CA/file.parquet</p></li>
+</ul>
+<p>Geospatial data is very often time-series data (e.g., GPS pings from delivery trucks, daily satellite imagery, or weather sensors). The most efficient GeoParquet data lakes combine temporal and spatial Hive partitioning. For example, storing Uber ride drop-offs:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/rides_data/</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> year=2024/</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── month=03/</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   ├── h3_index=842a107ffffffff/</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   │   ├── part-001.parquet</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   │   └── part-002.parquet</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │   └── h3_index=842a10bffffffff/</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   │       ├── part-001.parquet</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<ul>
+<li>Cloud-Optimized Geospatial Formats Guide: <a href="https://guide.cloudnativegeo.org/geoparquet/" class="uri">https://guide.cloudnativegeo.org/geoparquet/</a></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
 <div>
   <p></p><hr><p></p>
 <p align="center" xmlns:cc="http://creativecommons.org/ns#">This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p> 
-  <p align="center"><a href="https://www.library.ucsb.edu/research-data-services"><img alt="UCSB logo" style="border-width:0" src="./img/ucsb-primary-wordmark.png" width="250px" align="center"></a></p>
+  <p align="center"><a href="https://www.library.ucsb.edu/research-data-services"><img alt="UCSB logo" style="border-width:0" src="../../img/ucsb-primary-wordmark.png" width="250px" align="center"></a></p>
 </div>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
