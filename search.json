@@ -168,172 +168,249 @@
     "text": "Rubric\nThe rubric for the project can be found here."
   },
   {
-    "objectID": "modules/labs/slides/week4.html#title-slide",
-    "href": "modules/labs/slides/week4.html#title-slide",
-    "title": "eds213",
+    "objectID": "modules/labs/week6.html",
+    "href": "modules/labs/week6.html",
+    "title": "Lab 6",
     "section": "",
-    "text": "EDS 213: Lab 4\n\nAsking a Question & Writing SQL Queries"
+    "text": "This week, you’ll run your SQL query in Python or R, pulling results directly into a data frame and turning them into a visualization.\nView Slides"
   },
   {
-    "objectID": "modules/labs/slides/week4.html#overview",
-    "href": "modules/labs/slides/week4.html#overview",
-    "title": "eds213",
+    "objectID": "modules/labs/week6.html#overview",
+    "href": "modules/labs/week6.html#overview",
+    "title": "Lab 6",
     "section": "",
-    "text": "This Week’s Goal\nYou’ve cleaned your data and loaded it into a database. Now it’s time to ask a question and write the SQL to answer it.\n\nA good analytical question can’t be answered by looking at a single row\nIt should require combining information across tables\nThe answer should reveal something meaningful — a pattern, a trend, a summary"
+    "text": "This week, you’ll run your SQL query in Python or R, pulling results directly into a data frame and turning them into a visualization.\nView Slides"
   },
   {
-    "objectID": "modules/labs/slides/week4.html#good-question",
-    "href": "modules/labs/slides/week4.html#good-question",
-    "title": "eds213",
-    "section": "",
-    "text": "What Makes a Sufficient Analytical Question?\n\nOnly uses one table — summarizing across records:\n\n“What is the average water temperature at each site across all sampling dates?”\n\nUses multiple tables — combining tables to add context:\n\n“Which sites have above-average water temperatures, and what land cover type surrounds them?”"
+    "objectID": "modules/labs/week6.html#python-querying-with-duckdb",
+    "href": "modules/labs/week6.html#python-querying-with-duckdb",
+    "title": "Lab 6",
+    "section": "Python: Querying with DuckDB",
+    "text": "Python: Querying with DuckDB\n\nConnect and create a cursor\nimport duckdb\nimport pandas as pd\n\nconn = duckdb.connect(\"database.duckdb\")\ncur = conn.cursor()\n\n\nExecute a query\ncur.execute(\"\"\"\n    SELECT Species, COUNT(*) AS num_nests\n    FROM Bird_nests\n    GROUP BY Species\n    ORDER BY num_nests DESC\n\"\"\")\nAt this point the data is not yet in Python memory. It’s a symbolic representation of the query. You still need to materialize it.\n\n\nMaterialize the results\nThere are several ways to get data out of the cursor:\ncur.fetchall()   # list of tuples — all rows at once\ncur.fetchone()   # one row as a tuple\ncur.df()         # pandas DataFrame ← best for analysis\nFor plotting, use .df() to get a pandas DataFrame:\ncur.execute(\"\"\"\n    SELECT Species, COUNT(*) AS num_nests\n    FROM Bird_nests\n    GROUP BY Species\n    ORDER BY num_nests DESC\n\"\"\")\ndf = cur.df()\ndf.head()\n\n\nVisualize the result\nimport matplotlib.pyplot as plt\n\nfig, ax = plt.subplots(figsize=(8, 5))\nax.barh(df[\"Species\"], df[\"num_nests\"])\nax.set_xlabel(\"Number of Nests\")\nax.set_title(\"Nest Count by Species\")\nplt.tight_layout()\nplt.show()\n\n\nClose the connection\nconn.close()"
   },
   {
-    "objectID": "modules/labs/slides/week4.html#example-tables",
-    "href": "modules/labs/slides/week4.html#example-tables",
-    "title": "eds213",
-    "section": "",
-    "text": "Example: Two Related Tables\n\nobservations — bird observations\n\n\n\nobs_id\nsite_id\ndate\nspecies\ncount\n\n\n\n\n1\n101\n2023-04-01\nPeregrine Falcon\n3\n\n\n2\n102\n2023-04-01\nRed-tailed Hawk\n7\n\n\n3\n101\n2023-04-15\nPeregrine Falcon\n1\n\n\n4\n103\n2023-04-15\nOsprey\n4\n\n\n\nsites — site-level metadata\n\n\n\nsite_id\nsite_name\nhabitat_type\nelevation_m\n\n\n\n\n101\nDevereux Slough\nWetland\n5\n\n\n102\nEllwood Mesa\nCoastal Scrub\n45\n\n\n103\nMore Mesa\nGrassland\n60"
+    "objectID": "modules/labs/week6.html#r-querying-with-dbplyr",
+    "href": "modules/labs/week6.html#r-querying-with-dbplyr",
+    "title": "Lab 6",
+    "section": "R: Querying with dbplyr",
+    "text": "R: Querying with dbplyr\ndbplyr lets you write dplyr code against a database. It translates your verbs into SQL and runs the query.\n\nConnect to your database\nlibrary(tidyverse)\nlibrary(DBI)\nlibrary(dbplyr)\nlibrary(duckdb)\n\nconn &lt;- DBI::dbConnect(duckdb::duckdb(),\n                       dbdir = \"database.duckdb\")\n\nDBI::dbListTables(conn)\n\n\nReference a table\nnests_db &lt;- tbl(conn, \"Bird_nests\")\nnests_db\nThis looks like a data frame, but it isn’t. It’s a lazy reference to the database table. The data hasn’t been pulled into R yet (dim() will show NA for the row count).\n\n\nQuery with dplyr verbs\nUse familiar dplyr verbs on the table reference:\nnests_db |&gt;\n  group_by(Species) |&gt;\n  summarise(num_nests = n()) |&gt;\n  arrange(desc(num_nests)) |&gt;\n  head(3)\n\n\nSee what SQL dbplyr generates\nnests_db |&gt;\n  group_by(Species) |&gt;\n  summarise(num_nests = n()) |&gt;\n  show_query()\n\n\nPull data into R with collect()\nNothing runs on the database until collect() is called. Everything before it is building up the SQL query:\nresult &lt;- nests_db |&gt;\n  group_by(Species) |&gt;\n  summarise(num_nests = n()) |&gt;\n  arrange(desc(num_nests)) |&gt;\n  collect()\ncollect() executes the query and returns a true R data frame.\n\n\nVisualize the result\nBecause collect() returns a regular data frame, you can pipe directly into ggplot2:\nresult |&gt;\n  ggplot(aes(x = num_nests,\n             y = reorder(Species, num_nests))) +\n  geom_col(fill = \"#52796f\") +\n  labs(\n    x = \"Number of Nests\",\n    y = \"Species\",\n    title = \"Nest Count by Species\"\n  ) +\n  theme_minimal()\n\n\nClose the connection\nDBI::dbDisconnect(conn, shutdown = TRUE)\nThe shutdown = TRUE argument is specific to DuckDB. It cleanly shuts down the DuckDB engine when you disconnect."
   },
   {
-    "objectID": "modules/labs/slides/week4.html#surface-query",
-    "href": "modules/labs/slides/week4.html#surface-query",
-    "title": "eds213",
-    "section": "",
-    "text": "Starting Too Simple\nThis query only touches one table and pulls out a single value:\nSELECT count\nFROM observations\nWHERE obs_id = 1;\n\nIt answers: “How many falcons were seen on one particular visit?”\nThat’s not a question — it’s a lookup. It doesn’t use your second table at all, and it doesn’t tell you anything about patterns in the data."
+    "objectID": "modules/labs/week6.html#this-weeks-task",
+    "href": "modules/labs/week6.html#this-weeks-task",
+    "title": "Lab 6",
+    "section": "This Week’s Task",
+    "text": "This Week’s Task\nUsing Python or R, connect to your database, run your analytical query from last week, and create a visualization from the results. Everything should live in a single .ipynb or .qmd file.\n\n\n\n\n\n\nNoteChecklist\n\n\n\n\nA connection to your database opened in your notebook\nYour query run via Python or R\nA plot built from the query result\nYour connection closed at the end"
   },
   {
-    "objectID": "modules/labs/slides/week4.html#join-query",
-    "href": "modules/labs/slides/week4.html#join-query",
+    "objectID": "modules/labs/slides/week1.html#title-slide",
+    "href": "modules/labs/slides/week1.html#title-slide",
     "title": "eds213",
     "section": "",
-    "text": "Bringing Tables Together with JOIN\nTo answer a richer question, you need to combine your tables:\nSELECT\n  s.site_name,\n  s.habitat_type,\n  o.species,\n  o.count,\n  o.date\nFROM observations o\nJOIN sites s ON o.site_id = s.site_id;\n\nNow each observation has site context attached."
+    "text": "EDS 213 Lab 1\n\nSpring Quarter"
   },
   {
-    "objectID": "modules/labs/slides/week4.html#aggregate-query",
-    "href": "modules/labs/slides/week4.html#aggregate-query",
+    "objectID": "modules/labs/slides/week1.html#Lab-overview",
+    "href": "modules/labs/slides/week1.html#Lab-overview",
     "title": "eds213",
     "section": "",
-    "text": "Answering a question with both tables\nAdd GROUP BY to summarize across records:\nSELECT\n  s.site_name,\n  s.habitat_type,\n  SUM(o.count) AS total_observations\nFROM observations o\nJOIN sites s ON o.site_id = s.site_id\nGROUP BY s.site_name, s.habitat_type\nORDER BY total_observations DESC;\n\nThis answers: “Which habitat types have the highest total bird observations?”\nThis is a question in which you need both tables to answer it."
+    "text": "Lab section overview\nThe goal of our weekly lab sections will be to answer an analytical question of your choosing using a database. You will create this database yourself, and then use it to answer your question. In week 7, we will have a database showcase where you get to teach your classmates about the database you created!"
   },
   {
-    "objectID": "modules/labs/slides/week4.html#build-your-query",
-    "href": "modules/labs/slides/week4.html#build-your-query",
+    "objectID": "modules/labs/slides/week1.html#Schedule",
+    "href": "modules/labs/slides/week1.html#Schedule",
     "title": "eds213",
     "section": "",
-    "text": "Building Your Query\n\n\nStart with your question — write it out in plain English\nIdentify the tables — which tables contain the data you need?\nFind the join key — what column links them together?\nWrite the JOIN — combine the tables\nAdd your filters — WHERE clause if needed\nAggregate if needed — GROUP BY, COUNT, SUM, AVG\nOrder the results — ORDER BY to surface the most meaningful rows"
+    "text": "Schedule\n\n\n\n\nWeek\n\n\nObjective\n\n\n\n\n\n\n1\n\n\nSelect a dataset and understand the relationships among the different tables to define a schema.\n\n\n\n\n2\n\n\nClean the data.\n\n\n\n\n3\n\n\nIngest the data into a database and explore your newly created database.\n\n\n\n\n4\n\n\nAfter cleaning your data and having it in a database, come up with an analytical question to answer with your database. Develop the SQL query/ queries to answer this question.\n\n\n\n\n5\n\n\nWrite some R or Python code to create some data visualization/ analysis with your database.\n\n\n\n\n6\n\n\nDocument your work.\n\n\n\n\n7\n\n\nDatabase showcase!"
   },
   {
-    "objectID": "modules/labs/slides/week4.html#this-weeks-task",
-    "href": "modules/labs/slides/week4.html#this-weeks-task",
+    "objectID": "modules/labs/slides/week1.html#Grading",
+    "href": "modules/labs/slides/week1.html#Grading",
     "title": "eds213",
     "section": "",
-    "text": "This Week’s Task\n\nCome up with an analytical question for your own database and write the SQL to answer it.\nYour query must:\n\nUse a JOIN across at least two of your tables\nInclude some form of aggregation (GROUP BY, COUNT, SUM, AVG, etc.)\nProduce a result that says something meaningful about your data\n\n\nWrite your question out in plain English first, then translate it to SQL. Write your question as a comment within your .sql script.\n\n\nSave your work in a .sql script in your project repo — this file will be part of your final submission."
+    "text": "Project Rubric\nYour lab project is graded Pass/Fail across four criteria:\n\n\n\n\nCriteria\n\n\nPass\n\n\nFail\n\n\n\n\n\n\nDatabase Schema\n\n\nAppropriate dataset; correct entities & relationships; complete schema diagram; proper primary/foreign keys & data types. (Submit schema to Canvas by 4/15)\n\n\nDataset too simple; missing critical relationships; incomplete or incorrect schema diagram.\n\n\n\n\nCode\n\n\nAppropriate data transformations; missing values handled; formats standardized; data integrity preserved.\n\n\nNo evidence of cleaning; major data quality issues remain; missing values mishandled; lack of standardization.\n\n\n\n\nDocumentation\n\n\nClear project purpose; well-documented process; commented code; decisions explained; results discussed; GitHub repo follows repository rubric.\n\n\nMinimal/unclear docs; omitted steps; code lacks comments; results presented without context; insufficient GitHub repo.\n\n\n\n\nReproducibility\n\n\nProject reproducible from docs; all files included (.sql + .ipynb/.qmd); steps clearly ordered; dependencies listed.\n\n\nCritical files/steps missing; process cannot be reproduced; dependencies not specified; setup requirements missing.\n\n\n\n\nPresentation\n\n\nCovers dataset overview, analytical question, and SQL query; includes a data visualization; stays within 2.5 minutes; reflects on challenges or surprises.\n\n\nMissing key components (dataset context, query, or visualization); significantly over/under time; little to no reflection on the process."
   },
   {
-    "objectID": "modules/labs/slides/week5.html#title-slide",
-    "href": "modules/labs/slides/week5.html#title-slide",
+    "objectID": "modules/labs/slides/week1.html#Repo-rubric",
+    "href": "modules/labs/slides/week1.html#Repo-rubric",
     "title": "eds213",
     "section": "",
-    "text": "EDS 213: Lab 5\n\nDocumenting Your Work"
+    "text": "GitHub Repository Rubric\nYour README should include:\n\nA short, descriptive title\nMarkdown headers separating each section\nA brief explanation of the repository’s purpose\nA concise description of repository structure / file organization\nNo hidden files other than .gitignore (no .DS_Store!)\nDetails on data access — where the data lives and how to access it\nReferences & acknowledgements in a consistent format (include course, data sources, and any other resources)\nFree of typos, grammatical errors, and formatting mistakes"
   },
   {
-    "objectID": "modules/labs/slides/week5.html#overview",
-    "href": "modules/labs/slides/week5.html#overview",
+    "objectID": "modules/labs/slides/week1.html#Repo-files",
+    "href": "modules/labs/slides/week1.html#Repo-files",
     "title": "eds213",
     "section": "",
-    "text": "This Week’s Goal\nYou’ve found some datasets, cleaned your data, built a database, written queries, and started analyzing your data.Now make sure someone else (or future you) can understand and reproduce it.\n\nThis week you will document your project so it meets the course rubric\nDocumentation covers two things: your code and your repository\nRemember: Others should be able to reproduce your results without asking you anything!"
+    "text": "Required Repository Files\nYour repo must contain:\n\nYour database (if applicable)\nA .sql file with your query\nA .qmd / .ipynb file with your data analysis & visualization\nYour data cleaning script\nA README\nA .txt file listing dependencies and environment requirements for your R/Python analysis\nAny other files necessary to reproduce your analysis"
   },
   {
-    "objectID": "modules/labs/slides/week5.html#doc-code",
-    "href": "modules/labs/slides/week5.html#doc-code",
+    "objectID": "modules/labs/slides/week1.html#Presentation-rubric",
+    "href": "modules/labs/slides/week1.html#Presentation-rubric",
     "title": "eds213",
     "section": "",
-    "text": "Comment Your Code\n\nEvery script and notebook should be self-explanatory. Add comments that explain why, not just what:\n# Drop rows where species_id is NULL —\n# these represent failed sensor readings, not real observations\ndf = df.dropna(subset=[\"species_id\"])\n\n-- Aggregate by habitat type to compare total observations\n-- across ecosystem categories rather than individual sites\nSELECT habitat_type, SUM(count) AS total\nFROM observations o\nJOIN sites s ON o.site_id = s.site_id\nGROUP BY habitat_type;\n\n\nA future reader should understand every non-obvious decision without asking you."
+    "text": "Week 7 Presentation Rubric\nYou’ll have 2.5 minutes to present your database to the class. Your presentation must cover:\n\nDataset overview\n\nHow did you find it? Was it messy? Well documented?\nAny challenges ingesting it into a database?\n\nYour question & how you answered it\n\nInclude your SQL query\n\nThe data visualization created from your query\nAny other comments — challenges, surprises, lessons learned!"
   },
   {
-    "objectID": "modules/labs/slides/week5.html#doc-reproducibility",
-    "href": "modules/labs/slides/week5.html#doc-reproducibility",
+    "objectID": "modules/labs/slides/week2.html#title-slide",
+    "href": "modules/labs/slides/week2.html#title-slide",
     "title": "eds213",
     "section": "",
-    "text": "Make It Reproducible\nSomeone should be able to clone your repo and recreate your results (with the exception of needing to download data, but instructions should this should be extremely clear!).That means:\n\nAll necessary files are included or clearly referenced\nYour .sql file , cleaning script, and visualization script (both .ipynb or .qmd) are present\nDependencies are listed so the environment can be recreated"
+    "text": "EDS 213 Lab 2\n\nData Cleaning"
   },
   {
-    "objectID": "modules/labs/slides/week5.html#dependencies",
-    "href": "modules/labs/slides/week5.html#dependencies",
+    "objectID": "modules/labs/slides/week2.html#overview",
+    "href": "modules/labs/slides/week2.html#overview",
     "title": "eds213",
     "section": "",
-    "text": "The Dependencies File\n\nInclude a .txt file in your repo that lists your environment requirements.\n\nFor Python, export from conda or pip:\n# conda\nconda env export &gt; environment.yml\n\n# pip\npip freeze &gt; requirements.txt\nFor R, document your package versions:\n# run in your R script or notebook\nsessionInfo()\n# or for a clean list:\nwriteLines(capture.output(sessionInfo()), \"requirements.txt\")\n\nName it requirements.txt or environment.yml."
+    "text": "Today’s Lab\nReal-world datasets are messy. We’ll walk through three example databases and the cleaning steps each one needs before ingesting into a database."
   },
   {
-    "objectID": "modules/labs/slides/week5.html#readme-overview",
-    "href": "modules/labs/slides/week5.html#readme-overview",
+    "objectID": "modules/labs/slides/week2.html#Database1",
+    "href": "modules/labs/slides/week2.html#Database1",
     "title": "eds213",
     "section": "",
-    "text": "Repository README\nThe README is the first thing anyone sees when they visit your repository. It should answer: “What is this, and how do I use it?”\nRequired sections:\n\nShort, descriptive title\nPurpose — what the project is about\nRepository structure — what files exist and what they do\nData access — where the data lives and how to get it\nReferences & acknowledgements\nAny other info that is necessary to reproduce the analysis"
+    "text": "Database #1\n\n\n\n\n\nAir Quality\n\n\nDate\nLocation\nPM2_5\nNO2\nO3\n\n\n\n\n2020-01-01\nSite A\n12.3\n20\n15\n\n\n2020/02/01\nSite B\nfifteen\n30\n20\n\n\nMarch 3, 2020\nSite C\n7.8\n25\ntwenty\n\n\nNA\nSite A\n9\nNA\n30\n\n\n2020-04-01\nSite D\n10.2\n40\n35\n\n\n\n\n\n\n\n\n\nWater Quality\n\n\nSample_Date\nSite_Name\npH\nTurbidity\nLead_Concentration\n\n\n\n\n01-01-2020\nRiver X\n6.5\n3.2\n0.05\n\n\n2020-02-01\nLake Y\n7\n2.8\n0.07\n\n\n03-03-2020\nRiver X\n7.5\nNA\n0.1\n\n\n2020-Apr-04\nLake Z\n7.2\n3.5\n0.04\n\n\n2020-05-01\nRiver X\n8.1\n300.0\n0.030 ppm"
   },
   {
-    "objectID": "modules/labs/slides/week5.html#readme-details",
-    "href": "modules/labs/slides/week5.html#readme-details",
+    "objectID": "modules/labs/slides/week2.html#Database1-issues",
+    "href": "modules/labs/slides/week2.html#Database1-issues",
     "title": "eds213",
     "section": "",
-    "text": "README: What Each Section Should Cover\n\n\n\n\n\n\n\n\nSection\nWhat to include\n\n\n\n\nTitle\nShort and descriptive\n\n\nPurpose\nBrief explanation of the repo’s goal (paragraphs or bullets)\n\n\nRepository structure\nFile organization — what’s in each folder/file\n\n\nData access\nWhere data lives, how to access it to run the code\n\n\nReferences\nCourse, datasets, and any other sources — consistent format with links\n\n\n\n\nNo hidden files (especially no .DS_Store) other than .gitignore."
+    "text": "Database #1: What’s Wrong?\nAir Quality table:\n\nDate — mixed formats: 2020-01-01, 2020/02/01, March 3, 2020\nPM2_5 — contains \"fifteen\" instead of a number\nNO2 — contains \"NA\" as a string, not a true missing value\n\nWater Quality table:\n\nSample_Date — multiple inconsistent date formats\nLead_Concentration — mixes plain numbers with \"0.030 ppm\""
   },
   {
-    "objectID": "modules/labs/slides/week5.html#this-weeks-task",
-    "href": "modules/labs/slides/week5.html#this-weeks-task",
+    "objectID": "modules/labs/slides/week2.html#Database2",
+    "href": "modules/labs/slides/week2.html#Database2",
     "title": "eds213",
     "section": "",
-    "text": "This Week’s Task\n\nComplete the documentation for your project.\n\nIn your code:\n\nAdd comments explaining non-obvious decisions in your .sql and .ipynb / .qmd files\nEnsure steps are clearly ordered and explained\n\n\n\nIn your repository:\n\nWrite or update your README to meet the rubric\nAdd a requirements.txt or environment.yml listing your dependencies\nConfirm all required files are present (.sql, .ipynb / .qmd visualization and data cleaning script)\nRemove any .DS_Store or other hidden files"
+    "text": "Database #2\n\n\n\n\n\nAir Quality\n\n\nDate\nTime\nLocation\nPM10\nPM2_5\nNO2\n\n\n\n\n2023-04-01\n08:00\nCity Park\n50\n25 µg/m³\n40\n\n\n2023-04-01\n14:00\nCity Park\n55\n30\n42\n\n\n2023-04-02\n08:00\nIndustrial Area\n150\n75\n60\n\n\n2023-04-02\n14:00\nIndustrial Area\n155 mg/m³\n80\nNA\n\n\n2023-04-03\n08:00\nResidential Zone\n40\nNA\n35\n\n\n\n\n\n\n\n\n\nWeather (wide format)\n\n\nLocation\nX2023.04.01.Temp.06.00\nX2023.04.01.Humidity.06.00\nX2023.04.01.Temp.12.00\nX2023.04.01.Humidity.12.00\nX2023.04.01.Temp.18.00\nX2023.04.01.Humidity.18.00\nX2023.04.01.Temp.24.00\nX2023.04.01.Humidity.24.00\n\n\n\n\nPark\n14\n80\n22\n60\n20\n70\n16\n85\n\n\nBeach\n16\n85\n24\n55\n22\n75\n18\n90\n\n\nForest\n13\n90\n21\n65\n19\n80\n15\n95\n\n\nHill\n15\n75\n23\n50\n21\n65\n17\n80"
   },
   {
-    "objectID": "modules/labs/slides/week3.html#title-slide",
-    "href": "modules/labs/slides/week3.html#title-slide",
+    "objectID": "modules/labs/slides/week2.html#Database2-issues",
+    "href": "modules/labs/slides/week2.html#Database2-issues",
     "title": "eds213",
     "section": "",
-    "text": "EDS 213: Lab 3\n\nIngesting your data into a database"
+    "text": "Database #2: What’s Wrong?\nAir Quality table:\n\nPM10 has one entry with \"155 mg/m³\" — unit embedded in value\nPM2_5 has one entry with \"25 µg/m³\" — same problem\n\nWeather table:\n\nData is in wide format — each column encodes date, variable, and time\nRelational databases need long/tidy format\nNeed pivot_longer() to reshape into separate Date, Time, Temp, and Humidity columns"
   },
   {
-    "objectID": "modules/labs/slides/week3.html#Database-Ingestion-Options",
-    "href": "modules/labs/slides/week3.html#Database-Ingestion-Options",
+    "objectID": "modules/labs/slides/week2.html#Database3",
+    "href": "modules/labs/slides/week2.html#Database3",
     "title": "eds213",
     "section": "",
-    "text": "Database Ingestion Options\n\nMany different ways to ingest your data into a database!\nWe are going to cover two options and note their differences\nWe will use the following example csv file"
+    "text": "Database #3\n\n\n\n\n\nDaily Air Quality\n\n\nDate\nLocation\nPM2_5\nNO2\nOzone\n\n\n\n\n2020-01-01\nLocation1\n46.69874\n87.96601\n98.12719\n\n\n2020-01-01\nLocation2\n119.30424\n33.44394\n89.80869\n\n\n2020-01-01\nLocation3\n64.30165\n35.56292\n63.59488\n\n\n2020-01-02\nLocation1\n133.03752\n24.92722\n88.71676\n\n\n2020-01-02\nLocation2\n141.36776\n12.69610\n34.84138\n\n\n2020-01-02\nLocation3\n11.60569\n18.83068\n22.21545\n\n\n\n\n\n\n\n\n\nYearly Vegetation Health\n\n\nYear\nLocation\nVHI\n\n\n\n\n2020\nLocation1\n63.01918\n\n\n2021\nLocation1\n83.86073\n\n\n2022\nLocation1\n80.71608\n\n\n2020\nLocation2\n92.40360\n\n\n2021\nLocation2\n42.04080\n\n\n2022\nLocation2\n51.59250\n\n\n2020\nLocation3\n75.97901\n\n\n2021\nLocation3\n77.41948\n\n\n2022\nLocation3\n88.97631"
   },
   {
-    "objectID": "modules/labs/slides/week3.html#Option1",
-    "href": "modules/labs/slides/week3.html#Option1",
+    "objectID": "modules/labs/slides/week2.html#Database3-issues",
+    "href": "modules/labs/slides/week2.html#Database3-issues",
     "title": "eds213",
     "section": "",
-    "text": "Option #1: COPY"
+    "text": "Database #3: What’s Wrong?\nDaily Air Quality table:\n\nRecorded at daily resolution\n\nYearly Vegetation Health table:\n\nRecorded at yearly resolution\nThese tables cannot be joined directly — they have different temporal resolutions\n\n\nFix: Aggregate daily air quality to yearly averages so both tables share a Year + Location key."
   },
   {
-    "objectID": "modules/labs/slides/week3.html#Option1-characteristics",
-    "href": "modules/labs/slides/week3.html#Option1-characteristics",
+    "objectID": "modules/labs/slides/week2.html#this-weeks-task",
+    "href": "modules/labs/slides/week2.html#this-weeks-task",
     "title": "eds213",
     "section": "",
-    "text": "Option 1 Key characteristics:\n\nFast and efficient for large files\nRequires the table to already exist with matching column names and types\nYou control the schema explicitly — data types, constraints, etc."
+    "text": "This Week’s Task\n\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data meets the following criteria:\n\nAll date columns use a consistent format\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nData is in long/tidy format (each variable in its own column, each observation in its own row)\nTables that will be joined share a common key\nAny other cleaning steps specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)"
   },
   {
-    "objectID": "modules/labs/slides/week3.html#Option2",
-    "href": "modules/labs/slides/week3.html#Option2",
+    "objectID": "modules/labs/slides/week6.html#title-slide",
+    "href": "modules/labs/slides/week6.html#title-slide",
     "title": "eds213",
     "section": "",
-    "text": "Option #2: read_csv"
+    "text": "EDS 213: Lab 6\n\nFrom Querying to Visualizing"
   },
   {
-    "objectID": "modules/labs/slides/week3.html#Option2-characteristics",
-    "href": "modules/labs/slides/week3.html#Option2-characteristics",
+    "objectID": "modules/labs/slides/week6.html#overview",
+    "href": "modules/labs/slides/week6.html#overview",
     "title": "eds213",
     "section": "",
-    "text": "Option 2 Key characteristics:\n\nConvenient — no need to define the schema upfront\nAutomatically infers column types from the data\nGreat for quick exploration and prototyping\nType inference can sometimes get things wrong — always verify!"
+    "text": "This Week’s Goal\nThis week, you’ll run your SQL query in Python or R, pulling results directly into a data frame and turning them into a visualization.\n\nIn Python, use duckdb + a cursor to query your database, convert to a pandas DataFrame, and plot\nIn R, use dbplyr to write dplyr code that gets translated to SQL automatically\nBoth paths end the same way: a query result becomes a plot"
   },
   {
-    "objectID": "modules/labs/slides/week3.html#the-difference",
-    "href": "modules/labs/slides/week3.html#the-difference",
+    "objectID": "modules/labs/slides/week6.html#python-connect",
+    "href": "modules/labs/slides/week6.html#python-connect",
     "title": "eds213",
-    "section": "The Difference",
-    "text": "The Difference\n\n\n\n\nCOPY\nread_csv\n\n\n\n\nSchema definition\nManual (you write it)\nAutomatic (inferred)\n\n\nType control\nFull control\nInferred — may need correction\n\n\nSpeed\nVery fast for large data\nFast, slightly more overhead\n\n\nBest for\nProduction ingestion\nExploration & prototyping"
+    "section": "",
+    "text": "Python: Connect to Your Database\nimport duckdb\nimport pandas as pd\n\nconn = duckdb.connect(\"database.duckdb\")\ncur = conn.cursor()"
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#python-query",
+    "href": "modules/labs/slides/week6.html#python-query",
+    "title": "eds213",
+    "section": "",
+    "text": "Python: Run a Query\ncur.execute(\"\"\"\n    SELECT Species, COUNT(*) AS num_nests\n    FROM Bird_nests\n    GROUP BY Species\n    ORDER BY num_nests DESC\n\"\"\")\n\nAt this point the data is not yet in Python memory. It’s a symbolic representation of the query,but you need to materialize it."
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#python-fetch",
+    "href": "modules/labs/slides/week6.html#python-fetch",
+    "title": "eds213",
+    "section": "",
+    "text": "Python: Getting Results Out\n\nSeveral options for materializing results:\ncur.fetchall()   # list of tuples — all rows at once\ncur.fetchone()   # one row as a tuple\ncur.df()         # pandas DataFrame  ← best for analysis\n\nTo get a DataFrame you can plot:\ncur.execute(\"\"\"\n    SELECT Species, COUNT(*) AS num_nests\n    FROM Bird_nests\n    GROUP BY Species\n    ORDER BY num_nests DESC\n\"\"\")\ndf = cur.df()\ndf.head()"
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#python-plot",
+    "href": "modules/labs/slides/week6.html#python-plot",
+    "title": "eds213",
+    "section": "",
+    "text": "Python: Turn the Result into a Plot\nimport matplotlib.pyplot as plt\n\nfig, ax = plt.subplots(figsize=(8, 5))\nax.barh(df[\"Species\"], df[\"num_nests\"])\nax.set_xlabel(\"Number of Nests\")\nax.set_title(\"Nest Count by Species\")\nplt.tight_layout()\nplt.show()\n\nBecause cur.df() returned a standard pandas DataFrame, any plotting library works — matplotlib, seaborn, plotly, etc."
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#python-close",
+    "href": "modules/labs/slides/week6.html#python-close",
+    "title": "eds213",
+    "section": "",
+    "text": "Python: Close the Connection\nconn.close()\n\nCursors don’t store anything, they just transfer queries and return results. Once you’ve called .df() or .fetchall(), the data lives in your variable, not the cursor."
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#r-connect",
+    "href": "modules/labs/slides/week6.html#r-connect",
+    "title": "eds213",
+    "section": "",
+    "text": "R: Connect to Your Database\nlibrary(tidyverse)\nlibrary(DBI)\nlibrary(dbplyr)\nlibrary(duckdb)\n\nconn &lt;- DBI::dbConnect(duckdb::duckdb(),\n                       dbdir = \"database.duckdb\")\n\nDBI::dbListTables(conn)\n\ndbListTables() shows you all tables available."
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#r-tbl",
+    "href": "modules/labs/slides/week6.html#r-tbl",
+    "title": "eds213",
+    "section": "",
+    "text": "R: Reference a Table\nnests_db &lt;- tbl(conn, \"Bird_nests\")\nnests_db\n\nThis looks like a data frame — but it isn’t. It’s a lazy reference to the database table. The data hasn’t been pulled into R yet.\ndim(nests_db)   # row count is unknown (NA)"
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#r-dbplyr",
+    "href": "modules/labs/slides/week6.html#r-dbplyr",
+    "title": "eds213",
+    "section": "",
+    "text": "R: Writing SQL with dbplyr\n\nUse dplyr verbs on the table reference. dbplyr translates them to SQL behind the scenes:\nnests_db |&gt;\n  group_by(Species) |&gt;\n  summarise(num_nests = n()) |&gt;\n  arrange(desc(num_nests)) |&gt;\n  head(3)\n\n# See what SQL dbplyr generated:\nnests_db |&gt;\n  group_by(Species) |&gt;\n  summarise(num_nests = n()) |&gt;\n  show_query()"
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#r-collect",
+    "href": "modules/labs/slides/week6.html#r-collect",
+    "title": "eds213",
+    "section": "",
+    "text": "R: Pulling Data into R with collect()\nresult &lt;- nests_db |&gt;\n  group_by(Species) |&gt;\n  summarise(num_nests = n()) |&gt;\n  arrange(desc(num_nests)) |&gt;\n  collect()   # ← runs the query, returns a true data frame\n\nNothing runs on the database until collect() is called. Everything before it is building up the SQL query."
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#r-plot",
+    "href": "modules/labs/slides/week6.html#r-plot",
+    "title": "eds213",
+    "section": "",
+    "text": "R: Turn the Result into a Plot\nresult |&gt;\n  ggplot(aes(x = num_nests,\n             y = reorder(Species, num_nests))) +\n  geom_col(fill = \"#52796f\") +\n  labs(\n    x = \"Number of Nests\",\n    y = \"Species\",\n    title = \"Nest Count by Species\"\n  ) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#r-close",
+    "href": "modules/labs/slides/week6.html#r-close",
+    "title": "eds213",
+    "section": "",
+    "text": "R: Close the Connection\nDBI::dbDisconnect(conn, shutdown = TRUE)\n\nThe shutdown = TRUE argument is specific to DuckDB. It cleanly shuts down the DuckDB engine when you disconnect."
+  },
+  {
+    "objectID": "modules/labs/slides/week6.html#this-weeks-task",
+    "href": "modules/labs/slides/week6.html#this-weeks-task",
+    "title": "eds213",
+    "section": "",
+    "text": "This Week’s Task\n\nUsing Python or R, connect to your database, run your analytical query, and create a visualization from the results.\n\nYour submission must include:\n\nA connection to your database opened in your notebook\nYour query run via Python or R\nA plot built from the query result\nYour connection closed at the end"
   },
   {
     "objectID": "modules/week09/hw-09-2.html",
@@ -1386,116 +1463,172 @@
     "text": "Suggested readings\n\nBledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), https://doi.org/10.1098/rspb.2022.0938\nBourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. https://doi.org/10.1525/cse.2017.sc.454841\nGehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. https://doi.org/10.1007/978-1-4419-5906-5_899\nSamarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#title-slide",
-    "href": "modules/labs/slides/week2.html#title-slide",
+    "objectID": "modules/labs/slides/week3.html#title-slide",
+    "href": "modules/labs/slides/week3.html#title-slide",
     "title": "eds213",
     "section": "",
-    "text": "EDS 213 Lab 2\n\nData Cleaning"
+    "text": "EDS 213: Lab 3\n\nIngesting your data into a database"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#overview",
-    "href": "modules/labs/slides/week2.html#overview",
+    "objectID": "modules/labs/slides/week3.html#Database-Ingestion-Options",
+    "href": "modules/labs/slides/week3.html#Database-Ingestion-Options",
     "title": "eds213",
     "section": "",
-    "text": "Today’s Lab\nReal-world datasets are messy. We’ll walk through three example databases and the cleaning steps each one needs before ingesting into a database."
+    "text": "Database Ingestion Options\n\nMany different ways to ingest your data into a database!\nWe are going to cover two options and note their differences\nWe will use the following example csv file"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#Database1",
-    "href": "modules/labs/slides/week2.html#Database1",
+    "objectID": "modules/labs/slides/week3.html#Option1",
+    "href": "modules/labs/slides/week3.html#Option1",
     "title": "eds213",
     "section": "",
-    "text": "Database #1\n\n\n\n\n\nAir Quality\n\n\nDate\nLocation\nPM2_5\nNO2\nO3\n\n\n\n\n2020-01-01\nSite A\n12.3\n20\n15\n\n\n2020/02/01\nSite B\nfifteen\n30\n20\n\n\nMarch 3, 2020\nSite C\n7.8\n25\ntwenty\n\n\nNA\nSite A\n9\nNA\n30\n\n\n2020-04-01\nSite D\n10.2\n40\n35\n\n\n\n\n\n\n\n\n\nWater Quality\n\n\nSample_Date\nSite_Name\npH\nTurbidity\nLead_Concentration\n\n\n\n\n01-01-2020\nRiver X\n6.5\n3.2\n0.05\n\n\n2020-02-01\nLake Y\n7\n2.8\n0.07\n\n\n03-03-2020\nRiver X\n7.5\nNA\n0.1\n\n\n2020-Apr-04\nLake Z\n7.2\n3.5\n0.04\n\n\n2020-05-01\nRiver X\n8.1\n300.0\n0.030 ppm"
+    "text": "Option #1: COPY"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#Database1-issues",
-    "href": "modules/labs/slides/week2.html#Database1-issues",
+    "objectID": "modules/labs/slides/week3.html#Option1-characteristics",
+    "href": "modules/labs/slides/week3.html#Option1-characteristics",
     "title": "eds213",
     "section": "",
-    "text": "Database #1: What’s Wrong?\nAir Quality table:\n\nDate — mixed formats: 2020-01-01, 2020/02/01, March 3, 2020\nPM2_5 — contains \"fifteen\" instead of a number\nNO2 — contains \"NA\" as a string, not a true missing value\n\nWater Quality table:\n\nSample_Date — multiple inconsistent date formats\nLead_Concentration — mixes plain numbers with \"0.030 ppm\""
+    "text": "Option 1 Key characteristics:\n\nFast and efficient for large files\nRequires the table to already exist with matching column names and types\nYou control the schema explicitly — data types, constraints, etc."
   },
   {
-    "objectID": "modules/labs/slides/week2.html#Database2",
-    "href": "modules/labs/slides/week2.html#Database2",
+    "objectID": "modules/labs/slides/week3.html#Option2",
+    "href": "modules/labs/slides/week3.html#Option2",
     "title": "eds213",
     "section": "",
-    "text": "Database #2\n\n\n\n\n\nAir Quality\n\n\nDate\nTime\nLocation\nPM10\nPM2_5\nNO2\n\n\n\n\n2023-04-01\n08:00\nCity Park\n50\n25 µg/m³\n40\n\n\n2023-04-01\n14:00\nCity Park\n55\n30\n42\n\n\n2023-04-02\n08:00\nIndustrial Area\n150\n75\n60\n\n\n2023-04-02\n14:00\nIndustrial Area\n155 mg/m³\n80\nNA\n\n\n2023-04-03\n08:00\nResidential Zone\n40\nNA\n35\n\n\n\n\n\n\n\n\n\nWeather (wide format)\n\n\nLocation\nX2023.04.01.Temp.06.00\nX2023.04.01.Humidity.06.00\nX2023.04.01.Temp.12.00\nX2023.04.01.Humidity.12.00\nX2023.04.01.Temp.18.00\nX2023.04.01.Humidity.18.00\nX2023.04.01.Temp.24.00\nX2023.04.01.Humidity.24.00\n\n\n\n\nPark\n14\n80\n22\n60\n20\n70\n16\n85\n\n\nBeach\n16\n85\n24\n55\n22\n75\n18\n90\n\n\nForest\n13\n90\n21\n65\n19\n80\n15\n95\n\n\nHill\n15\n75\n23\n50\n21\n65\n17\n80"
+    "text": "Option #2: read_csv"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#Database2-issues",
-    "href": "modules/labs/slides/week2.html#Database2-issues",
+    "objectID": "modules/labs/slides/week3.html#Option2-characteristics",
+    "href": "modules/labs/slides/week3.html#Option2-characteristics",
     "title": "eds213",
     "section": "",
-    "text": "Database #2: What’s Wrong?\nAir Quality table:\n\nPM10 has one entry with \"155 mg/m³\" — unit embedded in value\nPM2_5 has one entry with \"25 µg/m³\" — same problem\n\nWeather table:\n\nData is in wide format — each column encodes date, variable, and time\nRelational databases need long/tidy format\nNeed pivot_longer() to reshape into separate Date, Time, Temp, and Humidity columns"
+    "text": "Option 2 Key characteristics:\n\nConvenient — no need to define the schema upfront\nAutomatically infers column types from the data\nGreat for quick exploration and prototyping\nType inference can sometimes get things wrong — always verify!"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#Database3",
-    "href": "modules/labs/slides/week2.html#Database3",
+    "objectID": "modules/labs/slides/week3.html#the-difference",
+    "href": "modules/labs/slides/week3.html#the-difference",
     "title": "eds213",
-    "section": "",
-    "text": "Database #3\n\n\n\n\n\nDaily Air Quality\n\n\nDate\nLocation\nPM2_5\nNO2\nOzone\n\n\n\n\n2020-01-01\nLocation1\n46.69874\n87.96601\n98.12719\n\n\n2020-01-01\nLocation2\n119.30424\n33.44394\n89.80869\n\n\n2020-01-01\nLocation3\n64.30165\n35.56292\n63.59488\n\n\n2020-01-02\nLocation1\n133.03752\n24.92722\n88.71676\n\n\n2020-01-02\nLocation2\n141.36776\n12.69610\n34.84138\n\n\n2020-01-02\nLocation3\n11.60569\n18.83068\n22.21545\n\n\n\n\n\n\n\n\n\nYearly Vegetation Health\n\n\nYear\nLocation\nVHI\n\n\n\n\n2020\nLocation1\n63.01918\n\n\n2021\nLocation1\n83.86073\n\n\n2022\nLocation1\n80.71608\n\n\n2020\nLocation2\n92.40360\n\n\n2021\nLocation2\n42.04080\n\n\n2022\nLocation2\n51.59250\n\n\n2020\nLocation3\n75.97901\n\n\n2021\nLocation3\n77.41948\n\n\n2022\nLocation3\n88.97631"
+    "section": "The Difference",
+    "text": "The Difference\n\n\n\n\nCOPY\nread_csv\n\n\n\n\nSchema definition\nManual (you write it)\nAutomatic (inferred)\n\n\nType control\nFull control\nInferred — may need correction\n\n\nSpeed\nVery fast for large data\nFast, slightly more overhead\n\n\nBest for\nProduction ingestion\nExploration & prototyping"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#Database3-issues",
-    "href": "modules/labs/slides/week2.html#Database3-issues",
+    "objectID": "modules/labs/slides/week5.html#title-slide",
+    "href": "modules/labs/slides/week5.html#title-slide",
     "title": "eds213",
     "section": "",
-    "text": "Database #3: What’s Wrong?\nDaily Air Quality table:\n\nRecorded at daily resolution\n\nYearly Vegetation Health table:\n\nRecorded at yearly resolution\nThese tables cannot be joined directly — they have different temporal resolutions\n\n\nFix: Aggregate daily air quality to yearly averages so both tables share a Year + Location key."
+    "text": "EDS 213: Lab 5\n\nDocumenting Your Work"
   },
   {
-    "objectID": "modules/labs/slides/week2.html#this-weeks-task",
-    "href": "modules/labs/slides/week2.html#this-weeks-task",
+    "objectID": "modules/labs/slides/week5.html#overview",
+    "href": "modules/labs/slides/week5.html#overview",
     "title": "eds213",
     "section": "",
-    "text": "This Week’s Task\n\nApply these principles to your own dataset. Before next week’s ingestion step, make sure your data meets the following criteria:\n\nAll date columns use a consistent format\nNumeric columns contain only numbers (no units or text mixed in)\nMissing values are represented consistently as NA\nData is in long/tidy format (each variable in its own column, each observation in its own row)\nTables that will be joined share a common key\nAny other cleaning steps specific to your dataset (e.g., removing duplicates, handling outliers, standardizing category names)"
+    "text": "This Week’s Goal\nYou’ve found some datasets, cleaned your data, built a database, written queries, and started analyzing your data.Now make sure someone else (or future you) can understand and reproduce it.\n\nThis week you will document your project so it meets the course rubric\nDocumentation covers two things: your code and your repository\nRemember: Others should be able to reproduce your results without asking you anything!"
   },
   {
-    "objectID": "modules/labs/slides/week1.html#title-slide",
-    "href": "modules/labs/slides/week1.html#title-slide",
+    "objectID": "modules/labs/slides/week5.html#doc-code",
+    "href": "modules/labs/slides/week5.html#doc-code",
     "title": "eds213",
     "section": "",
-    "text": "EDS 213 Lab 1\n\nSpring Quarter"
+    "text": "Comment Your Code\n\nEvery script and notebook should be self-explanatory. Add comments that explain why, not just what:\n# Drop rows where species_id is NULL —\n# these represent failed sensor readings, not real observations\ndf = df.dropna(subset=[\"species_id\"])\n\n-- Aggregate by habitat type to compare total observations\n-- across ecosystem categories rather than individual sites\nSELECT habitat_type, SUM(count) AS total\nFROM observations o\nJOIN sites s ON o.site_id = s.site_id\nGROUP BY habitat_type;\n\n\nA future reader should understand every non-obvious decision without asking you."
   },
   {
-    "objectID": "modules/labs/slides/week1.html#Lab-overview",
-    "href": "modules/labs/slides/week1.html#Lab-overview",
+    "objectID": "modules/labs/slides/week5.html#doc-reproducibility",
+    "href": "modules/labs/slides/week5.html#doc-reproducibility",
     "title": "eds213",
     "section": "",
-    "text": "Lab section overview\nThe goal of our weekly lab sections will be to answer an analytical question of your choosing using a database. You will create this database yourself, and then use it to answer your question. In week 7, we will have a database showcase where you get to teach your classmates about the database you created!"
+    "text": "Make It Reproducible\nSomeone should be able to clone your repo and recreate your results (with the exception of needing to download data, but instructions should this should be extremely clear!).That means:\n\nAll necessary files are included or clearly referenced\nYour .sql file , cleaning script, and visualization script (both .ipynb or .qmd) are present\nDependencies are listed so the environment can be recreated"
   },
   {
-    "objectID": "modules/labs/slides/week1.html#Schedule",
-    "href": "modules/labs/slides/week1.html#Schedule",
+    "objectID": "modules/labs/slides/week5.html#dependencies",
+    "href": "modules/labs/slides/week5.html#dependencies",
     "title": "eds213",
     "section": "",
-    "text": "Schedule\n\n\n\n\nWeek\n\n\nObjective\n\n\n\n\n\n\n1\n\n\nSelect a dataset and understand the relationships among the different tables to define a schema.\n\n\n\n\n2\n\n\nClean the data.\n\n\n\n\n3\n\n\nIngest the data into a database and explore your newly created database.\n\n\n\n\n4\n\n\nAfter cleaning your data and having it in a database, come up with an analytical question to answer with your database. Develop the SQL query/ queries to answer this question.\n\n\n\n\n5\n\n\nWrite some R or Python code to create some data visualization/ analysis with your database.\n\n\n\n\n6\n\n\nDocument your work.\n\n\n\n\n7\n\n\nDatabase showcase!"
+    "text": "The Dependencies File\n\nInclude a .txt file in your repo that lists your environment requirements.\n\nFor Python, export from conda or pip:\n# conda\nconda env export &gt; environment.yml\n\n# pip\npip freeze &gt; requirements.txt\nFor R, document your package versions:\n# run in your R script or notebook\nsessionInfo()\n# or for a clean list:\nwriteLines(capture.output(sessionInfo()), \"requirements.txt\")\n\nName it requirements.txt or environment.yml."
   },
   {
-    "objectID": "modules/labs/slides/week1.html#Grading",
-    "href": "modules/labs/slides/week1.html#Grading",
+    "objectID": "modules/labs/slides/week5.html#readme-overview",
+    "href": "modules/labs/slides/week5.html#readme-overview",
     "title": "eds213",
     "section": "",
-    "text": "Project Rubric\nYour lab project is graded Pass/Fail across four criteria:\n\n\n\n\nCriteria\n\n\nPass\n\n\nFail\n\n\n\n\n\n\nDatabase Schema\n\n\nAppropriate dataset; correct entities & relationships; complete schema diagram; proper primary/foreign keys & data types. (Submit schema to Canvas by 4/15)\n\n\nDataset too simple; missing critical relationships; incomplete or incorrect schema diagram.\n\n\n\n\nCode\n\n\nAppropriate data transformations; missing values handled; formats standardized; data integrity preserved.\n\n\nNo evidence of cleaning; major data quality issues remain; missing values mishandled; lack of standardization.\n\n\n\n\nDocumentation\n\n\nClear project purpose; well-documented process; commented code; decisions explained; results discussed; GitHub repo follows repository rubric.\n\n\nMinimal/unclear docs; omitted steps; code lacks comments; results presented without context; insufficient GitHub repo.\n\n\n\n\nReproducibility\n\n\nProject reproducible from docs; all files included (.sql + .ipynb/.qmd); steps clearly ordered; dependencies listed.\n\n\nCritical files/steps missing; process cannot be reproduced; dependencies not specified; setup requirements missing.\n\n\n\n\nPresentation\n\n\nCovers dataset overview, analytical question, and SQL query; includes a data visualization; stays within 2.5 minutes; reflects on challenges or surprises.\n\n\nMissing key components (dataset context, query, or visualization); significantly over/under time; little to no reflection on the process."
+    "text": "Repository README\nThe README is the first thing anyone sees when they visit your repository. It should answer: “What is this, and how do I use it?”\nRequired sections:\n\nShort, descriptive title\nPurpose — what the project is about\nRepository structure — what files exist and what they do\nData access — where the data lives and how to get it\nReferences & acknowledgements\nAny other info that is necessary to reproduce the analysis"
   },
   {
-    "objectID": "modules/labs/slides/week1.html#Repo-rubric",
-    "href": "modules/labs/slides/week1.html#Repo-rubric",
+    "objectID": "modules/labs/slides/week5.html#readme-details",
+    "href": "modules/labs/slides/week5.html#readme-details",
     "title": "eds213",
     "section": "",
-    "text": "GitHub Repository Rubric\nYour README should include:\n\nA short, descriptive title\nMarkdown headers separating each section\nA brief explanation of the repository’s purpose\nA concise description of repository structure / file organization\nNo hidden files other than .gitignore (no .DS_Store!)\nDetails on data access — where the data lives and how to access it\nReferences & acknowledgements in a consistent format (include course, data sources, and any other resources)\nFree of typos, grammatical errors, and formatting mistakes"
+    "text": "README: What Each Section Should Cover\n\n\n\n\n\n\n\n\nSection\nWhat to include\n\n\n\n\nTitle\nShort and descriptive\n\n\nPurpose\nBrief explanation of the repo’s goal (paragraphs or bullets)\n\n\nRepository structure\nFile organization — what’s in each folder/file\n\n\nData access\nWhere data lives, how to access it to run the code\n\n\nReferences\nCourse, datasets, and any other sources — consistent format with links\n\n\n\n\nNo hidden files (especially no .DS_Store) other than .gitignore."
   },
   {
-    "objectID": "modules/labs/slides/week1.html#Repo-files",
-    "href": "modules/labs/slides/week1.html#Repo-files",
+    "objectID": "modules/labs/slides/week5.html#this-weeks-task",
+    "href": "modules/labs/slides/week5.html#this-weeks-task",
     "title": "eds213",
     "section": "",
-    "text": "Required Repository Files\nYour repo must contain:\n\nYour database (if applicable)\nA .sql file with your query\nA .qmd / .ipynb file with your data analysis & visualization\nYour data cleaning script\nA README\nA .txt file listing dependencies and environment requirements for your R/Python analysis\nAny other files necessary to reproduce your analysis"
+    "text": "This Week’s Task\n\nComplete the documentation for your project.\n\nIn your code:\n\nAdd comments explaining non-obvious decisions in your .sql and .ipynb / .qmd files\nEnsure steps are clearly ordered and explained\n\n\n\nIn your repository:\n\nWrite or update your README to meet the rubric\nAdd a requirements.txt or environment.yml listing your dependencies\nConfirm all required files are present (.sql, .ipynb / .qmd visualization and data cleaning script)\nRemove any .DS_Store or other hidden files"
   },
   {
-    "objectID": "modules/labs/slides/week1.html#Presentation-rubric",
-    "href": "modules/labs/slides/week1.html#Presentation-rubric",
+    "objectID": "modules/labs/slides/week4.html#title-slide",
+    "href": "modules/labs/slides/week4.html#title-slide",
     "title": "eds213",
     "section": "",
-    "text": "Week 7 Presentation Rubric\nYou’ll have 2.5 minutes to present your database to the class. Your presentation must cover:\n\nDataset overview\n\nHow did you find it? Was it messy? Well documented?\nAny challenges ingesting it into a database?\n\nYour question & how you answered it\n\nInclude your SQL query\n\nThe data visualization created from your query\nAny other comments — challenges, surprises, lessons learned!"
+    "text": "EDS 213: Lab 4\n\nAsking a Question & Writing SQL Queries"
+  },
+  {
+    "objectID": "modules/labs/slides/week4.html#overview",
+    "href": "modules/labs/slides/week4.html#overview",
+    "title": "eds213",
+    "section": "",
+    "text": "This Week’s Goal\nYou’ve cleaned your data and loaded it into a database. Now it’s time to ask a question and write the SQL to answer it.\n\nA good analytical question can’t be answered by looking at a single row\nIt should require combining information across tables\nThe answer should reveal something meaningful — a pattern, a trend, a summary"
+  },
+  {
+    "objectID": "modules/labs/slides/week4.html#good-question",
+    "href": "modules/labs/slides/week4.html#good-question",
+    "title": "eds213",
+    "section": "",
+    "text": "What Makes a Sufficient Analytical Question?\n\nOnly uses one table — summarizing across records:\n\n“What is the average water temperature at each site across all sampling dates?”\n\nUses multiple tables — combining tables to add context:\n\n“Which sites have above-average water temperatures, and what land cover type surrounds them?”"
+  },
+  {
+    "objectID": "modules/labs/slides/week4.html#example-tables",
+    "href": "modules/labs/slides/week4.html#example-tables",
+    "title": "eds213",
+    "section": "",
+    "text": "Example: Two Related Tables\n\nobservations — bird observations\n\n\n\nobs_id\nsite_id\ndate\nspecies\ncount\n\n\n\n\n1\n101\n2023-04-01\nPeregrine Falcon\n3\n\n\n2\n102\n2023-04-01\nRed-tailed Hawk\n7\n\n\n3\n101\n2023-04-15\nPeregrine Falcon\n1\n\n\n4\n103\n2023-04-15\nOsprey\n4\n\n\n\nsites — site-level metadata\n\n\n\nsite_id\nsite_name\nhabitat_type\nelevation_m\n\n\n\n\n101\nDevereux Slough\nWetland\n5\n\n\n102\nEllwood Mesa\nCoastal Scrub\n45\n\n\n103\nMore Mesa\nGrassland\n60"
+  },
+  {
+    "objectID": "modules/labs/slides/week4.html#surface-query",
+    "href": "modules/labs/slides/week4.html#surface-query",
+    "title": "eds213",
+    "section": "",
+    "text": "Starting Too Simple\nThis query only touches one table and pulls out a single value:\nSELECT count\nFROM observations\nWHERE obs_id = 1;\n\nIt answers: “How many falcons were seen on one particular visit?”\nThat’s not a question — it’s a lookup. It doesn’t use your second table at all, and it doesn’t tell you anything about patterns in the data."
+  },
+  {
+    "objectID": "modules/labs/slides/week4.html#join-query",
+    "href": "modules/labs/slides/week4.html#join-query",
+    "title": "eds213",
+    "section": "",
+    "text": "Bringing Tables Together with JOIN\nTo answer a richer question, you need to combine your tables:\nSELECT\n  s.site_name,\n  s.habitat_type,\n  o.species,\n  o.count,\n  o.date\nFROM observations o\nJOIN sites s ON o.site_id = s.site_id;\n\nNow each observation has site context attached."
+  },
+  {
+    "objectID": "modules/labs/slides/week4.html#aggregate-query",
+    "href": "modules/labs/slides/week4.html#aggregate-query",
+    "title": "eds213",
+    "section": "",
+    "text": "Answering a question with both tables\nAdd GROUP BY to summarize across records:\nSELECT\n  s.site_name,\n  s.habitat_type,\n  SUM(o.count) AS total_observations\nFROM observations o\nJOIN sites s ON o.site_id = s.site_id\nGROUP BY s.site_name, s.habitat_type\nORDER BY total_observations DESC;\n\nThis answers: “Which habitat types have the highest total bird observations?”\nThis is a question in which you need both tables to answer it."
+  },
+  {
+    "objectID": "modules/labs/slides/week4.html#build-your-query",
+    "href": "modules/labs/slides/week4.html#build-your-query",
+    "title": "eds213",
+    "section": "",
+    "text": "Building Your Query\n\n\nStart with your question — write it out in plain English\nIdentify the tables — which tables contain the data you need?\nFind the join key — what column links them together?\nWrite the JOIN — combine the tables\nAdd your filters — WHERE clause if needed\nAggregate if needed — GROUP BY, COUNT, SUM, AVG\nOrder the results — ORDER BY to surface the most meaningful rows"
+  },
+  {
+    "objectID": "modules/labs/slides/week4.html#this-weeks-task",
+    "href": "modules/labs/slides/week4.html#this-weeks-task",
+    "title": "eds213",
+    "section": "",
+    "text": "This Week’s Task\n\nCome up with an analytical question for your own database and write the SQL to answer it.\nYour query must:\n\nUse a JOIN across at least two of your tables\nInclude some form of aggregation (GROUP BY, COUNT, SUM, AVG, etc.)\nProduce a result that says something meaningful about your data\n\n\nWrite your question out in plain English first, then translate it to SQL. Write your question as a comment within your .sql script.\n\n\nSave your work in a .sql script in your project repo — this file will be part of your final submission."
   },
   {
     "objectID": "modules/labs/week3.html",
