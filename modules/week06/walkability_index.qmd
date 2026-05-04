@@ -21,6 +21,10 @@ Here are four main categories:
 - Most walkable: 15.26 - 20
 
 ![](../../img/walkability_index_scale.png){fig-alt="Walkability index scale"}
+### US Census geometries
+
+![](../../img/census_small_area_geography.jpg){fig-alt="Structure and nesting of the various US Census gemotries"}
+
 
 
 ## Data Analysis
