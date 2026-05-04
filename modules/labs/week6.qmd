@@ -1,0 +1,187 @@
+---
+title: "Lab 6"
+subtitle: "EDS 213 |Query to Visualization in R/ Python"
+---
+
+## Overview
+
+This week, you'll run your SQL query in Python or R, pulling results directly into a data frame and turning them into a visualization.
+
+[View Slides](slides/week6.qmd){.btn .btn-outline-primary role="button"}
+
+---
+
+## Python: Querying with DuckDB
+
+### Connect and create a cursor
+
+```python
+import duckdb
+import pandas as pd
+
+conn = duckdb.connect("database.duckdb")
+cur = conn.cursor()
+```
+
+
+### Execute a query
+
+```python
+cur.execute("""
+    SELECT Species, COUNT(*) AS num_nests
+    FROM Bird_nests
+    GROUP BY Species
+    ORDER BY num_nests DESC
+""")
+```
+
+At this point the data is **not yet in Python memory**. It's a symbolic representation of the query. You still need to materialize it.
+
+### Materialize the results
+
+There are several ways to get data out of the cursor:
+
+```python
+cur.fetchall()   # list of tuples — all rows at once
+cur.fetchone()   # one row as a tuple
+cur.df()         # pandas DataFrame ← best for analysis
+```
+
+
+For plotting, use `.df()` to get a pandas DataFrame:
+
+```python
+cur.execute("""
+    SELECT Species, COUNT(*) AS num_nests
+    FROM Bird_nests
+    GROUP BY Species
+    ORDER BY num_nests DESC
+""")
+df = cur.df()
+df.head()
+```
+
+### Visualize the result
+
+```python
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.barh(df["Species"], df["num_nests"])
+ax.set_xlabel("Number of Nests")
+ax.set_title("Nest Count by Species")
+plt.tight_layout()
+plt.show()
+```
+
+### Close the connection
+
+```python
+conn.close()
+```
+
+---
+
+## R: Querying with dbplyr
+
+`dbplyr` lets you write `dplyr` code against a database. It translates your verbs into SQL and runs the query.
+
+### Connect to your database
+
+```r
+library(tidyverse)
+library(DBI)
+library(dbplyr)
+library(duckdb)
+
+conn <- DBI::dbConnect(duckdb::duckdb(),
+                       dbdir = "database.duckdb")
+
+DBI::dbListTables(conn)
+```
+
+### Reference a table
+
+```r
+nests_db <- tbl(conn, "Bird_nests")
+nests_db
+```
+
+This looks like a data frame, but it isn't. It's a lazy reference to the database table. The data hasn't been pulled into R yet (`dim()` will show `NA` for the row count).
+
+### Query with dplyr verbs
+
+Use familiar `dplyr` verbs on the table reference:
+
+```r
+nests_db |>
+  group_by(Species) |>
+  summarise(num_nests = n()) |>
+  arrange(desc(num_nests)) |>
+  head(3)
+```
+
+### See what SQL dbplyr generates
+
+```r
+nests_db |>
+  group_by(Species) |>
+  summarise(num_nests = n()) |>
+  show_query()
+```
+
+
+### Pull data into R with collect()
+
+Nothing runs on the database until `collect()` is called. Everything before it is building up the SQL query:
+
+```r
+result <- nests_db |>
+  group_by(Species) |>
+  summarise(num_nests = n()) |>
+  arrange(desc(num_nests)) |>
+  collect()
+```
+
+`collect()` executes the query and returns a true R data frame.
+
+
+### Visualize the result
+
+Because `collect()` returns a regular data frame, you can pipe directly into `ggplot2`:
+
+```r
+result |>
+  ggplot(aes(x = num_nests,
+             y = reorder(Species, num_nests))) +
+  geom_col(fill = "#52796f") +
+  labs(
+    x = "Number of Nests",
+    y = "Species",
+    title = "Nest Count by Species"
+  ) +
+  theme_minimal()
+```
+
+### Close the connection
+
+```r
+DBI::dbDisconnect(conn, shutdown = TRUE)
+```
+
+The `shutdown = TRUE` argument is specific to DuckDB. It cleanly shuts down the DuckDB engine when you disconnect.
+
+
+---
+
+## This Week's Task
+
+Using **Python or R**, connect to your database, run your analytical query from last week, and create a visualization from the results. Everything should live in a single `.ipynb` or `.qmd` file.
+
+::: callout-note
+## Checklist
+- [ ] A connection to your database opened in your notebook
+- [ ] Your query run via Python or R
+- [ ] A plot built from the query result
+- [ ] Your connection closed at the end
+:::
