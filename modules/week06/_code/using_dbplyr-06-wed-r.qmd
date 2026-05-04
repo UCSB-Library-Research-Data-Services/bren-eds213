@@ -2,10 +2,9 @@
 title: "dbplyr"
 ---
 
-
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
-library(DBI)         # low-level database interface, comparable to what we saw in Python
+library(DBI)         # low-level database interface
 library(dbplyr)
 library(duckdb)     # Specific to duckDB
 ```
@@ -21,7 +20,9 @@ database name, etc.
 Here we want to use DuckDB, loading a file database:
 
 ```{r}
-conn <- DBI::dbConnect(duckdb::duckdb(), dbdir = "~/GitHub/gitRDS/EDS213/bren-eds213-data/database/database.db")  # adapt the path as needed
+conn <- DBI::dbConnect(duckdb::duckdb(), 
+                       dbdir = "~/GitHub/gitRDS/EDS213/bren-eds213-data/database/database.duckdb"
+                       )  # adapt the path as needed
 ```
 
 All the magic is right here.  A data frame view of a database table.
@@ -84,7 +85,7 @@ all those dplyr operations into SQL, sending the
 SQL to the database, retrieving results, etc.
 
 ```{r}
-# Want a local copy that is a true dataframe?  Add collect():
+# Want a local copy that is a true data frame?  Add collect():
 local_copy <- species %>% 
   collect()
 
@@ -100,8 +101,11 @@ species %>%
   group_by(Relevance) %>%
   summarize(num_species = n()) %>% 
   show_query()
+```
 
-# Even mutating columns gets translated into SQL operations, wild!
+Or mutating columns gets translated into SQL operations, wild!
+
+```{r}
 species %>%
   mutate(Code = paste("X", Code)) %>% 
   show_query()
@@ -118,10 +122,12 @@ left_join(nests_db, eggs_db, by="Nest_ID", keep = FALSE) %>%
   head(5)
 ```
 
-
-**Limitation**: no way to add or update data.  **dbplyr is view only**.
+:::{.callout-warning}
+## Limitation: 
+no way to add or update data.  **dbplyr is view only**.
 If you want to add or update data, you'll need to use
 DBI functions.
+:::
 
 ## Close your connection
 
