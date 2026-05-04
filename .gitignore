@@ -10,3 +10,4 @@
 # mac
 .DS_Store
 **/*.quarto_ipynb
+.positai
