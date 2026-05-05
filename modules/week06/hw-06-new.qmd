@@ -11,11 +11,13 @@ For this assignment, you will need to use and modify the schema that was used to
 Now:
 
 0. Did you remember to modify the schema as directed above?
-1. Choose three LLMs (ChatGPT, Claude, Gemini, etc.) to evaluate.
+1. Choose at least three LLMs (ChatGPT, Claude, Gemini, etc.) to evaluate.
 2. For each LLM, supply both the modified schema and the text of homework assignment [Who's the culprit?](https://ucsb-library-research-data-services.github.io/bren-eds213/modules/week04/hw-04-3.html).
 3. Evaluate the SQL that is returned.  Specifically:
 
    - Is the SQL correct?
    - Does the SQL represent good understanding of the database?  An example of poor understanding would be use of `COUNT(Nest_ID)` where `COUNT(*)` would suffice, i.e., not recognizing that Nest_ID is a primary key and hence cannot be NULL.
+
+Be sure to include the LLM outputs with your evaluation.
 
 **Credit: 30 points**
