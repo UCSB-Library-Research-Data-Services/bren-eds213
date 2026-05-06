@@ -337,103 +337,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="data-analysis">Data Analysis</h2>
+<p>From your database folder in the bren-eds213-data repository, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">duckb</span> <span class="at">-ui</span> walkability.duck.db</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>What did just happened?!</p>
 <p>To conduct our analysis we are going to use the <code>spatial</code> and <code>httfs</code> DuckDB extensions:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL spatial;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>LOAD spatial;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL httpfs;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>LOAD httpfs;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Let's see how fast we can import those data from parquet for the Santa Barabara county</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geometry</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> read_parquet(<span class="st">'/courses/EDS213/data/walkability/walkability_hive/**/*.parquet'</span>, hive_partitioning<span class="op">=</span><span class="kw">true</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> STATEFP <span class="op">=</span> <span class="st">'06'</span> <span class="kw">AND</span> COUNTYFP <span class="op">=</span> <span class="st">'083'</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- OK before we bet started in doing analaysis, we can store those data as a View:</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> SB_data <span class="kw">AS</span> (</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geometry</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> read_parquet(<span class="st">'/courses/EDS213/data/walkability/walkability_hive/**/*.parquet'</span>, hive_partitioning<span class="op">=</span><span class="kw">true</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> STATEFP <span class="op">=</span> <span class="st">'06'</span> <span class="kw">AND</span> COUNTYFP <span class="op">=</span> <span class="st">'083'</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  ;</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- Let;s compute the average walkbility index per Census tract: </span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  TRACTCE,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Block_count,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(NatWalkInd) <span class="kw">AS</span> Walk_ind_avg</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> SB_data</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> TRACTCE</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> Walk_ind_avg <span class="kw">DESC</span>;</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">-- actually since we have the geometry information, we can also compute the average area of teh blocks within a specific tract:</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">-- We need first to install and load the spatial extension of DuckDB:</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>TRACTCE,</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Block_count,</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">AVG</span>(ST_Area(geometry)) <span class="kw">AS</span> Avg_area,</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">AVG</span>(NatWalkInd) <span class="kw">AS</span> Walk_ind_avg</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> SB_data</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> TRACTCE</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> Walk_ind_avg <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL spatial;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>LOAD spatial;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL httpfs;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>LOAD httpfs;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s see how fast we can import those data from parquet for the Santa Barabara county:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geometry</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> read_parquet(<span class="st">'/courses/EDS213/data/walkability/walkability_hive/**/*.parquet'</span>, hive_partitioning<span class="op">=</span><span class="kw">true</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> STATEFP <span class="op">=</span> <span class="st">'06'</span> <span class="kw">AND</span> COUNTYFP <span class="op">=</span> <span class="st">'083'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>OK before we bet started in doing analaysis, we can store those data as a View:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> SB_data <span class="kw">AS</span> (</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geometry</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> read_parquet(<span class="st">'/courses/EDS213/data/walkability/walkability_hive/**/*.parquet'</span>, hive_partitioning<span class="op">=</span><span class="kw">true</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> STATEFP <span class="op">=</span> <span class="st">'06'</span> <span class="kw">AND</span> COUNTYFP <span class="op">=</span> <span class="st">'083'</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  );</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Let’s compute the average walkbility index per Census tract:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  TRACTCE,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Block_count,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(NatWalkInd) <span class="kw">AS</span> Walk_ind_avg</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> SB_data</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> TRACTCE</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> Walk_ind_avg <span class="kw">DESC</span>;</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- actually since we have the geometry information, we can also compute the average area of teh blocks within a specific tract:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- We need first to install and load the spatial extension of DuckDB:</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  TRACTCE,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> Block_count,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(ST_Area(geometry)) <span class="kw">AS</span> Avg_area,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(NatWalkInd) <span class="kw">AS</span> Walk_ind_avg</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> SB_data</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> TRACTCE</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> Walk_ind_avg <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="dataset-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-preparation">Dataset preparation</h2>
 <p>The walkability index came as an ESRI geodatabase. The spatial extension can directly read this file format:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL spatial;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>LOAD spatial;</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL httpfs;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>LOAD httpfs;</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Let's have a look at the data</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ST_Read(Natl_WI.gdb) <span class="kw">LIMIT</span> <span class="dv">10</span>;</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Save it as a table</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> walk84;</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> walk84 <span class="kw">AS</span> (</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> EXCLUDE (Shape),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  Shape <span class="kw">AS</span> geometry,</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  ST_Hilbert(</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    Shape, </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ST_Extent(ST_MakeEnvelope(<span class="op">-</span><span class="fl">125.00</span>, <span class="fl">24.39</span>, <span class="op">-</span><span class="fl">66.93</span>, <span class="fl">49.38</span>))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        ) <span class="kw">AS</span> bbox_geom</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> ST_Read(Natl_WI.gdb)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> bbox_geom</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  );</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- See if the table looks good</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> walk84 <span class="kw">LIMIT</span> <span class="dv">10</span>;</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">--- Export to one large parquet file</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> walk84 <span class="kw">TO</span> <span class="st">'walkability_wgs84.parquet'</span> (FORMAT parquet);</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- Export to parquet files using hive partitioning on state and county FIPS</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span>(</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> walk84</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    ) </span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">TO</span> <span class="st">'walkability_hive'</span> </span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>(FORMAT <span class="st">'parquet'</span>, COMPRESSION <span class="st">'zstd'</span>, PARTITION_BY (STATEFP, COUNTYFP));</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co">-- Let's try an analysis: Let's compute the number of block and their average area per tract for the states of CA, NV, OR, WA </span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co">-- Sate FIPS: https://www.bls.gov/respondents/mwr/electronic-data-interchange/appendix-d-usps-state-abbreviations-and-fips-codes.htm</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co">-- Adapted from https://medium.com/center-for-coastal-climate-resilience-visualizatio/optimal-geoparquet-partitioning-strategy-33331874ef6c</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  STATEFP,</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  TRACTCE,</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> block_count,</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(ST_Area(geometry)) <span class="kw">AS</span> avg_area</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> walk84</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> STATEFP <span class="kw">IN</span> (<span class="st">'06'</span>, <span class="st">'32'</span>, <span class="st">'41'</span>, <span class="st">'53'</span>)</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> TRACTCE, STATEFP</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> block_count <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL spatial;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>LOAD spatial;</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL httpfs;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>LOAD httpfs;</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Let's have a look at the data</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> ST_Read(Natl_WI.gdb) <span class="kw">LIMIT</span> <span class="dv">10</span>;</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Save it as a table</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> walk84;</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> walk84 <span class="kw">AS</span> (</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="op">*</span> EXCLUDE (Shape),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  Shape <span class="kw">AS</span> geometry,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  ST_Hilbert(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    Shape, </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ST_Extent(ST_MakeEnvelope(<span class="op">-</span><span class="fl">125.00</span>, <span class="fl">24.39</span>, <span class="op">-</span><span class="fl">66.93</span>, <span class="fl">49.38</span>))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        ) <span class="kw">AS</span> bbox_geom</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> ST_Read(Natl_WI.gdb)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> bbox_geom</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  );</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- See if the table looks good</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> walk84 <span class="kw">LIMIT</span> <span class="dv">10</span>;</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">--- Export to one large parquet file</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> walk84 <span class="kw">TO</span> <span class="st">'walkability_wgs84.parquet'</span> (FORMAT parquet);</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">-- Export to parquet files using hive partitioning on state and county FIPS</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span>(</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> walk84</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="kw">TO</span> <span class="st">'walkability_hive'</span> </span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>(FORMAT <span class="st">'parquet'</span>, COMPRESSION <span class="st">'zstd'</span>, PARTITION_BY (STATEFP, COUNTYFP));</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">-- Let's try an analysis: Let's compute the number of block and their average area per tract for the states of CA, NV, OR, WA </span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co">-- Sate FIPS: https://www.bls.gov/respondents/mwr/electronic-data-interchange/appendix-d-usps-state-abbreviations-and-fips-codes.htm</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">-- Adapted from https://medium.com/center-for-coastal-climate-resilience-visualizatio/optimal-geoparquet-partitioning-strategy-33331874ef6c</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  STATEFP,</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  TRACTCE,</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> block_count,</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">AVG</span>(ST_Area(geometry)) <span class="kw">AS</span> avg_area</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> walk84</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> STATEFP <span class="kw">IN</span> (<span class="st">'06'</span>, <span class="st">'32'</span>, <span class="st">'41'</span>, <span class="st">'53'</span>)</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> TRACTCE, STATEFP</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> block_count <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
