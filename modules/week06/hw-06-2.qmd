@@ -1,5 +1,5 @@
 ---
-title: "Week 6 - Characterizing egg variation"
+title: "Week 6.1 - Characterizing egg variation"
 ---
 
 **Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/361506>**

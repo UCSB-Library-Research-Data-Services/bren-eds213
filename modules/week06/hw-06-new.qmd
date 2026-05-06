@@ -1,5 +1,5 @@
 ---
-title: "Week 6 - LLM-generated SQL evaluation"
+title: "Week 6.2 - LLM-generated SQL evaluation"
 ---
 
 **Please use Canvas to return the assignments: <https://ucsb.instructure.com/...>**
@@ -15,9 +15,9 @@ Now:
 2. For each LLM, supply both the modified schema and the text of homework assignment [Who's the culprit?](https://ucsb-library-research-data-services.github.io/bren-eds213/modules/week04/hw-04-3.html).
 3. Evaluate the SQL that is returned.  Specifically:
 
-   - Is the SQL correct?
+   - Is the SQL correct? In other words, will it return the expected answer?
    - Does the SQL represent good understanding of the database?  An example of poor understanding would be use of `COUNT(Nest_ID)` where `COUNT(*)` would suffice, i.e., not recognizing that Nest_ID is a primary key and hence cannot be NULL.
 
-Be sure to include the LLM outputs with your evaluation.
+**Be sure to include the LLM outputs with your evaluation.**
 
 **Credit: 30 points**
