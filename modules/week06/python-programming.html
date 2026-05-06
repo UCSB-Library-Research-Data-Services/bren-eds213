@@ -296,6 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#create-a-connection-to-the-database" id="toc-create-a-connection-to-the-database" class="nav-link active" data-scroll-target="#create-a-connection-to-the-database">1. Create a connection to the database</a></li>
   <li><a href="#now-lets-query-the-databse-using" id="toc-now-lets-query-the-databse-using" class="nav-link" data-scroll-target="#now-lets-query-the-databse-using">2. Now let’s query the databse using:</a></li>
+  <li><a href="#a-note-on-fragility" id="toc-a-note-on-fragility" class="nav-link" data-scroll-target="#a-note-on-fragility">A note on fragility</a></li>
   </ul>
 </nav>
     </div>
@@ -683,13 +684,18 @@ got nest ID 11eabarpc02</code></pre>
  None)</code></pre>
 </div>
 </div>
-<p>A note on fragility</p>
-<p>For example: INSERT INTO Site VALUES (“abcd”, “Foo”, 35.7, 42.3, “?”)</p>
-<p>A less fragile way of expressing the same thing: INSERT INTO Site (Code, Site_name, Latitude, Longitude, Something_else) VALUES (“abcd”, “Foo”, 35.7, 42.3, “?”)</p>
-<p>In the same vein: SELECT * is fragile</p>
+</section>
+<section id="a-note-on-fragility" class="level3">
+<h3 class="anchored" data-anchor-id="a-note-on-fragility">A note on fragility</h3>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Site <span class="kw">VALUES</span> (<span class="ot">"abcd"</span>, <span class="ot">"Foo"</span>, <span class="fl">35.7</span>, <span class="fl">42.3</span>, <span class="ot">"?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A less fragile way of expressing the same thing:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Site (Code, Site_name, Latitude, Longitude, Something_else)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">VALUES</span> (<span class="ot">"abcd"</span>, <span class="ot">"Foo"</span>, <span class="fl">35.7</span>, <span class="fl">42.3</span>, <span class="ot">"?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In the same vein: <code>SELECT *</code> is fragile</p>
 <div id="7f03f75a-ef28-40be-8ef3-c2d86116110e" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Site LIMIT 3"</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Site LIMIT 3"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>[('barr',
   'Barrow',
@@ -713,8 +719,8 @@ got nest ID 11eabarpc02</code></pre>
 </div>
 <p>A better, more robust way of coding the same thing:</p>
 <div id="15f97d09-c546-4868-b156-c6b842728f1f" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT Site_name, Code, Latitude, Longitude FROM Site LIMIT 3"</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT Site_name, Code, Latitude, Longitude FROM Site LIMIT 3"</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>[('Barrow', 'barr', 71.30000305175781, -156.60000610351562),
  ('Burntpoint Creek', 'burn', 55.20000076293945, -84.30000305175781),
@@ -725,16 +731,16 @@ got nest ID 11eabarpc02</code></pre>
 <p>Approach: first get all species. Then execute a count query for each species.</p>
 <p>A digression: string interpolation in Python</p>
 <div id="d4b87a30-857d-4257-bbc9-adbcf851c28b" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The % method</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"My name is </span><span class="sc">%s</span><span class="st">"</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s <span class="op">%</span> <span class="st">"Greg"</span>)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"My name is </span><span class="sc">%s</span><span class="st"> and the other teacher's name is </span><span class="sc">%s</span><span class="st">"</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s <span class="op">%</span> (<span class="st">"Greg"</span>, <span class="st">"Julien"</span>))</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The new f-string method</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Greg"</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"My name is </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Third way</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"My name is </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="st">"Greg"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The % method</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"My name is </span><span class="sc">%s</span><span class="st">"</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s <span class="op">%</span> <span class="st">"Greg"</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"My name is </span><span class="sc">%s</span><span class="st"> and the other teacher's name is </span><span class="sc">%s</span><span class="st">"</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s <span class="op">%</span> (<span class="st">"Greg"</span>, <span class="st">"Julien"</span>))</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The new f-string method</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Greg"</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"My name is </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Third way</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"My name is </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="st">"Greg"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>My name is Greg
 My name is Greg and the other teacher's name is Julien
@@ -743,38 +749,17 @@ My name is Greg</code></pre>
 </div>
 </div>
 <div id="735fabda-79d3-4c72-8344-286557ab6cda" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="st">   SELECT COUNT(*) FROM Bird_nests</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="st">   WHERE Species = '</span><span class="sc">%s</span><span class="st">'</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT Code FROM Species LIMIT 3"</span>)</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> cur.fetchall():  <span class="co"># DuckDB workaround</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    code <span class="op">=</span> row[<span class="dv">0</span>]</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    prepared_query <span class="op">=</span> query <span class="op">%</span> code</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(prepared_query)</span></span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    cur2 <span class="op">=</span> conn.cursor()</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    cur2.execute(prepared_query)</span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Species </span><span class="sc">{</span>code<span class="sc">}</span><span class="ss"> has </span><span class="sc">{</span>cur2<span class="sc">.</span>fetchone()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> nests"</span>)</span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    cur2.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Species agsq has 0 nests
-Species amcr has 0 nests
-Species amgp has 29 nests</code></pre>
-</div>
-</div>
-<p>The above Python interpolation is dangerous and has caused many database hacks! There’s a better way</p>
-<div id="d8fbf4c1-e66a-467c-b9f2-7861ba52c9c0" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="st">   SELECT COUNT(*) FROM Bird_nests</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="st">   WHERE Species = ?</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="st">   WHERE Species = '</span><span class="sc">%s</span><span class="st">'</span></span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT Code FROM Species LIMIT 3"</span>)</span>
 <span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> cur.fetchall():  <span class="co"># DuckDB workaround</span></span>
 <span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    code <span class="op">=</span> row[<span class="dv">0</span>]</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># NOT NEEDED! prepared_query = query % code</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    prepared_query <span class="op">=</span> query <span class="op">%</span> code</span>
 <span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(prepared_query)</span></span>
 <span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    cur2 <span class="op">=</span> conn.cursor()</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    cur2.execute(query, [code])  <span class="co"># &lt;-- added argument here</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    cur2.execute(prepared_query)</span>
 <span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Species </span><span class="sc">{</span>code<span class="sc">}</span><span class="ss"> has </span><span class="sc">{</span>cur2<span class="sc">.</span>fetchone()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> nests"</span>)</span>
 <span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>    cur2.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -783,22 +768,43 @@ Species amcr has 0 nests
 Species amgp has 29 nests</code></pre>
 </div>
 </div>
+<p>The above Python interpolation is dangerous and has caused many database hacks! There’s a better way</p>
+<div id="d8fbf4c1-e66a-467c-b9f2-7861ba52c9c0" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="st">   SELECT COUNT(*) FROM Bird_nests</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="st">   WHERE Species = ?</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT Code FROM Species LIMIT 3"</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> cur.fetchall():  <span class="co"># DuckDB workaround</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    code <span class="op">=</span> row[<span class="dv">0</span>]</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># NOT NEEDED! prepared_query = query % code</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(prepared_query)</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    cur2 <span class="op">=</span> conn.cursor()</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    cur2.execute(query, [code])  <span class="co"># &lt;-- added argument here</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Species </span><span class="sc">{</span>code<span class="sc">}</span><span class="ss"> has </span><span class="sc">{</span>cur2<span class="sc">.</span>fetchone()[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> nests"</span>)</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>    cur2.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Species agsq has 0 nests
+Species amcr has 0 nests
+Species amgp has 29 nests</code></pre>
+</div>
+</div>
 <p>Let’s illustrate the danger with a different example</p>
 <div id="3e355f0f-c3e5-4fd8-9b97-4ec4b8513231" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>abbrev <span class="op">=</span> <span class="st">"TS"</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Taylor Swift"</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"""</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="st">   INSERT INTO Personnel (Abbreviation, Name)</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="st">   VALUES ('</span><span class="sc">%s</span><span class="st">', '</span><span class="sc">%s</span><span class="st">')</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="st">   """</span> <span class="op">%</span> (abbrev, name)</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>abbrev <span class="op">=</span> <span class="st">"TS"</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Taylor Swift"</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"""</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="st">   INSERT INTO Personnel (Abbreviation, Name)</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="st">   VALUES ('</span><span class="sc">%s</span><span class="st">', '</span><span class="sc">%s</span><span class="st">')</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="st">   """</span> <span class="op">%</span> (abbrev, name)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="62">
 <pre><code>&lt;_duckdb.DuckDBPyConnection at 0x10fa3fe30&gt;</code></pre>
 </div>
 </div>
 <div id="a7e2b6e0-5fa0-4eac-b3cf-e45d48167de3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Personnel"</span>)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()[<span class="op">-</span><span class="dv">3</span>:]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Personnel"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()[<span class="op">-</span><span class="dv">3</span>:]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="63">
 <pre><code>[('emagnuson', 'Emily Magnuson'),
  ('mcorrell', 'Maureen Correll'),
@@ -806,13 +812,13 @@ Species amgp has 29 nests</code></pre>
 </div>
 </div>
 <div id="60477e41-49da-40b6-8427-7a7fdfda933d" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>abbrev <span class="op">=</span> <span class="st">"CO"</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Conan O'Brien"</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"""</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="st">   INSERT INTO Personnel (Abbreviation, Name)</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="st">   VALUES ('</span><span class="sc">%s</span><span class="st">', '</span><span class="sc">%s</span><span class="st">')</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="st">   """</span> <span class="op">%</span> (abbrev, name)</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>abbrev <span class="op">=</span> <span class="st">"CO"</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Conan O'Brien"</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"""</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="st">   INSERT INTO Personnel (Abbreviation, Name)</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="st">   VALUES ('</span><span class="sc">%s</span><span class="st">', '</span><span class="sc">%s</span><span class="st">')</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="st">   """</span> <span class="op">%</span> (abbrev, name)</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -833,29 +839,29 @@ LINE 3:    VALUES ('CO', 'Conan O'Brien')
 </div>
 </div>
 <div id="95aecaaf-61dd-4ae7-a13d-c45f4eef76ed" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co">   INSERT INTO Personnel (Abbreviation, Name)</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co">   VALUES ('%s', '%s')</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co">   """</span> <span class="op">%</span> (abbrev, name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="co">   INSERT INTO Personnel (Abbreviation, Name)</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">   VALUES ('%s', '%s')</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co">   """</span> <span class="op">%</span> (abbrev, name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>"\n   INSERT INTO Personnel (Abbreviation, Name)\n   VALUES ('CO', 'Conan O'Brien')\n   "</code></pre>
 </div>
 </div>
 <div id="2b510237-86dc-48c3-bef2-a88ba6e004e1" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>abbrev <span class="op">=</span> <span class="st">"CO"</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Conan O'Brien"</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"""</span></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="st">   INSERT INTO Personnel (Abbreviation, Name)</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="st">   VALUES (?, ?)</span></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="st">   """</span>,</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    [abbrev, name])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>abbrev <span class="op">=</span> <span class="st">"CO"</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Conan O'Brien"</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"""</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="st">   INSERT INTO Personnel (Abbreviation, Name)</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="st">   VALUES (?, ?)</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="st">   """</span>,</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    [abbrev, name])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="67">
 <pre><code>&lt;_duckdb.DuckDBPyConnection at 0x10fa3fe30&gt;</code></pre>
 </div>
 </div>
 <div id="896df23e-567e-4a49-bf02-65412e1ca9b5" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Personnel"</span>)</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()[<span class="op">-</span><span class="dv">3</span>:]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Personnel"</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>cur.fetchall()[<span class="op">-</span><span class="dv">3</span>:]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="68">
 <pre><code>[('mcorrell', 'Maureen Correll'),
  ('TS', 'Taylor Swift'),
@@ -864,7 +870,7 @@ LINE 3:    VALUES ('CO', 'Conan O'Brien')
 </div>
 <p>Don’t forget to close your connection when you are done!</p>
 <div id="3adb48aa-f346-42a6-97ad-db59984cdb8f" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
