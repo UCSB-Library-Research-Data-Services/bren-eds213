@@ -20,4 +20,4 @@ Now:
 
 **Be sure to include the LLM outputs with your evaluation.**
 
-**Credit: 30 points**
+**Credit: 40 points**

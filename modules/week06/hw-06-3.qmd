@@ -33,4 +33,4 @@ If you used multiple R statements, did:
 
 - Did it limit to the first three rows using an R expression or an SQL LIMIT clause?
 
-**Credit: 30 points**
+**Credit: 40 points**
