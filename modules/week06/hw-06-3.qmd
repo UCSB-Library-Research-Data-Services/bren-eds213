@@ -2,7 +2,7 @@
 title: "Week 6.1 - Who were the winners?"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/361508>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/474658>**
 
 At the conclusion of the ASDN project the PIs decided to hand out first, second, and third prizes to the observers who measured the most eggs. Who won? Please use **R** and **dbplyr** to answer this question, and please upload to Canvas your R code as a Quarto document (.qmd), including the answers to the questions below. 
 

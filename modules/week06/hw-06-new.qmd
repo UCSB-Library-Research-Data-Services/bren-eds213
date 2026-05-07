@@ -2,7 +2,7 @@
 title: "Week 6.2 - LLM-generated SQL evaluation"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/...>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/474659>**
 
 You may have already discovered that the new AI/LLM services can readily generate SQL given a prompt.  Your job is to evaluate the SQL returned by those services.
 
