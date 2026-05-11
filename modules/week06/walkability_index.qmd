@@ -21,6 +21,7 @@ Here are four main categories:
 - Most walkable: 15.26 - 20
 
 ![](../../img/walkability_index_scale.png){fig-alt="Walkability index scale"}
+
 ### US Census geometries
 
 ![](../../img/census_small_area_geography.jpg){fig-alt="Structure and nesting of the various US Census gemotries"}
@@ -76,8 +77,11 @@ SELECT
 FROM SB_data
 GROUP BY TRACTCE
 ORDER BY Walk_ind_avg DESC;
+```
 
+Since we have geospatial data, we can also do some spatial aggregagtion!
 
+```sql
 -- actually since we have the geometry information, we can also compute the average area of teh blocks within a specific tract:
 -- We need first to install and load the spatial extension of DuckDB:
 
@@ -91,7 +95,7 @@ GROUP BY TRACTCE
 ORDER BY Walk_ind_avg DESC;
 ```
 
-Can be used to reproject: `st_transform(geometry, 'EPSG:4326', 'ESRI:102039')`
+Why is the area so small!?  It is in degree because we are using the WGS84 coordinate reference system. We can also reproject: `st_transform(geom, 'EPSG:4326', 'ESRI:102039')`
 
 Where is it walkable?
 
@@ -103,8 +107,10 @@ WHERE ST_Within(st_point(-119.712, 34.438), geom);
 
 ```
 
+Note the Lat/long inversion compared to Google maps!
 
-## Using a remote file
+
+### Using a remote file
 
 We could also read the data via a web server!!
 
