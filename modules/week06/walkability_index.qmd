@@ -104,7 +104,7 @@ WHERE ST_Within(st_point(-119.712, 34.438), geom);
 ```
 
 
-
+## Using a remote file
 
 We could also read the data via a web server!!
 
