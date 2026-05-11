@@ -20,7 +20,8 @@ title: "Week 7 - Parquet exploration & Metadata standards"
 
 ### Slides
 
-[slides-07.pptx](slides-07.pptx)
+- [slides-07.pptx](slides-07.pptx)
+- [sql-injection.pptx](sql-injection.pptx)
 
 
 ### Related resources:
