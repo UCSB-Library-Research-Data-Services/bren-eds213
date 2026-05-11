@@ -18,8 +18,7 @@ title: "Week 6 - Programming with databases"
 -   [using_dbplyr-06-wed-r.qmd](_code/using_dbplyr-06-wed-r.qmd)
 -   [python-programming.ipynb](python-programming.ipynb)
 -   [python-programming-cont.ipynb](python-programming-cont.ipynb)
--   [Manipulating Parquet files with DuckDB and SQL](parquet.qmd)
-  - [Walkability Index](walkability_index.qmd)
+
 
 ## Resources
 

@@ -3,14 +3,11 @@ title: "Week 7 - Computing environments  &  Metadata standards"
 ---
 
 
-## Virtual Computing Environments
+## Using DuckDB and SQL to analyze other types of data
 
-### Slides and other materials
 
-[slides-virtual-environments.pptx](slides-renv-07.pptx)
-
-[Class Renv Exercise](virtual-environments-notes.md)
-
+-   [Manipulating Parquet files with DuckDB and SQL](parquet.qmd)
+-   [Walkability Index](walkability_index.qmd)
 
 ## Metadata standards
 
