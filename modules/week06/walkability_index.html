@@ -301,6 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#the-national-walkability-index" id="toc-the-national-walkability-index" class="nav-link active" data-scroll-target="#the-national-walkability-index">The National walkability index</a></li>
   <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a></li>
+  <li><a href="#using-a-remote-file" id="toc-using-a-remote-file" class="nav-link" data-scroll-target="#using-a-remote-file">Using a remote file</a></li>
   <li><a href="#dataset-preparation" id="toc-dataset-preparation" class="nav-link" data-scroll-target="#dataset-preparation">Dataset preparation</a></li>
   </ul>
 </nav>
@@ -390,6 +391,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> SB_data</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> ST_Within(st_point(<span class="op">-</span><span class="fl">119.712</span>, <span class="fl">34.438</span>), geom);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="using-a-remote-file" class="level2">
+<h2 class="anchored" data-anchor-id="using-a-remote-file">Using a remote file</h2>
 <p>We could also read the data via a web server!!</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">--- Try remote</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- Let's select the data for Santa Barbara County and subset only a few columns;</span></span>
