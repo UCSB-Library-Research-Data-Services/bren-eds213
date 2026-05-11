@@ -1,5 +1,5 @@
 ---
-title: "Week 7 - Computing environments  &  Metadata standards"
+title: "Week 7 - Parquet exploration & Metadata standards"
 ---
 
 
