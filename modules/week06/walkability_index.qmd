@@ -50,17 +50,17 @@ LOAD httpfs;
 Let's see how fast we can import those data from parquet for the Santa Barabara county:
 
 ```sql
-SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geometry
-  FROM read_parquet('/courses/EDS213/data/walkability/walkability_hive/**/*.parquet', hive_partitioning=true)
+SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom
+  FROM read_parquet('/courses/EDS213/data/walkability/walkability84_hive/**/*.parquet', hive_partitioning=true)
   WHERE STATEFP = '06' AND COUNTYFP = '083';
 ```
 
 OK before we bet started in doing analaysis, we can store those data as a View:
  
 ```sql
-CREATE VIEW SB_data AS (
-  SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geometry
-  FROM read_parquet('/courses/EDS213/data/walkability/walkability_hive/**/*.parquet', hive_partitioning=true)
+CREATE OR REPLACE VIEW SB_data AS (
+  SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom
+  FROM read_parquet('/courses/EDS213/data/walkability/walkability84_hive/**/*.parquet', hive_partitioning=true)
   WHERE STATEFP = '06' AND COUNTYFP = '083'
   );
 ```
@@ -84,12 +84,27 @@ ORDER BY Walk_ind_avg DESC;
 SELECT
   TRACTCE,
   COUNT(*) AS Block_count,
-  AVG(ST_Area(geometry)) AS Avg_area,
+  AVG(ST_Area(geom)) AS Avg_area,
   AVG(NatWalkInd) AS Walk_ind_avg
 FROM SB_data
 GROUP BY TRACTCE
 ORDER BY Walk_ind_avg DESC;
 ```
+
+Can be used to reproject: `st_transform(geometry, 'EPSG:4326', 'ESRI:102039')`
+
+Where is it walkable?
+
+```sql
+--- Is SB Mission walkable?
+
+SELECT * FROM SB_data
+WHERE ST_Within(st_point(-119.712, 34.438), geom);
+
+```
+
+
+
 
 We could also read the data via a web server!!
 
