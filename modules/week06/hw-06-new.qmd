@@ -6,7 +6,7 @@ title: "Week 6.2 - LLM-generated SQL evaluation"
 
 You may have already discovered that the new AI/LLM services can readily generate SQL given a prompt.  Your job is to evaluate the SQL returned by those services.
 
-For this assignment, you will need to use and modify the schema that was used to create our bird database.  The schema can be found in the class GitHub repository at `database/schema-build-script.sql`.  Prepare a copy of this file and make one modification: Remove the UNIQUE declaration from column Personnel.Name.
+For this assignment, you will need to use and modify the schema that was used to create our bird database.  The schema can be found in the class GitHub repository at `database/schema-build-script.sql`.  Prepare a copy of this file and make one modification: Remove the UNIQUE declaration from column `Personnel.Name`, i.e., for this assignment names are not unique.
 
 Now:
 
