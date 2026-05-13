@@ -57,9 +57,9 @@ Best way to contact us: email or course slack channel for general questions
 | 2    | [Analyzing & cleaning the bird dataset (from csv)](modules/week02/index-02.qmd) | Design the schema of your database |
 | 3    | [Introduction to SQL (part 1) & DuckDB](modules/week03/index-03.qmd)            | Clean and ingest |
 | 4    | [SQL part 2 + Analyzing the bird database using SQL](modules/week04/index-04.qmd)| Data exploration and analysis using SQL |
-| 5    | [I/O & data management + DuckDB and Parquet files](modules/week05/index-05.qmd) | Visualize your data |
-| 6    | [Using R & Python to query databases + bash programming](modules/week06/index-06.qmd)  | Finalize and document |
-| 7    | [Capturing your computing environment + Documenting your work: metadata](modules/week07/index-07.qmd) | Database showcases |
+| 5    | [I/O & data management + bash programming](modules/week05/index-05.qmd) | Visualize your data |
+| 6    | [Using R & Python to query databases](modules/week06/index-06.qmd)  | Finalize and document |
+| 7    | [DuckDB and Parquet files + Documenting your work: metadata](modules/week07/index-07.qmd) | Database showcases |
 | 8    | [Databases advanced topics + Ethical & responsible data mgnt](modules/week08/index-08.qmd)  |  -  |
 | 9    | [Sensitive data](modules/week09/index-09.qmd)                          | Sensitive data lab |
 | 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |  -  |
