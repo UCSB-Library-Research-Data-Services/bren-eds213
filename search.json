@@ -1514,28 +1514,28 @@
   {
     "objectID": "modules/week08/hw-08-1.html",
     "href": "modules/week08/hw-08-1.html",
-    "title": "Week 6 - Little Bobby Tables",
+    "title": "Week 8 - Little Bobby Tables",
     "section": "",
     "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/26293/assignments/361496\nIn class we demonstrated how to parameterize a query and then insert values for the parameter(s):\nThe bare question marks in the template are placeholders. The database driver substitutes the supplied parameter values before submitting the query to the database, adding any quoting and character escaping as necessary.\nYou may decide you want to use your own Python string substitution instead:\nBefore you do that, recognize that this practice continues to this day to be a major source of security exploits. To understand why, view this classic XKCD cartoon:\nTo interpret the above, you may assume that at some point the school’s system performs the query:\nwhere a student’s name, as input by a user of the system, is directly substituted for the %s."
   },
   {
     "objectID": "modules/week08/hw-08-1.html#part-1",
     "href": "modules/week08/hw-08-1.html#part-1",
-    "title": "Week 6 - Little Bobby Tables",
+    "title": "Week 8 - Little Bobby Tables",
     "section": "Part 1",
     "text": "Part 1\nPerform a Python-style string interpolation by hand, that is, write out the exact string that results when Little Bobby Tables’ “name” is substituted for the %s in the above query. Explain how the database will interpret the resulting string. Explain why Bobby’s “name” has two hyphens (--) at the end."
   },
   {
     "objectID": "modules/week08/hw-08-1.html#part-2",
     "href": "modules/week08/hw-08-1.html#part-2",
-    "title": "Week 6 - Little Bobby Tables",
+    "title": "Week 8 - Little Bobby Tables",
     "section": "Part 2",
     "text": "Part 2\nSuppose instead the school system executed the query:\nSELECT *\n    FROM Students WHERE name = '%s';\nWhat slightly different “name” would Little Bobby Tables use to destroy things in that case?\nCredit: 15 points"
   },
   {
     "objectID": "modules/week08/hw-08-1.html#bonus-problem",
     "href": "modules/week08/hw-08-1.html#bonus-problem",
-    "title": "Week 6 - Little Bobby Tables",
+    "title": "Week 8 - Little Bobby Tables",
     "section": "Bonus problem!",
     "text": "Bonus problem!\nHack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query\nSELECT * FROM Species WHERE Code = '%s';\nwhere a species code (supplied by the application user) is directly substituted for the query’s %s using Python interpolation. For example, an innocent user might input “wolv”. Craft an input that a devious user could use to:\n\nAdd Taylor Swift to the Personnel table\nYet still return the results of the query SELECT * FROM Species WHERE Code = 'wolv' (devious!)"
   },
