@@ -301,12 +301,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/361496" class="uri">https://ucsb.instructure.com/courses/26293/assignments/361496</a></strong></p>
-<p>In class we discussed how to parameterize a query and then insert values for the parameter(s):</p>
+<p>In class we demonstrated how to parameterize a query and then insert values for the parameter(s):</p>
 <pre><code>query_template = "SELECT ... WHERE Species = ? AND ageMethod = ?"
 species = "wolv"
 age_method = "float"
 cur.execute(query_template, [species, age_method])</code></pre>
-<p>The bare question marks in the template are placeholders. The database driver substitutes the supplied parameter values before submitting to the database, appropriately adding any quoting and character escaping as necessary.</p>
+<p>The bare question marks in the template are placeholders. The database driver substitutes the supplied parameter values before submitting the query to the database, adding any quoting and character escaping as necessary.</p>
 <p>You may decide you want to use your own Python string substitution instead:</p>
 <pre><code>query_template = "SELECT ... WHERE Species = '%s' AND ageMethod = '%s'"
 species = "wolv"
@@ -319,21 +319,21 @@ cur.execute(query_template % (species, age_method))</code></pre>
 <figcaption>https://xkcd.com/327</figcaption>
 </figure>
 </div>
-<p>To interpret the above, you may assume that at some point the school’s system performs the query</p>
+<p>To interpret the above, you may assume that at some point the school’s system performs the query:</p>
 <pre><code>SELECT *
     FROM Students
-    WHERE (name = '%s' AND ...);</code></pre>
+    WHERE (name = '%s' AND year = 2026);</code></pre>
 <p>where a student’s name, as input by a user of the system, is directly substituted for the <code>%s</code>.</p>
 <section id="part-1" class="level2">
 <h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
-<p>Explain exactly how Little Bobby Tables’ “name” can cause a catastrophe. Explain why his name has two hyphens (<code>--</code>) at the end.</p>
+<p>Perform a Python-style string interpolation by hand, that is, write out the <strong>exact string</strong> that results when Little Bobby Tables’ “name” is substituted for the <code>%s</code> in the above query. Explain how the database will interpret the resulting string. Explain why Bobby’s “name” has two hyphens (<code>--</code>) at the end.</p>
 </section>
 <section id="part-2" class="level2">
 <h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
-<p>Suppose instead the school system executed the query</p>
+<p>Suppose instead the school system executed the query:</p>
 <pre><code>SELECT *
     FROM Students WHERE name = '%s';</code></pre>
-<p>What “name” would Little Bobby Tables use to destroy things in that case?</p>
+<p>What slightly different “name” would Little Bobby Tables use to destroy things in that case?</p>
 <p><strong>Credit: 15 points</strong></p>
 </section>
 <section id="bonus-problem" class="level2">
