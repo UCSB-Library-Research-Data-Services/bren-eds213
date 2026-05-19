@@ -2,7 +2,7 @@
 title: "Week 8 - Little Bobby Tables"
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/361496>**
+**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/32934/assignments/476999>**
 
 In class we demonstrated how to parameterize a query and then insert values for the parameter(s):
 
