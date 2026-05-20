@@ -879,7 +879,7 @@
     "href": "index.html#modules",
     "title": "EDS 213: Databases and Data Management",
     "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nLecture\nLab\n\n\n\n\n1\nRelational databases and data modeling\nFinding your relational dataset\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\nDesign the schema of your database\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\nClean and ingest\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\nData exploration and analysis using SQL\n\n\n5\nI/O & data management + bash programming\nVisualize your data\n\n\n6\nUsing R & Python to query databases\nFinalize and document\n\n\n7\nDuckDB and Parquet files + Documenting your work: metadata\nDatabase showcases\n\n\n8\nDatabases advanced topics + Sensitive Data - Part 1\n-\n\n\n9\nSensitive data - PArt 2\nSensitive data lab\n\n\n10\nData licensing and publication\n-"
+    "text": "Modules\n\n\n\nWeek\nLecture\nLab\n\n\n\n\n1\nRelational databases and data modeling\nFinding your relational dataset\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\nDesign the schema of your database\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\nClean and ingest\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\nData exploration and analysis using SQL\n\n\n5\nI/O & data management + bash programming\nVisualize your data\n\n\n6\nUsing R & Python to query databases\nFinalize and document\n\n\n7\nDuckDB and Parquet files + Documenting your work: metadata\nDatabase showcases\n\n\n8\nDatabases advanced topics + Sensitive Data - Part 1\n-\n\n\n9\nSensitive data - Part 2\nSensitive data lab\n\n\n10\nData licensing and publication\n-"
   },
   {
     "objectID": "index.html#data",
