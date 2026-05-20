@@ -49,7 +49,7 @@ Best way to contact us: email or course slack channel for general questions
 | 6    | [Using R & Python to query databases](modules/week06/index-06.qmd)  | Finalize and document |
 | 7    | [DuckDB and Parquet files + Documenting your work: metadata](modules/week07/index-07.qmd) | Database showcases |
 | 8    | [Databases advanced topics + Sensitive Data - Part 1](modules/week08/index-08.qmd)  |  -  |
-| 9    | [Sensitive data - PArt 2](modules/week09/index-09.qmd)                 | Sensitive data lab |
+| 9    | [Sensitive data - Part 2](modules/week09/index-09.qmd)                 | Sensitive data lab |
 | 10   | [Data licensing and publication](modules/week10/index-10.qmd)          |  -  |
 
 
