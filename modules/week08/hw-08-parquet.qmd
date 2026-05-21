@@ -1,5 +1,5 @@
 ---
-title: "HW8.2-parquet"
+title: "Week 8.2 - How walkable is my favorite location in the US?"
 format: html
 ---
 
