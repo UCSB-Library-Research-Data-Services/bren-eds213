@@ -147,67 +147,25 @@
     "text": "Homework\nNo homework this week!"
   },
   {
-    "objectID": "modules/week08/HW8-parquet.html",
-    "href": "modules/week08/HW8-parquet.html",
-    "title": "HW8.2-parquet",
+    "objectID": "modules/week08/case-c.html",
+    "href": "modules/week08/case-c.html",
+    "title": "Case Study C: To reuse or not reuse, that is the key question!",
     "section": "",
-    "text": "In this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:\nTo do so, we will need to use two extensions from DuckDB spatial and httpfs:"
+    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nAdam is a researcher for a non-profit organization dedicated to accelerating the adoption of solar energy. The organization relies on data from various sources, including sensors, satellite imagery, and field measurements, to inform solar energy allocation, usage, and conservation decisions.\nRecently, he identified an available dataset containing data on the solar energy market size, including trends, competition, and customer demand. These data can inform business and policy decisions related to solar energy adoption. Adam is particularly excited because this is a multivariate time series dataset from the past ten years. Also, the data documentation listed many important variables for his project, including the compound annual growth rates (CAGR) for solar energy companies. However, when Adam inspected some of the data files, he noticed a few data points that needed to be corrected. For example, some rows had NAs; others had 000, 999, and -999 or were utterly blank; the documentation does not help him infer those values.\nWhen he contacted the corresponding researcher for clarification, he was told these inconsistencies could have been caused either due to system migration or by human error in inaccurate data entry. The researcher mentioned that his team had multiple contributors throughout the years and noted there were no enforced validation rules or data quality checks. Ultimately, Adam should choose a solution that balances the benefits of using the existing dataset with the potential risks of using incomplete or inaccurate data.\nAdam faces a dilemma. On the one hand, the dataset could provide valuable insights into the solar energy market and inform better policies and management decisions. On the other hand, the missing and anomalous data could affect the dataset’s overall quality and integrity, potentially leading to incorrect conclusions and decisions."
   },
   {
-    "objectID": "modules/week08/HW8-parquet.html#choosing-you-location",
-    "href": "modules/week08/HW8-parquet.html#choosing-you-location",
-    "title": "HW8.2-parquet",
-    "section": "Choosing you location",
-    "text": "Choosing you location\n\nSelect a US-based location to research, such as your hometown or a favorite destination.\nDetermine the latitude and longitude coordinates for your chosen site using Google Maps or a similar tool.\nInclude these geographic details (name, lat, long, …) as a comment within your SQL script."
+    "objectID": "modules/week08/case-c.html#instructions",
+    "href": "modules/week08/case-c.html#instructions",
+    "title": "Case Study C: To reuse or not reuse, that is the key question!",
+    "section": "",
+    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nAdam is a researcher for a non-profit organization dedicated to accelerating the adoption of solar energy. The organization relies on data from various sources, including sensors, satellite imagery, and field measurements, to inform solar energy allocation, usage, and conservation decisions.\nRecently, he identified an available dataset containing data on the solar energy market size, including trends, competition, and customer demand. These data can inform business and policy decisions related to solar energy adoption. Adam is particularly excited because this is a multivariate time series dataset from the past ten years. Also, the data documentation listed many important variables for his project, including the compound annual growth rates (CAGR) for solar energy companies. However, when Adam inspected some of the data files, he noticed a few data points that needed to be corrected. For example, some rows had NAs; others had 000, 999, and -999 or were utterly blank; the documentation does not help him infer those values.\nWhen he contacted the corresponding researcher for clarification, he was told these inconsistencies could have been caused either due to system migration or by human error in inaccurate data entry. The researcher mentioned that his team had multiple contributors throughout the years and noted there were no enforced validation rules or data quality checks. Ultimately, Adam should choose a solution that balances the benefits of using the existing dataset with the potential risks of using incomplete or inaccurate data.\nAdam faces a dilemma. On the one hand, the dataset could provide valuable insights into the solar energy market and inform better policies and management decisions. On the other hand, the missing and anomalous data could affect the dataset’s overall quality and integrity, potentially leading to incorrect conclusions and decisions."
   },
   {
-    "objectID": "modules/week08/HW8-parquet.html#data-import-10pts",
-    "href": "modules/week08/HW8-parquet.html#data-import-10pts",
-    "title": "HW8.2-parquet",
-    "section": "Data import (10pts)",
-    "text": "Data import (10pts)\nThere are two files we need to import:\n\nCreate at table named Fips from the State and County Name: fips_state_county.csv (5pts)\nCreate a table named Walkability_mystate (e.g. Walkability_ca for California) from the Walkability national database in WGS84 projection: walkability_wgs84.parquet by selecting the following columns: GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 and adding a WHERE close for your state (5pts)\n\nGood news, those files are ready on Workbench! You can import them using the following URL + the filename you want to import: https://apps.bren.ucsb.edu/eds213-data/walkability/\nHint: Look at the DuckDB documentation (https://duckdb.org/docs/current/data/overview) for read_csv and read_parquet.\nYour schema should look like this:\n───────────────────────── main ────────────────────────── \n┌──────────────────────────────────┐┌─────────────────────┐\n│          Walkability_ca          ││        Fips         │\n│                                  ││                     │\n│ GEOID10    varchar               ││ STATEFP     varchar │\n│ STATEFP    varchar               ││ State_name  varchar │\n│ COUNTYFP   varchar               ││ COUNTYFP    varchar │\n│ TRACTCE    varchar               ││ County_name varchar │\n│ BLKGRPCE   varchar               ││                     │\n│ CBSA       varchar               ││      3154 rows      │\n│ CBSA_Name  varchar               │└─────────────────────┘\n│ TotPop     integer               │\n│ NatWalkInd double                │\n│ geom_wgs84 geometry('ogc:crs84') │\n│                                  │\n│            23212 rows            │\n└──────────────────────────────────┘"
-  },
-  {
-    "objectID": "modules/week08/HW8-parquet.html#join-tables-5pts",
-    "href": "modules/week08/HW8-parquet.html#join-tables-5pts",
-    "title": "HW8.2-parquet",
-    "section": "Join Tables (5pts)",
-    "text": "Join Tables (5pts)\nJoin the two tables and store the results in a VIEW named Walkind_mystate\nOur schema should like something like this:\n ──────────────────────────────────────────── main ──────────────────────────────────────────── \n┌──────────────────────────────────┐┌───────────────────────────────────┐┌─────────────────────┐\n│          Walkability_ca          ││            Walkind_ca             ││        Fips         │\n│                                  ││                                   ││                     │\n│ GEOID10    varchar               ││ GEOID10     varchar               ││ STATEFP     varchar │\n│ STATEFP    varchar               ││ STATEFP     varchar               ││ State_name  varchar │\n│ COUNTYFP   varchar               ││ COUNTYFP    varchar               ││ COUNTYFP    varchar │\n│ TRACTCE    varchar               ││ TRACTCE     varchar               ││ County_name varchar │\n│ BLKGRPCE   varchar               ││ BLKGRPCE    varchar               ││                     │\n│ CBSA       varchar               ││ CBSA        varchar               ││      3154 rows      │\n│ CBSA_Name  varchar               ││ CBSA_Name   varchar               │└─────────────────────┘\n│ TotPop     integer               ││ TotPop      integer               │\n│ NatWalkInd double                ││ NatWalkInd  double                │\n│ geom_wgs84 geometry('ogc:crs84') ││ geom_wgs84  geometry('ogc:crs84') │\n│                                  ││ State_name  varchar               │\n│            23212 rows            ││ County_name varchar               │\n└──────────────────────────────────┘└───────────────────────────────────┘"
-  },
-  {
-    "objectID": "modules/week08/HW8-parquet.html#walkability-index-at-your-location-10pts",
-    "href": "modules/week08/HW8-parquet.html#walkability-index-at-your-location-10pts",
-    "title": "HW8.2-parquet",
-    "section": "Walkability index at your location (10pts)",
-    "text": "Walkability index at your location (10pts)\nYou are now ready to execute your initial spatial query! Your objective is to identify the US Census Group Block containing your chosen point of interest, following the methodology we practiced in class.\nDetermine the walkability index for your location. In your script, include a comment that evaluates this value against the walkability index scale and note whether the findings align with your expectations.\nHint: Keep in mind that the latitude and longitude sequence in Google Maps may differ from that required by the ST_Point function."
-  },
-  {
-    "objectID": "modules/week08/HW8-parquet.html#average-walkability-index-at-your-census-tract-10pts",
-    "href": "modules/week08/HW8-parquet.html#average-walkability-index-at-your-census-tract-10pts",
-    "title": "HW8.2-parquet",
-    "section": "Average Walkability index at your Census Tract (10pts)",
-    "text": "Average Walkability index at your Census Tract (10pts)\nNow, compute the average Walkability index at the Census tract level and the number of Group Block within this Tract, getting your Tract ID from the previous query.\nHint: A Tract ID is only unique within one specific County and the County FIPS is only unique within a specific State!!\nYour results should look like this:\n┌─────────┬─────────────┬───────────────────┐\n│ TRACTCE │ Block_count │ Walkind_tract_avg │\n│ varchar │    int64    │      double       │\n├─────────┼─────────────┼───────────────────┤\n│ 000400  │           5 │              11.7 │\n└─────────┴─────────────┴───────────────────┘"
-  },
-  {
-    "objectID": "modules/week08/HW8-parquet.html#average-walkability-index-at-your-county-level-10pts",
-    "href": "modules/week08/HW8-parquet.html#average-walkability-index-at-your-county-level-10pts",
-    "title": "HW8.2-parquet",
-    "section": "Average Walkability index at your County Level (10pts)",
-    "text": "Average Walkability index at your County Level (10pts)\nNow, compute the average Walkability index at the County level and the total number of Group Blocks in that County. Get the necessary information from previous queries.\n┌──────────┬───────────────┬─────────────┬────────────────────┐\n│ COUNTYFP │  County_name  │ Block_count │ Walkind_county_avg │\n│ varchar  │    varchar    │    int64    │       double       │\n├──────────┼───────────────┼─────────────┼────────────────────┤\n│ 083      │ SANTA BARBARA │         313 │ 10.495740149094784 │\n└──────────┴───────────────┴─────────────┴────────────────────┘"
-  },
-  {
-    "objectID": "modules/week08/HW8-parquet.html#discuss-your-results-5pts",
-    "href": "modules/week08/HW8-parquet.html#discuss-your-results-5pts",
-    "title": "HW8.2-parquet",
-    "section": "Discuss your results (5pts)",
-    "text": "Discuss your results (5pts)\nAdd a comment in your SQL script to discuss how your favorite location’s walkability index compares to its surrounding. From your knowledge about the area, does that make sense?"
-  },
-  {
-    "objectID": "modules/week08/HW8-parquet.html#export-your-results-10pts",
-    "href": "modules/week08/HW8-parquet.html#export-your-results-10pts",
-    "title": "HW8.2-parquet",
-    "section": "Export your results (10pts)",
-    "text": "Export your results (10pts)\nIt is time to export your results! We want a table with:\n\nOnly Observations for the Tract of your location of interest\nAdd the average Tract walkability as a column (same value repeating)\nAdd the average County walkability as a column (same value repeating)\n\nSave it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script.\nNo need to submit your csv file"
+    "objectID": "modules/week08/case-c.html#questions",
+    "href": "modules/week08/case-c.html#questions",
+    "title": "Case Study C: To reuse or not reuse, that is the key question!",
+    "section": "Questions",
+    "text": "Questions\n\nQuestion 1\nSuppose Adam is leaning toward reusing the dataset despite the identified problems. What general ethical and responsible steps would you advise him to take moving forward? (Select all that apply)\n\nAdam should carefully examine the dataset to map all existing issues to determine the extent of missing and anomalous data and how it could affect the accuracy of his analysis.\nIf Adam collects new data, he should enforce data validation rules to tables and perform quality checks to avoid similar problems.\nIf Adam integrates new data and perform all necessarily adjustments to remove uncertainties and other problems in the data, he no longer needs to attribute original data creators.\nIf the dataset has significant missing or anomalous data, Adam may need to collect additional data to ensure the analysis is accurate and representative. This may involve additional time and resources but could lead to more accurate and reliable insights.\nAdam may be able to proceed with the analysis after carefully documenting and accounting for any uncertainties or limitations in the data.\nAdam should produce new documentation for the dataset based on all improvements he makes to the original data."
   },
   {
     "objectID": "modules/week08/case-d.html",
@@ -233,28 +191,28 @@
   {
     "objectID": "modules/week08/hw-08-1.html",
     "href": "modules/week08/hw-08-1.html",
-    "title": "Week 8 - Little Bobby Tables",
+    "title": "Week 8.1 - Little Bobby Tables",
     "section": "",
     "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/32934/assignments/476999\nIn class we demonstrated how to parameterize a query and then insert values for the parameter(s):\nThe bare question marks in the template are placeholders. The database driver substitutes the supplied parameter values before submitting the query to the database, adding any quoting and character escaping as necessary.\nYou may decide you want to use your own Python string substitution instead:\nBefore you do that, recognize that this practice continues to this day to be a major source of security exploits. To understand why, view this classic XKCD cartoon:\nTo interpret the above, you may assume that at some point the school’s system performs the query:\nwhere a student’s name, as input by a user of the system, is directly substituted for the %s."
   },
   {
     "objectID": "modules/week08/hw-08-1.html#part-1",
     "href": "modules/week08/hw-08-1.html#part-1",
-    "title": "Week 8 - Little Bobby Tables",
+    "title": "Week 8.1 - Little Bobby Tables",
     "section": "Part 1",
     "text": "Part 1\nPerform a Python-style string interpolation by hand, that is, write out the exact string that results when Little Bobby Tables’ “name” is substituted for the %s in the above query. Explain how the database will interpret the resulting string. Explain why Bobby’s “name” has two hyphens (--) at the end."
   },
   {
     "objectID": "modules/week08/hw-08-1.html#part-2",
     "href": "modules/week08/hw-08-1.html#part-2",
-    "title": "Week 8 - Little Bobby Tables",
+    "title": "Week 8.1 - Little Bobby Tables",
     "section": "Part 2",
     "text": "Part 2\nSuppose instead the school system executed the query:\nSELECT *\n    FROM Students WHERE name = '%s';\nWhat slightly different “name” would Little Bobby Tables use to destroy things in that case?\nCredit: 15 points"
   },
   {
     "objectID": "modules/week08/hw-08-1.html#bonus-problem",
     "href": "modules/week08/hw-08-1.html#bonus-problem",
-    "title": "Week 8 - Little Bobby Tables",
+    "title": "Week 8.1 - Little Bobby Tables",
     "section": "Bonus problem!",
     "text": "Bonus problem!\nHack your bird database! Let’s imagine that your Shiny application, in response to user input, executes the query\nSELECT * FROM Species WHERE Code = '%s';\nwhere a species code (supplied by the application user) is directly substituted for the query’s %s using Python interpolation. For example, an innocent user might input “wolv”. Craft an input that a devious user could use to:\n\nAdd Taylor Swift to the Personnel table\nYet still return the results of the query SELECT * FROM Species WHERE Code = 'wolv' (devious!)"
   },
@@ -1617,25 +1575,67 @@
     "text": "Slides\nHomework 6.2 LLM results\nTriggers\nAdvanced database topics\nSensitive Data - Part 1"
   },
   {
-    "objectID": "modules/week08/case-c.html",
-    "href": "modules/week08/case-c.html",
-    "title": "Case Study C: To reuse or not reuse, that is the key question!",
+    "objectID": "modules/week08/hw-08-parquet.html",
+    "href": "modules/week08/hw-08-parquet.html",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
     "section": "",
-    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nAdam is a researcher for a non-profit organization dedicated to accelerating the adoption of solar energy. The organization relies on data from various sources, including sensors, satellite imagery, and field measurements, to inform solar energy allocation, usage, and conservation decisions.\nRecently, he identified an available dataset containing data on the solar energy market size, including trends, competition, and customer demand. These data can inform business and policy decisions related to solar energy adoption. Adam is particularly excited because this is a multivariate time series dataset from the past ten years. Also, the data documentation listed many important variables for his project, including the compound annual growth rates (CAGR) for solar energy companies. However, when Adam inspected some of the data files, he noticed a few data points that needed to be corrected. For example, some rows had NAs; others had 000, 999, and -999 or were utterly blank; the documentation does not help him infer those values.\nWhen he contacted the corresponding researcher for clarification, he was told these inconsistencies could have been caused either due to system migration or by human error in inaccurate data entry. The researcher mentioned that his team had multiple contributors throughout the years and noted there were no enforced validation rules or data quality checks. Ultimately, Adam should choose a solution that balances the benefits of using the existing dataset with the potential risks of using incomplete or inaccurate data.\nAdam faces a dilemma. On the one hand, the dataset could provide valuable insights into the solar energy market and inform better policies and management decisions. On the other hand, the missing and anomalous data could affect the dataset’s overall quality and integrity, potentially leading to incorrect conclusions and decisions."
+    "text": "In this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:\nTo do so, we will need to use two extensions from DuckDB spatial and httpfs:"
   },
   {
-    "objectID": "modules/week08/case-c.html#instructions",
-    "href": "modules/week08/case-c.html#instructions",
-    "title": "Case Study C: To reuse or not reuse, that is the key question!",
-    "section": "",
-    "text": "Read the scenario and answer the questions based on the weekly readings and the lecture:\nAdam is a researcher for a non-profit organization dedicated to accelerating the adoption of solar energy. The organization relies on data from various sources, including sensors, satellite imagery, and field measurements, to inform solar energy allocation, usage, and conservation decisions.\nRecently, he identified an available dataset containing data on the solar energy market size, including trends, competition, and customer demand. These data can inform business and policy decisions related to solar energy adoption. Adam is particularly excited because this is a multivariate time series dataset from the past ten years. Also, the data documentation listed many important variables for his project, including the compound annual growth rates (CAGR) for solar energy companies. However, when Adam inspected some of the data files, he noticed a few data points that needed to be corrected. For example, some rows had NAs; others had 000, 999, and -999 or were utterly blank; the documentation does not help him infer those values.\nWhen he contacted the corresponding researcher for clarification, he was told these inconsistencies could have been caused either due to system migration or by human error in inaccurate data entry. The researcher mentioned that his team had multiple contributors throughout the years and noted there were no enforced validation rules or data quality checks. Ultimately, Adam should choose a solution that balances the benefits of using the existing dataset with the potential risks of using incomplete or inaccurate data.\nAdam faces a dilemma. On the one hand, the dataset could provide valuable insights into the solar energy market and inform better policies and management decisions. On the other hand, the missing and anomalous data could affect the dataset’s overall quality and integrity, potentially leading to incorrect conclusions and decisions."
+    "objectID": "modules/week08/hw-08-parquet.html#choosing-you-location",
+    "href": "modules/week08/hw-08-parquet.html#choosing-you-location",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
+    "section": "Choosing you location",
+    "text": "Choosing you location\n\nSelect a US-based location to research, such as your hometown or a favorite destination.\nDetermine the latitude and longitude coordinates for your chosen site using Google Maps or a similar tool.\nInclude these geographic details (name, lat, long, …) as a comment within your SQL script."
   },
   {
-    "objectID": "modules/week08/case-c.html#questions",
-    "href": "modules/week08/case-c.html#questions",
-    "title": "Case Study C: To reuse or not reuse, that is the key question!",
-    "section": "Questions",
-    "text": "Questions\n\nQuestion 1\nSuppose Adam is leaning toward reusing the dataset despite the identified problems. What general ethical and responsible steps would you advise him to take moving forward? (Select all that apply)\n\nAdam should carefully examine the dataset to map all existing issues to determine the extent of missing and anomalous data and how it could affect the accuracy of his analysis.\nIf Adam collects new data, he should enforce data validation rules to tables and perform quality checks to avoid similar problems.\nIf Adam integrates new data and perform all necessarily adjustments to remove uncertainties and other problems in the data, he no longer needs to attribute original data creators.\nIf the dataset has significant missing or anomalous data, Adam may need to collect additional data to ensure the analysis is accurate and representative. This may involve additional time and resources but could lead to more accurate and reliable insights.\nAdam may be able to proceed with the analysis after carefully documenting and accounting for any uncertainties or limitations in the data.\nAdam should produce new documentation for the dataset based on all improvements he makes to the original data."
+    "objectID": "modules/week08/hw-08-parquet.html#data-import-10pts",
+    "href": "modules/week08/hw-08-parquet.html#data-import-10pts",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
+    "section": "Data import (10pts)",
+    "text": "Data import (10pts)\nThere are two files we need to import:\n\nCreate at table named Fips from the State and County Name: fips_state_county.csv (5pts)\nCreate a table named Walkability_mystate (e.g. Walkability_ca for California) from the Walkability national database in WGS84 projection: walkability_wgs84.parquet by selecting the following columns: GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 and adding a WHERE close for your state (5pts)\n\nGood news, those files are ready on Workbench! You can import them using the following URL + the filename you want to import: https://apps.bren.ucsb.edu/eds213-data/walkability/\nHint: Look at the DuckDB documentation (https://duckdb.org/docs/current/data/overview) for read_csv and read_parquet.\nYour schema should look like this:\n───────────────────────── main ────────────────────────── \n┌──────────────────────────────────┐┌─────────────────────┐\n│          Walkability_ca          ││        Fips         │\n│                                  ││                     │\n│ GEOID10    varchar               ││ STATEFP     varchar │\n│ STATEFP    varchar               ││ State_name  varchar │\n│ COUNTYFP   varchar               ││ COUNTYFP    varchar │\n│ TRACTCE    varchar               ││ County_name varchar │\n│ BLKGRPCE   varchar               ││                     │\n│ CBSA       varchar               ││      3154 rows      │\n│ CBSA_Name  varchar               │└─────────────────────┘\n│ TotPop     integer               │\n│ NatWalkInd double                │\n│ geom_wgs84 geometry('ogc:crs84') │\n│                                  │\n│            23212 rows            │\n└──────────────────────────────────┘"
+  },
+  {
+    "objectID": "modules/week08/hw-08-parquet.html#join-tables-5pts",
+    "href": "modules/week08/hw-08-parquet.html#join-tables-5pts",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
+    "section": "Join Tables (5pts)",
+    "text": "Join Tables (5pts)\nJoin the two tables and store the results in a VIEW named Walkind_mystate\nOur schema should like something like this:\n ──────────────────────────────────────────── main ──────────────────────────────────────────── \n┌──────────────────────────────────┐┌───────────────────────────────────┐┌─────────────────────┐\n│          Walkability_ca          ││            Walkind_ca             ││        Fips         │\n│                                  ││                                   ││                     │\n│ GEOID10    varchar               ││ GEOID10     varchar               ││ STATEFP     varchar │\n│ STATEFP    varchar               ││ STATEFP     varchar               ││ State_name  varchar │\n│ COUNTYFP   varchar               ││ COUNTYFP    varchar               ││ COUNTYFP    varchar │\n│ TRACTCE    varchar               ││ TRACTCE     varchar               ││ County_name varchar │\n│ BLKGRPCE   varchar               ││ BLKGRPCE    varchar               ││                     │\n│ CBSA       varchar               ││ CBSA        varchar               ││      3154 rows      │\n│ CBSA_Name  varchar               ││ CBSA_Name   varchar               │└─────────────────────┘\n│ TotPop     integer               ││ TotPop      integer               │\n│ NatWalkInd double                ││ NatWalkInd  double                │\n│ geom_wgs84 geometry('ogc:crs84') ││ geom_wgs84  geometry('ogc:crs84') │\n│                                  ││ State_name  varchar               │\n│            23212 rows            ││ County_name varchar               │\n└──────────────────────────────────┘└───────────────────────────────────┘"
+  },
+  {
+    "objectID": "modules/week08/hw-08-parquet.html#walkability-index-at-your-location-10pts",
+    "href": "modules/week08/hw-08-parquet.html#walkability-index-at-your-location-10pts",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
+    "section": "Walkability index at your location (10pts)",
+    "text": "Walkability index at your location (10pts)\nYou are now ready to execute your initial spatial query! Your objective is to identify the US Census Group Block containing your chosen point of interest, following the methodology we practiced in class.\nDetermine the walkability index for your location. In your script, include a comment that evaluates this value against the walkability index scale and note whether the findings align with your expectations.\nHint: Keep in mind that the latitude and longitude sequence in Google Maps may differ from that required by the ST_Point function."
+  },
+  {
+    "objectID": "modules/week08/hw-08-parquet.html#average-walkability-index-at-your-census-tract-10pts",
+    "href": "modules/week08/hw-08-parquet.html#average-walkability-index-at-your-census-tract-10pts",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
+    "section": "Average Walkability index at your Census Tract (10pts)",
+    "text": "Average Walkability index at your Census Tract (10pts)\nNow, compute the average Walkability index at the Census tract level and the number of Group Block within this Tract, getting your Tract ID from the previous query.\nHint: A Tract ID is only unique within one specific County and the County FIPS is only unique within a specific State!!\nYour results should look like this:\n┌─────────┬─────────────┬───────────────────┐\n│ TRACTCE │ Block_count │ Walkind_tract_avg │\n│ varchar │    int64    │      double       │\n├─────────┼─────────────┼───────────────────┤\n│ 000400  │           5 │              11.7 │\n└─────────┴─────────────┴───────────────────┘"
+  },
+  {
+    "objectID": "modules/week08/hw-08-parquet.html#average-walkability-index-at-your-county-level-10pts",
+    "href": "modules/week08/hw-08-parquet.html#average-walkability-index-at-your-county-level-10pts",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
+    "section": "Average Walkability index at your County Level (10pts)",
+    "text": "Average Walkability index at your County Level (10pts)\nNow, compute the average Walkability index at the County level and the total number of Group Blocks in that County. Get the necessary information from previous queries.\n┌──────────┬───────────────┬─────────────┬────────────────────┐\n│ COUNTYFP │  County_name  │ Block_count │ Walkind_county_avg │\n│ varchar  │    varchar    │    int64    │       double       │\n├──────────┼───────────────┼─────────────┼────────────────────┤\n│ 083      │ SANTA BARBARA │         313 │ 10.495740149094784 │\n└──────────┴───────────────┴─────────────┴────────────────────┘"
+  },
+  {
+    "objectID": "modules/week08/hw-08-parquet.html#discuss-your-results-5pts",
+    "href": "modules/week08/hw-08-parquet.html#discuss-your-results-5pts",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
+    "section": "Discuss your results (5pts)",
+    "text": "Discuss your results (5pts)\nAdd a comment in your SQL script to discuss how your favorite location’s walkability index compares to its surrounding. From your knowledge about the area, does that make sense?"
+  },
+  {
+    "objectID": "modules/week08/hw-08-parquet.html#export-your-results-10pts",
+    "href": "modules/week08/hw-08-parquet.html#export-your-results-10pts",
+    "title": "Week 8.2 - How walkable is my favorite location in the US?",
+    "section": "Export your results (10pts)",
+    "text": "Export your results (10pts)\nIt is time to export your results! We want a table with:\n\nOnly Observations for the Tract of your location of interest\nAdd the average Tract walkability as a column (same value repeating)\nAdd the average County walkability as a column (same value repeating)\n\nSave it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script.\nNo need to submit your csv file"
   },
   {
     "objectID": "modules/week01/hw-01-3.html",
