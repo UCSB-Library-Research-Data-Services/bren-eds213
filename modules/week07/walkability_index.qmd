@@ -4,7 +4,6 @@ title: "walkability_index"
 
 ## The National walkability index
 
-
 The National **Walkability Index** is a nationwide geographic data resource that ranks block groups according to their relative walkability. The national dataset includes walkability scores for all US Census block groups as well as the underlying attributes that are used to rank the block groups.
 
 The index was developed using selected variables on density, diversity of land uses, and proximity to transit from the Smart Location Database. 
@@ -33,11 +32,8 @@ Here are four main categories:
 From your database folder in the bren-eds213-data repository, run:
 
 ```bash
-duckb -ui walkability.duck.db
+duckb walkability.duckdb
 ```
-
-What did just happened?!
-
 
 To conduct our analysis we are going to use the `spatial` and `httfs` DuckDB extensions:
 
@@ -48,7 +44,7 @@ LOAD spatial;
 LOAD httpfs;
 ```
 
-Let's see how fast we can import those data from parquet for the Santa Barabara county:
+Let's see how fast we can import those data from parquet for the Santa Barbara county:
 
 ```sql
 SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom
@@ -67,7 +63,7 @@ CREATE OR REPLACE VIEW SB_data AS (
 ```
 
 
-Let's compute the average walkbility index per Census tract: 
+Let's compute the average walkability index per Census tract: 
 
 ```sql
 SELECT
@@ -117,7 +113,7 @@ We could also read the data via a web server!!
 ```sql
 --- Try remote
 -- Let's select the data for Santa Barbara County and subset only a few columns;
-SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd FROM read_parquet('https://apps.bren.ucsb.edu/eds213-data/walkability/walkability_wgs84.parquet')
+SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 FROM read_parquet('https://apps.bren.ucsb.edu/eds213-data/walkability/walkability_wgs84.parquet')
 WHERE STATEFP = '06' AND COUNTYFP = '083';
 ```
 
@@ -135,32 +131,29 @@ LOAD httpfs;
 SELECT * FROM ST_Read(Natl_WI.gdb) LIMIT 10;
 
 
--- Save it as a table
-DROP TABLE walk84;
-CREATE TABLE walk84 AS (
+-- Create the table in wgs84 projection
+CREATE OR REPLACE TABLE walk_84 AS (
   SELECT * EXCLUDE (Shape),
-  Shape AS geometry,
-  ST_Hilbert(
-    Shape, 
-    ST_Extent(ST_MakeEnvelope(-125.00, 24.39, -66.93, 49.38))
-        ) AS bbox_geom
+  st_transform(Shape, 'ESRI:102039', 'EPSG:4326', true) AS geom_wgs84
+--  ST_Hilbert(
+--    geom_wgs84, 
+--    -- Replace these with the rough bounding box of your dataset [min_x, min_y, max_x, max_y]
+--    -- If this is a global dataset, use: ST_Extent(ST_MakeEnvelope(-180, -90, 180, 90))
+--    ST_Extent(ST_MakeEnvelope(-125.00, 24.39, -66.93, 49.38))
+--        ) AS bbox_geom84
   FROM ST_Read(Natl_WI.gdb)
-  ORDER BY bbox_geom
   );
   
-  
 -- See if the table looks good
-SELECT * FROM walk84 LIMIT 10;
-
-
+SELECT * FROM walk_84 LIMIT 10;
 
 --- Export to one large parquet file
-COPY walk84 TO 'walkability_wgs84.parquet' (FORMAT parquet);
+COPY walk_84 TO 'walkability_wgs84.parquet' (FORMAT parquet);
 
 -- Export to parquet files using hive partitioning on state and county FIPS
 COPY(
     SELECT * 
-    FROM walk84
+    FROM walk_84
     ) 
 TO 'walkability_hive' 
 (FORMAT 'parquet', COMPRESSION 'zstd', PARTITION_BY (STATEFP, COUNTYFP));
@@ -174,7 +167,7 @@ SELECT
   TRACTCE,
   COUNT(*) AS block_count,
   AVG(ST_Area(geometry)) AS avg_area
-FROM walk84
+FROM walk_84
 WHERE STATEFP IN ('06', '32', '41', '53')
 GROUP BY TRACTCE, STATEFP
 ORDER BY block_count DESC;
