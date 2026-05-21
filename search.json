@@ -1579,7 +1579,7 @@
     "href": "modules/week08/hw-08-parquet.html",
     "title": "Week 8.2 - How walkable is my favorite location in the US?",
     "section": "",
-    "text": "Upload you SQL script named mywalkability_yourfullname with your answer to the questions to Canvas: https://ucsb.instructure.com/courses/32934/assignments/477543\nIn this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:\nTo do so, we will need to use two extensions from DuckDB spatial and httpfs:"
+    "text": "Upload you SQL script named mywalkability_yourfullname.sql with your answer to the questions to Canvas: https://ucsb.instructure.com/courses/32934/assignments/477543\nIn this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:\nTo do so, we will need to use two extensions from DuckDB spatial and httpfs:"
   },
   {
     "objectID": "modules/week08/hw-08-parquet.html#choosing-you-location",
@@ -1635,7 +1635,7 @@
     "href": "modules/week08/hw-08-parquet.html#export-your-results-20pts",
     "title": "Week 8.2 - How walkable is my favorite location in the US?",
     "section": "Export your results (20pts)",
-    "text": "Export your results (20pts)\nIt is time to export your results! We want a table with (15pts):\n\nOnly Observations for the Tract of your location of interest\nAdd the average Tract walkability as a column (same value repeating)\nAdd the average County walkability as a column (same value repeating)\n\nSave it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script (5pts).\nNo need to submit your csv file\nCredit: 85 points"
+    "text": "Export your results (20pts)\nIt is time to export your results! We want a table with (15pts):\n\nOnly Observations for the Tract of your location of interest\nAdd the average Tract walkability as a column (same value repeating)\nAdd the average County walkability as a column (same value repeating)\n\nSave it as a csv file. Inspect this csv file, was the geometry column saved? Wouls another file format allowed us to keep this information? Comment in your script (5pts).\nNo need to submit your csv file\nCredit: 85 points"
   },
   {
     "objectID": "modules/week01/hw-01-3.html",
