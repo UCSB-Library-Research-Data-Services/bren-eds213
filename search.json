@@ -151,7 +151,7 @@
     "href": "modules/week08/HW8-parquet.html",
     "title": "HW8.2-parquet",
     "section": "",
-    "text": "For this assignment, you are going to find out the walkability of a place you love within the US and compare if to its local average. At the end of the assignment you should have an SQL script to upload to Canvas that does the following:\nFor do so you will need to use two extensions from DuckDB as follow:"
+    "text": "For this assignment, you are going to find out the walkability of a place you love within the US and compare if to its local average. At the end of the assignment you should have an SQL script to upload to Canvas that does the following:\nTo do so, we will need to use two extensions from DuckDB spatial and httpfs:"
   },
   {
     "objectID": "modules/week08/HW8-parquet.html#choosing-you-location",
@@ -165,7 +165,49 @@
     "href": "modules/week08/HW8-parquet.html#data-import-15pts",
     "title": "HW8.2-parquet",
     "section": "Data import (15pts)",
-    "text": "Data import (15pts)\nThere are two files we need to import:\n\nCreate at table named Fips from the State and County Name & FIPS: fips_state_county.csv (5pts)\nCreate a table names Walkability_mystate from the Walkability national database in WGS84 projection: walkability_wgs84.parquet (10pts) by selecting the following columns: GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 and adding a WHERE close for your state\n\nGood news, they are already both on Workbench! You can import them using the following URL + the filename: https://apps.bren.ucsb.edu/eds213-data/walkability/\nYour schema should look like this:"
+    "text": "Data import (15pts)\nThere are two files we need to import:\n\nCreate at table named Fips from the State and County Name & FIPS: fips_state_county.csv (5pts)\nCreate a table names Walkability_mystate (e.g. Walkability_ca for california) from the Walkability national database in WGS84 projection: walkability_wgs84.parquet by selecting the following columns: GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 and adding a WHERE close for your state (10pts)\n\nGood news, those files are ready on Workbench! You can import them using the following URL + the filename: https://apps.bren.ucsb.edu/eds213-data/walkability/\nHint: Look at the DuckDB documentation (https://duckdb.org/docs/current/data/overview) for read_csv and read_parquet.\nYour schema should look like this:\n───────────────────────── main ────────────────────────── \n┌──────────────────────────────────┐┌─────────────────────┐\n│          Walkability_ca          ││        Fips         │\n│                                  ││                     │\n│ GEOID10    varchar               ││ STATEFP     varchar │\n│ STATEFP    varchar               ││ State_name  varchar │\n│ COUNTYFP   varchar               ││ COUNTYFP    varchar │\n│ TRACTCE    varchar               ││ County_name varchar │\n│ BLKGRPCE   varchar               ││                     │\n│ CBSA       varchar               ││      3154 rows      │\n│ CBSA_Name  varchar               │└─────────────────────┘\n│ TotPop     integer               │\n│ NatWalkInd double                │\n│ geom_wgs84 geometry('ogc:crs84') │\n│                                  │\n│            23212 rows            │\n└──────────────────────────────────┘"
+  },
+  {
+    "objectID": "modules/week08/HW8-parquet.html#join-tables-10pts",
+    "href": "modules/week08/HW8-parquet.html#join-tables-10pts",
+    "title": "HW8.2-parquet",
+    "section": "Join Tables (10pts)",
+    "text": "Join Tables (10pts)\nJoin the two tables and store the results in a VIEW named Walkind_mystate\nOur schema should like something like this:\n ──────────────────────────────────────────── main ──────────────────────────────────────────── \n┌──────────────────────────────────┐┌───────────────────────────────────┐┌─────────────────────┐\n│          Walkability_ca          ││            Walkind_ca             ││        Fips         │\n│                                  ││                                   ││                     │\n│ GEOID10    varchar               ││ GEOID10     varchar               ││ STATEFP     varchar │\n│ STATEFP    varchar               ││ STATEFP     varchar               ││ State_name  varchar │\n│ COUNTYFP   varchar               ││ COUNTYFP    varchar               ││ COUNTYFP    varchar │\n│ TRACTCE    varchar               ││ TRACTCE     varchar               ││ County_name varchar │\n│ BLKGRPCE   varchar               ││ BLKGRPCE    varchar               ││                     │\n│ CBSA       varchar               ││ CBSA        varchar               ││      3154 rows      │\n│ CBSA_Name  varchar               ││ CBSA_Name   varchar               │└─────────────────────┘\n│ TotPop     integer               ││ TotPop      integer               │\n│ NatWalkInd double                ││ NatWalkInd  double                │\n│ geom_wgs84 geometry('ogc:crs84') ││ geom_wgs84  geometry('ogc:crs84') │\n│                                  ││ State_name  varchar               │\n│            23212 rows            ││ County_name varchar               │\n└──────────────────────────────────┘└───────────────────────────────────┘"
+  },
+  {
+    "objectID": "modules/week08/HW8-parquet.html#walkability-index-at-your-location-10pts",
+    "href": "modules/week08/HW8-parquet.html#walkability-index-at-your-location-10pts",
+    "title": "HW8.2-parquet",
+    "section": "Walkability index at your location (10pts)",
+    "text": "Walkability index at your location (10pts)\nNow you are ready to implment your first spatial query! You want to find the US Census Block Group that your point of interest location is within. Look at the example we use in class.\nHint: Remember that the order of lat/long betwee Google maps and the ST_Point function might be different!\nWhat is your location walkability index? Add a comment to your script discussing the value compared to the index scale and if you are surprise by the result."
+  },
+  {
+    "objectID": "modules/week08/HW8-parquet.html#average-walkability-index-at-your-census-tract-10pts",
+    "href": "modules/week08/HW8-parquet.html#average-walkability-index-at-your-census-tract-10pts",
+    "title": "HW8.2-parquet",
+    "section": "Average Walkability index at your Census Tract (10pts)",
+    "text": "Average Walkability index at your Census Tract (10pts)\nNow, compute the average Walkability index at the Census tract level and the number of Group Block within this Tract, getting your Tract ID from the previous query.\nHint: A Tract ID is only unique within one specific County and the County FIPS is only unique within a specific State!!\nYour results should look like this:\n┌─────────┬─────────────┬───────────────────┐\n│ TRACTCE │ Block_count │ Walkind_tract_avg │\n│ varchar │    int64    │      double       │\n├─────────┼─────────────┼───────────────────┤\n│ 000400  │           5 │              11.7 │\n└─────────┴─────────────┴───────────────────┘"
+  },
+  {
+    "objectID": "modules/week08/HW8-parquet.html#average-walkability-index-at-your-county-level-10pts",
+    "href": "modules/week08/HW8-parquet.html#average-walkability-index-at-your-county-level-10pts",
+    "title": "HW8.2-parquet",
+    "section": "Average Walkability index at your County Level (10pts)",
+    "text": "Average Walkability index at your County Level (10pts)\nNow, compute the average Walkability index at the County level and the total number of Group Blocks in that County. Get the necessary information from the previous query.\n┌──────────┬───────────────┬─────────────┬────────────────────┐\n│ COUNTYFP │  County_name  │ Block_count │ Walkind_county_avg │\n│ varchar  │    varchar    │    int64    │       double       │\n├──────────┼───────────────┼─────────────┼────────────────────┤\n│ 083      │ SANTA BARBARA │         313 │ 10.495740149094784 │\n└──────────┴───────────────┴─────────────┴────────────────────┘"
+  },
+  {
+    "objectID": "modules/week08/HW8-parquet.html#discuss-your-results-5pts",
+    "href": "modules/week08/HW8-parquet.html#discuss-your-results-5pts",
+    "title": "HW8.2-parquet",
+    "section": "Discuss your results (5pts)",
+    "text": "Discuss your results (5pts)\nAs a comment in your SQL script, discuss how your favorite location’s walkability index compares to its surrounding. From your knowledge about the area, does that make sense? Why do you think?"
+  },
+  {
+    "objectID": "modules/week08/HW8-parquet.html#export-your-results-10pts",
+    "href": "modules/week08/HW8-parquet.html#export-your-results-10pts",
+    "title": "HW8.2-parquet",
+    "section": "Export your results (10pts)",
+    "text": "Export your results (10pts)\nIt is time to export your results. We want a table with:\n\nRows for your Tract of interest\nAdd the average Tract walkability as a column (same value repeating)\nAdd the average County walkability as a column (same value repeating)\n\nSave it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script.\nNo need to submit your csv file"
   },
   {
     "objectID": "modules/week08/case-d.html",

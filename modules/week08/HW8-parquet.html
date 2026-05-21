@@ -313,6 +313,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#choosing-you-location" id="toc-choosing-you-location" class="nav-link active" data-scroll-target="#choosing-you-location">Choosing you location</a></li>
   <li><a href="#data-import-15pts" id="toc-data-import-15pts" class="nav-link" data-scroll-target="#data-import-15pts">Data import (15pts)</a></li>
+  <li><a href="#join-tables-10pts" id="toc-join-tables-10pts" class="nav-link" data-scroll-target="#join-tables-10pts">Join Tables (10pts)</a></li>
+  <li><a href="#walkability-index-at-your-location-10pts" id="toc-walkability-index-at-your-location-10pts" class="nav-link" data-scroll-target="#walkability-index-at-your-location-10pts">Walkability index at your location (10pts)</a></li>
+  <li><a href="#average-walkability-index-at-your-census-tract-10pts" id="toc-average-walkability-index-at-your-census-tract-10pts" class="nav-link" data-scroll-target="#average-walkability-index-at-your-census-tract-10pts">Average Walkability index at your Census Tract (10pts)</a></li>
+  <li><a href="#average-walkability-index-at-your-county-level-10pts" id="toc-average-walkability-index-at-your-county-level-10pts" class="nav-link" data-scroll-target="#average-walkability-index-at-your-county-level-10pts">Average Walkability index at your County Level (10pts)</a></li>
+  <li><a href="#discuss-your-results-5pts" id="toc-discuss-your-results-5pts" class="nav-link" data-scroll-target="#discuss-your-results-5pts">Discuss your results (5pts)</a></li>
+  <li><a href="#export-your-results-10pts" id="toc-export-your-results-10pts" class="nav-link" data-scroll-target="#export-your-results-10pts">Export your results (10pts)</a></li>
   </ul>
 </nav>
     </div>
@@ -347,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Compare this value to the corresponding Tract and county average</li>
 <li>Export your table as a parquet file</li>
 </ul>
-<p>For do so you will need to use two extensions from DuckDB as follow:</p>
+<p>To do so, we will need to use two extensions from DuckDB <code>spatial</code> and <code>httpfs</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL spatial;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>LOAD spatial;</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL httpfs;</span></span>
@@ -365,10 +371,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are two files we need to import:</p>
 <ul>
 <li>Create at table named <code>Fips</code> from the State and County Name &amp; FIPS: <code>fips_state_county.csv</code> (5pts)</li>
-<li>Create a table names <code>Walkability_mystate</code> from the Walkability national database in WGS84 projection: <code>walkability_wgs84.parquet</code> (10pts) by selecting the following columns: <code>GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84</code> and adding a WHERE close for your state</li>
+<li>Create a table names <code>Walkability_mystate</code> (e.g.&nbsp;<code>Walkability_ca</code> for california) from the Walkability national database in WGS84 projection: <code>walkability_wgs84.parquet</code> by selecting the following columns: <code>GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84</code> and adding a WHERE close for your state (10pts)</li>
 </ul>
-<p>Good news, they are already both on Workbench! You can import them using the following URL + the filename: <code>https://apps.bren.ucsb.edu/eds213-data/walkability/</code></p>
+<p>Good news, those files are ready on Workbench! You can import them using the following URL + the filename: <code>https://apps.bren.ucsb.edu/eds213-data/walkability/</code></p>
+<p><strong>Hint</strong>: Look at the DuckDB documentation (<a href="https://duckdb.org/docs/current/data/overview" class="uri">https://duckdb.org/docs/current/data/overview</a>) for <code>read_csv</code> and <code>read_parquet</code>.</p>
 <p>Your schema should look like this:</p>
+<pre class="output"><code>───────────────────────── main ────────────────────────── 
+┌──────────────────────────────────┐┌─────────────────────┐
+│          Walkability_ca          ││        Fips         │
+│                                  ││                     │
+│ GEOID10    varchar               ││ STATEFP     varchar │
+│ STATEFP    varchar               ││ State_name  varchar │
+│ COUNTYFP   varchar               ││ COUNTYFP    varchar │
+│ TRACTCE    varchar               ││ County_name varchar │
+│ BLKGRPCE   varchar               ││                     │
+│ CBSA       varchar               ││      3154 rows      │
+│ CBSA_Name  varchar               │└─────────────────────┘
+│ TotPop     integer               │
+│ NatWalkInd double                │
+│ geom_wgs84 geometry('ogc:crs84') │
+│                                  │
+│            23212 rows            │
+└──────────────────────────────────┘</code></pre>
+</section>
+<section id="join-tables-10pts" class="level2">
+<h2 class="anchored" data-anchor-id="join-tables-10pts">Join Tables (10pts)</h2>
+<p>Join the two tables and store the results in a VIEW named <code>Walkind_mystate</code></p>
+<p>Our schema should like something like this:</p>
+<pre class="output"><code> ──────────────────────────────────────────── main ──────────────────────────────────────────── 
+┌──────────────────────────────────┐┌───────────────────────────────────┐┌─────────────────────┐
+│          Walkability_ca          ││            Walkind_ca             ││        Fips         │
+│                                  ││                                   ││                     │
+│ GEOID10    varchar               ││ GEOID10     varchar               ││ STATEFP     varchar │
+│ STATEFP    varchar               ││ STATEFP     varchar               ││ State_name  varchar │
+│ COUNTYFP   varchar               ││ COUNTYFP    varchar               ││ COUNTYFP    varchar │
+│ TRACTCE    varchar               ││ TRACTCE     varchar               ││ County_name varchar │
+│ BLKGRPCE   varchar               ││ BLKGRPCE    varchar               ││                     │
+│ CBSA       varchar               ││ CBSA        varchar               ││      3154 rows      │
+│ CBSA_Name  varchar               ││ CBSA_Name   varchar               │└─────────────────────┘
+│ TotPop     integer               ││ TotPop      integer               │
+│ NatWalkInd double                ││ NatWalkInd  double                │
+│ geom_wgs84 geometry('ogc:crs84') ││ geom_wgs84  geometry('ogc:crs84') │
+│                                  ││ State_name  varchar               │
+│            23212 rows            ││ County_name varchar               │
+└──────────────────────────────────┘└───────────────────────────────────┘</code></pre>
+</section>
+<section id="walkability-index-at-your-location-10pts" class="level2">
+<h2 class="anchored" data-anchor-id="walkability-index-at-your-location-10pts">Walkability index at your location (10pts)</h2>
+<p>Now you are ready to implment your first spatial query! You want to find the US Census Block Group that your point of interest location is within. Look at the example we use in class.</p>
+<p><strong>Hint</strong>: Remember that the order of lat/long betwee Google maps and the ST_Point function might be different!</p>
+<p>What is your location walkability index? Add a comment to your script discussing the value compared to the index scale and if you are surprise by the result.</p>
+</section>
+<section id="average-walkability-index-at-your-census-tract-10pts" class="level2">
+<h2 class="anchored" data-anchor-id="average-walkability-index-at-your-census-tract-10pts">Average Walkability index at your Census Tract (10pts)</h2>
+<p>Now, compute the average Walkability index at the Census tract level and the number of Group Block within this Tract, getting your Tract ID from the previous query.</p>
+<p><strong>Hint</strong>: A Tract ID is only unique within one specific County and the County FIPS is only unique within a specific State!!</p>
+<p>Your results should look like this:</p>
+<pre class="output"><code>┌─────────┬─────────────┬───────────────────┐
+│ TRACTCE │ Block_count │ Walkind_tract_avg │
+│ varchar │    int64    │      double       │
+├─────────┼─────────────┼───────────────────┤
+│ 000400  │           5 │              11.7 │
+└─────────┴─────────────┴───────────────────┘</code></pre>
+</section>
+<section id="average-walkability-index-at-your-county-level-10pts" class="level2">
+<h2 class="anchored" data-anchor-id="average-walkability-index-at-your-county-level-10pts">Average Walkability index at your County Level (10pts)</h2>
+<p>Now, compute the average Walkability index at the County level and the total number of Group Blocks in that County. Get the necessary information from the previous query.</p>
+<pre class="output"><code>┌──────────┬───────────────┬─────────────┬────────────────────┐
+│ COUNTYFP │  County_name  │ Block_count │ Walkind_county_avg │
+│ varchar  │    varchar    │    int64    │       double       │
+├──────────┼───────────────┼─────────────┼────────────────────┤
+│ 083      │ SANTA BARBARA │         313 │ 10.495740149094784 │
+└──────────┴───────────────┴─────────────┴────────────────────┘</code></pre>
+</section>
+<section id="discuss-your-results-5pts" class="level2">
+<h2 class="anchored" data-anchor-id="discuss-your-results-5pts">Discuss your results (5pts)</h2>
+<p>As a comment in your SQL script, discuss how your favorite location’s walkability index compares to its surrounding. From your knowledge about the area, does that make sense? Why do you think?</p>
+</section>
+<section id="export-your-results-10pts" class="level2">
+<h2 class="anchored" data-anchor-id="export-your-results-10pts">Export your results (10pts)</h2>
+<p>It is time to export your results. We want a table with:</p>
+<ul>
+<li>Rows for your Tract of interest</li>
+<li>Add the average Tract walkability as a column (same value repeating)</li>
+<li>Add the average County walkability as a column (same value repeating)</li>
+</ul>
+<p>Save it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script.</p>
+<p>No need to submit your csv file</p>
 
 
 </section>
