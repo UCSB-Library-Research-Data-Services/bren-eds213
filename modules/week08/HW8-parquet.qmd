@@ -12,7 +12,7 @@ For this assignment, you are going to find out the walkability of a place you lo
 - Compare this value to the corresponding Tract and county average
 - Export your table as a parquet file
 
-For  do so you will need to use two extensions from DuckDB as follow:
+To do so, we will need to use two extensions from DuckDB `spatial` and `httpfs`:
 
 ```sql
 -- INSTALL spatial;
@@ -27,19 +27,125 @@ LOAD httpfs;
 - Use Google Maps (or others) to get the latitude and longitude for this location
 - Add this information as a comment in your SQL Script
 
+
 ## Data import (15pts)
 
 There are two files we need to import:
 
 - Create at table named `Fips` from the State and County Name & FIPS: `fips_state_county.csv` (5pts)
-- Create a table names `Walkability_mystate` from the Walkability national database in WGS84 projection: `walkability_wgs84.parquet` (10pts) by selecting the following columns: `GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84` and adding a WHERE close for your state
+- Create a table names `Walkability_mystate` (e.g. `Walkability_ca` for california) from the Walkability national database in WGS84 projection: `walkability_wgs84.parquet`  by selecting the following columns: `GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84` and adding a WHERE close for your state (10pts)
 
-Good news, they are already both on Workbench! You can import them using the following URL + the filename: `https://apps.bren.ucsb.edu/eds213-data/walkability/`
+Good news, those files are ready  on Workbench! You can import them using the following URL + the filename: `https://apps.bren.ucsb.edu/eds213-data/walkability/`
+
+**Hint**: Look at the DuckDB documentation (<https://duckdb.org/docs/current/data/overview>) for `read_csv` and `read_parquet`.
 
 Your schema should look like this:
 
+```output
+───────────────────────── main ────────────────────────── 
+┌──────────────────────────────────┐┌─────────────────────┐
+│          Walkability_ca          ││        Fips         │
+│                                  ││                     │
+│ GEOID10    varchar               ││ STATEFP     varchar │
+│ STATEFP    varchar               ││ State_name  varchar │
+│ COUNTYFP   varchar               ││ COUNTYFP    varchar │
+│ TRACTCE    varchar               ││ County_name varchar │
+│ BLKGRPCE   varchar               ││                     │
+│ CBSA       varchar               ││      3154 rows      │
+│ CBSA_Name  varchar               │└─────────────────────┘
+│ TotPop     integer               │
+│ NatWalkInd double                │
+│ geom_wgs84 geometry('ogc:crs84') │
+│                                  │
+│            23212 rows            │
+└──────────────────────────────────┘
+```
 
 
+## Join Tables (10pts)
  
+Join the two tables and store the results in a VIEW named `Walkind_mystate`
+ 
+Our schema should like something like this:
+
+```output
+ ──────────────────────────────────────────── main ──────────────────────────────────────────── 
+┌──────────────────────────────────┐┌───────────────────────────────────┐┌─────────────────────┐
+│          Walkability_ca          ││            Walkind_ca             ││        Fips         │
+│                                  ││                                   ││                     │
+│ GEOID10    varchar               ││ GEOID10     varchar               ││ STATEFP     varchar │
+│ STATEFP    varchar               ││ STATEFP     varchar               ││ State_name  varchar │
+│ COUNTYFP   varchar               ││ COUNTYFP    varchar               ││ COUNTYFP    varchar │
+│ TRACTCE    varchar               ││ TRACTCE     varchar               ││ County_name varchar │
+│ BLKGRPCE   varchar               ││ BLKGRPCE    varchar               ││                     │
+│ CBSA       varchar               ││ CBSA        varchar               ││      3154 rows      │
+│ CBSA_Name  varchar               ││ CBSA_Name   varchar               │└─────────────────────┘
+│ TotPop     integer               ││ TotPop      integer               │
+│ NatWalkInd double                ││ NatWalkInd  double                │
+│ geom_wgs84 geometry('ogc:crs84') ││ geom_wgs84  geometry('ogc:crs84') │
+│                                  ││ State_name  varchar               │
+│            23212 rows            ││ County_name varchar               │
+└──────────────────────────────────┘└───────────────────────────────────┘
+```
+ 
+## Walkability index at your location (10pts)
+ 
+Now you are ready to implment your first spatial query! You want to find the US Census Block Group that your point of interest location is within. Look at the example we use in class.
+
+**Hint**: Remember that the order of lat/long betwee Google maps and the ST_Point function might be different!
+
+What is your location walkability index? Add a comment to your script discussing the value compared to the index scale and if you are surprise by the result.
+
+
+## Average Walkability index at your Census Tract (10pts)
+
+Now, compute the average Walkability index at the Census tract level and the number of Group Block within this Tract, getting your Tract ID from the previous query.
+
+**Hint**: A Tract ID is only unique within one specific County and the County FIPS is only unique within a specific State!!
+
+Your results should look like this: 
+
+```output
+┌─────────┬─────────────┬───────────────────┐
+│ TRACTCE │ Block_count │ Walkind_tract_avg │
+│ varchar │    int64    │      double       │
+├─────────┼─────────────┼───────────────────┤
+│ 000400  │           5 │              11.7 │
+└─────────┴─────────────┴───────────────────┘
+```
+
+
+## Average Walkability index at your County Level (10pts)
+
+Now, compute the average Walkability index at the County level and the total number of Group Blocks in that County. Get the necessary information from the previous query.
+
+```output
+┌──────────┬───────────────┬─────────────┬────────────────────┐
+│ COUNTYFP │  County_name  │ Block_count │ Walkind_county_avg │
+│ varchar  │    varchar    │    int64    │       double       │
+├──────────┼───────────────┼─────────────┼────────────────────┤
+│ 083      │ SANTA BARBARA │         313 │ 10.495740149094784 │
+└──────────┴───────────────┴─────────────┴────────────────────┘
+```
+
+
+## Discuss your results (5pts)
+
+As a comment in your SQL script, discuss how your favorite location's walkability index compares to its surrounding. From your knowledge about the area, does that make sense? Why do you think?
+
+
+## Export your results (10pts)
+
+It is time to export your results. We want a table with:
+
+- Rows for your Tract of interest
+- Add the average Tract walkability as a column (same value repeating)
+- Add the average County walkability as a column (same value repeating)
+
+Save it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script.
+
+No need to submit your csv file
+
+
 
 
