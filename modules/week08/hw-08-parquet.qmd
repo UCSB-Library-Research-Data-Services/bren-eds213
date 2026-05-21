@@ -3,6 +3,8 @@ title: "Week 8.2 - How walkable is my favorite location in the US?"
 format: html
 ---
 
+**Upload you SQL script named `mywalkability_yourfullname` with your answer to the questions to Canvas: <https://ucsb.instructure.com/courses/32934/assignments/477543>**
+
 In this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:
 
 - Initialize a new DuckDB database.
@@ -28,12 +30,12 @@ LOAD httpfs;
 3. Include these geographic details (name, lat, long, ...) as a comment within your SQL script.
 
 
-## Data import (10pts)
+## Data import (15pts)
 
 There are two files we need to import:
 
 - Create at table named `Fips` from the State and County Name: `fips_state_county.csv` (5pts)
-- Create a table named `Walkability_mystate` (e.g. `Walkability_ca` for California) from the Walkability national database in WGS84 projection: `walkability_wgs84.parquet`  by selecting the following columns: `GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84` and adding a WHERE close for your state (5pts)
+- Create a table named `Walkability_mystate` (e.g. `Walkability_ca` for California) from the Walkability national database in WGS84 projection: `walkability_wgs84.parquet`  by selecting the following columns: `GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84` and adding a WHERE close for your state (10pts)
 
 Good news, those files are ready on Workbench! You can import them using the following URL + the filename you want to import: `https://apps.bren.ucsb.edu/eds213-data/walkability/`
 
@@ -62,7 +64,7 @@ Your schema should look like this:
 ```
 
 
-## Join Tables (5pts)
+## Join Tables (10pts)
  
 Join the two tables and store the results in a VIEW named `Walkind_mystate`
  
@@ -88,7 +90,7 @@ Our schema should like something like this:
 └──────────────────────────────────┘└───────────────────────────────────┘
 ```
  
-## Walkability index at your location (10pts)
+## Walkability index at your location (15pts)
  
 You are now ready to execute your initial spatial query! Your objective is to identify the US Census  Group Block containing your chosen point of interest, following the methodology we practiced in class.
 
@@ -134,18 +136,18 @@ Now, compute the average Walkability index at the County level and the total num
 Add a comment in your SQL script to discuss how your favorite location's walkability index compares to its surrounding. From your knowledge about the area, does that make sense?
 
 
-## Export your results (10pts)
+## Export your results (20pts)
 
-It is time to export your results! We want a table with:
+It is time to export your results! We want a table with (15pts):
 
 - Only Observations for the Tract of your location of interest
 - Add the average Tract walkability as a column (same value repeating)
 - Add the average County walkability as a column (same value repeating)
 
-Save it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script.
+Save it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script (5pts).
 
 No need to submit your csv file
 
 
-
+**Credit: 85 points**
 
