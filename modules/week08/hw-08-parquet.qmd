@@ -144,7 +144,7 @@ It is time to export your results! We want a table with (15pts):
 - Add the average Tract walkability as a column (same value repeating)
 - Add the average County walkability as a column (same value repeating)
 
-Save it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script (5pts).
+Save it as a csv file. Inspect this csv file, was the geometry column saved? Wouls another file format allowed us to keep this information? Comment in your script (5pts).
 
 No need to submit your csv file
 
