@@ -3,7 +3,7 @@ title: "Week 8.2 - How walkable is my favorite location in the US?"
 format: html
 ---
 
-**Upload you SQL script named `mywalkability_yourfullname` with your answer to the questions to Canvas: <https://ucsb.instructure.com/courses/32934/assignments/477543>**
+**Upload you SQL script named `mywalkability_yourfullname.sql` with your answer to the questions to Canvas: <https://ucsb.instructure.com/courses/32934/assignments/477543>**
 
 In this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:
 
