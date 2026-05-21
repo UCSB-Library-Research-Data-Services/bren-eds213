@@ -1,15 +1,18 @@
 ---
-title: "Week 8 - DB advanced topics & Ethical and Responsible Data Management"
+title: "Week 8 - DB advanced topics & Sensitive Data"
 ---
 
 ## Learning objectives
 
+### Advanced Topics
+
 - Introduction to advanced database topics: triggers, transactions and concurrency, backups, and indexes.
 
-- Understand core ethical and responsible data management principles, particularly those related to self-governance, conflict management, mitigating bias and harm, and appropriately handling sensitive data.
+### Sensitive Data
 
-- Articulate these principles in the context of real-world scenarios relevant to environmental sciences research.
-
+- Identify the major sources of sensitive data and evaluate the risks associated with open data sharing
+- Articulate the importance of protecting sensitive data within relevant legal, ethical, and regulatory frameworks
+- Distinguish between direct and indirect identifiers and explain their role in privacy risk
 
 ## Slides
 
@@ -19,19 +22,4 @@ title: "Week 8 - DB advanced topics & Ethical and Responsible Data Management"
 
 [Advanced database topics](slides-08-advanced-sql.pptx)
 
-[Ethics](slides-08-ethics.pdf)
-
-*Suggested readings*
-
-1.  Boté, J. J., & Térmens, M. (2019). Reusing data: Technical and ethical challenges. DESIDOC Journal of Library & Information Technology, 39(6) <http://hdl.handle.net/2445/151341>
-
-2.  McGovern, A., Ebert-Uphoff, I., Gagne, D., & Bostrom, A. (2022). Why we need to focus on developing ethical, responsible, and trustworthy artificial intelligence approaches for environmental science. Environmental Data Science, 1, E6. <https://doi.org/10.1017/eds.2022.5>
-
-*Additional suggested readings are noted in the slides.*
-
-## Case-based discussion:
-
--   Case Study A: [Containing the flames of bias in machine learning](case-a.qmd)
--   Case Study B: [The caveat is the caviar: navigating ethics to protect endangered river wildlife](case-b.qmd)
--   Case Study C: [To reuse or not reuse, that is the key question!](case-c.qmd)
--   Case Study D: [Navigating the complexities of ownership zones](case-d.qmd)
+[Sensitive Data - Part 1](slides-08-sensitive-part1.pptx)
