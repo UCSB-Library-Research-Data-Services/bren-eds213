@@ -1,0 +1,45 @@
+---
+title: "HW8.2-parquet"
+format: html
+---
+
+For this assignment, you are going to find out the walkability of a place you love within the US and compare if to its local average. At the end of the assignment you should have an SQL script to upload to Canvas that does the following:
+
+- Create a new duckDB database
+- Import into this database as a table names `Fips` the State and County names from Workbench `fips_state_county.csv`
+- Import the Walkability index for your State of interest as a table names `Walkability_mystate` (e.g. `Walkability_ca`) from Workbench `walkability_wgs84.parquet`
+- Find the Walkability index value for your location's block
+- Compare this value to the corresponding Tract and county average
+- Export your table as a parquet file
+
+For  do so you will need to use two extensions from DuckDB as follow:
+
+```sql
+-- INSTALL spatial;
+LOAD spatial;
+-- INSTALL httpfs;
+LOAD httpfs;
+```
+
+## Choosing you location
+
+- Decide on the location within the US you would like to research (can be your home, a place you love, ...)
+- Use Google Maps (or others) to get the latitude and longitude for this location
+- Add this information as a comment in your SQL Script
+
+## Data import (15pts)
+
+There are two files we need to import:
+
+- Create at table named `Fips` from the State and County Name & FIPS: `fips_state_county.csv` (5pts)
+- Create a table names `Walkability_mystate` from the Walkability national database in WGS84 projection: `walkability_wgs84.parquet` (10pts) by selecting the following columns: `GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84` and adding a WHERE close for your state
+
+Good news, they are already both on Workbench! You can import them using the following URL + the filename: `https://apps.bren.ucsb.edu/eds213-data/walkability/`
+
+Your schema should look like this:
+
+
+
+ 
+
+
