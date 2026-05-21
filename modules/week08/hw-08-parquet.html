@@ -316,13 +316,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#choosing-you-location" id="toc-choosing-you-location" class="nav-link active" data-scroll-target="#choosing-you-location">Choosing you location</a></li>
-  <li><a href="#data-import-10pts" id="toc-data-import-10pts" class="nav-link" data-scroll-target="#data-import-10pts">Data import (10pts)</a></li>
-  <li><a href="#join-tables-5pts" id="toc-join-tables-5pts" class="nav-link" data-scroll-target="#join-tables-5pts">Join Tables (5pts)</a></li>
-  <li><a href="#walkability-index-at-your-location-10pts" id="toc-walkability-index-at-your-location-10pts" class="nav-link" data-scroll-target="#walkability-index-at-your-location-10pts">Walkability index at your location (10pts)</a></li>
+  <li><a href="#data-import-15pts" id="toc-data-import-15pts" class="nav-link" data-scroll-target="#data-import-15pts">Data import (15pts)</a></li>
+  <li><a href="#join-tables-10pts" id="toc-join-tables-10pts" class="nav-link" data-scroll-target="#join-tables-10pts">Join Tables (10pts)</a></li>
+  <li><a href="#walkability-index-at-your-location-15pts" id="toc-walkability-index-at-your-location-15pts" class="nav-link" data-scroll-target="#walkability-index-at-your-location-15pts">Walkability index at your location (15pts)</a></li>
   <li><a href="#average-walkability-index-at-your-census-tract-10pts" id="toc-average-walkability-index-at-your-census-tract-10pts" class="nav-link" data-scroll-target="#average-walkability-index-at-your-census-tract-10pts">Average Walkability index at your Census Tract (10pts)</a></li>
   <li><a href="#average-walkability-index-at-your-county-level-10pts" id="toc-average-walkability-index-at-your-county-level-10pts" class="nav-link" data-scroll-target="#average-walkability-index-at-your-county-level-10pts">Average Walkability index at your County Level (10pts)</a></li>
   <li><a href="#discuss-your-results-5pts" id="toc-discuss-your-results-5pts" class="nav-link" data-scroll-target="#discuss-your-results-5pts">Discuss your results (5pts)</a></li>
-  <li><a href="#export-your-results-10pts" id="toc-export-your-results-10pts" class="nav-link" data-scroll-target="#export-your-results-10pts">Export your results (10pts)</a></li>
+  <li><a href="#export-your-results-20pts" id="toc-export-your-results-20pts" class="nav-link" data-scroll-target="#export-your-results-20pts">Export your results (20pts)</a></li>
   </ul>
 </nav>
     </div>
@@ -348,6 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><strong>Upload you SQL script named <code>mywalkability_yourfullname</code> with your answer to the questions to Canvas: <a href="https://ucsb.instructure.com/courses/32934/assignments/477543" class="uri">https://ucsb.instructure.com/courses/32934/assignments/477543</a></strong></p>
 <p>In this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:</p>
 <ul>
 <li>Initialize a new DuckDB database.</li>
@@ -370,12 +371,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Include these geographic details (name, lat, long, …) as a comment within your SQL script.</li>
 </ol>
 </section>
-<section id="data-import-10pts" class="level2">
-<h2 class="anchored" data-anchor-id="data-import-10pts">Data import (10pts)</h2>
+<section id="data-import-15pts" class="level2">
+<h2 class="anchored" data-anchor-id="data-import-15pts">Data import (15pts)</h2>
 <p>There are two files we need to import:</p>
 <ul>
 <li>Create at table named <code>Fips</code> from the State and County Name: <code>fips_state_county.csv</code> (5pts)</li>
-<li>Create a table named <code>Walkability_mystate</code> (e.g.&nbsp;<code>Walkability_ca</code> for California) from the Walkability national database in WGS84 projection: <code>walkability_wgs84.parquet</code> by selecting the following columns: <code>GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84</code> and adding a WHERE close for your state (5pts)</li>
+<li>Create a table named <code>Walkability_mystate</code> (e.g.&nbsp;<code>Walkability_ca</code> for California) from the Walkability national database in WGS84 projection: <code>walkability_wgs84.parquet</code> by selecting the following columns: <code>GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84</code> and adding a WHERE close for your state (10pts)</li>
 </ul>
 <p>Good news, those files are ready on Workbench! You can import them using the following URL + the filename you want to import: <code>https://apps.bren.ucsb.edu/eds213-data/walkability/</code></p>
 <p><strong>Hint</strong>: Look at the DuckDB documentation (<a href="https://duckdb.org/docs/current/data/overview" class="uri">https://duckdb.org/docs/current/data/overview</a>) for <code>read_csv</code> and <code>read_parquet</code>.</p>
@@ -398,8 +399,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 │            23212 rows            │
 └──────────────────────────────────┘</code></pre>
 </section>
-<section id="join-tables-5pts" class="level2">
-<h2 class="anchored" data-anchor-id="join-tables-5pts">Join Tables (5pts)</h2>
+<section id="join-tables-10pts" class="level2">
+<h2 class="anchored" data-anchor-id="join-tables-10pts">Join Tables (10pts)</h2>
 <p>Join the two tables and store the results in a VIEW named <code>Walkind_mystate</code></p>
 <p>Our schema should like something like this:</p>
 <pre class="output"><code> ──────────────────────────────────────────── main ──────────────────────────────────────────── 
@@ -420,8 +421,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 │            23212 rows            ││ County_name varchar               │
 └──────────────────────────────────┘└───────────────────────────────────┘</code></pre>
 </section>
-<section id="walkability-index-at-your-location-10pts" class="level2">
-<h2 class="anchored" data-anchor-id="walkability-index-at-your-location-10pts">Walkability index at your location (10pts)</h2>
+<section id="walkability-index-at-your-location-15pts" class="level2">
+<h2 class="anchored" data-anchor-id="walkability-index-at-your-location-15pts">Walkability index at your location (15pts)</h2>
 <p>You are now ready to execute your initial spatial query! Your objective is to identify the US Census Group Block containing your chosen point of interest, following the methodology we practiced in class.</p>
 <p>Determine the walkability index for your location. In your script, include a comment that evaluates this value against the walkability index scale and note whether the findings align with your expectations.</p>
 <p><strong>Hint</strong>: Keep in mind that the latitude and longitude sequence in Google Maps may differ from that required by the <code>ST_Point</code> function.</p>
@@ -452,16 +453,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="discuss-your-results-5pts">Discuss your results (5pts)</h2>
 <p>Add a comment in your SQL script to discuss how your favorite location’s walkability index compares to its surrounding. From your knowledge about the area, does that make sense?</p>
 </section>
-<section id="export-your-results-10pts" class="level2">
-<h2 class="anchored" data-anchor-id="export-your-results-10pts">Export your results (10pts)</h2>
-<p>It is time to export your results! We want a table with:</p>
+<section id="export-your-results-20pts" class="level2">
+<h2 class="anchored" data-anchor-id="export-your-results-20pts">Export your results (20pts)</h2>
+<p>It is time to export your results! We want a table with (15pts):</p>
 <ul>
 <li>Only Observations for the Tract of your location of interest</li>
 <li>Add the average Tract walkability as a column (same value repeating)</li>
 <li>Add the average County walkability as a column (same value repeating)</li>
 </ul>
-<p>Save it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script.</p>
+<p>Save it as a csv file. Inspect this csv file, was the geometry column saved? Comment in your script (5pts).</p>
 <p>No need to submit your csv file</p>
+<p><strong>Credit: 85 points</strong></p>
 
 
 </section>
