@@ -16,6 +16,8 @@ In this assignment, you will investigate the walkability of a chosen location in
 - Conduct a comparison between this value and the average scores for its respective Census Tract and County.
 - Export the resulting table to a csv file format.
 
+**Note that all the necessary files for this assignment are available on Workbench**. See below for how to access them via the web.
+
 To do so, we will need to use two extensions from DuckDB `spatial` and `httpfs`:
 
 ```sql
