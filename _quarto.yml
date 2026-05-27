@@ -20,7 +20,7 @@ website:
           - modules/week06/index-06.qmd
           - modules/week07/index-07.qmd
           - modules/week08/index-08.qmd
-          # - modules/week09/index-09.qmd
+          - modules/week09/index-09.qmd
           # - modules/week10/index-10.qmd
       - text: Assignments
         menu:
