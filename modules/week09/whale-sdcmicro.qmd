@@ -32,7 +32,7 @@ This dataset (`whale-entanglement.csv`) contains documented whale entanglement i
 
 ```
 
-The dataset has **`r nrow(whale)` rows** and **`r ncol(whale)` columns**. Each row is one entanglement event.
+Each row is one entanglement event.
 
 ------------------------------------------------------------------------
 
