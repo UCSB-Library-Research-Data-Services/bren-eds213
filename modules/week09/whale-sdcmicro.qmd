@@ -2,6 +2,8 @@
 title: "K-Anonymity with sdcMicro: Whale Entanglement Data"
 format: html
 editor: visual
+execute:
+  eval: false
 ---
 
 # Background
