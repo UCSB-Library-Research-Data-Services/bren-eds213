@@ -13,6 +13,11 @@ title: "Week 9 - Sensitive data"
 
 - [slides-09.pptx](slides-09.pptx)
 
+## Lab 
+
+- [exercise-kanonymity-2026.Rmd](exercise-kanonymity-2026.Rmd)
+- [whale-entanglement.csv](whale-entanglement.csv)
+
 ## Resources
 
 1.  sdcMicro Documentation: <https://sdcpractice.readthedocs.io/en/latest/intro.html>
