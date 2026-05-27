@@ -15,7 +15,7 @@ title: "Week 9 - Sensitive data"
 
 ## Lab Files
 
-- [whale-sdcmicro.qmd](whale-sdcmicro.qmd)
+- [whale-sdcmicro.qmd](whale-sdcmicro.qmd) **Download Quarto file [here](https://raw.github.com/UCSB-Library-Research-Data-Services/bren-eds213/blob/main/modules/week09/whale-sdcmicro.qmd)**
 - [whale-entanglement.csv](whale-entanglement.csv)
 
 ## Resources
