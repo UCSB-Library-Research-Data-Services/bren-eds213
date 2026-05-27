@@ -1008,53 +1008,74 @@
     "text": "This dataset (whale-entanglement.csv) contains documented whale entanglement incidents on the U.S. West Coast. Each row is one event, with variables for whale species, location, gear type, and fishery involved. (Adapted for instructional use only.)\nGoals:\n\nAssess re-identification risk in the raw data\nApply Statistical Disclosure Control (SDC) to reduce that risk\nQuantify the resulting information loss"
   },
   {
-    "objectID": "modules/week09/whale-sdcmicro.html#inspect-data",
-    "href": "modules/week09/whale-sdcmicro.html#inspect-data",
+    "objectID": "modules/week09/whale-sdcmicro.html#background",
+    "href": "modules/week09/whale-sdcmicro.html#background",
     "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
-    "section": "Inspect Data",
-    "text": "Inspect Data\nEach row is one entanglement event."
+    "section": "",
+    "text": "This dataset (whale-entanglement.csv) contains documented whale entanglement incidents on the U.S. West Coast. Each row is one event, with variables for whale species, location, gear type, and fishery involved. (Adapted for instructional use only.)\nGoals:\n\nAssess re-identification risk in the raw data\nApply Statistical Disclosure Control (SDC) to reduce that risk\nQuantify the resulting information loss"
   },
   {
-    "objectID": "modules/week09/whale-sdcmicro.html#direct-identifiers",
-    "href": "modules/week09/whale-sdcmicro.html#direct-identifiers",
+    "objectID": "modules/week09/whale-sdcmicro.html#step-1-load-package-data",
+    "href": "modules/week09/whale-sdcmicro.html#step-1-load-package-data",
     "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
-    "section": "Direct Identifiers",
-    "text": "Direct Identifiers\n\nDirect identifiers uniquely identify a record on their own.\n\nQ1 — How many direct identifiers are present, and what are they?\n\nAnswer: Your answer here.\n\n\n\nVariable\nWhy it directly identifies\n\n\n\n\n___\n___\n\n\n___\n___\n\n\n___\n___\n\n\n\nThese must be excluded from any analytical release."
+    "section": "Step 1: Load Package & Data",
+    "text": "Step 1: Load Package & Data\n\nInspect Data\nEach row is one entanglement event."
   },
   {
-    "objectID": "modules/week09/whale-sdcmicro.html#quasi-identifiers",
-    "href": "modules/week09/whale-sdcmicro.html#quasi-identifiers",
+    "objectID": "modules/week09/whale-sdcmicro.html#step-2-identify-disclosure-risks",
+    "href": "modules/week09/whale-sdcmicro.html#step-2-identify-disclosure-risks",
     "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
-    "section": "Quasi-Identifiers",
-    "text": "Quasi-Identifiers\n\nQuasi-identifiers (QIDs) don’t identify records alone, but can be combined with each other — or with external data — to re-identify individuals.\n\nQ2 — Which variables are quasi-identifiers?\n\nAnswer: Your answer here. List the variables and explain why each is a QID."
+    "section": "Step 2: Identify Disclosure Risks",
+    "text": "Step 2: Identify Disclosure Risks\n\nDirect Identifiers\n\nDirect identifiers uniquely identify a record on their own.\n\n\n\nQ1 — How many direct identifiers are present, and what are they?\n\nAnswer: Your answer here.\n\n\n\nVariable\nWhy it directly identifies\n\n\n\n\n___\n___\n\n\n___\n___\n\n\n___\n___\n\n\n\nThese must be excluded from any analytical release.\n\n\nQuasi-Identifiers\n\nQuasi-identifiers (QIDs) don’t identify records alone, but can be combined with each other — or with external data — to re-identify individuals.\n\n\n\nQ2 — Which variables are quasi-identifiers?\n\nAnswer: Your answer here. List the variables and explain why each is a QID."
+  },
+  {
+    "objectID": "modules/week09/whale-sdcmicro.html#step-3-prepare-variable-types",
+    "href": "modules/week09/whale-sdcmicro.html#step-3-prepare-variable-types",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "Step 3: Prepare Variable Types",
+    "text": "Step 3: Prepare Variable Types\n\nQ3 — What types do the variables need to be?\nsdcMicro requires categorical QIDs to be factor type and continuous variables to be numeric. Misspecified types produce incorrect risk estimates.\n\n💡 Tip — varToFactor() and varToNumeric(): These sdcMicro helper functions convert columns in a data frame to factor or numeric. Both take obj (the data frame) and var (a character vector of column names). Work on a copy of your data frame so the original stays intact for later comparison.\n\n\n# Work on a copy so the raw 'whale' object stays intact for comparison\nfile &lt;- whale\n\n# TODO: Convert categorical variables to factor using varToFactor()\n# Hint: include type, county, state, condition, origin, gear, fine, infraction_type\nfile &lt;- varToFactor(\n  obj = file,\n  var = c(___)   # &lt;-- fill in the variable names\n)\n\n# TODO: Convert continuous variables to numeric using varToNumeric()\n# Hint: year and month should be numeric\nfile &lt;- varToNumeric(\n  obj = file,\n  var = c(___)   # &lt;-- fill in the variable names\n)"
+  },
+  {
+    "objectID": "modules/week09/whale-sdcmicro.html#step-4-measure-initial-risk",
+    "href": "modules/week09/whale-sdcmicro.html#step-4-measure-initial-risk",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "Step 4: Measure Initial Risk",
+    "text": "Step 4: Measure Initial Risk"
   },
   {
     "objectID": "modules/week09/whale-sdcmicro.html#create-the-sdc-object",
     "href": "modules/week09/whale-sdcmicro.html#create-the-sdc-object",
     "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
     "section": "4.1 Create the SDC Object",
-    "text": "4.1 Create the SDC Object\n\nQ4.1 — What is the re-identification risk for this dataset?\n\nWe create an sdcMicroObj that encodes our design decisions: which variables are QIDs, which direct identifiers to exclude, and any weights or strata.\n\n💡 Tip — createSdcObj(): The key arguments are:\n\ndat — your data frame (use the original whale, not file)\nkeyVars — character vector of quasi-identifier column names\nexcludeVars — character vector of direct identifier column names to drop\n\nAll other arguments (weightVar, hhId, etc.) can be NULL for this exercise.\n\n\n# TODO: Create the sdcMicro object. Choose your QIDs and direct identifiers.\nsdcInitial &lt;- createSdcObj(\n  dat         = ___,                        # &lt;-- which data frame?\n  keyVars     = c(___),                     # &lt;-- your QIDs\n  excludeVars = c(___),                     # &lt;-- direct identifiers to exclude\n  weightVar   = NULL,\n  hhId        = NULL,\n  strataVar   = NULL,\n  pramVars    = NULL,\n  seed        = 0,\n  randomizeRecords = FALSE,\n  alpha       = c(1)\n)\n\nThen, compute the current disclosure risk:\n\n💡 Tip: The global re-identification risk is stored in sdcInitial@risk$global$risk. Values closer to 1 mean higher risk.\n\n\n# TODO: Print the global re-identification risk\nprint(___)"
+    "text": "4.1 Create the SDC Object\n\nQ4.1 — What is the re-identification risk for this dataset?\nWe create an sdcMicroObj that encodes our design decisions: which variables are QIDs, which direct identifiers to exclude, and any weights or strata.\n\n💡 Tip — createSdcObj(): The key arguments are:\n\ndat — your data frame (use the original whale, not file)\nkeyVars — character vector of quasi-identifier column names\nexcludeVars — character vector of direct identifier column names to drop\n\nAll other arguments (weightVar, hhId, etc.) can be NULL for this exercise.\n\n\n# TODO: Create the sdcMicro object. Choose your QIDs and direct identifiers.\nsdcInitial &lt;- createSdcObj(\n  dat         = ___,                        # &lt;-- which data frame?\n  keyVars     = c(___),                     # &lt;-- your QIDs\n  excludeVars = c(___),                     # &lt;-- direct identifiers to exclude\n  weightVar   = NULL,\n  hhId        = NULL,\n  strataVar   = NULL,\n  pramVars    = NULL,\n  seed        = 0,\n  randomizeRecords = FALSE,\n  alpha       = c(1)\n)\n\nThen, compute the current disclosure risk:\n\n💡 Tip: The global re-identification risk is stored in sdcInitial@risk$global$risk. Values closer to 1 mean higher risk.\n\n\n# TODO: Print the global re-identification risk\nprint(___)"
   },
   {
     "objectID": "modules/week09/whale-sdcmicro.html#assess-k-anonymity-violations",
     "href": "modules/week09/whale-sdcmicro.html#assess-k-anonymity-violations",
     "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
     "section": "4.2 Assess k-Anonymity Violations",
-    "text": "4.2 Assess k-Anonymity Violations\n\nQ4.2 — To what extent does this dataset violate k-anonymity?\n\nA dataset satisfies k-anonymity if every QID combination appears in at least k records. Records in smaller groups are “at risk.”\n\n💡 Tip — print() on an sdcMicroObj: Calling print(sdcInitial) produces a full risk report, including the number of records violating 2-, 3-, and 5-anonymity. Look for the “Frequency of key” and “Number of observations violating k-anonymity” sections.\n\n\n# TODO: Print the full risk report for sdcInitial\n___\n\nOur target: achieve at least 3-anonymity (k = 3).\nQ4.2 answer — What share of records currently violate 3-anonymity? Your answer here."
+    "text": "4.2 Assess k-Anonymity Violations\n\nQ4.2 — To what extent does this dataset violate k-anonymity?\nA dataset satisfies k-anonymity if every QID combination appears in at least k records. Records in smaller groups are “at risk.”\n\n💡 Tip — print() on an sdcMicroObj: Calling print(sdcInitial) produces a full risk report, including the number of records violating 2-, 3-, and 5-anonymity. Look for the “Frequency of key” and “Number of observations violating k-anonymity” sections.\n\n\n# TODO: Print the full risk report for sdcInitial\n___\n\nOur target: achieve at least 3-anonymity (k = 3).\n\n\nQ4.2 answer — What share of records currently violate 3-anonymity? Your answer here."
   },
   {
-    "objectID": "modules/week09/whale-sdcmicro.html#non-perturbative-method-testing-recode-origin",
-    "href": "modules/week09/whale-sdcmicro.html#non-perturbative-method-testing-recode-origin",
+    "objectID": "modules/week09/whale-sdcmicro.html#step-5-apply-anonymization",
+    "href": "modules/week09/whale-sdcmicro.html#step-5-apply-anonymization",
     "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
-    "section": "5.1 Non-Perturbative Method Testing — Recode origin",
-    "text": "5.1 Non-Perturbative Method Testing — Recode origin\n\nQ5.1 — Apply one non-perturbative method. How effective was it?\nReminder:\n\nNon-perturbative methods generalize or suppress values without adding noise.\nPerturbative methods (e.g., PRAM, microaggregation) alter values by adding controlled noise.\n\n\nWe can recode origin by merging minority categories into a single broader category. This reduces the distinctiveness of those records.\n\n💡 Tip — groupAndRename(): Collapses one or more levels of a factor QID into a new label. Arguments:\n\nobj — your sdcMicroObj\nvar — the variable name (as a string)\nbefore — character vector of original levels to merge\nafter — character vector with the new label (single value repeated for all merged levels)\n\nAlways check table(sdcInitial@manipKeyVars$origin) before and after to confirm the recode worked.\n\n\n# Before: check current distribution\ncat(\"Distribution of 'origin' before recoding:\\n\")\nprint(table(sdcInitial@manipKeyVars$origin))\n\n# TODO: Recode origin — merge \"recreational\" and \"tribal\" into \"non-commercial\"\nsdcInitial &lt;- groupAndRename(\n  obj    = sdcInitial,\n  var    = \"___\",          # &lt;-- variable name\n  before = c(___, ___),    # &lt;-- levels to merge\n  after  = c(\"___\")        # &lt;-- new label\n)\n\n# After: check new distribution\ncat(\"\\nDistribution of 'origin' after recoding:\\n\")\nprint(table(sdcInitial@manipKeyVars$origin))\n\n# Recompute risk\ncat(\"\\nRisk summary after recoding 'origin':\\n\")\nprint(sdcInitial)\n\nQ5.1 answer — Did the recoding reduce k-anonymity violations? Why or why not?\n\nYour answer here."
+    "section": "Step 5: Apply Anonymization",
+    "text": "Step 5: Apply Anonymization\n\n5.1 Non-Perturbative Method Testing — Recode origin\n\n\nQ5.1 — Apply one non-perturbative method. How effective was it?\n\nReminder:\n\nNon-perturbative methods generalize or suppress values without adding noise.\nPerturbative methods (e.g., PRAM, microaggregation) alter values by adding controlled noise.\n\n\nWe can recode origin by merging minority categories into a single broader category. This reduces the distinctiveness of those records.\n\n💡 Tip — groupAndRename(): Collapses one or more levels of a factor QID into a new label. Arguments:\n\nobj — your sdcMicroObj\nvar — the variable name (as a string)\nbefore — character vector of original levels to merge\nafter — character vector with the new label (single value repeated for all merged levels)\n\nAlways check table(sdcInitial@manipKeyVars$origin) before and after to confirm the recode worked.\n\n\n# Before: check current distribution\ncat(\"Distribution of 'origin' before recoding:\\n\")\nprint(table(sdcInitial@manipKeyVars$origin))\n\n# TODO: Recode origin — merge \"recreational\" and \"tribal\" into \"non-commercial\"\nsdcInitial &lt;- groupAndRename(\n  obj    = sdcInitial,\n  var    = \"___\",          # &lt;-- variable name\n  before = c(___, ___),    # &lt;-- levels to merge\n  after  = c(\"___\")        # &lt;-- new label\n)\n\n# After: check new distribution\ncat(\"\\nDistribution of 'origin' after recoding:\\n\")\nprint(table(sdcInitial@manipKeyVars$origin))\n\n# Recompute risk\ncat(\"\\nRisk summary after recoding 'origin':\\n\")\nprint(sdcInitial)\n\n\n\nQ5.1 answer — Did the recoding reduce k-anonymity violations? Why or why not?\n\nYour answer here.\n\n\n5.2 Automated k-Anonymization — kAnon()\n\n\nQ5.2 — Apply k = 3 anonymization.\nkAnon() uses local suppression: it sets the minimum number of QID values to NA until every combination appears at least k times, minimizing total information loss.\n\n💡 Tip — kAnon(): Takes your sdcMicroObj and k (an integer vector, e.g., c(3)). It returns a new sdcMicroObj with suppressed values applied. After running it, call print() again to see the updated violation counts — they should drop to zero for your chosen k.\n\n\n# TODO: Apply k = 3 anonymization and store the result in sdcAnon\nsdcAnon &lt;- kAnon(___, k = c(___))\n\ncat(\"Risk summary after k = 3 anonymization:\\n\")\nprint(sdcAnon)\n\n\n\nQ5.2 answer — How many records still violate 3-anonymity after running kAnon()? Your answer here."
   },
   {
-    "objectID": "modules/week09/whale-sdcmicro.html#automated-k-anonymization-kanon",
-    "href": "modules/week09/whale-sdcmicro.html#automated-k-anonymization-kanon",
+    "objectID": "modules/week09/whale-sdcmicro.html#step-6-measure-information-loss",
+    "href": "modules/week09/whale-sdcmicro.html#step-6-measure-information-loss",
     "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
-    "section": "5.2 Automated k-Anonymization — kAnon()",
-    "text": "5.2 Automated k-Anonymization — kAnon()\n\nQ5.2 — Apply k = 3 anonymization.\n\nkAnon() uses local suppression: it sets the minimum number of QID values to NA until every combination appears at least k times, minimizing total information loss.\n\n💡 Tip — kAnon(): Takes your sdcMicroObj and k (an integer vector, e.g., c(3)). It returns a new sdcMicroObj with suppressed values applied. After running it, call print() again to see the updated violation counts — they should drop to zero for your chosen k.\n\n\n# TODO: Apply k = 3 anonymization and store the result in sdcAnon\nsdcAnon &lt;- kAnon(___, k = c(___))\n\ncat(\"Risk summary after k = 3 anonymization:\\n\")\nprint(sdcAnon)\n\nQ5.2 answer — How many records still violate 3-anonymity after running kAnon()? Your answer here."
+    "section": "Step 6: Measure Information Loss",
+    "text": "Step 6: Measure Information Loss\n\nQ6 — How much information did we lose?\nAnonymization is a trade-off: privacy protection at the cost of analytical utility. Quantifying this trade-off is essential for responsible data sharing.\n\n💡 Tip — print(sdcAnon, \"ls\"): Passing \"ls\" as a second argument to print() displays the local suppression summary: how many values were suppressed in each QID column and as an overall percentage. Higher suppression = more information loss.\n\n\n# TODO: Print the information-loss summary\nprint(___, \"ls\")\n\n\n\nQ6 answer — Which variable had the most suppression, and what does that tell you about the data? Your answer here."
+  },
+  {
+    "objectID": "modules/week09/whale-sdcmicro.html#step-7-export-the-anonymized-dataset",
+    "href": "modules/week09/whale-sdcmicro.html#step-7-export-the-anonymized-dataset",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "Step 7: Export the Anonymized Dataset",
+    "text": "Step 7: Export the Anonymized Dataset\nBefore sharing, we must:\n\nRemove direct identifiers (already excluded from the SDC object)\nGenerate a new random ID to replace case_id — never reuse the original, as it may link to external records\n\n\n# Anonymized quasi-identifier columns\nanon_key_vars &lt;- sdcAnon@manipKeyVars\n\n# Non-key, non-excluded variables (passed through unchanged)\nsafe_vars &lt;- whale[, !(names(whale) %in%\n                         c(\"case_id\", \"lat\", \"long\", \"fishery_license\",\n                           \"state\", \"origin\", \"county\"))]\n\n# Combine\nanon_data &lt;- cbind(anon_key_vars, safe_vars)\n\n# Generate synthetic random IDs\nset.seed(42)\nanon_data$anon_id &lt;- paste0(\"ID_\", sample(100000:999999, nrow(anon_data), replace = FALSE))\n\n# Put the new ID first\nanon_data &lt;- anon_data[, c(\"anon_id\", setdiff(names(anon_data), \"anon_id\"))]\n\n# Preview and save\nhead(anon_data)\nwrite.csv(anon_data, \"whale-entanglement-anon.csv\", row.names = FALSE)\n\n\nKey takeaway: k-anonymity via local suppression is a principled, auditable approach to protecting microdata. The sdcMicro package makes every suppression traceable, and the information-loss metrics help justify trade-offs to data stakeholders."
   },
   {
     "objectID": "modules/labs/week4.html",

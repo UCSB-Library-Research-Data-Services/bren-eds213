@@ -327,20 +327,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-2-identify-disclosure-risks" id="toc-step-2-identify-disclosure-risks" class="nav-link" data-scroll-target="#step-2-identify-disclosure-risks">Step 2: Identify Disclosure Risks</a>
   <ul class="collapse">
   <li><a href="#direct-identifiers" id="toc-direct-identifiers" class="nav-link" data-scroll-target="#direct-identifiers">Direct Identifiers</a></li>
+  <li><a href="#q1-how-many-direct-identifiers-are-present-and-what-are-they" id="toc-q1-how-many-direct-identifiers-are-present-and-what-are-they" class="nav-link" data-scroll-target="#q1-how-many-direct-identifiers-are-present-and-what-are-they">Q1 — How many direct identifiers are present, and what are they?</a></li>
   <li><a href="#quasi-identifiers" id="toc-quasi-identifiers" class="nav-link" data-scroll-target="#quasi-identifiers">Quasi-Identifiers</a></li>
+  <li><a href="#q2-which-variables-are-quasi-identifiers" id="toc-q2-which-variables-are-quasi-identifiers" class="nav-link" data-scroll-target="#q2-which-variables-are-quasi-identifiers">Q2 — Which variables are quasi-identifiers?</a></li>
   </ul></li>
-  <li><a href="#step-3-prepare-variable-types" id="toc-step-3-prepare-variable-types" class="nav-link" data-scroll-target="#step-3-prepare-variable-types">Step 3: Prepare Variable Types</a></li>
-  <li><a href="#step-4-measure-initial-risk" id="toc-step-4-measure-initial-risk" class="nav-link" data-scroll-target="#step-4-measure-initial-risk">Step 4: Measure Initial Risk</a>
+  <li><a href="#step-3-prepare-variable-types" id="toc-step-3-prepare-variable-types" class="nav-link" data-scroll-target="#step-3-prepare-variable-types">Step 3: Prepare Variable Types</a>
   <ul class="collapse">
-  <li><a href="#create-the-sdc-object" id="toc-create-the-sdc-object" class="nav-link" data-scroll-target="#create-the-sdc-object">4.1 Create the SDC Object</a></li>
-  <li><a href="#assess-k-anonymity-violations" id="toc-assess-k-anonymity-violations" class="nav-link" data-scroll-target="#assess-k-anonymity-violations">4.2 Assess k-Anonymity Violations</a></li>
+  <li><a href="#q3-what-types-do-the-variables-need-to-be" id="toc-q3-what-types-do-the-variables-need-to-be" class="nav-link" data-scroll-target="#q3-what-types-do-the-variables-need-to-be">Q3 — What types do the variables need to be?</a></li>
+  </ul></li>
+  <li><a href="#step-4-measure-initial-risk" id="toc-step-4-measure-initial-risk" class="nav-link" data-scroll-target="#step-4-measure-initial-risk">Step 4: Measure Initial Risk</a></li>
+  <li><a href="#create-the-sdc-object" id="toc-create-the-sdc-object" class="nav-link" data-scroll-target="#create-the-sdc-object">4.1 Create the SDC Object</a>
+  <ul class="collapse">
+  <li><a href="#q4.1-what-is-the-re-identification-risk-for-this-dataset" id="toc-q4.1-what-is-the-re-identification-risk-for-this-dataset" class="nav-link" data-scroll-target="#q4.1-what-is-the-re-identification-risk-for-this-dataset">Q4.1 — What is the re-identification risk for this dataset?</a></li>
+  </ul></li>
+  <li><a href="#assess-k-anonymity-violations" id="toc-assess-k-anonymity-violations" class="nav-link" data-scroll-target="#assess-k-anonymity-violations">4.2 Assess k-Anonymity Violations</a>
+  <ul class="collapse">
+  <li><a href="#q4.2-to-what-extent-does-this-dataset-violate-k-anonymity" id="toc-q4.2-to-what-extent-does-this-dataset-violate-k-anonymity" class="nav-link" data-scroll-target="#q4.2-to-what-extent-does-this-dataset-violate-k-anonymity">Q4.2 — To what extent does this dataset violate k-anonymity?</a></li>
+  <li><a href="#q4.2-answer-what-share-of-records-currently-violate-3-anonymity-your-answer-here." id="toc-q4.2-answer-what-share-of-records-currently-violate-3-anonymity-your-answer-here." class="nav-link" data-scroll-target="#q4.2-answer-what-share-of-records-currently-violate-3-anonymity-your-answer-here.">Q4.2 answer — What share of records currently violate 3-anonymity? <em>Your answer here.</em></a></li>
   </ul></li>
   <li><a href="#step-5-apply-anonymization" id="toc-step-5-apply-anonymization" class="nav-link" data-scroll-target="#step-5-apply-anonymization">Step 5: Apply Anonymization</a>
   <ul class="collapse">
   <li><a href="#non-perturbative-method-testing-recode-origin" id="toc-non-perturbative-method-testing-recode-origin" class="nav-link" data-scroll-target="#non-perturbative-method-testing-recode-origin">5.1 Non-Perturbative Method Testing — Recode <code>origin</code></a></li>
+  <li><a href="#q5.1-apply-one-non-perturbative-method.-how-effective-was-it" id="toc-q5.1-apply-one-non-perturbative-method.-how-effective-was-it" class="nav-link" data-scroll-target="#q5.1-apply-one-non-perturbative-method.-how-effective-was-it">Q5.1 — Apply one non-perturbative method. How effective was it?</a></li>
+  <li><a href="#q5.1-answer-did-the-recoding-reduce-k-anonymity-violations-why-or-why-not" id="toc-q5.1-answer-did-the-recoding-reduce-k-anonymity-violations-why-or-why-not" class="nav-link" data-scroll-target="#q5.1-answer-did-the-recoding-reduce-k-anonymity-violations-why-or-why-not">Q5.1 answer — Did the recoding reduce k-anonymity violations? Why or why not?</a></li>
   <li><a href="#automated-k-anonymization-kanon" id="toc-automated-k-anonymization-kanon" class="nav-link" data-scroll-target="#automated-k-anonymization-kanon">5.2 Automated k-Anonymization — <code>kAnon()</code></a></li>
+  <li><a href="#q5.2-apply-k-3-anonymization." id="toc-q5.2-apply-k-3-anonymization." class="nav-link" data-scroll-target="#q5.2-apply-k-3-anonymization.">Q5.2 — Apply k = 3 anonymization.</a></li>
+  <li><a href="#q5.2-answer-how-many-records-still-violate-3-anonymity-after-running-kanon-your-answer-here." id="toc-q5.2-answer-how-many-records-still-violate-3-anonymity-after-running-kanon-your-answer-here." class="nav-link" data-scroll-target="#q5.2-answer-how-many-records-still-violate-3-anonymity-after-running-kanon-your-answer-here.">Q5.2 answer — How many records still violate 3-anonymity after running <code>kAnon()</code>? <em>Your answer here.</em></a></li>
   </ul></li>
-  <li><a href="#step-6-measure-information-loss" id="toc-step-6-measure-information-loss" class="nav-link" data-scroll-target="#step-6-measure-information-loss">Step 6: Measure Information Loss</a></li>
+  <li><a href="#step-6-measure-information-loss" id="toc-step-6-measure-information-loss" class="nav-link" data-scroll-target="#step-6-measure-information-loss">Step 6: Measure Information Loss</a>
+  <ul class="collapse">
+  <li><a href="#q6-how-much-information-did-we-lose" id="toc-q6-how-much-information-did-we-lose" class="nav-link" data-scroll-target="#q6-how-much-information-did-we-lose">Q6 — How much information did we lose?</a></li>
+  <li><a href="#q6-answer-which-variable-had-the-most-suppression-and-what-does-that-tell-you-about-the-data-your-answer-here." id="toc-q6-answer-which-variable-had-the-most-suppression-and-what-does-that-tell-you-about-the-data-your-answer-here." class="nav-link" data-scroll-target="#q6-answer-which-variable-had-the-most-suppression-and-what-does-that-tell-you-about-the-data-your-answer-here.">Q6 answer — Which variable had the most suppression, and what does that tell you about the data? <em>Your answer here.</em></a></li>
+  </ul></li>
   <li><a href="#step-7-export-the-anonymized-dataset" id="toc-step-7-export-the-anonymized-dataset" class="nav-link" data-scroll-target="#step-7-export-the-anonymized-dataset">Step 7: Export the Anonymized Dataset</a></li>
   </ul>
 </nav>
@@ -367,8 +385,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="background" class="level1">
-<h1>Background</h1>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>This dataset (<code>whale-entanglement.csv</code>) contains documented whale entanglement incidents on the U.S. West Coast. Each row is one event, with variables for whale species, location, gear type, and fishery involved. <em>(Adapted for instructional use only.)</em></p>
 <p><strong>Goals:</strong></p>
 <ol type="1">
@@ -378,22 +396,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <hr>
 </section>
-<section id="step-1-load-package-data" class="level1">
-<h1>Step 1: Load Package &amp; Data</h1>
-<section id="inspect-data" class="level2">
-<h2 class="anchored" data-anchor-id="inspect-data">Inspect Data</h2>
+<section id="step-1-load-package-data" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-load-package-data">Step 1: Load Package &amp; Data</h2>
+<section id="inspect-data" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-data">Inspect Data</h3>
 <p>Each row is one entanglement event.</p>
 <hr>
 </section>
 </section>
-<section id="step-2-identify-disclosure-risks" class="level1">
-<h1>Step 2: Identify Disclosure Risks</h1>
-<section id="direct-identifiers" class="level2">
-<h2 class="anchored" data-anchor-id="direct-identifiers">Direct Identifiers</h2>
+<section id="step-2-identify-disclosure-risks" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-identify-disclosure-risks">Step 2: Identify Disclosure Risks</h2>
+<section id="direct-identifiers" class="level3">
+<h3 class="anchored" data-anchor-id="direct-identifiers">Direct Identifiers</h3>
 <blockquote class="blockquote">
 <p><strong>Direct identifiers</strong> uniquely identify a record on their own.</p>
 </blockquote>
-<p><strong>Q1 — How many direct identifiers are present, and what are they?</strong></p>
+</section>
+<section id="q1-how-many-direct-identifiers-are-present-and-what-are-they" class="level3">
+<h3 class="anchored" data-anchor-id="q1-how-many-direct-identifiers-are-present-and-what-are-they">Q1 — How many direct identifiers are present, and what are they?</h3>
 <!-- TODO: Fill in your answer below. Look at the column names — which variables would uniquely identify a specific event or operator on their own? -->
 <p><strong>Answer:</strong> <em>Your answer here.</em></p>
 <table class="caption-top table">
@@ -420,22 +440,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>These must be <strong>excluded</strong> from any analytical release.</p>
 </section>
-<section id="quasi-identifiers" class="level2">
-<h2 class="anchored" data-anchor-id="quasi-identifiers">Quasi-Identifiers</h2>
+<section id="quasi-identifiers" class="level3">
+<h3 class="anchored" data-anchor-id="quasi-identifiers">Quasi-Identifiers</h3>
 <blockquote class="blockquote">
 <p><strong>Quasi-identifiers (QIDs)</strong> don’t identify records alone, but can be <em>combined</em> with each other — or with external data — to re-identify individuals.</p>
 </blockquote>
-<p><strong>Q2 — Which variables are quasi-identifiers?</strong></p>
+</section>
+<section id="q2-which-variables-are-quasi-identifiers" class="level3">
+<h3 class="anchored" data-anchor-id="q2-which-variables-are-quasi-identifiers">Q2 — Which variables are quasi-identifiers?</h3>
 <!-- TODO: Which columns, when combined, could allow an adversary to re-identify a vessel or operator? Think about what's publicly searchable (e.g., state fisheries databases). -->
 <p><strong>Answer:</strong> <em>Your answer here. List the variables and explain why each is a QID.</em></p>
 <hr>
 </section>
 </section>
-<section id="step-3-prepare-variable-types" class="level1">
-<h1>Step 3: Prepare Variable Types</h1>
-<blockquote class="blockquote">
-<p><strong>Q3 — What types do the variables need to be?</strong></p>
-</blockquote>
+<section id="step-3-prepare-variable-types" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-prepare-variable-types">Step 3: Prepare Variable Types</h2>
+<section id="q3-what-types-do-the-variables-need-to-be" class="level3">
+<h3 class="anchored" data-anchor-id="q3-what-types-do-the-variables-need-to-be">Q3 — What types do the variables need to be?</h3>
 <p><code>sdcMicro</code> requires categorical QIDs to be <code>factor</code> type and continuous variables to be <code>numeric</code>. Misspecified types produce incorrect risk estimates.</p>
 <blockquote class="blockquote">
 <p>💡 <strong>Tip — <code>varToFactor()</code> and <code>varToNumeric()</code>:</strong> These <code>sdcMicro</code> helper functions convert columns in a data frame to <code>factor</code> or <code>numeric</code>. Both take <code>obj</code> (the data frame) and <code>var</code> (a character vector of column names). Work on a <strong>copy</strong> of your data frame so the original stays intact for later comparison.</p>
@@ -460,13 +481,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <hr>
 </section>
-<section id="step-4-measure-initial-risk" class="level1">
-<h1>Step 4: Measure Initial Risk</h1>
+</section>
+<section id="step-4-measure-initial-risk" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-measure-initial-risk">Step 4: Measure Initial Risk</h2>
+</section>
 <section id="create-the-sdc-object" class="level2">
 <h2 class="anchored" data-anchor-id="create-the-sdc-object">4.1 Create the SDC Object</h2>
-<blockquote class="blockquote">
-<p><strong>Q4.1 — What is the re-identification risk for this dataset?</strong></p>
-</blockquote>
+<section id="q4.1-what-is-the-re-identification-risk-for-this-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="q4.1-what-is-the-re-identification-risk-for-this-dataset">Q4.1 — What is the re-identification risk for this dataset?</h3>
 <p>We create an <code>sdcMicroObj</code> that encodes our design decisions: which variables are QIDs, which direct identifiers to exclude, and any weights or strata.</p>
 <blockquote class="blockquote">
 <p>💡 <strong>Tip — <code>createSdcObj()</code>:</strong> The key arguments are:</p>
@@ -501,11 +523,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(___)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
+</section>
 <section id="assess-k-anonymity-violations" class="level2">
 <h2 class="anchored" data-anchor-id="assess-k-anonymity-violations">4.2 Assess k-Anonymity Violations</h2>
-<blockquote class="blockquote">
-<p><strong>Q4.2 — To what extent does this dataset violate k-anonymity?</strong></p>
-</blockquote>
+<section id="q4.2-to-what-extent-does-this-dataset-violate-k-anonymity" class="level3">
+<h3 class="anchored" data-anchor-id="q4.2-to-what-extent-does-this-dataset-violate-k-anonymity">Q4.2 — To what extent does this dataset violate k-anonymity?</h3>
 <p>A dataset satisfies <strong>k-anonymity</strong> if every QID combination appears in <em>at least k</em> records. Records in smaller groups are “at risk.”</p>
 <blockquote class="blockquote">
 <p>💡 <strong>Tip — <code>print()</code> on an <code>sdcMicroObj</code>:</strong> Calling <code>print(sdcInitial)</code> produces a full risk report, including the number of records violating 2-, 3-, and 5-anonymity. Look for the <strong>“Frequency of key”</strong> and <strong>“Number of observations violating k-anonymity”</strong> sections.</p>
@@ -515,16 +537,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>___</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Our target:</strong> achieve at least <strong>3-anonymity</strong> (k = 3).</p>
-<p><strong>Q4.2 answer — What share of records currently violate 3-anonymity?</strong> <em>Your answer here.</em></p>
+</section>
+<section id="q4.2-answer-what-share-of-records-currently-violate-3-anonymity-your-answer-here." class="level3">
+<h3 class="anchored" data-anchor-id="q4.2-answer-what-share-of-records-currently-violate-3-anonymity-your-answer-here.">Q4.2 answer — What share of records currently violate 3-anonymity? <em>Your answer here.</em></h3>
 <hr>
 </section>
 </section>
-<section id="step-5-apply-anonymization" class="level1">
-<h1>Step 5: Apply Anonymization</h1>
-<section id="non-perturbative-method-testing-recode-origin" class="level2">
-<h2 class="anchored" data-anchor-id="non-perturbative-method-testing-recode-origin">5.1 Non-Perturbative Method Testing — Recode <code>origin</code></h2>
+<section id="step-5-apply-anonymization" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-apply-anonymization">Step 5: Apply Anonymization</h2>
+<section id="non-perturbative-method-testing-recode-origin" class="level3">
+<h3 class="anchored" data-anchor-id="non-perturbative-method-testing-recode-origin">5.1 Non-Perturbative Method Testing — Recode <code>origin</code></h3>
+</section>
+<section id="q5.1-apply-one-non-perturbative-method.-how-effective-was-it" class="level3">
+<h3 class="anchored" data-anchor-id="q5.1-apply-one-non-perturbative-method.-how-effective-was-it">Q5.1 — Apply one non-perturbative method. How effective was it?</h3>
 <blockquote class="blockquote">
-<p><strong>Q5.1 — Apply one non-perturbative method. How effective was it?</strong></p>
 <p>Reminder:</p>
 <ul>
 <li><strong>Non-perturbative methods</strong> generalize or suppress values without adding noise.</li>
@@ -563,15 +589,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Risk summary after recoding 'origin':</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sdcInitial)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Q5.1 answer — Did the recoding reduce k-anonymity violations? Why or why not?</strong></p>
+</section>
+<section id="q5.1-answer-did-the-recoding-reduce-k-anonymity-violations-why-or-why-not" class="level3">
+<h3 class="anchored" data-anchor-id="q5.1-answer-did-the-recoding-reduce-k-anonymity-violations-why-or-why-not">Q5.1 answer — Did the recoding reduce k-anonymity violations? Why or why not?</h3>
 <!-- TODO: Reflect on whether this method was effective. What is the bottleneck? -->
 <p><em>Your answer here.</em></p>
 </section>
-<section id="automated-k-anonymization-kanon" class="level2">
-<h2 class="anchored" data-anchor-id="automated-k-anonymization-kanon">5.2 Automated k-Anonymization — <code>kAnon()</code></h2>
-<blockquote class="blockquote">
-<p><strong>Q5.2 — Apply k = 3 anonymization.</strong></p>
-</blockquote>
+<section id="automated-k-anonymization-kanon" class="level3">
+<h3 class="anchored" data-anchor-id="automated-k-anonymization-kanon">5.2 Automated k-Anonymization — <code>kAnon()</code></h3>
+</section>
+<section id="q5.2-apply-k-3-anonymization." class="level3">
+<h3 class="anchored" data-anchor-id="q5.2-apply-k-3-anonymization.">Q5.2 — Apply k = 3 anonymization.</h3>
 <p><code>kAnon()</code> uses <strong>local suppression</strong>: it sets the minimum number of QID values to <code>NA</code> until every combination appears at least <em>k</em> times, minimizing total information loss.</p>
 <blockquote class="blockquote">
 <p>💡 <strong>Tip — <code>kAnon()</code>:</strong> Takes your <code>sdcMicroObj</code> and <code>k</code> (an integer vector, e.g., <code>c(3)</code>). It returns a new <code>sdcMicroObj</code> with suppressed values applied. After running it, call <code>print()</code> again to see the updated violation counts — they should drop to zero for your chosen k.</p>
@@ -583,15 +611,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Risk summary after k = 3 anonymization:</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sdcAnon)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Q5.2 answer — How many records still violate 3-anonymity after running <code>kAnon()</code>?</strong> <em>Your answer here.</em></p>
+</section>
+<section id="q5.2-answer-how-many-records-still-violate-3-anonymity-after-running-kanon-your-answer-here." class="level3">
+<h3 class="anchored" data-anchor-id="q5.2-answer-how-many-records-still-violate-3-anonymity-after-running-kanon-your-answer-here.">Q5.2 answer — How many records still violate 3-anonymity after running <code>kAnon()</code>? <em>Your answer here.</em></h3>
 <hr>
 </section>
 </section>
-<section id="step-6-measure-information-loss" class="level1">
-<h1>Step 6: Measure Information Loss</h1>
-<blockquote class="blockquote">
-<p><strong>Q6 — How much information did we lose?</strong></p>
-</blockquote>
+<section id="step-6-measure-information-loss" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-measure-information-loss">Step 6: Measure Information Loss</h2>
+<section id="q6-how-much-information-did-we-lose" class="level3">
+<h3 class="anchored" data-anchor-id="q6-how-much-information-did-we-lose">Q6 — How much information did we lose?</h3>
 <p>Anonymization is a trade-off: privacy protection at the cost of analytical utility. Quantifying this trade-off is essential for responsible data sharing.</p>
 <blockquote class="blockquote">
 <p>💡 <strong>Tip — <code>print(sdcAnon, "ls")</code>:</strong> Passing <code>"ls"</code> as a second argument to <code>print()</code> displays the <strong>local suppression summary</strong>: how many values were suppressed in each QID column and as an overall percentage. Higher suppression = more information loss.</p>
@@ -600,11 +629,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Print the information-loss summary</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(___, <span class="st">"ls"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Q6 answer — Which variable had the most suppression, and what does that tell you about the data?</strong> <em>Your answer here.</em></p>
+</section>
+<section id="q6-answer-which-variable-had-the-most-suppression-and-what-does-that-tell-you-about-the-data-your-answer-here." class="level3">
+<h3 class="anchored" data-anchor-id="q6-answer-which-variable-had-the-most-suppression-and-what-does-that-tell-you-about-the-data-your-answer-here.">Q6 answer — Which variable had the most suppression, and what does that tell you about the data? <em>Your answer here.</em></h3>
 <hr>
 </section>
-<section id="step-7-export-the-anonymized-dataset" class="level1">
-<h1>Step 7: Export the Anonymized Dataset</h1>
+</section>
+<section id="step-7-export-the-anonymized-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="step-7-export-the-anonymized-dataset">Step 7: Export the Anonymized Dataset</h2>
 <p>Before sharing, we must:</p>
 <ol type="1">
 <li><strong>Remove direct identifiers</strong> (already excluded from the SDC object)</li>
