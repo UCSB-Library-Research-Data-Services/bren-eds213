@@ -693,53 +693,179 @@
     "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/26293/assignments/365666\nRecall from class that an index IC on a column C in a table T is in effect a mini-table, kept in sync with T, that contains all the values of column C in order. If there are a million rows in table T, there will be a million values in index IC. If the values of column C are unique, the index will hold a million unique values. If column C takes on only a few possible values, then index IC will still have a million values, but many of those values will be repeated.\nSuppose we are given a query that includes a constraint against column C, i.e., that includes WHERE C = someval possibly among other constraints. If the table has no indexes, then the database has no choice but to do a “full table scan,” i.e., to examine every table row. If the table is large that can be very costly. But if index IC exists, then to use index IC means that the database looks up the constraint value someval in the index to obtain a smaller number of table rows (just one row in the case of a unique index) to subsequently examine and match additional constraints against. The essential purpose of an index is to reduce the number of table rows that must be examined.\nIf the table has multiple indexes, the database will analyze the query constraints and the distributions of column values and pick what it thinks will be the most effective index to use for the given query.\nAn index can be created for a single column as in the example of IC above. But an index can also be created across multiple columns. For example, an index IC,D,E would index all tuples of values from columns C, D, and E.\nFor the purposes of this assignment we will be working with an SQLite database that has the same structure as previous class databases but in which the Bird_nests table has 2 million rows, each of which has been fattened to occupy multiple kilobytes. As a consequence, the database file is approximately 8GB. The database file can be found on workbench-1.bren.ucsb.edu at /courses/EDS213/big-fat.sqlite3. To use it you will need to copy or download the database file to your own space.\nWe will also be working with the following query:\nSELECT Nest_ID\n    FROM Bird_nests\n    WHERE Site = 'nome' AND\n          Species = 'ruff' AND\n          Year = 1983 AND\n          Observer = 'cbishop' AND\n          ageMethod = 'float';\nThis query returns exactly one row.\n\nPart 1\nAnswer the following questions.\n\nIs there already an index on the Bird_nests table? If so, what is that index and will SQLite use it in the above query? Why or why not?\nWill adding an index on a column not mentioned in the WHERE clause be used by the database? Why or why not?\n\n\n\nPart 2\nQuery optimization, which falls under the general heading of “database tuning,” is a complex subject, as query performance depends on the query or queries being supported, the distribution and nature of the data, the abilities and characteristics of the query planner, and the costs of creating and maintaining indexes. Still, we can make a general observation about what makes for a good index (“good” meaning improving query performance here) by examining the effects of adding different indexes on the Bird_nests table and timing the above query.\nYour task is to conduct at least 15 experiments. In each experiment perform the following steps:\n\nCreate an index on a column or columns.\nTime the above query. (To time a query, execute it many times in a loop, and divide the total time required by the number of repetitions to get the average query time. Be sure to use this approach, as query times can be highly variable.)\nDrop the index (to avoid accumulating indexes on the table).\nAlso, determine the number of distinct values in the index, i.e., the number of distinct values in the column or number of distinct tuples if the index is over multiple columns.\n\nWhat experiments to run?\n\nRun an initial experiment with no added index. For this experiment only, record the number of distinct values as 1.\nTry adding an index on each column mentioned in the WHERE clause (e.g., Site): that’s 5 experiments right there.\nTry adding an index on a couple of columns at a time. Try at least the following combinations, but add others if you like:\n\nSite,Species\nSite,Observer\nSpecies,Observer\nYear,Observer\nObserver,ageMethod\n\nTry adding an index on 3-4 columns at a time.\n\nWhen done, you will want your results in the form of a CSV file with three columns: label, average query time, and number of distinct values. If you use the label “none” for the initial experiment and the columns indexed as the label, your CSV file might resemble:\nlabel,avg_query_time,num_distinct_values\nnone,#####,1\nSite,#####,16\nSpecies,#####,#####\nYear,#####,#####\nObserver,#####,#####\nageMethod,#####,#####\n\"Site,Species\",#####,#####\n\"Site,Observer\",#####,#####\n...\nFor timing, you can use the Bash test harness you developed in week 5, or you can do your timings from R or Python if you prefer. Regardless of the language, ensure that you compute the average time it takes to perform the query as described above.\nYou can run your test harness manually for each experiment, and manually retrieve the number of distinct values for step 4 above. That’s just fine. But you can also automate the whole process; some hints for doing so are below. Be careful when running your test harness, as in the end you want just one row in your CSV file per experiment. Don’t get hung up on automating the experiments; that’s not a requirement.\nOnce you have your data, load it in Jupyter or RStudio and create a log-log scatter plot of the number of distinct index values (X axis) versus query time (Y axis). (Results will be difficult to see if both axes are not logarithmic.) If all goes well, your plot should resemble something like this:\n\nRecall that num_distinct_values = 1, the leftmost point on your scatter plot, corresponds to using no index at all.\nFinally,\n\nAnswer these questions:\n\nWhat relationship do you observe? Hypothesize why you see the relationship you do.\nWhat conclusion do you draw regarding what makes a good index?\n\nUpload all your work: your test harness, your analysis notebook, and your CSV file.\n\nCredit: 100 points\n\n\nAppendix 1: Modifying your Bash test harness\nA few tips on modifying your Bash test harness to make it more useful for this assignment. First, if you find it annoying to have to try different numbers of repetitions to get positive and more precise timings, you can automate your script to try different numbers of repetitions until it achieves something reasonable. Here’s one idea:\nnum_reps=1\nwhile true; do\n    start=$SECONDS\n    for _ in $(seq $num_reps); do\n        sqlite3 $db_file \"$query\" &gt;& /dev/null\n    done\n    end=$SECONDS\n    if [ $((end - start)) -gt 5 ]; then\n        break\n    fi\n    echo \"Too fast, trying again!\"\n    num_reps=$((num_reps * 10))\ndone\nThis will try 1 repetition, then 10, then 100, etc.\nSecond, you can gather the number of distinct values by adding an sqlite3 -csv $db_file \"$num_values_query\" command and saving the output in a variable, and then echoing that variable out to your CSV file along with your other variables.\nAnd third, if you make the column(s) you want to index an argument to your script, you can automate adding and dropping indexes by adding more sqlite3 commands.\n\n\nAppendix 2: Connecting to SQLite from Python\n# %pip install sqlite3\n\n# Connect to the database\nimport sqlite3\nconn = sqlite3.connect(\"/courses/EDS213/big-fat.sqlite3\")\ncur = conn.cursor()\n\n# Execute a query\ncur.execute(\"SELECT * FROM Site\")\ncur.fetchone()\n\n\nAppendix 3: Connecting to SQLite from R\nlibrary(tidyverse)\nlibrary(DBI)\nlibrary(RSQLite)\nlibrary(dbplyr)\n\n# Connect to the big database\nconn &lt;- DBI::dbConnect(RSQLite::SQLite(), \"/courses/EDS213/big-fat.sqlite3\") \n\n# List the available tables\nDBI::dbListTables(conn)\n\n# query using DBI\nDBI::dbGetQuery(conn, 'SELECT * FROM Site')\nProbably best to not use dbplyr for this assignment as you want control over the query that is submitted and the result that is returned."
   },
   {
-    "objectID": "modules/week09/hw-09.html",
-    "href": "modules/week09/hw-09.html",
-    "title": "Week 9 - How FAIR is your data set?",
+    "objectID": "modules/week09/index-09.html",
+    "href": "modules/week09/index-09.html",
+    "title": "Week 9 - Sensitive data",
     "section": "",
-    "text": "Using the FAIR Assessment tool, evaluate the FAIRness of the two following data sets:\n\nEphemeral wetland macroinvertebrate communities of the Great Plains\nInsect functional traits on arable land, Finland 2020\nWhich one would you prefer to reuse?\n\n\nNotes:\n\nPlease add narrative justification to explain your choices done using the FAIR assessment tool\nThere are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation, but discuss variability in your justification\n\nSubmit your answers (2 assessments with the justifications & answer to the preference/third question) via Canvas\nTotal points: 100"
+    "text": "Distinguish between direct and indirect identifiers and explain their role in privacy risk (cont’d)\nUnderstand the applications of k-anonymity and l-diversity for protecting sensitive data\nApply remediation techniques using programmatic approaches"
   },
   {
-    "objectID": "modules/week05/hw-05-2.html",
-    "href": "modules/week05/hw-05-2.html",
-    "title": "Week 5 - Bash essentials",
+    "objectID": "modules/week09/index-09.html#learning-goals",
+    "href": "modules/week09/index-09.html#learning-goals",
+    "title": "Week 9 - Sensitive data",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/32934/assignments/473366\nRead Ten Bash Essentials and answer the 8 questions at the end. Be sure you are in the for_bash_essentials subdirectory of the class data GitHub repository before answering the questions, as they rely on the files contained therein.\nCredit: 20 points"
+    "text": "Distinguish between direct and indirect identifiers and explain their role in privacy risk (cont’d)\nUnderstand the applications of k-anonymity and l-diversity for protecting sensitive data\nApply remediation techniques using programmatic approaches"
   },
   {
-    "objectID": "modules/week05/hw-05-3.html",
-    "href": "modules/week05/hw-05-3.html",
-    "title": "Week 5 - Create a test harness",
+    "objectID": "modules/week09/index-09.html#slides",
+    "href": "modules/week09/index-09.html#slides",
+    "title": "Week 9 - Sensitive data",
+    "section": "Slides",
+    "text": "Slides\n\nslides-09.pptx"
+  },
+  {
+    "objectID": "modules/week09/index-09.html#lab-files",
+    "href": "modules/week09/index-09.html#lab-files",
+    "title": "Week 9 - Sensitive data",
+    "section": "Lab Files",
+    "text": "Lab Files\n\nwhale-sdcmicro.qmd\nwhale-entanglement.csv"
+  },
+  {
+    "objectID": "modules/week09/index-09.html#resources",
+    "href": "modules/week09/index-09.html#resources",
+    "title": "Week 9 - Sensitive data",
+    "section": "Resources",
+    "text": "Resources\n\nsdcMicro Documentation: https://sdcpractice.readthedocs.io/en/latest/intro.html\nsdcMicro Shiny app: https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html\n\nOther useful links can be found on the slides."
+  },
+  {
+    "objectID": "modules/week09/index-09.html#suggested-readings",
+    "href": "modules/week09/index-09.html#suggested-readings",
+    "title": "Week 9 - Sensitive data",
+    "section": "Suggested readings",
+    "text": "Suggested readings\n\nBledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), https://doi.org/10.1098/rspb.2022.0938\nBourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. https://doi.org/10.1525/cse.2017.sc.454841\nGehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. https://doi.org/10.1007/978-1-4419-5906-5_899\nSamarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf"
+  },
+  {
+    "objectID": "modules/week09/FAIR_assessment_tool.html",
+    "href": "modules/week09/FAIR_assessment_tool.html",
+    "title": "FAIR assessment tool",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/32934/assignments/473367\n\nPart 1\nA common task is to create a script — a “test harness” — that will allow you to test something (some code, an algorithm, a model, etc.) by running it repeatedly, perhaps under varying conditions. Example applications include machine learning using different hyperparameters and Monte Carlo simulation using different random seeds. In this assignment you will create a Bash script that will allow you to time how long it takes to run an SQL query.\nYour script will be invoked like so:\n% bash query_timer.sh label num_reps query db_file csv_file\n\n  Arguments:\n      label:    explanatory label that will be output\n      num_reps: number of repetitions\n      query:    SQL query to run\n      db_file:  database file\n      csv_file: CSV file to create or append to\nFor example, you might run:\n% bash query_timer.sh with_index_a 1000 'SELECT COUNT(*) FROM Bird_nests' \\\n     database.duckdb timings.csv\nIn this example your script would run the given query (i.e., SELECT COUNT(*) FROM Bird_nests) on the given database (database.duckdb) 1000 times. If the total time that took was 3 seconds, your script will divide that time by the number of repetitions (1000) and compute that each DuckDB invocation took 0.003 seconds. Finally, your script will append the following record to the CSV file timings.csv:\nwith_index_a,0.003\nConceptually, your script will look something like this (this is pseudocode):\nget current time and store it\nloop num_reps times\n    duckdb db_file query\nend loop\nget current time\ncompute elapsed time\ndivide elapsed time by num_reps\nwrite output\nI would like you to follow the above pseudocode because this exercise is fundamentally about using certain Bash features.\n(BTW, is this a fair way to time queries? Yes and no. Clearly it’s a bit unfair that we are counting the overhead of repeatedly firing up DuckDB and opening the database file. And there may be other processing going on on the machine that affects the wall-clock time that we’re measuring here. On the other hand, databases are almost always I/O-bound and not compute-bound, that is, their performance is primarily limited by the time it takes to read data into memory from disk, and because of that, wall-clock time can be a better measure than CPU time.)\nWe’re doing this in Bash, so every one of these steps is a challenge (it is okay to hate Bash). So here are a lot of tips and hints:\n\nGetting the current time: try date +%s or use the magic SECONDS variable (do a man bash to read about it).\nLooping: see below.\nIn executing DuckDB, be sure to appropriately quote the query.\nComputing elapsed time: use Bash arithmetic.\nDivision. Bash does not support floating point numbers, so you’ll have to use a helper program. Take yer pick depending on what’s available to you. Let’s say you want to divide 10 by 3 (you will want to reference variables in your computation, but here we’re just illustrating dividing two literal numbers). You might say something like:\n\nelapsed=$(echo \"scale=7; 10/3\" | bc)\nelapsed=$(echo \"10/3\" | awk -F / '{print $1/$2}')\nelapsed=$(python -c \"print(10/3)\")\nelapsed=$(perl -l -e \"print 10/3\")\n\nOutput: be sure to use the appropriate I/O redirection.\n\nTwo approaches to looping. If you want to do something 10 times, you can use a while loop that increments a counter:\ni=0\nwhile [ $i -lt 10 ]; do\n    echo \"this is loop iteration $i\"\n    i=$((i+1))\ndone\nOr, you can use seq. Generally you can use a for loop to loop through a list of items like so:\nfor i in 0 1 2 3 4 5 6 7 8 9; do\n    echo \"this is loop iteration $i\"\ndone\nBut you can use seq to generate a list of numbers of a desired length:\nfor i in $(seq 10); do\n    echo \"this is loop iteration $i\"\ndone\nAnd some more advice. The reason for making the number of repetitions an argument to this script, as opposed to a fixed constant, is that you may have to adjust the number of repetitions depending how fast the query is. The date command and SECONDS variable have a resolution of only 1 second, so if running the query 10 times still fits in under 1 second your elapsed time will show up as 0. You may need to run a query 100 or 1000 times or more to get positive elapsed times, and to get more precision.\nAlso, we don’t actually care about the output from the query here. I would keep the output while you’re debugging your script (so that you can verify that DuckDB is being run repeatedly), but once you feel your script is working you can redirect DuckDB’s output and error streams to /dev/null.\nFinally, it is highly recommended that you upload your script to https://www.shellcheck.net. You’re not required to follow its advice, but I have found its advice to be enlightening.\nPlease submit your Bash script.\n\n\nPart 2\nIn class we looked at three ways to find out which species we do not have nest data for. Method using NOT IN:\nSELECT Code\n    FROM Species\n    WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);\nMethod using an outer join:\nSELECT Code\n    FROM Bird_nests RIGHT JOIN Species\n    ON Species = Code\n    WHERE Nest_ID IS NULL;\nMethod using a set operation:\nSELECT Code FROM Species\nEXCEPT\nSELECT DISTINCT Species FROM Bird_nests;\nUse your test harness to time these three queries. Use descriptive labels to record which query is being run, e.g., subquery, outer_join, and except. Submit your CSV file. Report back how many repetitions you had to use to get good timings, and which method is fastest.\nCredit: 50 points"
+    "text": "Please justify your answer using 1-2 sentences"
   },
   {
-    "objectID": "modules/week05/hw-05-1.html",
-    "href": "modules/week05/hw-05-1.html",
-    "title": "Week 5 - Egg variance",
+    "objectID": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
+    "href": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
+    "title": "FAIR assessment tool",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis exercise has been adapted from the UK Data Service https://ukdataservice.ac.uk/app/uploads/exercise_fairdata.pdf and is licensed under a Creative Commons Attribution CC-BY 4.0 International License."
+  },
+  {
+    "objectID": "modules/week05/hw-05-2-old.html",
+    "href": "modules/week05/hw-05-2-old.html",
+    "title": "Week 5 - Create a trigger",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/32934/assignments/473365\nLiu et al found an interesting result, that characteristics of the eggs of certain Arctic shorebird species exhibit linear variation as a function of longitude (that’s longitude, not latitude) 1:\nWhy might that be? The authors surmise,\nOur ASDN database has data for the first of their study species, the Dunlin (Calidris alpina). While the ASDN project studied eggs in a different hemisphere (northern Canada as opposed to Eurasia), nevertheless we can ask ourselves, does our data exhibit the same trends?\nFor this problem, you will be:\nTo do so you will need to load a larger set of nest and egg data from CSV files into new tables, and use some statistics functions provided by DuckDB to do the regression."
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/26293/assignments/360505\nFor this assignment and this assignment only, you must use SQLite and database.sqlite in the class data GitHub repository!\n(The SQLite command is sqlite3. It’s already installed on the Bren servers. Installing it on your local machine, if you like, is similar to installing DuckDB.)\nThe Bird_eggs table uniquely identifies each egg by a pair (Nest_ID, Egg_num). The egg numbers for a given nest always have the sequential values 1, 2, 3, 4, etc. For example, there are 3 eggs in nest 14eabaage01:\nSELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';\n┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐\n│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │\n├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 1       │ 39.14  │ 33.0  │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 2       │ 41.51  │ 33.39 │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 3       │ 48.29  │ 33.4  │\n└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘\n\nPart 1\nWhen inserting a new egg measurement, wouldn’t it be nice if the database just automatically filled in the next sequential egg number for us? Indeed, we can accomplish this with an AFTER INSERT trigger that does an UPDATE.\nThe schema for the database has been modified for this exercise so that Egg_num can be NULL and furthermore has a default value of NULL. This means we can insert a row without supplying an egg number. For example, we might say:\nINSERT INTO Bird_eggs\n    (Book_page, Year, Site, Nest_ID, Length, Width)\n    VALUES ('b14.6', 2014, 'eaba', '14eabaage01', 12.34, 56.78);\nIf this were the first egg measurement for this particular nest, immediately after the insert we would see:\n.nullvalue -NULL-\nSELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';\n┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐\n│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │\n├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ -NULL-  │ 12.34  │ 56.78 │\n└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘\nIf there were already some egg measurements for this nest (as in fact there are), immediately after the insert we would see:\n.nullvalue -NULL-\nSELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';\n┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐\n│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │\n├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 1       │ 39.14  │ 33.0  │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 2       │ 41.51  │ 33.39 │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 3       │ 48.29  │ 33.4  │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ -NULL-  │ 12.34  │ 56.78 │\n└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘\nYour job is to create a trigger that will fire an UPDATE statement that will fill in a value for Egg_num in either situation above.\nYour trigger will have the form\nCREATE TRIGGER egg_filler\n    AFTER INSERT ON Bird_eggs\n    FOR EACH ROW\n    BEGIN\n        UPDATE ...;\n    END;\nA word of warning. Notice the two semicolons above: the UPDATE statement must be terminated by a semicolon, and the CREATE TRIGGER statement must be terminated by a semicolon.\nThe crux is in the UPDATE statement. Recall from class that in your UPDATE statement you can refer to the values just inserted as new.Book_page, new.Year, new.Site, new.Nest_ID, etc. For example, using the INSERT above, new.Nest_ID will have the value ‘14eabaage01’ and new.Length will have the value 12.34. You need to figure out:\n\nWhat column(s) to update. Well that’s easy, it’s just Egg_num.\nWhat Egg_num’s new value should be. Hint: the value can be computed from a SELECT statement. What SELECT statement could you use that will return the right value to use as the next sequential egg number?\nWhat row(s) to modify. Well, you want to modify just one row, the row that was just inserted. What WHERE clause could you use to identify this brand-new row? It has a unique signature.\n\nYou can try out your trigger by creating it, doing an INSERT, and then seeing what the rows for that particular nest look like. If your trigger doesn’t work for some reason, you may need to DROP TRIGGER egg_filler; before creating it again. As before, you will probably find it convenient to write your trigger code in a separate file, and load it into SQLite using the .read built-in command.\nPlease submit your SQL.\n\n\nPart 2\nWhy stop there? Recall that Book_page, Year, and Site all duplicate the information from the Bird_nests table. Wouldn’t it be nice if the database automatically filled in those values as well? Then we could just say:\nINSERT INTO Bird_eggs\n    (Nest_ID, Length, Width)\n    VALUES ('14eabaage01', 12.34, 56.78);\nThis can be accomplished by augmenting your previous trigger. Two options. One, you can add more UPDATE statements:\nCREATE TRIGGER egg_filler\n    AFTER INSERT ON Bird_eggs\n    FOR EACH ROW\n    BEGIN\n        UPDATE Bird_eggs SET Egg_num = (SELECT...) WHERE...;\n        UPDATE Bird_eggs SET Book_page = (SELECT...) WHERE...;\n        UPDATE Bird_eggs SET Year = (SELECT...) WHERE...;\n        etc.\n    END;\nOr two, you can add more clauses to a single UPDATE statement:\nCREATE TRIGGER egg_filler\n    AFTER INSERT ON Bird_eggs\n    FOR EACH ROW\n    BEGIN\n        UPDATE Bird_eggs\n            SET\n                Egg_num = (SELECT...),\n                Book_page = (SELECT...),\n                Year = (SELECT...),\n                etc.\n            WHERE ...;\n    END;\n(Honestly, this is not the most compact or efficient SQL, but sometimes it’s better sticking with a simple and understandable approach.)\nYou need to figure out what SELECT statements to use to find the values to insert. That is, given that you can reference new.Nest_ID, new.Length, and new.Width, what SELECT statements could you use to find the correct values for Book_page, Year, and Nest_ID?\nTry out your trigger, marvel at what you have automated, and submit your SQL.\n\n\nPart 3\nOkay, there isn’t a part 3. But wouldn’t it be nice to be able to insert egg measurements even more compactly? That is, instead of having to say:\nINSERT INTO Bird_eggs\n    (Nest_ID, Length, Width)\n    VALUES ('14eabaage01', 12.34, 56.78);\nwhat if you could just say:\nINSERT INTO Bird_eggs\n    VALUES ('14eabaage01', 12.34, 56.78);\nWell you can do that! It involves creating a view and adding an INSTEAD OF INSERT trigger on the view. If there’s time I’ll show an example in class.\nCredit: 65 points"
   },
   {
-    "objectID": "modules/week05/hw-05-1.html#part-1-50pts",
-    "href": "modules/week05/hw-05-1.html#part-1-50pts",
-    "title": "Week 5 - Egg variance",
-    "section": "Part 1 (50pts)",
-    "text": "Part 1 (50pts)\nPlease submit your SQL for the above."
+    "objectID": "modules/week05/hw-05-1-old.html",
+    "href": "modules/week05/hw-05-1-old.html",
+    "title": "Week 5 - Protect yourself",
+    "section": "",
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/26293/assignments/360504\nSome strategies were mentioned in class for reducing the possibility of performing UPDATEs and DELETEs that have catastrophic consequences. What strategy will you use?\nCredit: 5 points"
   },
   {
-    "objectID": "modules/week05/hw-05-1.html#part-2-10pts",
-    "href": "modules/week05/hw-05-1.html#part-2-10pts",
-    "title": "Week 5 - Egg variance",
-    "section": "Part 2 (10pts)",
-    "text": "Part 2 (10pts)\nAnswer the following questions.\n\nDo the tables created automatically by DuckDB guarantee that a nest ID mentioned in the Eggs_big table actually exists in the Nests_big table? If yes, explain how that is guaranteed, if not, explain why not. (6pts)\nWhat queries did you use (or could you use) to find the minimum and maximum longitude values in the Site table? (2pts)\nThe interpretation of the Pearson correlation coefficient is: +1 is a perfect positive correlation, -1 is a perfect negative correlation, and 0 is no correlation at all. How would you characterize the correlation between egg volume and longitude for the eggs of Calidris alpina in the Arctic above Canada? (2pts)"
+    "objectID": "modules/week05/index-05.html",
+    "href": "modules/week05/index-05.html",
+    "title": "Week 5 - I/O, data management & more",
+    "section": "",
+    "text": "Data management SQL statements"
   },
   {
-    "objectID": "modules/week05/hw-05-1.html#footnotes",
-    "href": "modules/week05/hw-05-1.html#footnotes",
-    "title": "Week 5 - Egg variance",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nLiu J, Chai Z, Wang H, Ivanov A, Kubelka V, Freckleton R, Zhang Z, Székely T. “Egg characteristics vary longitudinally in Arctic shorebirds.” iScience 26(6):106928 (2023 May 19). https://doi.org/10.1016/j.isci.2023.106928↩︎"
+    "objectID": "modules/week05/index-05.html#learning-objectives",
+    "href": "modules/week05/index-05.html#learning-objectives",
+    "title": "Week 5 - I/O, data management & more",
+    "section": "",
+    "text": "Data management SQL statements"
+  },
+  {
+    "objectID": "modules/week05/index-05.html#monday",
+    "href": "modules/week05/index-05.html#monday",
+    "title": "Week 5 - I/O, data management & more",
+    "section": "Monday",
+    "text": "Monday\n\nRECAP: VIEW & TEMP TABLE\n\nViews\n\na view looks like a table\nstored in the database\nexecuted each time it is referenced\nhandy way to make SQL more palatable\nergo, a view similar to a function in a programming language\n\nNote: a view can also be used to subset attributes from a table that might store sensitive data, think SSN, that you do not want to expose to certain users, like a web application.\nEx: suppose we always want to see species names, not codes\nCREATE VIEW Nest_view AS\n    SELECT Book_page, Year, Site, Nest_ID, Scientific_name, Observer\n    FROM Bird_nests JOIN Species\n    ON Species = Code;\nLooks just like Bird_nests but with code replaced by scientific name:\nSELECT * FROM Nest_view LIMIT 1;\n┌───────────┬───────┬─────────┬─────────┬─────────────────────────┬──────────┐\n│ Book_page │ Year  │  Site   │ Nest_ID │     Scientific_name     │ Observer │\n│  varchar  │ int32 │ varchar │ varchar │         varchar         │ varchar  │\n├───────────┼───────┼─────────┼─────────┼─────────────────────────┼──────────┤\n│ b14.6     │  2014 │ chur    │ 14HPE1  │ Charadrius semipalmatus │ vloverti │\n└───────────┴───────┴─────────┴─────────┴─────────────────────────┴──────────┘\nNow use as usual:\nSELECT Nest_ID, ANY_VALUE(Scientific_name), COUNT(*) AS Num_eggs\n    FROM Nest_view JOIN Bird_eggs\n    USING (Nest_ID)\n    GROUP BY Nest_ID;\n\n\nTemp tables\n\nTemp table is like a variable in a programming language: you compute and store the value. It is static, you need manually to recompute it if the data changes\nAs name suggests, a temp table is automatically deleted when database connection is closed\n\n\n\nWITH clause\nAnother option is to use aWITH clause, which creates a view for just that statement\nEx: take previous table, use it input to another query:\nWITH x AS (\n  SELECT Nest_ID, ANY_VALUE(Scientific_name) AS Scientific_name,\n    COUNT(*) AS Num_eggs\n    FROM Nest_view JOIN Bird_eggs\n    USING (Nest_ID)\n    GROUP BY Nest_ID\n  )\nSELECT Scientific_name, AVG(Num_eggs) AS Avg_num_eggs FROM x\nGROUP BY Scientific_name;\n┌─────────────────────────┬────────────────────┐\n│     Scientific_name     │    Avg_num_eggs    │\n│         varchar         │       double       │\n├─────────────────────────┼────────────────────┤\n│ Pluvialis dominica      │ 3.3333333333333335 │\n│ Pluvialis squatarola    │                4.0 │\n│ Phalaropus fulicarius   │                4.0 │\n│ Calidris fuscicollis    │ 3.6153846153846154 │\n│ Arenaria interpres      │ 3.8333333333333335 │\n│ Charadrius semipalmatus │  3.757142857142857 │\n│ Calidris alpina         │ 3.6666666666666665 │\n└─────────────────────────┴────────────────────┘\n\n\n\nSET OPERATIONS\n\nUNION, INTERSECT, EXCEPT\nlast one is set difference\nthese are set operations, so UNION eliminates duplicates\nto preserve duplicate rows, UNION ALL\n\n\nUNION\nExample of UNION: let’s create a table of all bird nests and egg counts, including nests that have no egg data recorded. In the quiz last week, we did this by using an outer join:\nSELECT Nest_ID, COUNT(Egg_num) as Num_eggs\n  FROM Bird_nests LEFT JOIN Bird_eggs\n  USING (Nest_ID)\n  GROUP BY Nest_ID;\nUsing UNION:\nSELECT Nest_ID, COUNT(*) AS Num_eggs\n  FROM Bird_eggs\n  GROUP BY Nest_ID\n\nUNION\n\nSELECT Nest_ID, 0 AS Num_eggs\n  FROM Bird_nests\n  WHERE Nest_ID NOT IN (SELECT DISTINCT Nest_ID FROM Bird_eggs);\n\nCaution: UNION not really looking at names of columns, just number of columns and data types\nSo is possible to union nonsensical things together (think rbind in the R world)\n\n\n\nEXCEPT\nExample of EXCEPT: 3rd way to get species that do not have nest data\n\nFirst way - WHERE clause:\n\nSELECT Code FROM Species\n  WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);\n\nSecond way - Outer JOIN:\n\nSELECT Species, Code\n  FROM Bird_nests RIGHT JOIN Species\n  ON Species = Code\n  WHERE Species IS NULL;\n\nThird way - EXCEPT\n\nSELECT Code FROM Species\n  EXCEPT\n  SELECT DISTINCT Species FROM Bird_nests;\n\n\n\nDATA MANAGEMENT STATEMENTS\n\nThere’s way more than just SELECT in SQL, see https://www.sqlite.org/lang.html fro more\nAlready seen CREATE, INSERT\nCan modify tables, schemas using ALTER\nDROP is counterpart to CREATE\n\nUPDATE table SET ... WHERE ...\nDELETE FROM table WHERE ...\n\n\n\n\n\n\nWarning\n\n\n\n\nCaution!!!: these operate on whole tables if unqualified\n\n\n\nLet’s have a look aht the first 10 rows of the Bird_nesets table:\nSELECT * FROM Bird_nests LIMIT 10;\nGood news, we found new data about the floatAge for the Nest 14HPE1. Let’s update the table:\nUPDATE Bird_nests\n  SET floatAge = 4.5, ageMethod = 'float'\n  WHERE Nest_ID = '14HPE1';\n\nDELETE is similar\nOops, what happens when accidentally do?:\n\nUPDATE Bird_nests SET floatAge = 4.5, ageMethod = ‘float’;\n\nThere’s no UNDO in databases\nIn this class we can recover using git:\n\nD .exit\ngit restore database.duckdb\nduckdb database.duckdb\nBut in general, won’t be a possibility, databases not typically under git control, usually stored on a server somewhere.\n\nStrategies to avoid catastrophes\n\nJust subconsciouly be careful, like holding a kitchen knife\nDo SELECT first, then replace SELECT with DELETE &lt;- allows inspection of what’s about to be deleted\nPut comment in front: – DELETE FROM …, then remove comment\nTweak table name, put x in front, then remove\nCreate a temporary table (with the relevant subset when large table)\n\n\n\n\nResources\nMonday\n\nlecture-notes-05-mon.txt\nin-class-script-05-mon.sql"
+  },
+  {
+    "objectID": "modules/week05/index-05.html#wednesday",
+    "href": "modules/week05/index-05.html#wednesday",
+    "title": "Week 5 - I/O, data management & more",
+    "section": "Wednesday",
+    "text": "Wednesday\n\nBash programming:\n\nBash essentials\nCLI pitch aka why should I care?!: https://eds-214.github.io/eds214-handson-cli/cli-pitch.html\nCLI practice: https://eds-214.github.io/eds214-handson-cli/cli-handson-files.html\nCLI advanced topics: https://eds-214.github.io/EDS-214-analytical-workflows/day2-cli_advanced.html\nbash manual: https://www.gnu.org/software/bash/manual/\nvim editor cheat sheet: https://brunj7.github.io/EDS-214-analytical-workflows/vim.html\n\n\nOur bash script count_lines.sh counting the number of line in csv files within a folder:\n#!/bin/bash\n# Usage: sh count_lines.sh /path/to/\n\ncsv_dir=$1\n\nfor file in $csv_dir/*.csv; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone"
+  },
+  {
+    "objectID": "modules/week05/index-05.html#data",
+    "href": "modules/week05/index-05.html#data",
+    "title": "Week 5 - I/O, data management & more",
+    "section": "Data:",
+    "text": "Data:\n\nClass data GitHub repository"
+  },
+  {
+    "objectID": "modules/week05/index-05.html#how-to-sync-your-fork",
+    "href": "modules/week05/index-05.html#how-to-sync-your-fork",
+    "title": "Week 5 - I/O, data management & more",
+    "section": "How to sync your fork",
+    "text": "How to sync your fork\n\nHow-to sync your fork"
+  },
+  {
+    "objectID": "modules/week05/index-05.html#readings",
+    "href": "modules/week05/index-05.html#readings",
+    "title": "Week 5 - I/O, data management & more",
+    "section": "Readings",
+    "text": "Readings\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "",
+    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "",
+    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+  },
+  {
+    "objectID": "index.html#instructors",
+    "href": "index.html#instructors",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Instructors",
+    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nAnnie Adams (aradams@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)\n\nBest way to contact us: email or course slack channel for general questions"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Schedule",
+    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 AM (BH 1424)\nLab: Wednesday 1 - 2:20 pm\nOffice hours:\n\nJulien & Greg: Wed after class in Pine 3526 (Oak 1520 on 5/11 only)\nAnnie: Thursday 11 am - 12 pm in BH 3418"
+  },
+  {
+    "objectID": "index.html#course-content",
+    "href": "index.html#course-content",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Course content",
+    "text": "Course content\nSyllabus\nInstalling DuckDB\nResources\nClass data GitHub repository"
+  },
+  {
+    "objectID": "index.html#modules",
+    "href": "index.html#modules",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Modules",
+    "text": "Modules\n\n\n\nWeek\nLecture\nLab\n\n\n\n\n1\nRelational databases and data modeling\nFinding your relational dataset\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\nDesign the schema of your database\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\nClean and ingest\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\nData exploration and analysis using SQL\n\n\n5\nI/O & data management + bash programming\nVisualize your data\n\n\n6\nUsing R & Python to query databases\nFinalize and document\n\n\n7\nDuckDB and Parquet files + Documenting your work: metadata\nDatabase showcases\n\n\n8\nDatabases advanced topics + Sensitive Data - Part 1\n-\n\n\n9\nSensitive data - Part 2\nSensitive data lab\n\n\n10\nData licensing and publication\n-"
+  },
+  {
+    "objectID": "index.html#data",
+    "href": "index.html#data",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Data",
+    "text": "Data\nFor the database portion of the course, the Arctic Shorebird Demographics Network https://doi.org/10.18739/A2222R68W dataset, obtained from the Arctic Data Center (https://arcticdata.io), was used as a running example. While this dataset is not distributed as a relational database (it is packaged as a set of related CSV files), its structure is highly amenable to a relational approach and provides a realistic example of where and why one would want to use a relational database in the Earth and environmental sciences. It also provides just enough complexity to support realistic and complex queries and views. Note that the dataset used in the course, and included in this archive, is a cleaned-up subset of the full dataset. It is necessarily a subset of the full dataset to keep the size and complexity manageable for pedagogical purposes, and it had to be cleaned up because, unfortunately, the full dataset has many errors that would have precluded creating foreign keys.\nA class data GitHub repository, linked below, is used to distribute data files to students. Each week a new directory of files will be added to the repository and the students will be asked to pull the repository to their local environment to get the updates."
+  },
+  {
+    "objectID": "index.html#database",
+    "href": "index.html#database",
+    "title": "EDS 213: Databases and Data Management",
+    "section": "Database",
+    "text": "Database\nDuckDB https://duckdb.org/ is used as the database platform due to its analytical focu, growing set of extensions such as spatial analysis, and its strict implementation of data types."
   },
   {
     "objectID": "modules/week05/bash-essentials.html",
@@ -826,179 +952,109 @@
     "text": "Test your understanding\nBe sure to cd to the class data GitHub repository, for_bash_essentials subdirectory, before answering these!!\n\nCompare the output of these three commands:\nls\nls .\nls \"$(pwd)/../for_bash_essentials\"\nExplain why you see what you see, and explain what processing Bash is doing in the third command.\nTry the following two commands:\nwc -l *.csv\ncat *.csv | wc -l\nThe first prints filenames and line counts. The second prints a bare number. Why does it print that number, and why does it not print any filenames?\nYou want to count the total number of lines in all CSV files and try this command:\ncat *.csv | wc -l a.csv\nWhat happens and why?\nYou’re given\nname=Moe\nand you’d like to print “Moe_Howard”. You try this:\necho \"$name_Howard\"\nbut that doesn’t quite work. What fix can you apply to $name, while keeping it inside the quotation marks, to make this command give the desired effect? (Refer back to section 3.)\nYou create a script and run it like so:\nbash myscript.sh *.csv\nWhat are the values of variables $1 and $#? Explain why the script does not see just one argument passed to it.\nYou create a script and run it like so:\nbash myscript.sh \"$(date)\" $(date)\nIn your script, what are the values of variables $1 and $3?\nCreate a file you don’t care about (because you’re about to destroy it):\necho \"yo ho a line of text\" &gt; junk_file.txt\necho \"another line\" &gt;&gt; junk_file.txt\nYou want to sort the lines in this file, so you try:\nsort junk_file.txt\nWell that prints the lines in sorted order, but it doesn’t actually change the file. You recall section 7 and try:\nsort junk_file.txt &gt; junk_file.txt\nWhat happens and why? How can you sort the lines in your file? (Hint: it involves creating a second file and using mv.)\nYou want to delete all files ending in .csv, so you type (don’t actually try this):\nrm * .csv\nbut as can be seen, your thumb accidentally hit the space bar and you got an extra space in there. What will rm do in this case?"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "EDS 213: Databases and Data Management",
+    "objectID": "modules/week05/hw-05-1.html",
+    "href": "modules/week05/hw-05-1.html",
+    "title": "Week 5 - Egg variance",
     "section": "",
-    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/32934/assignments/473365\nLiu et al found an interesting result, that characteristics of the eggs of certain Arctic shorebird species exhibit linear variation as a function of longitude (that’s longitude, not latitude) 1:\nWhy might that be? The authors surmise,\nOur ASDN database has data for the first of their study species, the Dunlin (Calidris alpina). While the ASDN project studied eggs in a different hemisphere (northern Canada as opposed to Eurasia), nevertheless we can ask ourselves, does our data exhibit the same trends?\nFor this problem, you will be:\nTo do so you will need to load a larger set of nest and egg data from CSV files into new tables, and use some statistics functions provided by DuckDB to do the regression."
   },
   {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "EDS 213: Databases and Data Management",
+    "objectID": "modules/week05/hw-05-1.html#part-1-50pts",
+    "href": "modules/week05/hw-05-1.html#part-1-50pts",
+    "title": "Week 5 - Egg variance",
+    "section": "Part 1 (50pts)",
+    "text": "Part 1 (50pts)\nPlease submit your SQL for the above."
+  },
+  {
+    "objectID": "modules/week05/hw-05-1.html#part-2-10pts",
+    "href": "modules/week05/hw-05-1.html#part-2-10pts",
+    "title": "Week 5 - Egg variance",
+    "section": "Part 2 (10pts)",
+    "text": "Part 2 (10pts)\nAnswer the following questions.\n\nDo the tables created automatically by DuckDB guarantee that a nest ID mentioned in the Eggs_big table actually exists in the Nests_big table? If yes, explain how that is guaranteed, if not, explain why not. (6pts)\nWhat queries did you use (or could you use) to find the minimum and maximum longitude values in the Site table? (2pts)\nThe interpretation of the Pearson correlation coefficient is: +1 is a perfect positive correlation, -1 is a perfect negative correlation, and 0 is no correlation at all. How would you characterize the correlation between egg volume and longitude for the eggs of Calidris alpina in the Arctic above Canada? (2pts)"
+  },
+  {
+    "objectID": "modules/week05/hw-05-1.html#footnotes",
+    "href": "modules/week05/hw-05-1.html#footnotes",
+    "title": "Week 5 - Egg variance",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nLiu J, Chai Z, Wang H, Ivanov A, Kubelka V, Freckleton R, Zhang Z, Székely T. “Egg characteristics vary longitudinally in Arctic shorebirds.” iScience 26(6):106928 (2023 May 19). https://doi.org/10.1016/j.isci.2023.106928↩︎"
+  },
+  {
+    "objectID": "modules/week05/hw-05-3.html",
+    "href": "modules/week05/hw-05-3.html",
+    "title": "Week 5 - Create a test harness",
     "section": "",
-    "text": "The goals of the course were to give MEDS students the skills they need to practically, successfully, and ethically manage their data, and to create, manage, and use relational databases where appropriate. Relational database topics went farther than just SQL queries and included a significant unit on data modeling and database constraints and integrity, in addition to advanced database topics such as indexes and accessing databases from programming environments. The data management portion includes analyzing data from an ethical perspective, creating standards-compliant metadata, and employing data de-identification techniques. The course also included a unit on the Unix command line, with an emphasis on creating reusable Bash scripts, given in the spirit that Bash is a generally useful tool that all data scientists should have at least some familiarity with."
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/32934/assignments/473367\n\nPart 1\nA common task is to create a script — a “test harness” — that will allow you to test something (some code, an algorithm, a model, etc.) by running it repeatedly, perhaps under varying conditions. Example applications include machine learning using different hyperparameters and Monte Carlo simulation using different random seeds. In this assignment you will create a Bash script that will allow you to time how long it takes to run an SQL query.\nYour script will be invoked like so:\n% bash query_timer.sh label num_reps query db_file csv_file\n\n  Arguments:\n      label:    explanatory label that will be output\n      num_reps: number of repetitions\n      query:    SQL query to run\n      db_file:  database file\n      csv_file: CSV file to create or append to\nFor example, you might run:\n% bash query_timer.sh with_index_a 1000 'SELECT COUNT(*) FROM Bird_nests' \\\n     database.duckdb timings.csv\nIn this example your script would run the given query (i.e., SELECT COUNT(*) FROM Bird_nests) on the given database (database.duckdb) 1000 times. If the total time that took was 3 seconds, your script will divide that time by the number of repetitions (1000) and compute that each DuckDB invocation took 0.003 seconds. Finally, your script will append the following record to the CSV file timings.csv:\nwith_index_a,0.003\nConceptually, your script will look something like this (this is pseudocode):\nget current time and store it\nloop num_reps times\n    duckdb db_file query\nend loop\nget current time\ncompute elapsed time\ndivide elapsed time by num_reps\nwrite output\nI would like you to follow the above pseudocode because this exercise is fundamentally about using certain Bash features.\n(BTW, is this a fair way to time queries? Yes and no. Clearly it’s a bit unfair that we are counting the overhead of repeatedly firing up DuckDB and opening the database file. And there may be other processing going on on the machine that affects the wall-clock time that we’re measuring here. On the other hand, databases are almost always I/O-bound and not compute-bound, that is, their performance is primarily limited by the time it takes to read data into memory from disk, and because of that, wall-clock time can be a better measure than CPU time.)\nWe’re doing this in Bash, so every one of these steps is a challenge (it is okay to hate Bash). So here are a lot of tips and hints:\n\nGetting the current time: try date +%s or use the magic SECONDS variable (do a man bash to read about it).\nLooping: see below.\nIn executing DuckDB, be sure to appropriately quote the query.\nComputing elapsed time: use Bash arithmetic.\nDivision. Bash does not support floating point numbers, so you’ll have to use a helper program. Take yer pick depending on what’s available to you. Let’s say you want to divide 10 by 3 (you will want to reference variables in your computation, but here we’re just illustrating dividing two literal numbers). You might say something like:\n\nelapsed=$(echo \"scale=7; 10/3\" | bc)\nelapsed=$(echo \"10/3\" | awk -F / '{print $1/$2}')\nelapsed=$(python -c \"print(10/3)\")\nelapsed=$(perl -l -e \"print 10/3\")\n\nOutput: be sure to use the appropriate I/O redirection.\n\nTwo approaches to looping. If you want to do something 10 times, you can use a while loop that increments a counter:\ni=0\nwhile [ $i -lt 10 ]; do\n    echo \"this is loop iteration $i\"\n    i=$((i+1))\ndone\nOr, you can use seq. Generally you can use a for loop to loop through a list of items like so:\nfor i in 0 1 2 3 4 5 6 7 8 9; do\n    echo \"this is loop iteration $i\"\ndone\nBut you can use seq to generate a list of numbers of a desired length:\nfor i in $(seq 10); do\n    echo \"this is loop iteration $i\"\ndone\nAnd some more advice. The reason for making the number of repetitions an argument to this script, as opposed to a fixed constant, is that you may have to adjust the number of repetitions depending how fast the query is. The date command and SECONDS variable have a resolution of only 1 second, so if running the query 10 times still fits in under 1 second your elapsed time will show up as 0. You may need to run a query 100 or 1000 times or more to get positive elapsed times, and to get more precision.\nAlso, we don’t actually care about the output from the query here. I would keep the output while you’re debugging your script (so that you can verify that DuckDB is being run repeatedly), but once you feel your script is working you can redirect DuckDB’s output and error streams to /dev/null.\nFinally, it is highly recommended that you upload your script to https://www.shellcheck.net. You’re not required to follow its advice, but I have found its advice to be enlightening.\nPlease submit your Bash script.\n\n\nPart 2\nIn class we looked at three ways to find out which species we do not have nest data for. Method using NOT IN:\nSELECT Code\n    FROM Species\n    WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);\nMethod using an outer join:\nSELECT Code\n    FROM Bird_nests RIGHT JOIN Species\n    ON Species = Code\n    WHERE Nest_ID IS NULL;\nMethod using a set operation:\nSELECT Code FROM Species\nEXCEPT\nSELECT DISTINCT Species FROM Bird_nests;\nUse your test harness to time these three queries. Use descriptive labels to record which query is being run, e.g., subquery, outer_join, and except. Submit your CSV file. Report back how many repetitions you had to use to get good timings, and which method is fastest.\nCredit: 50 points"
   },
   {
-    "objectID": "index.html#instructors",
-    "href": "index.html#instructors",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Instructors",
-    "text": "Instructors\n\nJulien Brun (jb160@ucsb.edu)\nGreg Janée (gjanee@ucsb.edu)\nAnnie Adams (aradams@ucsb.edu)\nRenata Curty (rcurty@ucsb.edu)\n\nBest way to contact us: email or course slack channel for general questions"
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Schedule",
-    "text": "Schedule\n\nClass: Monday & Wednesday 9:30-10:45 AM (BH 1424)\nLab: Wednesday 1 - 2:20 pm\nOffice hours:\n\nJulien & Greg: Wed after class in Pine 3526 (Oak 1520 on 5/11 only)\nAnnie: Thursday 11 am - 12 pm in BH 3418"
-  },
-  {
-    "objectID": "index.html#course-content",
-    "href": "index.html#course-content",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Course content",
-    "text": "Course content\nSyllabus\nInstalling DuckDB\nResources\nClass data GitHub repository"
-  },
-  {
-    "objectID": "index.html#modules",
-    "href": "index.html#modules",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Modules",
-    "text": "Modules\n\n\n\nWeek\nLecture\nLab\n\n\n\n\n1\nRelational databases and data modeling\nFinding your relational dataset\n\n\n2\nAnalyzing & cleaning the bird dataset (from csv)\nDesign the schema of your database\n\n\n3\nIntroduction to SQL (part 1) & DuckDB\nClean and ingest\n\n\n4\nSQL part 2 + Analyzing the bird database using SQL\nData exploration and analysis using SQL\n\n\n5\nI/O & data management + bash programming\nVisualize your data\n\n\n6\nUsing R & Python to query databases\nFinalize and document\n\n\n7\nDuckDB and Parquet files + Documenting your work: metadata\nDatabase showcases\n\n\n8\nDatabases advanced topics + Sensitive Data - Part 1\n-\n\n\n9\nSensitive data - Part 2\nSensitive data lab\n\n\n10\nData licensing and publication\n-"
-  },
-  {
-    "objectID": "index.html#data",
-    "href": "index.html#data",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Data",
-    "text": "Data\nFor the database portion of the course, the Arctic Shorebird Demographics Network https://doi.org/10.18739/A2222R68W dataset, obtained from the Arctic Data Center (https://arcticdata.io), was used as a running example. While this dataset is not distributed as a relational database (it is packaged as a set of related CSV files), its structure is highly amenable to a relational approach and provides a realistic example of where and why one would want to use a relational database in the Earth and environmental sciences. It also provides just enough complexity to support realistic and complex queries and views. Note that the dataset used in the course, and included in this archive, is a cleaned-up subset of the full dataset. It is necessarily a subset of the full dataset to keep the size and complexity manageable for pedagogical purposes, and it had to be cleaned up because, unfortunately, the full dataset has many errors that would have precluded creating foreign keys.\nA class data GitHub repository, linked below, is used to distribute data files to students. Each week a new directory of files will be added to the repository and the students will be asked to pull the repository to their local environment to get the updates."
-  },
-  {
-    "objectID": "index.html#database",
-    "href": "index.html#database",
-    "title": "EDS 213: Databases and Data Management",
-    "section": "Database",
-    "text": "Database\nDuckDB https://duckdb.org/ is used as the database platform due to its analytical focu, growing set of extensions such as spatial analysis, and its strict implementation of data types."
-  },
-  {
-    "objectID": "modules/week05/index-05.html",
-    "href": "modules/week05/index-05.html",
-    "title": "Week 5 - I/O, data management & more",
+    "objectID": "modules/week05/hw-05-2.html",
+    "href": "modules/week05/hw-05-2.html",
+    "title": "Week 5 - Bash essentials",
     "section": "",
-    "text": "Data management SQL statements"
+    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/32934/assignments/473366\nRead Ten Bash Essentials and answer the 8 questions at the end. Be sure you are in the for_bash_essentials subdirectory of the class data GitHub repository before answering the questions, as they rely on the files contained therein.\nCredit: 20 points"
   },
   {
-    "objectID": "modules/week05/index-05.html#learning-objectives",
-    "href": "modules/week05/index-05.html#learning-objectives",
-    "title": "Week 5 - I/O, data management & more",
+    "objectID": "modules/week09/hw-09.html",
+    "href": "modules/week09/hw-09.html",
+    "title": "Week 9 - How FAIR is your data set?",
     "section": "",
-    "text": "Data management SQL statements"
+    "text": "Using the FAIR Assessment tool, evaluate the FAIRness of the two following data sets:\n\nEphemeral wetland macroinvertebrate communities of the Great Plains\nInsect functional traits on arable land, Finland 2020\nWhich one would you prefer to reuse?\n\n\nNotes:\n\nPlease add narrative justification to explain your choices done using the FAIR assessment tool\nThere are several data sets in the first data deposit, assess all the files at once using the worst case/file for your evaluation, but discuss variability in your justification\n\nSubmit your answers (2 assessments with the justifications & answer to the preference/third question) via Canvas\nTotal points: 100"
   },
   {
-    "objectID": "modules/week05/index-05.html#monday",
-    "href": "modules/week05/index-05.html#monday",
-    "title": "Week 5 - I/O, data management & more",
-    "section": "Monday",
-    "text": "Monday\n\nRECAP: VIEW & TEMP TABLE\n\nViews\n\na view looks like a table\nstored in the database\nexecuted each time it is referenced\nhandy way to make SQL more palatable\nergo, a view similar to a function in a programming language\n\nNote: a view can also be used to subset attributes from a table that might store sensitive data, think SSN, that you do not want to expose to certain users, like a web application.\nEx: suppose we always want to see species names, not codes\nCREATE VIEW Nest_view AS\n    SELECT Book_page, Year, Site, Nest_ID, Scientific_name, Observer\n    FROM Bird_nests JOIN Species\n    ON Species = Code;\nLooks just like Bird_nests but with code replaced by scientific name:\nSELECT * FROM Nest_view LIMIT 1;\n┌───────────┬───────┬─────────┬─────────┬─────────────────────────┬──────────┐\n│ Book_page │ Year  │  Site   │ Nest_ID │     Scientific_name     │ Observer │\n│  varchar  │ int32 │ varchar │ varchar │         varchar         │ varchar  │\n├───────────┼───────┼─────────┼─────────┼─────────────────────────┼──────────┤\n│ b14.6     │  2014 │ chur    │ 14HPE1  │ Charadrius semipalmatus │ vloverti │\n└───────────┴───────┴─────────┴─────────┴─────────────────────────┴──────────┘\nNow use as usual:\nSELECT Nest_ID, ANY_VALUE(Scientific_name), COUNT(*) AS Num_eggs\n    FROM Nest_view JOIN Bird_eggs\n    USING (Nest_ID)\n    GROUP BY Nest_ID;\n\n\nTemp tables\n\nTemp table is like a variable in a programming language: you compute and store the value. It is static, you need manually to recompute it if the data changes\nAs name suggests, a temp table is automatically deleted when database connection is closed\n\n\n\nWITH clause\nAnother option is to use aWITH clause, which creates a view for just that statement\nEx: take previous table, use it input to another query:\nWITH x AS (\n  SELECT Nest_ID, ANY_VALUE(Scientific_name) AS Scientific_name,\n    COUNT(*) AS Num_eggs\n    FROM Nest_view JOIN Bird_eggs\n    USING (Nest_ID)\n    GROUP BY Nest_ID\n  )\nSELECT Scientific_name, AVG(Num_eggs) AS Avg_num_eggs FROM x\nGROUP BY Scientific_name;\n┌─────────────────────────┬────────────────────┐\n│     Scientific_name     │    Avg_num_eggs    │\n│         varchar         │       double       │\n├─────────────────────────┼────────────────────┤\n│ Pluvialis dominica      │ 3.3333333333333335 │\n│ Pluvialis squatarola    │                4.0 │\n│ Phalaropus fulicarius   │                4.0 │\n│ Calidris fuscicollis    │ 3.6153846153846154 │\n│ Arenaria interpres      │ 3.8333333333333335 │\n│ Charadrius semipalmatus │  3.757142857142857 │\n│ Calidris alpina         │ 3.6666666666666665 │\n└─────────────────────────┴────────────────────┘\n\n\n\nSET OPERATIONS\n\nUNION, INTERSECT, EXCEPT\nlast one is set difference\nthese are set operations, so UNION eliminates duplicates\nto preserve duplicate rows, UNION ALL\n\n\nUNION\nExample of UNION: let’s create a table of all bird nests and egg counts, including nests that have no egg data recorded. In the quiz last week, we did this by using an outer join:\nSELECT Nest_ID, COUNT(Egg_num) as Num_eggs\n  FROM Bird_nests LEFT JOIN Bird_eggs\n  USING (Nest_ID)\n  GROUP BY Nest_ID;\nUsing UNION:\nSELECT Nest_ID, COUNT(*) AS Num_eggs\n  FROM Bird_eggs\n  GROUP BY Nest_ID\n\nUNION\n\nSELECT Nest_ID, 0 AS Num_eggs\n  FROM Bird_nests\n  WHERE Nest_ID NOT IN (SELECT DISTINCT Nest_ID FROM Bird_eggs);\n\nCaution: UNION not really looking at names of columns, just number of columns and data types\nSo is possible to union nonsensical things together (think rbind in the R world)\n\n\n\nEXCEPT\nExample of EXCEPT: 3rd way to get species that do not have nest data\n\nFirst way - WHERE clause:\n\nSELECT Code FROM Species\n  WHERE Code NOT IN (SELECT DISTINCT Species FROM Bird_nests);\n\nSecond way - Outer JOIN:\n\nSELECT Species, Code\n  FROM Bird_nests RIGHT JOIN Species\n  ON Species = Code\n  WHERE Species IS NULL;\n\nThird way - EXCEPT\n\nSELECT Code FROM Species\n  EXCEPT\n  SELECT DISTINCT Species FROM Bird_nests;\n\n\n\nDATA MANAGEMENT STATEMENTS\n\nThere’s way more than just SELECT in SQL, see https://www.sqlite.org/lang.html fro more\nAlready seen CREATE, INSERT\nCan modify tables, schemas using ALTER\nDROP is counterpart to CREATE\n\nUPDATE table SET ... WHERE ...\nDELETE FROM table WHERE ...\n\n\n\n\n\n\nWarning\n\n\n\n\nCaution!!!: these operate on whole tables if unqualified\n\n\n\nLet’s have a look aht the first 10 rows of the Bird_nesets table:\nSELECT * FROM Bird_nests LIMIT 10;\nGood news, we found new data about the floatAge for the Nest 14HPE1. Let’s update the table:\nUPDATE Bird_nests\n  SET floatAge = 4.5, ageMethod = 'float'\n  WHERE Nest_ID = '14HPE1';\n\nDELETE is similar\nOops, what happens when accidentally do?:\n\nUPDATE Bird_nests SET floatAge = 4.5, ageMethod = ‘float’;\n\nThere’s no UNDO in databases\nIn this class we can recover using git:\n\nD .exit\ngit restore database.duckdb\nduckdb database.duckdb\nBut in general, won’t be a possibility, databases not typically under git control, usually stored on a server somewhere.\n\nStrategies to avoid catastrophes\n\nJust subconsciouly be careful, like holding a kitchen knife\nDo SELECT first, then replace SELECT with DELETE &lt;- allows inspection of what’s about to be deleted\nPut comment in front: – DELETE FROM …, then remove comment\nTweak table name, put x in front, then remove\nCreate a temporary table (with the relevant subset when large table)\n\n\n\n\nResources\nMonday\n\nlecture-notes-05-mon.txt\nin-class-script-05-mon.sql"
-  },
-  {
-    "objectID": "modules/week05/index-05.html#wednesday",
-    "href": "modules/week05/index-05.html#wednesday",
-    "title": "Week 5 - I/O, data management & more",
-    "section": "Wednesday",
-    "text": "Wednesday\n\nBash programming:\n\nBash essentials\nCLI pitch aka why should I care?!: https://eds-214.github.io/eds214-handson-cli/cli-pitch.html\nCLI practice: https://eds-214.github.io/eds214-handson-cli/cli-handson-files.html\nCLI advanced topics: https://eds-214.github.io/EDS-214-analytical-workflows/day2-cli_advanced.html\nbash manual: https://www.gnu.org/software/bash/manual/\nvim editor cheat sheet: https://brunj7.github.io/EDS-214-analytical-workflows/vim.html\n\n\nOur bash script count_lines.sh counting the number of line in csv files within a folder:\n#!/bin/bash\n# Usage: sh count_lines.sh /path/to/\n\ncsv_dir=$1\n\nfor file in $csv_dir/*.csv; do\n    echo \"$file has $(wc -l &lt; $file) lines\"\ndone"
-  },
-  {
-    "objectID": "modules/week05/index-05.html#data",
-    "href": "modules/week05/index-05.html#data",
-    "title": "Week 5 - I/O, data management & more",
-    "section": "Data:",
-    "text": "Data:\n\nClass data GitHub repository"
-  },
-  {
-    "objectID": "modules/week05/index-05.html#how-to-sync-your-fork",
-    "href": "modules/week05/index-05.html#how-to-sync-your-fork",
-    "title": "Week 5 - I/O, data management & more",
-    "section": "How to sync your fork",
-    "text": "How to sync your fork\n\nHow-to sync your fork"
-  },
-  {
-    "objectID": "modules/week05/index-05.html#readings",
-    "href": "modules/week05/index-05.html#readings",
-    "title": "Week 5 - I/O, data management & more",
-    "section": "Readings",
-    "text": "Readings\n\nJeffrey D. Ullman and Jennifer Widom (2008). A First Course in Database Systems. 3rd ed. Upper Saddle River, NJ: Pearson/Prentice Hall.\nAccess via Library Catalog\n\nComplete but theoretical introduction to relational databases, data modeling, and relational algebra."
-  },
-  {
-    "objectID": "modules/week05/hw-05-1-old.html",
-    "href": "modules/week05/hw-05-1-old.html",
-    "title": "Week 5 - Protect yourself",
+    "objectID": "modules/week09/whale-sdcmicro.html",
+    "href": "modules/week09/whale-sdcmicro.html",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
     "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/26293/assignments/360504\nSome strategies were mentioned in class for reducing the possibility of performing UPDATEs and DELETEs that have catastrophic consequences. What strategy will you use?\nCredit: 5 points"
+    "text": "This dataset (whale-entanglement.csv) contains documented whale entanglement incidents on the U.S. West Coast. Each row is one event, with variables for whale species, location, gear type, and fishery involved. (Adapted for instructional use only.)\nGoals:\n\nAssess re-identification risk in the raw data\nApply Statistical Disclosure Control (SDC) to reduce that risk\nQuantify the resulting information loss"
   },
   {
-    "objectID": "modules/week05/hw-05-2-old.html",
-    "href": "modules/week05/hw-05-2-old.html",
-    "title": "Week 5 - Create a trigger",
-    "section": "",
-    "text": "Please use Canvas to return the assignments: https://ucsb.instructure.com/courses/26293/assignments/360505\nFor this assignment and this assignment only, you must use SQLite and database.sqlite in the class data GitHub repository!\n(The SQLite command is sqlite3. It’s already installed on the Bren servers. Installing it on your local machine, if you like, is similar to installing DuckDB.)\nThe Bird_eggs table uniquely identifies each egg by a pair (Nest_ID, Egg_num). The egg numbers for a given nest always have the sequential values 1, 2, 3, 4, etc. For example, there are 3 eggs in nest 14eabaage01:\nSELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';\n┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐\n│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │\n├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 1       │ 39.14  │ 33.0  │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 2       │ 41.51  │ 33.39 │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 3       │ 48.29  │ 33.4  │\n└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘\n\nPart 1\nWhen inserting a new egg measurement, wouldn’t it be nice if the database just automatically filled in the next sequential egg number for us? Indeed, we can accomplish this with an AFTER INSERT trigger that does an UPDATE.\nThe schema for the database has been modified for this exercise so that Egg_num can be NULL and furthermore has a default value of NULL. This means we can insert a row without supplying an egg number. For example, we might say:\nINSERT INTO Bird_eggs\n    (Book_page, Year, Site, Nest_ID, Length, Width)\n    VALUES ('b14.6', 2014, 'eaba', '14eabaage01', 12.34, 56.78);\nIf this were the first egg measurement for this particular nest, immediately after the insert we would see:\n.nullvalue -NULL-\nSELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';\n┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐\n│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │\n├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ -NULL-  │ 12.34  │ 56.78 │\n└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘\nIf there were already some egg measurements for this nest (as in fact there are), immediately after the insert we would see:\n.nullvalue -NULL-\nSELECT * FROM Bird_eggs WHERE Nest_ID = '14eabaage01';\n┌───────────┬──────┬──────┬─────────────┬─────────┬────────┬───────┐\n│ Book_page │ Year │ Site │   Nest_ID   │ Egg_num │ Length │ Width │\n├───────────┼──────┼──────┼─────────────┼─────────┼────────┼───────┤\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 1       │ 39.14  │ 33.0  │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 2       │ 41.51  │ 33.39 │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ 3       │ 48.29  │ 33.4  │\n│ b14.6     │ 2014 │ eaba │ 14eabaage01 │ -NULL-  │ 12.34  │ 56.78 │\n└───────────┴──────┴──────┴─────────────┴─────────┴────────┴───────┘\nYour job is to create a trigger that will fire an UPDATE statement that will fill in a value for Egg_num in either situation above.\nYour trigger will have the form\nCREATE TRIGGER egg_filler\n    AFTER INSERT ON Bird_eggs\n    FOR EACH ROW\n    BEGIN\n        UPDATE ...;\n    END;\nA word of warning. Notice the two semicolons above: the UPDATE statement must be terminated by a semicolon, and the CREATE TRIGGER statement must be terminated by a semicolon.\nThe crux is in the UPDATE statement. Recall from class that in your UPDATE statement you can refer to the values just inserted as new.Book_page, new.Year, new.Site, new.Nest_ID, etc. For example, using the INSERT above, new.Nest_ID will have the value ‘14eabaage01’ and new.Length will have the value 12.34. You need to figure out:\n\nWhat column(s) to update. Well that’s easy, it’s just Egg_num.\nWhat Egg_num’s new value should be. Hint: the value can be computed from a SELECT statement. What SELECT statement could you use that will return the right value to use as the next sequential egg number?\nWhat row(s) to modify. Well, you want to modify just one row, the row that was just inserted. What WHERE clause could you use to identify this brand-new row? It has a unique signature.\n\nYou can try out your trigger by creating it, doing an INSERT, and then seeing what the rows for that particular nest look like. If your trigger doesn’t work for some reason, you may need to DROP TRIGGER egg_filler; before creating it again. As before, you will probably find it convenient to write your trigger code in a separate file, and load it into SQLite using the .read built-in command.\nPlease submit your SQL.\n\n\nPart 2\nWhy stop there? Recall that Book_page, Year, and Site all duplicate the information from the Bird_nests table. Wouldn’t it be nice if the database automatically filled in those values as well? Then we could just say:\nINSERT INTO Bird_eggs\n    (Nest_ID, Length, Width)\n    VALUES ('14eabaage01', 12.34, 56.78);\nThis can be accomplished by augmenting your previous trigger. Two options. One, you can add more UPDATE statements:\nCREATE TRIGGER egg_filler\n    AFTER INSERT ON Bird_eggs\n    FOR EACH ROW\n    BEGIN\n        UPDATE Bird_eggs SET Egg_num = (SELECT...) WHERE...;\n        UPDATE Bird_eggs SET Book_page = (SELECT...) WHERE...;\n        UPDATE Bird_eggs SET Year = (SELECT...) WHERE...;\n        etc.\n    END;\nOr two, you can add more clauses to a single UPDATE statement:\nCREATE TRIGGER egg_filler\n    AFTER INSERT ON Bird_eggs\n    FOR EACH ROW\n    BEGIN\n        UPDATE Bird_eggs\n            SET\n                Egg_num = (SELECT...),\n                Book_page = (SELECT...),\n                Year = (SELECT...),\n                etc.\n            WHERE ...;\n    END;\n(Honestly, this is not the most compact or efficient SQL, but sometimes it’s better sticking with a simple and understandable approach.)\nYou need to figure out what SELECT statements to use to find the values to insert. That is, given that you can reference new.Nest_ID, new.Length, and new.Width, what SELECT statements could you use to find the correct values for Book_page, Year, and Nest_ID?\nTry out your trigger, marvel at what you have automated, and submit your SQL.\n\n\nPart 3\nOkay, there isn’t a part 3. But wouldn’t it be nice to be able to insert egg measurements even more compactly? That is, instead of having to say:\nINSERT INTO Bird_eggs\n    (Nest_ID, Length, Width)\n    VALUES ('14eabaage01', 12.34, 56.78);\nwhat if you could just say:\nINSERT INTO Bird_eggs\n    VALUES ('14eabaage01', 12.34, 56.78);\nWell you can do that! It involves creating a view and adding an INSTEAD OF INSERT trigger on the view. If there’s time I’ll show an example in class.\nCredit: 65 points"
+    "objectID": "modules/week09/whale-sdcmicro.html#inspect-data",
+    "href": "modules/week09/whale-sdcmicro.html#inspect-data",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "Inspect Data",
+    "text": "Inspect Data\nEach row is one entanglement event."
   },
   {
-    "objectID": "modules/week09/FAIR_assessment_tool.html",
-    "href": "modules/week09/FAIR_assessment_tool.html",
-    "title": "FAIR assessment tool",
-    "section": "",
-    "text": "Please justify your answer using 1-2 sentences"
+    "objectID": "modules/week09/whale-sdcmicro.html#direct-identifiers",
+    "href": "modules/week09/whale-sdcmicro.html#direct-identifiers",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "Direct Identifiers",
+    "text": "Direct Identifiers\n\nDirect identifiers uniquely identify a record on their own.\n\nQ1 — How many direct identifiers are present, and what are they?\n\nAnswer: Your answer here.\n\n\n\nVariable\nWhy it directly identifies\n\n\n\n\n___\n___\n\n\n___\n___\n\n\n___\n___\n\n\n\nThese must be excluded from any analytical release."
   },
   {
-    "objectID": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
-    "href": "modules/week09/FAIR_assessment_tool.html#acknowledgements",
-    "title": "FAIR assessment tool",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis exercise has been adapted from the UK Data Service https://ukdataservice.ac.uk/app/uploads/exercise_fairdata.pdf and is licensed under a Creative Commons Attribution CC-BY 4.0 International License."
+    "objectID": "modules/week09/whale-sdcmicro.html#quasi-identifiers",
+    "href": "modules/week09/whale-sdcmicro.html#quasi-identifiers",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "Quasi-Identifiers",
+    "text": "Quasi-Identifiers\n\nQuasi-identifiers (QIDs) don’t identify records alone, but can be combined with each other — or with external data — to re-identify individuals.\n\nQ2 — Which variables are quasi-identifiers?\n\nAnswer: Your answer here. List the variables and explain why each is a QID."
   },
   {
-    "objectID": "modules/week09/index-09.html",
-    "href": "modules/week09/index-09.html",
-    "title": "Week 9 - Sensitive data",
-    "section": "",
-    "text": "Distinguish between direct and indirect identifiers and explain their role in privacy risk (cont’d)\nUnderstand the applications of k-anonymity and l-diversity for protecting sensitive data\nApply remediation techniques using programmatic approaches"
+    "objectID": "modules/week09/whale-sdcmicro.html#create-the-sdc-object",
+    "href": "modules/week09/whale-sdcmicro.html#create-the-sdc-object",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "4.1 Create the SDC Object",
+    "text": "4.1 Create the SDC Object\n\nQ4.1 — What is the re-identification risk for this dataset?\n\nWe create an sdcMicroObj that encodes our design decisions: which variables are QIDs, which direct identifiers to exclude, and any weights or strata.\n\n💡 Tip — createSdcObj(): The key arguments are:\n\ndat — your data frame (use the original whale, not file)\nkeyVars — character vector of quasi-identifier column names\nexcludeVars — character vector of direct identifier column names to drop\n\nAll other arguments (weightVar, hhId, etc.) can be NULL for this exercise.\n\n\n# TODO: Create the sdcMicro object. Choose your QIDs and direct identifiers.\nsdcInitial &lt;- createSdcObj(\n  dat         = ___,                        # &lt;-- which data frame?\n  keyVars     = c(___),                     # &lt;-- your QIDs\n  excludeVars = c(___),                     # &lt;-- direct identifiers to exclude\n  weightVar   = NULL,\n  hhId        = NULL,\n  strataVar   = NULL,\n  pramVars    = NULL,\n  seed        = 0,\n  randomizeRecords = FALSE,\n  alpha       = c(1)\n)\n\nThen, compute the current disclosure risk:\n\n💡 Tip: The global re-identification risk is stored in sdcInitial@risk$global$risk. Values closer to 1 mean higher risk.\n\n\n# TODO: Print the global re-identification risk\nprint(___)"
   },
   {
-    "objectID": "modules/week09/index-09.html#learning-goals",
-    "href": "modules/week09/index-09.html#learning-goals",
-    "title": "Week 9 - Sensitive data",
-    "section": "",
-    "text": "Distinguish between direct and indirect identifiers and explain their role in privacy risk (cont’d)\nUnderstand the applications of k-anonymity and l-diversity for protecting sensitive data\nApply remediation techniques using programmatic approaches"
+    "objectID": "modules/week09/whale-sdcmicro.html#assess-k-anonymity-violations",
+    "href": "modules/week09/whale-sdcmicro.html#assess-k-anonymity-violations",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "4.2 Assess k-Anonymity Violations",
+    "text": "4.2 Assess k-Anonymity Violations\n\nQ4.2 — To what extent does this dataset violate k-anonymity?\n\nA dataset satisfies k-anonymity if every QID combination appears in at least k records. Records in smaller groups are “at risk.”\n\n💡 Tip — print() on an sdcMicroObj: Calling print(sdcInitial) produces a full risk report, including the number of records violating 2-, 3-, and 5-anonymity. Look for the “Frequency of key” and “Number of observations violating k-anonymity” sections.\n\n\n# TODO: Print the full risk report for sdcInitial\n___\n\nOur target: achieve at least 3-anonymity (k = 3).\nQ4.2 answer — What share of records currently violate 3-anonymity? Your answer here."
   },
   {
-    "objectID": "modules/week09/index-09.html#slides",
-    "href": "modules/week09/index-09.html#slides",
-    "title": "Week 9 - Sensitive data",
-    "section": "Slides",
-    "text": "Slides\n\nslides-09.pptx"
+    "objectID": "modules/week09/whale-sdcmicro.html#non-perturbative-method-testing-recode-origin",
+    "href": "modules/week09/whale-sdcmicro.html#non-perturbative-method-testing-recode-origin",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "5.1 Non-Perturbative Method Testing — Recode origin",
+    "text": "5.1 Non-Perturbative Method Testing — Recode origin\n\nQ5.1 — Apply one non-perturbative method. How effective was it?\nReminder:\n\nNon-perturbative methods generalize or suppress values without adding noise.\nPerturbative methods (e.g., PRAM, microaggregation) alter values by adding controlled noise.\n\n\nWe can recode origin by merging minority categories into a single broader category. This reduces the distinctiveness of those records.\n\n💡 Tip — groupAndRename(): Collapses one or more levels of a factor QID into a new label. Arguments:\n\nobj — your sdcMicroObj\nvar — the variable name (as a string)\nbefore — character vector of original levels to merge\nafter — character vector with the new label (single value repeated for all merged levels)\n\nAlways check table(sdcInitial@manipKeyVars$origin) before and after to confirm the recode worked.\n\n\n# Before: check current distribution\ncat(\"Distribution of 'origin' before recoding:\\n\")\nprint(table(sdcInitial@manipKeyVars$origin))\n\n# TODO: Recode origin — merge \"recreational\" and \"tribal\" into \"non-commercial\"\nsdcInitial &lt;- groupAndRename(\n  obj    = sdcInitial,\n  var    = \"___\",          # &lt;-- variable name\n  before = c(___, ___),    # &lt;-- levels to merge\n  after  = c(\"___\")        # &lt;-- new label\n)\n\n# After: check new distribution\ncat(\"\\nDistribution of 'origin' after recoding:\\n\")\nprint(table(sdcInitial@manipKeyVars$origin))\n\n# Recompute risk\ncat(\"\\nRisk summary after recoding 'origin':\\n\")\nprint(sdcInitial)\n\nQ5.1 answer — Did the recoding reduce k-anonymity violations? Why or why not?\n\nYour answer here."
   },
   {
-    "objectID": "modules/week09/index-09.html#lab",
-    "href": "modules/week09/index-09.html#lab",
-    "title": "Week 9 - Sensitive data",
-    "section": "Lab",
-    "text": "Lab\n\nexercise-kanonymity-2026.Rmd\nwhale-entanglement.csv"
-  },
-  {
-    "objectID": "modules/week09/index-09.html#resources",
-    "href": "modules/week09/index-09.html#resources",
-    "title": "Week 9 - Sensitive data",
-    "section": "Resources",
-    "text": "Resources\n\nsdcMicro Documentation: https://sdcpractice.readthedocs.io/en/latest/intro.html\nsdcMicro Shiny app: https://sdcappdocs.readthedocs.io/en/latest/introsdcApp.html\n\nOther useful links can be found on the slides."
-  },
-  {
-    "objectID": "modules/week09/index-09.html#suggested-readings",
-    "href": "modules/week09/index-09.html#suggested-readings",
-    "title": "Week 9 - Sensitive data",
-    "section": "Suggested readings",
-    "text": "Suggested readings\n\nBledsoe, E. K., Burant, J. B., Higino, G. T., Roche, D. G., Binning, S. A., Finlay, K., … & Srivastava, D. S. (2022). Data rescue: saving environmental data from extinction. Proceedings of the Royal Society B, 289(1979), https://doi.org/10.1098/rspb.2022.0938\nBourgault, B., Tremblay, H.; Schloss, I.R.; Plante, S. & Archambault, P. (2017). “Commercially Sensitive” Environmental Data: A Case Study of Oil Seep Claims for the Old Harry Prospect in the Gulf of St. Lawrence, Canada. Case Studies in the Environment. https://doi.org/10.1525/cse.2017.sc.454841\nGehrke, J., Kifer, D., Machanavajjhala, A. (2011). ℓ-Diversity. In: van Tilborg, H.C.A., Jajodia, S. (eds) Encyclopedia of Cryptography and Security. Springer, Boston, MA. https://doi.org/10.1007/978-1-4419-5906-5_899\nSamarati, P., & Sweeney, L. (1998). Protecting privacy when disclosing information: k-anonymity and its enforcement through generalization and suppression. https://dataprivacylab.org/dataprivacy/projects/kanonymity/paper3.pdf"
+    "objectID": "modules/week09/whale-sdcmicro.html#automated-k-anonymization-kanon",
+    "href": "modules/week09/whale-sdcmicro.html#automated-k-anonymization-kanon",
+    "title": "K-Anonymity with sdcMicro: Whale Entanglement Data",
+    "section": "5.2 Automated k-Anonymization — kAnon()",
+    "text": "5.2 Automated k-Anonymization — kAnon()\n\nQ5.2 — Apply k = 3 anonymization.\n\nkAnon() uses local suppression: it sets the minimum number of QID values to NA until every combination appears at least k times, minimizing total information loss.\n\n💡 Tip — kAnon(): Takes your sdcMicroObj and k (an integer vector, e.g., c(3)). It returns a new sdcMicroObj with suppressed values applied. After running it, call print() again to see the updated violation counts — they should drop to zero for your chosen k.\n\n\n# TODO: Apply k = 3 anonymization and store the result in sdcAnon\nsdcAnon &lt;- kAnon(___, k = c(___))\n\ncat(\"Risk summary after k = 3 anonymization:\\n\")\nprint(sdcAnon)\n\nQ5.2 answer — How many records still violate 3-anonymity after running kAnon()? Your answer here."
   },
   {
     "objectID": "modules/labs/week4.html",

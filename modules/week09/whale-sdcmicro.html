@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 8.2 - How walkable is my favorite location in the US? – eds213</title>
+<title>K-Anonymity with sdcMicro: Whale Entanglement Data – eds213</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -319,14 +319,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#choosing-you-location" id="toc-choosing-you-location" class="nav-link active" data-scroll-target="#choosing-you-location">Choosing you location</a></li>
-  <li><a href="#data-import-15pts" id="toc-data-import-15pts" class="nav-link" data-scroll-target="#data-import-15pts">Data import (15pts)</a></li>
-  <li><a href="#join-tables-10pts" id="toc-join-tables-10pts" class="nav-link" data-scroll-target="#join-tables-10pts">Join Tables (10pts)</a></li>
-  <li><a href="#walkability-index-at-your-location-15pts" id="toc-walkability-index-at-your-location-15pts" class="nav-link" data-scroll-target="#walkability-index-at-your-location-15pts">Walkability index at your location (15pts)</a></li>
-  <li><a href="#average-walkability-index-at-your-census-tract-10pts" id="toc-average-walkability-index-at-your-census-tract-10pts" class="nav-link" data-scroll-target="#average-walkability-index-at-your-census-tract-10pts">Average Walkability index at your Census Tract (10pts)</a></li>
-  <li><a href="#average-walkability-index-at-your-county-level-10pts" id="toc-average-walkability-index-at-your-county-level-10pts" class="nav-link" data-scroll-target="#average-walkability-index-at-your-county-level-10pts">Average Walkability index at your County Level (10pts)</a></li>
-  <li><a href="#discuss-your-results-5pts" id="toc-discuss-your-results-5pts" class="nav-link" data-scroll-target="#discuss-your-results-5pts">Discuss your results (5pts)</a></li>
-  <li><a href="#export-your-results-20pts" id="toc-export-your-results-20pts" class="nav-link" data-scroll-target="#export-your-results-20pts">Export your results (20pts)</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#step-1-load-package-data" id="toc-step-1-load-package-data" class="nav-link" data-scroll-target="#step-1-load-package-data">Step 1: Load Package &amp; Data</a>
+  <ul class="collapse">
+  <li><a href="#inspect-data" id="toc-inspect-data" class="nav-link" data-scroll-target="#inspect-data">Inspect Data</a></li>
+  </ul></li>
+  <li><a href="#step-2-identify-disclosure-risks" id="toc-step-2-identify-disclosure-risks" class="nav-link" data-scroll-target="#step-2-identify-disclosure-risks">Step 2: Identify Disclosure Risks</a>
+  <ul class="collapse">
+  <li><a href="#direct-identifiers" id="toc-direct-identifiers" class="nav-link" data-scroll-target="#direct-identifiers">Direct Identifiers</a></li>
+  <li><a href="#quasi-identifiers" id="toc-quasi-identifiers" class="nav-link" data-scroll-target="#quasi-identifiers">Quasi-Identifiers</a></li>
+  </ul></li>
+  <li><a href="#step-3-prepare-variable-types" id="toc-step-3-prepare-variable-types" class="nav-link" data-scroll-target="#step-3-prepare-variable-types">Step 3: Prepare Variable Types</a></li>
+  <li><a href="#step-4-measure-initial-risk" id="toc-step-4-measure-initial-risk" class="nav-link" data-scroll-target="#step-4-measure-initial-risk">Step 4: Measure Initial Risk</a>
+  <ul class="collapse">
+  <li><a href="#create-the-sdc-object" id="toc-create-the-sdc-object" class="nav-link" data-scroll-target="#create-the-sdc-object">4.1 Create the SDC Object</a></li>
+  <li><a href="#assess-k-anonymity-violations" id="toc-assess-k-anonymity-violations" class="nav-link" data-scroll-target="#assess-k-anonymity-violations">4.2 Assess k-Anonymity Violations</a></li>
+  </ul></li>
+  <li><a href="#step-5-apply-anonymization" id="toc-step-5-apply-anonymization" class="nav-link" data-scroll-target="#step-5-apply-anonymization">Step 5: Apply Anonymization</a>
+  <ul class="collapse">
+  <li><a href="#non-perturbative-method-testing-recode-origin" id="toc-non-perturbative-method-testing-recode-origin" class="nav-link" data-scroll-target="#non-perturbative-method-testing-recode-origin">5.1 Non-Perturbative Method Testing — Recode <code>origin</code></a></li>
+  <li><a href="#automated-k-anonymization-kanon" id="toc-automated-k-anonymization-kanon" class="nav-link" data-scroll-target="#automated-k-anonymization-kanon">5.2 Automated k-Anonymization — <code>kAnon()</code></a></li>
+  </ul></li>
+  <li><a href="#step-6-measure-information-loss" id="toc-step-6-measure-information-loss" class="nav-link" data-scroll-target="#step-6-measure-information-loss">Step 6: Measure Information Loss</a></li>
+  <li><a href="#step-7-export-the-anonymized-dataset" id="toc-step-7-export-the-anonymized-dataset" class="nav-link" data-scroll-target="#step-7-export-the-anonymized-dataset">Step 7: Export the Anonymized Dataset</a></li>
   </ul>
 </nav>
     </div>
@@ -335,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 8.2 - How walkable is my favorite location in the US?</h1>
+<h1 class="title">K-Anonymity with sdcMicro: Whale Entanglement Data</h1>
 </div>
 
 
@@ -352,122 +367,274 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><br> <strong>Upload you SQL script named <code>mywalkability_yourfullname.sql</code> with your answer to the questions to Canvas: <a href="https://ucsb.instructure.com/courses/32934/assignments/477543" class="uri">https://ucsb.instructure.com/courses/32934/assignments/477543</a></strong> <br></p>
-<p>In this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:</p>
-<ul>
-<li>Initialize a new DuckDB database.</li>
-<li>Import State and County names from the <code>fips_state_county.csv</code>, saving it as a table named <code>Fips</code>.</li>
-<li>Load the Walkability Index data for your selected state from <code>walkability_wgs84.parquet</code> into a table named <code>Walkability_mystate</code> (for example, <code>Walkability_ca</code> for California).</li>
-<li>Identify the specific Walkability Index value for your location’s US Census Group Block.</li>
-<li>Conduct a comparison between this value and the average scores for its respective Census Tract and County.</li>
-<li>Export the resulting table to a csv file format.</li>
-</ul>
-<p>To do so, we will need to use two extensions from DuckDB <code>spatial</code> and <code>httpfs</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL spatial;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>LOAD spatial;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- INSTALL httpfs;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>LOAD httpfs;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="choosing-you-location" class="level2">
-<h2 class="anchored" data-anchor-id="choosing-you-location">Choosing you location</h2>
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>This dataset (<code>whale-entanglement.csv</code>) contains documented whale entanglement incidents on the U.S. West Coast. Each row is one event, with variables for whale species, location, gear type, and fishery involved. <em>(Adapted for instructional use only.)</em></p>
+<p><strong>Goals:</strong></p>
 <ol type="1">
-<li>Select a US-based location to research, such as your hometown or a favorite destination.</li>
-<li>Determine the latitude and longitude coordinates for your chosen site using Google Maps or a similar tool.</li>
-<li>Include these geographic details (name, lat, long, …) as a comment within your SQL script.</li>
+<li>Assess re-identification risk in the raw data</li>
+<li>Apply Statistical Disclosure Control (SDC) to reduce that risk</li>
+<li>Quantify the resulting information loss</li>
 </ol>
+<hr>
 </section>
-<section id="data-import-15pts" class="level2">
-<h2 class="anchored" data-anchor-id="data-import-15pts">Data import (15pts)</h2>
-<p>There are two files we need to import:</p>
+<section id="step-1-load-package-data" class="level1">
+<h1>Step 1: Load Package &amp; Data</h1>
+<section id="inspect-data" class="level2">
+<h2 class="anchored" data-anchor-id="inspect-data">Inspect Data</h2>
+<p>Each row is one entanglement event.</p>
+<hr>
+</section>
+</section>
+<section id="step-2-identify-disclosure-risks" class="level1">
+<h1>Step 2: Identify Disclosure Risks</h1>
+<section id="direct-identifiers" class="level2">
+<h2 class="anchored" data-anchor-id="direct-identifiers">Direct Identifiers</h2>
+<blockquote class="blockquote">
+<p><strong>Direct identifiers</strong> uniquely identify a record on their own.</p>
+</blockquote>
+<p><strong>Q1 — How many direct identifiers are present, and what are they?</strong></p>
+<!-- TODO: Fill in your answer below. Look at the column names — which variables would uniquely identify a specific event or operator on their own? -->
+<p><strong>Answer:</strong> <em>Your answer here.</em></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Why it directly identifies</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>___</code></td>
+<td>___</td>
+</tr>
+<tr class="even">
+<td><code>___</code></td>
+<td>___</td>
+</tr>
+<tr class="odd">
+<td><code>___</code></td>
+<td>___</td>
+</tr>
+</tbody>
+</table>
+<p>These must be <strong>excluded</strong> from any analytical release.</p>
+</section>
+<section id="quasi-identifiers" class="level2">
+<h2 class="anchored" data-anchor-id="quasi-identifiers">Quasi-Identifiers</h2>
+<blockquote class="blockquote">
+<p><strong>Quasi-identifiers (QIDs)</strong> don’t identify records alone, but can be <em>combined</em> with each other — or with external data — to re-identify individuals.</p>
+</blockquote>
+<p><strong>Q2 — Which variables are quasi-identifiers?</strong></p>
+<!-- TODO: Which columns, when combined, could allow an adversary to re-identify a vessel or operator? Think about what's publicly searchable (e.g., state fisheries databases). -->
+<p><strong>Answer:</strong> <em>Your answer here. List the variables and explain why each is a QID.</em></p>
+<hr>
+</section>
+</section>
+<section id="step-3-prepare-variable-types" class="level1">
+<h1>Step 3: Prepare Variable Types</h1>
+<blockquote class="blockquote">
+<p><strong>Q3 — What types do the variables need to be?</strong></p>
+</blockquote>
+<p><code>sdcMicro</code> requires categorical QIDs to be <code>factor</code> type and continuous variables to be <code>numeric</code>. Misspecified types produce incorrect risk estimates.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip — <code>varToFactor()</code> and <code>varToNumeric()</code>:</strong> These <code>sdcMicro</code> helper functions convert columns in a data frame to <code>factor</code> or <code>numeric</code>. Both take <code>obj</code> (the data frame) and <code>var</code> (a character vector of column names). Work on a <strong>copy</strong> of your data frame so the original stays intact for later comparison.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Work on a copy so the raw 'whale' object stays intact for comparison</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> whale</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Convert categorical variables to factor using varToFactor()</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: include type, county, state, condition, origin, gear, fine, infraction_type</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">varToFactor</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">obj =</span> file,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> <span class="fu">c</span>(___)   <span class="co"># &lt;-- fill in the variable names</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Convert continuous variables to numeric using varToNumeric()</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: year and month should be numeric</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">varToNumeric</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">obj =</span> file,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">var =</span> <span class="fu">c</span>(___)   <span class="co"># &lt;-- fill in the variable names</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="step-4-measure-initial-risk" class="level1">
+<h1>Step 4: Measure Initial Risk</h1>
+<section id="create-the-sdc-object" class="level2">
+<h2 class="anchored" data-anchor-id="create-the-sdc-object">4.1 Create the SDC Object</h2>
+<blockquote class="blockquote">
+<p><strong>Q4.1 — What is the re-identification risk for this dataset?</strong></p>
+</blockquote>
+<p>We create an <code>sdcMicroObj</code> that encodes our design decisions: which variables are QIDs, which direct identifiers to exclude, and any weights or strata.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip — <code>createSdcObj()</code>:</strong> The key arguments are:</p>
 <ul>
-<li>Create at table named <code>Fips</code> from the State and County Name: <code>fips_state_county.csv</code> (5pts)</li>
-<li>Create a table named <code>Walkability_mystate</code> (e.g.&nbsp;<code>Walkability_ca</code> for California) from the Walkability national database in WGS84 projection: <code>walkability_wgs84.parquet</code> by selecting the following columns: <code>GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84</code> and adding a WHERE close for your state (10pts)</li>
+<li><code>dat</code> — your data frame (use the <strong>original</strong> <code>whale</code>, not <code>file</code>)</li>
+<li><code>keyVars</code> — character vector of quasi-identifier column names</li>
+<li><code>excludeVars</code> — character vector of direct identifier column names to drop</li>
 </ul>
-<p>Good news, those files are ready on Workbench! You can import them using the following URL + the filename you want to import: <code>https://apps.bren.ucsb.edu/eds213-data/walkability/</code></p>
-<p><strong>Hint</strong>: Look at the DuckDB documentation (<a href="https://duckdb.org/docs/current/data/overview" class="uri">https://duckdb.org/docs/current/data/overview</a>) for <code>read_csv</code> and <code>read_parquet</code>.</p>
-<p>Your schema should look like this:</p>
-<pre class="output"><code>───────────────────────── main ────────────────────────── 
-┌──────────────────────────────────┐┌─────────────────────┐
-│          Walkability_ca          ││        Fips         │
-│                                  ││                     │
-│ GEOID10    varchar               ││ STATEFP     varchar │
-│ STATEFP    varchar               ││ State_name  varchar │
-│ COUNTYFP   varchar               ││ COUNTYFP    varchar │
-│ TRACTCE    varchar               ││ County_name varchar │
-│ BLKGRPCE   varchar               ││                     │
-│ CBSA       varchar               ││      3154 rows      │
-│ CBSA_Name  varchar               │└─────────────────────┘
-│ TotPop     integer               │
-│ NatWalkInd double                │
-│ geom_wgs84 geometry('ogc:crs84') │
-│                                  │
-│            23212 rows            │
-└──────────────────────────────────┘</code></pre>
+<p>All other arguments (<code>weightVar</code>, <code>hhId</code>, etc.) can be <code>NULL</code> for this exercise.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Create the sdcMicro object. Choose your QIDs and direct identifiers.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sdcInitial <span class="ot">&lt;-</span> <span class="fu">createSdcObj</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dat         =</span> ___,                        <span class="co"># &lt;-- which data frame?</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyVars     =</span> <span class="fu">c</span>(___),                     <span class="co"># &lt;-- your QIDs</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">excludeVars =</span> <span class="fu">c</span>(___),                     <span class="co"># &lt;-- direct identifiers to exclude</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">weightVar   =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">hhId        =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">strataVar   =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pramVars    =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed        =</span> <span class="dv">0</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">randomizeRecords =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">alpha       =</span> <span class="fu">c</span>(<span class="dv">1</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Then, compute the current disclosure risk:</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip:</strong> The global re-identification risk is stored in <code>sdcInitial@risk$global$risk</code>. Values closer to 1 mean higher risk.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Print the global re-identification risk</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(___)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="join-tables-10pts" class="level2">
-<h2 class="anchored" data-anchor-id="join-tables-10pts">Join Tables (10pts)</h2>
-<p>Join the two tables and store the results in a VIEW named <code>Walkind_mystate</code></p>
-<p>Our schema should like something like this:</p>
-<pre class="output"><code> ──────────────────────────────────────────── main ──────────────────────────────────────────── 
-┌──────────────────────────────────┐┌───────────────────────────────────┐┌─────────────────────┐
-│          Walkability_ca          ││            Walkind_ca             ││        Fips         │
-│                                  ││                                   ││                     │
-│ GEOID10    varchar               ││ GEOID10     varchar               ││ STATEFP     varchar │
-│ STATEFP    varchar               ││ STATEFP     varchar               ││ State_name  varchar │
-│ COUNTYFP   varchar               ││ COUNTYFP    varchar               ││ COUNTYFP    varchar │
-│ TRACTCE    varchar               ││ TRACTCE     varchar               ││ County_name varchar │
-│ BLKGRPCE   varchar               ││ BLKGRPCE    varchar               ││                     │
-│ CBSA       varchar               ││ CBSA        varchar               ││      3154 rows      │
-│ CBSA_Name  varchar               ││ CBSA_Name   varchar               │└─────────────────────┘
-│ TotPop     integer               ││ TotPop      integer               │
-│ NatWalkInd double                ││ NatWalkInd  double                │
-│ geom_wgs84 geometry('ogc:crs84') ││ geom_wgs84  geometry('ogc:crs84') │
-│                                  ││ State_name  varchar               │
-│            23212 rows            ││ County_name varchar               │
-└──────────────────────────────────┘└───────────────────────────────────┘</code></pre>
+<section id="assess-k-anonymity-violations" class="level2">
+<h2 class="anchored" data-anchor-id="assess-k-anonymity-violations">4.2 Assess k-Anonymity Violations</h2>
+<blockquote class="blockquote">
+<p><strong>Q4.2 — To what extent does this dataset violate k-anonymity?</strong></p>
+</blockquote>
+<p>A dataset satisfies <strong>k-anonymity</strong> if every QID combination appears in <em>at least k</em> records. Records in smaller groups are “at risk.”</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip — <code>print()</code> on an <code>sdcMicroObj</code>:</strong> Calling <code>print(sdcInitial)</code> produces a full risk report, including the number of records violating 2-, 3-, and 5-anonymity. Look for the <strong>“Frequency of key”</strong> and <strong>“Number of observations violating k-anonymity”</strong> sections.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Print the full risk report for sdcInitial</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>___</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Our target:</strong> achieve at least <strong>3-anonymity</strong> (k = 3).</p>
+<p><strong>Q4.2 answer — What share of records currently violate 3-anonymity?</strong> <em>Your answer here.</em></p>
+<hr>
 </section>
-<section id="walkability-index-at-your-location-15pts" class="level2">
-<h2 class="anchored" data-anchor-id="walkability-index-at-your-location-15pts">Walkability index at your location (15pts)</h2>
-<p>You are now ready to execute your initial spatial query! Your objective is to identify the US Census Group Block containing your chosen point of interest, following the methodology we practiced in class.</p>
-<p>Determine the walkability index for your location. In your script, include a comment that evaluates this value against the walkability index scale and note whether the findings align with your expectations.</p>
-<p><strong>Hint</strong>: Keep in mind that the latitude and longitude sequence in Google Maps may differ from that required by the <code>ST_Point</code> function.</p>
 </section>
-<section id="average-walkability-index-at-your-census-tract-10pts" class="level2">
-<h2 class="anchored" data-anchor-id="average-walkability-index-at-your-census-tract-10pts">Average Walkability index at your Census Tract (10pts)</h2>
-<p>Now, compute the average Walkability index at the Census tract level and the number of Group Block within this Tract, getting your Tract ID from the previous query.</p>
-<p><strong>Hint</strong>: A Tract ID is only unique within one specific County and the County FIPS is only unique within a specific State!!</p>
-<p>Your results should look like this:</p>
-<pre class="output"><code>┌─────────┬─────────────┬───────────────────┐
-│ TRACTCE │ Block_count │ Walkind_tract_avg │
-│ varchar │    int64    │      double       │
-├─────────┼─────────────┼───────────────────┤
-│ 000400  │           5 │              11.7 │
-└─────────┴─────────────┴───────────────────┘</code></pre>
-</section>
-<section id="average-walkability-index-at-your-county-level-10pts" class="level2">
-<h2 class="anchored" data-anchor-id="average-walkability-index-at-your-county-level-10pts">Average Walkability index at your County Level (10pts)</h2>
-<p>Now, compute the average Walkability index at the County level and the total number of Group Blocks in that County. Get the necessary information from previous queries.</p>
-<pre class="output"><code>┌──────────┬───────────────┬─────────────┬────────────────────┐
-│ COUNTYFP │  County_name  │ Block_count │ Walkind_county_avg │
-│ varchar  │    varchar    │    int64    │       double       │
-├──────────┼───────────────┼─────────────┼────────────────────┤
-│ 083      │ SANTA BARBARA │         313 │ 10.495740149094784 │
-└──────────┴───────────────┴─────────────┴────────────────────┘</code></pre>
-</section>
-<section id="discuss-your-results-5pts" class="level2">
-<h2 class="anchored" data-anchor-id="discuss-your-results-5pts">Discuss your results (5pts)</h2>
-<p>Add a comment in your SQL script to discuss how your favorite location’s walkability index compares to its surrounding. From your knowledge about the area, does that make sense?</p>
-</section>
-<section id="export-your-results-20pts" class="level2">
-<h2 class="anchored" data-anchor-id="export-your-results-20pts">Export your results (20pts)</h2>
-<p>It is time to export your results! We want a table with (15pts):</p>
+<section id="step-5-apply-anonymization" class="level1">
+<h1>Step 5: Apply Anonymization</h1>
+<section id="non-perturbative-method-testing-recode-origin" class="level2">
+<h2 class="anchored" data-anchor-id="non-perturbative-method-testing-recode-origin">5.1 Non-Perturbative Method Testing — Recode <code>origin</code></h2>
+<blockquote class="blockquote">
+<p><strong>Q5.1 — Apply one non-perturbative method. How effective was it?</strong></p>
+<p>Reminder:</p>
 <ul>
-<li>Only Observations for the Tract of your location of interest</li>
-<li>Add the average Tract walkability as a column (same value repeating)</li>
-<li>Add the average County walkability as a column (same value repeating)</li>
+<li><strong>Non-perturbative methods</strong> generalize or suppress values without adding noise.</li>
+<li><strong>Perturbative methods</strong> (e.g., PRAM, microaggregation) alter values by adding controlled noise.</li>
 </ul>
-<p>Save it as a csv file. Inspect this csv file, was the geometry column saved? Wouls another file format allowed us to keep this information? Comment in your script (5pts).</p>
-<p>No need to submit your csv file</p>
-<p><strong>Credit: 85 points</strong></p>
+</blockquote>
+<p>We can <strong>recode</strong> <code>origin</code> by merging minority categories into a single broader category. This reduces the distinctiveness of those records.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip — <code>groupAndRename()</code>:</strong> Collapses one or more levels of a factor QID into a new label. Arguments:</p>
+<ul>
+<li><code>obj</code> — your <code>sdcMicroObj</code></li>
+<li><code>var</code> — the variable name (as a string)</li>
+<li><code>before</code> — character vector of original levels to merge</li>
+<li><code>after</code> — character vector with the new label (single value repeated for all merged levels)</li>
+</ul>
+<p>Always check <code>table(sdcInitial@manipKeyVars$origin)</code> before and after to confirm the recode worked.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Before: check current distribution</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Distribution of 'origin' before recoding:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">table</span>(sdcInitial<span class="sc">@</span>manipKeyVars<span class="sc">$</span>origin))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Recode origin — merge "recreational" and "tribal" into "non-commercial"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sdcInitial <span class="ot">&lt;-</span> <span class="fu">groupAndRename</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">obj    =</span> sdcInitial,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">var    =</span> <span class="st">"___"</span>,          <span class="co"># &lt;-- variable name</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">before =</span> <span class="fu">c</span>(___, ___),    <span class="co"># &lt;-- levels to merge</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">after  =</span> <span class="fu">c</span>(<span class="st">"___"</span>)        <span class="co"># &lt;-- new label</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># After: check new distribution</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Distribution of 'origin' after recoding:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">table</span>(sdcInitial<span class="sc">@</span>manipKeyVars<span class="sc">$</span>origin))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Recompute risk</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Risk summary after recoding 'origin':</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sdcInitial)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Q5.1 answer — Did the recoding reduce k-anonymity violations? Why or why not?</strong></p>
+<!-- TODO: Reflect on whether this method was effective. What is the bottleneck? -->
+<p><em>Your answer here.</em></p>
+</section>
+<section id="automated-k-anonymization-kanon" class="level2">
+<h2 class="anchored" data-anchor-id="automated-k-anonymization-kanon">5.2 Automated k-Anonymization — <code>kAnon()</code></h2>
+<blockquote class="blockquote">
+<p><strong>Q5.2 — Apply k = 3 anonymization.</strong></p>
+</blockquote>
+<p><code>kAnon()</code> uses <strong>local suppression</strong>: it sets the minimum number of QID values to <code>NA</code> until every combination appears at least <em>k</em> times, minimizing total information loss.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip — <code>kAnon()</code>:</strong> Takes your <code>sdcMicroObj</code> and <code>k</code> (an integer vector, e.g., <code>c(3)</code>). It returns a new <code>sdcMicroObj</code> with suppressed values applied. After running it, call <code>print()</code> again to see the updated violation counts — they should drop to zero for your chosen k.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Apply k = 3 anonymization and store the result in sdcAnon</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sdcAnon <span class="ot">&lt;-</span> <span class="fu">kAnon</span>(___, <span class="at">k =</span> <span class="fu">c</span>(___))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Risk summary after k = 3 anonymization:</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sdcAnon)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Q5.2 answer — How many records still violate 3-anonymity after running <code>kAnon()</code>?</strong> <em>Your answer here.</em></p>
+<hr>
+</section>
+</section>
+<section id="step-6-measure-information-loss" class="level1">
+<h1>Step 6: Measure Information Loss</h1>
+<blockquote class="blockquote">
+<p><strong>Q6 — How much information did we lose?</strong></p>
+</blockquote>
+<p>Anonymization is a trade-off: privacy protection at the cost of analytical utility. Quantifying this trade-off is essential for responsible data sharing.</p>
+<blockquote class="blockquote">
+<p>💡 <strong>Tip — <code>print(sdcAnon, "ls")</code>:</strong> Passing <code>"ls"</code> as a second argument to <code>print()</code> displays the <strong>local suppression summary</strong>: how many values were suppressed in each QID column and as an overall percentage. Higher suppression = more information loss.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Print the information-loss summary</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(___, <span class="st">"ls"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Q6 answer — Which variable had the most suppression, and what does that tell you about the data?</strong> <em>Your answer here.</em></p>
+<hr>
+</section>
+<section id="step-7-export-the-anonymized-dataset" class="level1">
+<h1>Step 7: Export the Anonymized Dataset</h1>
+<p>Before sharing, we must:</p>
+<ol type="1">
+<li><strong>Remove direct identifiers</strong> (already excluded from the SDC object)</li>
+<li><strong>Generate a new random ID</strong> to replace <code>case_id</code> — never reuse the original, as it may link to external records</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Anonymized quasi-identifier columns</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>anon_key_vars <span class="ot">&lt;-</span> sdcAnon<span class="sc">@</span>manipKeyVars</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Non-key, non-excluded variables (passed through unchanged)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>safe_vars <span class="ot">&lt;-</span> whale[, <span class="sc">!</span>(<span class="fu">names</span>(whale) <span class="sc">%in%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">c</span>(<span class="st">"case_id"</span>, <span class="st">"lat"</span>, <span class="st">"long"</span>, <span class="st">"fishery_license"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"state"</span>, <span class="st">"origin"</span>, <span class="st">"county"</span>))]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>anon_data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(anon_key_vars, safe_vars)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate synthetic random IDs</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>anon_data<span class="sc">$</span>anon_id <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"ID_"</span>, <span class="fu">sample</span>(<span class="dv">100000</span><span class="sc">:</span><span class="dv">999999</span>, <span class="fu">nrow</span>(anon_data), <span class="at">replace =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Put the new ID first</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>anon_data <span class="ot">&lt;-</span> anon_data[, <span class="fu">c</span>(<span class="st">"anon_id"</span>, <span class="fu">setdiff</span>(<span class="fu">names</span>(anon_data), <span class="st">"anon_id"</span>))]</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview and save</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(anon_data)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(anon_data, <span class="st">"whale-entanglement-anon.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+<p><strong>Key takeaway:</strong> k-anonymity via local suppression is a principled, auditable approach to protecting microdata. The <code>sdcMicro</code> package makes every suppression traceable, and the information-loss metrics help justify trade-offs to data stakeholders.</p>
 
 
 </section>
