@@ -113,7 +113,8 @@ We could also read the data via a web server!!
 ```sql
 --- Try remote
 -- Let's select the data for Santa Barbara County and subset only a few columns;
-SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 FROM read_parquet('https://apps.bren.ucsb.edu/eds213-data/walkability/walkability_wgs84.parquet')
+SELECT GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 
+FROM read_parquet('https://apps.bren.ucsb.edu/eds213-data/walkability/walkability_wgs84.parquet')
 WHERE STATEFP = '06' AND COUNTYFP = '083';
 ```
 
