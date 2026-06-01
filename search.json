@@ -165,35 +165,28 @@
     "href": "modules/week10/index-10.html",
     "title": "Week 10 - Data licensing and publication",
     "section": "",
-    "text": "Become familiar with data licensing in the academic context.\nDistinguish which research deliverables can or cannot be subject to copyright and explore alternatives to that.\nGain an understanding of the Creative Commons license family and the differences in their applicability.\n\n\n\n\nslides-10-licensing.pptx"
+    "text": "Become familiar with data licensing in the academic context.\nDistinguish which research deliverables can or cannot be subject to copyright and explore alternatives to that.\nGain an understanding of the Creative Commons license family and the differences in their applicability.\nDecide where to preserve and share your data\n\n\n\n\nData Licensing"
   },
   {
     "objectID": "modules/week10/index-10.html#part-i---data-licensing",
     "href": "modules/week10/index-10.html#part-i---data-licensing",
     "title": "Week 10 - Data licensing and publication",
     "section": "",
-    "text": "Become familiar with data licensing in the academic context.\nDistinguish which research deliverables can or cannot be subject to copyright and explore alternatives to that.\nGain an understanding of the Creative Commons license family and the differences in their applicability.\n\n\n\n\nslides-10-licensing.pptx"
+    "text": "Become familiar with data licensing in the academic context.\nDistinguish which research deliverables can or cannot be subject to copyright and explore alternatives to that.\nGain an understanding of the Creative Commons license family and the differences in their applicability.\nDecide where to preserve and share your data\n\n\n\n\nData Licensing"
   },
   {
     "objectID": "modules/week10/index-10.html#part-ii---data-publication",
     "href": "modules/week10/index-10.html#part-ii---data-publication",
     "title": "Week 10 - Data licensing and publication",
     "section": "Part II - Data publication",
-    "text": "Part II - Data publication\n\nLearning goals\n\nUnderstand the importance of publishing research data.\nIdentify and select appropriate approaches to data publication.\nExplain the role of persistent identifiers.\n\n\n\nSlides\nslides-10-part2.pptx"
+    "text": "Part II - Data publication\n\nLearning goals\n\nUnderstand the importance of publishing research data.\nIdentify and select appropriate approaches to data publication.\nExplain the role of persistent identifiers.\n\n\n\nSlides\nData Sharing"
   },
   {
     "objectID": "modules/week10/index-10.html#suggested-readings",
     "href": "modules/week10/index-10.html#suggested-readings",
     "title": "Week 10 - Data licensing and publication",
-    "section": "Suggested readings*",
-    "text": "Suggested readings*\n\nCarroll, M. W. (2015) Sharing Research Data and Intellectual Property Law: A Primer. PLoS Biol 13(8): e1002235. https://doi.org/10.1371/journal.pbio.1002235\nFay, C. (2019). Licensing R. https://thinkr-open.github.io/licensing-r\nReitz, K., & Schlusser, T. (2022). The Hitchhiker’s guide to Python: best practices for development. ” O’Reilly Media, Inc.”. https://docs.python-guide.org/writing/license\n\n*Useful links and other supporting materials are noted in the slides."
-  },
-  {
-    "objectID": "modules/week10/index-10.html#homework",
-    "href": "modules/week10/index-10.html#homework",
-    "title": "Week 10 - Data licensing and publication",
-    "section": "Homework",
-    "text": "Homework\nNo homework this week!"
+    "section": "Suggested readings",
+    "text": "Suggested readings\n\nCarroll, M. W. (2015) Sharing Research Data and Intellectual Property Law: A Primer. PLoS Biol 13(8): e1002235. https://doi.org/10.1371/journal.pbio.1002235\nFay, C. (2019). Licensing R. https://thinkr-open.github.io/licensing-r\nReitz, K., & Schlusser, T. (2022). The Hitchhiker’s guide to Python: best practices for development. ” O’Reilly Media, Inc.”. https://docs.python-guide.org/writing/license\n\nUseful links and other supporting materials are noted in the slides."
   },
   {
     "objectID": "modules/week08/case-a.html",
