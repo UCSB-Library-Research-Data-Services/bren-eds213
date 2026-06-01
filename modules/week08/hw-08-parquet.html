@@ -384,8 +384,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="data-import-15pts">Data import (15pts)</h2>
 <p>There are two files we need to import:</p>
 <ul>
-<li>Create at table named <code>Fips</code> from the State and County Name: <code>fips_state_county.csv</code> (5pts)</li>
-<li>Create a table named <code>Walkability_mystate</code> (e.g.&nbsp;<code>Walkability_ca</code> for California) from the Walkability national database in WGS84 projection: <code>walkability_wgs84.parquet</code> by selecting the following columns: <code>GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84</code> and adding a WHERE close for your state (10pts)</li>
+<li>Create at TABLE named <code>Fips</code> from the State and County Name: <code>fips_state_county.csv</code> (5pts)</li>
+<li>Create a VIEW named <code>Walkability_mystate</code> (e.g.&nbsp;<code>Walkability_ca</code> for California) from the Walkability national database in WGS84 projection: <code>walkability_wgs84.parquet</code> by selecting the following columns: <code>GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84</code> and adding a WHERE close for your state (10pts)</li>
 </ul>
 <p>Good news, those files are ready on Workbench! You can import them using the following URL + the filename you want to import: <code>https://apps.bren.ucsb.edu/eds213-data/walkability/</code></p>
 <p><strong>Hint</strong>: Look at the DuckDB documentation (<a href="https://duckdb.org/docs/current/data/overview" class="uri">https://duckdb.org/docs/current/data/overview</a>) for <code>read_csv</code> and <code>read_parquet</code>.</p>
