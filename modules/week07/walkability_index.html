@@ -427,8 +427,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We could also read the data via a web server!!</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">--- Try remote</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- Let's select the data for Santa Barbara County and subset only a few columns;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 <span class="kw">FROM</span> read_parquet(<span class="st">'https://apps.bren.ucsb.edu/eds213-data/walkability/walkability_wgs84.parquet'</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> STATEFP <span class="op">=</span> <span class="st">'06'</span> <span class="kw">AND</span> COUNTYFP <span class="op">=</span> <span class="st">'083'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84 </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> read_parquet(<span class="st">'https://apps.bren.ucsb.edu/eds213-data/walkability/walkability_wgs84.parquet'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> STATEFP <span class="op">=</span> <span class="st">'06'</span> <span class="kw">AND</span> COUNTYFP <span class="op">=</span> <span class="st">'083'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="dataset-preparation" class="level2">

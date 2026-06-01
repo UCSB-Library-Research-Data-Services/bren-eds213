@@ -360,8 +360,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this assignment, you will investigate the walkability of a chosen location in the United States and compare its score against regional averages. Your final submission will be a DuckDB SQL script uploaded to Canvas that executes the following steps:</p>
 <ul>
 <li>Initialize a new DuckDB database.</li>
-<li>Import State and County names from the <code>fips_state_county.csv</code>, saving it as a table named <code>Fips</code>.</li>
-<li>Load the Walkability Index data for your selected state from <code>walkability_wgs84.parquet</code> into a table named <code>Walkability_mystate</code> (for example, <code>Walkability_ca</code> for California).</li>
+<li>Import State and County names from the <code>fips_state_county.csv</code>, saving it as a table named <code>Fips</code> (see below on how to access the files).</li>
+<li>Load the Walkability Index data for your selected state from <code>walkability_wgs84.parquet</code> into a table named <code>Walkability_mystate</code> (for example, <code>Walkability_ca</code> for California; see below on how to access the files).</li>
 <li>Identify the specific Walkability Index value for your location’s US Census Group Block.</li>
 <li>Conduct a comparison between this value and the average scores for its respective Census Tract and County.</li>
 <li>Export the resulting table to a csv file format.</li>
