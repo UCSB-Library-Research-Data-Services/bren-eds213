@@ -38,8 +38,8 @@ LOAD httpfs;
 
 There are two files we need to import:
 
-- Create at table named `Fips` from the State and County Name: `fips_state_county.csv` (5pts)
-- Create a table named `Walkability_mystate` (e.g. `Walkability_ca` for California) from the Walkability national database in WGS84 projection: `walkability_wgs84.parquet`  by selecting the following columns: `GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84` and adding a WHERE close for your state (10pts)
+- Create at TABLE named `Fips` from the State and County Name: `fips_state_county.csv` (5pts)
+- Create a VIEW named `Walkability_mystate` (e.g. `Walkability_ca` for California) from the Walkability national database in WGS84 projection: `walkability_wgs84.parquet`  by selecting the following columns: `GEOID10, STATEFP, COUNTYFP, TRACTCE, BLKGRPCE, CBSA, CBSA_Name, TotPop, NatWalkInd, geom_wgs84` and adding a WHERE close for your state (10pts)
 
 Good news, those files are ready on Workbench! You can import them using the following URL + the filename you want to import: `https://apps.bren.ucsb.edu/eds213-data/walkability/`
 
