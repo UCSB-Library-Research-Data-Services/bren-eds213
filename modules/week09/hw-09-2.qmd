@@ -1,8 +1,8 @@
 ---
-title: Week 9 - What makes a good index?
+title: Bonus 2026 - What makes a good index?
 ---
 
-**Please use Canvas to return the assignments: <https://ucsb.instructure.com/courses/26293/assignments/365666>**
+**Please use Canvas to return the assignments:**
 
 Recall from class that an index I~C~ on a column C in a table T is in effect a mini-table, kept in sync with T, that contains all the values of column C in order. If there are a million rows in table T, there will be a million values in index I~C~. If the values of column C are unique, the index will hold a million unique values. If column C takes on only a few possible values, then index I~C~ will still have a million values, but many of those values will be repeated.
 
@@ -13,6 +13,15 @@ If the table has multiple indexes, the database will analyze the query constrain
 An index can be created for a single column as in the example of I~C~ above. But an index can also be created across multiple columns. For example, an index I~C,D,E~ would index all tuples of values from columns C, D, and E.
 
 For the purposes of this assignment we will be working with an SQLite database that has the same structure as previous class databases but in which the Bird_nests table has 2 million rows, each of which has been fattened to occupy multiple kilobytes. As a consequence, the database file is approximately 8GB. The database file can be found on workbench-1.bren.ucsb.edu at `/courses/EDS213/big-fat.sqlite3`. **To use it you will need to copy or download the database file to your own space.**
+
+You can open an [SQLite](https://sqlite.org/index.html) database similarly to what we did with DuckDB:
+
+```bash
+sqlite3 big-fat.sqlite3 
+```
+
+**Note:** the `.tables`, `.schema`, `.exit` functions are similar to the ones we used with DuckDB.
+
 
 We will also be working with the following query:
 
@@ -28,7 +37,7 @@ SELECT Nest_ID
 
 This query returns exactly one row.
 
-# Part 1
+## Part 1 (10pts)
 
 Answer the following questions.
 
@@ -36,7 +45,7 @@ Answer the following questions.
 
 2.  Will adding an index on a column not mentioned in the WHERE clause be used by the database? Why or why not?
 
-# Part 2
+## Part 2 (50pts)
 
 Query optimization, which falls under the general heading of "database tuning," is a complex subject, as query performance depends on the query or queries being supported, the distribution and nature of the data, the abilities and characteristics of the query planner, and the costs of creating and maintaining indexes. Still, we can make a general observation about what makes for a good index ("good" meaning improving query performance here) by examining the effects of adding different indexes on the Bird_nests table and timing the above query.
 
@@ -74,11 +83,11 @@ ageMethod,#####,#####
 ...
 ```
 
-For timing, you can use the Bash test harness you developed in week 5, or you can do your timings from R or Python if you prefer. Regardless of the language, ensure that you compute the average time it takes to perform the query as described above.
+For timing, you can use the Bash test harness you developed previously, or you can do your timings from R or Python if you prefer. Regardless of the language, ensure that you compute the average time it takes to perform the query as described above.
 
 You can run your test harness manually for each experiment, and manually retrieve the number of distinct values for step 4 above. That's just fine. But you can also automate the whole process; some hints for doing so are below. Be careful when running your test harness, as in the end you want just one row in your CSV file per experiment. **Don't get hung up on automating the experiments; that's not a requirement.**
 
-Once you have your data, load it in Jupyter or RStudio and create a log-log scatter plot of the number of distinct index values (X axis) versus query time (Y axis). (Results will be difficult to see if both axes are not logarithmic.) If all goes well, your plot should resemble something like this:
+Once you have your data, load it in Python or R and create a log-log scatter plot of the number of distinct index values (X axis) versus query time (Y axis). (Results will be difficult to see if both axes are not logarithmic.) If all goes well, your plot should resemble something like this:
 
 ![](IMG_7077.jpeg)
 
@@ -91,9 +100,13 @@ Recall that num_distinct_values = 1, the leftmost point on your scatter plot, co
     -   What conclusion do you draw regarding what makes a good index?
 -   Upload all your work: your test harness, your analysis notebook, and your CSV file.
 
-**Credit: 100 points**
+<br>
 
-# Appendix 1: Modifying your Bash test harness
+**Total Credit: 60 points**
+
+--
+
+## Appendix 1: Modifying your Bash test harness
 
 A few tips on modifying your Bash test harness to make it more useful for this assignment. First, if you find it annoying to have to try different numbers of repetitions to get positive and more precise timings, you can automate your script to try different numbers of repetitions until it achieves something reasonable. Here's one idea:
 
@@ -119,7 +132,7 @@ Second, you can gather the number of distinct values by adding an `sqlite3 -csv 
 
 And third, if you make the column(s) you want to index an argument to your script, you can automate adding and dropping indexes by adding more sqlite3 commands.
 
-# Appendix 2: Connecting to SQLite from Python
+## Appendix 2: Connecting to SQLite from Python
 
 ```python
 # %pip install sqlite3
@@ -134,7 +147,7 @@ cur.execute("SELECT * FROM Site")
 cur.fetchone()
 ```
 
-# Appendix 3: Connecting to SQLite from R
+## Appendix 3: Connecting to SQLite from R
 
 ```r
 library(tidyverse)
@@ -153,3 +166,5 @@ DBI::dbGetQuery(conn, 'SELECT * FROM Site')
 ```
 
 Probably best to not use `dbplyr` for this assignment as you want control over the query that is submitted and the result that is returned.
+
+
