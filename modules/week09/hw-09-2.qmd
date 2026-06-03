@@ -108,7 +108,7 @@ Recall that num_distinct_values = 1, the leftmost point on your scatter plot, co
 
 **Total Credit: 40 points**
 
---
+<hr>
 
 ## Appendix 1: Modifying your Bash test harness
 
