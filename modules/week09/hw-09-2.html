@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 9 - What makes a good index? – eds213</title>
+<title>Bonus 2026 - What makes a good index? – eds213</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -251,6 +251,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../modules/week08/hw-08-parquet.html">
  <span class="dropdown-text">Week 8.2 - How walkable is my favorite location in the US?</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week09/hw-09-2.html">
+ <span class="dropdown-text">Bonus 2026 - What makes a good index?</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -323,8 +327,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1" id="toc-part-1" class="nav-link active" data-scroll-target="#part-1">Part 1</a></li>
-  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-1-10pts" id="toc-part-1-10pts" class="nav-link active" data-scroll-target="#part-1-10pts">Part 1 (10pts)</a></li>
+  <li><a href="#part-2-50pts" id="toc-part-2-50pts" class="nav-link" data-scroll-target="#part-2-50pts">Part 2 (50pts)</a></li>
   <li><a href="#appendix-1-modifying-your-bash-test-harness" id="toc-appendix-1-modifying-your-bash-test-harness" class="nav-link" data-scroll-target="#appendix-1-modifying-your-bash-test-harness">Appendix 1: Modifying your Bash test harness</a></li>
   <li><a href="#appendix-2-connecting-to-sqlite-from-python" id="toc-appendix-2-connecting-to-sqlite-from-python" class="nav-link" data-scroll-target="#appendix-2-connecting-to-sqlite-from-python">Appendix 2: Connecting to SQLite from Python</a></li>
   <li><a href="#appendix-3-connecting-to-sqlite-from-r" id="toc-appendix-3-connecting-to-sqlite-from-r" class="nav-link" data-scroll-target="#appendix-3-connecting-to-sqlite-from-r">Appendix 3: Connecting to SQLite from R</a></li>
@@ -336,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 9 - What makes a good index?</h1>
+<h1 class="title">Bonus 2026 - What makes a good index?</h1>
 </div>
 
 
@@ -353,31 +357,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Please use Canvas to return the assignments: <a href="https://ucsb.instructure.com/courses/26293/assignments/365666" class="uri">https://ucsb.instructure.com/courses/26293/assignments/365666</a></strong></p>
+<p><strong>Please use Canvas to return the assignments:</strong></p>
 <p>Recall from class that an index I<sub>C</sub> on a column C in a table T is in effect a mini-table, kept in sync with T, that contains all the values of column C in order. If there are a million rows in table T, there will be a million values in index I<sub>C</sub>. If the values of column C are unique, the index will hold a million unique values. If column C takes on only a few possible values, then index I<sub>C</sub> will still have a million values, but many of those values will be repeated.</p>
 <p>Suppose we are given a query that includes a constraint against column C, i.e., that includes <code>WHERE C = someval</code> possibly among other constraints. If the table has no indexes, then the database has no choice but to do a “full table scan,” i.e., to examine every table row. If the table is large that can be very costly. But if index I<sub>C</sub> exists, then to <em>use</em> index I<sub>C</sub> means that the database looks up the constraint value <code>someval</code> in the index to obtain a smaller number of table rows (just one row in the case of a unique index) to subsequently examine and match additional constraints against. The essential purpose of an index is to reduce the number of table rows that must be examined.</p>
 <p>If the table has multiple indexes, the database will analyze the query constraints and the distributions of column values and pick what it thinks will be the most effective index to use for the given query.</p>
 <p>An index can be created for a single column as in the example of I<sub>C</sub> above. But an index can also be created across multiple columns. For example, an index I<sub>C,D,E</sub> would index all tuples of values from columns C, D, and E.</p>
 <p>For the purposes of this assignment we will be working with an SQLite database that has the same structure as previous class databases but in which the Bird_nests table has 2 million rows, each of which has been fattened to occupy multiple kilobytes. As a consequence, the database file is approximately 8GB. The database file can be found on workbench-1.bren.ucsb.edu at <code>/courses/EDS213/big-fat.sqlite3</code>. <strong>To use it you will need to copy or download the database file to your own space.</strong></p>
+<p>You can open an <a href="https://sqlite.org/index.html">SQLite</a> database similarly to what we did with DuckDB:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> big-fat.sqlite3 </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Note:</strong> the <code>.tables</code>, <code>.schema</code>, <code>.exit</code> functions are similar to the ones we used with DuckDB.</p>
 <p>We will also be working with the following query:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Bird_nests</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> Site <span class="op">=</span> <span class="st">'nome'</span> <span class="kw">AND</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          Species <span class="op">=</span> <span class="st">'ruff'</span> <span class="kw">AND</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>          <span class="dt">Year</span> <span class="op">=</span> <span class="dv">1983</span> <span class="kw">AND</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>          Observer <span class="op">=</span> <span class="st">'cbishop'</span> <span class="kw">AND</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>          ageMethod <span class="op">=</span> <span class="st">'float'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Nest_ID</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Bird_nests</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> Site <span class="op">=</span> <span class="st">'nome'</span> <span class="kw">AND</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>          Species <span class="op">=</span> <span class="st">'ruff'</span> <span class="kw">AND</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>          <span class="dt">Year</span> <span class="op">=</span> <span class="dv">1983</span> <span class="kw">AND</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>          Observer <span class="op">=</span> <span class="st">'cbishop'</span> <span class="kw">AND</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>          ageMethod <span class="op">=</span> <span class="st">'float'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This query returns exactly one row.</p>
-<section id="part-1" class="level1">
-<h1>Part 1</h1>
+<section id="part-1-10pts" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-10pts">Part 1 (10pts)</h2>
 <p>Answer the following questions.</p>
 <ol type="1">
 <li><p>Is there already an index on the Bird_nests table? If so, what is that index and will SQLite use it in the above query? Why or why not?</p></li>
 <li><p>Will adding an index on a column not mentioned in the WHERE clause be used by the database? Why or why not?</p></li>
 </ol>
 </section>
-<section id="part-2" class="level1">
-<h1>Part 2</h1>
+<section id="part-2-50pts" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-50pts">Part 2 (50pts)</h2>
 <p>Query optimization, which falls under the general heading of “database tuning,” is a complex subject, as query performance depends on the query or queries being supported, the distribution and nature of the data, the abilities and characteristics of the query planner, and the costs of creating and maintaining indexes. Still, we can make a general observation about what makes for a good index (“good” meaning improving query performance here) by examining the effects of adding different indexes on the Bird_nests table and timing the above query.</p>
 <p><strong>Your task is to conduct at least 15 experiments.</strong> In each experiment perform the following steps:</p>
 <ol type="1">
@@ -411,9 +418,9 @@ ageMethod,#####,#####
 "Site,Species",#####,#####
 "Site,Observer",#####,#####
 ...</code></pre>
-<p>For timing, you can use the Bash test harness you developed in week 5, or you can do your timings from R or Python if you prefer. Regardless of the language, ensure that you compute the average time it takes to perform the query as described above.</p>
+<p>For timing, you can use the Bash test harness you developed previously, or you can do your timings from R or Python if you prefer. Regardless of the language, ensure that you compute the average time it takes to perform the query as described above.</p>
 <p>You can run your test harness manually for each experiment, and manually retrieve the number of distinct values for step 4 above. That’s just fine. But you can also automate the whole process; some hints for doing so are below. Be careful when running your test harness, as in the end you want just one row in your CSV file per experiment. <strong>Don’t get hung up on automating the experiments; that’s not a requirement.</strong></p>
-<p>Once you have your data, load it in Jupyter or RStudio and create a log-log scatter plot of the number of distinct index values (X axis) versus query time (Y axis). (Results will be difficult to see if both axes are not logarithmic.) If all goes well, your plot should resemble something like this:</p>
+<p>Once you have your data, load it in Python or R and create a log-log scatter plot of the number of distinct index values (X axis) versus query time (Y axis). (Results will be difficult to see if both axes are not logarithmic.) If all goes well, your plot should resemble something like this:</p>
 <p><img src="IMG_7077.jpeg" class="img-fluid"></p>
 <p>Recall that num_distinct_values = 1, the leftmost point on your scatter plot, corresponds to using no index at all.</p>
 <p><strong>Finally,</strong></p>
@@ -425,56 +432,58 @@ ageMethod,#####,#####
 </ul></li>
 <li>Upload all your work: your test harness, your analysis notebook, and your CSV file.</li>
 </ul>
-<p><strong>Credit: 100 points</strong></p>
+<p><br></p>
+<p><strong>Total Credit: 60 points</strong></p>
+<p>–</p>
 </section>
-<section id="appendix-1-modifying-your-bash-test-harness" class="level1">
-<h1>Appendix 1: Modifying your Bash test harness</h1>
+<section id="appendix-1-modifying-your-bash-test-harness" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-1-modifying-your-bash-test-harness">Appendix 1: Modifying your Bash test harness</h2>
 <p>A few tips on modifying your Bash test harness to make it more useful for this assignment. First, if you find it annoying to have to try different numbers of repetitions to get positive and more precise timings, you can automate your script to try different numbers of repetitions until it achieves something reasonable. Here’s one idea:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">num_reps</span><span class="op">=</span>1</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="fu">true</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">start</span><span class="op">=</span><span class="va">$SECONDS</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="va">$(</span><span class="fu">seq</span> <span class="va">$num_reps)</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">sqlite3</span> <span class="va">$db_file</span> <span class="st">"</span><span class="va">$query</span><span class="st">"</span> <span class="op">&gt;&amp;</span> /dev/null</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">done</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">end</span><span class="op">=</span><span class="va">$SECONDS</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="va">$((end</span> <span class="op">-</span> <span class="va">start))</span> <span class="ot">-gt</span> 5 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Too fast, trying again!"</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">num_reps</span><span class="op">=</span><span class="va">$((num_reps</span> <span class="op">*</span> <span class="dv">10</span><span class="va">))</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">num_reps</span><span class="op">=</span>1</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="fu">true</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">start</span><span class="op">=</span><span class="va">$SECONDS</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="va">$(</span><span class="fu">seq</span> <span class="va">$num_reps)</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">sqlite3</span> <span class="va">$db_file</span> <span class="st">"</span><span class="va">$query</span><span class="st">"</span> <span class="op">&gt;&amp;</span> /dev/null</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">done</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">end</span><span class="op">=</span><span class="va">$SECONDS</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="va">$((end</span> <span class="op">-</span> <span class="va">start))</span> <span class="ot">-gt</span> 5 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Too fast, trying again!"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">num_reps</span><span class="op">=</span><span class="va">$((num_reps</span> <span class="op">*</span> <span class="dv">10</span><span class="va">))</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will try 1 repetition, then 10, then 100, etc.</p>
 <p>Second, you can gather the number of distinct values by adding an <code>sqlite3 -csv $db_file "$num_values_query"</code> command and saving the output in a variable, and then echoing that variable out to your CSV file along with your other variables.</p>
 <p>And third, if you make the column(s) you want to index an argument to your script, you can automate adding and dropping indexes by adding more sqlite3 commands.</p>
 </section>
-<section id="appendix-2-connecting-to-sqlite-from-python" class="level1">
-<h1>Appendix 2: Connecting to SQLite from Python</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %pip install sqlite3</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the database</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">"/courses/EDS213/big-fat.sqlite3"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>cur <span class="op">=</span> conn.cursor()</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute a query</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Site"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>cur.fetchone()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="appendix-2-connecting-to-sqlite-from-python" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-2-connecting-to-sqlite-from-python">Appendix 2: Connecting to SQLite from Python</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %pip install sqlite3</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the database</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">"/courses/EDS213/big-fat.sqlite3"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>cur <span class="op">=</span> conn.cursor()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute a query</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">"SELECT * FROM Site"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>cur.fetchone()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="appendix-3-connecting-to-sqlite-from-r" class="level1">
-<h1>Appendix 3: Connecting to SQLite from R</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the big database</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>conn <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">"/courses/EDS213/big-fat.sqlite3"</span>) </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># List the available tables</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbListTables</span>(conn)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># query using DBI</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbGetQuery</span>(conn, <span class="st">'SELECT * FROM Site'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="appendix-3-connecting-to-sqlite-from-r" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-3-connecting-to-sqlite-from-r">Appendix 3: Connecting to SQLite from R</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the big database</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>conn <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">"/courses/EDS213/big-fat.sqlite3"</span>) </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># List the available tables</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbListTables</span>(conn)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># query using DBI</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbGetQuery</span>(conn, <span class="st">'SELECT * FROM Site'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Probably best to not use <code>dbplyr</code> for this assignment as you want control over the query that is submitted and the result that is returned.</p>
 
 
