@@ -72,7 +72,7 @@ What experiments to run?
 
 When done, you will want your results in the form of a CSV file with three columns: label, average query time, and number of distinct values. If you use the label "none" for the initial experiment and the columns indexed as the label, your CSV file might resemble:
 
-```         
+```output
 label,avg_query_time,num_distinct_values
 none,#####,1
 Site,#####,16
