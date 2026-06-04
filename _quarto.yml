@@ -47,7 +47,7 @@ website:
       #     #- modules/week07/hw-07-4.qmd
           - modules/week08/hw-08-1.qmd
           - modules/week08/hw-08-parquet.qmd
-          - modules/week09/hw-09-2.qmd
+          # - modules/week09/hw-09-2.qmd
       #   - modules/hw_bonus.qmd
       - text: Weekly Labs
         menu:
