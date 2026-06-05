@@ -251,6 +251,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../modules/week08/hw-08-parquet.html">
  <span class="dropdown-text">Week 8.2 - How walkable is my favorite location in the US?</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../modules/week09/hw-09-2.html">
+ <span class="dropdown-text">Bonus 2026 - What makes a good index?</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -324,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#part-1-5pts" id="toc-part-1-5pts" class="nav-link active" data-scroll-target="#part-1-5pts">Part 1 (5pts)</a></li>
-  <li><a href="#part-2-35pts" id="toc-part-2-35pts" class="nav-link" data-scroll-target="#part-2-35pts">Part 2 (35pts)</a></li>
+  <li><a href="#part-2-20pts" id="toc-part-2-20pts" class="nav-link" data-scroll-target="#part-2-20pts">Part 2 (20pts)</a></li>
   <li><a href="#appendix-1-modifying-your-bash-test-harness" id="toc-appendix-1-modifying-your-bash-test-harness" class="nav-link" data-scroll-target="#appendix-1-modifying-your-bash-test-harness">Appendix 1: Modifying your Bash test harness</a></li>
   <li><a href="#appendix-2-connecting-to-sqlite-from-python" id="toc-appendix-2-connecting-to-sqlite-from-python" class="nav-link" data-scroll-target="#appendix-2-connecting-to-sqlite-from-python">Appendix 2: Connecting to SQLite from Python</a></li>
   <li><a href="#appendix-3-connecting-to-sqlite-from-r" id="toc-appendix-3-connecting-to-sqlite-from-r" class="nav-link" data-scroll-target="#appendix-3-connecting-to-sqlite-from-r">Appendix 3: Connecting to SQLite from R</a></li>
@@ -380,8 +384,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Will adding an index on a column not mentioned in the WHERE clause be used by the database? Why or why not?</p></li>
 </ol>
 </section>
-<section id="part-2-35pts" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-35pts">Part 2 (35pts)</h2>
+<section id="part-2-20pts" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-20pts">Part 2 (20pts)</h2>
 <p>Query optimization, which falls under the general heading of “database tuning,” is a complex subject, as query performance depends on the query or queries being supported, the distribution and nature of the data, the abilities and characteristics of the query planner, and the costs of creating and maintaining indexes. Still, we can make a general observation about what makes for a good index (“good” meaning improving query performance here) by examining the effects of adding different indexes on the Bird_nests table and timing the above query.</p>
 <p><strong>Your task is to conduct at least 15 experiments.</strong> In each experiment perform the following steps:</p>
 <ol type="1">
