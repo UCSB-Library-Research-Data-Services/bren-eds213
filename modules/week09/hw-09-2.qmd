@@ -49,7 +49,7 @@ Answer the following questions.
 2.  Will adding an index on a column not mentioned in the WHERE clause be used by the database? Why or why not?
 
 
-## Part 2 (35pts)
+## Part 2 (20pts)
 
 Query optimization, which falls under the general heading of "database tuning," is a complex subject, as query performance depends on the query or queries being supported, the distribution and nature of the data, the abilities and characteristics of the query planner, and the costs of creating and maintaining indexes. Still, we can make a general observation about what makes for a good index ("good" meaning improving query performance here) by examining the effects of adding different indexes on the Bird_nests table and timing the above query.
 
