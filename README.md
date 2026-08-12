@@ -1,4 +1,4 @@
-![DOI](https://zenodo.org/badge/771191052.svg)](https://doi.org/10.5281/zenodo.15693912)
+[![](https://zenodo.org/badge/771191052.svg)](https://doi.org/10.5281/zenodo.15693912)
 
 # EDS-213: Databases and Data Management
 
