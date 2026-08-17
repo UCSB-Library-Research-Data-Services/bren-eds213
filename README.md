@@ -1,6 +1,6 @@
 [![](https://zenodo.org/badge/771191052.svg)](https://doi.org/10.5281/zenodo.15693912)
 
-**This course is now archived; it was taught as part of the [UCSB Master of Environmental Data Science (MEDS)](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) from 2023-2026**
+***This course is now archived; it was taught as part of the [UCSB Master of Environmental Data Science (MEDS)](https://bren.ucsb.edu/masters-programs/master-environmental-data-science) from 2023-2026***
 
 # EDS-213: Databases and Data Management
 
